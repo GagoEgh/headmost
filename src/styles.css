@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ng-zorro-antd/ng-zorro-antd.min.css";
+
+.modal-content {
+    top: 100px !important;
+}
+
+.ng-image-slider .ng-image-slider-container .main .next, .ng-image-slider .ng-image-slider-container .main .prev {
+    right: 0 !important;
+    top: 80% !important;
+    width: 15px !important;
+    height: 15px !important;
+    font-size: 15px !important;
+    line-height: 13px !important;
+}
+
+.ng-image-slider .ng-image-slider-container .main .prev {
+    left: 0px !important;
+}
+
+body{
+    margin: 0;
+    background:rgb(105, 211, 211) !important ;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.ant-btn-primary {
+    width: 99% !important;
+}

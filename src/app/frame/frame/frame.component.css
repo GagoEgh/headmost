@@ -1,0 +1,239 @@
+.conteiner{
+    padding:20px;
+    height: 100vh;
+    /* background-color: rgb(105, 211, 211); */
+}
+
+.catalog{
+    display: flex;
+    border-radius: 40px;
+    background: rgba(255,255,255,0.5);
+    width: fit-content;
+    padding: 0 90px;
+    position: relative;
+    left: 50%;
+    top:5%;
+}
+
+.carusel{
+    width: fit-content;
+    margin-left: -15px;
+}
+
+.imageObject{
+    display: flex;
+    list-style: none;
+    width: fit-content;
+}
+
+.imageObject li{
+    position: relative;
+    width: fit-content;
+}
+
+.thumbImage{
+    cursor: pointer;
+    width: 52px;
+    margin-left: 5px;
+    padding-top: 17px;
+    
+}
+
+
+.imageObject li:hover .card{
+    display: block;
+}
+
+.card {
+    display: none;
+    position: absolute;
+    background-color: white;
+    list-style: none;
+    z-index: 333;
+    border-radius: 10px;
+    left: 0;
+    top:120%;
+}
+
+.card li{
+    width: 380px;
+}
+
+.box-content {
+   box-shadow: 1px 0 2px 3px white;
+}
+
+.backgrounds{
+    display: flex;
+    padding: 2% 4% 0 4%;
+    margin-left: 20px;
+    width: fit-content;
+}
+
+
+.white{
+    height: 67%;
+    margin-left: 5px;
+    cursor: pointer;
+    position: relative;
+    width: 35px;
+}
+
+.text{
+    position: absolute;
+    left: -5px;
+    top:130%;
+    background-color: white;
+    border-radius: 10px;
+    width: 90px;
+    text-align: center;
+    padding: 5px;
+    display: none;
+}
+
+.white:hover .text{
+    display: block;
+}
+   
+.imgColor{
+    padding:24px;
+    display: flex;
+    flex-direction: row;
+}
+
+.colorless{
+    width: 35px;
+    height: 20px;
+    margin-left: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    opacity: .5;
+}
+
+.info{
+    position: absolute;
+    top:180%;
+    left: -20px;
+    width: 220px;
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    display: none;
+}
+
+.colorless:hover{
+    opacity: 1;
+    transition: .5s;
+} 
+
+.colorless:hover .info{
+    display: block;
+}
+
+.lessWhite{
+    position: absolute;
+    left:0;
+    top:0;
+    width: 50%;
+    height: 100%;
+}
+
+/* RAMKA */
+
+ 
+.block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;   
+    transform-origin: center center;
+    position: relative;
+    left: 50%;
+    top:20%;
+    transform-origin: top;
+}
+
+.myWrap{
+    display: flex;
+    width: fit-content;
+    align-self: center;   
+}
+
+.content{
+    width: fit-content;
+}
+
+.letter{
+    text-align: center;
+    padding: 30px;
+}
+
+.letter input{
+    text-align: center;
+    color: #bebebe;
+    padding: 20px;
+    font-size: 60px;
+    box-shadow: 0 0 5px rgb(0 0 0 / 35%) inset;
+    border: none;
+    width: 725px;
+    height: 170px;
+}
+
+.top,.bottom{
+    height: 40px;
+}
+
+.reight,.left{
+    display: flex;
+    flex-direction: column;
+}
+
+.squrl{
+    height: 40px;
+    width: 40px;
+    flex-grow: 0;
+}
+
+.reight-he{
+    flex-grow: 1;
+}
+
+.create{
+    margin-top: 30px;
+    width: 180px;
+    padding: 10px;
+    text-align: center;
+    text-transform:uppercase;
+    border-radius: 15px;
+    background-color: goldenrod;
+    border: none;
+    color: rgb(88, 86, 86);
+    letter-spacing: 1px;
+    transition: .5s;
+    outline: none;
+}
+
+.create:active{
+    color: white;
+    background-color:rgb(119, 88, 9);
+    box-shadow: 1px 2px 1px rgb(77, 57, 7);
+    transition: 0.5s;
+} 
+
+.btn{
+    margin: -60px 0 0 25px;
+    font-size: 12px;
+    border-bottom: 1px dashed;
+}  
+
+
+.message{
+    color: red;
+    font-size: 20px;
+    font-weight: 300;
+   letter-spacing: 1px;
+}

@@ -1,0 +1,32 @@
+
+.conteiner{
+    box-shadow: 1px 1px 3px 1px rgb(157, 223, 217);
+    padding: 15px;
+}
+
+.silki{
+    list-style: none;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.frame{
+    text-decoration: none;
+    color: rgb(54, 54, 54);
+    font-weight: 500;
+    font-size: 18px;
+    padding: 5px;
+    transition: 0.4s;
+}
+
+.frame:hover{
+    box-shadow: 1px 0 2px 2px white;
+}
+
+.active{
+    padding-top: 5px;
+    border-bottom: 1px solid white;
+} 

@@ -1,0 +1,39 @@
+<div class="modal-header" >
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="img-menu">
+        <div class="block">
+            <div class="bg-img" *ngFor='let item of frames.painding.imgs' #newItem (click)='changeImg(item)'
+                [style.background-image]="'url('+ item.thumbnail + ')'">
+            </div>
+        </div>
+        <nav class="bar">
+            <h2>կարգաորումների ընտրութուն</h2>
+            <div class="menu">
+                <div class="color">
+                    <p class="subtitle">գույներ</p>
+                    <ul class="ul">
+                        <li class="list" *ngFor='let block of frames.imgColor' (click)='changeFone(block)'
+                            [ngClass]="{'listActive':frames.painding.id=== block.ceys.id}">
+                            {{block.ceys.name_hy}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="color">
+                    <p class="subtitle">կատեգորիա</p>
+                    <ul class="ul">
+                        <li class="list" *ngFor='let category of categoryList, let i = index'
+                            (click)='showCategory(category)'
+                            [ngClass]="{'listActive':frames.painding.categoryId=== category.id}">
+                            {{category.name_hy}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="modal-footer"></div>

@@ -1,0 +1,46 @@
+<div class="wrap">
+  <div class="user_data">
+
+    <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="userName">User Name</nz-form-label>
+        <nz-form-control [nzErrorTip]='nameEr' nzHasFeedback>
+          <input nz-input formControlName="userName" id="userName" />
+        </nz-form-control>
+      </nz-form-item>
+      <ng-template #nameEr>
+        <p *ngIf="erroreName('userName')">{{erroreStr}} </p>
+      </ng-template>
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="email">E-mail</nz-form-label>
+        <nz-form-control [nzErrorTip]="email" nzHasFeedback>
+          <input nz-input formControlName="email" id="email" />
+        </nz-form-control>
+      </nz-form-item>
+      <ng-template #email>
+        <p *ngIf="erroreName('email')">{{erroreStr}} </p>
+      </ng-template>
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="phoneNumber">Phone Number</nz-form-label>
+        <nz-form-control [nzErrorTip]="phone">
+          <input nz-input formControlName="phoneNumber" id="phoneNumber" mask = '(000)00-00-00' />
+        </nz-form-control>
+      </nz-form-item>
+      <ng-template #phone>
+        <p *ngIf="erroreName('phoneNumber')">{{erroreStr}} </p>
+      </ng-template>
+
+
+
+      <div class="order">
+        <h2 class="title">ՊԱՏՎԵՐԻ ՆԿԱՐԱԳՐՈՒԹՅՈԻՆ</h2>
+        <div class="data" *ngFor='let list of frames.orderList'>
+          <p><span>{{frames.letterImges.length}}տառ, </span>{{ list.created_frame_details.frame_details.name_hy}}</p>
+          <p class="smoll">{{ list.created_frame_details.frame_details.price}}դր/տառ</p>
+          <p>{{list.created_frame_details.price}}դր</p>
+        </div>
+      </div>
+      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+    </form>
+  </div>
+</div>

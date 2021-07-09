@@ -1,0 +1,76 @@
+.modal-content {
+    width: -webkit-fit-content !important;
+    width: -moz-fit-content !important;
+    width: fit-content !important;
+    top: 100px !important;
+
+
+    position: relative !important;
+    left: 50% !important;
+    top:20% !important;
+    transform-origin: top !important;
+
+}
+
+.img-menu{
+    display: flex;
+}
+
+.block{
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+}
+
+.menu{
+    margin-top: 50px;
+}
+
+.bg-img{
+    width: 90px;
+    height: 150px;
+    background-position: center;
+    background-size: 100% 100%;
+    margin: 5px 10px;
+    cursor: pointer;
+    transition: 0.5s;
+  
+}
+
+.bg-img:hover{
+    box-shadow: 1px 0 6px 4px rgb(75, 73, 73);
+}
+
+h2{
+    text-align: center;
+    color: slategrey;
+    margin-bottom: 10px;
+    font-size: 100%;
+}
+
+.subtitle{
+    color: slategrey;
+    font-weight: 300;
+    margin-bottom: -3px;
+    font-weight: bold;
+    margin-left: 40px;
+}
+
+.ul{
+    margin-bottom: 0rem !important;
+}
+
+.list{
+    list-style: none;
+    color: grey;
+    cursor: pointer;
+    word-break: break-word;
+}
+
+.list:hover{
+    color: black;
+}
+
+.listActive{
+    color: black;
+}
