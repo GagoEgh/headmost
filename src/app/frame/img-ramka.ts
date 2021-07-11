@@ -20,7 +20,7 @@ export interface Painding {
     categoryId: number
 
 }
-// /order/card-item/add-frame-in-card/
+
 export interface Api {
     worldApi: string,
     api_utils: string,
@@ -35,7 +35,9 @@ export interface Api {
     api_create_word: string,
     api_order:string,
     api_card:string,
-    api_add:string
+    api_add:string,
+    api_location:string,
+    api_country:string
 }
 
 export interface FramesImg {

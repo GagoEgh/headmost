@@ -16,7 +16,7 @@ export class FramesServService {
     btmText: string = '';
     text: string = '';
     isMessage = false;
-    orderList:any[]=[]
+    orderList: any[] = []
     isImg = true;
     div: any = [];
     frame: any;
@@ -36,7 +36,9 @@ export class FramesServService {
         api_create_word: '/create-word/',
         api_order: '/order',
         api_card: '/card-item',
-        api_add: '/add-frame-in-card/'
+        api_add: '/add-frame-in-card/',
+        api_location: '/location',
+        api_country: '/country/'
     }
 
     painding: Painding = {
@@ -129,7 +131,19 @@ export class FramesServService {
         return this.url.get(this.api.worldApi + this.api.api_utils + this.api.api_category)
     }
 
+    getOrder(obj: any) {
 
+        return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_card + this.api.api_add,
+            obj,
+            { headers: { 'Authorization': 'Token e3488062bef3993ccb0871c945f4d62c1d18aea6' } }
+        )
+    }
+
+
+    // /location/country/
+    getCountry(){
+        return this.url.get(this.api.worldApi+this.api.api_location+this.api.api_country)
+    }
     letterColorFone() {
         this.text = this.validateForm.get('text')?.value;
 
@@ -144,20 +158,8 @@ export class FramesServService {
                 this.isMessage = true;
                 this.isImg = true;
             }
-            console.log(this.letterImges)
         })
 
     }
-
-    // /order/card-item/add-frame-in-card/
-    getOrder(obj: any) {
-
-        return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_card + this.api.api_add,
-             obj,
-             {headers:{'Authorization':'Token e3488062bef3993ccb0871c945f4d62c1d18aea6'}}
-            )
-    }
-
-
 
 }

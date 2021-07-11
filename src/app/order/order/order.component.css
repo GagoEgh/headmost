@@ -1,12 +1,26 @@
+.body{
+    background-color: rgba(187, 182, 182, 0.945) ;
+}
+
 .wrap{
-    width: 35%;
-    text-align: center;
-    margin: 10% auto;
+    width: fit-content;
+    display: flex;
+    justify-content: space-around;
+
+    position: relative;
+    left: 50%;
+    top:20%;
+    transform-origin: top;
+}
+
+.user-data, .order{
+    width: 500px;
+    padding: 10px;
+    
 }
 
 .order{
     text-align: center;
-    padding-bottom: 30px;
 }
 
 .title{
@@ -31,5 +45,26 @@
 .data p {
     margin:0 0 0 1% ;
     font-weight: 500;
+}
+
+.ant-input {
+    border-radius: 10px !important;
+    /* border: 1px solid #747171 !important; */
+}
+
+.ant-btn-primary {
+    border-radius: 10px;
+}
+
+.version-info {
+    font-size: 8pt;
+    float: right;
+    margin: 8px;
+  }
+  
+  .ant-select {
+    width: 500px;
+    border-radius: 10px;
+    margin-bottom: 30px;
 }
 

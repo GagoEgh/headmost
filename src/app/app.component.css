@@ -1,7 +1,8 @@
 
 .conteiner{
-    box-shadow: 1px 1px 3px 1px rgb(157, 223, 217);
     padding: 15px;
+    background: rgb(171 225 225);
+    box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
 }
 
 .silki{

@@ -6,7 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule } from 'ngx-mask'
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 
 
@@ -26,7 +27,9 @@ const routs:Routes =[
     NzFormModule ,
     NzButtonModule,
     NzInputModule,
-     NgxMaskModule.forRoot(),
+    NzSelectModule,
+
+    NgxMaskModule.forRoot(),
     RouterModule.forChild(routs)
   ],
   exports:[RouterModule],

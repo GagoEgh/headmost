@@ -1,8 +1,3 @@
-<!-- <p>frame works!</p>
-
-<app-ngbd-modal-content></app-ngbd-modal-content>
-<app-create-img></app-create-img>
-<app-img-catalog></app-img-catalog> -->
 
 <header class="conteiner">
     <div  class="catalog" [ngStyle]="setStyle()" >
@@ -38,9 +33,9 @@
     <div #block class="block" [ngStyle]="setStyle()" >
       <div class="myWrap">
         <div class="reight">
-          <div class="squrl" [style.background-image]="'url(' + frames.frame?.left_top_corner_image + ')'"></div>
-          <div class="reight-he" [style.background-image]="'url(' + frames.frame?.left_line_image + ')'"></div>
-          <div class="squrl" [style.background-image]="'url(' + frames.frame?.left_bottom_corner_image + ')'"></div>
+          <div class="squrl left-top" [style.background-image]="'url(' + frames.frame?.left_top_corner_image + ')'"></div>
+          <div class="reight-he left-line" [style.background-image]="'url(' + frames.frame?.left_line_image + ')'"></div>
+          <div class="squrl left-bottom" [style.background-image]="'url(' + frames.frame?.left_bottom_corner_image + ')'"></div>
         </div>
         <div class="content">
           <div class="top" [style.background-image]="'url(' + frames.frame?.top_line_image + ')'"></div>
@@ -54,9 +49,9 @@
           </div>
         </div>
         <div class="left">
-          <div class="squrl" [style.background-image]="'url(' + frames.frame?.right_top_corner_image + ')'"></div>
-          <div class="reight-he" [style.background-image]="'url(' + frames.frame?.right_line_image + ')'"></div>
-          <div class="squrl" [style.background-image]="'url(' + frames.frame?.right_bottom_corner_image + ')'"></div>
+          <div class="squrl right-top" [style.background-image]="'url(' + frames.frame?.right_top_corner_image + ')'"></div>
+          <div class="reight-he right-line" [style.background-image]="'url(' + frames.frame?.right_line_image + ')'"></div>
+          <div class="squrl right-bottom" [style.background-image]="'url(' + frames.frame?.right_bottom_corner_image + ')'"></div>
         </div>
       </div>
       <p *ngIf = 'frames.isMessage' class="message">ՏՎՅԱԼ ՏԱՌԵՐՈՎ ՆԿԱՐ ԴԵՌՎՍ ՉՈԻՆԵՆՔ</p>

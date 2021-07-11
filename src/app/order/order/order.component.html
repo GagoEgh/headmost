@@ -1,6 +1,5 @@
-<div class="wrap">
-  <div class="user_data">
-
+<div class="wrap" #wrap [ngStyle]="setStyle()">
+  <div class="user-data">
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
       <nz-form-item>
         <nz-form-label nzRequired nzFor="userName">User Name</nz-form-label>
@@ -23,24 +22,34 @@
       <nz-form-item>
         <nz-form-label nzRequired nzFor="phoneNumber">Phone Number</nz-form-label>
         <nz-form-control [nzErrorTip]="phone">
-          <input nz-input formControlName="phoneNumber" id="phoneNumber" mask = '(000)00-00-00' />
+          <input nz-input formControlName="phoneNumber" id="phoneNumber" mask='(000)00-00-00' />
         </nz-form-control>
       </nz-form-item>
       <ng-template #phone>
         <p *ngIf="erroreName('phoneNumber')">{{erroreStr}} </p>
       </ng-template>
 
+      <!-- select -->
+      <nz-select nzAllowClear nzPlaceHolder="COUNTRY" nzShowSearch>
+        <nz-option-group *ngFor ='let country of selectedValue' [nzLabel]='country.name_hy ' >
+          <nz-option *ngFor ='let regions of country.country_regions' [nzLabel]='regions.name_hy' nzDisabled=true>
+            <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.name_hy' [nzLabel]='city.name_hy'></nz-option>
+          </nz-option> 
+        </nz-option-group>
+      </nz-select>
 
-
-      <div class="order">
-        <h2 class="title">ՊԱՏՎԵՐԻ ՆԿԱՐԱԳՐՈՒԹՅՈԻՆ</h2>
-        <div class="data" *ngFor='let list of frames.orderList'>
-          <p><span>{{frames.letterImges.length}}տառ, </span>{{ list.created_frame_details.frame_details.name_hy}}</p>
-          <p class="smoll">{{ list.created_frame_details.frame_details.price}}դր/տառ</p>
-          <p>{{list.created_frame_details.price}}դր</p>
-        </div>
-      </div>
       <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
     </form>
   </div>
+
+
+  <div class="order">
+    <h2 class="title">ՊԱՏՎԵՐԻ ՆԿԱՐԱԳՐՈՒԹՅՈԻՆ</h2>
+    <div class="data" *ngFor='let list of frames.orderList'>
+      <p><span>{{frames.letterImges.length}}տառ, </span>{{ list.created_frame_details.frame_details.name_hy}}</p>
+      <p class="smoll">{{ list.created_frame_details.frame_details.price}}դր/տառ</p>
+      <p>{{list.created_frame_details.price}}դր</p>
+    </div>
+  </div>
 </div>
+

@@ -1,10 +1,10 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-//import { FramesServService } from '../frames-serv.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FramesImg } from '../img-ramka';
 import { NgbdModalContentComponent } from '../ngbd-modal-content/ngbd-modal-content.component';
 import { FramesServService } from '../../frames-serv.service'
+
 @Component({
   selector: 'app-frame',
   templateUrl: './frame.component.html',
@@ -58,7 +58,6 @@ export class FrameComponent implements OnInit {
     this.frames.getFrames().subscribe((el: any) => {
       this.frames.framesImge = el.results;
       this.frameClick(this.frames.index)
-
     })
   }
 

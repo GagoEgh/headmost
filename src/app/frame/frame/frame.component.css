@@ -1,7 +1,7 @@
 .conteiner{
     padding:20px;
     height: 100vh;
-    /* background-color: rgb(105, 211, 211); */
+    background: rgb(140 223 223);
 }
 
 .catalog{
@@ -198,8 +198,31 @@
     flex-grow: 0;
 }
 
+.left-top{
+    margin: 0 -1px -1px 1px;
+}
+
+.left-bottom{
+ margin: -1px -1px 0 1px;
+}
+
 .reight-he{
     flex-grow: 1;
+}
+
+.left-line{
+    margin-left: 1px;
+}
+
+.right-line{
+    margin: 0 1px 0 -1px;
+}
+.right-top{
+    margin: 0 -1px -1px -1px;
+}
+
+.right-bottom{
+    margin: -1px 0 0 -1px;
 }
 
 .create{
