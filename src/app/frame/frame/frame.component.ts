@@ -1,9 +1,9 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FramesImg } from '../img-ramka';
+import { FramesImg } from '../../shared/img-ramka';
 import { NgbdModalContentComponent } from '../ngbd-modal-content/ngbd-modal-content.component';
-import { FramesServService } from '../../frames-serv.service'
+import { FramesServService } from '../../shared/frames-serv.service'
 
 @Component({
   selector: 'app-frame',
@@ -75,6 +75,7 @@ export class FrameComponent implements OnInit {
     let style = {
       transform: "translate(-50%, -5%)" + "scale(" + this.scale + ")"
     }
+  
     return style
   }
 
@@ -114,6 +115,10 @@ export class FrameComponent implements OnInit {
   deletImg(ev: boolean) {
     this.frames.isImg = ev;
     this.frames.validateForm.reset();
+  }
+
+  showFrame(){
+    this.frames.showFrame()
   }
 
 }

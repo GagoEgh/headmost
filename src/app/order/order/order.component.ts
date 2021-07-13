@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FramesServService } from 'src/app/shared/frames-serv.service';
 
-import { FramesServService } from 'src/app/frames-serv.service';
 
 @Component({
   selector: 'app-order',
@@ -13,8 +13,11 @@ export class OrderComponent implements OnInit {
   erroreStr: string = '';
   heigth: number | undefined;
   width: number | undefined;
+  selectedValue: any[] = [];
   scale: number = 1;
+  sum: number = 0;
   @ViewChild("wrap", { static: false }) wrap: ElementRef | undefined;
+
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.heigth = this.wrap?.nativeElement.clientHeight | 1;
@@ -40,16 +43,22 @@ export class OrderComponent implements OnInit {
   constructor(public frames: FramesServService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.frames.isImg = true;
+    // this.frames.isImg = true;
+    this.frames.orderList.forEach((obj: any) => {
+      this.sum += obj.created_frame_details.price;
+    })
+
     this.userCountry();
     this.validateForm = this.fb.group({
       userName: [null, [Validators.required, Validators.minLength(3), this.userNameChar]],
       email: [null, [Validators.required, this.emailValid]],
       phoneNumber: [null, [Validators.required, this.PhoneNumberLength]],
-      remember: [true]
+      country: [null, [Validators.required]],
+      addres: [null, [Validators.required]],
+      comment: [null, []],
+      sale: ['', []]
+      // remember: [true]
     });
-
-
   }
 
   public setStyle() {
@@ -102,20 +111,49 @@ export class OrderComponent implements OnInit {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
+
     }
   }
 
-  userCountry(){
+  salePost() {
+    const sale = {
+      // "code":147852,
+      // "price":1000
+      price: this.sum,
+      code: this.validateForm.get('sale')?.value
+    }
+
+    if (this.validateForm.get('sale')?.touched && this.validateForm.get('sale')?.pristine) {
+      this.frames.promoCodePost(sale).subscribe((el: any) => {
+        console.log(el)
+      })
+
+    }
+
+  }
+
+  userCountry() {
     this.frames.getCountry()
-    .subscribe((el:any)=>{
-      this.selectedValue =el.results
-      console.log('country', this.selectedValue)
-    })
+      .subscribe((el: any) => {
+        this.selectedValue = el.results
+      })
   }
 
 
-  //select
-  selectedValue:any[] = [];
+  deleteDate(obj: any) {
+    this.frames.deleteOrder(obj.id).subscribe((el: any) => {
+      this.sum -= obj.created_frame_details.price;
+      this.frames.orderList = this.frames.orderList.filter((val: any) => {
+        return val.id != obj.id
+      })
+
+      if (this.frames.orderList.length === 0) {
+        this.frames.showFrame()
+      }
+    });
+
+  }
+
 }
 
 

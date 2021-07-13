@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Api, Ceys, FramesImg, LetterImge, Painding, Value } from '../app/frame/img-ramka';
+import { Api, Ceys, FramesImg, LetterImge, Painding, Value } from 'src/app/shared/img-ramka'
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
@@ -11,6 +11,7 @@ export class FramesServService {
     validateForm: FormGroup = new FormGroup({});
     letterImges: LetterImge[] = [];
     framesImge: FramesImg[] = [];
+    isOrder: boolean = false;
     background: any = {};
     topText: string = '';
     btmText: string = '';
@@ -38,7 +39,8 @@ export class FramesServService {
         api_card: '/card-item',
         api_add: '/add-frame-in-card/',
         api_location: '/location',
-        api_country: '/country/'
+        api_country: '/country/',
+        api_check_promo:'check-promo-code/'
     }
 
     painding: Painding = {
@@ -139,11 +141,21 @@ export class FramesServService {
         )
     }
 
-
-    // /location/country/
-    getCountry(){
-        return this.url.get(this.api.worldApi+this.api.api_location+this.api.api_country)
+    getCountry() {
+        return this.url.get(this.api.worldApi + this.api.api_location + this.api.api_country)
     }
+
+    deleteOrder(id: number) {
+        return this.url.delete(this.api.worldApi + this.api.api_order + this.api.api_card + '/' + id + '/',
+            { headers: { 'Authorization': 'Token e3488062bef3993ccb0871c945f4d62c1d18aea6' } }
+        )
+    }
+  
+    promoCodePost(data:any){
+        return this.url.post(this.api.worldApi+this.api.api_promocode+this.api.api_check_promo,data)
+    }
+
+
     letterColorFone() {
         this.text = this.validateForm.get('text')?.value;
 
@@ -160,6 +172,12 @@ export class FramesServService {
             }
         })
 
+    }
+
+    showFrame() {
+        this.isOrder = false;
+        this.isImg = true;
+        this.validateForm.reset()
     }
 
 }

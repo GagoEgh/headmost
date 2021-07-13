@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Category } from 'src/app/frame/img-ramka';
-import { FramesServService } from 'src/app/frames-serv.service';
+import { Category } from 'src/app/shared/img-ramka';
+import { FramesServService } from 'src/app/shared/frames-serv.service';
 
 @Component({
   selector: 'app-img-catalog',

@@ -8,17 +8,19 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NgxMaskModule } from 'ngx-mask'
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { SharedModule } from '../shared/shared.modult';
 
 
 
 
 const routs:Routes =[
-  {path:'',component:OrderComponent}
+  {path:'',component:OrderComponent},
+
 ]
 
 @NgModule({
   declarations: [
-    OrderComponent
+
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,7 @@ const routs:Routes =[
     NzButtonModule,
     NzInputModule,
     NzSelectModule,
-
+    SharedModule,
     NgxMaskModule.forRoot(),
     RouterModule.forChild(routs)
   ],

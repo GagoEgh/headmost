@@ -33,11 +33,11 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
-
+ 
     border-radius: 10px !important;
 }
 
 .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
-    
+ 
     border-radius: 10px !important;
 }

@@ -2,9 +2,11 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FramesServService } from 'src/app/frames-serv.service';
-import { Letter } from '../../img-ramka';
-import { ImgCatalogComponent } from './img-catalog/img-catalog.component';
+import { FramesServService } from 'src/app/shared/frames-serv.service';
+import { Letter } from '../../../shared/img-ramka';
+import { ImgCatalogComponent } from '../img-catalog/img-catalog.component';
+
+
 
 @Component({
   selector: 'app-create-img',
@@ -157,8 +159,8 @@ export class CreateImgComponent implements OnInit {
     
     this.frames.getOrder(order).subscribe((el:any)=>{
       this.frames.orderList = el;
-      this.frames.letterImges;
-      this.rout.navigate(['/order']);
+    //  this.frames.letterImges;
+      this.frames.isOrder = true;
     })
     
   }

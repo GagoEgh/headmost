@@ -1,7 +1,7 @@
 .conteiner{
     padding:20px;
-    height: 100vh;
-    background: rgb(140 223 223);
+    height: calc(100% - 74px);
+    background-image: url('/assets/1x/bg8.jpg');
 }
 
 .catalog{
@@ -12,7 +12,7 @@
     padding: 0 90px;
     position: relative;
     left: 50%;
-    top:5%;
+    top:50px;
 }
 
 .carusel{
@@ -29,6 +29,7 @@
 .imageObject li{
     position: relative;
     width: fit-content;
+    padding: 8px;
 }
 
 .thumbImage{
@@ -153,7 +154,7 @@
     transform-origin: center center;
     position: relative;
     left: 50%;
-    top:20%;
+    top:115px;
     transform-origin: top;
 }
 
@@ -226,7 +227,7 @@
 }
 
 .create{
-    margin-top: 30px;
+    margin-top: 60px;
     width: 180px;
     padding: 10px;
     text-align: center;
@@ -238,6 +239,7 @@
     letter-spacing: 1px;
     transition: .5s;
     outline: none;
+    /* transform-origin: top; */
 }
 
 .create:active{
@@ -253,10 +255,21 @@
     border-bottom: 1px dashed;
 }  
 
-
 .message{
     color: red;
     font-size: 20px;
     font-weight: 300;
    letter-spacing: 1px;
 }
+
+
+::ng-deep app-order .wrap{
+    background-color: white;
+    width: fit-content;
+    margin-top: 140px ;
+    padding-top: 60px;
+    display: flex;
+    width: fit-content;
+    box-shadow: 3px 2px 22px 0 rgb(87 87 87);
+}
+

@@ -4,8 +4,10 @@ import { FrameComponent } from './frame/frame.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbdModalContentComponent } from './ngbd-modal-content/ngbd-modal-content.component';
-import { CreateImgComponent } from './create-img/create-img/create-img.component';
-import { ImgCatalogComponent } from './create-img/create-img/img-catalog/img-catalog.component';
+import { CreateImgModule } from './create-img/create-img-module';
+import { OrderComponent } from '../order/order/order.component';
+import { SharedModule } from '../shared/shared.modult';
+
 
 
 
@@ -17,13 +19,14 @@ const routs:Routes=[
   declarations: [
     FrameComponent,
     NgbdModalContentComponent,
-    CreateImgComponent,
-    ImgCatalogComponent 
+  
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    CreateImgModule,
+    SharedModule,
     RouterModule.forChild(routs)
   ],
   exports:[RouterModule]

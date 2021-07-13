@@ -1,66 +1,70 @@
-
-<header class="conteiner">
-    <div  class="catalog" [ngStyle]="setStyle()" >
-     <div class="carusel">                                               
-        <ul class="imageObject">
-          <li *ngFor="let img of frames?.framesImge,let i=index">
-            <div [ngClass]="{'box-content': getFrameId(img)}">
-              <img src="{{img?.show_image}}" class="thumbImage" (click)='frameClick(img.id)'>
-            </div>
-            <ul class="card">
-              <li>{{img.description_ru}}</li>
-              <li>{{img.name_ru}}</li>
-              <li>{{img.price}}</li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="backgrounds">
-        <div class="white" *ngFor="let item of frames.div" [style.backgroundColor]='item.color' (click)="changeBg(item)"
-          [ngClass]="{'box-content':frames.background.id=== item.id}">
-          <div class="text">{{item.name}}</div>
-        </div>
-      </div>
-      <div class="imgColor">
-        <div class="colorless" [style.backgroundColor]='block.values.color' *ngFor='let block of frames.imgColor'
-          (click)="imgFone(block)" [ngClass]="{'box-content':block?.ceys?.id=== frames?.painding?.id}">
-          <div class="lessWhite" [style.backgroundColor]='block.values.child'>
-            <p class="info">{{block?.ceys?.name_hy}}</p>
+<header class="conteiner" >
+  <div class="catalog" [ngStyle]="setStyle()">
+    <div class="carusel">
+      <ul class="imageObject">
+        <li *ngFor="let img of frames?.framesImge,let i=index">
+          <div [ngClass]="{'box-content': getFrameId(img)}">
+            <img src="{{img?.show_image}}" class="thumbImage" (click)='frameClick(img.id)'>
           </div>
+          <ul class="card">
+            <li>{{img.description_ru}}</li>
+            <li>{{img.name_ru}}</li>
+            <li>{{img.price}}</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="backgrounds">
+      <div class="white" *ngFor="let item of frames.div" [style.backgroundColor]='item.color' (click)="changeBg(item)"
+        [ngClass]="{'box-content':frames.background.id=== item.id}">
+        <div class="text">{{item.name}}</div>
+      </div>
+    </div>
+    <div class="imgColor">
+      <div class="colorless" [style.backgroundColor]='block.values.color' *ngFor='let block of frames.imgColor'
+        (click)="imgFone(block)" [ngClass]="{'box-content':block?.ceys?.id=== frames?.painding?.id}">
+        <div class="lessWhite" [style.backgroundColor]='block.values.child'>
+          <p class="info">{{block?.ceys?.name_hy}}</p>
         </div>
       </div>
     </div>
-    <div #block class="block" [ngStyle]="setStyle()" >
-      <div class="myWrap">
-        <div class="reight">
-          <div class="squrl left-top" [style.background-image]="'url(' + frames.frame?.left_top_corner_image + ')'"></div>
-          <div class="reight-he left-line" [style.background-image]="'url(' + frames.frame?.left_line_image + ')'"></div>
-          <div class="squrl left-bottom" [style.background-image]="'url(' + frames.frame?.left_bottom_corner_image + ')'"></div>
-        </div>
-        <div class="content">
-          <div class="top" [style.background-image]="'url(' + frames.frame?.top_line_image + ')'"></div>
-           <div class="letter" [style.backgroundColor]="frames.background.color" *ngIf='frames.isImg else create'>  <!--*ngIf='frames.isImg else create' -->
-            <form [formGroup]="frames.validateForm">
-              <input type="text" formControlName='text' maxlength="9" placeholder="ԳՐԵՔ ԲԱՌԸ">
-            </form>
-          </div> 
-          <div class="bottom" [style.background-image]="'url(' +frames.frame?.bottom_line_image + ')'">
-            <p class="btn" (click)="open()" *ngIf='frames.isImg'>ինչպես գրել բառ, տառ և սիմվոլ</p>
-          </div>
-        </div>
-        <div class="left">
-          <div class="squrl right-top" [style.background-image]="'url(' + frames.frame?.right_top_corner_image + ')'"></div>
-          <div class="reight-he right-line" [style.background-image]="'url(' + frames.frame?.right_line_image + ')'"></div>
-          <div class="squrl right-bottom" [style.background-image]="'url(' + frames.frame?.right_bottom_corner_image + ')'"></div>
+  </div>
+  <div #block class="block" [ngStyle]="setStyle()" >
+    <div class="myWrap">
+      <div class="reight">
+        <div class="squrl left-top" [style.background-image]="'url(' + frames.frame?.left_top_corner_image + ')'"></div>
+        <div class="reight-he left-line" [style.background-image]="'url(' + frames.frame?.left_line_image + ')'"></div>
+        <div class="squrl left-bottom" [style.background-image]="'url(' + frames.frame?.left_bottom_corner_image + ')'">
         </div>
       </div>
-      <p *ngIf = 'frames.isMessage' class="message">ՏՎՅԱԼ ՏԱՌԵՐՈՎ ՆԿԱՐ ԴԵՌՎՍ ՉՈԻՆԵՆՔ</p>
-      <button type="submit" (click)='onSubmit()' class="create" *ngIf='frames.isImg'>create word</button>
-     
+      <div class="content">
+        <div class="top" [style.background-image]="'url(' + frames.frame?.top_line_image + ')'"></div>
+        <div class="letter" [style.backgroundColor]="frames.background.color" *ngIf='frames.isImg else create'>
+          <form [formGroup]="frames.validateForm">
+            <input type="text" formControlName='text' maxlength="9" placeholder="ԳՐԵՔ ԲԱՌԸ">
+          </form>
+        </div>
+        <div class="bottom" [style.background-image]="'url(' +frames.frame?.bottom_line_image + ')'">
+          <p class="btn" (click)="open()" *ngIf='frames.isImg'>ինչպես գրել բառ, տառ և սիմվոլ</p>
+        </div>
+      </div>
+      <div class="left">
+        <div class="squrl right-top" [style.background-image]="'url(' + frames.frame?.right_top_corner_image + ')'">
+        </div>
+        <div class="reight-he right-line" [style.background-image]="'url(' + frames.frame?.right_line_image + ')'">
+        </div>
+        <div class="squrl right-bottom"
+          [style.background-image]="'url(' + frames.frame?.right_bottom_corner_image + ')'"></div>
+      </div>
     </div>
-    <ng-template #create>
-      <app-create-img (mainApp)="deletImg($event)"></app-create-img>
-    </ng-template>
-  </header>
+    <p *ngIf='frames.isMessage' class="message">ՏՎՅԱԼ ՏԱՌԵՐՈՎ ՆԿԱՐ ԴԵՌՎՍ ՉՈԻՆԵՆՔ</p>
+    <button type="submit" (click)='onSubmit()' class="create" *ngIf='frames.isImg'>create word</button>
+    <app-order *ngIf='frames.isOrder'> </app-order>
+    <button *ngIf='frames.isOrder' class="create" (click)="showFrame()">ՊԱՏՎԻՐԵԼ ԿՐԿԻՆ </button>
 
- 
+  </div>
+
+  <ng-template #create>
+    <app-create-img (mainApp)="deletImg($event)"></app-create-img>
+  </ng-template>
+</header>

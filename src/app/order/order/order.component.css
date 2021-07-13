@@ -6,10 +6,9 @@
     width: fit-content;
     display: flex;
     justify-content: space-around;
-
     position: relative;
     left: 50%;
-    top:20%;
+    /* top: 50px; */
     transform-origin: top;
 }
 
@@ -25,19 +24,18 @@
 
 .title{
     color: rgb(111 110 110);
-    padding-top: 8%;
     font-size: 1rem;
 }
 
 
 .data{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 
 .smoll{
-    font-size: 12px;
+    font-size: 0.7rem;
     color: #5a646d;
     padding: 5px;
 }
@@ -49,7 +47,6 @@
 
 .ant-input {
     border-radius: 10px !important;
-    /* border: 1px solid #747171 !important; */
 }
 
 .ant-btn-primary {
@@ -57,14 +54,41 @@
 }
 
 .version-info {
-    font-size: 8pt;
+    font-size: 1rem;
     float: right;
     margin: 8px;
   }
   
+  .region{
+      display: flex;
+  }
+
   .ant-select {
-    width: 500px;
+    width: 280px;
     border-radius: 10px;
     margin-bottom: 30px;
 }
 
+.noText{
+    margin: 100px 0 0 100px;
+    font-weight: 800;
+}
+
+.symbol{
+    margin-left: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+}
+
+.ant-btn-primary {
+    width: 280px !important;
+    margin-left: 120px;
+}
+
+.ant-form-item {
+ 
+    margin: 0 0 5px;
+ 
+}

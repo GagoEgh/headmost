@@ -1,7 +1,8 @@
 
 .conteiner{
     padding: 15px;
-    background: rgb(171 225 225);
+    /* background: rgb(171 225 225); */
+    background-color: white;
     box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
 }
 
@@ -31,3 +32,7 @@
     padding-top: 5px;
     border-bottom: 1px solid white;
 } 
+
+.red{
+    color:red;
+}
