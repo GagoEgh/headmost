@@ -7,6 +7,7 @@ import { NzInputModule } from "ng-zorro-antd/input";
 import { NzSelectModule } from "ng-zorro-antd/select";
 import { NgxMaskModule } from "ngx-mask";
 import { OrderComponent } from "../order/order/order.component";
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 @NgModule({
     declarations:[OrderComponent],
@@ -19,6 +20,7 @@ import { OrderComponent } from "../order/order/order.component";
         NzButtonModule,
         NzInputModule,
         NzSelectModule,
+        NzDatePickerModule,
         NgxMaskModule.forRoot(),
     ]
 })

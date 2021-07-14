@@ -38,7 +38,10 @@ export interface Api {
     api_add:string,
     api_location:string,
     api_country:string,
-    api_check_promo:string
+    api_check_promo:string,
+    api_userdetails:string,
+    api_register:string,
+    api_shipping:string
 }
 
 export interface FramesImg {

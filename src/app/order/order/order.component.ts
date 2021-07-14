@@ -1,6 +1,8 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
+import { getISOWeek } from 'date-fns';
+import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n';
 
 
 @Component({
@@ -14,7 +16,10 @@ export class OrderComponent implements OnInit {
   heigth: number | undefined;
   width: number | undefined;
   selectedValue: any[] = [];
+  promoError: string = '';
+  shiping: any[] = [];
   scale: number = 1;
+  promoId = null;
   sum: number = 0;
   @ViewChild("wrap", { static: false }) wrap: ElementRef | undefined;
 
@@ -40,23 +45,28 @@ export class OrderComponent implements OnInit {
       }
     }
   }
-  constructor(public frames: FramesServService, private fb: FormBuilder) { }
+  constructor(public frames: FramesServService, private fb: FormBuilder, private i18n: NzI18nService) { }
 
   ngOnInit(): void {
     // this.frames.isImg = true;
+    this.frames.shipingMethod().subscribe((el: any) => {
+      this.shiping = el.results;
+    })
+
     this.frames.orderList.forEach((obj: any) => {
       this.sum += obj.created_frame_details.price;
     })
 
     this.userCountry();
     this.validateForm = this.fb.group({
-      userName: [null, [Validators.required, Validators.minLength(3), this.userNameChar]],
+      frstName: [null, [Validators.required, Validators.minLength(3), this.userNameChar]],
       email: [null, [Validators.required, this.emailValid]],
       phoneNumber: [null, [Validators.required, this.PhoneNumberLength]],
       country: [null, [Validators.required]],
       addres: [null, [Validators.required]],
-      comment: [null, []],
-      sale: ['', []]
+      shipping: [null, [Validators.required]],
+      comment: ['', []],
+      sale: ['', []],
       // remember: [true]
     });
   }
@@ -111,25 +121,68 @@ export class OrderComponent implements OnInit {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
-
     }
+
+
+    // sharunakeli
+
+    const ids: any[] = [];
+    this.frames.orderList.forEach((obj: any) => {
+      ids.push(obj.id)
+    })
+
+    const order = {
+      full_name: this.validateForm.get('frstName')?.value,
+      shipping_method: this.validateForm.get('shipping')?.value,
+      phone_number: this.validateForm.get('phoneNumber')?.value,
+      email: this.validateForm.get('email')?.value,
+      city: this.validateForm.get('country')?.value,
+      address: this.validateForm.get('addres')?.value,
+      price: this.sum,
+      comment: this.validateForm.get('comment')?.value,
+      promo_code: this.promoId,
+      order_items: ids
+    }
+    if (this.validateForm.valid) {
+      this.frames.userOrder(order).subscribe((el:any)=>{
+        console.log('el',el)
+      })
+    }
+
+
+    // {{domain}}/order/order/
+    //   {
+    //     "full_name":"Stepan Kakosyan",
+    //     "shipping_method":1,
+    //     "phone_number":"093011553",
+    //     "email":"gyumri@ggg.com",
+    //     "city":1,
+    //     "address":"Sayat Nova",
+    //     "price":1500,
+    //     "comment":null,
+    //     "promo_code":2,
+    //     "order_items":[21]
+    // }
   }
 
-  salePost() {
+  salePost(event: any) {
+    this.validateForm.get('sale')?.setValue(event.target.value)
     const sale = {
-      // "code":147852,
-      // "price":1000
       price: this.sum,
       code: this.validateForm.get('sale')?.value
     }
+    // promo 147852
 
-    if (this.validateForm.get('sale')?.touched && this.validateForm.get('sale')?.pristine) {
+    if (this.validateForm.get('sale')?.value.length === 6) {
       this.frames.promoCodePost(sale).subscribe((el: any) => {
-        console.log(el)
-      })
-
+        this.sum = el.discounted_price;
+        this.promoId = el.id;
+        this.promoError = '';
+      },
+        (error: any) => {
+          this.promoError = error.error.message;
+        })
     }
-
   }
 
   userCountry() {
@@ -154,6 +207,22 @@ export class OrderComponent implements OnInit {
 
   }
 
+  // oracujc
+  // date = null;
+  // isEnglish = false;
+
+  // onChange(result: Date): void {
+  //   //  console.log('onChange: ', result);
+  // }
+
+  // getWeek(result: Date): void {
+  //   // console.log('week: ', getISOWeek(result));
+  // }
+
+  // changeLanguage(): void {
+  //   this.i18n.setLocale(this.isEnglish ? zh_CN : en_US);
+  //   this.isEnglish = !this.isEnglish;
+  // }
 }
 
 

@@ -63,6 +63,9 @@
       display: flex;
   }
 
+  .erroreCountry{
+    margin-top: -20px;
+  }
   .ant-select {
     width: 280px;
     border-radius: 10px;
@@ -88,7 +91,18 @@
 }
 
 .ant-form-item {
- 
     margin: 0 0 5px;
- 
+}
+
+.sum{
+    color: red;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 50px;
+}
+.red{
+    color: red;
+    margin-left: 130px;
+    letter-spacing: 0.5px;
 }

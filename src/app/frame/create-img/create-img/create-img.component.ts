@@ -159,7 +159,6 @@ export class CreateImgComponent implements OnInit {
     
     this.frames.getOrder(order).subscribe((el:any)=>{
       this.frames.orderList = el;
-    //  this.frames.letterImges;
       this.frames.isOrder = true;
     })
     

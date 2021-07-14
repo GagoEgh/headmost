@@ -40,7 +40,10 @@ export class FramesServService {
         api_add: '/add-frame-in-card/',
         api_location: '/location',
         api_country: '/country/',
-        api_check_promo:'check-promo-code/'
+        api_check_promo: 'check-promo-code/',
+        api_userdetails: '/userdetails/',
+        api_register: 'register/',
+        api_shipping: 'shipping-method/'
     }
 
     painding: Painding = {
@@ -150,12 +153,24 @@ export class FramesServService {
             { headers: { 'Authorization': 'Token e3488062bef3993ccb0871c945f4d62c1d18aea6' } }
         )
     }
-  
-    promoCodePost(data:any){
-        return this.url.post(this.api.worldApi+this.api.api_promocode+this.api.api_check_promo,data)
+
+    promoCodePost(data: any) {
+        return this.url.post(this.api.worldApi + this.api.api_utils + this.api.api_promocode + this.api.api_check_promo, data)
     }
 
+    userdetailsPost(obj: any) {
+        return this.url.post(this.api.worldApi + this.api.api_userdetails + this.api.api_register, obj,
+            { headers: { 'Authorization': 'Token e3488062bef3993ccb0871c945f4d62c1d18aea6' } })
+    }
 
+    shipingMethod() {
+        return this.url.get(this.api.worldApi + this.api.api_utils + '/' + this.api.api_shipping)
+    }
+      // {{domain}}/order/order/      api_order: '/order',
+    userOrder(obj:any){
+        return this.url.post(this.api.worldApi+this.api.api_order+this.api.api_order+'/',obj,
+        { headers: { 'Authorization': 'Token e3488062bef3993ccb0871c945f4d62c1d18aea6' } } )
+    }
     letterColorFone() {
         this.text = this.validateForm.get('text')?.value;
 
