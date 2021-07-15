@@ -67,6 +67,7 @@ export class OrderComponent implements OnInit {
       shipping: [null, [Validators.required]],
       comment: ['', []],
       sale: ['', []],
+     // date:[null,[]]
       // remember: [true]
     });
   }
@@ -123,9 +124,6 @@ export class OrderComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
 
-
-    // sharunakeli
-
     const ids: any[] = [];
     this.frames.orderList.forEach((obj: any) => {
       ids.push(obj.id)
@@ -145,24 +143,11 @@ export class OrderComponent implements OnInit {
     }
     if (this.validateForm.valid) {
       this.frames.userOrder(order).subscribe((el:any)=>{
+          // sharunakeli
         console.log('el',el)
       })
     }
-
-
-    // {{domain}}/order/order/
-    //   {
-    //     "full_name":"Stepan Kakosyan",
-    //     "shipping_method":1,
-    //     "phone_number":"093011553",
-    //     "email":"gyumri@ggg.com",
-    //     "city":1,
-    //     "address":"Sayat Nova",
-    //     "price":1500,
-    //     "comment":null,
-    //     "promo_code":2,
-    //     "order_items":[21]
-    // }
+  
   }
 
   salePost(event: any) {
@@ -173,10 +158,11 @@ export class OrderComponent implements OnInit {
     }
     // promo 147852
 
-    if (this.validateForm.get('sale')?.value.length === 6) {
+    if (this.validateForm.get('sale')?.value.length === 6 &&   this.promoId === null) {
       this.frames.promoCodePost(sale).subscribe((el: any) => {
         this.sum = el.discounted_price;
-        this.promoId = el.id;
+        console.log('el',el);
+        this.promoId = el.promo_code.id;
         this.promoError = '';
       },
         (error: any) => {

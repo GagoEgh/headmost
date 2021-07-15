@@ -9,8 +9,9 @@ import { NgxMaskModule } from "ngx-mask";
 import { OrderComponent } from "../order/order/order.component";
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
+
 @NgModule({
-    declarations:[OrderComponent],
+    declarations:[OrderComponent,],
     exports:[OrderComponent],
     imports:[
         CommonModule,

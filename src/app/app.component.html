@@ -1,11 +1,14 @@
 <div class="conteiner">
   <div class="silki">
-    <a class="frame" routerLink='/' routerLinkActive ='active' [routerLinkActiveOptions]="{exact:true}"
-       >frame</a>
-    <a class="frame"  routerLink='/order' routerLinkActive ='active' [class.red] ="frames.isOrder">
+    <a class="frame" routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">frame</a>
+    <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
       <img src='../assets/1x/outline_shopping_cart_black_24dp.png'>
       <span>{{frames.orderList.length}}</span>
     </a>
+    <a class="frame" (click)="open()">login</a> 
   </div>
 </div>
+
+
+
 <router-outlet></router-outlet>
