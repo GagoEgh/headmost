@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal,  NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { RegisterComponent } from '../register/register.component';
 
 
@@ -12,7 +13,8 @@ import { RegisterComponent } from '../register/register.component';
 export class LoginComponent implements OnInit {
   validateForm: FormGroup = new FormGroup({}) ;
 
-  constructor(public activeModal: NgbActiveModal, private modalService: NgbModal, private fb: FormBuilder) { }
+  constructor(public activeModal: NgbActiveModal, private modalService: NgbModal,
+     private fb: FormBuilder, public frames:FramesServService) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -31,14 +33,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // updateConfirmValidator(): void {
-  //   /** wait for refresh value */
-  //  // Promise.resolve().then(() => this.validateForm.controls.checkPassword.updateValueAndValidity());
-  // }
+  updateConfirmValidator(): void {
+    /** wait for refresh value */
+   // Promise.resolve().then(() => this.validateForm.controls.checkPassword.updateValueAndValidity());
+  }
 
 
   open() {
     const modalRef = this.modalService.open(RegisterComponent);
+  
   }
 
 }

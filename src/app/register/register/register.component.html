@@ -56,15 +56,14 @@
       <p *ngIf="erroreName('city')">{{erroreStr}} </p>
     </ng-template>
 
-
-
-
     <!-- oracujc-->
 
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="date" nzRequired>Date of birth</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='date' nzHasFeedback>
-        <nz-date-picker formControlName='date' (ngModelChange)="onChange($event)" id='date'></nz-date-picker>
+        <nz-date-picker formControlName='date' (ngModelChange)="onChange($event)" id='date'>
+      
+        </nz-date-picker>
       </nz-form-control>
     </nz-form-item>
     <ng-template #date>
