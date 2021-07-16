@@ -4,6 +4,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { getISOWeek } from 'date-fns';
 import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n';
+import { FramesServService } from 'src/app/shared/frames-serv.service';
 
 @Component({
   selector: 'app-register',
@@ -15,20 +16,23 @@ export class RegisterComponent implements OnInit {
   validateForm: FormGroup = new FormGroup({});
   selectedValue: any[] = [];
   shiping: any[] = [];
-  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private i18n: NzI18nService) {}
+  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private i18n: NzI18nService,
+    public frames:FramesServService) {}
 
   ngOnInit(): void {
+   
     this.validateForm = this.fb.group({
       frstName: [null, [Validators.required, Validators.minLength(3), this.userNameChar]],
       lastName: [null, [Validators.required, Validators.minLength(3), this.userNameChar]],
       email: [null, [Validators.required, this.emailValid]],
       phoneNumber: [null, [Validators.required, this.PhoneNumberLength]],
       city: [null, [Validators.required, this.userNameChar,Validators.minLength(3)]],
-      comment: ['', []],
-      date:[null,[]]
+      date:[null,[Validators.required]]
     
       // remember: [true]
     });
+
+  
   }
 
 
@@ -75,24 +79,9 @@ export class RegisterComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
+    this.frames.isRegister = false;
+    console.log(this.validateForm.get('date')?.value);
   }
   
-
-  date = null;
-  isEnglish = false;
-
-  onChange(result: Date): void {
-    //  console.log('onChange: ', result);
-  }
-
-  getWeek(result: Date): void {
-    // console.log('week: ', getISOWeek(result));
-  }
-
-  changeLanguage(): void {
-    this.i18n.setLocale(this.isEnglish ? zh_CN : en_US);
-    this.isEnglish = !this.isEnglish;
-  }
-
   
 }

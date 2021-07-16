@@ -1,0 +1,19 @@
+nz-date-picker {
+    margin: 0 8px 12px 0;
+    
+  }
+
+  ::ng-deep .cdk-overlay-container {
+    z-index: 1200 !important;
+  }
+
+  
+
+
+
+
+.login-form{
+ 
+  display: flex;
+  justify-content: space-between;
+}

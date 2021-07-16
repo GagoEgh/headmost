@@ -17,6 +17,7 @@ export class FramesServService {
     btmText: string = '';
     text: string = '';
     isMessage = false;
+    isRegister = false;
     orderList: any[] = []
     isImg = true;
     div: any = [];

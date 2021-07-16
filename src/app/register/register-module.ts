@@ -11,6 +11,10 @@ import { NzSelectModule } from "ng-zorro-antd/select";
 import { SharedModule } from "../shared/shared.modult";
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
+import {MatInputModule} from '@angular/material/input';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
     declarations:[LoginComponent,RegisterComponent],
@@ -24,6 +28,9 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
         NzInputModule,
         NzSelectModule,
         SharedModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatNativeDateModule,     
         
     ],
     exports:[RouterModule],

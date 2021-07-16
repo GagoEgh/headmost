@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~ng-zorro-antd/ng-zorro-antd.min.css";
 
+
 .modal-content {
     top: 100px !important;
-    
+    /* width: 700px !important; */
 }
 
 .ng-image-slider .ng-image-slider-container .main .next, .ng-image-slider .ng-image-slider-container .main .prev {
@@ -15,9 +16,9 @@
     line-height: 13px !important;
 }
 
-.ng-image-slider .ng-image-slider-container .main .prev {
+/* .ng-image-slider .ng-image-slider-container .main .prev {
     left: 0px !important;
-}
+} */
 
 body{
     margin: 0;
@@ -41,4 +42,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
  
     border-radius: 10px !important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.modal-content {
+    /* width: -webkit-fit-content !important;
+    width: -moz-fit-content !important;
+    width: fit-content !important;
+    top: 100px !important;
+    position: relative !important; */
+    /* left: 50% !important;
+    top:20% !important; */
+    /* transform-origin: top !important; */
 }
