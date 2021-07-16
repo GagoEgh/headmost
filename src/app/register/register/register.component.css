@@ -8,12 +8,28 @@ nz-date-picker {
   }
 
   
+  .modal-content {
+    width: -webkit-fit-content !important;
+    width: -moz-fit-content !important;
+    width: fit-content !important;
+    top: 100px !important;
+    position: relative !important;
+    left: 50% !important;
+    top:20% !important;
+    transform-origin: top !important;
 
-
-
+}
 
 .login-form{
- 
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+ 
+}
+
+.ant-btn-primary{
+  margin-left: -45%;
+}
+
+.ant-form-item-label {
+  text-align: left;
 }

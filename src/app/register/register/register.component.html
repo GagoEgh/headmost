@@ -1,39 +1,33 @@
 <div class="modal-header">
-  <h1>SIGN</h1>
+  <h1>SIGN IN</h1>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-
-
-
-
   <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
     <div class="col">
       <nz-form-item>
-        <nz-form-label nzRequired nzFor="frstName">Frst Name</nz-form-label>
-        <nz-form-control  [nzErrorTip]='frstEr' nzHasFeedback>
+        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="frstName">Frst Name</nz-form-label>
+        <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]='frstEr' nzHasFeedback>
           <input nz-input formControlName="frstName" id="frstName" />
         </nz-form-control>
       </nz-form-item>
       <ng-template #frstEr>
         <p *ngIf="erroreName('frstName')">{{erroreStr}} </p>
       </ng-template>
-
       <nz-form-item>
-        <nz-form-label nzRequired nzFor="lastName">Last Name</nz-form-label>
-        <nz-form-control  [nzErrorTip]='lastEr' nzHasFeedback>
+        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="lastName">Last Name</nz-form-label>
+        <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]='lastEr' nzHasFeedback>
           <input nz-input formControlName="lastName" id="lastName" />
         </nz-form-control>
       </nz-form-item>
       <ng-template #lastEr>
         <p *ngIf="erroreName('lastName')">{{erroreStr}} </p>
       </ng-template>
-
       <nz-form-item>
-        <nz-form-label nzRequired nzFor="email">E-mail</nz-form-label>
-        <nz-form-control  [nzErrorTip]="email" nzHasFeedback>
+        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+        <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="email" nzHasFeedback>
           <input nz-input formControlName="email" id="email" />
         </nz-form-control>
       </nz-form-item>
@@ -43,32 +37,26 @@
     </div>
     <div class="col">
       <nz-form-item>
-        <nz-form-label  nzRequired nzFor="phoneNumber">Phone Number</nz-form-label>
-        <nz-form-control  [nzErrorTip]="phone">
+        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="phoneNumber">Phone</nz-form-label>
+        <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="phone">
           <input nz-input formControlName="phoneNumber" id="phoneNumber" mask='(000)00-00-00' />
         </nz-form-control>
       </nz-form-item>
       <ng-template #phone>
         <p *ngIf="erroreName('phoneNumber')">{{erroreStr}} </p>
       </ng-template>
-
-      <ng-template #country>
-        <p *ngIf="erroreName('country')" class="erroreCountry">{{erroreStr}}</p>
-      </ng-template>
       <nz-form-item>
-        <nz-form-label  nzRequired nzFor="city">City</nz-form-label>
-        <nz-form-control  [nzErrorTip]="city" nzHasFeedback>
+        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="city">City</nz-form-label>
+        <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="city" nzHasFeedback>
           <input nz-input formControlName="city" id="city" />
         </nz-form-control>
       </nz-form-item>
       <ng-template #city>
         <p *ngIf="erroreName('city')">{{erroreStr}} </p>
       </ng-template>
-
-      <!-- oracujc -->
       <nz-form-item>
-        <nz-form-label  nzRequired nzFor="date">Date</nz-form-label>
-        <nz-form-control  [nzErrorTip]="date" nzHasFeedback>
+        <nz-form-label [nzSm]="24" [nzXs]="24" nzRequired nzFor="date">Date</nz-form-label>
+        <nz-form-control [nzSm]="24" [nzXs]="24" [nzErrorTip]="date" nzHasFeedback>
           <mat-form-field appearance="fill">
             <mat-label>Choose a date</mat-label>
             <input matInput [matDatepicker]="picker" formControlName='date'>
@@ -80,16 +68,9 @@
       <ng-template #date>
         <p *ngIf="erroreName('date')">{{erroreStr}} </p>
       </ng-template>
-      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Sign in</button>
     </div>
-  
-  
   </form>
-
-
-
-
-
 </div>
 <div class="modal-footer">
 

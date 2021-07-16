@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-import { getISOWeek } from 'date-fns';
-import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n';
+import { NgbActiveModal, } from '@ng-bootstrap/ng-bootstrap';
+import {  NzI18nService} from 'ng-zorro-antd/i18n';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 
 @Component({
@@ -28,8 +26,6 @@ export class RegisterComponent implements OnInit {
       phoneNumber: [null, [Validators.required, this.PhoneNumberLength]],
       city: [null, [Validators.required, this.userNameChar,Validators.minLength(3)]],
       date:[null,[Validators.required]]
-    
-      // remember: [true]
     });
 
   
@@ -65,6 +61,7 @@ export class RegisterComponent implements OnInit {
     }
     return false
   }
+
   erroreName(formName: string) {
     if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = 'լռացրեք  տվյալ դաշտը';
     if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = 'տառերի քանակը պետք է լինի 3-ից ավել';
@@ -80,7 +77,7 @@ export class RegisterComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     this.frames.isRegister = false;
-    console.log(this.validateForm.get('date')?.value);
+    console.log('this.validateForm',this.validateForm);
   }
   
   

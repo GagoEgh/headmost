@@ -49,7 +49,8 @@ export class LoginComponent implements OnInit, DoCheck {
 
 
   open() {
-    const modalRef = this.modalService.open(RegisterComponent)
+    
+    const modalRef = this.modalService.open(RegisterComponent,{ size: 'lg' })
     modalRef.result.then((result) => {
       this.frames.isRegister = false;
     }, (reason) => {
