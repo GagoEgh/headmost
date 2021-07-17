@@ -10,10 +10,11 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  erroreStr: string = '';
   validateForm: FormGroup = new FormGroup({});
   selectedValue: any[] = [];
+  erroreStr: string = '';
   shiping: any[] = [];
+  emailMassage = '';
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private i18n: NzI18nService,
     public frames: FramesServService) { }
 
@@ -22,23 +23,14 @@ export class RegisterComponent implements OnInit {
     this.validateForm = this.fb.group({
       frstName: [null, [Validators.required, Validators.minLength(3), this.userNameChar]],
       lastName: [null, [Validators.required, Validators.minLength(3), this.userNameChar]],
-      email: [null, [Validators.required, this.emailValid]],
       phoneNumber: [null, [Validators.required, this.PhoneNumberLength]],
+      pas: [null, [Validators.required, Validators.minLength(6)]],
+      email: [null, [Validators.required, this.emailValid]],
       country: [null, [Validators.required]],
       date: [null, [Validators.required]],
-      pas: [null, [Validators.required, Validators.minLength(6)]]
+
     });
   }
-
-  frstName:string = '';
-  lastName:string = '';
-  email:string = '';
-  phoneNumber:string = '';
-  country:string = '';
-  date:string = '';
-  pas:string = '';
-
- 
 
   userNameChar(control: FormControl) {
     const regExp = /[0-9]/;
@@ -93,31 +85,28 @@ export class RegisterComponent implements OnInit {
     const day = date.getDate()
 
     const userDetalis = {
+      phone_number: this.validateForm.get('phoneNumber')?.value,
       first_name: this.validateForm.get('frstName')?.value,
       last_name: this.validateForm.get('lastName')?.value,
-      image: '',
-      comment: '',
-      phone_number: this.validateForm.get('phoneNumber')?.value,
-      email: this.validateForm.get('email')?.value,
+      date_of_birth: year + '-' + month + '-' + day,
       city: this.validateForm.get('country')?.value,
       password: this.validateForm.get('pas')?.value,
-      date_of_birth: year + '-' + month + '-' + day
+      email: this.validateForm.get('email')?.value,
+      comment: '',
+      image: ''
     }
+
     if (this.validateForm.valid) {
       this.frames.userRegisterPost(userDetalis).subscribe((el: any) => {
-        //console.log(el)
-        this.validateForm.reset()
-      },((err:any)=>{
-        console.log(err.status);
-        if(err.status===400){
+        this.frames.token+= ' '+el.token;
+        this.validateForm.reset();
+        localStorage.setItem('Authorization',this.frames.token);
+      }, ((err: any) => {
+        if (err.status === 400) {
           this.emailMassage = 'տվյալ email-ը զբաղված է';
-          this.erroreStr='տվյալ email-ը զբաղված է';
         }
-        console.log('meil',this.emailMassage)
       }))
     }
 
   }
-
-emailMassage ='';
 }

@@ -12,7 +12,7 @@
       </div>
       <nz-form-item>
         <nz-form-control [nzErrorTip]='frstEr' nzHasFeedback>
-          <input nz-input formControlName="frstName" id="frstName" />
+          <input nz-input formControlName="frstName" id="frstName" trim />
         </nz-form-control>
       </nz-form-item>
       <ng-template #frstEr>
@@ -24,7 +24,7 @@
       </div>
       <nz-form-item>
         <nz-form-control [nzErrorTip]='lastEr' nzHasFeedback>
-          <input nz-input formControlName="lastName" id="lastName" />
+          <input nz-input formControlName="lastName" id="lastName" trim />
         </nz-form-control>
       </nz-form-item>
       <ng-template #lastEr>
@@ -36,7 +36,7 @@
       </div>
       <nz-form-item>
         <nz-form-control [nzErrorTip]="email" nzHasFeedback>
-          <input nz-input formControlName="email" id="email" />
+          <input nz-input formControlName="email" id="email" trim />
         </nz-form-control>
       </nz-form-item>
       <ng-template #email>
@@ -48,7 +48,7 @@
       </div>
       <nz-form-item>
         <nz-form-control [nzErrorTip]="pas" nzHasFeedback>
-          <input nz-input formControlName="pas" id="pas" type="password" />
+          <input nz-input formControlName="pas" id="pas" type="password" trim />
         </nz-form-control>
       </nz-form-item>
       <ng-template #pas>
@@ -61,7 +61,7 @@
       </div>
       <nz-form-item>
         <nz-form-control [nzErrorTip]="phone">
-          <input nz-input formControlName="phoneNumber" id="phoneNumber" mask='(000)00-00-00' />
+          <input nz-input formControlName="phoneNumber" id="phoneNumber" trim mask='(000)00-00-00' />
         </nz-form-control>
       </nz-form-item>
       <ng-template #phone>

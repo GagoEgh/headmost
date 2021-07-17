@@ -12,11 +12,11 @@ import { SharedModule } from "../shared/shared.modult";
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 import { NgxMaskModule } from "ngx-mask";
 
+import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
 @NgModule({
     declarations:[LoginComponent,RegisterComponent],
     imports:[
@@ -33,6 +33,7 @@ import { NgxMaskModule } from "ngx-mask";
         MatInputModule,
         MatNativeDateModule,     
         NgxMaskModule.forRoot(),
+        NgxTrimDirectiveModule
     ],
     exports:[RouterModule],
 })

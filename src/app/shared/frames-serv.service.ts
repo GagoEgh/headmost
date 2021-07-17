@@ -11,19 +11,22 @@ export class FramesServService {
     validateForm: FormGroup = new FormGroup({});
     letterImges: LetterImge[] = [];
     framesImge: FramesImg[] = [];
-    isOrder: boolean = false;
     selectedValue: any[] = [];
+    isOrder: boolean = false;
+    orderList: any[] = [];
+    token: string = 'Token';
     background: any = {};
     topText: string = '';
     btmText: string = '';
+    isRegister = false;
     text: string = '';
     isMessage = false;
-    isRegister = false;
-    orderList: any[] = []
+    index: number = 3;
     isImg = true;
     div: any = [];
     frame: any;
-    index = 3;
+
+
 
     api: Api = {
         worldApi: 'http://sirun-bar-api.annaniks.com',
@@ -162,7 +165,7 @@ export class FramesServService {
 
     userRegisterPost(obj: any) {
         return this.url.post(this.api.worldApi + this.api.api_userdetails + this.api.api_register, obj)
-      
+
     }
 
     shipingMethod() {
@@ -171,7 +174,9 @@ export class FramesServService {
 
     userOrder(obj: any) {
         return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_order + '/', obj,
-            { headers: { 'Authorization': 'Token e3488062bef3993ccb0871c945f4d62c1d18aea6' } })
+          //  { headers: { 'Authorization': 'Token e3488062bef3993ccb0871c945f4d62c1d18aea6' } })
+          {headers:{'Authorization': ''+localStorage.getItem('Authorization')}})
+        
     }
 
 
