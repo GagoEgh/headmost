@@ -15,6 +15,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
+import { NgxMaskModule } from "ngx-mask";
 
 @NgModule({
     declarations:[LoginComponent,RegisterComponent],
@@ -31,7 +32,7 @@ import {MatNativeDateModule} from '@angular/material/core';
         MatDatepickerModule,
         MatInputModule,
         MatNativeDateModule,     
-        
+        NgxMaskModule.forRoot(),
     ],
     exports:[RouterModule],
 })

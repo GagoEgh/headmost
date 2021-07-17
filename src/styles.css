@@ -47,13 +47,11 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-.modal-content {
-    /* width: -webkit-fit-content !important;
-    width: -moz-fit-content !important;
-    width: fit-content !important;
-    top: 100px !important;
-    position: relative !important; */
-    /* left: 50% !important;
-    top:20% !important; */
-    /* transform-origin: top !important; */
+.ant-select-selector {
+    width: 280px !important;
+}
+
+.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border-radius: 10px !important;
+  width: 280px !important;
 }

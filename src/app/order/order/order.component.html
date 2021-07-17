@@ -32,7 +32,7 @@
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Country</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="country">
           <nz-select nzAllowClear nzPlaceHolder="COUNTRY" nzShowSearch formControlName='country'>
-            <nz-option-group *ngFor='let country of selectedValue' [nzLabel]='country.name_hy '>
+            <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country.name_hy '>
               <nz-option *ngFor='let regions of country.country_regions' [nzLabel]='regions.name_hy' nzDisabled=true>
                 <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id' [nzLabel]='city.name_hy'>
                 </nz-option>

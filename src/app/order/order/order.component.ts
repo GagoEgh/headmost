@@ -15,7 +15,6 @@ export class OrderComponent implements OnInit {
   erroreStr: string = '';
   heigth: number | undefined;
   width: number | undefined;
-  selectedValue: any[] = [];
   promoError: string = '';
   shiping: any[] = [];
   scale: number = 1;
@@ -57,7 +56,7 @@ export class OrderComponent implements OnInit {
       this.sum += obj.created_frame_details.price;
     })
 
-    this.userCountry();
+    this.frames.userCountry();
     this.validateForm = this.fb.group({
       frstName: [null, [Validators.required, Validators.minLength(3), this.userNameChar]],
       email: [null, [Validators.required, this.emailValid]],
@@ -159,7 +158,7 @@ export class OrderComponent implements OnInit {
     }
     // promo 147852
 
-    if (this.validateForm.get('sale')?.value.length === 6) {
+    if (this.validateForm.get('sale')?.value.length === 6 && this.promoId===null) {
       this.frames.promoCodePost(sale).subscribe((el: any) => {
         this.sum = el.discounted_price;
         this.promoId = el.id;
@@ -171,12 +170,12 @@ export class OrderComponent implements OnInit {
     }
   }
 
-  userCountry() {
-    this.frames.getCountry()
-      .subscribe((el: any) => {
-        this.selectedValue = el.results
-      })
-  }
+  // userCountry() {
+  //   this.frames.getCountry()
+  //     .subscribe((el: any) => {
+  //       this.frames.selectedValue = el.results
+  //     })
+  // }
 
 
   deleteDate(obj: any) {
@@ -193,22 +192,6 @@ export class OrderComponent implements OnInit {
 
   }
 
-  // oracujc
-  // date = null;
-  // isEnglish = false;
-
-  // onChange(result: Date): void {
-  //   //  console.log('onChange: ', result);
-  // }
-
-  // getWeek(result: Date): void {
-  //   // console.log('week: ', getISOWeek(result));
-  // }
-
-  // changeLanguage(): void {
-  //   this.i18n.setLocale(this.isEnglish ? zh_CN : en_US);
-  //   this.isEnglish = !this.isEnglish;
-  // }
 }
 
 

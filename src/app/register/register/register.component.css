@@ -7,7 +7,6 @@ nz-date-picker {
     z-index: 1200 !important;
   }
 
-  
   .modal-content {
     width: -webkit-fit-content !important;
     width: -moz-fit-content !important;
@@ -17,19 +16,27 @@ nz-date-picker {
     left: 50% !important;
     top:20% !important;
     transform-origin: top !important;
+}
 
+.ant-input, .ant-input-group {
+
+  width: 250px;
 }
 
 .login-form{
   display: flex;
-  justify-content: space-around;
- 
+  flex-wrap: wrap;
 }
 
 .ant-btn-primary{
-  margin-left: -45%;
+  margin: 40% 0 0 -45%;
 }
 
 .ant-form-item-label {
   text-align: left;
 }
+
+.region{
+  margin-bottom: 60px;
+}
+

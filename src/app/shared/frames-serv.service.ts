@@ -12,6 +12,7 @@ export class FramesServService {
     letterImges: LetterImge[] = [];
     framesImge: FramesImg[] = [];
     isOrder: boolean = false;
+    selectedValue: any[] = [];
     background: any = {};
     topText: string = '';
     btmText: string = '';
@@ -159,19 +160,28 @@ export class FramesServService {
         return this.url.post(this.api.worldApi + this.api.api_utils + this.api.api_promocode + this.api.api_check_promo, data)
     }
 
-    userdetailsPost(obj: any) {
-        return this.url.post(this.api.worldApi + this.api.api_userdetails + this.api.api_register, obj,
-            { headers: { 'Authorization': 'Token e3488062bef3993ccb0871c945f4d62c1d18aea6' } })
+    userRegisterPost(obj: any) {
+        return this.url.post(this.api.worldApi + this.api.api_userdetails + this.api.api_register, obj)
+      
     }
 
     shipingMethod() {
         return this.url.get(this.api.worldApi + this.api.api_utils + '/' + this.api.api_shipping)
     }
-      // {{domain}}/order/order/      api_order: '/order',
-    userOrder(obj:any){
-        return this.url.post(this.api.worldApi+this.api.api_order+this.api.api_order+'/',obj,
-        { headers: { 'Authorization': 'Token e3488062bef3993ccb0871c945f4d62c1d18aea6' } } )
+
+    userOrder(obj: any) {
+        return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_order + '/', obj,
+            { headers: { 'Authorization': 'Token e3488062bef3993ccb0871c945f4d62c1d18aea6' } })
     }
+
+
+    userCountry() {
+        this.getCountry()
+            .subscribe((el: any) => {
+                this.selectedValue = el.results
+            })
+    }
+
     letterColorFone() {
         this.text = this.validateForm.get('text')?.value;
 
