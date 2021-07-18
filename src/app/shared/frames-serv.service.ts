@@ -39,7 +39,7 @@ export class FramesServService {
 
 
 
-  //  /userdetails/login/?is_staff_login=True
+ 
     api: Api = {
         worldApi: 'http://sirun-bar-api.annaniks.com',
         api_utils: '/utils',
@@ -192,6 +192,11 @@ export class FramesServService {
         
     }
 
+                      //  /userdetails/login/?is_staff_login=True
+    userLogin(obj:any){
+        return this.url.post(this.api.worldApi +this.api.api_userdetails+this.api.api_login+'?is_staff_login=True',obj,
+        {headers:{'Authorization': ''+localStorage.getItem('Authorization')}})
+    }
 
     userCountry() {
         this.getCountry()
