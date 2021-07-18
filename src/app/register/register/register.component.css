@@ -28,10 +28,10 @@ nz-date-picker {
   flex-wrap: wrap;
 }
 
-.ant-btn-primary{
-  margin: 40% 0 0 -45%;
+.ant-btn-primary {
+  width: 50% !important;
+  margin: 40px auto;
 }
-
 .ant-form-item-label {
   text-align: left;
 }

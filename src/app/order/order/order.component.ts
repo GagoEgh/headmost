@@ -47,7 +47,7 @@ export class OrderComponent implements OnInit {
   constructor(public frames: FramesServService, private fb: FormBuilder, private i18n: NzI18nService) { }
 
   ngOnInit(): void {
-    // this.frames.isImg = true;
+    console.log(this.frames.userData.first_name);
     this.frames.shipingMethod().subscribe((el: any) => {
       this.shiping = el.results;
     })
@@ -66,7 +66,6 @@ export class OrderComponent implements OnInit {
       shipping: [null, [Validators.required]],
       comment: ['', []],
       sale: ['', []],
-      // remember: [true]
     });
   }
 

@@ -52,9 +52,10 @@ export class LoginComponent implements OnInit, DoCheck {
     if(this.validateForm.valid){
       this.frames.userLogin(userLog).subscribe((el:any)=>{
         console.log(el);
+        
       })
     }
-    console.log(this.validateForm.value)
+    
   }
 
   updateConfirmValidator(): void {

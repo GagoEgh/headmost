@@ -31,7 +31,8 @@ export class FramesServService {
         city:'',
         password:'',
         comment:'',
-        image:''
+        image:'',
+        email:''
     };
     isImg = true;
     div: any = [];

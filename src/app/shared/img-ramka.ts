@@ -119,7 +119,8 @@ export interface Category{
         city:string,
         password:string,
         comment:string,
-        image:string
+        image:string,
+        email:string
     }
  
 

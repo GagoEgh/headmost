@@ -5,7 +5,11 @@
       <img src='../assets/1x/outline_shopping_cart_black_24dp.png'>
       <span>{{frames.orderList.length}}</span>
     </a>
-    <a class="frame" (click)="open()">login</a> 
+    <a class="frame" *ngIf='frames.userData.first_name, else log'>{{frames.userData.first_name}}</a>
+    <ng-template #log>
+      <a class="frame" (click)="open()">login</a>
+    </ng-template>
+
   </div>
 </div>
 
