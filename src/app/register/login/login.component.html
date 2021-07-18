@@ -1,4 +1,5 @@
 <div class="modal-header"  >
+  <h1>LOG IN</h1>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()" >
     <span aria-hidden="true">&times;</span>
   </button>
@@ -8,15 +9,15 @@
     <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-          <input nz-input formControlName="email" id="email" />
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Email-ը վալիդ չէ">
+          <input nz-input formControlName="email" id="email" trim />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
-          <input nz-input type="password" id="password" formControlName="password"
-          />  <!-- (ngModelChange)="updateConfirmValidator()"  -->
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="տառերի քանակը պետք է լինի 6-ից ավել">
+          <input nz-input type="password" id="password" formControlName="password" trim />
+          
         </nz-form-control>
       </nz-form-item>
       <nz-form-item nz-row >

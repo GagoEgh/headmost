@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Api, Ceys, FramesImg, LetterImge, Painding, Value } from 'src/app/shared/img-ramka'
+import { Api, Ceys, FramesImg, LetterImge, Painding, UserData, Value } from 'src/app/shared/img-ramka'
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
@@ -19,15 +19,27 @@ export class FramesServService {
     topText: string = '';
     btmText: string = '';
     isRegister = false;
+    isLogin = false;
     text: string = '';
     isMessage = false;
     index: number = 3;
+    userData:UserData={
+        phone_number:0,
+        first_name:'',
+        last_name:'',
+        date_of_birth:'',
+        city:'',
+        password:'',
+        comment:'',
+        image:''
+    };
     isImg = true;
     div: any = [];
     frame: any;
 
 
 
+  //  /userdetails/login/?is_staff_login=True
     api: Api = {
         worldApi: 'http://sirun-bar-api.annaniks.com',
         api_utils: '/utils',
@@ -48,7 +60,8 @@ export class FramesServService {
         api_check_promo: 'check-promo-code/',
         api_userdetails: '/userdetails/',
         api_register: 'register/',
-        api_shipping: 'shipping-method/'
+        api_shipping: 'shipping-method/',
+        api_login:'login/'
     }
 
     painding: Painding = {

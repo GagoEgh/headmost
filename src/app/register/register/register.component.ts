@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal, } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
+import { ValidationServService } from 'src/app/shared/validation-serv.service';
+import { OkRegisterComponent } from '../ok-register/ok-register.component';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +18,7 @@ export class RegisterComponent implements OnInit {
   shiping: any[] = [];
   emailMassage = '';
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private i18n: NzI18nService,
-    public frames: FramesServService) { }
+    public frames: FramesServService, private modalService: NgbModal, private valid:ValidationServService) { }
 
   ngOnInit(): void {
     this.frames.userCountry();
@@ -25,7 +27,7 @@ export class RegisterComponent implements OnInit {
       lastName: [null, [Validators.required, Validators.minLength(3), this.userNameChar]],
       phoneNumber: [null, [Validators.required, this.PhoneNumberLength]],
       pas: [null, [Validators.required, Validators.minLength(6)]],
-      email: [null, [Validators.required, this.emailValid]],
+      email: [null, [Validators.required, this.valid.emailValid]],
       country: [null, [Validators.required]],
       date: [null, [Validators.required]],
 
@@ -42,15 +44,15 @@ export class RegisterComponent implements OnInit {
     return false
   }
 
-  emailValid(control: FormControl) {
-    const regExp = /^([a-z0-9._%+-])+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-    if (!regExp.test(control.value)) {
-      return {
-        isEmail: true
-      }
-    }
-    return false
-  }
+  // emailValid(control: FormControl) {
+  //   const regExp = /^([a-z0-9._%+-])+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+  //   if (!regExp.test(control.value)) {
+  //     return {
+  //       isEmail: true
+  //     }
+  //   }
+  //   return false
+  // }
 
   PhoneNumberLength(control: FormControl) {
     const size = 9;
@@ -78,7 +80,7 @@ export class RegisterComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-    this.frames.isRegister = false;
+
     const date = new Date(this.validateForm.get('date')?.value);
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -98,9 +100,17 @@ export class RegisterComponent implements OnInit {
 
     if (this.validateForm.valid) {
       this.frames.userRegisterPost(userDetalis).subscribe((el: any) => {
-        this.frames.token+= ' '+el.token;
+        this.frames.token += ' ' + el.token;
+        this.frames.isRegister = true;
+        this.frames.userData = userDetalis;
+        const modalRef = this.modalService.open(OkRegisterComponent);
+        modalRef.result.then((result) => {
+          this.frames.isRegister = false;
+        }, (reason) => {
+          this.frames.isRegister = false;
+        });
         this.validateForm.reset();
-        localStorage.setItem('Authorization',this.frames.token);
+        localStorage.setItem('Authorization', this.frames.token);
       }, ((err: any) => {
         if (err.status === 400) {
           this.emailMassage = 'տվյալ email-ը զբաղված է';
@@ -108,5 +118,11 @@ export class RegisterComponent implements OnInit {
       }))
     }
 
+  }
+
+  ngDoCheck(): void {
+    if (this.frames.isRegister) {
+      this.activeModal.dismiss()
+    }
   }
 }

@@ -41,7 +41,8 @@ export interface Api {
     api_check_promo:string,
     api_userdetails:string,
     api_register:string,
-    api_shipping:string
+    api_shipping:string,
+    api_login:string
 }
 
 export interface FramesImg {
@@ -109,4 +110,16 @@ export interface Category{
       isMenu: boolean,
       isForm: boolean
     }
+
+    export interface UserData{
+        phone_number:number,
+        first_name:string,
+        last_name:string,
+        date_of_birth:string,
+        city:string,
+        password:string,
+        comment:string,
+        image:string
+    }
+ 
 

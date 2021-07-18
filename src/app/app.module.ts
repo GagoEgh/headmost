@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterModule } from './register/register-module';
 
+
 registerLocaleData(en);
 
 

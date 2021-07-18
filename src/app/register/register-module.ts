@@ -17,8 +17,9 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { NgxMaskModule } from "ngx-mask";
 
 import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
+
 @NgModule({
-    declarations:[LoginComponent,RegisterComponent],
+    declarations:[LoginComponent,RegisterComponent ],
     imports:[
         NzDatePickerModule,
         CommonModule,
