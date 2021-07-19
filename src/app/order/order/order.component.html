@@ -4,7 +4,7 @@
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="frstName">Frst Name</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='frstEr' nzHasFeedback>
-          <input nz-input formControlName="frstName" id="frstName" [(ngModel)]='frames.userData.first_name' />
+          <input nz-input formControlName="frstName" id="frstName" [(ngModel)]='frames.userData.user_details.first_name' />
         </nz-form-control>
       </nz-form-item>
       <ng-template #frstEr>
@@ -13,7 +13,7 @@
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="email" nzHasFeedback>
-          <input nz-input formControlName="email" id="email" [(ngModel)]='frames.userData.email' />
+          <input nz-input formControlName="email" id="email" [(ngModel)]='frames.userData.user_details.username' />
         </nz-form-control>
       </nz-form-item>
       <ng-template #email>
@@ -91,7 +91,7 @@
       <p>{{list.created_frame_details.price}}դր</p>
       <span class="symbol" (click)='deleteDate(list)'>&#10005;</span>
     </div>
-    <p class="sum">ընդամենը {{sum}}դր</p>
+    <p class="sum">ընդամենը {{frames.sum}}դր</p>
   </div>
 </div>
 

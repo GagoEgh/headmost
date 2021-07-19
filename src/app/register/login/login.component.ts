@@ -13,7 +13,7 @@ import { RegisterComponent } from '../register/register.component';
 })
 export class LoginComponent implements OnInit, DoCheck {
   validateForm: FormGroup = new FormGroup({});
-
+  errorLog = '';
   constructor(public activeModal: NgbActiveModal, private modalService: NgbModal,
     private fb: FormBuilder, public frames: FramesServService, private valid:ValidationServService) { }
 
@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit, DoCheck {
     });
   }
 
-
   submitForm(): void {
     for (const i in this.validateForm.controls) {
       if (this.validateForm.controls.hasOwnProperty(i)) {
@@ -40,29 +39,26 @@ export class LoginComponent implements OnInit, DoCheck {
         this.validateForm.controls[i].updateValueAndValidity();
       }
     }
-
-  //   {
-  //     "username":"egag@mail.ert",
-  //     "password":"qazwsx!@3"
-  // }
    const userLog={
       username:this.validateForm.get('email')?.value,
       password:this.validateForm.get('password')?.value
     }
     if(this.validateForm.valid){
       this.frames.userLogin(userLog).subscribe((el:any)=>{
-        console.log(el);
-        
-      })
+        this.frames.token += el.token;
+        localStorage.setItem('loginAutorization',this.frames.token);
+        this.frames.userData = el.user_details;
+
+        this.activeModal.dismiss();
+        this.validateForm.reset();
+        this.frames.userReg = false;
+
+      },((err:any)=>{
+        this.errorLog = err.error.message
+      }))
     }
     
   }
-
-  updateConfirmValidator(): void {
-    /** wait for refresh value */
-    // Promise.resolve().then(() => this.validateForm.controls.checkPassword.updateValueAndValidity());
-  }
-
 
   open() {
     const modalRef = this.modalService.open(RegisterComponent,{ size: 'lg' })

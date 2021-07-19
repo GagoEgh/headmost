@@ -5,12 +5,27 @@
       <img src='../assets/1x/outline_shopping_cart_black_24dp.png'>
       <span>{{frames.orderList.length}}</span>
     </a>
-    <a class="frame" *ngIf='frames.userData.first_name, else log'>{{frames.userData.first_name}}</a>
-    <ng-template #log>
+    <div *ngIf='frames.userReg, else log'>
       <a class="frame" (click)="open()">login</a>
+    </div>
+    <ng-template #log>
+     
+      <ul>
+        <li class="parent">
+          <a class="activeHover"> {{frames.userData.user_details.first_name}}
+            <ul class="user-data">
+              <li class="list">պռոֆիլ</li>
+              <li class="list">իմ նկարները</li>
+              <li class="list">իմ պատվերները</li>
+              <li class="list" (click)="close()">դուրս գալ</li>
+            </ul>
+          </a>
+        </li>
+      </ul>
     </ng-template>
-
+  
   </div>
+
 </div>
 
 

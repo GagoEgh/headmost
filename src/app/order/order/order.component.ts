@@ -1,8 +1,8 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
-import { getISOWeek } from 'date-fns';
-import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n';
+import { NzI18nService} from 'ng-zorro-antd/i18n';
+import { ValidationServService } from 'src/app/shared/validation-serv.service';
 
 
 @Component({
@@ -19,7 +19,6 @@ export class OrderComponent implements OnInit {
   shiping: any[] = [];
   scale: number = 1;
   promoId = null;
-  sum: number = 0;
   @ViewChild("wrap", { static: false }) wrap: ElementRef | undefined;
 
   @HostListener('window:resize', ['$event'])
@@ -44,23 +43,23 @@ export class OrderComponent implements OnInit {
       }
     }
   }
-  constructor(public frames: FramesServService, private fb: FormBuilder, private i18n: NzI18nService) { }
+
+  constructor(public frames: FramesServService, private fb: FormBuilder, private i18n: NzI18nService,public valid:ValidationServService) { }
 
   ngOnInit(): void {
-    console.log(this.frames.userData.first_name);
     this.frames.shipingMethod().subscribe((el: any) => {
       this.shiping = el.results;
     })
 
     this.frames.orderList.forEach((obj: any) => {
-      this.sum += obj.created_frame_details.price;
+      this.frames.sum += obj.created_frame_details.price;
     })
 
     this.frames.userCountry();
     this.validateForm = this.fb.group({
-      frstName: [null, [Validators.required, Validators.minLength(3), this.userNameChar]],
-      email: [null, [Validators.required, this.emailValid]],
-      phoneNumber: [null, [Validators.required, this.PhoneNumberLength]],
+      frstName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
+      email: [null, [Validators.required, this.valid.emailValid]],
+      phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
       country: [null, [Validators.required]],
       addres: [null, [Validators.required]],
       shipping: [null, [Validators.required]],
@@ -85,35 +84,6 @@ export class OrderComponent implements OnInit {
     return this.erroreStr;
   }
 
-  userNameChar(control: FormControl) {
-    const regExp = /[0-9]/;
-    if (regExp.test(control.value)) {
-      return {
-        userNameChar: true
-      }
-    }
-    return false
-  }
-
-  emailValid(control: FormControl) {
-    const regExp = /^([a-z0-9._%+-])+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-    if (!regExp.test(control.value)) {
-      return {
-        isEmail: true
-      }
-    }
-    return false
-  }
-
-  PhoneNumberLength(control: FormControl) {
-    const size = 9;
-    if (control.value && control.value.length < 9) {
-      return {
-        isSize: true
-      }
-    }
-    return false
-  }
 
   submitForm(): void {
     for (const i in this.validateForm.controls) {
@@ -136,7 +106,7 @@ export class OrderComponent implements OnInit {
       email: this.validateForm.get('email')?.value,
       city: this.validateForm.get('country')?.value,
       address: this.validateForm.get('addres')?.value,
-      price: this.sum,
+      price: this.frames.sum,
       comment: this.validateForm.get('comment')?.value,
       promo_code: this.promoId,
       order_items: ids
@@ -144,7 +114,8 @@ export class OrderComponent implements OnInit {
     
     if (this.validateForm.valid) {
       this.frames.userOrder(order).subscribe((el:any)=>{
-        console.log('el',el)
+        console.log('el',el);
+        
       })
     }
   }
@@ -152,14 +123,14 @@ export class OrderComponent implements OnInit {
   salePost(event: any) {
     this.validateForm.get('sale')?.setValue(event.target.value)
     const sale = {
-      price: this.sum,
+      price: this.frames.sum,
       code: this.validateForm.get('sale')?.value
     }
     // promo 147852
 
     if (this.validateForm.get('sale')?.value.length === 6 && this.promoId===null) {
       this.frames.promoCodePost(sale).subscribe((el: any) => {
-        this.sum = el.discounted_price;
+        this.frames.sum = el.discounted_price;
         this.promoId = el.id;
         this.promoError = '';
       },
@@ -179,7 +150,7 @@ export class OrderComponent implements OnInit {
 
   deleteDate(obj: any) {
     this.frames.deleteOrder(obj.id).subscribe((el: any) => {
-      this.sum -= obj.created_frame_details.price;
+      this.frames.sum -= obj.created_frame_details.price;
       this.frames.orderList = this.frames.orderList.filter((val: any) => {
         return val.id != obj.id
       })

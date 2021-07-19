@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from 'src/app/register/login/login.component';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { Letter } from '../../../shared/img-ramka';
 import { ImgCatalogComponent } from '../img-catalog/img-catalog.component';
@@ -156,16 +157,20 @@ export class CreateImgComponent implements OnInit {
       text_in_bottom: this.frames.btmText,
       images: imgs
     }
-    
-    this.frames.getOrder(order).subscribe((el:any)=>{
+
+    this.frames.getOrder(order).subscribe((el: any) => {
       this.frames.orderList = el;
       this.frames.isOrder = true;
-    })
-    
+    },((erore:any)=>{
+      if(erore){
+        const modalRef = this.modalService.open(LoginComponent);
+      }
+    }))
+
   }
 
 
-
+  messageInUser = ""
 
 
 

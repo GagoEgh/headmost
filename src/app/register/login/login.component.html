@@ -17,9 +17,9 @@
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="տառերի քանակը պետք է լինի 6-ից ավել">
           <input nz-input type="password" id="password" formControlName="password" trim />
-          
         </nz-form-control>
       </nz-form-item>
+      <p *ngIf = 'errorLog' [style.color]='"red"'>{{errorLog}}</p>
       <nz-form-item nz-row >
         <nz-form-control [nzSpan]="14" [nzOffset]="6">
           <button nz-button nzType="primary">login</button>

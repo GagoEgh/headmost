@@ -106,3 +106,11 @@
    transition: 0.5s;
 }
 
+.message{
+   background-color: white;
+   height: 50px;
+}
+
+.message p{
+   padding: 10px;
+}

@@ -36,3 +36,50 @@
 .red{
     color:red;
 }
+
+
+.parent{
+    position: relative;
+    list-style: none;
+}
+
+
+
+.user-data{
+    position: absolute;
+    left: -10%;
+    top:25px;
+    list-style: none;
+    color: rgb(78, 77, 77);
+    background-color: white;
+    z-index: 3;
+    box-shadow: 1px 2px 4px 2px grey;
+    display: none;
+    transition: 0.5s;
+}
+
+.activeHover{
+    text-decoration: none;
+    color: rgb(54, 54, 54);
+    font-weight: 500;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.activeHover:hover ul{
+ display: block;
+}
+
+
+.list{
+    letter-spacing: 1px;
+    line-height: 22px;
+    border-bottom: 1px solid #f5e9e9;
+    margin-left: -35px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.list:hover{
+    color: black;
+}

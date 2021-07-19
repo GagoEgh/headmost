@@ -14,7 +14,6 @@ export class FramesServService {
     selectedValue: any[] = [];
     isOrder: boolean = false;
     orderList: any[] = [];
-    token: string = 'Token';
     background: any = {};
     topText: string = '';
     btmText: string = '';
@@ -23,17 +22,33 @@ export class FramesServService {
     text: string = '';
     isMessage = false;
     index: number = 3;
+    sum: number = 0;
+    userReg = true;
+    token:string = 'Token ';
     userData:UserData={
-        phone_number:0,
-        first_name:'',
-        last_name:'',
-        date_of_birth:'',
-        city:'',
-        password:'',
-        comment:'',
-        image:'',
-        email:''
+        addres: null,
+        city: 0,
+        city_details: {
+            id: 0,
+            name_en: '',
+            name_ru:'',
+            name_hy: ''
+        },
+        comment: '',
+        date_of_birth: '',
+        image: '',
+        phone_number: null,
+        user: 0,
+        user_details: {
+            first_name: '',
+            id: 0,
+            is_active: false,
+            is_staff: false,
+            last_name: '',
+            username: ''
+        }
     };
+    
     isImg = true;
     div: any = [];
     frame: any;
@@ -64,7 +79,7 @@ export class FramesServService {
         api_shipping: 'shipping-method/',
         api_login:'login/'
     }
-
+//sirun-bar-api.annaniks.com/order/card-item/add-frame-in-card/  api_order+api_card+ api_add
     painding: Painding = {
         values: {
             colored: false,
@@ -156,10 +171,10 @@ export class FramesServService {
     }
 
     getOrder(obj: any) {
-
+ //sirun-bar-api.annaniks.com/order/card-item/add-frame-in-card/  api_order+api_card+ api_add
         return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_card + this.api.api_add,
             obj,
-            { headers: { 'Authorization': 'Token e3488062bef3993ccb0871c945f4d62c1d18aea6' } }
+            { headers: { 'Authorization': this.token } }
         )
     }
 
@@ -188,15 +203,13 @@ export class FramesServService {
 
     userOrder(obj: any) {
         return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_order + '/', obj,
-          //  { headers: { 'Authorization': 'Token e3488062bef3993ccb0871c945f4d62c1d18aea6' } })
-          {headers:{'Authorization': ''+localStorage.getItem('Authorization')}})
+          {headers:{'Authorization': ''+this.token}})
         
     }
 
-                      //  /userdetails/login/?is_staff_login=True
     userLogin(obj:any){
-        return this.url.post(this.api.worldApi +this.api.api_userdetails+this.api.api_login+'?is_staff_login=True',obj,
-        {headers:{'Authorization': ''+localStorage.getItem('Authorization')}})
+        return this.url.post(this.api.worldApi +this.api.api_userdetails+this.api.api_login,obj)
+        
     }
 
     userCountry() {

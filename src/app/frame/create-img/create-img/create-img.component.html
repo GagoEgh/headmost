@@ -36,6 +36,8 @@
   </div>
   
 </div>
-<button   class="btn-save" (click)='myOrder()' *ngIf='!frames.isOrder'>save</button>
+ <button   class="btn-save" (click)='myOrder()'*ngIf='!frames.isOrder' >save</button>   <!--*ngIf='!frames.isOrder' -->
 
-
+<div class="message">
+  <p>{{messageInUser}}</p>
+</div>

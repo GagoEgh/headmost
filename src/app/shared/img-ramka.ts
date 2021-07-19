@@ -33,16 +33,16 @@ export interface Api {
     api_promocode: string,
     api_img: string,
     api_create_word: string,
-    api_order:string,
-    api_card:string,
-    api_add:string,
-    api_location:string,
-    api_country:string,
-    api_check_promo:string,
-    api_userdetails:string,
-    api_register:string,
-    api_shipping:string,
-    api_login:string
+    api_order: string,
+    api_card: string,
+    api_add: string,
+    api_location: string,
+    api_country: string,
+    api_check_promo: string,
+    api_userdetails: string,
+    api_register: string,
+    api_shipping: string,
+    api_login: string
 }
 
 export interface FramesImg {
@@ -63,64 +63,76 @@ export interface LetterImge {
     index: number,
     not_found: boolean,
     character: string,
-    image:Image 
+    image: Image
 
 }
 
-export interface Image{
+export interface Image {
     id: number,
-    image: string, 
-    thumbnail: string, 
+    image: string,
+    thumbnail: string,
     category: number,
-    category_details:CategoryDetails,
+    category_details: CategoryDetails,
     color: number,
-    color_details:ColorDetails,
+    color_details: ColorDetails,
     character: number,
-    character_details:CharacterDetails
+    character_details: CharacterDetails
 }
 
-export interface CategoryDetails{
+export interface CategoryDetails {
     id: number,
     name_en: string,
     name_ru: string,
     name_hy: string,
 }
 
-export interface ColorDetails{
+export interface ColorDetails {
     id: number,
     name_en: string,
     name_ru: string,
     name_hy: string,
 }
 
-export interface CharacterDetails{
+export interface CharacterDetails {
     id: number,
     character: string,
 }
 
-export interface Category{
-    id:number,
+export interface Category {
+    id: number,
     name_en: string,
     name_hy: string,
-    name_ru:string
-  }
+    name_ru: string
+}
 
-  export  interface Letter {
-      isSpan: boolean,
-      isMenu: boolean,
-      isForm: boolean
-    }
+export interface Letter {
+    isSpan: boolean,
+    isMenu: boolean,
+    isForm: boolean
+}
 
-    export interface UserData{
-        phone_number:number,
-        first_name:string,
-        last_name:string,
-        date_of_birth:string,
-        city:string,
-        password:string,
-        comment:string,
-        image:string,
-        email:string
+export interface UserData {
+    addres: null,
+    city: number,
+    city_details: {
+        id: number,
+        name_en: string,
+        name_ru: string,
+        name_hy: string
+    },
+    comment: string,
+    date_of_birth: string,
+    image: string,
+    phone_number: number | null,
+    user: number,
+    user_details: {
+        first_name: string,
+        id: number,
+        is_active: boolean,
+        is_staff: boolean,
+        last_name: string,
+        username: string
     }
- 
+}
+
 

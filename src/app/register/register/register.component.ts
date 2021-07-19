@@ -18,14 +18,14 @@ export class RegisterComponent implements OnInit {
   shiping: any[] = [];
   emailMassage = '';
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private i18n: NzI18nService,
-    public frames: FramesServService, private modalService: NgbModal, private valid:ValidationServService) { }
+    public frames: FramesServService, private modalService: NgbModal, private valid: ValidationServService) { }
 
   ngOnInit(): void {
     this.frames.userCountry();
     this.validateForm = this.fb.group({
-      frstName: [null, [Validators.required, Validators.minLength(3), this.userNameChar]],
-      lastName: [null, [Validators.required, Validators.minLength(3), this.userNameChar]],
-      phoneNumber: [null, [Validators.required, this.PhoneNumberLength]],
+      frstName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
+      lastName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
+      phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
       pas: [null, [Validators.required, Validators.minLength(6)]],
       email: [null, [Validators.required, this.valid.emailValid]],
       country: [null, [Validators.required]],
@@ -33,26 +33,6 @@ export class RegisterComponent implements OnInit {
 
     });
   }
-
-  userNameChar(control: FormControl) {
-    const regExp = /[0-9]/;
-    if (regExp.test(control.value)) {
-      return {
-        userNameChar: true
-      }
-    }
-    return false
-  }
-
-  // emailValid(control: FormControl) {
-  //   const regExp = /^([a-z0-9._%+-])+@[a-z0-9.-]+\.[a-z]{2,4}$/;
-  //   if (!regExp.test(control.value)) {
-  //     return {
-  //       isEmail: true
-  //     }
-  //   }
-  //   return false
-  // }
 
   PhoneNumberLength(control: FormControl) {
     const size = 9;
@@ -100,9 +80,9 @@ export class RegisterComponent implements OnInit {
 
     if (this.validateForm.valid) {
       this.frames.userRegisterPost(userDetalis).subscribe((el: any) => {
-        this.frames.token += ' ' + el.token;
+
         this.frames.isRegister = true;
-        this.frames.userData = userDetalis;
+        this.frames.userData = el.user_details;
         const modalRef = this.modalService.open(OkRegisterComponent);
         modalRef.result.then((result) => {
           this.frames.isRegister = false;
@@ -110,7 +90,9 @@ export class RegisterComponent implements OnInit {
           this.frames.isRegister = false;
         });
         this.validateForm.reset();
-        localStorage.setItem('Authorization', this.frames.token);
+        this.frames.userReg = false;
+        this.frames.token += el.token;
+        localStorage.setItem('registerAuthorization', this.frames.token);
       }, ((err: any) => {
         if (err.status === 400) {
           this.emailMassage = 'տվյալ email-ը զբաղված է';
