@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FramesImg } from '../../shared/img-ramka';
 import { NgbdModalContentComponent } from '../ngbd-modal-content/ngbd-modal-content.component';
 import { FramesServService } from '../../shared/frames-serv.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-frame',
@@ -45,6 +46,7 @@ export class FrameComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.frames.validateForm = new FormGroup({
       text:new FormControl(null,[Validators.required, Validators.minLength(3), Validators.maxLength(9)])
     })

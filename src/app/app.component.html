@@ -3,20 +3,19 @@
     <a class="frame" routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">frame</a>
     <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
       <img src='../assets/1x/outline_shopping_cart_black_24dp.png'>
-      <span>{{frames.orderList.length}}</span>
+      <span >{{frames.orderList?.length}}</span>
     </a>
     <div *ngIf='frames.userReg, else log'>
       <a class="frame" (click)="open()">login</a>
     </div>
     <ng-template #log>
-     
       <ul>
         <li class="parent">
           <a class="activeHover"> {{frames.userData.user_details.first_name}}
             <ul class="user-data">
-              <li class="list">պռոֆիլ</li>
-              <li class="list">իմ նկարները</li>
-              <li class="list">իմ պատվերները</li>
+              <li class="list"><a routerLink = '/user/profil'>պռոֆիլ</a></li>
+              <li class="list"><a routerLink = '/user/imags'>իմ նկարները</a></li>
+              <li class="list"><a routerLink = '/user/user-order'>իմ պատվերները</a></li>
               <li class="list" (click)="close()">դուրս գալ</li>
             </ul>
           </a>
@@ -27,7 +26,5 @@
   </div>
 
 </div>
-
-
 
 <router-outlet></router-outlet>

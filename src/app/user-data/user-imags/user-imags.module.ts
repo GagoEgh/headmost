@@ -1,31 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OrderComponent } from './order/order.component';
+import { UserImagsComponent } from './user-imags.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared.modult';
+import { SharedModule } from 'src/app/shared/shared.modult';
 
 
-
-
-
-const routs:Routes =[
-  {path:'',component:OrderComponent},
-
+const routes:Routes = [
+  {path:'',component:UserImagsComponent}
 ]
+
 
 @NgModule({
   declarations: [
-
+    UserImagsComponent
   ],
   imports: [
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    RouterModule.forChild(routs)
-  ],
-  exports:[RouterModule],
-
+    RouterModule.forChild(routes)
+  ]
 })
-export class OrderModule { }
+export class UserImagsModule { }

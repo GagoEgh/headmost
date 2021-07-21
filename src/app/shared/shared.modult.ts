@@ -8,6 +8,10 @@ import { NzSelectModule } from "ng-zorro-antd/select";
 import { NgxMaskModule } from "ngx-mask";
 import { OrderComponent } from "../order/order/order.component";
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatNativeDateModule} from '@angular/material/core';
+import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
 
 
 @NgModule({
@@ -22,6 +26,10 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
         NzInputModule,
         NzSelectModule,
         NzDatePickerModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatNativeDateModule,
+        NgxTrimDirectiveModule,
         NgxMaskModule.forRoot(),
     ]
 })

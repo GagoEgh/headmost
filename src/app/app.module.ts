@@ -12,20 +12,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterModule } from './register/register-module';
 
 
+
+
 registerLocaleData(en);
-
-
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+
     RegisterModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],

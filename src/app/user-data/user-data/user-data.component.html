@@ -1,0 +1,103 @@
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+    <div class="col">
+      <div>
+        <nz-form-label nzRequired nzFor="frstName">Frst Name</nz-form-label>
+      </div>
+      <nz-form-item>
+        <nz-form-control  [nzErrorTip]='frstEr' nzHasFeedback>
+          <input nz-input formControlName="frstName" id="frstName" [(ngModel)]='frames.userData.user_details.first_name' trim />
+        </nz-form-control>
+      </nz-form-item>
+      <ng-template #frstEr>
+        <p *ngIf="erroreName('frstName')">{{erroreStr}} </p>
+      </ng-template>
+
+      <div>
+        <nz-form-label nzRequired nzFor="pas">Last Name</nz-form-label>
+      </div>
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="last" nzHasFeedback>
+          <input nz-input formControlName="last" id="last" [(ngModel)]='frames.userData.user_details.last_name' trim readonly />
+        </nz-form-control>
+      </nz-form-item>
+      <ng-template #last>
+        <p *ngIf="erroreName('last')">{{erroreStr}} </p>
+      </ng-template>
+
+      <div>
+        <nz-form-label nzRequired nzFor="lastName">Addres</nz-form-label>
+      </div>
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]='add' nzHasFeedback>
+          <input nz-input formControlName="addres" id="add" [(ngModel)]='frames.userData.address' />
+        </nz-form-control>
+      </nz-form-item>
+      <ng-template #add>
+        <p *ngIf="erroreName('addres')">{{erroreStr}} </p>
+      </ng-template>
+
+
+      <div>
+        <nz-form-label nzRequired nzFor="email">E-mail</nz-form-label>
+      </div>
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="email" nzHasFeedback>
+          <input nz-input formControlName="email" id="email" [(ngModel)]='frames.userData.user_details.username' trim />
+        </nz-form-control>
+      </nz-form-item>
+      <ng-template #email>
+        <p *ngIf="erroreName('email')">{{erroreStr}} </p>
+      </ng-template>
+      <p *ngIf = 'emailMassage'[style.color]='"red"'>{{emailMassage}}</p>
+
+    </div>
+    <div class="col">
+
+      <div>
+        <nz-form-label nzRequired nzFor="phoneNumber">Phone</nz-form-label>
+      </div>
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="phone">
+          <input nz-input formControlName="phoneNumber" id="phoneNumber" trim mask='(000)00-00-00' [(ngModel)]='frames.userData.phone_number' />
+        </nz-form-control>
+      </nz-form-item>
+      <ng-template #phone>
+        <p *ngIf="erroreName('phoneNumber')">{{erroreStr}} </p>
+      </ng-template>
+      <div class="region">
+        <nz-form-label  nzRequired>Country</nz-form-label>
+        <nz-form-control  [nzErrorTip]="country">
+          <nz-select nzAllowClear nzPlaceHolder="COUNTRY"  [(ngModel)]='frames.userData.city' nzShowSearch formControlName='country'>
+            <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country.name_hy '>
+              <nz-option *ngFor='let regions of country.country_regions' [nzLabel]='regions.name_hy' nzDisabled=true>
+                <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id' [nzLabel]='city.name_hy'>
+                </nz-option>
+              </nz-option>
+            </nz-option-group>
+          </nz-select>
+        </nz-form-control>
+      </div>
+      <ng-template #country>
+        <p *ngIf="erroreName('country')" class="erroreCountry">{{erroreStr}}</p>
+      </ng-template>
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="date" nzHasFeedback >
+          <mat-form-field appearance="fill">
+            <mat-label>ծննդյան տարեթիվ</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName='date' >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker ></mat-datepicker>
+          </mat-form-field>
+        </nz-form-control>
+      </nz-form-item>
+      <ng-template #date>
+        <p *ngIf="erroreName('date')">{{erroreStr}} </p>
+      </ng-template>
+       
+    </div>
+    <p *ngIf = 'updateOk'>{{updateOk}}</p>
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">update</button>
+  </form>
+
+
+  

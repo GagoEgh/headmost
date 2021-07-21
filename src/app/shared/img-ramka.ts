@@ -42,7 +42,8 @@ export interface Api {
     api_userdetails: string,
     api_register: string,
     api_shipping: string,
-    api_login: string
+    api_login: string,
+    api_edit: string
 }
 
 export interface FramesImg {
@@ -112,7 +113,7 @@ export interface Letter {
 }
 
 export interface UserData {
-    addres: null,
+    address: string,
     city: number,
     city_details: {
         id: number,

@@ -1,0 +1,36 @@
+.login-form{
+    display: flex;
+    width: 50%;
+    border: 1px solid;
+    padding: 30px;
+    flex-wrap: wrap;
+    margin: 30px 0 0 30px;
+}
+
+.col{
+    /* width: 50%; */
+    border: 1px solid blueviolet;
+}
+.region{
+    margin-bottom: 60px;
+}
+
+.ant-input, .ant-input-group {
+    width: 280px;
+}
+  
+.ant-btn-primary {
+    width: 50% !important;
+    margin: 40px auto;
+}
+:host::ng-deep{
+@media (max-width:760px){
+    .mat-form-field, .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector,  .ant-input, .ant-input-group {
+        width:95% !important;
+    }
+    .ant-select {
+        width:95% !important;
+    }
+    
+}
+}

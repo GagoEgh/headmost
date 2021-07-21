@@ -83,3 +83,7 @@
 .list:hover{
     color: black;
 }
+
+.list a{
+    color: rgb(54, 54, 54) ;
+}

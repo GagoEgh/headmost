@@ -1,36 +1,31 @@
+import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
-import { OkRegisterComponent } from '../ok-register/ok-register.component';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-user-data',
+  templateUrl: './user-data.component.html',
+  styleUrls: ['./user-data.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class UserDataComponent implements OnInit {
   validateForm: FormGroup = new FormGroup({});
-  selectedValue: any[] = [];
   erroreStr: string = '';
-  shiping: any[] = [];
   emailMassage = '';
-  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private i18n: NzI18nService,
-    public frames: FramesServService, private modalService: NgbModal, private valid: ValidationServService) { }
+  updateOk ='';
+  constructor(private valid: ValidationServService, private fb: FormBuilder, public frames: FramesServService) { }
 
   ngOnInit(): void {
     this.frames.userCountry();
     this.validateForm = this.fb.group({
       frstName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
-      lastName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
+      last: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
+      addres: [null, [Validators.required]],
       phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
-      pas: [null, [Validators.required, Validators.minLength(6)]],
       email: [null, [Validators.required, this.valid.emailValid]],
       country: [null, [Validators.required]],
-      date: [null, [Validators.required]],
-
+      date: [this.frames.userData.date_of_birth, [Validators.required]],
     });
   }
 
@@ -45,15 +40,15 @@ export class RegisterComponent implements OnInit {
     return this.erroreStr;
   }
 
-
-  birt(formName:string){
+  birt(formName: string) {
     const date = new Date(this.validateForm.get(formName)?.value);
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate()
     const date_of_birth = year + '-' + month + '-' + day;
     return date_of_birth;
-}
+  }
+
   submitForm(): void {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
@@ -61,48 +56,27 @@ export class RegisterComponent implements OnInit {
     }
     
     const date = this.birt('date');
-    const userDetalis = {
-      phone_number: this.validateForm.get('phoneNumber')?.value,
-      first_name: this.validateForm.get('frstName')?.value,
-      last_name: this.validateForm.get('lastName')?.value,
+    const edit = {
       date_of_birth: date,
       city: this.validateForm.get('country')?.value,
-      password: this.validateForm.get('pas')?.value,
-      email: this.validateForm.get('email')?.value,
+      address: this.validateForm.get('addres')?.value.trim(),
+      image: '',
       comment: '',
-      image: ''
+      last_name: this.validateForm.get('last')?.value,
+      first_name: this.validateForm.get('frstName')?.value
+
     }
-      console.log(userDetalis)
+
     if (this.validateForm.valid) {
-      this.frames.userRegisterPost(userDetalis).subscribe((el: any) => {
-
-        this.frames.isRegister = true;
-        this.frames.userData = el.user_details;
-        const modalRef = this.modalService.open(OkRegisterComponent);
-
-        modalRef.result.then((result) => {
-          this.frames.isRegister = false;
-        }, (reason) => {
-          this.frames.isRegister = false;
-        });
-
-        this.validateForm.reset();
-        this.frames.userReg = false;
-        this.frames.token = 'Token '+el.token;
-        localStorage.setItem('loginAutorization', this.frames.token);
-        localStorage.setItem('user-date',JSON.stringify(this.frames.userData))
-      }, ((err: any) => {
-        if (err.status === 400) {
-          this.emailMassage = 'տվյալ email-ը զբաղված է';
-        }
-      }))
-    }
-
-  }
-
-  ngDoCheck(): void {
-    if (this.frames.isRegister) {
-      this.activeModal.dismiss()
+      this.frames.editUser(edit).subscribe((el: any) => {
+        this.updateOk = 'Փոփոխությունները հաջողությամբ կատարվել են'
+      })
     }
   }
+
+
+
 }
+
+ 
+

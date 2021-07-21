@@ -1,10 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
-import { LoginComponent } from "./login/login.component";
-import { RegisterComponent } from "./register/register.component";
-import { SharedModule } from "../shared/shared.modult";
+import { RouterModule, Routes } from "@angular/router";
+import { SharedModule } from "src/app/shared/shared.modult";
+import { UserDataComponent } from "./user-data.component";
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -17,8 +16,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaskModule } from "ngx-mask";
 import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
 
+const routes:Routes = [
+    {path:'',component:UserDataComponent}
+]
+
 @NgModule({
-    declarations: [LoginComponent, RegisterComponent],
+    declarations: [UserDataComponent],
     imports: [
         NzDatePickerModule,
         CommonModule,
@@ -33,8 +36,9 @@ import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
         MatInputModule,
         MatNativeDateModule,
         NgxMaskModule.forRoot(),
-        NgxTrimDirectiveModule
+        NgxTrimDirectiveModule,
+        RouterModule.forChild(routes)
     ],
-    exports: [RouterModule],
+    exports:[RouterModule]
 })
-export class RegisterModule { }
+export class ProfilModule { }

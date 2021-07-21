@@ -90,10 +90,7 @@ export class OrderComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-
-
     // sharunakeli
-
     const ids: any[] = [];
     this.frames.orderList.forEach((obj: any) => {
       ids.push(obj.id)
@@ -111,11 +108,11 @@ export class OrderComponent implements OnInit {
       promo_code: this.promoId,
       order_items: ids
     }
-    
+   
     if (this.validateForm.valid) {
       this.frames.userOrder(order).subscribe((el:any)=>{
         console.log('el',el);
-        
+        console.log('order',order)
       })
     }
   }
@@ -126,12 +123,12 @@ export class OrderComponent implements OnInit {
       price: this.frames.sum,
       code: this.validateForm.get('sale')?.value
     }
-    // promo 147852
 
     if (this.validateForm.get('sale')?.value.length === 6 && this.promoId===null) {
       this.frames.promoCodePost(sale).subscribe((el: any) => {
         this.frames.sum = el.discounted_price;
-        this.promoId = el.id;
+        this.promoId = el.promo_code.id;
+        console.log(el)
         this.promoError = '';
       },
         (error: any) => {
@@ -140,24 +137,20 @@ export class OrderComponent implements OnInit {
     }
   }
 
-  // userCountry() {
-  //   this.frames.getCountry()
-  //     .subscribe((el: any) => {
-  //       this.frames.selectedValue = el.results
-  //     })
-  // }
-
 
   deleteDate(obj: any) {
     this.frames.deleteOrder(obj.id).subscribe((el: any) => {
       this.frames.sum -= obj.created_frame_details.price;
       this.frames.orderList = this.frames.orderList.filter((val: any) => {
+        localStorage.setItem('order-list',JSON.stringify(this.frames.orderList));
         return val.id != obj.id
       })
+
 
       if (this.frames.orderList.length === 0) {
         this.frames.showFrame()
       }
+     
     });
 
   }

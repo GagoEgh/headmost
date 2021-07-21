@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit, DoCheck {
 
 
   ngOnInit(): void {
+ 
     this.validateForm = this.fb.group({
       email: [null, [Validators.email, Validators.required,this.valid.emailValid]],
       password: [null, [Validators.required,Validators.minLength(6)]],
@@ -45,14 +46,15 @@ export class LoginComponent implements OnInit, DoCheck {
     }
     if(this.validateForm.valid){
       this.frames.userLogin(userLog).subscribe((el:any)=>{
-        this.frames.token += el.token;
-        localStorage.setItem('loginAutorization',this.frames.token);
+        this.frames.token = 'Token '+el.token;
         this.frames.userData = el.user_details;
-
+        localStorage.setItem('loginAutorization',this.frames.token);
+        localStorage.setItem('user-date',JSON.stringify(this.frames.userData));
+  
         this.activeModal.dismiss();
         this.validateForm.reset();
         this.frames.userReg = false;
-
+        this.frames.myOrder()
       },((err:any)=>{
         this.errorLog = err.error.message
       }))
@@ -68,7 +70,7 @@ export class LoginComponent implements OnInit, DoCheck {
       this.frames.isLogin = false;
     });
     this.frames.isLogin = true;
-    
+
   }
 
   

@@ -24,14 +24,14 @@ export class FramesServService {
     index: number = 3;
     sum: number = 0;
     userReg = true;
-    token:string = 'Token ';
-    userData:UserData={
-        addres: null,
+    token: string = '';
+    userData: UserData = {
+        address: '',
         city: 0,
         city_details: {
             id: 0,
             name_en: '',
-            name_ru:'',
+            name_ru: '',
             name_hy: ''
         },
         comment: '',
@@ -48,14 +48,14 @@ export class FramesServService {
             username: ''
         }
     };
-    
+
     isImg = true;
     div: any = [];
     frame: any;
 
 
 
- 
+
     api: Api = {
         worldApi: 'http://sirun-bar-api.annaniks.com',
         api_utils: '/utils',
@@ -77,9 +77,10 @@ export class FramesServService {
         api_userdetails: '/userdetails/',
         api_register: 'register/',
         api_shipping: 'shipping-method/',
-        api_login:'login/'
+        api_login: 'login/',
+        api_edit: 'edit-user-details/'
     }
-//sirun-bar-api.annaniks.com/order/card-item/add-frame-in-card/  api_order+api_card+ api_add
+
     painding: Painding = {
         values: {
             colored: false,
@@ -171,7 +172,6 @@ export class FramesServService {
     }
 
     getOrder(obj: any) {
- //sirun-bar-api.annaniks.com/order/card-item/add-frame-in-card/  api_order+api_card+ api_add
         return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_card + this.api.api_add,
             obj,
             { headers: { 'Authorization': this.token } }
@@ -184,7 +184,7 @@ export class FramesServService {
 
     deleteOrder(id: number) {
         return this.url.delete(this.api.worldApi + this.api.api_order + this.api.api_card + '/' + id + '/',
-            { headers: { 'Authorization': 'Token e3488062bef3993ccb0871c945f4d62c1d18aea6' } }
+            { headers: { 'Authorization': this.token } }
         )
     }
 
@@ -203,13 +203,18 @@ export class FramesServService {
 
     userOrder(obj: any) {
         return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_order + '/', obj,
-          {headers:{'Authorization': ''+this.token}})
-        
+            { headers: { 'Authorization': this.token } })
+
     }
 
-    userLogin(obj:any){
-        return this.url.post(this.api.worldApi +this.api.api_userdetails+this.api.api_login,obj)
-        
+    userLogin(obj: any) {
+        return this.url.post(this.api.worldApi + this.api.api_userdetails + this.api.api_login, obj,)
+
+    }
+
+    editUser(obj: any) {
+        return this.url.put(this.api.worldApi + this.api.api_userdetails + this.api.api_edit, obj,
+            { headers: { 'Authorization': this.token } })
     }
 
     userCountry() {
@@ -241,6 +246,36 @@ export class FramesServService {
         this.isOrder = false;
         this.isImg = true;
         this.validateForm.reset()
+    }
+
+
+    myOrder() {
+        const imgs: any[] = [];
+        this.letterImges.forEach((i, index) => {
+            const obj = {
+                order_index: index,
+                character: i.image.character,
+                image: i.image.id,
+                user_image: null
+            }
+            imgs.push(obj)
+
+        })
+
+        const order = {
+            frame: this.frame.id,
+            background: this.background.id,
+            word: this.text.toUpperCase(),
+            text_in_top: this.topText,
+            text_in_bottom: this.btmText,
+            images: imgs
+        }
+
+        this.getOrder(order).subscribe((el: any) => {
+            this.orderList = el;
+            this.isOrder = true;
+            localStorage.setItem('order-list', JSON.stringify(this.orderList));
+        })
     }
 
 }

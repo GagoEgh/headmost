@@ -1,10 +1,12 @@
-<div class="wrap" #wrap [ngStyle]="setStyle()" *ngIf='frames.isOrder, else noText'>
+<div class="wrap" #wrap [ngStyle]="setStyle()">
+  <!--*ngIf='frames.isOrder, else noText' -->
   <div class="user-data">
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="frstName">Frst Name</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='frstEr' nzHasFeedback>
-          <input nz-input formControlName="frstName" id="frstName" [(ngModel)]='frames.userData.user_details.first_name' />
+          <input nz-input formControlName="frstName" id="frstName" trim
+            [(ngModel)]='frames.userData.user_details.first_name' />
         </nz-form-control>
       </nz-form-item>
       <ng-template #frstEr>
@@ -13,7 +15,7 @@
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="email" nzHasFeedback>
-          <input nz-input formControlName="email" id="email" [(ngModel)]='frames.userData.user_details.username' />
+          <input nz-input formControlName="email" trim id="email" [(ngModel)]='frames.userData.user_details.username' />
         </nz-form-control>
       </nz-form-item>
       <ng-template #email>
@@ -22,7 +24,8 @@
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="phoneNumber">Phone Number</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="phone">
-          <input nz-input formControlName="phoneNumber" id="phoneNumber" mask='(000)00-00-00' [(ngModel)]='frames.userData.phone_number'/>
+          <input nz-input formControlName="phoneNumber" id="phoneNumber" mask='(000)00-00-00'
+            [(ngModel)]='frames.userData.phone_number' />
         </nz-form-control>
       </nz-form-item>
       <ng-template #phone>
@@ -31,7 +34,8 @@
       <div class="region">
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Country</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="country">
-          <nz-select nzAllowClear nzPlaceHolder="COUNTRY" [(ngModel)]='frames.userData.city' nzShowSearch formControlName='country'>
+          <nz-select nzAllowClear nzPlaceHolder="COUNTRY" [(ngModel)]='frames.userData.city' nzShowSearch
+            formControlName='country'>
             <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country.name_hy '>
               <nz-option *ngFor='let regions of country.country_regions' [nzLabel]='regions.name_hy' nzDisabled=true>
                 <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id' [nzLabel]='city.name_hy'>
@@ -47,7 +51,7 @@
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="addres">Address</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="addres" nzHasFeedback>
-          <input nz-input formControlName="addres" id="addres" />
+          <input nz-input formControlName="addres" id="addres" [(ngModel)]='frames.userData.address' />
         </nz-form-control>
       </nz-form-item>
       <ng-template #addres>
@@ -57,7 +61,8 @@
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Shipping</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="shipping">
           <nz-select nzAllowClear nzPlaceHolder="Shipping" nzShowSearch formControlName='shipping'>
-            <nz-option *ngFor='let addres of shiping ' [nzValue]="addres.id" [nzLabel]="addres.name_hy +' ' + addres.price+'դր'">
+            <nz-option *ngFor='let addres of shiping ' [nzValue]="addres.id"
+              [nzLabel]="addres.name_hy +' ' + addres.price+'դր'">
             </nz-option>
           </nz-select>
         </nz-form-control>
@@ -80,22 +85,23 @@
       <p class="red">{{promoError}}</p>
       <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
     </form>
-  </div>
-
-
-  <div class="order">
-    <h2 class="title">ՊԱՏՎԵՐԻ ՆԿԱՐԱԳՐՈՒԹՅՈԻՆ</h2>
-    <div class="data" *ngFor='let list of frames.orderList'>
-      <p><span>{{frames.letterImges.length}}տառ, </span>{{ list.created_frame_details.frame_details.name_hy}}</p>
-      <p class="smoll">{{ list.created_frame_details.frame_details.price}}դր/տառ</p>
-      <p>{{list.created_frame_details.price}}դր</p>
-      <span class="symbol" (click)='deleteDate(list)'>&#10005;</span>
+  </div >
+  <div >
+    <div class="order">
+      <h2 class="title">ՊԱՏՎԵՐԻ ՆԿԱՐԱԳՐՈՒԹՅՈԻՆ</h2>
+      <div class="data" *ngFor='let list of frames.orderList'>
+        <p><span>{{list.created_frame_details.word.length}}տառ, </span>{{
+          list.created_frame_details.frame_details.name_hy}}</p>
+        <p class="smoll">{{ list.created_frame_details.frame_details.price}}դր/տառ</p>
+        <p>{{list.created_frame_details.price}}դր</p>
+        <span class="symbol" (click)='deleteDate(list)'>&#10005;</span>
+      </div>
+      <p class="sum">ընդամենը {{frames.sum}}դր</p>
     </div>
-    <p class="sum">ընդամենը {{frames.sum}}դր</p>
   </div>
 </div>
 
-<ng-template #noText>
+<!-- <ng-template #noText>
   <H3 class="noText">ԶԱՄԲՅՈՒՂԸ ԴԱՏԱՐԿ Է</H3>
 </ng-template>
-<ng-content></ng-content>
+<ng-content></ng-content> -->
