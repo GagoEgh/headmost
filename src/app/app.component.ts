@@ -19,10 +19,18 @@ export class AppComponent implements OnInit {
       const result = JSON.parse(date)
       this.frames.userData = result;
       this.frames.userReg = false;
-      const list: any = localStorage.getItem('order-list');
-      this.frames.orderList = JSON.parse(list);
 
-      console.log(this.frames.orderList)
+      this.frames.userInfo().subscribe((el: any) => {
+        this.frames.orderList = el.results;
+
+        this.frames.orderList.forEach((obj: any) => {
+          this.frames.sum += obj.created_frame_details.price
+
+        })
+       
+        console.log(' app sum', this.frames.sum);
+
+      })
 
 
     }
@@ -39,12 +47,36 @@ export class AppComponent implements OnInit {
 
     localStorage.removeItem('loginAutorization');
     localStorage.removeItem('user-date');
-    localStorage.removeItem('order-list');
-    localStorage.removeItem('sum')
+
+
+    this.frames.sum = 0;
     this.frames.orderList = [];
     this.frames.token = '';
     this.frames.userReg = true;
     this.frames.showFrame();
+    this.frames.userData = {
+      address: '',
+      city: 0,
+      city_details: {
+        id: 0,
+        name_en: '',
+        name_ru: '',
+        name_hy: ''
+      },
+      comment: '',
+      date_of_birth: '',
+      image: '',
+      phone_number: null,
+      user: 0,
+      user_details: {
+        first_name: '',
+        id: 0,
+        is_active: false,
+        is_staff: false,
+        last_name: '',
+        username: ''
+      }
+    };
     this.router.navigate(['/'])
   }
 

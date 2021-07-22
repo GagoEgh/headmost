@@ -161,7 +161,7 @@ export class CreateImgComponent implements OnInit {
     this.frames.getOrder(order).subscribe((el: any) => {
       this.frames.orderList = el;
       this.frames.isOrder = true;
-      localStorage.setItem('order-list',JSON.stringify(this.frames.orderList));
+    
     },((erore:any)=>{
       if(erore){
         const modalRef = this.modalService.open(LoginComponent);

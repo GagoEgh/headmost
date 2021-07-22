@@ -52,9 +52,15 @@ export class OrderComponent implements OnInit {
     })
 
     this.frames.orderList.forEach((obj: any) => {
-      this.frames.sum += obj.created_frame_details.price;
+     // this.frames.sum += obj.created_frame_details.price;
+     // console.log('order init',obj)
     })
 
+  
+
+
+    console.log(this.frames.orderList[this.frames.orderList.length-1])
+    console.log('sum order init',this.frames.sum)
     this.frames.userCountry();
     this.validateForm = this.fb.group({
       frstName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
@@ -66,6 +72,7 @@ export class OrderComponent implements OnInit {
       comment: ['', []],
       sale: ['', []],
     });
+  
   }
 
   public setStyle() {
@@ -128,7 +135,7 @@ export class OrderComponent implements OnInit {
       this.frames.promoCodePost(sale).subscribe((el: any) => {
         this.frames.sum = el.discounted_price;
         this.promoId = el.promo_code.id;
-        console.log(el)
+        console.log('sum sale',this.frames.sum)
         this.promoError = '';
       },
         (error: any) => {
@@ -142,10 +149,10 @@ export class OrderComponent implements OnInit {
     this.frames.deleteOrder(obj.id).subscribe((el: any) => {
       this.frames.sum -= obj.created_frame_details.price;
       this.frames.orderList = this.frames.orderList.filter((val: any) => {
-        localStorage.setItem('order-list',JSON.stringify(this.frames.orderList));
+        console.log('sum delete',this.frames.sum)
         return val.id != obj.id
       })
-
+  //  localStorage.setItem('order-list',JSON.stringify(this.frames.orderList));
 
       if (this.frames.orderList.length === 0) {
         this.frames.showFrame()

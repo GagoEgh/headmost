@@ -1,4 +1,4 @@
-<div class="wrap" #wrap [ngStyle]="setStyle()">
+<div class="wrap" #wrap [ngStyle]="setStyle()" *ngIf = 'this.frames.userData.user,else noText'>
   <!--*ngIf='frames.isOrder, else noText' -->
   <div class="user-data">
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
@@ -87,7 +87,7 @@
     </form>
   </div >
   <div >
-    <div class="order">
+    <div class="order" >
       <h2 class="title">ՊԱՏՎԵՐԻ ՆԿԱՐԱԳՐՈՒԹՅՈԻՆ</h2>
       <div class="data" *ngFor='let list of frames.orderList'>
         <p><span>{{list.created_frame_details.word.length}}տառ, </span>{{
@@ -101,7 +101,7 @@
   </div>
 </div>
 
-<!-- <ng-template #noText>
+<ng-template #noText>
   <H3 class="noText">ԶԱՄԲՅՈՒՂԸ ԴԱՏԱՐԿ Է</H3>
 </ng-template>
-<ng-content></ng-content> -->
+<ng-content></ng-content>

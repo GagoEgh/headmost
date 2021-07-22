@@ -17,7 +17,7 @@
       </div>
       <nz-form-item>
         <nz-form-control [nzErrorTip]="last" nzHasFeedback>
-          <input nz-input formControlName="last" id="last" [(ngModel)]='frames.userData.user_details.last_name' trim readonly />
+          <input nz-input formControlName="last" id="last" [(ngModel)]='frames.userData.user_details.last_name' trim  />
         </nz-form-control>
       </nz-form-item>
       <ng-template #last>
@@ -42,7 +42,7 @@
       </div>
       <nz-form-item>
         <nz-form-control [nzErrorTip]="email" nzHasFeedback>
-          <input nz-input formControlName="email" id="email" [(ngModel)]='frames.userData.user_details.username' trim />
+          <input nz-input formControlName="email" id="email" [(ngModel)]='frames.userData.user_details.username'  readonly/>
         </nz-form-control>
       </nz-form-item>
       <ng-template #email>

@@ -48,7 +48,7 @@ export class FrameComponent implements OnInit {
   ngOnInit(): void {
 
     this.frames.validateForm = new FormGroup({
-      text:new FormControl(null,[Validators.required, Validators.minLength(3), Validators.maxLength(9)])
+      text: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(9)])
     })
     this.imgColor();
     this.frames.framesFoneGet().subscribe((el: any) => {
@@ -59,13 +59,13 @@ export class FrameComponent implements OnInit {
 
     this.frames.getFrames().subscribe((el: any) => {
       this.frames.framesImge = el.results;
-      this.frameClick(this.frames.index)
+      this.frameClick(this.frames.index);
     })
   }
 
   imgColor() {
-    this.frames.imgColorGet().subscribe((el: any) => {      
-      for (let i = 0; i < el.count; i++) {        
+    this.frames.imgColorGet().subscribe((el: any) => {
+      for (let i = 0; i < el.count; i++) {
         if (this.frames && this.frames.imgColor[i] && this.frames.imgColor[i].ceys) {
           this.frames.imgColor[i].ceys = el.results[i];
         }
@@ -77,14 +77,13 @@ export class FrameComponent implements OnInit {
     let style = {
       transform: "translate(-50%, -5%)" + "scale(" + this.scale + ")"
     }
-  
+
     return style
   }
 
   frameClick(id: number) {
     this.frames.index = id;
     this.frames.frame = this.frames.framesImge.find(item => item.id === this.frames.index);
-
   }
 
   getFrameId(img: FramesImg) {
@@ -99,7 +98,7 @@ export class FrameComponent implements OnInit {
     this.frames.painding.values = obj.values;
     this.frames.painding.id = obj.ceys.id;
     this.frames.letterColorFone();
-    
+
   }
 
   onSubmit() {
@@ -119,7 +118,7 @@ export class FrameComponent implements OnInit {
     this.frames.validateForm.reset();
   }
 
-  showFrame(){
+  showFrame() {
     this.frames.showFrame()
   }
 

@@ -80,7 +80,7 @@ export class FramesServService {
         api_login: 'login/',
         api_edit: 'edit-user-details/'
     }
-
+    // /order/card-item/?user=
     painding: Painding = {
         values: {
             colored: false,
@@ -217,6 +217,12 @@ export class FramesServService {
             { headers: { 'Authorization': this.token } })
     }
 
+
+    userInfo() {
+        return this.url.get(this.api.worldApi + this.api.api_order + this.api.api_card + '/?user=' + `${this.userData.user}`,
+            { headers: { 'Authorization': this.token } })
+    }
+
     userCountry() {
         this.getCountry()
             .subscribe((el: any) => {
@@ -249,33 +255,5 @@ export class FramesServService {
     }
 
 
-    myOrder() {
-        const imgs: any[] = [];
-        this.letterImges.forEach((i, index) => {
-            const obj = {
-                order_index: index,
-                character: i.image.character,
-                image: i.image.id,
-                user_image: null
-            }
-            imgs.push(obj)
-
-        })
-
-        const order = {
-            frame: this.frame.id,
-            background: this.background.id,
-            word: this.text.toUpperCase(),
-            text_in_top: this.topText,
-            text_in_bottom: this.btmText,
-            images: imgs
-        }
-
-        this.getOrder(order).subscribe((el: any) => {
-            this.orderList = el;
-            this.isOrder = true;
-            localStorage.setItem('order-list', JSON.stringify(this.orderList));
-        })
-    }
 
 }

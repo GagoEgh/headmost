@@ -69,7 +69,8 @@ export class UserDataComponent implements OnInit {
 
     if (this.validateForm.valid) {
       this.frames.editUser(edit).subscribe((el: any) => {
-        this.updateOk = 'Փոփոխությունները հաջողությամբ կատարվել են'
+        this.updateOk = 'Փոփոխությունները հաջողությամբ կատարվել են';
+        localStorage.setItem('user-date',JSON.stringify(this.frames.userData))
       })
     }
   }
