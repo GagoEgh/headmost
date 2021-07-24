@@ -12,11 +12,25 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 
 @NgModule({
     declarations:[OrderComponent,],
-    exports:[OrderComponent],
+    exports:[OrderComponent,NzModalModule,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NzFormModule ,
+        NzButtonModule,
+        NzInputModule,
+        NzSelectModule,
+        NzDatePickerModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatNativeDateModule,
+        NgxTrimDirectiveModule,
+        NgxMaskModule],
     imports:[
         CommonModule,
         FormsModule,
@@ -30,6 +44,7 @@ import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
         MatInputModule,
         MatNativeDateModule,
         NgxTrimDirectiveModule,
+        NzModalModule,
         NgxMaskModule.forRoot(),
     ]
 })

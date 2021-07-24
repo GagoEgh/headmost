@@ -28,8 +28,8 @@ registerLocaleData(en);
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-
-    RegisterModule
+    RegisterModule,
+    
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US },UserGuard],
   bootstrap: [AppComponent]

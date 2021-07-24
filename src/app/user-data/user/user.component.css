@@ -1,0 +1,21 @@
+
+.group{
+    display: flex;
+    margin: 50px;
+}
+
+.list{
+    list-style: none;
+    padding: 10px;
+    
+}
+
+.list a{
+    color: rgb(90, 90, 90);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.active{
+    color: rgb(230, 64, 64) !important;
+}

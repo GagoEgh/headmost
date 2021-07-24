@@ -1,5 +1,4 @@
-<div class="wrap" #wrap [ngStyle]="setStyle()" *ngIf = 'this.frames.userData.user,else noText'>
-  <!--*ngIf='frames.isOrder, else noText' -->
+<div class="wrap" #wrap [ngStyle]="setStyle()" *ngIf = 'this.frames.orderList.length,else noText'>
   <div class="user-data">
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
       <nz-form-item>

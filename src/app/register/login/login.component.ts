@@ -14,6 +14,7 @@ import { RegisterComponent } from '../register/register.component';
 export class LoginComponent implements OnInit, DoCheck {
   validateForm: FormGroup = new FormGroup({});
   errorLog = '';
+  
   constructor(public activeModal: NgbActiveModal, private modalService: NgbModal,
     private fb: FormBuilder, public frames: FramesServService, private valid: ValidationServService) { }
 
@@ -22,7 +23,6 @@ export class LoginComponent implements OnInit, DoCheck {
       this.activeModal.dismiss()
     }
   }
-
 
   ngOnInit(): void {
 
@@ -56,20 +56,14 @@ export class LoginComponent implements OnInit, DoCheck {
 
         this.frames.userInfo().subscribe((el: any) => {
           this.frames.orderList = el.results;
-
           this.frames.orderList.forEach((obj: any) => {
-            this.frames.sum += obj.created_frame_details.price
-
+            this.frames.sum += obj.created_frame_details.price;
           })
-          console.log('login', this.frames.sum);
-
         })
-
       }, ((err: any) => {
         this.errorLog = err.error.message
       }))
     }
-
   }
 
   open() {

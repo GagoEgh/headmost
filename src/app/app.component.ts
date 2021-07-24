@@ -24,17 +24,12 @@ export class AppComponent implements OnInit {
         this.frames.orderList = el.results;
 
         this.frames.orderList.forEach((obj: any) => {
-          this.frames.sum += obj.created_frame_details.price
+          this.frames.sum += obj.created_frame_details.price;
 
-        })
-       
-        console.log(' app sum', this.frames.sum);
+        });
 
       })
-
-
     }
-
   }
 
 

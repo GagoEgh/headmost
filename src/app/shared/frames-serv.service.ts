@@ -12,8 +12,10 @@ export class FramesServService {
     letterImges: LetterImge[] = [];
     framesImge: FramesImg[] = [];
     selectedValue: any[] = [];
+    fileUrl = {};
     isOrder: boolean = false;
     orderList: any[] = [];
+    orderListClone: any[] = [];
     background: any = {};
     topText: string = '';
     btmText: string = '';
@@ -78,9 +80,13 @@ export class FramesServService {
         api_register: 'register/',
         api_shipping: 'shipping-method/',
         api_login: 'login/',
-        api_edit: 'edit-user-details/'
+        api_edit: 'edit-user-details/',
+        api_files: '/files',
+        api_user_image: '/user-image'
     }
-    // /order/card-item/?user=
+
+
+
     painding: Painding = {
         values: {
             colored: false,
@@ -217,12 +223,20 @@ export class FramesServService {
             { headers: { 'Authorization': this.token } })
     }
 
-
     userInfo() {
         return this.url.get(this.api.worldApi + this.api.api_order + this.api.api_card + '/?user=' + `${this.userData.user}`,
             { headers: { 'Authorization': this.token } })
     }
 
+    userImage(obj: any) {
+        return this.url.post(this.api.worldApi + this.api.api_img + this.api.api_user_image + '/', obj,
+            { headers: { 'Authorization': this.token } })
+    }
+
+    userImageGet(){
+        return this.url.get(this.api.worldApi+this.api.api_img+this.api.api_user_image+'/?user ='+`${this.userData.user}`,
+        { headers: { 'Authorization': this.token } })
+    }
     userCountry() {
         this.getCountry()
             .subscribe((el: any) => {

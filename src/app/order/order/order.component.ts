@@ -19,6 +19,8 @@ export class OrderComponent implements OnInit {
   shiping: any[] = [];
   scale: number = 1;
   promoId = null;
+  sumInit = 0;
+
   @ViewChild("wrap", { static: false }) wrap: ElementRef | undefined;
 
   @HostListener('window:resize', ['$event'])
@@ -45,22 +47,18 @@ export class OrderComponent implements OnInit {
   }
 
   constructor(public frames: FramesServService, private fb: FormBuilder, private i18n: NzI18nService,public valid:ValidationServService) { }
-
+  
   ngOnInit(): void {
     this.frames.shipingMethod().subscribe((el: any) => {
       this.shiping = el.results;
     })
 
     this.frames.orderList.forEach((obj: any) => {
-     // this.frames.sum += obj.created_frame_details.price;
-     // console.log('order init',obj)
+      this.sumInit += obj.created_frame_details.price;
     })
 
-  
+    this.frames.sum = this.sumInit>this.frames.sum?this.sumInit:this.frames.sum
 
-
-    console.log(this.frames.orderList[this.frames.orderList.length-1])
-    console.log('sum order init',this.frames.sum)
     this.frames.userCountry();
     this.validateForm = this.fb.group({
       frstName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
@@ -135,7 +133,6 @@ export class OrderComponent implements OnInit {
       this.frames.promoCodePost(sale).subscribe((el: any) => {
         this.frames.sum = el.discounted_price;
         this.promoId = el.promo_code.id;
-        console.log('sum sale',this.frames.sum)
         this.promoError = '';
       },
         (error: any) => {
@@ -149,10 +146,9 @@ export class OrderComponent implements OnInit {
     this.frames.deleteOrder(obj.id).subscribe((el: any) => {
       this.frames.sum -= obj.created_frame_details.price;
       this.frames.orderList = this.frames.orderList.filter((val: any) => {
-        console.log('sum delete',this.frames.sum)
         return val.id != obj.id
       })
-  //  localStorage.setItem('order-list',JSON.stringify(this.frames.orderList));
+
 
       if (this.frames.orderList.length === 0) {
         this.frames.showFrame()

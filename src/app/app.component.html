@@ -1,6 +1,6 @@
 <div class="conteiner">
   <div class="silki">
-    <a class="frame" routerLink='/' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">frame</a>
+    <a class="frame" routerLink='' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">frame</a>
     <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
       <img src='../assets/1x/outline_shopping_cart_black_24dp.png'>
       <span >{{frames.orderList?.length}}</span>
@@ -11,7 +11,7 @@
     <ng-template #log>
       <ul>
         <li class="parent">
-          <a class="activeHover"> {{frames.userData.user_details.first_name}}
+          <a class="activeHover" routerLinkActive='active' > {{frames.userData.user_details.first_name}}
             <ul class="user-data">
               <li class="list"><a routerLink = '/user/profil'>պռոֆիլ</a></li>
               <li class="list"><a routerLink = '/user/imags'>իմ նկարները</a></li>
