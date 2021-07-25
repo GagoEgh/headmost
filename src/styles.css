@@ -52,3 +52,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-radius: 10px !important;
   width: 280px !important;
 }
+
+
+.ant-upload.ant-upload-select-picture-card {
+    width: 120px !important;
+    height: 120px !important;
+    border: 1px dashed #a09393 !important;
+    transition: all .5s;
+}
+
+.ant-upload.ant-upload-select-picture-card:hover{
+    border: 1px dashed rgb(88, 88, 224)!important;
+}

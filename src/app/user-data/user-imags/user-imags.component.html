@@ -1,25 +1,14 @@
-
-    <div class="clearfix">
-        
-      <!--   http://sirun-bar-api.annaniks.com/image/user-image/     (nzChange) = 'uploadFile($event)'  -->
-
-        <!-- nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"  [nzPreview]="handlePreview"   [(nzFileList)]="fileList"  [nzShowButton]="files.length < 10"-->
-        <nz-upload nzListType="picture-card" (nzChange) = 'uploadFile($event)'
-          nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" [nzPreview]="handlePreview"   [(nzFileList)]="fileList"  [nzShowButton]="fileList.length < 10">
-            
-            <div>
-                <i nz-icon nzType="plus"></i>
-                <div style="margin-top: 8px">Upload</div>
-            </div>
-        </nz-upload>
-
-        <nz-modal [nzVisible]="previewVisible" [nzContent]="modalContent" [nzFooter]="null"
-            (nzOnCancel)="previewVisible = false">
-            <ng-template #modalContent>
-                <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
-            </ng-template>
-        </nz-modal>
-
-
+<div class="img-content">
+    <div *ngFor='let img of fileList' class="files">
+        <div class="img" [style.background-image]="'url( '+ img.image + ')'">
+            <span class="iks" (click)='delete(img.id)'>&#x033D;</span>
+        </div>
     </div>
-
+    <nz-upload nzAction="http://sirun-bar-api.annaniks.com/image/user-image/"
+        [nzHeaders]="{ Authorization:frames.token }" (nzChange)="handleChange($event)" nzListType="picture-card">
+        <div>
+            <i nz-icon nzType="upload"></i>
+            <div style="margin-top: 8px">Upload</div>
+        </div>
+    </nz-upload>
+</div>

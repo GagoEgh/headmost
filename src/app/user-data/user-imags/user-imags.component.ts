@@ -1,18 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {  Component,  OnInit } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
+import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { pipe } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-import { NzUploadFile } from 'ng-zorro-antd/upload';
-import { FramesServService } from 'src/app/shared/frames-serv.service';
-
-const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
-  });
 
 @Component({
   selector: 'app-user-imags',
@@ -20,73 +12,46 @@ const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
   styleUrls: ['./user-imags.component.css']
 })
 export class UserImagsComponent implements OnInit {
-  // NzUploadFile[] 
-  fileList: NzUploadFile[]  = [
-    // {
-    //   uid: '-1',
-    //   name: 'image.png',
-    //   status: 'done',
-    //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-    // },
-    // {
-    //   uid: '-2',
-    //   name: 'image.png',
-    //   status: 'done',
-    //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-    // },
-    // {
-    //   uid: '-3',
-    //   name: 'image.png',
-    //   status: 'done',
-    //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-    // },
-  ];
+  fileList: any = [];
 
-  previewImage: string | undefined = '';
-  previewVisible = false;
-  constructor(private frames: FramesServService) { }
+  constructor(private msg: NzMessageService, public frames: FramesServService) { }
 
+ 
 
   ngOnInit(): void {
-   
-  }
-
-  files = []
-  uploadFile(image: any) {
-    if (image && image.type == 'success') {
-      let originFileObj = image.file.originFileObj
-      const formData = new FormData();
-
-      formData.append('image', originFileObj);
-      formData.append('thumb_image', originFileObj);
-      formData.append('user', this.frames.userData.user.toString())
-      this.frames.userImage(formData).subscribe((el: any) => {
-        // this.frames.fileUrl = el;
-      })
-
-
-      this.frames.userImageGet().subscribe((el:any)=>{
-        console.log('el',el.results);
-        this.files = el.results;
-        this.files.forEach((img:any)=>{
-        // console.log('img',img)
-        })
-      })
-    }
-
-  }
-
-
-  handlePreview = async (file: any) => {
+    this.frames.userImageGet().subscribe((el:any)=>{
+      this.fileList = el.results;
+     console.log('oninit',this.fileList)
+    })
     
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj!);
-      console.log('file',file.pre)
-    }
-    this.previewImage = file.url || file.preview;
-    this.previewVisible = true;
-  
-  };
+  }
 
-  
+  handleChange(info: NzUploadChangeParam): void {
+    const origin: any = info.file.originFileObj;
+    if (info.type === 'progress') {
+      const formData = new FormData();
+      formData.append('user', this.frames.userData.user.toString())
+      formData.append('image', origin);
+      formData.append('thumb_image', origin);
+
+      this.frames.userImage(formData).pipe(switchMap((val: any) => {
+        return this.frames.userImageGet()
+
+      })).subscribe((el: any) => {
+        this.fileList = el.results;
+        console.log('list', this.fileList);
+      })
+    }
+  }
+
+  delete(id:number){
+    this.frames.deleteUserImage(id).subscribe((el)=>{
+      this.fileList = this.fileList.filter((img:any)=>{
+       return img.id!=id
+      });
+      console.log(this.fileList);
+     
+    })
+  }
+
 }
