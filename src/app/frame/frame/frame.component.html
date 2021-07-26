@@ -41,7 +41,7 @@
         <div class="top" [style.background-image]="'url(' + frames.frame?.top_line_image + ')'"></div>
         <div class="letter" [style.backgroundColor]="frames.background.color" *ngIf='frames.isImg else create'>
           <form [formGroup]="frames.validateForm">
-            <input type="text" formControlName='text' maxlength="9" placeholder="ԳՐԵՔ ԲԱՌԸ">
+            <input type="text" formControlName='text' maxlength="9" placeholder="ԳՐԵՔ ԲԱՌԸ" trim>
           </form>
         </div>
         <div class="bottom" [style.background-image]="'url(' +frames.frame?.bottom_line_image + ')'">

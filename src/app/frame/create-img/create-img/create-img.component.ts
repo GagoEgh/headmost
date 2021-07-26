@@ -15,7 +15,7 @@ import { ImgCatalogComponent } from '../img-catalog/img-catalog.component';
   styleUrls: ['./create-img.component.css']
 })
 export class CreateImgComponent implements OnInit {
-
+  letterChar = 0;
   isCreate = true;
   bottomText: FormGroup = new FormGroup({});
   validateForm: FormGroup = new FormGroup({});
@@ -120,16 +120,24 @@ export class CreateImgComponent implements OnInit {
     return img.startsWith('http') ? true : false
   }
 
-
+  
   open(img: any, num: number) {
+
     this.frames.letterColection(img.character.toUpperCase()).subscribe((el: any) => {
       const modalRef = this.modalService.open(ImgCatalogComponent, { size: 'lg' });
       modalRef.componentInstance.img = el.results;
       modalRef.componentInstance.character = this.frames.letterImges[num];
+
       modalRef.result.then((result) => { }, (reason) => {
         if (reason) {
-          this.frames.letterImges[num].image = reason;
 
+          if (!this.frames.apiPhoto) {
+            this.letterChar = this.frames.letterImges[num].image.character;
+
+          }
+
+          this.frames.letterImges[num].image = reason;
+     
         }
       })
     })
@@ -137,41 +145,53 @@ export class CreateImgComponent implements OnInit {
   }
 
   myOrder() {
-    const imgs: any[] = [];
-    this.frames.letterImges.forEach((i, index) => {
-      const obj = {
-        order_index: index,
-        character: i.image.character,
-        image: i.image.id,
-        user_image: null
+    if (this.frames.userData) {
+      const imgs: any[] = [];
+      this.frames.letterImges.forEach((i, index) => {
+        const obj = {
+          order_index: index,
+          character: i.image.character,
+          image: i.image.id,
+          user_image: null,
+        }
+
+        imgs.push(obj)
+      })
+
+      const order = {
+        frame: this.frames.frame.id,
+        background: this.frames.background.id,
+        word: this.frames.text.toUpperCase(),
+        text_in_top: this.frames.topText,
+        text_in_bottom: this.frames.btmText,
+        images: imgs,
+
       }
-      imgs.push(obj)
 
-    })
+      if (!this.frames.apiPhoto) {
+        order.images = order.images.map((img: any) => {
+          if (img.character === undefined) {
+            img.character = this.letterChar;
+            img.user_image = img.image;
+            img.image = null;
+          }
+          return img;
+        })
+      }
 
-    const order = {
-      frame: this.frames.frame.id,
-      background: this.frames.background.id,
-      word: this.frames.text.toUpperCase(),
-      text_in_top: this.frames.topText,
-      text_in_bottom: this.frames.btmText,
-      images: imgs
+      this.frames.getOrder(order).subscribe((el: any) => {
+        this.frames.orderList = el;
+        this.frames.isOrder = true;
+      })
+    } else {
+      const modalRef = this.modalService.open(LoginComponent);
+
     }
-
-    this.frames.getOrder(order).subscribe((el: any) => {
-      this.frames.orderList = el;
-      this.frames.isOrder = true;
-      
-    },((erore:any)=>{
-      if(erore){
-        const modalRef = this.modalService.open(LoginComponent);
-      }
-    }))
 
   }
 
 
-  
+
 
 
 

@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbdModalContentComponent } from './ngbd-modal-content/ngbd-modal-content.component';
 import { CreateImgModule } from './create-img/create-img-module';
-// import { OrderComponent } from '../order/order/order.component';
 import { SharedModule } from '../shared/shared.modult';
 
 

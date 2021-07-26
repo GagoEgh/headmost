@@ -7,6 +7,15 @@
     /* width: 700px !important; */
 }
 
+.ant-upload-list-picture-card .ant-upload-list-item {
+    display: none !important;
+}
+
+.ant-upload-list-picture-card-container {
+ 
+    display: none !important;
+}
+
 .ng-image-slider .ng-image-slider-container .main .next, .ng-image-slider .ng-image-slider-container .main .prev {
     right: 0 !important;
     top: 80% !important;

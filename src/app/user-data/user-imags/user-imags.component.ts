@@ -2,7 +2,6 @@ import {  Component,  OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
-import { pipe } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 
@@ -12,7 +11,6 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./user-imags.component.css']
 })
 export class UserImagsComponent implements OnInit {
-  fileList: any = [];
 
   constructor(private msg: NzMessageService, public frames: FramesServService) { }
 
@@ -20,8 +18,7 @@ export class UserImagsComponent implements OnInit {
 
   ngOnInit(): void {
     this.frames.userImageGet().subscribe((el:any)=>{
-      this.fileList = el.results;
-     console.log('oninit',this.fileList)
+      this.frames.fileList = el.results;
     })
     
   }
@@ -38,18 +35,16 @@ export class UserImagsComponent implements OnInit {
         return this.frames.userImageGet()
 
       })).subscribe((el: any) => {
-        this.fileList = el.results;
-        console.log('list', this.fileList);
+        this.frames.fileList = el.results;
       })
     }
   }
 
   delete(id:number){
     this.frames.deleteUserImage(id).subscribe((el)=>{
-      this.fileList = this.fileList.filter((img:any)=>{
+      this.frames.fileList = this.frames.fileList.filter((img:any)=>{
        return img.id!=id
       });
-      console.log(this.fileList);
      
     })
   }

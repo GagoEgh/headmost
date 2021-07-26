@@ -26,6 +26,8 @@ export class FramesServService {
     index: number = 3;
     sum: number = 0;
     userReg = true;
+    apiPhoto = true;
+    fileList: any = [];
     token: string = '';
     userData: UserData = {
         address: '',
@@ -254,10 +256,11 @@ export class FramesServService {
 
         this.letterGet().subscribe((el: any) => {
             this.letterImges = el;
+            console.log(el)
             this.letterImges = this.letterImges.filter(img => {
                 return !img.not_found
             })
-
+            console.log(this.letterImges)
             if (this.letterImges.length === 0 && this.text) {
                 this.validateForm.reset();
                 this.isMessage = true;

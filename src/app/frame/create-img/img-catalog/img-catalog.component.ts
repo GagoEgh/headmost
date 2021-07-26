@@ -9,12 +9,12 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
   styleUrls: ['./img-catalog.component.css']
 })
 export class ImgCatalogComponent implements OnInit {
-  @ViewChild("header", { static: false }) block: ElementRef | undefined;
-  categoryList: Category[] = [];
+ 
   @Input() img: any;
   @Input() character: any;
+  categoryList: Category[] = [];
   @Output() newItem = new EventEmitter();
-
+  @ViewChild("header", { static: false }) block: ElementRef | undefined;
   constructor(public activeModal: NgbActiveModal, public frames: FramesServService) { }
 
   ngOnInit(): void {
@@ -33,14 +33,17 @@ export class ImgCatalogComponent implements OnInit {
   changeImg(obj: any) {
     this.frames.painding.imgs = [];
     this.activeModal.dismiss(obj);
-    
+  }
+
+  showMyPhoto(img:any){
+    this.activeModal.dismiss(img);
   }
 
   changeFone(obj: any) {
     this.frames.painding.values = obj.values;
     this.frames.painding.id = obj.ceys.id;
+    this.frames.apiPhoto = true
     this.chengePopapImg();
-
   }
 
   createCategory() {
@@ -54,6 +57,14 @@ export class ImgCatalogComponent implements OnInit {
     .subscribe((el:any)=>{
       this.frames.painding.imgs = el.results
       this.frames.painding.categoryId = category.id;
+      this.frames.apiPhoto = true;
+    })
+  }
+
+  getMyPhoto(){
+    this.frames.userImageGet().subscribe((el:any)=>{
+      this.frames.fileList = el.results;
+      this.frames.apiPhoto = false;
     })
   }
 

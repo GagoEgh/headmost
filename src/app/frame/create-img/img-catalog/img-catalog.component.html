@@ -1,4 +1,4 @@
-<div class="modal-header" >
+<div class="modal-header">
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -6,9 +6,16 @@
 <div class="modal-body">
     <div class="img-menu">
         <div class="block">
-            <div class="bg-img" *ngFor='let item of frames.painding.imgs' #newItem (click)='changeImg(item)'
-                [style.background-image]="'url('+ item.thumbnail + ')'">
+            <div *ngIf = 'frames.apiPhoto else myPhoto' class="block-1">
+                <div class="bg-img" *ngFor='let item of frames.painding.imgs' #newItem (click)='changeImg(item)'
+                    [style.background-image]="'url('+ item.thumbnail + ')'">
+                </div>
             </div>
+            <ng-template #myPhoto>
+                <div class="bg-img" *ngFor='let img of frames.fileList' (click)="showMyPhoto(img)"
+                    [style.background-image]="'url('+ img.image + ')'">
+                </div>
+            </ng-template>
         </div>
         <nav class="bar">
             <h2>կարգաորումների ընտրութուն</h2>
@@ -30,6 +37,7 @@
                             [ngClass]="{'listActive':frames.painding.categoryId=== category.id}">
                             {{category.name_hy}}
                         </li>
+                        <li class="list" (click)="getMyPhoto()">իմ նկարները</li>
                     </ul>
                 </div>
             </div>

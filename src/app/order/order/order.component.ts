@@ -116,8 +116,6 @@ export class OrderComponent implements OnInit {
    
     if (this.validateForm.valid) {
       this.frames.userOrder(order).subscribe((el:any)=>{
-        console.log('el',el);
-        console.log('order',order)
       })
     }
   }

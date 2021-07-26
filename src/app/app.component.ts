@@ -42,8 +42,6 @@ export class AppComponent implements OnInit {
 
     localStorage.removeItem('loginAutorization');
     localStorage.removeItem('user-date');
-
-
     this.frames.sum = 0;
     this.frames.orderList = [];
     this.frames.token = '';

@@ -20,8 +20,13 @@
     width: 700px;
 }
 
+.block-1{
+    display: flex;
+    flex-wrap: wrap;
+    /* width: 650px; */
+}
 .menu{
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .bg-img{

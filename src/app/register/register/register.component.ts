@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
       comment: '',
       image: ''
     }
-      console.log(userDetalis)
+    
     if (this.validateForm.valid) {
       this.frames.userRegisterPost(userDetalis).subscribe((el: any) => {
 
