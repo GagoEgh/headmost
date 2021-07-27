@@ -87,7 +87,7 @@ export class FramesServService {
         api_user_image: '/user-image'
     }
 
-
+   
 
     painding: Painding = {
         values: {
@@ -246,11 +246,18 @@ export class FramesServService {
                 this.selectedValue = el.results
             })
     }
-// {{domain}}/image/user-image/1/
+
     deleteUserImage(id:number){
         return this.url.delete(this.api.worldApi+this.api.api_img+this.api.api_user_image+`/${id}/`,
         { headers: { 'Authorization': this.token } })
     }
+
+  // {{domain}}/order/order/?user=6
+    userOrderGet(){
+        return this.url.get(this.api.worldApi+this.api.api_order+this.api.api_order+'/?user='+`${this.userData.user}`,
+        { headers: { 'Authorization': this.token } })
+    }
+
     letterColorFone() {
         this.text = this.validateForm.get('text')?.value;
 
