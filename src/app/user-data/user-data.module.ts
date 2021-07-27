@@ -5,7 +5,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.modult'
-import { ProfilModule } from './user-data/profil-module';
 import { UserGuard } from './userGuard';
 import { UserComponent } from './user/user.component';
 
@@ -26,9 +25,9 @@ const routes: Routes = [
     UserComponent
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    // CommonModule,
+    // FormsModule,
+    // ReactiveFormsModule,
     SharedModule,
     RouterModule.forChild(routes)
   ],

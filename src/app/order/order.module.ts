@@ -19,9 +19,6 @@ const routs:Routes =[
 
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     SharedModule,
     RouterModule.forChild(routs)
   ],
