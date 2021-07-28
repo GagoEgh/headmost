@@ -49,6 +49,7 @@ export class OrderComponent implements OnInit {
   constructor(public frames: FramesServService, private fb: FormBuilder, private i18n: NzI18nService,public valid:ValidationServService) { }
   
   ngOnInit(): void {
+    this.frames.isMyOrder = false;
     this.frames.shipingMethod().subscribe((el: any) => {
       this.shiping = el.results;
     })
@@ -116,6 +117,8 @@ export class OrderComponent implements OnInit {
    
     if (this.validateForm.valid) {
       this.frames.userOrder(order).subscribe((el:any)=>{
+        console.log('order',order)
+        console.log('order',el)
       })
     }
   }

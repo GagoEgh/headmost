@@ -6,6 +6,9 @@ import { UserOrderComponent } from './user-order.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.modult';
 
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
+
 const routes:Routes = [
   {path:'',component:UserOrderComponent}
 ]
@@ -17,6 +20,7 @@ const routes:Routes = [
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    InfiniteScrollModule,
     RouterModule.forChild(routes)
   ],
   exports:[RouterModule]

@@ -29,6 +29,9 @@ export class FramesServService {
     apiPhoto = true;
     fileList: any = [];
     token: string = '';
+    isMyOrder = false;
+    limit = 10;
+    offset = 0;
     userData: UserData = {
         address: '',
         city: 0,
@@ -252,9 +255,10 @@ export class FramesServService {
         { headers: { 'Authorization': this.token } })
     }
 
-  // {{domain}}/order/order/?user=6
+    
+  // {{domain}}/order/order/?limit=10&offset=10&user=118     `${this.userData.user}`
     userOrderGet(){
-        return this.url.get(this.api.worldApi+this.api.api_order+this.api.api_order+'/?user='+`${this.userData.user}`,
+        return this.url.get(this.api.worldApi+this.api.api_order+this.api.api_order+'/?user='+`${this.limit}&offset=${this.offset}&user=${this.userData.user}`,
         { headers: { 'Authorization': this.token } })
     }
 

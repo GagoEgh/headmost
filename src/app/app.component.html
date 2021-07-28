@@ -1,4 +1,4 @@
-<div class="conteiner">
+<div class="conteiner" [style.min-width]='frames.isMyOrder?"1000px":"100%"'>
   <div class="silki">
     <a class="frame" routerLink='' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">frame</a>
     <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">

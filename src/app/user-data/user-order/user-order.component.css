@@ -1,5 +1,6 @@
 .wrap{
-    min-width:1000px ;
+    /* min-width:1100px ; */
+    /* width: fit-content; */
 }
 
 .title{
@@ -23,6 +24,7 @@
     /* width: fit-content; */
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     border-bottom:1px solid gray;
     margin-left:100px;
     padding-bottom: 10px;
@@ -30,6 +32,9 @@
 
 .order{
     display: flex;
+    border:1px solid;
+    width: fit-content;
+    /* width: 800px; */
 }
 .user-imags{
     width: 90px;
@@ -40,11 +45,38 @@
 }
 
 .sum{
-    height: 50px;
-    width: 100px;
+    padding: 10px;
     border: 1px solid;
 }
 
 .info{
     display: flex
 }
+
+.batn{
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: wheat;
+    color: gray;
+    transition: all 0.5s;
+    letter-spacing: 1px;
+    padding: 5px;
+}
+
+.batn:hover{
+    background: white;
+    color: rgb(206, 56, 56);
+    border: 1px solid gray;
+}
+
+ @media  (max-width: 910px){
+    .order{
+        display: flex;
+        width: 650px;
+    }
+
+    .info{
+        margin-top: 20px;
+    }
+} 

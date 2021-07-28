@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterModule } from './register/register-module';
 import { UserGuard } from './user-data/userGuard';
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 
@@ -29,7 +29,7 @@ registerLocaleData(en);
     FormsModule,
     BrowserAnimationsModule,
     RegisterModule,
-    
+    InfiniteScrollModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US },UserGuard],
   bootstrap: [AppComponent]
