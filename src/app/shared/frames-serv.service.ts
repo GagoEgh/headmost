@@ -87,7 +87,8 @@ export class FramesServService {
         api_login: 'login/',
         api_edit: 'edit-user-details/',
         api_files: '/files',
-        api_user_image: '/user-image'
+        api_user_image: '/user-image',
+        api_created_frame:'/created-frame'
     }
 
    
@@ -250,16 +251,33 @@ export class FramesServService {
             })
     }
 
-    deleteUserImage(id:number){
-        return this.url.delete(this.api.worldApi+this.api.api_img+this.api.api_user_image+`/${id}/`,
-        { headers: { 'Authorization': this.token } })
+    deleteUserImage(id: number) {
+        return this.url.delete(this.api.worldApi + this.api.api_img + this.api.api_user_image + `/${id}/`,
+            { headers: { 'Authorization': this.token } })
     }
 
-    
-  // {{domain}}/order/order/?limit=10&offset=10&user=118     `${this.userData.user}`
-    userOrderGet(){
-        return this.url.get(this.api.worldApi+this.api.api_order+this.api.api_order+'/?user='+`${this.limit}&offset=${this.offset}&user=${this.userData.user}`,
-        { headers: { 'Authorization': this.token } })
+    userOrderGet() {
+        return this.url.get(this.api.worldApi + this.api.api_order + this.api.api_order + '/?user=' + `${this.limit}&offset=${this.offset}&user=${this.userData.user}`,
+            { headers: { 'Authorization': this.token } })
+    }
+
+    orderCard(obj: any) {
+        return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_card + '/', obj,
+            { headers: { 'Authorization': this.token } })
+    }
+
+    frameCategory() {
+        return this.url.get(this.api.worldApi + this.api.api_utils + this.api.api_created_frame_category)
+    }
+
+     //    next: "http://sirun-bar-api.annaniks.com/image/created-frame/?created_frame_category=&is_predefined=1&limit=10&offset=10"
+
+    //  api_img api_created_frame
+ 
+    category = '';
+    predefined =1;
+    frameCategoryImg(category:any,predifined:any,offset:any){
+        return this.url.get(this.api.worldApi+this.api.api_img+this.api.api_created_frame+`/?created_frame_category=${category}&is_predefined=${predifined}&limit=10&offset=${offset}`)
     }
 
     letterColorFone() {
@@ -286,6 +304,7 @@ export class FramesServService {
         this.isImg = true;
         this.validateForm.reset()
     }
+
 
 
 

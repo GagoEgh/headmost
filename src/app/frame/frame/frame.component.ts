@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FramesImg } from '../../shared/img-ramka';
 import { NgbdModalContentComponent } from '../ngbd-modal-content/ngbd-modal-content.component';
 import { FramesServService } from '../../shared/frames-serv.service'
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-frame',

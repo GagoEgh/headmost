@@ -15,8 +15,9 @@ import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 
 
+
 @NgModule({
-    declarations:[OrderComponent,],
+    declarations:[OrderComponent],
     exports:[OrderComponent,NzModalModule,
         CommonModule,
         FormsModule,

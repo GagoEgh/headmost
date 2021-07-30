@@ -1,49 +1,9 @@
-<!-- <div class="wrap">
-    <h3 class="title">նկարագրություն</h3>
-    <div *ngFor="let item of userOrders">
 
-        <div class='block' *ngFor='let orderItemss of item.order_items_details'>
-            <p class="text">{{item.created_at}} {{orderItemss.created_frame_details.frame_details.name_hy}},
-                {{orderItemss.created_frame_details.background_details.name}}
-            </p>
-            <div class="user">
-                <div class="order">
-                    <div class="my-order"
-                        *ngFor='let details of orderItemss?.created_frame_details?.frame_images;let i=index'>
-
-                        <div class="user-imags" [style.background-image]="'url('+ details.image_details.image + ')'">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="info">
-                    <div class="sum"> STATUS: {{item.status}}</div>
-                    <div class="sum">
-                        <P>{{item.price}}դր</P>
-                        <button class="batn">զամբյուղի մեջ</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
-
-<!-- scroll   -->
-
-<div class="search-results" 
-infinite-scroll
- [infiniteScrollDistance]="scrollDistance"
- [infiniteScrollUpDistance]="scrollUpDistance" 
- [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown($event)"
-    >
-    <!-- (scrolledUp)="onUp($event)" -->
-
+<div class="search-results" infinite-scroll [infiniteScrollDistance]="scrollDistance"
+    [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown($event)">
     <div class="wrap">
         <h3 class="title">նկարագրություն</h3>
-        <div *ngFor="let item of userOrders">
+        <div *ngFor="let item of userOrders, let i=index">
 
             <div class='block' *ngFor='let orderItemss of item.order_items_details'>
                 <p class="text">{{item.created_at}} {{orderItemss.created_frame_details.frame_details.name_hy}},
@@ -52,11 +12,12 @@ infinite-scroll
                 <div class="user">
                     <div class="order">
                         <div class="my-order"
-                            *ngFor='let details of orderItemss?.created_frame_details?.frame_images;let i=index'>
-
-                            <div class="user-imags"
-                                [style.background-image]="'url('+ details.image_details.image + ')'">
-                            </div>
+                            *ngFor='let details of orderItemss?.created_frame_details?.frame_images'>
+                       
+                                <div class="user-imags"
+                                    [style.background-image]="details.image_details?'url('+ details.image_details.image + ')':'url('+ details.user_image_details.image + ')'">
+                                </div>
+                       
                         </div>
                     </div>
 
@@ -64,7 +25,7 @@ infinite-scroll
                         <div class="sum"> STATUS: {{item.status}}</div>
                         <div class="sum">
                             <P>{{item.price}}դր</P>
-                            <button class="batn">զամբյուղի մեջ</button>
+                            <button class="batn" (click)='addOrder(i)'>ավելացնել զամբյուղի մեջ</button>
                         </div>
                     </div>
 

@@ -82,7 +82,7 @@
         </nz-form-control>
       </nz-form-item>
       <p class="red">{{promoError}}</p>
-      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">order</button>
+      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"[disabled]='frames.isOrder'>order</button>
     </form>
   </div >
   <div >
@@ -96,6 +96,7 @@
         <span class="symbol" (click)='deleteDate(list)'>&#10005;</span>
       </div>
       <p class="sum">ընդամենը {{frames.sum}}դր</p>
+
     </div>
   </div>
 </div>
@@ -104,3 +105,5 @@
   <H3 class="noText">ԶԱՄԲՅՈՒՂԸ ԴԱՏԱՐԿ Է</H3>
 </ng-template>
 <ng-content></ng-content>
+
+

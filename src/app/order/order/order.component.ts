@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
-import { NzI18nService} from 'ng-zorro-antd/i18n';
+import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 
 
@@ -18,6 +18,7 @@ export class OrderComponent implements OnInit {
   promoError: string = '';
   shiping: any[] = [];
   scale: number = 1;
+
   promoId = null;
   sumInit = 0;
 
@@ -46,10 +47,14 @@ export class OrderComponent implements OnInit {
     }
   }
 
-  constructor(public frames: FramesServService, private fb: FormBuilder, private i18n: NzI18nService,public valid:ValidationServService) { }
-  
+  constructor(public frames: FramesServService, private fb: FormBuilder, private i18n: NzI18nService, public valid: ValidationServService) { }
+
   ngOnInit(): void {
-    this.frames.isMyOrder = false;
+    setTimeout(() => {
+      this.frames.isMyOrder = false;
+    })
+
+
     this.frames.shipingMethod().subscribe((el: any) => {
       this.shiping = el.results;
     })
@@ -58,7 +63,7 @@ export class OrderComponent implements OnInit {
       this.sumInit += obj.created_frame_details.price;
     })
 
-    this.frames.sum = this.sumInit>this.frames.sum?this.sumInit:this.frames.sum
+    this.frames.sum = this.sumInit > this.frames.sum ? this.sumInit : this.frames.sum
 
     this.frames.userCountry();
     this.validateForm = this.fb.group({
@@ -71,7 +76,7 @@ export class OrderComponent implements OnInit {
       comment: ['', []],
       sale: ['', []],
     });
-  
+
   }
 
   public setStyle() {
@@ -96,10 +101,10 @@ export class OrderComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-    // sharunakeli
+    // sharunakeli   created_frame
     const ids: any[] = [];
     this.frames.orderList.forEach((obj: any) => {
-      ids.push(obj.id)
+      ids.push(obj.created_frame)
     })
 
     const order = {
@@ -114,15 +119,22 @@ export class OrderComponent implements OnInit {
       promo_code: this.promoId,
       order_items: ids
     }
-   
-    if (this.validateForm.valid) {
-      this.frames.userOrder(order).subscribe((el:any)=>{
-        console.log('order',order)
-        console.log('order',el)
-      })
-    }
-  }
 
+    
+
+    if (this.validateForm.valid &&this.count != 1 ) {
+      this.frames.isOrder = true
+        this.frames.userOrder(order).subscribe((el: any) => {
+         this. count++;
+           this.frames.isOrder =false;
+          window.open('https://www.youtube.com/','_self');
+   
+        })
+      
+    }
+    console.log('count durs',this.count)
+  }
+  count = 0;
   salePost(event: any) {
     this.validateForm.get('sale')?.setValue(event.target.value)
     const sale = {
@@ -130,7 +142,7 @@ export class OrderComponent implements OnInit {
       code: this.validateForm.get('sale')?.value
     }
 
-    if (this.validateForm.get('sale')?.value.length === 6 && this.promoId===null) {
+    if (this.validateForm.get('sale')?.value.length === 6 && this.promoId === null) {
       this.frames.promoCodePost(sale).subscribe((el: any) => {
         this.frames.sum = el.discounted_price;
         this.promoId = el.promo_code.id;
@@ -154,7 +166,7 @@ export class OrderComponent implements OnInit {
       if (this.frames.orderList.length === 0) {
         this.frames.showFrame()
       }
-     
+
     });
 
   }

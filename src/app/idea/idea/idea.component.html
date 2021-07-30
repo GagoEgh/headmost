@@ -1,0 +1,31 @@
+<div class="conteiner">
+    <span class="material-icons-outlined" (click)="isBar = !isBar" [style.z_index]="isBar?'22':'0'">
+        <img src="./assets/1x/outline_view_headline_black_24dp.png">
+    </span>
+    <nav class="bar" [style.display]="isBar?'block':'none'">
+        <h2 class="title">Նվերների տարբերակներ</h2>
+        <ul>
+            <li *ngFor='let item of frameIdeas'>
+                <a href="">{{item.name_hy}}</a>
+            </li>
+        </ul>
+
+    </nav>
+    <div infinite-scroll [infiniteScrollDistance]="scrollDistance" [infiniteScrollUpDistance]="scrollUpDistance"
+        [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown($event)">
+        <div class="main">
+
+            <div class="img-idea" *ngFor='let img of frameImgs' >
+                <div class="img-idea" [style.background-image]="'url('+ img.image + ')'">
+
+                </div>
+
+                <div>
+                    <p>{{img.created_frame_category_details.name_hy}} {{img.price}}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

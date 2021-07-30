@@ -15,7 +15,7 @@ import { ImgCatalogComponent } from '../img-catalog/img-catalog.component';
   styleUrls: ['./create-img.component.css']
 })
 export class CreateImgComponent implements OnInit {
-  letterChar = 0;
+ letterChar = 0;
   isCreate = true;
   bottomText: FormGroup = new FormGroup({});
   validateForm: FormGroup = new FormGroup({});
@@ -145,7 +145,8 @@ export class CreateImgComponent implements OnInit {
   }
 
   myOrder() {
-    if (this.frames.userData) {
+    console.log(localStorage.getItem('loginAutorization'))
+    if (localStorage.getItem('loginAutorization')) {
       const imgs: any[] = [];
       this.frames.letterImges.forEach((i, index) => {
         const obj = {
@@ -165,7 +166,6 @@ export class CreateImgComponent implements OnInit {
         text_in_top: this.frames.topText,
         text_in_bottom: this.frames.btmText,
         images: imgs,
-
       }
 
       if (!this.frames.apiPhoto) {
