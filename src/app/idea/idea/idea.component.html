@@ -11,21 +11,27 @@
         </ul>
 
     </nav>
-    <div infinite-scroll [infiniteScrollDistance]="scrollDistance" [infiniteScrollUpDistance]="scrollUpDistance"
+    <article infinite-scroll [infiniteScrollDistance]="scrollDistance" [infiniteScrollUpDistance]="scrollUpDistance"
         [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown($event)">
         <div class="main">
 
-            <div class="img-idea" *ngFor='let img of frameImgs' >
-                <div class="img-idea" [style.background-image]="'url('+ img.image + ')'">
+            <div class="img-idea" *ngFor='let img of frameImgs,let i = index' >
+               <div class="imgs" [style.background-image]="'url('+ img.image + ')'">
 
                 </div>
 
-                <div>
-                    <p>{{img.created_frame_category_details.name_hy}} {{img.price}}</p>
+                 <div class="info">
+                     <div>
+                        <h3 class="img-title">{{img.created_frame_category_details.name_hy}} </h3>
+                        <h3 class="img-title">{{img.price}}դր</h3>
+                     </div>
+                     <div class="order" (click)="addOrder(i)">
+                         <img src="./assets/1x/orderIconWhite.png">
+                     </div>
                 </div>
             </div>
 
         </div>
-    </div>
+    </article>
 
 </div>

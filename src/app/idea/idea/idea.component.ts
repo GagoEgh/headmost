@@ -37,9 +37,7 @@ export class IdeaComponent implements OnInit {
     if (this.count > this.frameImgs.length) {
       this.appendItems();
     }
-
   }
-
 
   ngOnInit(): void {
     this.onResize();
@@ -59,6 +57,18 @@ export class IdeaComponent implements OnInit {
 
   showBar() {
     return this.isBar = !this.isBar ;
+  }
+
+  addOrder(index:number){
+ 
+    let obj = {
+      user:this.frames.userData.user,
+      created_frame:this.frameImgs[index].id
+    }
+
+    this.frames.orderCard(obj).subscribe((el:any)=>{
+      this.frames.orderList.push(el)
+    })
   }
 
 }

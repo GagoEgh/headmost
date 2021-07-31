@@ -145,7 +145,7 @@ export class CreateImgComponent implements OnInit {
   }
 
   myOrder() {
-    console.log(localStorage.getItem('loginAutorization'))
+   
     if (localStorage.getItem('loginAutorization')) {
       const imgs: any[] = [];
       this.frames.letterImges.forEach((i, index) => {
@@ -155,10 +155,9 @@ export class CreateImgComponent implements OnInit {
           image: i.image.id,
           user_image: null,
         }
-
         imgs.push(obj)
       })
-
+  
       const order = {
         frame: this.frames.frame.id,
         background: this.frames.background.id,
