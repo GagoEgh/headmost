@@ -1,12 +1,11 @@
 <div class="im" [style.backgroundColor]="frames.background.color" (mouseleave)="onMouseleave()"
   (mouseenter)="onMouseenter()">
-
   <div class="menu">
     <div class="change " (click)='changeImg()' [style.opacity]="topLettering.isMenu?'1':'0'">
-      <p class="bottom">poxel nkarnery</p>
+      <p class="bottom">փոխել նկարները</p>
     </div>
     <div class="delete" [style.opacity]="topLettering.isMenu?'1':'0'">
-      <p class="bottom" (click)="getApp(true)">delete text</p>
+      <p class="bottom" (click)="getApp(true)">ջնջել տեքստը</p>
     </div>
     <div class="lettering" *ngIf='frames.letterImges.length>3' [style.opacity]="topLettering.isForm?'1':'0'">
       <form [formGroup]="validateForm">
@@ -31,10 +30,10 @@
       </form>
     </div>
     <div class="save" [style.opacity]="bottomLettering.isMenu?'1':'0'">
-      <p class="bottom">save</p>
+      <p class="bottom" (click)='myOrder()'>պահել</p>
     </div>
   </div>
   
 </div>
- <button   class="btn-save" (click)='myOrder()'*ngIf='!frames.isOrder' >save</button> 
+ <button   class="btn-save" (click)='myOrder()'*ngIf='!frames.isOrder'>ՊԱՀՊԱՆԵԼ</button> 
 

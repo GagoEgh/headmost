@@ -20,7 +20,8 @@ export class FrameComponent implements OnInit {
   width: number | undefined;
   scale: number = 1;
   isActive = false;
-  constructor(public frames: FramesServService, private modalService: NgbModal, private form: FormBuilder) { }
+  constructor(public frames: FramesServService, private modalService: NgbModal, 
+    private form: FormBuilder) { }
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.heigth = this.block?.nativeElement.clientHeight | 1;
@@ -61,6 +62,7 @@ export class FrameComponent implements OnInit {
       this.frames.framesImge = el.results;
       this.frameClick(this.frames.index);
     })
+
   }
 
   imgColor() {
@@ -98,7 +100,6 @@ export class FrameComponent implements OnInit {
     this.frames.painding.values = obj.values;
     this.frames.painding.id = obj.ceys.id;
     this.frames.letterColorFone();
-
   }
 
   onSubmit() {
@@ -106,7 +107,7 @@ export class FrameComponent implements OnInit {
 
     this.frames.isImg = false;
     this.frames.letterColorFone();
-
+    
   }
 
   open() {

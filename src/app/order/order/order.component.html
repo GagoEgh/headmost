@@ -1,4 +1,6 @@
-<div class="wrap" #wrap [ngStyle]="setStyle()" *ngIf = 'this.frames.orderList.length,else noText'>
+
+<div class="wrap" #wrap [ngStyle]="setStyle()" *ngIf='this.frames.orderList.length,else noText'
+  [style.top]="frames.isTop?'-50px':'50px'">
   <div class="user-data">
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
       <nz-form-item>
@@ -82,11 +84,12 @@
         </nz-form-control>
       </nz-form-item>
       <p class="red">{{promoError}}</p>
-      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"[disabled]='frames.isOrder'>order</button>
+      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"
+        [disabled]='frames.isdisible'>ՊԱՏՎԻՐԵԼ</button>
     </form>
-  </div >
-  <div >
-    <div class="order" >
+  </div>
+  <div>
+    <div class="order">
       <h2 class="title">ՊԱՏՎԵՐԻ ՆԿԱՐԱԳՐՈՒԹՅՈԻՆ</h2>
       <div class="data" *ngFor='let list of frames.orderList'>
         <p><span>{{list.created_frame_details.word.length}}տառ, </span>{{
@@ -105,5 +108,3 @@
   <H3 class="noText">ԶԱՄԲՅՈՒՂԸ ԴԱՏԱՐԿ Է</H3>
 </ng-template>
 <ng-content></ng-content>
-
-

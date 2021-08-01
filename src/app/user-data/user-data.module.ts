@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.modult'
 import { UserGuard } from './userGuard';
 import { UserComponent } from './user/user.component';
+
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes)
   ],
+
   exports: [RouterModule],
 
 })

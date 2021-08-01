@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { NzFormModule } from "ng-zorro-antd/form";
@@ -13,7 +13,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 @NgModule({
@@ -31,7 +31,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
         MatInputModule,
         MatNativeDateModule,
         NgxTrimDirectiveModule,
-        NgxMaskModule],
+        NgxMaskModule,
+        NgxSpinnerModule],
     imports:[
         CommonModule,
         FormsModule,
@@ -46,7 +47,10 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
         MatNativeDateModule,
         NgxTrimDirectiveModule,
         NzModalModule,
+        NgxSpinnerModule,
         NgxMaskModule.forRoot(),
-    ]
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    
 })
 export class SharedModule{}

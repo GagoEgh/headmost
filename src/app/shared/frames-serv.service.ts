@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Api, Ceys, FramesImg, LetterImge, Painding, UserData, Value } from 'src/app/shared/img-ramka'
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Injectable({
     providedIn: 'root'
@@ -12,6 +13,7 @@ export class FramesServService {
     letterImges: LetterImge[] = [];
     framesImge: FramesImg[] = [];
     selectedValue: any[] = [];
+    ideaFrames:any[]=[];
     fileUrl = {};
     isOrder: boolean = false;
     orderList: any[] = [];
@@ -32,6 +34,8 @@ export class FramesServService {
     isMyOrder = false;
     limit = 10;
     offset = 0;
+    isTop = false;
+    isdisible = false;
     userData: UserData = {
         address: '',
         city: 0,
@@ -88,10 +92,8 @@ export class FramesServService {
         api_edit: 'edit-user-details/',
         api_files: '/files',
         api_user_image: '/user-image',
-        api_created_frame:'/created-frame'
+        api_created_frame: '/created-frame'
     }
-
-   
 
     painding: Painding = {
         values: {
@@ -154,8 +156,7 @@ export class FramesServService {
         }
     ];
 
-
-    constructor(private url: HttpClient) { }
+    constructor(private url: HttpClient, public spinner: NgxSpinnerService) { }
 
     imgColorGet() {
         return this.url.get(this.api.worldApi + this.api.api_utils + this.api.api_color)
@@ -270,35 +271,38 @@ export class FramesServService {
         return this.url.get(this.api.worldApi + this.api.api_utils + this.api.api_created_frame_category)
     }
 
-     //    next: "http://sirun-bar-api.annaniks.com/image/created-frame/?created_frame_category=&is_predefined=1&limit=10&offset=10"
 
-    //  api_img api_created_frame
- 
     category = '';
-    predefined =1;
-    frameCategoryImg(category:any,predifined:any,offset:any){
-        return this.url.get(this.api.worldApi+this.api.api_img+this.api.api_created_frame+`/?created_frame_category=${category}&is_predefined=${predifined}&limit=10&offset=${offset}`)
+    predefined = 1;
+    frameCategoryImg(category: any, predifined: any, offset: any) {
+        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_created_frame + `/?created_frame_category=${category}&is_predefined=${predifined}&limit=10&offset=${offset}`)
     }
 
     letterColorFone() {
+        this.spinner.show();
         this.text = this.validateForm.get('text')?.value;
 
         this.letterGet().subscribe((el: any) => {
+            
             this.letterImges = el;
-            console.log(el)
+
             this.letterImges = this.letterImges.filter(img => {
                 return !img.not_found
             })
-            console.log(this.letterImges)
+
             if (this.letterImges.length === 0 && this.text) {
                 this.validateForm.reset();
                 this.isMessage = true;
                 this.isImg = true;
             }
+            setTimeout(()=>{
+               this.spinner.hide(); 
+            },1000)
+             
         })
 
     }
-
+ 
     showFrame() {
         this.isOrder = false;
         this.isImg = true;

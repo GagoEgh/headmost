@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { UserOrderComponent } from './user-order.component';
@@ -21,8 +21,10 @@ const routes:Routes = [
     ReactiveFormsModule,
     SharedModule,
     InfiniteScrollModule,
+    
     RouterModule.forChild(routes)
   ],
-  exports:[RouterModule]
+  exports:[RouterModule],
+  
 })
 export class UserOrderModule { }

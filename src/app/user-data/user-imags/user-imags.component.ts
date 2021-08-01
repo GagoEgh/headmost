@@ -17,8 +17,13 @@ export class UserImagsComponent implements OnInit {
  
 
   ngOnInit(): void {
+   // this.frames.spinner.show()
     this.frames.userImageGet().subscribe((el:any)=>{
       this.frames.fileList = el.results;
+      // setTimeout(()=>{
+      //   this.frames.spinner.hide()
+      // },300)
+      
     })
     
   }
@@ -45,7 +50,6 @@ export class UserImagsComponent implements OnInit {
       this.frames.fileList = this.frames.fileList.filter((img:any)=>{
        return img.id!=id
       });
-     
     })
   }
 

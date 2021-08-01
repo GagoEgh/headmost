@@ -75,14 +75,24 @@
     justify-content: space-between;
 }
 
+.titles{
+    cursor: pointer;
+}
+
+.titles:hover .img-title{
+    color: #c80063;
+}
+
 .img-title{
     width: 210px;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     color: #151414e0;
     padding: 5px ;
     margin: 0;
+    
 }
+
 
 .order{
     cursor: pointer;

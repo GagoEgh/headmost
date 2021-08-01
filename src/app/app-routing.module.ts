@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'order', loadChildren: () => import('./order/order.module').then(m => m.OrderModule) },
   { path: 'user', loadChildren: () => import('./user-data/user-data.module').then(m=>m.UserDataModule)},
   {path:'idea',loadChildren:()=>import('./idea/idea-modul.module').then(m=>m.IdeaModulModule)},
+  {path:'idea/:id',loadChildren:()=>import('./idea-frame/idea-frame.module').then(m=>m.IdeaFrameModule)},
   { path: 'frame', loadChildren: () => import('./frame/frame.module').then(m => m.FrameModule) },
 ]
 

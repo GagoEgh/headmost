@@ -10,11 +10,14 @@
   
 }
 
+
+
 .list a{
     color: #d8bc89;
     text-transform: uppercase;
     font-weight: 600;
 }
+
 
 .active{
     color:  #645231 !important;

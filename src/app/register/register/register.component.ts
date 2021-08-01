@@ -55,6 +55,7 @@ export class RegisterComponent implements OnInit {
     return date_of_birth;
 }
   submitForm(): void {
+   // this.frames.spinner.show()
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
@@ -79,7 +80,7 @@ export class RegisterComponent implements OnInit {
         this.frames.isRegister = true;
         this.frames.userData = el.user_details;
         const modalRef = this.modalService.open(OkRegisterComponent);
-
+        
         modalRef.result.then((result) => {
           this.frames.isRegister = false;
         }, (reason) => {
@@ -91,9 +92,18 @@ export class RegisterComponent implements OnInit {
         this.frames.token = 'Token '+el.token;
         localStorage.setItem('loginAutorization', this.frames.token);
         localStorage.setItem('user-date',JSON.stringify(this.frames.userData))
+        this.frames.spinner.hide();
+        setTimeout(()=>{
+           modalRef.dismiss();
+        },1000)
+       
       }, ((err: any) => {
         if (err.status === 400) {
           this.emailMassage = 'տվյալ email-ը զբաղված է';
+          // setTimeout(()=>{
+          //   this.frames.spinner.hide();
+          // },200)
+          
         }
       }))
     }

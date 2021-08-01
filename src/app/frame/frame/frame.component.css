@@ -28,21 +28,21 @@
 
 .imageObject li{
     position: relative;
-    width: fit-content;
     padding: 8px;
 }
 
 .thumbImage{
     cursor: pointer;
-    width: 52px;
-    margin-left: 5px;
-    padding-top: 17px;
-    
+    padding: 25px;
+    margin: 10px 0 0 15px;
+    width: 66px;
+    height: 36px;
 }
 
 
 .imageObject li:hover .card{
     display: block;
+    z-index: 1000;
 }
 
 .card {
@@ -50,7 +50,7 @@
     position: absolute;
     background-color: white;
     list-style: none;
-    z-index: 333;
+    z-index: 1000;
     border-radius: 10px;
     left: 0;
     top:120%;
@@ -62,6 +62,7 @@
 
 .box-content {
    box-shadow: 1px 0 2px 3px white;
+
 }
 
 .backgrounds{
@@ -154,14 +155,14 @@
     transform-origin: center center;
     position: relative;
     left: 50%;
-    top:230px;
-    transform-origin: top;
+    top:175px;
+    transform-origin: top;  
 }
 
 .myWrap{
     display: flex;
     width: fit-content;
-    align-self: center;   
+    align-self: center;
 }
 
 .content{
@@ -227,7 +228,7 @@
 }
 
 .create{
-    margin-top: 60px;
+    margin-top: 40px;
     width: 180px;
     padding: 10px;
     text-align: center;

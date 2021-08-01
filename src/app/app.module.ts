@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule }   from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterModule } from './register/register-module';
 import { UserGuard } from './user-data/userGuard';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 registerLocaleData(en);
@@ -30,7 +30,9 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     RegisterModule,
     InfiniteScrollModule,
+    NgxSpinnerModule 
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [{ provide: NZ_I18N, useValue: en_US },UserGuard],
   bootstrap: [AppComponent]
 })

@@ -114,6 +114,7 @@ export class CreateImgComponent implements OnInit {
 
   getApp(isBool: boolean) {
     this.mainApp.emit(isBool);
+    this.frames.isOrder = false;
   }
 
   checkImage(img: string): boolean {
@@ -122,7 +123,7 @@ export class CreateImgComponent implements OnInit {
 
   
   open(img: any, num: number) {
-
+   // this.frames.spinner.show();
     this.frames.letterColection(img.character.toUpperCase()).subscribe((el: any) => {
       const modalRef = this.modalService.open(ImgCatalogComponent, { size: 'lg' });
       modalRef.componentInstance.img = el.results;
@@ -140,13 +141,18 @@ export class CreateImgComponent implements OnInit {
      
         }
       })
+      // setTimeout(()=>{
+      //   this.frames.spinner.hide()
+      // },300)
+      
     })
 
   }
 
   myOrder() {
-   
     if (localStorage.getItem('loginAutorization')) {
+      this.frames.spinner.show();
+      this.frames.isTop = true;
       const imgs: any[] = [];
       this.frames.letterImges.forEach((i, index) => {
         const obj = {
@@ -181,6 +187,7 @@ export class CreateImgComponent implements OnInit {
       this.frames.getOrder(order).subscribe((el: any) => {
         this.frames.orderList = el;
         this.frames.isOrder = true;
+        this.frames.spinner.hide()
       })
     } else {
       const modalRef = this.modalService.open(LoginComponent);

@@ -1,23 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IdeaComponent } from './idea/idea.component';
-import { RouterModule, Routes } from '@angular/router';
+import { ImgIdeaComponent } from './img-idea/img-idea.component';
 import { SharedModule } from '../shared/shared.modult';
-import { ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MessageComponent } from './message/message.component';
-
+import { RouterModule, Routes } from '@angular/router';
 
 const routs:Routes=[
-  {path:'',component:IdeaComponent}
+  {path:'',component:ImgIdeaComponent}
 ]
 
 @NgModule({
   declarations: [
-    IdeaComponent,
-    MessageComponent,
-  
+    ImgIdeaComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +22,8 @@ const routs:Routes=[
     ReactiveFormsModule,
     NgbModule,
     RouterModule.forChild(routs)
+   
   ],
   exports:[RouterModule],
 })
-export class IdeaModulModule { }
+export class IdeaFrameModule { }

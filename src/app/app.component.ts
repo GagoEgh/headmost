@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(public frames: FramesServService, private modalService: NgbModal, private router: Router) { }
+  constructor(public frames: FramesServService, private modalService: NgbModal, 
+    private router: Router) { }
   ngOnInit(): void {
     if (localStorage.getItem('loginAutorization')) {
       const token: any = localStorage.getItem('loginAutorization');
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit {
     }
   }
 
+  
 
   open() {
     const modalRef = this.modalService.open(LoginComponent);

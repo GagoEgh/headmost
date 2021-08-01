@@ -78,12 +78,16 @@
     margin-left: -35px;
     padding: 5px;
     font-size: 14px;
+    color:black;
 }
 
 .list:hover{
-    color: black;
+color:#aa8b51 ;
+}
+.list:hover.list a{
+    color: #aa8b51;
 }
 
 .list a{
-    color: rgb(54, 54, 54) ;
+    color:black;
 }

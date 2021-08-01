@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit, DoCheck {
   }
 
   submitForm(): void {
+   // this.frames.spinner.show()
     for (const i in this.validateForm.controls) {
       if (this.validateForm.controls.hasOwnProperty(i)) {
         this.validateForm.controls[i].markAsDirty();
@@ -60,6 +61,7 @@ export class LoginComponent implements OnInit, DoCheck {
             this.frames.sum += obj.created_frame_details.price;
           })
         })
+       // this.frames.spinner.hide()
       }, ((err: any) => {
         this.errorLog = err.error.message
       }))

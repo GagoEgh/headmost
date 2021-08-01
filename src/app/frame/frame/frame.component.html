@@ -1,15 +1,17 @@
-<header class="conteiner" >
+<header class="conteiner">
+
+  <ngx-spinner bdColor = "rgba(0, 0, 0, 0.9)" size = "medium" color = "#fff" type = "ball-spin">
+    <p style="color: white" > Loading... </p>
+  </ngx-spinner>
+
   <div class="catalog" [ngStyle]="setStyle()">
     <div class="carusel">
       <ul class="imageObject">
-        <li *ngFor="let img of frames?.framesImge,let i=index">
-          <div [ngClass]="{'box-content': getFrameId(img)}">
-            <img src="{{img?.show_image}}" class="thumbImage" (click)='frameClick(img.id)'>
-          </div>
+        <li *ngFor="let img of frames?.framesImge,let i=index" [ngClass]="{'box-content': getFrameId(img)}"
+          [style.background-image]="'url('+img?.show_image + ')'" (click)='frameClick(img.id)' class="thumbImage">
           <ul class="card">
-            <li>{{img.description_ru}}</li>
-            <li>{{img.name_ru}}</li>
-            <li>{{img.price}}</li>
+            <li>{{img.description_hy}}</li>
+            <li>{{img.name_hy}} {{img.price}}դր </li>
           </ul>
         </li>
       </ul>
@@ -29,7 +31,7 @@
       </div>
     </div>
   </div>
-  <div #block class="block" [ngStyle]="setStyle()" >
+  <div #block class="block" [ngStyle]="setStyle()">
     <div class="myWrap">
       <div class="reight">
         <div class="squrl left-top" [style.background-image]="'url(' + frames.frame?.left_top_corner_image + ')'"></div>
@@ -58,14 +60,14 @@
       </div>
     </div>
     <p *ngIf='frames.isMessage' class="message">ՏՎՅԱԼ ՏԱՌԵՐՈՎ ՆԿԱՐ ԴԵՌՎՍ ՉՈԻՆԵՆՔ</p>
-    <button type="submit" (click)='onSubmit()' class="create" *ngIf='frames.isImg'>create word</button>
+    <button type="submit" (click)='onSubmit()' class="create" *ngIf='frames.isImg'>ՍՏԵՂԾԵԼ ՆԿԱՐԸ</button>
     <app-order *ngIf='frames.isOrder'> </app-order>
-    <button *ngIf='frames.isOrder' class="create" (click)="showFrame()">ՊԱՏՎԻՐԵԼ ԿՐԿԻՆ </button>
-
+    <button *ngIf='frames.isOrder' class="create" [style.margin-top]="'0px'" (click)="showFrame()">ՊԱՏՎԻՐԵԼ ԿՐԿԻՆ </button>
+   
   </div>
 
- 
-  
+
+
   <ng-template #create>
     <app-create-img (mainApp)="deletImg($event)"></app-create-img>
   </ng-template>

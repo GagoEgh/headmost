@@ -1,4 +1,7 @@
 <div class="conteiner">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.9)" size="medium" color="#fff" type="ball-spin">
+        <p style="color: white"> Loading... </p>
+    </ngx-spinner>
     <span class="material-icons-outlined" (click)="isBar = !isBar" [style.z_index]="isBar?'22':'0'">
         <img src="./assets/1x/outline_view_headline_black_24dp.png">
     </span>
@@ -15,23 +18,22 @@
         [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown($event)">
         <div class="main">
 
-            <div class="img-idea" *ngFor='let img of frameImgs,let i = index' >
-               <div class="imgs" [style.background-image]="'url('+ img.image + ')'">
+            <div class="img-idea" *ngFor='let img of frames.ideaFrames,let i = index'>
+                <div class="imgs" [style.background-image]="'url('+ img.image + ')'">
 
                 </div>
 
-                 <div class="info">
-                     <div>
-                        <h3 class="img-title">{{img.created_frame_category_details.name_hy}} </h3>
-                        <h3 class="img-title">{{img.price}}դր</h3>
-                     </div>
-                     <div class="order" (click)="addOrder(i)">
-                         <img src="./assets/1x/orderIconWhite.png">
-                     </div>
+                <div class="info">
+                    <div class="titles" (click)="imgInfo(img)">
+                        <p class="img-title">{{img.created_frame_category_details.name_hy}} </p>
+                        <p class="img-title">{{img.price}}դր</p>
+                    </div>
+                    <div class="order" (click)="addOrder(i)">
+                        <img src="./assets/1x/orderIconWhite.png">
+                    </div>
                 </div>
             </div>
 
         </div>
     </article>
-
 </div>

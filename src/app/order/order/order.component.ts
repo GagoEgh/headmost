@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
@@ -18,7 +18,6 @@ export class OrderComponent implements OnInit {
   promoError: string = '';
   shiping: any[] = [];
   scale: number = 1;
-
   promoId = null;
   sumInit = 0;
 
@@ -50,6 +49,10 @@ export class OrderComponent implements OnInit {
   constructor(public frames: FramesServService, private fb: FormBuilder, private i18n: NzI18nService, public valid: ValidationServService) { }
 
   ngOnInit(): void {
+    // this.frames.isOrder = true;
+    
+    this.frames.isdisible = false;
+
     setTimeout(() => {
       this.frames.isMyOrder = false;
     })
@@ -57,6 +60,7 @@ export class OrderComponent implements OnInit {
 
     this.frames.shipingMethod().subscribe((el: any) => {
       this.shiping = el.results;
+
     })
 
     this.frames.orderList.forEach((obj: any) => {
@@ -120,22 +124,25 @@ export class OrderComponent implements OnInit {
       order_items: ids
     }
 
-    
 
-    if (this.validateForm.valid &&this.count != 1 ) {
-      this.frames.isOrder = true
-        this.frames.userOrder(order).subscribe((el: any) => {
-         this. count++;
-           this.frames.isOrder =false;
-          window.open('https://www.youtube.com/','_self');
-   
-        })
-      
+
+    if (this.validateForm.valid && this.count != 1) {
+      // this.frames.isOrder = true
+
+      this.frames.userOrder(order).subscribe((el: any) => {
+        this.count++;
+        this.frames.isdisible = true
+        // this.frames.isOrder =false;
+
+        window.open('https://www.youtube.com/', '_self');
+
+      })
+
     }
-    console.log('count durs',this.count)
   }
   count = 0;
   salePost(event: any) {
+
     this.validateForm.get('sale')?.setValue(event.target.value)
     const sale = {
       price: this.frames.sum,
@@ -161,8 +168,7 @@ export class OrderComponent implements OnInit {
       this.frames.orderList = this.frames.orderList.filter((val: any) => {
         return val.id != obj.id
       })
-
-
+      
       if (this.frames.orderList.length === 0) {
         this.frames.showFrame()
       }

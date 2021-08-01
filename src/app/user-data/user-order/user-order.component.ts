@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 
-
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-user-order',
@@ -15,16 +15,18 @@ export class UserOrderComponent implements OnInit {
   scrollDistance = 3;
   scrollUpDistance = 1;
 
-  constructor(public frames: FramesServService) { }
+  constructor(public frames: FramesServService, private spinner:NgxSpinnerService) { }
 
   appendItems() {
+    this.spinner.show()
     this.frames.userOrderGet().subscribe((el: any) => {
       this.userOrders.push(...el.results)
       this.frames.offset += 10;
       setTimeout(() => {
         this.frames.isMyOrder = true;
+        this.spinner.hide()
       })
-
+   
     })
   }
 
@@ -39,6 +41,7 @@ export class UserOrderComponent implements OnInit {
   }
 
   addOrder(index:number) {
+    this.spinner.show()
     let created_frame ='';
     this.userOrders[index].order_items_details.forEach((el:any)=>{
       created_frame = el.created_frame
@@ -50,7 +53,8 @@ export class UserOrderComponent implements OnInit {
      }
      
      this.frames.orderCard(obj).subscribe((el:any)=>{
-      this.frames.orderList.push(el)
+      this.frames.orderList.push(el);
+      this.spinner.hide()
      })
 
 
