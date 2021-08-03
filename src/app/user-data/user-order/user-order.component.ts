@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 
 import { NgxSpinnerService } from "ngx-spinner";
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-order',
@@ -9,6 +11,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./user-order.component.css']
 })
 export class UserOrderComponent implements OnInit {
+  public _subscribe$ = new Subject();
   userOrders: any[] = [];
   array: any[] = [];
   throttle = 300;
@@ -19,7 +22,7 @@ export class UserOrderComponent implements OnInit {
 
   appendItems() {
     this.spinner.show()
-    this.frames.userOrderGet().subscribe((el: any) => {
+    this.frames.userOrderGet().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
       this.userOrders.push(...el.results)
       this.frames.offset += 10;
       setTimeout(() => {
@@ -52,11 +55,15 @@ export class UserOrderComponent implements OnInit {
       user:this.frames.userData.user
      }
      
-     this.frames.orderCard(obj).subscribe((el:any)=>{
+     this.frames.orderCard(obj).pipe(takeUntil(this._subscribe$)).subscribe((el:any)=>{
       this.frames.orderList.push(el);
       this.spinner.hide()
      })
 
+  }
 
+  ngOnDestroy(){
+    this._subscribe$.next();
+    this._subscribe$.complete();
   }
 }

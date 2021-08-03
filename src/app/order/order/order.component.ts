@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 
 @Component({
@@ -12,6 +14,7 @@ import { ValidationServService } from 'src/app/shared/validation-serv.service';
 })
 export class OrderComponent implements OnInit {
   validateForm: FormGroup = new FormGroup({});
+  public _subscribe$ = new Subject();
   erroreStr: string = '';
   heigth: number | undefined;
   width: number | undefined;
@@ -20,6 +23,7 @@ export class OrderComponent implements OnInit {
   scale: number = 1;
   promoId = null;
   sumInit = 0;
+  count = 0;
 
   @ViewChild("wrap", { static: false }) wrap: ElementRef | undefined;
 
@@ -49,8 +53,6 @@ export class OrderComponent implements OnInit {
   constructor(public frames: FramesServService, private fb: FormBuilder, private i18n: NzI18nService, public valid: ValidationServService) { }
 
   ngOnInit(): void {
-    // this.frames.isOrder = true;
-    
     this.frames.isdisible = false;
 
     setTimeout(() => {
@@ -58,7 +60,7 @@ export class OrderComponent implements OnInit {
     })
 
 
-    this.frames.shipingMethod().subscribe((el: any) => {
+    this.frames.shipingMethod().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
       this.shiping = el.results;
 
     })
@@ -127,9 +129,7 @@ export class OrderComponent implements OnInit {
 
 
     if (this.validateForm.valid && this.count != 1) {
-      // this.frames.isOrder = true
-
-      this.frames.userOrder(order).subscribe((el: any) => {
+      this.frames.userOrder(order).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
         this.count++;
         this.frames.isdisible = true
         // this.frames.isOrder =false;
@@ -140,7 +140,7 @@ export class OrderComponent implements OnInit {
 
     }
   }
-  count = 0;
+ 
   salePost(event: any) {
 
     this.validateForm.get('sale')?.setValue(event.target.value)
@@ -150,7 +150,7 @@ export class OrderComponent implements OnInit {
     }
 
     if (this.validateForm.get('sale')?.value.length === 6 && this.promoId === null) {
-      this.frames.promoCodePost(sale).subscribe((el: any) => {
+      this.frames.promoCodePost(sale).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
         this.frames.sum = el.discounted_price;
         this.promoId = el.promo_code.id;
         this.promoError = '';
@@ -163,7 +163,7 @@ export class OrderComponent implements OnInit {
 
 
   deleteDate(obj: any) {
-    this.frames.deleteOrder(obj.id).subscribe((el: any) => {
+    this.frames.deleteOrder(obj.id).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
       this.frames.sum -= obj.created_frame_details.price;
       this.frames.orderList = this.frames.orderList.filter((val: any) => {
         return val.id != obj.id
@@ -177,6 +177,10 @@ export class OrderComponent implements OnInit {
 
   }
 
+  ngOnDestroy(){
+    this._subscribe$.next();
+    this._subscribe$.complete();
+  }
 }
 
 

@@ -6,8 +6,7 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'frame' },
   { path: 'order', loadChildren: () => import('./order/order.module').then(m => m.OrderModule) },
   { path: 'user', loadChildren: () => import('./user-data/user-data.module').then(m=>m.UserDataModule)},
-  {path:'idea',loadChildren:()=>import('./idea/idea-modul.module').then(m=>m.IdeaModulModule)},
-  {path:'idea/:id',loadChildren:()=>import('./idea-frame/idea-frame.module').then(m=>m.IdeaFrameModule)},
+  {path:'idea',loadChildren:()=>import('./idea/idea-nav/idea-nav.module').then(m=>m.IdeaNavModule)},
   { path: 'frame', loadChildren: () => import('./frame/frame.module').then(m => m.FrameModule) },
 ]
 

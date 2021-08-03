@@ -1,0 +1,14 @@
+<div class="conteiner" #block  [ngStyle]="setStyle()">
+    <div class="idea-image" [style.background-image]="'url('+ frames?.ideaImg.image + ')'">
+    </div>
+    <div class="info">
+        <h4 class="title">նվերի գաղափարը {{frames?.ideaImg.created_frame_category_details?.name_hy}}</h4>
+        <p class="text">Անունը {{frames?.ideaImg?.word}} </p>
+        <p class="text">{{frames?.ideaImg?.frame_details?.name_hy}}</p>
+        <p class="text">Նկարի ֆոնը {{frames?.ideaImg?.background_details?.name}}</p>
+        <p class="text">{{frames?.ideaImg?.price}}դր <span><button class="order"
+                    (click)="addOrder()">պատվիրել</button></span></p>
+        <p class="text">հավաքիր քո բառը հիմա <span><button class="myFrame"
+                    [routerLink]="''">Կոնստրուկտոր</button></span></p>
+    </div>
+</div>

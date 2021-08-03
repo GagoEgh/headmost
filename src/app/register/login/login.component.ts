@@ -1,6 +1,8 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { RegisterComponent } from '../register/register.component';
@@ -13,6 +15,7 @@ import { RegisterComponent } from '../register/register.component';
 })
 export class LoginComponent implements OnInit, DoCheck {
   validateForm: FormGroup = new FormGroup({});
+  public _subscribe$ = new Subject();
   errorLog = '';
   
   constructor(public activeModal: NgbActiveModal, private modalService: NgbModal,
@@ -34,7 +37,6 @@ export class LoginComponent implements OnInit, DoCheck {
   }
 
   submitForm(): void {
-   // this.frames.spinner.show()
     for (const i in this.validateForm.controls) {
       if (this.validateForm.controls.hasOwnProperty(i)) {
         this.validateForm.controls[i].markAsDirty();
@@ -46,7 +48,7 @@ export class LoginComponent implements OnInit, DoCheck {
       password: this.validateForm.get('password')?.value
     }
     if (this.validateForm.valid) {
-      this.frames.userLogin(userLog).subscribe((el: any) => {
+      this.frames.userLogin(userLog).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
         this.frames.token = 'Token ' + el.token;
         this.frames.userData = el.user_details;
         localStorage.setItem('loginAutorization', this.frames.token);
@@ -55,13 +57,13 @@ export class LoginComponent implements OnInit, DoCheck {
         this.validateForm.reset();
         this.frames.userReg = false;
 
-        this.frames.userInfo().subscribe((el: any) => {
+        this.frames.userInfo().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
           this.frames.orderList = el.results;
           this.frames.orderList.forEach((obj: any) => {
             this.frames.sum += obj.created_frame_details.price;
           })
         })
-       // this.frames.spinner.hide()
+     
       }, ((err: any) => {
         this.errorLog = err.error.message
       }))
@@ -79,5 +81,8 @@ export class LoginComponent implements OnInit, DoCheck {
 
   }
 
-
+ ngOnDestroy(){
+   this._subscribe$.next();
+   this._subscribe$.complete();
+ }
 }

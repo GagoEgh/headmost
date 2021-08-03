@@ -2,6 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
+import { takeLast, takeUntil } from 'rxjs/operators';
 import { LoginComponent } from 'src/app/register/login/login.component';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { Letter } from '../../../shared/img-ramka';
@@ -15,6 +17,7 @@ import { ImgCatalogComponent } from '../img-catalog/img-catalog.component';
   styleUrls: ['./create-img.component.css']
 })
 export class CreateImgComponent implements OnInit {
+  public _unsubscribe$ = new Subject()
  letterChar = 0;
   isCreate = true;
   bottomText: FormGroup = new FormGroup({});
@@ -121,10 +124,8 @@ export class CreateImgComponent implements OnInit {
     return img.startsWith('http') ? true : false
   }
 
-  
   open(img: any, num: number) {
-   // this.frames.spinner.show();
-    this.frames.letterColection(img.character.toUpperCase()).subscribe((el: any) => {
+    this.frames.letterColection(img.character.toUpperCase()).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
       const modalRef = this.modalService.open(ImgCatalogComponent, { size: 'lg' });
       modalRef.componentInstance.img = el.results;
       modalRef.componentInstance.character = this.frames.letterImges[num];
@@ -141,9 +142,6 @@ export class CreateImgComponent implements OnInit {
      
         }
       })
-      // setTimeout(()=>{
-      //   this.frames.spinner.hide()
-      // },300)
       
     })
 
@@ -184,7 +182,7 @@ export class CreateImgComponent implements OnInit {
         })
       }
 
-      this.frames.getOrder(order).subscribe((el: any) => {
+      this.frames.getOrder(order).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
         this.frames.orderList = el;
         this.frames.isOrder = true;
         this.frames.spinner.hide()
@@ -197,7 +195,10 @@ export class CreateImgComponent implements OnInit {
   }
 
 
-
+  ngOnDestroy(){
+    this._unsubscribe$.next();
+    this._unsubscribe$.complete();
+  }
 
 
 

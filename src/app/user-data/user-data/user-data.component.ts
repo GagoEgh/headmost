@@ -1,6 +1,8 @@
 import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 
@@ -11,6 +13,7 @@ import { ValidationServService } from 'src/app/shared/validation-serv.service';
 })
 export class UserDataComponent implements OnInit {
   validateForm: FormGroup = new FormGroup({});
+  public _unsubscribe$ = new Subject();
   erroreStr: string = '';
   emailMassage = '';
   updateOk ='';
@@ -69,14 +72,17 @@ export class UserDataComponent implements OnInit {
     }
 
     if (this.validateForm.valid) {
-      this.frames.editUser(edit).subscribe((el: any) => {
+      this.frames.editUser(edit).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
         this.updateOk = 'Փոփոխությունները հաջողությամբ կատարվել են';
         localStorage.setItem('user-date',JSON.stringify(this.frames.userData))
       })
     }
   }
 
-
+  ngOnDestroy(){
+    this._unsubscribe$.next();
+    this._unsubscribe$.complete();
+  }
 
 }
 

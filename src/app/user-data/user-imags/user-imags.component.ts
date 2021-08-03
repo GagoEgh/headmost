@@ -1,8 +1,9 @@
-import {  Component,  OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -11,21 +12,16 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./user-imags.component.css']
 })
 export class UserImagsComponent implements OnInit {
-
+  public _subscribe$ = new Subject();
   constructor(private msg: NzMessageService, public frames: FramesServService) { }
 
- 
+
 
   ngOnInit(): void {
-   // this.frames.spinner.show()
-    this.frames.userImageGet().subscribe((el:any)=>{
+    this.frames.userImageGet().subscribe((el: any) => {
       this.frames.fileList = el.results;
-      // setTimeout(()=>{
-      //   this.frames.spinner.hide()
-      // },300)
-      
     })
-    
+
   }
 
   handleChange(info: NzUploadChangeParam): void {
@@ -39,18 +35,22 @@ export class UserImagsComponent implements OnInit {
       this.frames.userImage(formData).pipe(switchMap((val: any) => {
         return this.frames.userImageGet()
 
-      })).subscribe((el: any) => {
+      }),takeUntil(this._subscribe$)).subscribe((el: any) => {
         this.frames.fileList = el.results;
       })
     }
   }
 
-  delete(id:number){
-    this.frames.deleteUserImage(id).subscribe((el)=>{
-      this.frames.fileList = this.frames.fileList.filter((img:any)=>{
-       return img.id!=id
+  delete(id: number) {
+    this.frames.deleteUserImage(id).pipe(takeUntil(this._subscribe$)).subscribe((el) => {
+      this.frames.fileList = this.frames.fileList.filter((img: any) => {
+        return img.id != id
       });
     })
   }
 
+  ngOnDestroy(){
+    this._subscribe$.next();
+    this._subscribe$.complete();
+  }
 }

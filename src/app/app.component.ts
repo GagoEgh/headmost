@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FramesServService } from './shared/frames-serv.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './register/login/login.component';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +12,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(public frames: FramesServService, private modalService: NgbModal, 
+  public unsubscribe$ = new Subject()
+  constructor(public frames: FramesServService, private modalService: NgbModal,
     private router: Router) { }
+
+
   ngOnInit(): void {
+    this.scrollToTopByChangeRoute()
     if (localStorage.getItem('loginAutorization')) {
       const token: any = localStorage.getItem('loginAutorization');
       this.frames.token = token;
@@ -21,7 +27,7 @@ export class AppComponent implements OnInit {
       this.frames.userData = result;
       this.frames.userReg = false;
 
-      this.frames.userInfo().subscribe((el: any) => {
+      this.frames.userInfo().pipe(takeUntil(this.unsubscribe$)).subscribe((el: any) => {
         this.frames.orderList = el.results;
 
         this.frames.orderList.forEach((obj: any) => {
@@ -33,7 +39,14 @@ export class AppComponent implements OnInit {
     }
   }
 
-  
+  scrollToTopByChangeRoute() {
+    this.router.events.pipe(takeUntil(this.unsubscribe$)).subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0)
+    });
+  }
 
   open() {
     const modalRef = this.modalService.open(LoginComponent);
@@ -73,6 +86,11 @@ export class AppComponent implements OnInit {
       }
     };
     this.router.navigate(['/'])
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete()
   }
 
 }

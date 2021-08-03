@@ -1,0 +1,21 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.9)" size="medium" color="#fff" type="ball-spin">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<div class="conteiner">
+ 
+    <span class="material-icons-outlined" (click)="frames.isBar = !frames.isBar"
+        [style.z_index]="frames.isBar?'22':'0'">
+        <img src="./assets/1x/outline_view_headline_black_24dp.png">
+    </span>
+
+    <nav class="bar" [style.display]="frames.isBar?'block':'none'">
+        <h2 class="title">Նվերների տարբերակներ</h2>
+        <ul>
+            <li><a (click)="ideaGroup()">Բոլորը</a></li>
+            <li *ngFor='let item of frameIdeas'>
+                <a (click)="ideaGroup(item)">{{item.name_hy}}</a>
+            </li>
+        </ul>
+    </nav>
+    <router-outlet></router-outlet>
+</div>

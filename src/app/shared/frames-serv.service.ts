@@ -13,12 +13,13 @@ export class FramesServService {
     letterImges: LetterImge[] = [];
     framesImge: FramesImg[] = [];
     selectedValue: any[] = [];
-    ideaFrames:any[]=[];
+    isBar = true;
     fileUrl = {};
     isOrder: boolean = false;
     orderList: any[] = [];
     orderListClone: any[] = [];
     background: any = {};
+    ideaImg:any = {};
     topText: string = '';
     btmText: string = '';
     isRegister = false;
@@ -271,11 +272,12 @@ export class FramesServService {
         return this.url.get(this.api.worldApi + this.api.api_utils + this.api.api_created_frame_category)
     }
 
-
-    category = '';
-    predefined = 1;
     frameCategoryImg(category: any, predifined: any, offset: any) {
         return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_created_frame + `/?created_frame_category=${category}&is_predefined=${predifined}&limit=10&offset=${offset}`)
+    }
+
+    imgCategory(id:number){
+        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_created_frame + `/${id}/`)
     }
 
     letterColorFone() {

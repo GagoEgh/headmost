@@ -2,6 +2,8 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Category } from 'src/app/shared/img-ramka';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-img-catalog',
@@ -9,7 +11,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
   styleUrls: ['./img-catalog.component.css']
 })
 export class ImgCatalogComponent implements OnInit {
- 
+  public _subscribe$ = new Subject();
   @Input() img: any;
   @Input() character: any;
   categoryList: Category[] = [];
@@ -47,7 +49,7 @@ export class ImgCatalogComponent implements OnInit {
   }
 
   createCategory() {
-    this.frames.getCategory().subscribe((el: any) => {
+    this.frames.getCategory().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
       this.categoryList = el.results;
     })
   }
@@ -62,10 +64,14 @@ export class ImgCatalogComponent implements OnInit {
   }
 
   getMyPhoto(){
-    this.frames.userImageGet().subscribe((el:any)=>{
+    this.frames.userImageGet().pipe(takeUntil(this._subscribe$)).subscribe((el:any)=>{
       this.frames.fileList = el.results;
       this.frames.apiPhoto = false;
     })
   }
 
+  ngOnDestroy(){
+    this._subscribe$.next();
+    this._subscribe$.complete();
+  }
 }

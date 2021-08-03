@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NzI18nService } from 'ng-zorro-antd/i18n';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { OkRegisterComponent } from '../ok-register/ok-register.component';
@@ -13,6 +15,7 @@ import { OkRegisterComponent } from '../ok-register/ok-register.component';
 })
 export class RegisterComponent implements OnInit {
   validateForm: FormGroup = new FormGroup({});
+  public _subscribe$ = new Subject();
   selectedValue: any[] = [];
   erroreStr: string = '';
   shiping: any[] = [];
@@ -55,7 +58,7 @@ export class RegisterComponent implements OnInit {
     return date_of_birth;
 }
   submitForm(): void {
-   // this.frames.spinner.show()
+
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
@@ -75,7 +78,7 @@ export class RegisterComponent implements OnInit {
     }
     
     if (this.validateForm.valid) {
-      this.frames.userRegisterPost(userDetalis).subscribe((el: any) => {
+      this.frames.userRegisterPost(userDetalis).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
 
         this.frames.isRegister = true;
         this.frames.userData = el.user_details;
@@ -99,11 +102,7 @@ export class RegisterComponent implements OnInit {
        
       }, ((err: any) => {
         if (err.status === 400) {
-          this.emailMassage = 'տվյալ email-ը զբաղված է';
-          // setTimeout(()=>{
-          //   this.frames.spinner.hide();
-          // },200)
-          
+          this.emailMassage = 'տվյալ email-ը զբաղված է';   
         }
       }))
     }
@@ -114,5 +113,10 @@ export class RegisterComponent implements OnInit {
     if (this.frames.isRegister) {
       this.activeModal.dismiss()
     }
+  }
+
+  ngOnDestroy(){
+    this._subscribe$.next();
+    this._subscribe$.complete();
   }
 }

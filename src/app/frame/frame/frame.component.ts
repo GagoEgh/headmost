@@ -4,6 +4,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FramesImg } from '../../shared/img-ramka';
 import { NgbdModalContentComponent } from '../ngbd-modal-content/ngbd-modal-content.component';
 import { FramesServService } from '../../shared/frames-serv.service'
+import { Subject } from 'rxjs';
+import { takeLast, takeUntil } from 'rxjs/operators';
 
 
 @Component({
@@ -12,8 +14,9 @@ import { FramesServService } from '../../shared/frames-serv.service'
   styleUrls: ['./frame.component.css']
 })
 export class FrameComponent implements OnInit {
-
+  
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
+  public _subscribe$ = new Subject();
   margin_top: number | undefined;
   frameWi: number | undefined;
   heigth: number | undefined;
@@ -52,13 +55,13 @@ export class FrameComponent implements OnInit {
       text: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(9)])
     })
     this.imgColor();
-    this.frames.framesFoneGet().subscribe((el: any) => {
+    this.frames.framesFoneGet().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
       this.frames.div = el.results;
       this.frames.background = el.results[0];
 
     })
 
-    this.frames.getFrames().subscribe((el: any) => {
+    this.frames.getFrames().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
       this.frames.framesImge = el.results;
       this.frameClick(this.frames.index);
     })
@@ -66,7 +69,7 @@ export class FrameComponent implements OnInit {
   }
 
   imgColor() {
-    this.frames.imgColorGet().subscribe((el: any) => {
+    this.frames.imgColorGet().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
       for (let i = 0; i < el.count; i++) {
         if (this.frames && this.frames.imgColor[i] && this.frames.imgColor[i].ceys) {
           this.frames.imgColor[i].ceys = el.results[i];
@@ -123,4 +126,8 @@ export class FrameComponent implements OnInit {
     this.frames.showFrame()
   }
 
+  ngOnDestroy(){
+    this._subscribe$.next();
+    this._subscribe$.complete();
+  }
 }
