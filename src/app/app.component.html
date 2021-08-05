@@ -1,31 +1,42 @@
 <div class="conteiner" [style.min-width]='frames.isMyOrder?"1000px":"100%"'>
-  <div class="silki">
-    <a class="frame" routerLink='' routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">frame</a>
-    <a class="frame" routerLink='/idea' routerLinkActive='active'>idea</a>
-    <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
-      <img src='../assets/1x/orderIconBlack.png'>
-      <span >{{frames.orderList?.length}}</span>
-    </a>
-    <div *ngIf='frames.userReg, else log'>
-      <a class="frame" (click)="open()">login</a>
-    </div>
-    <ng-template #log>
-      <ul>
-        <li class="parent">
-          <a class="activeHover" routerLinkActive='active' > {{frames.userData.user_details.first_name}}
-            <ul class="user-data">
-              <li class="list"><a routerLink = '/user/profil'>պռոֆիլ</a></li>
-              <li class="list"><a routerLink = '/user/imags'>իմ նկարները</a></li>
-              <li class="list"><a routerLink = '/user/user-order'>իմ պատվերները</a></li>
-              <li class="list" (click)="close()">դուրս գալ</li>
-            </ul>
-          </a>
-        </li>
-      </ul>
-    </ng-template>
-  
-  </div>
-
+    <ul class="silki">
+      <li class="parent">
+        <p class="frame"  >ԿՈՆՍՏՐՈՒԿՏՈՐ</p>
+        <ul class="li-nav">
+          <li>
+            <a class="frame" routerLink='' >ՇՐՋԱՆԱԿ</a>
+          </li>
+          <li>
+            <a class="frame" routerLink='magnit'>ՄԱԳՆԻՏ</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="frame" routerLink='/idea' routerLinkActive='active'>idea</a>
+      </li>
+      <li>
+        <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
+          <img src='../assets/1x/orderIconBlack.png'>
+          <span>{{frames.orderList?.length}}</span>
+        </a>
+      </li>
+      <li *ngIf='frames.userReg, else log'>
+        <a class="frame" (click)="open()">login</a>
+      </li>
+      <ng-template #log>
+        <ul>
+          <li class="parent">
+            <a class="activeHover" routerLinkActive='active'> {{frames.userData.user_details.first_name}}
+              <ul class="user-data">
+                <li class="list"><a routerLink='/user/profil'>պռոֆիլ</a></li>
+                <li class="list"><a routerLink='/user/imags'>իմ նկարները</a></li>
+                <li class="list"><a routerLink='/user/user-order'>իմ պատվերները</a></li>
+                <li class="list" (click)="close()">դուրս գալ</li>
+              </ul>
+            </a>
+          </li>
+        </ul>
+      </ng-template>
+    </ul>
 </div>
-
 <router-outlet></router-outlet>

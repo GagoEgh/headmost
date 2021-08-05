@@ -16,7 +16,7 @@ import { ImgCatalogComponent } from '../img-catalog/img-catalog.component';
   templateUrl: './create-img.component.html',
   styleUrls: ['./create-img.component.css']
 })
-export class CreateImgComponent implements OnInit {
+export class CreateImgComponent   implements OnInit {
   public _unsubscribe$ = new Subject()
  letterChar = 0;
   isCreate = true;
@@ -36,6 +36,7 @@ export class CreateImgComponent implements OnInit {
   }
 
   @Output() mainApp: EventEmitter<boolean> = new EventEmitter();
+
   constructor(public frames: FramesServService, public rout: Router,
     private form: FormBuilder, private modalService: NgbModal) { }
 
@@ -124,7 +125,7 @@ export class CreateImgComponent implements OnInit {
     return img.startsWith('http') ? true : false
   }
 
-  open(img: any, num: number) {
+  openImg(img: any, num: number) {
     this.frames.letterColection(img.character.toUpperCase()).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
       const modalRef = this.modalService.open(ImgCatalogComponent, { size: 'lg' });
       modalRef.componentInstance.img = el.results;

@@ -6,6 +6,8 @@ import { NgbdModalContentComponent } from '../ngbd-modal-content/ngbd-modal-cont
 import { FramesServService } from '../../shared/frames-serv.service'
 import { Subject } from 'rxjs';
 import { takeLast, takeUntil } from 'rxjs/operators';
+import { FrameImag } from 'src/app/shared/frame-image';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,18 +15,18 @@ import { takeLast, takeUntil } from 'rxjs/operators';
   templateUrl: './frame.component.html',
   styleUrls: ['./frame.component.css']
 })
-export class FrameComponent implements OnInit {
-  
+export class FrameComponent extends FrameImag implements OnInit {
+
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
-  public _subscribe$ = new Subject();
-  margin_top: number | undefined;
-  frameWi: number | undefined;
   heigth: number | undefined;
   width: number | undefined;
   scale: number = 1;
-  isActive = false;
-  constructor(public frames: FramesServService, private modalService: NgbModal, 
-    private form: FormBuilder) { }
+
+  constructor(public frames: FramesServService, public modalService: NgbModal,
+    public rout: Router, public form: FormBuilder,) {
+    super(frames, modalService, rout, form)
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.heigth = this.block?.nativeElement.clientHeight | 1;
@@ -50,11 +52,8 @@ export class FrameComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.frames.validateForm = new FormGroup({
-      text: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(9)])
-    })
-    this.imgColor();
+    super.myForm();
+    super.imgColor();
     this.frames.framesFoneGet().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
       this.frames.div = el.results;
       this.frames.background = el.results[0];
@@ -68,21 +67,10 @@ export class FrameComponent implements OnInit {
 
   }
 
-  imgColor() {
-    this.frames.imgColorGet().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
-      for (let i = 0; i < el.count; i++) {
-        if (this.frames && this.frames.imgColor[i] && this.frames.imgColor[i].ceys) {
-          this.frames.imgColor[i].ceys = el.results[i];
-        }
-      }
-    })
-  }
-
   public setStyle() {
     let style = {
       transform: "translate(-50%, -5%)" + "scale(" + this.scale + ")"
     }
-
     return style
   }
 
@@ -99,34 +87,12 @@ export class FrameComponent implements OnInit {
     this.frames.background = bg;
   }
 
-  imgFone(obj: any) {
-    this.frames.painding.values = obj.values;
-    this.frames.painding.id = obj.ceys.id;
-    this.frames.letterColorFone();
-  }
+  // deletImg(ev: boolean) {
+  //   this.frames.isImg = ev;
+  //   this.frames.validateForm.reset();
+  // }
 
-  onSubmit() {
-    if (this.frames.validateForm.invalid) return;
-
-    this.frames.isImg = false;
-    this.frames.letterColorFone();
-    
-  }
-
-  open() {
-    const modalRef = this.modalService.open(NgbdModalContentComponent);
-  }
-
-  deletImg(ev: boolean) {
-    this.frames.isImg = ev;
-    this.frames.validateForm.reset();
-  }
-
-  showFrame() {
-    this.frames.showFrame()
-  }
-
-  ngOnDestroy(){
+  ngOnDestroy() {
     this._subscribe$.next();
     this._subscribe$.complete();
   }

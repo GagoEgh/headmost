@@ -39,3 +39,11 @@
 .files:hover .iks{
     display: block;
 }
+
+.text{
+    margin:10px 80px;
+    color: red;
+    font-weight: 600;
+    letter-spacing: 1px;
+    
+}

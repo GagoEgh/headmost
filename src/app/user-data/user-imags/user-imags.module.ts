@@ -18,6 +18,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 
 
@@ -49,6 +50,7 @@ const routes:Routes = [
     DragDropModule,
     NzMessageModule,
     NzModalModule,
+    InfiniteScrollModule
   ],
   providers: [ { provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons } ]
 })

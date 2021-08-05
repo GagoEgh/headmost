@@ -1,0 +1,46 @@
+
+.lightSheme{
+    background: url('src/assets/1x/bg_magnit.jpg') repeat 0 0;
+    padding: 20px;
+}
+
+
+.magnit{
+    height: 480px;
+    width: 60%;
+    min-width: 930px;
+    margin: 10px auto;
+    background: url('src/assets/1x/magnit.jpg')  no-repeat 0 0 #fbfbfb;
+}
+
+.underFridge{
+    height: 100%;
+    width: 100%;
+    padding: 30px 0 0 0;
+    background: url('src/assets/1x/fridge_right.jpg') no-repeat 100% 0;
+}
+
+.letter input{
+    background: transparent;
+}
+
+.imgColor{
+    justify-content: flex-end;
+}
+
+.btn{
+    position: relative;
+    left: -260px;
+  
+}
+
+.create{
+    margin: 13% 0 0 40%;
+}
+
+.block{
+    top: 50px ;
+    left:50%;
+    transform-origin: top;  
+}
+

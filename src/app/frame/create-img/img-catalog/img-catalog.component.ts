@@ -64,7 +64,7 @@ export class ImgCatalogComponent implements OnInit {
   }
 
   getMyPhoto(){
-    this.frames.userImageGet().pipe(takeUntil(this._subscribe$)).subscribe((el:any)=>{
+    this.frames.userImageGet(0).pipe(takeUntil(this._subscribe$)).subscribe((el:any)=>{
       this.frames.fileList = el.results;
       this.frames.apiPhoto = false;
     })

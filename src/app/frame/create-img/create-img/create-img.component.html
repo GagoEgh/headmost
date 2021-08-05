@@ -1,7 +1,7 @@
 <div class="im" [style.backgroundColor]="frames.background.color" (mouseleave)="onMouseleave()"
   (mouseenter)="onMouseenter()">
   <div class="menu">
-    <div class="change " (click)='changeImg()' [style.opacity]="topLettering.isMenu?'1':'0'">
+    <div class="change" (click)='changeImg()' [style.opacity]="topLettering.isMenu?'1':'0'">
       <p class="bottom">փոխել նկարները</p>
     </div>
     <div class="delete" [style.opacity]="topLettering.isMenu?'1':'0'">
@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="imgs">
-    <div class="bg-img" *ngFor = 'let img of frames.letterImges,let i = index' (click)="open(img,i)"
+    <div class="bg-img" *ngFor = 'let img of frames.letterImges,let i = index' (click)="openImg(img,i)"
      [style.background-image]="checkImage(img.image.image)?'url( '+ img.image.image + ')':'url( http://sirun-bar-api.annaniks.com/'+ img.image.image + ')'" >
       <div class="bgr" > <p >ընտրել ուրիշ նկար</p></div>
     </div>

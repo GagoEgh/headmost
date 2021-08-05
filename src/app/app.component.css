@@ -1,9 +1,31 @@
 
 .conteiner{
     padding: 15px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.849);
+    /* box-shadow: 0 9px 10px rgb(37 54 39 / 19%) !important; */
     box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
-    /* min-width: 1100px; */
+}
+
+.li-nav{
+    list-style: none;
+    position: absolute;
+    top: 35px;
+    background-color: white;
+    border-radius: 7px;
+    padding: 10px 20px;
+    box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
+    display: none;
+}
+
+.parent:hover .li-nav{
+    display: block;
+}
+.li-nav li{
+    padding: 5px;
+}
+
+.li-nav a{
+    padding-bottom: 5px;
 }
 
 .silki{
@@ -13,6 +35,10 @@
     display: flex;
     justify-content: space-between;
     padding: 5px;
+}
+
+.silki p{
+    cursor: pointer;
 }
 
 .frame{

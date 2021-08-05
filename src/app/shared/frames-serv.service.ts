@@ -33,6 +33,7 @@ export class FramesServService {
     fileList: any = [];
     token: string = '';
     isMyOrder = false;
+   // myImgOffset = 0;
     limit = 10;
     offset = 0;
     isTop = false;
@@ -172,8 +173,9 @@ export class FramesServService {
     }
 
     letterGet() {
-        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_create_word + this.text + '/', {
-            params: new HttpParams().set('color', this.painding.id.toString())
+        let text=this.text?this.text:null;
+        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_create_word + text+ '/', {
+            params: new HttpParams().set('color', this.painding.id.toString()) 
         });
     }
 
@@ -241,8 +243,10 @@ export class FramesServService {
             { headers: { 'Authorization': this.token } })
     }
 
-    userImageGet() {
-        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_user_image + '/?user=' + `${this.userData.user}`,
+    
+
+    userImageGet(myImgOffset:number) {
+        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_user_image + '/?user=' + `${this.userData.user}&limit=10&offset=${myImgOffset}`,
             { headers: { 'Authorization': this.token } })
     }
 
