@@ -8,8 +8,8 @@
         <div *ngFor="let item of userOrders, let i=index">
 
             <div class='block' *ngFor='let orderItemss of item.order_items_details'>
-                <p class="text">{{item.created_at}} {{orderItemss.created_frame_details.frame_details.name_hy}},
-                    {{orderItemss.created_frame_details.background_details.name}}
+                <p class="text">{{item?.created_at}} {{orderItemss?.created_frame_details?.frame_details?.name_hy}},
+                    {{orderItemss?.created_frame_details?.background_details?.name}}
                 </p>
                 <div class="user">
                     <div class="order">
@@ -22,11 +22,10 @@
                        
                         </div>
                     </div>
-
-                    <div class="info">
-                        <div class="sum"> STATUS: {{item.status}}</div>
+                    <div class="user-info">
+                        <div class="sum"> STATUS: {{item?.status}}</div>
                         <div class="sum">
-                            <P>{{item.price}}դր</P>
+                            <P>{{item?.price}}դր</P>
                             <button class="batn" (click)='addOrder(i)'>ավելացնել զամբյուղի մեջ</button>
                         </div>
                     </div>

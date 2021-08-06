@@ -17,7 +17,7 @@ export class MagnitComponent extends FrameImag implements OnInit {
   heigth: number | undefined;
   width: number | undefined;
   scale: number = 1;
-  
+
   constructor(public frames: FramesServService, public modalService: NgbModal,
     public rout: Router, public form: FormBuilder) {
     super(frames, modalService, rout, form);
@@ -36,7 +36,6 @@ export class MagnitComponent extends FrameImag implements OnInit {
 
     if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
       if (window.innerWidth <= 1165) {
-        // this.width += 280;
         this.scale = window.innerWidth / this.width - 0.2;
       }
     }
@@ -58,10 +57,9 @@ export class MagnitComponent extends FrameImag implements OnInit {
 
 
   ngOnInit(): void {
-    // this.frames.call()
-    // super.onResize(this.block)
-
     super.myForm()
+    this.frames.letterImges = [];
+    this.frames.isOrder = false;
   }
 
 }

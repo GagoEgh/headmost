@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
-import { takeLast, takeUntil } from 'rxjs/operators';
+import {  takeUntil } from 'rxjs/operators';
 import { LoginComponent } from 'src/app/register/login/login.component';
+import { FrameImag } from 'src/app/shared/frame-image';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { Letter } from '../../../shared/img-ramka';
-import { ImgCatalogComponent } from '../img-catalog/img-catalog.component';
+
 
 
 
@@ -16,7 +17,7 @@ import { ImgCatalogComponent } from '../img-catalog/img-catalog.component';
   templateUrl: './create-img.component.html',
   styleUrls: ['./create-img.component.css']
 })
-export class CreateImgComponent   implements OnInit {
+export class CreateImgComponent extends FrameImag  implements OnInit {
   public _unsubscribe$ = new Subject()
  letterChar = 0;
   isCreate = true;
@@ -38,7 +39,9 @@ export class CreateImgComponent   implements OnInit {
   @Output() mainApp: EventEmitter<boolean> = new EventEmitter();
 
   constructor(public frames: FramesServService, public rout: Router,
-    private form: FormBuilder, private modalService: NgbModal) { }
+    public form: FormBuilder, public modalService: NgbModal) {
+      super(frames, modalService, rout, form)
+     }
 
   deleteTopProprty() {
     this.topLettering.isSpan = false;
@@ -102,9 +105,6 @@ export class CreateImgComponent   implements OnInit {
 
   }
 
-  changeImg() {
-    this.frames.letterColorFone()
-  }
 
   ngOnInit(): void {
     this.validateForm = this.form.group(
@@ -116,42 +116,12 @@ export class CreateImgComponent   implements OnInit {
     this.frames.isMessage = false;
   }
 
-  getApp(isBool: boolean) {
-    this.mainApp.emit(isBool);
-    this.frames.isOrder = false;
-  }
-
-  checkImage(img: string): boolean {
-    return img.startsWith('http') ? true : false
-  }
-
-  openImg(img: any, num: number) {
-    this.frames.letterColection(img.character.toUpperCase()).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
-      const modalRef = this.modalService.open(ImgCatalogComponent, { size: 'lg' });
-      modalRef.componentInstance.img = el.results;
-      modalRef.componentInstance.character = this.frames.letterImges[num];
-
-      modalRef.result.then((result) => { }, (reason) => {
-        if (reason) {
-
-          if (!this.frames.apiPhoto) {
-            this.letterChar = this.frames.letterImges[num].image.character;
-
-          }
-
-          this.frames.letterImges[num].image = reason;
-     
-        }
-      })
-      
-    })
-
-  }
 
   myOrder() {
     if (localStorage.getItem('loginAutorization')) {
       this.frames.spinner.show();
       this.frames.isTop = true;
+      
       const imgs: any[] = [];
       this.frames.letterImges.forEach((i, index) => {
         const obj = {

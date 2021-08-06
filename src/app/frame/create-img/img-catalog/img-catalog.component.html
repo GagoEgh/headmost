@@ -6,15 +6,18 @@
 <div class="modal-body">
     <div class="img-menu">
         <div class="block">
-            <div *ngIf = 'frames.apiPhoto else myPhoto' class="block-1">
+            <div *ngIf='frames.apiPhoto else myPhoto' class="block-1">
                 <div class="bg-img" *ngFor='let item of frames.painding.imgs' #newItem (click)='changeImg(item)'
                     [style.background-image]="'url('+ item.thumbnail + ')'">
                 </div>
             </div>
             <ng-template #myPhoto>
-                <div class="bg-img" *ngFor='let img of frames.fileList' (click)="showMyPhoto(img)"
-                    [style.background-image]="'url('+ img.image + ')'">
+                <div class="block-1">
+                    <div class="bg-img" *ngFor='let img of frames.fileList' (click)="showMyPhoto(img)"
+                        [style.background-image]="'url('+ img.image + ')'">
+                    </div>
                 </div>
+
             </ng-template>
         </div>
         <nav class="bar">

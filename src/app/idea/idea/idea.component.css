@@ -9,6 +9,7 @@
 
 .img-idea{
     margin: 10px;
+   
 }
 
 .imgs{
@@ -16,12 +17,11 @@
     height: 200px;
     background-position: center;
     background-size: 100% 100%;
-
+   
 }
 
 
-.info{
-
+.idea-info{
     display: flex;
     justify-content: space-between;
 }
@@ -47,8 +47,8 @@
 
 .order{
     cursor: pointer;
-    padding: 10px;
-    width: 50px;
+    padding: 6px;
+    width: 60px;
     margin: 10px 0;
     background-color:#c80063;
 }

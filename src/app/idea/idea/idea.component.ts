@@ -75,8 +75,6 @@ export class IdeaComponent implements OnInit {
   }
 
   onScrollDown(ev: any) {
-    console.log('scroll');
-
     this.appendItems();
   }
 

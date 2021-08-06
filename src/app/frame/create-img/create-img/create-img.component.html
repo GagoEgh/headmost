@@ -5,7 +5,7 @@
       <p class="bottom">փոխել նկարները</p>
     </div>
     <div class="delete" [style.opacity]="topLettering.isMenu?'1':'0'">
-      <p class="bottom" (click)="getApp(true)">ջնջել տեքստը</p>
+      <p class="bottom" (click)="getApp(true,mainApp)">ջնջել տեքստը</p>
     </div>
     <div class="lettering" *ngIf='frames.letterImges.length>3' [style.opacity]="topLettering.isForm?'1':'0'">
       <form [formGroup]="validateForm">

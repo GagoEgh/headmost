@@ -33,7 +33,6 @@ export class FramesServService {
     fileList: any = [];
     token: string = '';
     isMyOrder = false;
-   // myImgOffset = 0;
     limit = 10;
     offset = 0;
     isTop = false;
@@ -94,9 +93,11 @@ export class FramesServService {
         api_edit: 'edit-user-details/',
         api_files: '/files',
         api_user_image: '/user-image',
-        api_created_frame: '/created-frame'
+        api_created_frame: '/created-frame',
+        api_magnet:'/add-magnet-in-card'
     }
 
+    
     painding: Painding = {
         values: {
             colored: false,
@@ -284,6 +285,10 @@ export class FramesServService {
         return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_created_frame + `/${id}/`)
     }
 
+    magnetImg(obj:any){
+        return this.url.post(this.api.worldApi+this.api.api_order+this.api.api_card+this.api.api_magnet+'/',obj,
+        { headers: { 'Authorization': this.token } })
+    }
     letterColorFone() {
         this.spinner.show();
         this.text = this.validateForm.get('text')?.value;

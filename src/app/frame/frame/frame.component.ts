@@ -52,15 +52,17 @@ export class FrameComponent extends FrameImag implements OnInit {
   }
 
   ngOnInit(): void {
+    this.frames.letterImges = [];
+    this.frames.isOrder = false;
     super.myForm();
     super.imgColor();
-    this.frames.framesFoneGet().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
+    this.frames.framesFoneGet().pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
       this.frames.div = el.results;
       this.frames.background = el.results[0];
 
     })
 
-    this.frames.getFrames().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
+    this.frames.getFrames().pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
       this.frames.framesImge = el.results;
       this.frameClick(this.frames.index);
     })
@@ -93,7 +95,7 @@ export class FrameComponent extends FrameImag implements OnInit {
   // }
 
   ngOnDestroy() {
-    this._subscribe$.next();
-    this._subscribe$.complete();
+    this._unsubscribe$.next();
+    this._unsubscribe$.complete();
   }
 }

@@ -2,3 +2,55 @@
     border-bottom: 1px dashed;
     cursor: pointer;
 }
+
+.menu{
+    margin-left: 100px;
+}
+
+.delete{
+    margin-left: 30px;
+}
+
+.im{
+    background: transparent;
+}
+
+.imgs{
+    margin: 10px 0 0 200px;
+    flex-wrap: wrap;
+}
+
+.bgr{
+    border-radius: 5px;
+    width: 60px;
+    height: 100px;
+}
+
+.bgr p{
+    text-align: center;
+    font-size: 10px;
+    margin: 40% 5px;
+}
+
+.bg-img{
+    width: 60px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+.bg-img:nth-child(odd){
+    transform: rotate(5deg);
+}
+
+.bg-img:nth-child(even){
+    transform: rotate(-3deg);
+}
+
+.bg-img:nth-child(3n){
+    transform: rotate(-6deg);
+}
+
+.bg-img:first-child{
+    transform: rotate(2deg);
+}
+

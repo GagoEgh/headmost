@@ -46,7 +46,8 @@ export interface Api {
     api_edit: string,
     api_files:string,
     api_user_image:string,
-    api_created_frame:string
+    api_created_frame:string,
+    api_magnet:string
 }
 
 export interface FramesImg {

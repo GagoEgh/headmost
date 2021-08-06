@@ -12,6 +12,7 @@
 
 .img-menu{
     display: flex;
+
 }
 
 .block{
@@ -24,8 +25,10 @@
     display: flex;
     flex-wrap: wrap;
 }
+
 .menu{
     margin-top: 30px;
+
 }
 
 .bg-img{
@@ -36,7 +39,6 @@
     margin: 5px 10px;
     cursor: pointer;
     transition: 0.5s;
-  
 }
 
 .bg-img:hover{
@@ -67,6 +69,7 @@ h2{
     color: grey;
     cursor: pointer;
     word-break: break-word;
+    width: 80px;
 }
 
 .list:hover{

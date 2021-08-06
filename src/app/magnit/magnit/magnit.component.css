@@ -2,12 +2,14 @@
 .lightSheme{
     background: url('src/assets/1x/bg_magnit.jpg') repeat 0 0;
     padding: 20px;
+  
 }
 
 
 .magnit{
     height: 480px;
     width: 60%;
+    /* width: fit-content; */
     min-width: 930px;
     margin: 10px auto;
     background: url('src/assets/1x/magnit.jpg')  no-repeat 0 0 #fbfbfb;
@@ -22,6 +24,7 @@
 
 .letter input{
     background: transparent;
+  outline: none;
 }
 
 .imgColor{

@@ -15,19 +15,18 @@
           </div>
         </div>
         <div class="letter" *ngIf='frames.isImg else create'>
-          <!-- *ngIf='frames.isImg else create' -->
           <form [formGroup]="frames.validateForm">
             <input type="text" formControlName='text' maxlength="9" placeholder="ԳՐԵՔ ԲԱՌԸ" trim>
           </form>
           <p class="btn" (click)="open()" *ngIf='frames.isImg'>ինչպես գրել բառ, տառ և սիմվոլ</p>
         </div>
         <button type="submit" (click)='onSubmit()' class="create" *ngIf='frames.isImg'>ՍՏԵՂԾԵԼ ՆԿԱՐԸ</button>
+        <app-order *ngIf='frames.isOrder'> </app-order>
         <button *ngIf='frames.isOrder' class="create" [style.margin-top]="'0px'" (click)="showFrame()">ՊԱՏՎԻՐԵԼ ԿՐԿԻՆ
         </button>
       </div>
     </div>
   </div>
-  <!-- (mainApp)="deletImg($event)" -->
   <ng-template #create>
     <app-create-magnit (mainApp)="deletImg($event)"></app-create-magnit>
   </ng-template>

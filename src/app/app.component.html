@@ -1,18 +1,18 @@
 <div class="conteiner" [style.min-width]='frames.isMyOrder?"1000px":"100%"'>
     <ul class="silki">
       <li class="parent">
-        <p class="frame"  >ԿՈՆՍՏՐՈՒԿՏՈՐ</p>
+        <p class="frame">ԿՈՆՍՏՐՈՒԿՏՈՐ</p>
         <ul class="li-nav">
           <li>
-            <a class="frame" routerLink='' >ՇՐՋԱՆԱԿ</a>
+            <a class="frame" (click)='getFrame()' >ՇՐՋԱՆԱԿ</a>
           </li>
           <li>
-            <a class="frame" routerLink='magnit'>ՄԱԳՆԻՏ</a>
+            <a class="frame" (click)='getMagnit()'>ՄԱԳՆԻՏ</a>
           </li>
         </ul>
       </li>
       <li>
-        <a class="frame" routerLink='/idea' routerLinkActive='active'>idea</a>
+        <a class="frame" routerLink='/idea' routerLinkActive='active'>ԳԱՂԱՓԱՐՆԵՐ</a>
       </li>
       <li>
         <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
@@ -21,7 +21,7 @@
         </a>
       </li>
       <li *ngIf='frames.userReg, else log'>
-        <a class="frame" (click)="open()">login</a>
+        <a class="frame" (click)="open()">ՄՈՒՏՔ ԳՈՐԾԵԼ</a>
       </li>
       <ng-template #log>
         <ul>

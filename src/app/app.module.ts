@@ -1,6 +1,6 @@
-import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule }   from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -13,7 +13,13 @@ import { RegisterModule } from './register/register-module';
 import { UserGuard } from './user-data/userGuard';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 registerLocaleData(en);
 
@@ -30,10 +36,17 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     RegisterModule,
     InfiniteScrollModule,
-    NgxSpinnerModule 
+    NgxSpinnerModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    })
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [{ provide: NZ_I18N, useValue: en_US },UserGuard],
+  providers: [{ provide: NZ_I18N, useValue: en_US }, UserGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -81,6 +81,7 @@ export class OrderComponent implements OnInit {
       shipping: [null, [Validators.required]],
       comment: ['', []],
       sale: ['', []],
+      postal:['',[Validators.required]]
     });
 
   }
@@ -123,16 +124,16 @@ export class OrderComponent implements OnInit {
       price: this.frames.sum,
       comment: this.validateForm.get('comment')?.value,
       promo_code: this.promoId,
-      order_items: ids
+      order_items: ids,
+      postal_code:this.validateForm.get('postal')?.value,
     }
 
-
+    console.log(order)
 
     if (this.validateForm.valid && this.count != 1) {
       this.frames.userOrder(order).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
         this.count++;
         this.frames.isdisible = true
-        // this.frames.isOrder =false;
 
         window.open('https://www.youtube.com/', '_self');
 

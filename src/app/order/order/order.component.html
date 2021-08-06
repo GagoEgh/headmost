@@ -71,6 +71,17 @@
       <ng-template #shipping>
         <p *ngIf="erroreName('shipping')">{{erroreStr}} </p>
       </ng-template>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="postal">Փոստի հասցեն</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='postal' nzHasFeedback>
+          <input nz-input formControlName="postal" id="postal" trim/> 
+        </nz-form-control>
+      </nz-form-item>
+      <ng-template #postal>
+        <p *ngIf="erroreName('postal')">{{erroreStr}} </p>
+      </ng-template>
+
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="comment">Comment</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
@@ -92,13 +103,13 @@
     <div class="order">
       <h2 class="title">ՊԱՏՎԵՐԻ ՆԿԱՐԱԳՐՈՒԹՅՈԻՆ</h2>
       <div class="data" *ngFor='let list of frames.orderList'>
-        <p><span>{{list.created_frame_details.word.length}}տառ, </span>{{
-          list.created_frame_details.frame_details.name_hy}}</p>
-        <p class="smoll">{{ list.created_frame_details.frame_details.price}}դր/տառ</p>
-        <p>{{list.created_frame_details.price}}դր</p>
+        <p><span>{{list?.created_frame_details?.word?.length}}տառ, </span>{{
+          list?.created_frame_details?.frame_details?.name_hy}}</p>
+        <p class="smoll" *ngIf="list?.created_frame_details?.frame_details?.price">{{ list?.created_frame_details?.frame_details?.price}}դր/տառ</p>
+        <p>{{list?.created_frame_details?.price}}դր</p>
         <span class="symbol" (click)='deleteDate(list)'>&#10005;</span>
       </div>
-      <p class="sum">ընդամենը {{frames.sum}}դր</p>
+      <p class="sum">ընդամենը {{frames?.sum}}դր</p>
 
     </div>
   </div>

@@ -8,7 +8,7 @@
 .block{
     background: #f5deb3;
     border-radius: 20px;
-
+    margin: 5px;
 }
 
 .title{
@@ -31,7 +31,7 @@
 .user{
     display: flex;
     justify-content: space-between;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     padding: 20px;
     margin-bottom: 20px;
 }
@@ -54,8 +54,8 @@
     margin-right:40px ;
 }
 
-.info{
-    display: flex
+.user-info{
+    display: flex !important;
 }
 
 .batn{
@@ -90,8 +90,8 @@
         width: 650px;
     }
 
-    .info{
-        margin-top: 20px;
+    .user-info{
+        margin-top: 20px !important;
     }
 
     .user{

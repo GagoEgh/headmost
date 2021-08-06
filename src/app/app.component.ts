@@ -5,7 +5,7 @@ import { LoginComponent } from './register/login/login.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,8 +13,12 @@ import { Subject } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   public unsubscribe$ = new Subject()
-  constructor(public frames: FramesServService, private modalService: NgbModal,
-    private router: Router) { }
+  constructor(public frames: FramesServService, 
+    private _translate:TranslateService,
+    private modalService: NgbModal,
+    private router: Router) { 
+      this._translate.setDefaultLang('hy')
+    }
 
 
   ngOnInit(): void {
@@ -88,6 +92,17 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/'])
   }
 
+  getFrame(){
+    this.router.navigate(['/']);
+    this.frames.isImg = true;
+    this.frames.isOrder = false;
+  }
+
+  getMagnit(){
+    this.router.navigate(['/magnit']);
+    this.frames.isImg = true;
+    this.frames.isOrder = false;
+  }
   ngOnDestroy() {
     this.unsubscribe$.next();
     this.unsubscribe$.complete()
