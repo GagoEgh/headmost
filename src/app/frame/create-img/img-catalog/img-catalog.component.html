@@ -21,10 +21,10 @@
             </ng-template>
         </div>
         <nav class="bar">
-            <h2>կարգաորումների ընտրութուն</h2>
+            <h2>{{'_img-menu._menu-title'|translate}}</h2>
             <div class="menu">
                 <div class="color">
-                    <p class="subtitle">գույներ</p>
+                    <p class="subtitle">{{'_img-menu._color'|translate}}</p>
                     <ul class="ul">
                         <li class="list" *ngFor='let block of frames.imgColor' (click)='changeFone(block)'
                             [ngClass]="{'listActive':frames.painding.id=== block.ceys.id}">
@@ -33,14 +33,14 @@
                     </ul>
                 </div>
                 <div class="color">
-                    <p class="subtitle">կատեգորիա</p>
+                    <p class="subtitle">{{'_img-menu._categori'|translate}}</p>
                     <ul class="ul">
                         <li class="list" *ngFor='let category of categoryList, let i = index'
                             (click)='showCategory(category)'
                             [ngClass]="{'listActive':frames.painding.categoryId=== category.id}">
                             {{category.name_hy}}
                         </li>
-                        <li class="list" (click)="getMyPhoto()">իմ նկարները</li>
+                        <li class="list" (click)="getMyPhoto()">{{'_img-menu._my-photo'|translate}}</li>
                     </ul>
                 </div>
             </div>

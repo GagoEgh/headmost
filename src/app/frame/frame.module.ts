@@ -6,8 +6,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgbdModalContentComponent } from './ngbd-modal-content/ngbd-modal-content.component';
 import { CreateImgModule } from './create-img/create-img-module';
 import { SharedModule } from '../shared/shared.modult';
-
-
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 
 const routs:Routes=[
@@ -26,7 +30,14 @@ const routs:Routes=[
     ReactiveFormsModule,
     CreateImgModule,
     SharedModule,
-    RouterModule.forChild(routs)
+    RouterModule.forChild(routs),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    })
   ],
   exports:[RouterModule]
 })

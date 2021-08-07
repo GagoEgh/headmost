@@ -13,11 +13,12 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AppComponent implements OnInit {
   public unsubscribe$ = new Subject()
+ 
   constructor(public frames: FramesServService, 
     private _translate:TranslateService,
     private modalService: NgbModal,
     private router: Router) { 
-      this._translate.setDefaultLang('hy')
+      this._translate.setDefaultLang(this.frames.lang)
     }
 
 

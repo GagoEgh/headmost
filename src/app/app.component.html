@@ -1,18 +1,18 @@
 <div class="conteiner" [style.min-width]='frames.isMyOrder?"1000px":"100%"'>
     <ul class="silki">
       <li class="parent">
-        <p class="frame">ԿՈՆՍՏՐՈՒԿՏՈՐ</p>
+        <p class="frame">{{'_menu.konstruktor._konstr'|translate}}</p>
         <ul class="li-nav">
           <li>
-            <a class="frame" (click)='getFrame()' >ՇՐՋԱՆԱԿ</a>
+            <a class="frame" (click)='getFrame()' >{{'_menu.konstruktor._frame'|translate}}</a>
           </li>
           <li>
-            <a class="frame" (click)='getMagnit()'>ՄԱԳՆԻՏ</a>
+            <a class="frame" (click)='getMagnit()'>{{'_menu.konstruktor._magnet'|translate}}</a>
           </li>
         </ul>
       </li>
       <li>
-        <a class="frame" routerLink='/idea' routerLinkActive='active'>ԳԱՂԱՓԱՐՆԵՐ</a>
+        <a class="frame" routerLink='/idea' routerLinkActive='active'>{{'_menu._idea'|translate}}</a>
       </li>
       <li>
         <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
@@ -21,17 +21,17 @@
         </a>
       </li>
       <li *ngIf='frames.userReg, else log'>
-        <a class="frame" (click)="open()">ՄՈՒՏՔ ԳՈՐԾԵԼ</a>
+        <a class="frame" (click)="open()">{{'_user._exit'|translate}}</a>
       </li>
       <ng-template #log>
         <ul>
           <li class="parent">
             <a class="activeHover" routerLinkActive='active'> {{frames.userData.user_details.first_name}}
               <ul class="user-data">
-                <li class="list"><a routerLink='/user/profil'>պռոֆիլ</a></li>
-                <li class="list"><a routerLink='/user/imags'>իմ նկարները</a></li>
-                <li class="list"><a routerLink='/user/user-order'>իմ պատվերները</a></li>
-                <li class="list" (click)="close()">դուրս գալ</li>
+                <li class="list"><a routerLink='/user/profil'>{{'_menu._user._profil'|translate}}</a></li>
+                <li class="list"><a routerLink='/user/imags'>{{'_menu._user._images'|translate}}</a></li>
+                <li class="list"><a routerLink='/user/user-order'>{{'_menu._user._orders'|translate}}</a></li>
+                <li class="list" (click)="close()">{{'_menu._user._close'|translate}}</li>
               </ul>
             </a>
           </li>

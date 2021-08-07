@@ -1,14 +1,12 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder} from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FramesImg } from '../../shared/img-ramka';
-import { NgbdModalContentComponent } from '../ngbd-modal-content/ngbd-modal-content.component';
 import { FramesServService } from '../../shared/frames-serv.service'
-import { Subject } from 'rxjs';
-import { takeLast, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { FrameImag } from 'src/app/shared/frame-image';
 import { Router } from '@angular/router';
-
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-frame',
@@ -21,10 +19,11 @@ export class FrameComponent extends FrameImag implements OnInit {
   heigth: number | undefined;
   width: number | undefined;
   scale: number = 1;
-
+  placeholder='';
   constructor(public frames: FramesServService, public modalService: NgbModal,
-    public rout: Router, public form: FormBuilder,) {
-    super(frames, modalService, rout, form)
+    public rout: Router, public form: FormBuilder,private _translate:TranslateService,) {
+    super(frames, modalService, rout, form);
+    this._translate.setDefaultLang(this.frames.lang)
   }
 
   @HostListener('window:resize', ['$event'])
@@ -51,11 +50,16 @@ export class FrameComponent extends FrameImag implements OnInit {
     }
   }
 
+ 
   ngOnInit(): void {
     this.frames.letterImges = [];
     this.frames.isOrder = false;
     super.myForm();
     super.imgColor();
+    this._translate.get('_img-text-valid._placeholder').pipe(takeUntil(this._unsubscribe$))
+    .subscribe((res:any)=>{
+      this.placeholder = res;
+    })
     this.frames.framesFoneGet().pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
       this.frames.div = el.results;
       this.frames.background = el.results[0];
@@ -88,11 +92,6 @@ export class FrameComponent extends FrameImag implements OnInit {
   changeBg(bg: any) {
     this.frames.background = bg;
   }
-
-  // deletImg(ev: boolean) {
-  //   this.frames.isImg = ev;
-  //   this.frames.validateForm.reset();
-  // }
 
   ngOnDestroy() {
     this._unsubscribe$.next();

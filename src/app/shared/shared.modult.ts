@@ -14,7 +14,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NgxSpinnerModule } from "ngx-spinner";
-
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
     declarations:[OrderComponent],
@@ -32,7 +32,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
         MatNativeDateModule,
         NgxTrimDirectiveModule,
         NgxMaskModule,
-        NgxSpinnerModule],
+        NgxSpinnerModule,
+        TranslateModule
+    ],
     imports:[
         CommonModule,
         FormsModule,

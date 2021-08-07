@@ -13,6 +13,7 @@ export class FramesServService {
     letterImges: LetterImge[] = [];
     framesImge: FramesImg[] = [];
     selectedValue: any[] = [];
+    lang ='hy';
     isBar = true;
     fileUrl = {};
     isOrder: boolean = false;
