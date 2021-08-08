@@ -11,6 +11,7 @@
     top: 80px;
     transform-origin: top;
     box-shadow: 3px 2px 22px 0 rgb(87 87 87);
+    background-color: white;
 }
 
 .user-data, .order{

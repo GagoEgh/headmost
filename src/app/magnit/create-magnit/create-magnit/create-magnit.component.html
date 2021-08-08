@@ -1,10 +1,10 @@
 
 <div class="menu">
     <div class="change" (click)='changeImg()'>
-        <p class="bottom">փոխել նկարները</p>
+        <p class="bottom">{{'_imgs._change-image'|translate}}</p>
     </div>
     <div class="delete">
-        <p class="bottom" (click)="getApp(true,mainApp)">ջնջել տեքստը</p>
+        <p class="bottom" (click)="getApp(true,mainApp)"> {{'_imgs._delete-text'|translate}}</p>
     </div>
 </div>
 <div class="im" > 
@@ -12,9 +12,9 @@
         <div class="bg-img" *ngFor='let img of frames.letterImges,let i = index' (click)="openImg(img,i)"
             [style.background-image]="checkImage(img.image.image)?'url( '+ img.image.image + ')':'url( http://sirun-bar-api.annaniks.com/'+ img.image.image + ')'">
             <div class="bgr">
-                <p>ընտրել ուրիշ նկար</p>
+                <p>{{'_imgs._img-hover'|translate}}</p>
             </div>
         </div>
     </div>
 </div>
-<button   class="btn-save" (click)='myMagnitOrder()'*ngIf='!frames.isOrder'>ՊԱՀՊԱՆԵԼ</button> 
+<button   class="btn-save" (click)='myMagnitOrder()'*ngIf='!frames.isOrder'>{{'_imgs._batn-save'|translate}}</button> 

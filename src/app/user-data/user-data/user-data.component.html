@@ -1,7 +1,7 @@
 <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
     <div class="col">
       <div>
-        <nz-form-label nzRequired nzFor="frstName">Frst Name</nz-form-label>
+        <nz-form-label nzRequired nzFor="frstName">{{'_order._user-data._frstName'|translate}}</nz-form-label>
       </div>
       <nz-form-item>
         <nz-form-control  [nzErrorTip]='frstEr' nzHasFeedback>
@@ -13,7 +13,7 @@
       </ng-template>
 
       <div>
-        <nz-form-label nzRequired nzFor="pas">Last Name</nz-form-label>
+        <nz-form-label nzRequired nzFor="pas">{{'_order._user-data._lastName'|translate}}</nz-form-label>
       </div>
       <nz-form-item>
         <nz-form-control [nzErrorTip]="last" nzHasFeedback>
@@ -25,7 +25,7 @@
       </ng-template>
 
       <div>
-        <nz-form-label nzRequired nzFor="lastName">Addres</nz-form-label>
+        <nz-form-label nzRequired nzFor="lastName">{{'_order._user-data._addres'|translate}}</nz-form-label>
       </div>
       <nz-form-item>
         <nz-form-control [nzErrorTip]='add' nzHasFeedback>
@@ -38,7 +38,7 @@
 
 
       <div>
-        <nz-form-label nzRequired nzFor="email">E-mail</nz-form-label>
+        <nz-form-label nzRequired nzFor="email">{{'_order._user-data._email'|translate}}</nz-form-label>
       </div>
       <nz-form-item>
         <nz-form-control [nzErrorTip]="email" nzHasFeedback>
@@ -53,7 +53,7 @@
     </div>
     <div class="col">
       <div>
-        <nz-form-label nzRequired nzFor="phoneNumber">Phone</nz-form-label>
+        <nz-form-label nzRequired nzFor="phoneNumber">{{'_order._user-data._phoneNumber'|translate}}</nz-form-label>
       </div>
       <nz-form-item>
         <nz-form-control [nzErrorTip]="phone">
@@ -64,7 +64,7 @@
         <p *ngIf="erroreName('phoneNumber')">{{erroreStr}} </p>
       </ng-template>
       <div class="region">
-        <nz-form-label  nzRequired>Country</nz-form-label>
+        <nz-form-label  nzRequired>{{'_order._user-data._country'|translate}}</nz-form-label>
         <nz-form-control  [nzErrorTip]="country">
           <nz-select nzAllowClear nzPlaceHolder="COUNTRY"  [(ngModel)]='frames.userData.city' nzShowSearch formControlName='country'>
             <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country.name_hy '>
@@ -82,7 +82,7 @@
       <nz-form-item>
         <nz-form-control [nzErrorTip]="date" nzHasFeedback >
           <mat-form-field appearance="fill">
-            <mat-label>ծննդյան տարեթիվ</mat-label>
+            <mat-label>{{'_order._user-data._brtDay'|translate}}</mat-label>
             <input matInput [matDatepicker]="picker" formControlName='date' >
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker ></mat-datepicker>
@@ -94,7 +94,7 @@
       </ng-template>
     </div>
     <p *ngIf = 'updateOk'>{{updateOk}}</p>
-    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">update</button>
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">{{'_order._user-data._update'|translate}}</button>
   </form>
 
 

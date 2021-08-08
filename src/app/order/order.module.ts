@@ -18,7 +18,8 @@ const routs:Routes =[
   ],
   imports: [
     SharedModule,
-    RouterModule.forChild(routs)
+    RouterModule.forChild(routs),
+    
   ],
   exports:[RouterModule],
 

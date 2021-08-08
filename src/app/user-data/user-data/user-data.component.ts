@@ -20,6 +20,7 @@ export class UserDataComponent implements OnInit {
   constructor(private valid: ValidationServService, private fb: FormBuilder, public frames: FramesServService) { }
 
   ngOnInit(): void {
+
     this.frames.isMyOrder = false;
     this.frames.userCountry();
     this.validateForm = this.fb.group({

@@ -1,10 +1,11 @@
 
 <div class="wrap" #wrap [ngStyle]="setStyle()" *ngIf='this.frames.orderList.length,else noText'
-  [style.top]="frames.isTop?'-50px':'50px'">
+  >
+  <!-- [style.top]="frames.isTop?'-50px':'5px'" -->
   <div class="user-data">
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="frstName">Frst Name</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="frstName">{{ _frstName }}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='frstEr' nzHasFeedback>
           <input nz-input formControlName="frstName" id="frstName" trim
             [(ngModel)]='frames.userData.user_details.first_name' />
@@ -14,7 +15,7 @@
         <p *ngIf="erroreName('frstName')">{{erroreStr}} </p>
       </ng-template>
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">{{_email}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="email" nzHasFeedback>
           <input nz-input formControlName="email" trim id="email" [(ngModel)]='frames.userData.user_details.username' />
         </nz-form-control>
@@ -23,7 +24,7 @@
         <p *ngIf="erroreName('email')">{{erroreStr}} </p>
       </ng-template>
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="phoneNumber">Phone Number</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="phoneNumber">{{_phoneNumber}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="phone">
           <input nz-input formControlName="phoneNumber" id="phoneNumber" mask='(000)00-00-00'
             [(ngModel)]='frames.userData.phone_number' />
@@ -33,7 +34,7 @@
         <p *ngIf="erroreName('phoneNumber')">{{erroreStr}} </p>
       </ng-template>
       <div class="region">
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Country</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>{{_country}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="country">
           <nz-select nzAllowClear nzPlaceHolder="COUNTRY" [(ngModel)]='frames.userData.city' nzShowSearch
             formControlName='country'>
@@ -50,7 +51,7 @@
         <p *ngIf="erroreName('country')" class="erroreCountry">{{erroreStr}}</p>
       </ng-template>
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="addres">Address</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="addres">{{_addres}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="addres" nzHasFeedback>
           <input nz-input formControlName="addres" id="addres" [(ngModel)]='frames.userData.address' />
         </nz-form-control>
@@ -59,7 +60,7 @@
         <p *ngIf="erroreName('addres')">{{erroreStr}} </p>
       </ng-template>
       <div class="region">
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Shipping</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>{{_shipping}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="shipping">
           <nz-select nzAllowClear nzPlaceHolder="Shipping" nzShowSearch formControlName='shipping'>
             <nz-option *ngFor='let addres of shiping ' [nzValue]="addres.id"
@@ -73,7 +74,7 @@
       </ng-template>
 
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="postal">Փոստի հասցեն</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="postal">{{ __addresPost}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='postal' nzHasFeedback>
           <input nz-input formControlName="postal" id="postal" trim/> 
         </nz-form-control>
@@ -83,39 +84,39 @@
       </ng-template>
 
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="comment">Comment</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="comment">{{ _comment}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
           <input nz-input formControlName="comment" id="comment" />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sale">Sale</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sale">{{_sale}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
           <input nz-input formControlName="sale" id="sale" (input)="salePost($event)" />
         </nz-form-control>
       </nz-form-item>
       <p class="red">{{promoError}}</p>
       <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"
-        [disabled]='frames.isdisible'>ՊԱՏՎԻՐԵԼ</button>
+        [disabled]='frames.isdisible'>{{_btnOrder}}</button>
     </form>
   </div>
   <div>
     <div class="order">
-      <h2 class="title">ՊԱՏՎԵՐԻ ՆԿԱՐԱԳՐՈՒԹՅՈԻՆ</h2>
+      <h2 class="title">{{title}}</h2>
       <div class="data" *ngFor='let list of frames.orderList'>
-        <p><span>{{list?.created_frame_details?.word?.length}}տառ, </span>{{
+        <p><span>{{list?.created_frame_details?.word?.length}}{{_imgLength}}, </span>{{
           list?.created_frame_details?.frame_details?.name_hy}}</p>
-        <p class="smoll" *ngIf="list?.created_frame_details?.frame_details?.price">{{ list?.created_frame_details?.frame_details?.price}}դր/տառ</p>
-        <p>{{list?.created_frame_details?.price}}դր</p>
+        <p class="smoll" *ngIf="list?.created_frame_details?.frame_details?.price">{{ list?.created_frame_details?.frame_details?.price}}{{_letterSum}}</p>
+        <p>{{list?.created_frame_details?.price}}{{_price}}</p>
         <span class="symbol" (click)='deleteDate(list)'>&#10005;</span>
       </div>
-      <p class="sum">ընդամենը {{frames?.sum}}դր</p>
+      <p class="sum">ընդամենը {{frames?.sum}}{{_price}}</p>
 
     </div>
   </div>
 </div>
 
 <ng-template #noText>
-  <H3 class="noText">ԶԱՄԲՅՈՒՂԸ ԴԱՏԱՐԿ Է</H3>
+  <H3 class="noText">{{_carzin}}</H3>
 </ng-template>
 <ng-content></ng-content>

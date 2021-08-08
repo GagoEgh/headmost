@@ -1,10 +1,10 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
-import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -20,6 +20,17 @@ export class OrderComponent implements OnInit {
   width: number | undefined;
   promoError: string = '';
   shiping: any[] = [];
+  _frstName = '';
+  _brtDay = '';
+  _email = '';
+  _phoneNumber = '';
+  _country = '';
+  _addres = '';
+  _sale = '';
+  _shipping = '';
+  __addresPost = '';
+  _comment = '';
+  _btnOrder = '';
   scale: number = 1;
   promoId = null;
   sumInit = 0;
@@ -50,11 +61,38 @@ export class OrderComponent implements OnInit {
     }
   }
 
-  constructor(public frames: FramesServService, private fb: FormBuilder, private i18n: NzI18nService, public valid: ValidationServService) { }
+  constructor(public frames: FramesServService, private fb: FormBuilder,
+    private _translate: TranslateService, public valid: ValidationServService) {
 
+  }
+
+  title='';
+  _imgLength ='';
+  _letterSum = '';
+  _price = '';
+  _addSum = '';
+  _carzin = '';
   ngOnInit(): void {
-    this.frames.isdisible = false;
+    this._translate.get(['_order._user-data','_order._inform-img']).pipe(takeUntil(this._subscribe$)).subscribe((res:any) => {
+       this._frstName = res["_order._user-data"]._frstName ;
+       this._email = res["_order._user-data"]._email;
+       this._phoneNumber = res["_order._user-data"]._phoneNumber;
+       this._country = res["_order._user-data"]._country;
+       this._addres = res["_order._user-data"]._addres;
+       this._sale = res["_order._user-data"].sale;
+       this._shipping = res["_order._user-data"]._shipping;
+       this.__addresPost = res["_order._user-data"]._addresPost;
+       this._comment = res["_order._user-data"]._comment;
+       this._btnOrder = res["_order._user-data"]._btnOrder;
 
+       this.title = res["_order._inform-img"].title;
+       this._imgLength = res["_order._inform-img"]._imgLength;
+       this._letterSum = res["_order._inform-img"]._letterSum;
+       this._price = res["_order._inform-img"]._price;
+       this._addSum = res["_order._inform-img"]._addSum;
+       this._carzin = res["_order._inform-img"]._carzin;
+    })
+    this.frames.isdisible = false;
     setTimeout(() => {
       this.frames.isMyOrder = false;
     })
@@ -81,7 +119,7 @@ export class OrderComponent implements OnInit {
       shipping: [null, [Validators.required]],
       comment: ['', []],
       sale: ['', []],
-      postal:['',[Validators.required]]
+      postal: ['', [Validators.required]]
     });
 
   }
@@ -125,7 +163,7 @@ export class OrderComponent implements OnInit {
       comment: this.validateForm.get('comment')?.value,
       promo_code: this.promoId,
       order_items: ids,
-      postal_code:this.validateForm.get('postal')?.value,
+      postal_code: this.validateForm.get('postal')?.value,
     }
 
     console.log(order)
@@ -141,7 +179,7 @@ export class OrderComponent implements OnInit {
 
     }
   }
- 
+
   salePost(event: any) {
 
     this.validateForm.get('sale')?.setValue(event.target.value)
@@ -169,7 +207,7 @@ export class OrderComponent implements OnInit {
       this.frames.orderList = this.frames.orderList.filter((val: any) => {
         return val.id != obj.id
       })
-      
+
       if (this.frames.orderList.length === 0) {
         this.frames.showFrame()
       }
@@ -178,7 +216,7 @@ export class OrderComponent implements OnInit {
 
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this._subscribe$.next();
     this._subscribe$.complete();
   }

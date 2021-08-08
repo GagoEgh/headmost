@@ -7,11 +7,10 @@
         [style.z_index]="frames.isBar?'22':'0'">
         <img src="./assets/1x/outline_view_headline_black_24dp.png">
     </span>
-
     <nav class="bar" [style.display]="frames.isBar?'block':'none'">
-        <h2 class="title">Նվերների տարբերակներ</h2>
+        <h2 class="title">{{'_idea-img._nav-title'|translate}}</h2>
         <ul>
-            <li><a (click)="ideaGroup()">Բոլորը</a></li>
+            <li><a (click)="ideaGroup()">{{'_idea-img._all'|translate}}</a></li>
             <li *ngFor='let item of frameIdeas'>
                 <a (click)="ideaGroup(item)">{{item.name_hy}}</a>
             </li>
