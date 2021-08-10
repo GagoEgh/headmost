@@ -249,3 +249,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     box-shadow: 1px 2px 1px rgb(77, 57, 7);
     transition: 0.5s;
  }
+
+ .ant-form-item-label>label {
+
+    font-size: 10px !important;
+}

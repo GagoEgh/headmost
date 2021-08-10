@@ -25,7 +25,7 @@ export class CreateMagnitComponent extends FrameImag implements OnInit {
   myMagnitOrder() {
     if (localStorage.getItem('loginAutorization')) {
       this.frames.spinner.show();
-      this.frames.isTop = true;
+      //this.frames.isTop = true;
       const imgs: any[] = [];
       this.frames.letterImges.forEach((i, index) => {
         const obj = {

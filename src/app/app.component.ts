@@ -5,7 +5,7 @@ import { LoginComponent } from './register/login/login.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,17 +13,22 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AppComponent implements OnInit {
   public unsubscribe$ = new Subject()
- 
-  constructor(public frames: FramesServService, 
-    private _translate:TranslateService,
+
+  constructor(public frames: FramesServService,
+    private _translate: TranslateService,
     private modalService: NgbModal,
-    private router: Router) { 
-      this._translate.setDefaultLang(this.frames.lang)
-    }
+    private router: Router) {
+    const lang: any = localStorage.getItem('language');
+    this.frames.lang = lang;
+    this._translate.setDefaultLang(this.frames.lang)
+  }
 
 
   ngOnInit(): void {
-    this.scrollToTopByChangeRoute()
+    this.scrollToTopByChangeRoute();
+
+
+    console.log('app', this.frames.lang)
     if (localStorage.getItem('loginAutorization')) {
       const token: any = localStorage.getItem('loginAutorization');
       this.frames.token = token;
@@ -62,6 +67,7 @@ export class AppComponent implements OnInit {
 
     localStorage.removeItem('loginAutorization');
     localStorage.removeItem('user-date');
+    localStorage.removeItem('language')
     this.frames.sum = 0;
     this.frames.orderList = [];
     this.frames.token = '';
@@ -93,22 +99,40 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/'])
   }
 
-  getFrame(){
+  getFrame() {
     this.router.navigate(['/']);
     this.frames.isImg = true;
     this.frames.isOrder = false;
     this.frames.validateForm.reset()
   }
 
-  getMagnit(){
+  getMagnit() {
     this.router.navigate(['/magnit']);
     this.frames.isImg = true;
     this.frames.isOrder = false;
     this.frames.validateForm.reset()
   }
+
   ngOnDestroy() {
     this.unsubscribe$.next();
     this.unsubscribe$.complete()
+  }
+
+  changeLeng(leng: string) {
+    this._translate.use(leng);
+    this.frames.lang = leng;
+    localStorage.setItem('language', this.frames.lang);
+    this._translate.use(this.frames.lang);
+    this._translate.get('_img-text-valid').pipe(takeUntil(this.unsubscribe$))
+      .subscribe((res: any) => {
+        this.frames.placeholder = res["_placeholder"];
+        this.frames._createWord = res["_create-word"];
+        this.frames._orderAdd = res["_order-add"];
+        this.frames._save = res["_batn-save"];
+        this.frames._title = res["_title"]
+
+      })
+
   }
 
 }

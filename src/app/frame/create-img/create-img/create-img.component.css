@@ -52,3 +52,7 @@
    background-color: white;
    height: 50px;
 }
+
+.btn-save{
+   outline: none;
+}

@@ -2,8 +2,8 @@
 .conteiner{
     padding: 15px;
     background-color: rgba(255, 255, 255, 0.849);
-    /* box-shadow: 0 9px 10px rgb(37 54 39 / 19%) !important; */
     box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
+    display: flex;
 }
 
 .li-nav{
@@ -116,4 +116,23 @@ color:#aa8b51 ;
 
 .list a{
     color:black;
+}
+
+.frags{
+    display: flex;
+    list-style: none;
+}
+
+.flag{
+    width: 25px;
+    height: 25px;
+    background-position: center;
+    background-size: 100% 100%;
+    margin: 5px 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.flag:active{
+    box-shadow: 1px 0 6px 4px rgb(75, 73, 73);
 }

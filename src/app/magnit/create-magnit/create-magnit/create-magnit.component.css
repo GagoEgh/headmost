@@ -13,10 +13,11 @@
 
 .im{
     background: transparent;
+    margin: 0 auto;
 }
 
 .imgs{
-    margin: 10px 0 0 200px;
+    /* margin: 10px 0 0 200px; */
     flex-wrap: wrap;
 }
 
@@ -54,3 +55,6 @@
     transform: rotate(2deg);
 }
 
+.btn-save{
+    outline: none;
+}

@@ -96,17 +96,6 @@
 /* RAMKA */
 
  
-/* .block{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: fit-content;   
-    transform-origin: center center;
-    position: relative;
-    left: 50%;
-    top:175px;
-    transform-origin: top;  
-} */
 
 .block{
     left: 50%;
@@ -166,6 +155,7 @@
 
 .create{
     margin-top: 40px;
+    outline: none;
 }
 
 .btn{

@@ -57,9 +57,11 @@ export class MagnitComponent extends FrameImag implements OnInit {
 
 
   ngOnInit(): void {
+    
     super.myForm()
     this.frames.letterImges = [];
     this.frames.isOrder = false;
+    // this.frames.isTop = false;
 
   }
 

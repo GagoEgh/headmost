@@ -1,0 +1,82 @@
+{
+    "_menu": {
+        "konstruktor": {
+            "_konstr":"CONSTRUCTOR",
+            "_frame": "FRAME",
+            "_magnet": "MAGNET"
+        },
+        "_idea": "IDEAS",
+        "_user": {
+            "_exit":"SIGN IN",
+            "_profil": "PROFILE",
+            "_images": "MY DRAWINGS",
+            "_orders": "MY ORDERS",
+            "_close": "SIGN OUT",
+            "_my-order": {
+                "description": "DESCRIPTION",
+                "status": "STATUS",
+                "add": "add to cart"
+            }
+        }
+    },
+    "_img-text-valid": {
+        "_placeholder": "WRITE THE WORD",
+        "_title": "how to write a word, letter and symbol",
+        "_modal-text1": "Rules of entry ․ You can enter words, the words must be in Latin letters. The words in the photo in the frame can be from 3 letters to 9.",
+        "_modal-text2": " You can also make words with magnets (3-8 letters). To add your photo you need to register / log in, then open the letter replacement window և select the 'my letters' section ընտրել select a picture from your computer.",
+        "_create-word": "CREATE THE PICTURE",
+        "_order-add":"ORDER AGAIN",
+        "_modal-header":"writing conditions",
+        "_batn-save":  "SAVE"
+        
+    },
+    "_imgs": {
+        "_img-hover": "select another image",
+        "_delete-text": "delete the text",
+        "_change-image": "change pictures",
+        "_save": "to keep",
+        "_batn-save": "SAVE"
+    },
+    "_img-menu": {
+        "_menu-title": "Choice of settings",
+        "_color": "colors",
+        "_categori": "categories",
+        "_my-photo":"my drawings"
+    },
+    "_order": {
+        "_user-data": {
+            "_frstName": "NAME",
+            "_lastName": "SURNAME",
+            "_brtDay": "Date of birth",
+            "_email": "EMAIL",
+            "_phoneNumber": "PHONE NUMBER",
+            "_country": "CITY",
+            "_addres": "ADDRESS",
+            "_shipping": "WHERE TO DELIVER?",
+            "_addresPost": "MAIL ADDRESS",
+            "_comment": "COMMENT",
+            "sale": "SALE",
+            "_btnOrder": "TO ORDER",
+            "_update":"UPDATE"
+        },
+        "_inform-img": {
+            "title": "ORDER DESCRIPTION",
+            "_imgLength": "letter",
+            "_letterSum": "$/letter",
+            "_price": "դր",
+            "_addSum": "ONLY",
+            "_carzin":"The cart is empty"
+        }
+    },
+    "_idea-img": {
+        "_img-title": "gift idea",
+        "_name": "Name",
+        "_img-phone": "Picture background",
+        "_your-name": "type your word now",
+        "_idea-message": "THE PRODUCT IS IN THE BASKET",
+        "_nav-title": "GIFTS OPTIONS",
+        "_all":"All"
+        
+    }
+  
+}

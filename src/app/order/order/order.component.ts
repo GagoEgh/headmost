@@ -73,6 +73,7 @@ export class OrderComponent implements OnInit {
   _addSum = '';
   _carzin = '';
   ngOnInit(): void {
+   // this.frames.isTop = false;
     this._translate.get(['_order._user-data','_order._inform-img']).pipe(takeUntil(this._subscribe$)).subscribe((res:any) => {
        this._frstName = res["_order._user-data"]._frstName ;
        this._email = res["_order._user-data"]._email;
@@ -165,8 +166,6 @@ export class OrderComponent implements OnInit {
       order_items: ids,
       postal_code: this.validateForm.get('postal')?.value,
     }
-
-    console.log(order)
 
     if (this.validateForm.valid && this.count != 1) {
       this.frames.userOrder(order).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {

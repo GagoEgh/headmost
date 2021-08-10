@@ -19,11 +19,12 @@ export class FrameComponent extends FrameImag implements OnInit {
   heigth: number | undefined;
   width: number | undefined;
   scale: number = 1;
-  placeholder='';
+  
   constructor(public frames: FramesServService, public modalService: NgbModal,
     public rout: Router, public form: FormBuilder,private _translate:TranslateService,) {
     super(frames, modalService, rout, form);
-    this._translate.setDefaultLang(this.frames.lang)
+    console.log('frame',this.frames.lang)
+    this._translate.setDefaultLang(this.frames.lang);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -56,10 +57,16 @@ export class FrameComponent extends FrameImag implements OnInit {
     this.frames.isOrder = false;
     super.myForm();
     super.imgColor();
-    this._translate.get('_img-text-valid._placeholder').pipe(takeUntil(this._unsubscribe$))
+
+    this._translate.get('_img-text-valid').pipe(takeUntil(this._unsubscribe$))
     .subscribe((res:any)=>{
-      this.placeholder = res;
+      this.frames.placeholder = res["_placeholder"];
+      this.frames._createWord = res["_create-word"];
+      this.frames._orderAdd = res["_order-add"];
+      this.frames._save = res["_batn-save"];
+      this.frames._title = res["_title"];
     })
+
     this.frames.framesFoneGet().pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
       this.frames.div = el.results;
       this.frames.background = el.results[0];
