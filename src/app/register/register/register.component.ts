@@ -7,6 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { OkRegisterComponent } from '../ok-register/ok-register.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -20,10 +21,11 @@ export class RegisterComponent implements OnInit {
   erroreStr: string = '';
   shiping: any[] = [];
   emailMassage = '';
-  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private i18n: NzI18nService,
+  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private i18n: NzI18nService,public _translate:TranslateService,
     public frames: FramesServService, private modalService: NgbModal, private valid: ValidationServService) { }
 
   ngOnInit(): void {
+   
     this.frames.userCountry();
     this.validateForm = this.fb.group({
       frstName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
@@ -38,13 +40,15 @@ export class RegisterComponent implements OnInit {
   }
 
   erroreName(formName: string) {
-    let size = 3;
-    if (formName === 'pas') size = 6
-    if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = 'լռացրեք  տվյալ դաշտը';
-    if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `տառերի քանակը պետք է լինի ${size}-ից ավել`
-    if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = 'թիվ չպետք է լինի';
-    if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = 'Email-ը վալիդ չէ';
-    if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = 'հեռախոսահամարը սխալ է';
+    this._translate.get('_erroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res:any)=>{
+      let size = 3;
+      if (formName === 'pas') size = 6
+      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res._required;
+      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr =  `${res._minlength} ${size} `;
+      if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res._userNameChar;
+      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res._isEmail;
+      if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res._isSize;
+    })
     return this.erroreStr;
   }
 

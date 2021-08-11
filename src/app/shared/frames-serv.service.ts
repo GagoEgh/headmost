@@ -8,24 +8,19 @@ import { NgxSpinnerService } from "ngx-spinner";
     providedIn: 'root'
 })
 export class FramesServService {
-
     validateForm: FormGroup = new FormGroup({});
     letterImges: LetterImge[] = [];
     framesImge: FramesImg[] = [];
     selectedValue: any[] = [];
+    placeholder = '';
     lang = 'hy';
-    placeholder='';
-    _createWord = '';
-    _orderAdd = '';
-    _save = '';
-    _title = '';
     isBar = true;
     fileUrl = {};
     isOrder: boolean = false;
     orderList: any[] = [];
     orderListClone: any[] = [];
     background: any = {};
-    ideaImg:any = {};
+    ideaImg: any = {};
     topText: string = '';
     btmText: string = '';
     isRegister = false;
@@ -100,10 +95,10 @@ export class FramesServService {
         api_files: '/files',
         api_user_image: '/user-image',
         api_created_frame: '/created-frame',
-        api_magnet:'/add-magnet-in-card'
+        api_magnet: '/add-magnet-in-card'
     }
 
-    
+
     painding: Painding = {
         values: {
             colored: false,
@@ -180,9 +175,9 @@ export class FramesServService {
     }
 
     letterGet() {
-        let text=this.text?this.text:null;
-        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_create_word + text+ '/', {
-            params: new HttpParams().set('color', this.painding.id.toString()) 
+        let text = this.text ? this.text : null;
+        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_create_word + text + '/', {
+            params: new HttpParams().set('color', this.painding.id.toString())
         });
     }
 
@@ -250,9 +245,9 @@ export class FramesServService {
             { headers: { 'Authorization': this.token } })
     }
 
-    
 
-    userImageGet(myImgOffset:number) {
+
+    userImageGet(myImgOffset: number) {
         return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_user_image + '/?user=' + `${this.userData.user}&limit=10&offset=${myImgOffset}`,
             { headers: { 'Authorization': this.token } })
     }
@@ -287,20 +282,20 @@ export class FramesServService {
         return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_created_frame + `/?created_frame_category=${category}&is_predefined=${predifined}&limit=10&offset=${offset}`)
     }
 
-    imgCategory(id:number){
+    imgCategory(id: number) {
         return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_created_frame + `/${id}/`)
     }
 
-    magnetImg(obj:any){
-        return this.url.post(this.api.worldApi+this.api.api_order+this.api.api_card+this.api.api_magnet+'/',obj,
-        { headers: { 'Authorization': this.token } })
+    magnetImg(obj: any) {
+        return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_card + this.api.api_magnet + '/', obj,
+            { headers: { 'Authorization': this.token } })
     }
     letterColorFone() {
         this.spinner.show();
         this.text = this.validateForm.get('text')?.value;
 
         this.letterGet().subscribe((el: any) => {
-            
+
             this.letterImges = el;
 
             this.letterImges = this.letterImges.filter(img => {
@@ -312,21 +307,18 @@ export class FramesServService {
                 this.isMessage = true;
                 this.isImg = true;
             }
-            setTimeout(()=>{
-               this.spinner.hide(); 
-            },1000)
-             
+            setTimeout(() => {
+                this.spinner.hide();
+            }, 1000)
+
         })
 
     }
- 
+
     showFrame() {
         this.isOrder = false;
         this.isImg = true;
         this.validateForm.reset()
     }
-
-
-
 
 }

@@ -16,7 +16,7 @@
         </div>
         <div class="letter" *ngIf='frames.isImg else create'>
           <form [formGroup]="frames.validateForm">
-            <input type="text" formControlName='text' maxlength="9" placeholder="ԳՐԵՔ ԲԱՌԸ" trim>
+            <input type="text" formControlName='text' maxlength="9" [placeholder]="frames.placeholder" trim>
           </form>
           <p class="btn" (click)="open()" *ngIf='frames.isImg'>{{'_img-text-valid._title'|translate}}</p>
         </div>

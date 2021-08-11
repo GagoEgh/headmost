@@ -24,7 +24,7 @@
         "_title": "how to write a word, letter and symbol",
         "_modal-text1": "Rules of entry ․ You can enter words, the words must be in Latin letters. The words in the photo in the frame can be from 3 letters to 9.",
         "_modal-text2": " You can also make words with magnets (3-8 letters). To add your photo you need to register / log in, then open the letter replacement window և select the 'my letters' section ընտրել select a picture from your computer.",
-        "_create-word": "CREATE THE PICTURE",
+        "_create-word": "CREATE",
         "_order-add":"ORDER AGAIN",
         "_modal-header":"writing conditions",
         "_batn-save":  "SAVE"
@@ -49,7 +49,7 @@
             "_lastName": "SURNAME",
             "_brtDay": "Date of birth",
             "_email": "EMAIL",
-            "_phoneNumber": "PHONE NUMBER",
+            "_phoneNumber": "PH. NUMBER",
             "_country": "CITY",
             "_addres": "ADDRESS",
             "_shipping": "WHERE TO DELIVER?",
@@ -57,13 +57,17 @@
             "_comment": "COMMENT",
             "sale": "SALE",
             "_btnOrder": "TO ORDER",
-            "_update":"UPDATE"
+            "_update":"UPDATE",
+            "_password":"PASSWORD",
+            "_logIn":"LOG IN",
+            "_register":"REGISTER",
+            "_date":"Choose a date"
         },
         "_inform-img": {
             "title": "ORDER DESCRIPTION",
             "_imgLength": "letter",
             "_letterSum": "$/letter",
-            "_price": "դր",
+            "_price": "Դ",
             "_addSum": "ONLY",
             "_carzin":"The cart is empty"
         }
@@ -77,6 +81,13 @@
         "_nav-title": "GIFTS OPTIONS",
         "_all":"All"
         
+    },
+    "_erroreMessage":{
+        "_required":"Mute the field",
+        "_minlength":"The number of letters must be more than",
+        "_userNameChar":"should not be a number",
+        "_isEmail":"Email is not valid",
+        "_isSize":"phone number is incorrect"
     }
   
 }

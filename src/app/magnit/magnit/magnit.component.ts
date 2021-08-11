@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FrameImag } from 'src/app/shared/frame-image';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
+import { TranslateService } from '@ngx-translate/core';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-magnit',
@@ -19,7 +21,7 @@ export class MagnitComponent extends FrameImag implements OnInit {
   scale: number = 1;
 
   constructor(public frames: FramesServService, public modalService: NgbModal,
-    public rout: Router, public form: FormBuilder) {
+    public rout: Router, public form: FormBuilder,private _translate: TranslateService) {
     super(frames, modalService, rout, form);
     super.imgColor();
 
@@ -58,10 +60,13 @@ export class MagnitComponent extends FrameImag implements OnInit {
 
   ngOnInit(): void {
     
-    super.myForm()
+    super.myForm();
+    this._translate.get('_img-text-valid').pipe(takeUntil(this._unsubscribe$))
+    .subscribe((res: any) => {
+      this.frames.placeholder = res["_placeholder"];
+    })
     this.frames.letterImges = [];
     this.frames.isOrder = false;
-    // this.frames.isTop = false;
 
   }
 

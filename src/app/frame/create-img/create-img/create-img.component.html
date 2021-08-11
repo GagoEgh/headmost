@@ -16,9 +16,11 @@
     </div>
   </div>
   <div class="imgs">
-    <div class="bg-img" *ngFor = 'let img of frames.letterImges,let i = index' (click)="openImg(img,i)"
-     [style.background-image]="checkImage(img.image.image)?'url( '+ img.image.image + ')':'url( http://sirun-bar-api.annaniks.com/'+ img.image.image + ')'" >
-      <div class="bgr" > <p >{{'_imgs._img-hover'|translate}}</p></div>
+    <div class="bg-img" *ngFor='let img of frames.letterImges,let i = index' (click)="openImg(img,i)"
+      [style.background-image]="checkImage(img.image.image)?'url( '+ img.image.image + ')':'url( http://sirun-bar-api.annaniks.com/'+ img.image.image + ')'">
+      <div class="bgr">
+        <p>{{'_imgs._img-hover'|translate}}</p>
+      </div>
     </div>
   </div>
   <div class="menu">
@@ -33,7 +35,7 @@
       <p class="bottom" (click)='myOrder()'>{{'_imgs._save'|translate}}</p>
     </div>
   </div>
-  
-</div>
- <button   class="btn-save" (click)='myOrder()'*ngIf='!frames.isOrder'>{{frames._save}}</button> 
 
+</div>
+<button class="btn-save" (click)='myOrder()' *ngIf='!frames.isOrder'>{{'_img-text-valid._batn-save'|translate}}
+</button>

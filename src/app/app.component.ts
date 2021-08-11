@@ -20,15 +20,14 @@ export class AppComponent implements OnInit {
     private router: Router) {
     const lang: any = localStorage.getItem('language');
     this.frames.lang = lang;
-    this._translate.setDefaultLang(this.frames.lang)
+
+   this._translate.use(this.frames.lang)
   }
 
 
   ngOnInit(): void {
     this.scrollToTopByChangeRoute();
 
-
-    console.log('app', this.frames.lang)
     if (localStorage.getItem('loginAutorization')) {
       const token: any = localStorage.getItem('loginAutorization');
       this.frames.token = token;
@@ -124,14 +123,10 @@ export class AppComponent implements OnInit {
     localStorage.setItem('language', this.frames.lang);
     this._translate.use(this.frames.lang);
     this._translate.get('_img-text-valid').pipe(takeUntil(this.unsubscribe$))
-      .subscribe((res: any) => {
-        this.frames.placeholder = res["_placeholder"];
-        this.frames._createWord = res["_create-word"];
-        this.frames._orderAdd = res["_order-add"];
-        this.frames._save = res["_batn-save"];
-        this.frames._title = res["_title"]
+    .subscribe((res: any) => {
+      this.frames.placeholder = res["_placeholder"];
+    })
 
-      })
 
   }
 

@@ -1,12 +1,12 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FramesImg } from '../../shared/img-ramka';
 import { FramesServService } from '../../shared/frames-serv.service'
 import { takeUntil } from 'rxjs/operators';
 import { FrameImag } from 'src/app/shared/frame-image';
 import { Router } from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-frame',
@@ -19,12 +19,12 @@ export class FrameComponent extends FrameImag implements OnInit {
   heigth: number | undefined;
   width: number | undefined;
   scale: number = 1;
-  
+
   constructor(public frames: FramesServService, public modalService: NgbModal,
-    public rout: Router, public form: FormBuilder,private _translate:TranslateService,) {
+    public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
+
     super(frames, modalService, rout, form);
-    console.log('frame',this.frames.lang)
-    this._translate.setDefaultLang(this.frames.lang);
+    this._translate.use(this.frames.lang)
   }
 
   @HostListener('window:resize', ['$event'])
@@ -51,7 +51,7 @@ export class FrameComponent extends FrameImag implements OnInit {
     }
   }
 
- 
+
   ngOnInit(): void {
     this.frames.letterImges = [];
     this.frames.isOrder = false;
@@ -59,13 +59,9 @@ export class FrameComponent extends FrameImag implements OnInit {
     super.imgColor();
 
     this._translate.get('_img-text-valid').pipe(takeUntil(this._unsubscribe$))
-    .subscribe((res:any)=>{
-      this.frames.placeholder = res["_placeholder"];
-      this.frames._createWord = res["_create-word"];
-      this.frames._orderAdd = res["_order-add"];
-      this.frames._save = res["_batn-save"];
-      this.frames._title = res["_title"];
-    })
+      .subscribe((res: any) => {
+        this.frames.placeholder = res["_placeholder"];
+      })
 
     this.frames.framesFoneGet().pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
       this.frames.div = el.results;

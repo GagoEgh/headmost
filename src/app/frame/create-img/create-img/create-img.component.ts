@@ -40,7 +40,8 @@ export class CreateImgComponent extends FrameImag  implements OnInit {
 
   constructor(public frames: FramesServService, public rout: Router,
     public form: FormBuilder, public modalService: NgbModal) {
-      super(frames, modalService, rout, form)
+      super(frames, modalService, rout, form);
+ 
      }
 
   deleteTopProprty() {

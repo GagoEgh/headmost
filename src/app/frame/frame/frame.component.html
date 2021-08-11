@@ -47,7 +47,7 @@
           </form>
         </div>
         <div class="bottom" [style.background-image]="'url(' +frames.frame?.bottom_line_image + ')'">
-          <p class="btn" (click)="open()" *ngIf='frames.isImg'>{{frames._title}}</p>
+          <p class="btn" (click)="open()" *ngIf='frames.isImg'>  {{'_img-text-valid._title'|translate}}</p>
         </div>
       </div>
       <div class="left">
@@ -60,9 +60,9 @@
       </div>
     </div>
     <p *ngIf='frames.isMessage' class="message">ՏՎՅԱԼ ՏԱՌԵՐՈՎ ՆԿԱՐ ԴԵՌՎՍ ՉՈԻՆԵՆՔ</p>
-    <button type="submit" (click)='onSubmit()' class="create" *ngIf='frames.isImg'>{{frames._createWord}}</button>
+    <button type="submit" (click)='onSubmit()' class="create" *ngIf='frames.isImg'>{{'_img-text-valid._create-word'|translate}}</button>
     <app-order *ngIf='frames.isOrder'> </app-order>
-    <button *ngIf='frames.isOrder' class="create" [style.margin-top]="'0px'" (click)="showFrame()">{{frames._orderAdd}}</button>
+    <button *ngIf='frames.isOrder' class="create" [style.margin-top]="'0px'" (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
    
   </div>
 
