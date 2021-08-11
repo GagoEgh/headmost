@@ -12,16 +12,22 @@
     <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">{{'_order._user-data._email'|translate}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Email-ը վալիդ չէ">
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="email">
           <input nz-input formControlName="email" id="email" trim />
         </nz-form-control>
       </nz-form-item>
+      <ng-template #email>
+        <p *ngIf="erroreName('email')">{{erroreStr}}</p>
+      </ng-template>
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>{{'_order._user-data._password'|translate}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="տառերի քանակը պետք է լինի 6-ից ավել">
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="pas">
           <input nz-input type="password" id="password" formControlName="password" trim />
         </nz-form-control>
       </nz-form-item>
+      <ng-template #pas>
+        <p *ngIf="erroreName('password')">{{erroreStr}} </p>
+      </ng-template>
       <p *ngIf = 'errorLog' [style.color]='"red"'>{{errorLog}}</p>
       <nz-form-item nz-row >
         <nz-form-control [nzSpan]="14" [nzOffset]="6">

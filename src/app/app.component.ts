@@ -18,10 +18,10 @@ export class AppComponent implements OnInit {
     private _translate: TranslateService,
     private modalService: NgbModal,
     private router: Router) {
-    const lang: any = localStorage.getItem('language');
-    this.frames.lang = lang;
-
-   this._translate.use(this.frames.lang)
+    this._translate.use(this.frames.lang);
+     const lang: any = localStorage.getItem('language');
+     this.frames.lang = lang;
+     this._translate.setDefaultLang(this.frames.lang)
   }
 
 
@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
     this.scrollToTopByChangeRoute();
 
     if (localStorage.getItem('loginAutorization')) {
+
       const token: any = localStorage.getItem('loginAutorization');
       this.frames.token = token;
       const date: any = localStorage.getItem('user-date')
@@ -66,7 +67,7 @@ export class AppComponent implements OnInit {
 
     localStorage.removeItem('loginAutorization');
     localStorage.removeItem('user-date');
-    localStorage.removeItem('language')
+    //localStorage.removeItem('language')
     this.frames.sum = 0;
     this.frames.orderList = [];
     this.frames.token = '';
@@ -123,9 +124,9 @@ export class AppComponent implements OnInit {
     localStorage.setItem('language', this.frames.lang);
     this._translate.use(this.frames.lang);
     this._translate.get('_img-text-valid').pipe(takeUntil(this.unsubscribe$))
-    .subscribe((res: any) => {
-      this.frames.placeholder = res["_placeholder"];
-    })
+      .subscribe((res: any) => {
+        this.frames.placeholder = res["_placeholder"];
+      })
 
 
   }

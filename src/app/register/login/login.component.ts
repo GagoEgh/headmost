@@ -6,7 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { RegisterComponent } from '../register/register.component';
-
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -16,9 +16,10 @@ import { RegisterComponent } from '../register/register.component';
 export class LoginComponent implements OnInit, DoCheck {
   validateForm: FormGroup = new FormGroup({});
   public _subscribe$ = new Subject();
+  erroreStr = '';
   errorLog = '';
-  
-  constructor(public activeModal: NgbActiveModal, private modalService: NgbModal,
+
+  constructor(public activeModal: NgbActiveModal, private modalService: NgbModal, public _translate: TranslateService,
     private fb: FormBuilder, public frames: FramesServService, private valid: ValidationServService) { }
 
   ngDoCheck(): void {
@@ -30,10 +31,19 @@ export class LoginComponent implements OnInit, DoCheck {
   ngOnInit(): void {
 
     this.validateForm = this.fb.group({
-      email: [null, [Validators.email, Validators.required, this.valid.emailValid]],
+      email: [null, [Validators.email, Validators.required]],
       password: [null, [Validators.required, Validators.minLength(6)]],
 
     });
+  }
+
+  erroreName(formName: string) {
+    this._translate.get('_erroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
+       if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res._required;
+       if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr =  `${res._minlength} 6`;
+       if (this.validateForm.get(formName)?.hasError('email')) this.erroreStr = res._isEmail;
+    })
+    return this.erroreStr;
   }
 
   submitForm(): void {
@@ -63,7 +73,7 @@ export class LoginComponent implements OnInit, DoCheck {
             this.frames.sum += obj.created_frame_details.price;
           })
         })
-     
+
       }, ((err: any) => {
         this.errorLog = err.error.message
       }))
@@ -78,11 +88,10 @@ export class LoginComponent implements OnInit, DoCheck {
       this.frames.isLogin = false;
     });
     this.frames.isLogin = true;
-
   }
 
- ngOnDestroy(){
-   this._subscribe$.next();
-   this._subscribe$.complete();
- }
+  ngOnDestroy() {
+    this._subscribe$.next();
+    this._subscribe$.complete();
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { Subject } from 'rxjs';
@@ -102,7 +102,7 @@ export class RegisterComponent implements OnInit {
         this.frames.spinner.hide();
         setTimeout(()=>{
            modalRef.dismiss();
-        },1000)
+        },1500)
        
       }, ((err: any) => {
         if (err.status === 400) {

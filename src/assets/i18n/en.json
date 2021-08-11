@@ -61,12 +61,14 @@
             "_password":"PASSWORD",
             "_logIn":"LOG IN",
             "_register":"REGISTER",
-            "_date":"Choose a date"
+            "_date":"Choose a date",
+            "_congratulations": "Congratulations",
+            "_congratulationsTitle": "You have successfully registered, you can place orders"
         },
         "_inform-img": {
             "title": "ORDER DESCRIPTION",
             "_imgLength": "letter",
-            "_letterSum": "$/letter",
+            "_letterSum": "Դ/letter",
             "_price": "Դ",
             "_addSum": "ONLY",
             "_carzin":"The cart is empty"
