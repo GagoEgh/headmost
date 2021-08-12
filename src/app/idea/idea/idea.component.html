@@ -6,8 +6,10 @@
             </div>
             <div class="idea-info">
                 <div class="titles" (click)="imgInfo(img)">
-                    <p class="img-title">{{img.created_frame_category_details.name_hy}} </p>
-                    <p class="img-title">{{img.price}}դր</p>
+                    <p class="img-title" *ngIf='frames.lang==="hy"' >{{img.created_frame_category_details.name_hy}} </p>
+                    <p class="img-title" *ngIf='frames.lang==="ru"' >{{img.created_frame_category_details.name_ru}} </p>
+                    <p class="img-title" *ngIf='frames.lang==="en"' >{{img.created_frame_category_details.name_en}} </p>
+                    <p class="img-title">{{img.price}}{{'_order._inform-img._price'|translate}}</p>
                 </div>
                 <div class="order" (click)="addOrder(i)">
                     <img src="./assets/1x/orderIconWhite.png">

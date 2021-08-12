@@ -1,11 +1,13 @@
 
 <div class="wrap" #wrap [ngStyle]="setStyle()" *ngIf='this.frames.orderList.length,else noText'
 [style.top]="frames.isTop?'-50px':'65px'">
-  <!-- [style.top]="frames.isTop?'-50px':'5px'" -->
+  <!--  {{'_order._user-data._frstName'|translate}}-->
   <div class="user-data">
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+    
       <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="frstName">{{ _frstName }}</nz-form-label>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="frstName">
+        {{ _frstName }}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='frstEr' nzHasFeedback>
           <input nz-input formControlName="frstName" id="frstName" trim
             [(ngModel)]='frames.userData.user_details.first_name' />
@@ -36,11 +38,13 @@
       <div class="region">
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>{{_country}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="country">
-          <nz-select nzAllowClear nzPlaceHolder="COUNTRY" [(ngModel)]='frames.userData.city' nzShowSearch
+          <nz-select nzAllowClear nzPlaceHolder="COUNTRY" [(ngModel)]=' frames.userData.city' nzShowSearch
             formControlName='country'>
-            <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country.name_hy '>
-              <nz-option *ngFor='let regions of country.country_regions' [nzLabel]='regions.name_hy' nzDisabled=true>
-                <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id' [nzLabel]='city.name_hy'>
+            <nz-option-group *ngFor='let country of frames.selectedValue' 
+            [nzLabel]='country["name_"+frames.lang]'>
+              <nz-option *ngFor='let regions of country.country_regions' nzDisabled=true
+               [nzLabel]= 'regions["name_"+frames.lang]'>
+                <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id' [nzLabel]='city["name_"+frames.lang]'>
                 </nz-option>
               </nz-option>
             </nz-option-group>
@@ -64,7 +68,8 @@
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="shipping">
           <nz-select nzAllowClear nzPlaceHolder="Shipping" nzShowSearch formControlName='shipping'>
             <nz-option *ngFor='let addres of shiping ' [nzValue]="addres.id"
-              [nzLabel]="addres.name_hy +' ' + addres.price+'դր'">
+              [nzLabel]="addres['name_'+frames.lang] +' ' + addres.price+'Դ'">
+              <!-- 'city["name_"+frames.lang]' -->
             </nz-option>
           </nz-select>
         </nz-form-control>
@@ -104,13 +109,16 @@
     <div class="order">
       <h2 class="title">{{title}}</h2>
       <div class="data" *ngFor='let list of frames.orderList'>
-        <p><span>{{list?.created_frame_details?.word?.length}}{{_imgLength}}, </span>{{
-          list?.created_frame_details?.frame_details?.name_hy}}</p>
+        <p><span>{{list?.created_frame_details?.word?.length}}{{_imgLength}}</span>
+         <span *ngIf='frames.lang==="hy"'>{{list?.created_frame_details?.frame_details?.name_hy}}</span>
+         <span *ngIf='frames.lang==="en"'>{{list?.created_frame_details?.frame_details?.name_en}}</span>
+         <span *ngIf='frames.lang==="ru"'>{{list?.created_frame_details?.frame_details?.name_ru}}</span>
+         </p>
         <p class="smoll" *ngIf="list?.created_frame_details?.frame_details?.price">{{ list?.created_frame_details?.frame_details?.price}}{{_letterSum}}</p>
         <p>{{list?.created_frame_details?.price}}{{_price}}</p>
         <span class="symbol" (click)='deleteDate(list)'>&#10005;</span>
       </div>
-      <p class="sum">ընդամենը {{frames?.sum}}{{_price}}</p>
+      <p class="sum">{{_addSum }} {{frames?.sum}}{{_price}}</p>
 
     </div>
   </div>

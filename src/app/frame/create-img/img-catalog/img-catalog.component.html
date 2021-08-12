@@ -28,7 +28,9 @@
                     <ul class="ul">
                         <li class="list" *ngFor='let block of frames.imgColor' (click)='changeFone(block)'
                             [ngClass]="{'listActive':frames.painding.id=== block.ceys.id}">
-                            {{block.ceys.name_hy}}
+                          <span *ngIf='frames.lang==="hy"'>{{block.ceys.name_hy}}</span> 
+                          <span *ngIf='frames.lang==="ru"'>{{block.ceys.name_ru}}</span>
+                          <span *ngIf='frames.lang==="en"'>{{block.ceys.name_en}}</span>   
                         </li>
                     </ul>
                 </div>
@@ -38,7 +40,9 @@
                         <li class="list" *ngFor='let category of categoryList, let i = index'
                             (click)='showCategory(category)'
                             [ngClass]="{'listActive':frames.painding.categoryId=== category.id}">
-                            {{category.name_hy}}
+                           <span *ngIf='frames.lang==="hy"'>{{category.name_hy}}</span>
+                           <span *ngIf='frames.lang==="ru"'>{{category.name_ru}}</span> 
+                           <span *ngIf='frames.lang==="en"'>{{category.name_en}}</span>  
                         </li>
                         <li class="list" (click)="getMyPhoto()">{{'_img-menu._my-photo'|translate}}</li>
                     </ul>

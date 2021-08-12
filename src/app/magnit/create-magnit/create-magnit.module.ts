@@ -20,7 +20,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
   ],
   exports:[
-   // RouterModule,
     CreateMagnitComponent
   ]
 })

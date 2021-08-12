@@ -63,7 +63,9 @@
             "_register":"REGISTER",
             "_date":"Choose a date",
             "_congratulations": "Congratulations",
-            "_congratulationsTitle": "You have successfully registered, you can place orders"
+            "_congratulationsTitle": "You have successfully registered, you can place orders",
+            "_message":"THE PRODUCT IS IN THE BASKET"
+            
         },
         "_inform-img": {
             "title": "ORDER DESCRIPTION",
@@ -89,7 +91,9 @@
         "_minlength":"The number of letters must be more than",
         "_userNameChar":"should not be a number",
         "_isEmail":"Email is not valid",
-        "_isSize":"phone number is incorrect"
+        "_isSize":"phone number is incorrect",
+        "_imgErr": "You can not delete this image"
+        
     }
   
 }

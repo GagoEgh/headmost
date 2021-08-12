@@ -1,25 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-imags',
   templateUrl: './user-imags.component.html',
   styleUrls: ['./user-imags.component.css']
 })
-export class UserImagsComponent implements OnInit {
+export class UserImagsComponent implements OnInit,AfterViewChecked{
   public _subscribe$ = new Subject();
   throttle = 300;
   scrollDistance = 3;
   scrollUpDistance = 1;
   offset = 0;
   isSmsErr = false;
-  msgErr = '';
-  constructor(private msg: NzMessageService, public frames: FramesServService) { }
+  msgErr_hy = '';
+  constructor(private msg: NzMessageService, public frames: FramesServService,public _translate:TranslateService) { }
+
+  ngAfterViewChecked(): void {
+    this._translate.use(this.frames.lang);
+    this._translate.get('_erroreMessage._imgErr').subscribe((res:any)=>{
+      this.msgErr_hy = res
+    })
+  
+  }
 
 
 
@@ -32,6 +40,7 @@ export class UserImagsComponent implements OnInit {
   myImages(){
    // this.frames.fileList = [];
     this.frames.userImageGet(this.offset).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
+        this.isSmsErr = false;
         this.frames.fileList.push(...el.results);
         this.offset += 10;
     })
@@ -39,6 +48,7 @@ export class UserImagsComponent implements OnInit {
 
   onScrollDown(ev: any) {
     this.offset = this.frames.fileList.length;
+    this.isSmsErr = false;
     this.myImages()
   }
 
@@ -67,7 +77,9 @@ export class UserImagsComponent implements OnInit {
     },((err:any)=>{
       if(err.status === 500){
         this.isSmsErr = true;
-        this.msgErr ='տվյալ նկարը չէք կարող ջնջել';
+        this._translate.get('_erroreMessage._imgErr').subscribe((res:any)=>{
+          this.msgErr_hy = res
+        })
       }
     }))
   }

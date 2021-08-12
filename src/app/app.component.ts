@@ -6,6 +6,8 @@ import { NavigationEnd, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxSpinnerService } from "ngx-spinner";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,7 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent implements OnInit {
   public unsubscribe$ = new Subject()
 
-  constructor(public frames: FramesServService,
+  constructor(public frames: FramesServService,private spinner: NgxSpinnerService,
     private _translate: TranslateService,
     private modalService: NgbModal,
     private router: Router) {
@@ -67,7 +69,6 @@ export class AppComponent implements OnInit {
 
     localStorage.removeItem('loginAutorization');
     localStorage.removeItem('user-date');
-    //localStorage.removeItem('language')
     this.frames.sum = 0;
     this.frames.orderList = [];
     this.frames.token = '';
@@ -119,6 +120,7 @@ export class AppComponent implements OnInit {
   }
 
   changeLeng(leng: string) {
+    this.spinner.show();
     this._translate.use(leng);
     this.frames.lang = leng;
     localStorage.setItem('language', this.frames.lang);
@@ -126,6 +128,10 @@ export class AppComponent implements OnInit {
     this._translate.get('_img-text-valid').pipe(takeUntil(this.unsubscribe$))
       .subscribe((res: any) => {
         this.frames.placeholder = res["_placeholder"];
+        setTimeout(()=>{
+          this.spinner.hide()
+        },300)
+        
       })
 
 

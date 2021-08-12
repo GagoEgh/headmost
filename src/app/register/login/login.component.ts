@@ -7,6 +7,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { RegisterComponent } from '../register/register.component';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit, DoCheck {
   errorLog = '';
 
   constructor(public activeModal: NgbActiveModal, private modalService: NgbModal, public _translate: TranslateService,
-    private fb: FormBuilder, public frames: FramesServService, private valid: ValidationServService) { }
+    private fb: FormBuilder, public frames: FramesServService, private valid: ValidationServService,private spinner: NgxSpinnerService) { }
 
   ngDoCheck(): void {
     if (this.frames.isLogin) {
@@ -58,7 +59,9 @@ export class LoginComponent implements OnInit, DoCheck {
       password: this.validateForm.get('password')?.value
     }
     if (this.validateForm.valid) {
+
       this.frames.userLogin(userLog).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
+        this.spinner.show();
         this.frames.token = 'Token ' + el.token;
         this.frames.userData = el.user_details;
         localStorage.setItem('loginAutorization', this.frames.token);
@@ -73,6 +76,10 @@ export class LoginComponent implements OnInit, DoCheck {
             this.frames.sum += obj.created_frame_details.price;
           })
         })
+        setTimeout(()=>{
+          this.spinner.hide()
+        },200)
+        
 
       }, ((err: any) => {
         this.errorLog = err.error.message

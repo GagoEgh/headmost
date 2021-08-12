@@ -1,23 +1,27 @@
 import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-data',
   templateUrl: './user-data.component.html',
   styleUrls: ['./user-data.component.scss']
 })
-export class UserDataComponent implements OnInit {
+export class UserDataComponent implements OnInit,AfterViewChecked {
   validateForm: FormGroup = new FormGroup({});
   public _unsubscribe$ = new Subject();
   erroreStr: string = '';
   emailMassage = '';
   updateOk ='';
-  constructor(private valid: ValidationServService, private fb: FormBuilder, public frames: FramesServService) { }
+  constructor(private valid: ValidationServService, private fb: FormBuilder,public _translate:TranslateService, public frames: FramesServService) { }
+  ngAfterViewChecked(): void {
+    this._translate.use(this.frames.lang)
+  }
 
   ngOnInit(): void {
 
@@ -35,13 +39,15 @@ export class UserDataComponent implements OnInit {
   }
 
   erroreName(formName: string) {
-    let size = 3;
-    if (formName === 'pas') size = 6
-    if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = 'լռացրեք  տվյալ դաշտը';
-    if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `տառերի քանակը պետք է լինի ${size}-ից ավել`
-    if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = 'թիվ չպետք է լինի';
-    if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = 'Email-ը վալիդ չէ';
-    if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = 'հեռախոսահամարը սխալ է';
+    this._translate.get('_erroreMessage').pipe(takeUntil(this._unsubscribe$)).subscribe((res:any)=>{
+      let size = 3;
+      if (formName === 'pas') size = 6
+      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res._required;
+      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr =  `${res._minlength} ${size} `;
+      if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res._userNameChar;
+      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res._isEmail;
+      if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res._isSize;
+    })
     return this.erroreStr;
   }
 

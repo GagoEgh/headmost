@@ -83,7 +83,7 @@ export class FrameComponent extends FrameImag implements OnInit {
     return style
   }
 
-  frameClick(id: number) {
+  frameClick(id:number) {
     this.frames.index = id;
     this.frames.frame = this.frames.framesImge.find(item => item.id === this.frames.index);
   }
@@ -94,6 +94,7 @@ export class FrameComponent extends FrameImag implements OnInit {
 
   changeBg(bg: any) {
     this.frames.background = bg;
+  
   }
 
   ngOnDestroy() {

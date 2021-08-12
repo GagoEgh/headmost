@@ -12,7 +12,9 @@
         <ul>
             <li><a (click)="ideaGroup()">{{'_idea-img._all'|translate}}</a></li>
             <li *ngFor='let item of frameIdeas'>
-                <a (click)="ideaGroup(item)">{{item.name_hy}}</a>
+                <a (click)="ideaGroup(item)" *ngIf='frames.lang==="hy"'>{{item.name_hy}}</a>
+                <a (click)="ideaGroup(item)" *ngIf='frames.lang==="ru"'>{{item.name_ru}}</a>
+                <a (click)="ideaGroup(item)" *ngIf='frames.lang==="en"'>{{item.name_en}}</a>
             </li>
         </ul>
     </nav>

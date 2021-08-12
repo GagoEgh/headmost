@@ -72,9 +72,9 @@
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>{{'_order._user-data._country'|translate}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="country">
           <nz-select nzAllowClear nzPlaceHolder="COUNTRY" nzShowSearch formControlName='country'>
-            <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country.name_hy '>
-              <nz-option *ngFor='let regions of country.country_regions' [nzLabel]='regions.name_hy' nzDisabled=true>
-                <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id' [nzLabel]='city.name_hy'>
+            <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country["name_"+frames.lang]'>
+              <nz-option *ngFor='let regions of country.country_regions' [nzLabel]='regions["name_"+frames.lang]' nzDisabled=true>
+                <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id' [nzLabel]='city["name_"+frames.lang]'>
                 </nz-option>
               </nz-option>
             </nz-option-group>

@@ -1,7 +1,7 @@
 <header class="conteiner">
 
-  <ngx-spinner bdColor = "rgba(0, 0, 0, 0.9)" size = "medium" color = "#fff" type = "ball-spin">
-    <p style="color: white" > Loading... </p>
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.9)" size="medium" color="#fff" type="ball-spin">
+    <p style="color: white"> Loading... </p>
   </ngx-spinner>
 
   <div class="catalog" [ngStyle]="setStyle()">
@@ -10,8 +10,14 @@
         <li *ngFor="let img of frames?.framesImge,let i=index" [ngClass]="{'box-content': getFrameId(img)}"
           [style.background-image]="'url('+img?.show_image + ')'" (click)='frameClick(img.id)' class="thumbImage">
           <ul class="card">
-            <li>{{img.description_hy}}</li>
-            <li>{{img.name_hy}} {{img.price}} {{'_order._inform-img._price'|translate}} </li>
+            <li *ngIf='frames.lang==="hy"'>{{img.description_hy}}</li>
+            <li *ngIf='frames.lang==="ru"'>{{img.description_ru}}</li>
+            <li *ngIf='frames.lang==="en"'>{{img.description_en}}</li>
+            <li><span *ngIf='frames.lang==="hy"'>{{img.name_hy}}</span>
+              <span *ngIf='frames.lang==="ru"'>{{img.name_ru}}</span>
+              <span *ngIf='frames.lang==="en"'>{{img.name_en}}</span>
+              {{img.price}} {{'_order._inform-img._price'|translate}}
+            </li>
           </ul>
         </li>
       </ul>
@@ -26,7 +32,9 @@
       <div class="colorless" [style.backgroundColor]='block.values.color' *ngFor='let block of frames.imgColor'
         (click)="imgFone(block)" [ngClass]="{'box-content':block?.ceys?.id=== frames?.painding?.id}">
         <div class="lessWhite" [style.backgroundColor]='block.values.child'>
-          <p class="info">{{block?.ceys?.name_hy}}</p>
+          <p class="info" *ngIf='frames.lang==="hy"'>{{block?.ceys?.name_hy}}</p>
+          <p class="info" *ngIf='frames.lang==="ru"'>{{block?.ceys?.name_ru}}</p>
+          <p class="info" *ngIf='frames.lang==="en"'>{{block?.ceys?.name_en}}</p>
         </div>
       </div>
     </div>
@@ -47,7 +55,7 @@
           </form>
         </div>
         <div class="bottom" [style.background-image]="'url(' +frames.frame?.bottom_line_image + ')'">
-          <p class="btn" (click)="open()" *ngIf='frames.isImg'>  {{'_img-text-valid._title'|translate}}</p>
+          <p class="btn" (click)="open()" *ngIf='frames.isImg'> {{'_img-text-valid._title'|translate}}</p>
         </div>
       </div>
       <div class="left">
@@ -59,11 +67,13 @@
           [style.background-image]="'url(' + frames.frame?.right_bottom_corner_image + ')'"></div>
       </div>
     </div>
-    <p *ngIf='frames.isMessage' class="message">ՏՎՅԱԼ ՏԱՌԵՐՈՎ ՆԿԱՐ ԴԵՌՎՍ ՉՈԻՆԵՆՔ</p>
-    <button type="submit" (click)='onSubmit()' class="create" *ngIf='frames.isImg'>{{'_img-text-valid._create-word'|translate}}</button>
+    <!-- <p *ngIf='frames.isMessage' class="message">ՏՎՅԱԼ ՏԱՌԵՐՈՎ ՆԿԱՐ ԴԵՌՎՍ ՉՈԻՆԵՆՔ</p> -->
+    <button type="submit" (click)='onSubmit()' class="create"
+      *ngIf='frames.isImg'>{{'_img-text-valid._create-word'|translate}}</button>
     <app-order *ngIf='frames.isOrder'> </app-order>
-    <button *ngIf='frames.isOrder' class="create" [style.margin-top]="'0px'" (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
-   
+    <button *ngIf='frames.isOrder' class="create" [style.margin-top]="'0px'"
+      (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
+
   </div>
 
 

@@ -1,10 +1,11 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService } from "@ngx-translate/core";
+
 
 
 @Component({
@@ -12,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent implements OnInit, AfterViewChecked {
   validateForm: FormGroup = new FormGroup({});
   public _subscribe$ = new Subject();
   erroreStr: string = '';
@@ -20,6 +21,7 @@ export class OrderComponent implements OnInit {
   width: number | undefined;
   promoError: string = '';
   shiping: any[] = [];
+
   _frstName = '';
   _brtDay = '';
   _email = '';
@@ -30,7 +32,13 @@ export class OrderComponent implements OnInit {
   _shipping = '';
   __addresPost = '';
   _comment = '';
-  _btnOrder = '';
+  _btnOrder = ''
+  title = '';
+  _imgLength = '';
+  _letterSum = '';
+  _price = '';
+  _addSum = '';
+  _carzin = '';
   scale: number = 1;
   promoId = null;
   sumInit = 0;
@@ -62,37 +70,19 @@ export class OrderComponent implements OnInit {
   }
 
   constructor(public frames: FramesServService, private fb: FormBuilder,
-    private _translate: TranslateService, public valid: ValidationServService) {
+    public _translate: TranslateService, public valid: ValidationServService) {
 
   }
 
-  title='';
-  _imgLength ='';
-  _letterSum = '';
-  _price = '';
-  _addSum = '';
-  _carzin = '';
-  ngOnInit(): void {
-   // this.frames.isTop = false;
-    this._translate.get(['_order._user-data','_order._inform-img']).pipe(takeUntil(this._subscribe$)).subscribe((res:any) => {
-       this._frstName = res["_order._user-data"]._frstName ;
-       this._email = res["_order._user-data"]._email;
-       this._phoneNumber = res["_order._user-data"]._phoneNumber;
-       this._country = res["_order._user-data"]._country;
-       this._addres = res["_order._user-data"]._addres;
-       this._sale = res["_order._user-data"].sale;
-       this._shipping = res["_order._user-data"]._shipping;
-       this.__addresPost = res["_order._user-data"]._addresPost;
-       this._comment = res["_order._user-data"]._comment;
-       this._btnOrder = res["_order._user-data"]._btnOrder;
+  ngAfterViewChecked(): void {
+    this._translate.use(this.frames.lang);
+    this.changeJson()
+  }
 
-       this.title = res["_order._inform-img"].title;
-       this._imgLength = res["_order._inform-img"]._imgLength;
-       this._letterSum = res["_order._inform-img"]._letterSum;
-       this._price = res["_order._inform-img"]._price;
-       this._addSum = res["_order._inform-img"]._addSum;
-       this._carzin = res["_order._inform-img"]._carzin;
-    })
+  ngOnInit(): void {
+
+    this.frames.isTop = false;
+    this.changeJson()
     this.frames.isdisible = false;
     setTimeout(() => {
       this.frames.isMyOrder = false;
@@ -125,6 +115,27 @@ export class OrderComponent implements OnInit {
 
   }
 
+  changeJson() {
+    this._translate.get(['_order._user-data', '_order._inform-img']).pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
+      this._frstName = res["_order._user-data"]._frstName;
+      this._email = res["_order._user-data"]._email;
+      this._phoneNumber = res["_order._user-data"]._phoneNumber;
+      this._country = res["_order._user-data"]._country;
+      this._addres = res["_order._user-data"]._addres;
+      this._sale = res["_order._user-data"].sale;
+      this._shipping = res["_order._user-data"]._shipping;
+      this.__addresPost = res["_order._user-data"]._addresPost;
+      this._comment = res["_order._user-data"]._comment;
+      this._btnOrder = res["_order._user-data"]._btnOrder;
+      this.title = res["_order._inform-img"].title;
+      this._imgLength = res["_order._inform-img"]._imgLength;
+      this._letterSum = res["_order._inform-img"]._letterSum;
+      this._price = res["_order._inform-img"]._price;
+      this._addSum = res["_order._inform-img"]._addSum;
+      this._carzin = res["_order._inform-img"]._carzin;
+    })
+  }
+
   public setStyle() {
     let style = {
       transform: "translate(-50%, -5%)" + "scale(" + this.scale + ")"
@@ -133,11 +144,15 @@ export class OrderComponent implements OnInit {
   }
 
   erroreName(formName: string) {
-    if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = 'լռացրեք  տվյալ դաշտը';
-    if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = 'տառերի քանակը պետք է լինի 3-ից ավել';
-    if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = 'թիվ չպետք է լինի';
-    if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = 'Email-ը վալիդ չէ';
-    if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = 'հեռախոսահամարը սխալ է';
+    this._translate.get('_erroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
+      
+      if (this.validateForm.get(formName)?.hasError('required'))  this.erroreStr = res._required;
+      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res._minlength} 3 `;
+      if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res._userNameChar;
+      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr =  res._isEmail;
+      if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res._isSize;
+    })
+    
     return this.erroreStr;
   }
 

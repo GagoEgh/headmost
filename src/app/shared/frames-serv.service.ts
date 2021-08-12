@@ -3,6 +3,9 @@ import { FormGroup } from '@angular/forms';
 import { Api, Ceys, FramesImg, LetterImge, Painding, UserData, Value } from 'src/app/shared/img-ramka'
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { NgxSpinnerService } from "ngx-spinner";
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { TranslateService } from "@ngx-translate/core"
 
 @Injectable({
     providedIn: 'root'
@@ -160,7 +163,7 @@ export class FramesServService {
         }
     ];
 
-    constructor(private url: HttpClient, public spinner: NgxSpinnerService) { }
+    constructor(private url: HttpClient, public spinner: NgxSpinnerService, public _translate: TranslateService) { }
 
     imgColorGet() {
         return this.url.get(this.api.worldApi + this.api.api_utils + this.api.api_color)
@@ -320,5 +323,6 @@ export class FramesServService {
         this.isImg = true;
         this.validateForm.reset()
     }
+
 
 }
