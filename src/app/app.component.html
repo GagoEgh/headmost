@@ -18,6 +18,9 @@
         <a class="frame" routerLink='/idea' routerLinkActive='active'>{{'_menu._idea'|translate}}</a>
       </li>
       <li>
+        <a class="frame" routerLink='/about' routerLinkActive='active'>{{'_menu._aboutUs'|translate}}</a>
+      </li>
+      <li>
         <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
           <img src='../assets/1x/orderIconBlack.png'>
           <span>{{frames.orderList?.length}}</span>

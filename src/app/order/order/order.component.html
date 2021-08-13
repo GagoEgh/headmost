@@ -1,7 +1,6 @@
 
 <div class="wrap" #wrap [ngStyle]="setStyle()" *ngIf='this.frames.orderList.length,else noText'
 [style.top]="frames.isTop?'-50px':'65px'">
-  <!--  {{'_order._user-data._frstName'|translate}}-->
   <div class="user-data">
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
     
@@ -69,7 +68,6 @@
           <nz-select nzAllowClear nzPlaceHolder="Shipping" nzShowSearch formControlName='shipping'>
             <nz-option *ngFor='let addres of shiping ' [nzValue]="addres.id"
               [nzLabel]="addres['name_'+frames.lang] +' ' + addres.price+'Դ'">
-              <!-- 'city["name_"+frames.lang]' -->
             </nz-option>
           </nz-select>
         </nz-form-control>

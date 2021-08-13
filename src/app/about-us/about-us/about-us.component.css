@@ -1,0 +1,64 @@
+.component{
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;   
+    position: relative;
+    transform-origin: top;
+    left: 50%;
+    top:100px;
+}
+
+
+.bg-color{
+    background-image: url('/assets/1x/headerImg.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 1200px;
+    height: 320px;
+}
+
+.wrap{
+    border: 1px solid;
+    padding-top: 50px;
+    display: flex;
+    width:1200px ;
+
+}
+
+.section{
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.hello{
+    font-weight: 800;
+    color: black;
+    letter-spacing: 1px;
+    font-size: 2rem;
+    padding-bottom: 20px;
+}
+
+.text_1{
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: black;
+    font-weight: 500;
+    letter-spacing: 0.03rem;
+}
+
+.data{
+    width: 400px;
+}
+
+.question{
+    margin-top:80px;
+}
+
+.title{
+    font-weight: 600;
+    color: black;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+}
