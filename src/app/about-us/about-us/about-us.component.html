@@ -9,11 +9,21 @@
                 <p class="text_1">{{'_about._text_1'|translate}}</p>
                 <p class="text_1">{{'_about._text_2'|translate}}</p>
             </article>
-            <article class="question">
+            <article class="question-text">
                 <h2 class="title">{{'_about._FAQ'|translate}}</h2>
+                <ul class="ul">
+                    <li *ngFor='let question of question_answer,let i = index'  (click)="showQuestion(question,i)" >
+                        <p class="question">{{question._label}}</p>
+                        <ul>
+                            <li *ngIf="isBlock">
+                                <p class="label" *ngIf='!question.id'>{{question._answers}}</p > 
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </article>
         </section>
-        <article >
+        <article>
             <p class="data">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 Dicta autem soluta cumque praesentium doloremque adipisci reiciendis,
@@ -23,4 +33,5 @@
         </article>
     </div>
 
+    
 </div>

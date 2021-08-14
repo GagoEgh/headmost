@@ -101,24 +101,39 @@
         "_text_2": "In our smart Constructor, you can build a word from unique photos that imitate letters.  There are so many amazing things that you can now give to your loved ones – Love, Happiness, Dream, and even Moon in the Sky",
         "_inet":"Follow us on social media",
         "_FAQ":"FAQ",
-        "_question_1":"Constructor is not working. What do I do?",
-        "_answer_1":"Yes. The work looks very cool live, which is why we often receive letters from our clients. The only thing that do not order long frames from a black baguette - it is plastic and can bend from 5 letters",
-        "_question_2":"What are the terms of production and delivery of photographs",
-        "_answer_2.1":"If your word is made of white, black, brown baguette, then it will be ready the next business day after ordering. Sometimes, if asked in the comments, we can do it day after day.",
-        "_answer_2.2":"In some cases, when a new batch of baguettes is in the workshop, the word can be ready within 3 working days, it makes sense to clarify this by phone.",
-        "_answer_2.3":"Delivery is carried out by the company depending on the selected type of delivery. (time indicated in working days) See the time when placing an order.",
-        "_question_3":"What are the sizes of your photo letters?",
-        "_answer_3.1":"Framed photos can be from 3 letters to 9",
-        "_answer_3.2":"Photo size 10X15 - the dimensions of the frame can be viewed in the constructor Magnets size 6x9",
-        "_question_4":"What are the frames made of and what is included in the kit?",
-        "_answer_4.1":"All our frames are made of high quality moldings and varnished over the entire surface of the plank. Passepartout is made of textured thickened paper, the backdrop is made of thick cardboard.",
-        "_answer_4.2":"For delivery by transport companies, we use plexiglass. For delivery by courier or self-pickup, we use baguette glass.",
-        "_answer_4.3":"Each frame comes with a wall mount kit + free gift wrap.",
-        "_question_5":"What if the frame breaks on delivery",
-        "_answer_5":"For delivery, we carefully pack the frames with bubble wrap. Over the entire period of the project's work, the framework has not been damaged even once. But, if this happens, then we will make a replacement at our own expense.",
-        "_question_6":"The constructor doesn't work for me!",
-        "_answer_6":"Most likely, you are using an old version of the browser that we no longer support or Internet Explorer, we may have bugs there. Go through Crome, Mozila, Safary.",
-        "_btn_quest":"Ask your question"
+        "_btn_quest":"Ask your question",
+        "_questions": [
+            {
+                "id":1,
+                "_label": "Constructor is not working. What do I do?",
+                "_answers": "Yes. The work looks very cool live, which is why we often receive letters from our clients."
+            },
+            {
+                "id":2,
+                "_label":"What are the terms of production and delivery of photographs",
+                "_answers":"If your word is made of white, black, brown baguette, then it will be ready the next business day after ordering. Sometimes, if asked in the comments, we can do it day after day.\n\nIn some cases, when a new batch of baguettes is in the workshop, the word can be ready within 3 working days, it makes sense to clarify this by phone.\n\nDelivery is carried out by the company depending on the selected type of delivery. (time indicated in working days) See the time when placing an order."
+            },
+            {
+                "id":3,
+                "_label":"What are the sizes of your photo letters?",
+                "_answers":"Framed photos can be from 3 letters to 9\n\nPhoto size 10X15 - the dimensions of the frame can be viewed in the constructor Magnets size 6x9"
+            },
+            {
+                "id":4,
+                "_label":"What are the frames made of and what is included in the kit?",
+                "_answers":"All our frames are made of high quality moldings and varnished over the entire surface of the plank. Passepartout is made of textured thickened paper, the backdrop is made of thick cardboard.\n\nFor delivery by transport companies, we use plexiglass. For delivery by courier or self-pickup, we use baguette glass.\n\nEach frame comes with a wall mount kit + free gift wrap."
+            },
+            {
+                "id":5,
+                "_label":"What if the frame breaks on delivery",
+                "_answers":"For delivery, we carefully pack the frames with bubble wrap. Over the entire period of the project's work, the framework has not been damaged even once. But, if this happens, then we will make a replacement at our own expense."
+            },
+            {
+                "id":6,
+                "_label":"The constructor doesn't work for me!",
+                "_answers":"Most likely, you are using an old version of the browser that we no longer support or Internet Explorer, we may have bugs there. Go through Crome, Mozila, Safary."
+            }
+        ]
     }
   
 }
