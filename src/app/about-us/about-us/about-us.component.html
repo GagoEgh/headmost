@@ -15,8 +15,8 @@
                     <li *ngFor='let question of question_answer,let i = index'  (click)="showQuestion(question,i)" >
                         <p class="question">{{question._label}}</p>
                         <ul>
-                            <li *ngIf="isBlock">
-                                <p class="label" *ngIf='!question.id'>{{question._answers}}</p > 
+                            <li >
+                                <p class="label" *ngIf='question.isBlock && isBlock'>{{question._answers}}</p > 
                             </li>
                         </ul>
                     </li>

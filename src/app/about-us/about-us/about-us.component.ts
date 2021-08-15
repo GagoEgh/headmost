@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, HostListener, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
@@ -10,7 +10,7 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './about-us.component.html',
   styleUrls: ['./about-us.component.css']
 })
-export class AboutUsComponent implements OnInit, AfterViewChecked {
+export class AboutUsComponent implements OnInit, AfterViewChecked,OnChanges {
   public _unsubscribe$ = new Subject();
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
   heigth: number | undefined;
@@ -18,6 +18,9 @@ export class AboutUsComponent implements OnInit, AfterViewChecked {
   scale: number = 1;
   isBlock: boolean = false;
   question_answer: any[] = [];
+  obj = {};
+  caunt: number =0;
+
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.heigth = this.block?.nativeElement.clientHeight | 1;
@@ -52,26 +55,40 @@ export class AboutUsComponent implements OnInit, AfterViewChecked {
 
 
   constructor(public frames: FramesServService, public _translate: TranslateService) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.showQuestion(this.obj,this.caunt);
+  }
+
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
     this.question_answer = [];
-    this._translate.get('_about._questions').pipe(takeUntil(this._unsubscribe$)).subscribe((res: any) => {
-      this.question_answer.push(...res)
-    });
+    this.createText();
     
   }
 
   ngOnInit(): void {
+    this.createText();
+ 
+  }
+
+  createText() {
     this._translate.get('_about._questions').pipe(takeUntil(this._unsubscribe$)).subscribe((res: any) => {
-      this.question_answer.push(...res)
+      res.forEach((element: any) => {
+        element.isBlock = JSON.parse(element.isBlock);
+        this.question_answer.push(element)
+      });
+
     })
   }
 
-  showQuestion(ev:any,num:number){
-    this.isBlock = !this.isBlock;
-    ev.id = !!!ev.id;
-    console.log(ev)
-
+  showQuestion(ev: any, num: number) {
+    if (ev.id === this.question_answer[num].id) {
+      this.obj = ev;
+      this.caunt = num;
+      this.isBlock = !this.isBlock;
+      ev.isBlock = !ev.isBlock;
+      console.log(ev)
+    }
   }
 
   ngOnDestroy() {
