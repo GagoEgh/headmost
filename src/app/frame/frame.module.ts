@@ -25,14 +25,6 @@ const routs:Routes=[
     SharedModule,
     RouterModule.forChild(routs),
 
-    // TranslateModule.forRoot({
-    //   loader: {
-    //     provide: TranslateLoader,
-    //     useFactory: (createTranslateLoader),
-    //     deps: [HttpClient]
-    //   }
-    // })
-
   ],
   exports:[RouterModule]
 })

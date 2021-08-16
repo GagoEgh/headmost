@@ -14,6 +14,7 @@
     border-radius: 7px;
     padding: 10px 20px;
     box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
+    z-index: 555;
     display: none;
 }
 
@@ -135,4 +136,30 @@ color:#aa8b51 ;
 
 .flag:active{
     box-shadow: 1px 0 6px 4px rgb(75, 73, 73);
+}
+
+
+.footerWrap{
+    width: 100%;
+  padding-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 13px 10px rgb(41 43 42 / 37%) inset;
+}
+
+.left{
+    padding: 20px; 
+    width: 30%;
+}
+
+.footer-nav{
+  border: 1px solid;
+  width: 35%;
+}
+
+.footer-silki{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
 }

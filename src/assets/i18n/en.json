@@ -102,6 +102,7 @@
         "_inet":"Follow us on social media",
         "_FAQ":"FAQ",
         "_btn_quest":"Ask your question",
+        "_kontackt_info":"Contact Information",
         "_questions": [
             {
                 "id":1,
@@ -139,7 +140,18 @@
                 "_label":"The constructor doesn't work for me!",
                 "_answers":"Most likely, you are using an old version of the browser that we no longer support or Internet Explorer, we may have bugs there. Go through Crome, Mozila, Safary."
             }
-        ]
+        ],
+
+        "_steps":{
+            "_compile" :"Come up with a word",
+            "_text1":"value, profession, name, wish",
+            "_select":"Choose letters",
+            "_text2":"more than 3000 copyright options",
+            "_get":"Receive with delivery",
+            "text3":"from 1 to 7 days, breakage insurance",
+            "_donate":"Give",
+            "text4":"or hang on the wall"
+        }
     }
   
 }

@@ -1,18 +1,65 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.3)" size = "medium" color = "#fff" type = "ball-spin">
-  <p style="color: white" > Loading... </p>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
+  <p style="color: white"> Loading... </p>
 </ngx-spinner>
 <div class="conteiner" [style.min-width]='frames.isMyOrder?"1000px":"100%"'>
-    <ul class="silki">
-      <li class="parent">
-        <p class="frame">{{'_menu.konstruktor._konstr'|translate}}</p>
-        <ul class="li-nav">
-          <li>
-            <a class="frame" (click)='getFrame()' >{{'_menu.konstruktor._frame'|translate}}</a>
-          </li>
-          <li>
-            <a class="frame" (click)='getMagnit()'>{{'_menu.konstruktor._magnet'|translate}}</a>
-          </li>
-        </ul>
+  <ul class="silki">
+    <li class="parent">
+      <p class="frame">{{'_menu.konstruktor._konstr'|translate}}</p>
+      <ul class="li-nav">
+        <li>
+          <a class="frame" (click)='getFrame()'>{{'_menu.konstruktor._frame'|translate}}</a>
+        </li>
+        <li>
+          <a class="frame" (click)='getMagnit()'>{{'_menu.konstruktor._magnet'|translate}}</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a class="frame" routerLink='/idea' routerLinkActive='active'>{{'_menu._idea'|translate}}</a>
+    </li>
+    <li>
+      <a class="frame" routerLink='/about' routerLinkActive='active'>{{'_menu._aboutUs'|translate}}</a>
+    </li>
+    <li>
+      <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
+        <img src='../assets/1x/orderIconBlack.png'>
+        <span>{{frames.orderList?.length}}</span>
+      </a>
+    </li>
+    <li *ngIf='frames.userReg, else log'>
+      <a class="frame" (click)="open()">{{'_menu._user._exit'|translate}}</a>
+    </li>
+    <ng-template #log>
+      <ul>
+        <li class="parent">
+          <a class="activeHover" routerLinkActive='active'> {{frames.userData.user_details.first_name}}
+            <ul class="user-data">
+              <li class="list"><a routerLink='/user/profil'>{{'_menu._user._profil'|translate}}</a></li>
+              <li class="list"><a routerLink='/user/imags'>{{'_menu._user._images'|translate}}</a></li>
+              <li class="list"><a routerLink='/user/user-order'>{{'_menu._user._orders'|translate}}</a></li>
+              <li class="list" (click)="close()">{{'_menu._user._close'|translate}}</li>
+            </ul>
+          </a>
+        </li>
+      </ul>
+    </ng-template>
+  </ul>
+  <ul class="frags">
+    <li class="flag" [style.background-image]="'url(../assets/1x/flag/armenia.png)'" (click)="changeLeng('hy')"></li>
+    <li class="flag" [style.background-image]="'url(../assets/1x/flag/russia.png)'" (click)="changeLeng('ru')"></li>
+    <li class="flag" [style.background-image]="'url(../assets/1x/flag/united-kingdom.png)'" (click)="changeLeng('en')"></li>
+  </ul>
+</div>
+<router-outlet></router-outlet>
+
+<div class="footerWrap">
+  <div class="left">
+    <p> Copyright © 2021 LoviSlova</p>
+  </div>
+  <div class="footer-nav">
+    <ul class="footer-silki">
+      <li>
+        <a class="frame" routerLink=''>{{'_menu.konstruktor._frame'|translate}}</a>
       </li>
       <li>
         <a class="frame" routerLink='/idea' routerLinkActive='active'>{{'_menu._idea'|translate}}</a>
@@ -20,34 +67,6 @@
       <li>
         <a class="frame" routerLink='/about' routerLinkActive='active'>{{'_menu._aboutUs'|translate}}</a>
       </li>
-      <li>
-        <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
-          <img src='../assets/1x/orderIconBlack.png'>
-          <span>{{frames.orderList?.length}}</span>
-        </a>
-      </li>
-      <li *ngIf='frames.userReg, else log'>
-        <a class="frame" (click)="open()">{{'_menu._user._exit'|translate}}</a>
-      </li>
-      <ng-template #log>
-        <ul>
-          <li class="parent">
-            <a class="activeHover" routerLinkActive='active'> {{frames.userData.user_details.first_name}}
-              <ul class="user-data">
-                <li class="list"><a routerLink='/user/profil'>{{'_menu._user._profil'|translate}}</a></li>
-                <li class="list"><a routerLink='/user/imags'>{{'_menu._user._images'|translate}}</a></li>
-                <li class="list"><a routerLink='/user/user-order'>{{'_menu._user._orders'|translate}}</a></li>
-                <li class="list" (click)="close()">{{'_menu._user._close'|translate}}</li>
-              </ul>
-            </a>
-          </li>
-        </ul>
-      </ng-template>
     </ul>
-    <ul class="frags">
-      <li class="flag" [style.background-image]="'url(../assets/1x/armenia.png)'" (click)="changeLeng('hy')"></li>
-      <li class="flag" [style.background-image]="'url(../assets/1x/russia.png)'"(click)="changeLeng('ru')" ></li>
-      <li class="flag"[style.background-image]="'url(../assets/1x/united-kingdom.png)'" (click)="changeLeng('en')"></li>
-    </ul>
+  </div>
 </div>
-<router-outlet></router-outlet>

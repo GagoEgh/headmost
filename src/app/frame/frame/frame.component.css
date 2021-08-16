@@ -1,7 +1,8 @@
 .conteiner{
     padding:20px;
-    height: calc(100% - 74px);
+    /* height: calc(100% - 74px); */
     background-image: url('/assets/1x/bg8.jpg');
+    
 }
 
 .catalog{
@@ -12,7 +13,7 @@
     padding: 0 90px;
     position: relative;
     left: 50%;
-    top:50px;
+    top:20px;
 }
 
 .carusel{
@@ -99,8 +100,9 @@
 
 .block{
     left: 50%;
-    top:175px;
+    top:80px;
 }
+
 .myWrap{
     display: flex;
     width: fit-content;

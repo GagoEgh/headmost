@@ -16,7 +16,6 @@ export class AboutUsComponent implements OnInit, AfterViewChecked,OnChanges {
   heigth: number | undefined;
   width: number | undefined;
   scale: number = 1;
-  isBlock: boolean = false;
   question_answer: any[] = [];
   obj = {};
   caunt: number =0;
@@ -85,8 +84,8 @@ export class AboutUsComponent implements OnInit, AfterViewChecked,OnChanges {
     if (ev.id === this.question_answer[num].id) {
       this.obj = ev;
       this.caunt = num;
-      this.isBlock = !this.isBlock;
       ev.isBlock = !ev.isBlock;
+      
       console.log(ev)
     }
   }
