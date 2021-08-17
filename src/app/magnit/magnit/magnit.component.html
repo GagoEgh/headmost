@@ -1,4 +1,4 @@
-<header class="lightSheme ">
+<header class="lightSheme " [style.height]="frames.isOrder?'fit-content':'590px'">
   <ngx-spinner bdColor="rgba(0, 0, 0, 0.9)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
   </ngx-spinner>
@@ -22,12 +22,28 @@
           </form>
           <p class="btn" (click)="open()" *ngIf='frames.isImg'>{{'_img-text-valid._title'|translate}}</p>
         </div>
-        <button type="submit" (click)='onSubmit()' class="create" *ngIf='frames.isImg'>{{'_img-text-valid._create-word'|translate}}</button>
-        <app-order *ngIf='frames.isOrder'> </app-order>
-        <button *ngIf='frames.isOrder' class="create"  (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}
-        </button>
+        
       </div>
     </div>
+  </div>
+  <app-order *ngIf='frames.isOrder'> </app-order>
+  <div class="buttonWrap">
+    <div class="asside"></div>
+    <div class="center">
+      <button type="submit" (click)='onSubmit()' class="create"
+        *ngIf='frames.isImg'>{{'_img-text-valid._create-word'|translate}}</button>
+
+      <button *ngIf='frames.isOrder' class="create create-bottom"
+        (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
+
+      <!-- *ngIf='!frames.isOrder'  [class.fone-btn]="!frames.isOrder"   'left':'44%'  top 113px-->
+      <button class="btn-save" (click)='frames.myMagnitOrder()'
+        *ngIf='!frames.isOrder && !frames.isImg'>{{'_imgs._batn-save'|translate}}</button>
+
+      <div class="bg-fone" [class.fone-btn]="!frames.isImg" 
+      ></div>
+    </div>
+    <div class="asside"></div>
   </div>
   <ng-template #create>
     <app-create-magnit (mainApp)="deletImg($event)"></app-create-magnit>

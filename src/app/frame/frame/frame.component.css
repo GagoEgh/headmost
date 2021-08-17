@@ -2,7 +2,6 @@
     padding:20px;
     /* height: calc(100% - 74px); */
     background-image: url('/assets/1x/bg8.jpg');
-    
 }
 
 .catalog{
@@ -158,6 +157,14 @@
 .create{
     margin-top: 40px;
     outline: none;
+    margin-left: 5px;
+}
+
+.create-bottom{
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    z-index: 1;
 }
 
 .btn{
@@ -180,5 +187,38 @@
     display: flex;
     width: fit-content;
     box-shadow: 3px 2px 22px 0 rgb(87 87 87);
+}
+
+.buttonWrap{
+    position: relative;
+    display: flex;
+    width: 100%;
+    transform-origin: top; 
+    margin-top: 70px;
+    /* border: 1px solid; */
+}
+
+.asside{
+    height: 40px;
+    width: 50%;
+    margin-top: 40px;
+}
+
+.bg-fone{
+    height: 22px;
+    width: 190px;
+    background-image: url('/assets/1x/bg8.jpg');
+    border-radius: 7px;
+    margin-top: -18px;
+}
+
+.fone-btn{
+    position: absolute;
+    top: 112px;
+    left: 45%;
+}
+
+.steps{
+    background: white;
 }
 

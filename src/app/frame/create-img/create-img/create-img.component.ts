@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
-import {  takeUntil } from 'rxjs/operators';
-import { LoginComponent } from 'src/app/register/login/login.component';
 import { FrameImag } from 'src/app/shared/frame-image';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { Letter } from '../../../shared/img-ramka';
@@ -116,56 +114,6 @@ export class CreateImgComponent extends FrameImag  implements OnInit {
     )
     this.frames.isMessage = false;
   }
-
-
-  myOrder() {
-    if (localStorage.getItem('loginAutorization')) {
-      this.frames.spinner.show();
-      this.frames.isTop = true;
-      
-      const imgs: any[] = [];
-      this.frames.letterImges.forEach((i, index) => {
-        const obj = {
-          order_index: index,
-          character: i.image.character,
-          image: i.image.id,
-          user_image: null,
-        }
-        imgs.push(obj)
-      })
-  
-      const order = {
-        frame: this.frames.frame.id,
-        background: this.frames.background.id,
-        word: this.frames.text.toUpperCase(),
-        text_in_top: this.frames.topText,
-        text_in_bottom: this.frames.btmText,
-        images: imgs,
-      }
-
-      if (!this.frames.apiPhoto) {
-        order.images = order.images.map((img: any) => {
-          if (img.character === undefined) {
-            img.character = this.letterChar;
-            img.user_image = img.image;
-            img.image = null;
-          }
-          return img;
-        })
-      }
-
-      this.frames.getOrder(order).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
-        this.frames.orderList = el;
-        this.frames.isOrder = true;
-        this.frames.spinner.hide()
-      })
-    } else {
-      const modalRef = this.modalService.open(LoginComponent);
-
-    }
-
-  }
-
 
   ngOnDestroy(){
     this._unsubscribe$.next();

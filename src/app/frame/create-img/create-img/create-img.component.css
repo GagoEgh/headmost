@@ -53,6 +53,15 @@
    height: 50px;
 }
 
-.btn-save{
-   outline: none;
+.im{
+   width: fit-content;
+   display: flex;
+   flex-direction: column;
+   padding: 5px 10px;
+   position:relative;
 }
+
+
+
+
+

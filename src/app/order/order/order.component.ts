@@ -138,7 +138,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   public setStyle() {
     let style = {
-      transform: "translate(-50%, -5%)" + "scale(" + this.scale + ")"
+      transform: "translate(-50%, -18%)" + "scale(" + this.scale + ")"
     }
     return style
   }

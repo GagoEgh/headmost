@@ -1,4 +1,4 @@
-<header class="conteiner">
+<header class="conteiner" [style.height]="frames.isOrder?'fit-content':'538px'">
 
   <ngx-spinner bdColor="rgba(0, 0, 0, 0.9)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
@@ -68,23 +68,34 @@
       </div>
     </div>
     <!-- <p *ngIf='frames.isMessage' class="message">ՏՎՅԱԼ ՏԱՌԵՐՈՎ ՆԿԱՐ ԴԵՌՎՍ ՉՈԻՆԵՆՔ</p> -->
-    <button type="submit" (click)='onSubmit()' class="create"
-      *ngIf='frames.isImg'>{{'_img-text-valid._create-word'|translate}}</button>
     <app-order *ngIf='frames.isOrder'> </app-order>
-    <button *ngIf='frames.isOrder' class="create" [style.margin-top]="'0px'"
-      (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
-
   </div>
+  <div class="buttonWrap">
+    <div class="asside"></div>
+    <div class="center">
+      <button type="submit" (click)='onSubmit()' class="create"
+        *ngIf='frames.isImg'>{{'_img-text-valid._create-word'|translate}}</button>
 
-  <div class="steps">
-    <div class="compile"></div>
-    <div class="select"></div>
-    <div class="get"></div>
-    <div class="donate"></div>
-    
+        
+      <button *ngIf='frames.isOrder' class="create create-bottom"
+        (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
+
+      <button class="create" (click)='frames.myOrder()'
+        *ngIf='!frames.isOrder && !frames.isImg'>{{'_img-text-valid._batn-save'|translate}}</button>
+      <ng-template #create>
+        <app-create-img (mainApp)="deletImg($event)"></app-create-img>
+      </ng-template>
+      <div class="bg-fone"  [class.fone-btn]="frames.isOrder"></div>
+    </div>
+    <div class="asside"></div>
   </div>
-
-  <ng-template #create>
-    <app-create-img (mainApp)="deletImg($event)"></app-create-img>
-  </ng-template>
 </header>
+
+<div class="steps">
+  <div class="compile">
+    <img src="/assets/1x/steps/bulb.png">
+  </div>
+  <div class="select"></div>
+  <div class="get"></div>
+  <div class="donate"></div>
+</div>

@@ -5,10 +5,12 @@
 .wrap{
     width: fit-content;
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around;
     position: relative;
     left: 50%;
-    top: 20px;
+    top: 20px; */
+    margin-left: 50%;
+    /* top:20px; */
     transform-origin: top;
     box-shadow: 3px 2px 22px 0 rgb(87 87 87);
     background-color: white;

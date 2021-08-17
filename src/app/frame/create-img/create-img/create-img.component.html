@@ -32,10 +32,6 @@
       </form>
     </div>
     <div class="save" [style.opacity]="bottomLettering.isMenu?'1':'0'">
-      <p class="bottom" (click)='myOrder()'>{{'_imgs._save'|translate}}</p>
+      <p class="bottom" (click)='frames.myOrder()'>{{'_imgs._save'|translate}}</p>
     </div>
   </div>
-
-</div>
-<button class="btn-save" (click)='myOrder()' *ngIf='!frames.isOrder'>{{'_img-text-valid._batn-save'|translate}}
-</button>

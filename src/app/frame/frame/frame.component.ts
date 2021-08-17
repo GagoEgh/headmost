@@ -32,7 +32,7 @@ export class FrameComponent extends FrameImag implements OnInit {
     this.heigth = this.block?.nativeElement.clientHeight | 1;
     this.width = this.block?.nativeElement.clientWidth | 1;
     if (window.innerWidth <= 1165) {
-      this.scale = window.innerWidth / this.width - 0.1;
+      this.scale = window.innerWidth / this.width - 0.34;
 
     }
 
@@ -49,6 +49,8 @@ export class FrameComponent extends FrameImag implements OnInit {
         this.scale = window.innerWidth / this.width;
       }
     }
+
+    console.log(this.scale)
   }
 
 

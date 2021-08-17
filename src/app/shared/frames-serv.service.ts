@@ -3,9 +3,10 @@ import { FormGroup } from '@angular/forms';
 import { Api, Ceys, FramesImg, LetterImge, Painding, UserData, Value } from 'src/app/shared/img-ramka'
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { NgxSpinnerService } from "ngx-spinner";
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+
 import { TranslateService } from "@ngx-translate/core"
+import { LoginComponent } from '../register/login/login.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable({
     providedIn: 'root'
@@ -163,7 +164,7 @@ export class FramesServService {
         }
     ];
 
-    constructor(private url: HttpClient, public spinner: NgxSpinnerService, public _translate: TranslateService) { }
+    constructor(private url: HttpClient, public spinner: NgxSpinnerService, public _translate: TranslateService, public modalService: NgbModal) { }
 
     imgColorGet() {
         return this.url.get(this.api.worldApi + this.api.api_utils + this.api.api_color)
@@ -322,6 +323,98 @@ export class FramesServService {
         this.isOrder = false;
         this.isImg = true;
         this.validateForm.reset()
+    }
+
+    letterChar = 0;
+    public myOrder() {
+        if (localStorage.getItem('loginAutorization')) {
+            this.spinner.show();
+            this.isTop = true;
+
+            const imgs: any[] = [];
+            this.letterImges.forEach((i, index) => {
+                const obj = {
+                    order_index: index,
+                    character: i.image.character,
+                    image: i.image.id,
+                    user_image: null,
+                }
+                imgs.push(obj)
+            })
+
+            const order = {
+                frame: this.frame.id,
+                background: this.background.id,
+                word: this.text.toUpperCase(),
+                text_in_top: this.topText,
+                text_in_bottom: this.btmText,
+                images: imgs,
+            }
+
+            if (!this.apiPhoto) {
+                order.images = order.images.map((img: any) => {
+                    if (img.character === undefined) {
+                        img.character = this.letterChar;
+                        img.user_image = img.image;
+                        img.image = null;
+                    }
+                    return img;
+                })
+            }
+
+            this.getOrder(order).subscribe((el: any) => {
+                this.orderList = el;
+                this.isOrder = true;
+                this.spinner.hide()
+            })
+        } else {
+            const modalRef = this.modalService.open(LoginComponent);
+
+        }
+
+    }
+
+
+    myMagnitOrder() {
+        if (localStorage.getItem('loginAutorization')) {
+            this.spinner.show();
+            const imgs: any[] = [];
+            this.letterImges.forEach((i, index) => {
+                const obj = {
+                    order_index: index,
+                    character: i.image.character,
+                    image: i.image.id,
+                    user_image: null,
+                }
+                imgs.push(obj)
+            })
+
+            const order = {
+                word: this.text.toUpperCase(),
+                images: imgs,
+            }
+
+            if (!this.apiPhoto) {
+                order.images = order.images.map((img: any) => {
+                    if (img.character === undefined) {
+                        img.character = this.letterChar;
+                        img.user_image = img.image;
+                        img.image = null;
+                    }
+                    return img;
+                })
+            }
+
+            this.magnetImg(order).subscribe((el: any) => {
+                this.orderList = el;
+                this.isOrder = true;
+                this.spinner.hide()
+            })
+        } else {
+            const modalRef = this.modalService.open(LoginComponent);
+
+        }
+
     }
 
 

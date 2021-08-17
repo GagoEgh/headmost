@@ -2,14 +2,12 @@
 .lightSheme{
     background: url('src/assets/1x/bg_magnit.jpg') repeat 0 0;
     padding: 20px;
-  
 }
 
 
 .magnit{
     height: 480px;
     width: 60%;
-    /* width: fit-content; */
     min-width: 930px;
     margin: 10px auto;
     background: url('src/assets/1x/magnit.jpg')  no-repeat 0 0 #fbfbfb;
@@ -37,10 +35,6 @@
   
 }
 
-.create{
-    margin: 13% 0 0 40%;
-    outline: none;
-}
 
 .block{
     top: 50px ;
@@ -48,3 +42,60 @@
     transform-origin: top;  
 }
 
+.buttonWrap{
+    position: relative;
+    display: flex;
+    width: 100%;
+    transform-origin: top; 
+    border: 1px solid;
+}
+
+.asside{
+    height: 40px;
+    width: 50%;
+    margin-top: 40px;
+}
+
+.create{
+    margin-top: 42px;
+    outline: none;
+    margin-left: 5px;
+   
+}
+
+.create-bottom{
+    position: absolute;
+    top: 40%;
+    left: 44%;
+    z-index: 1;
+}
+
+.bg-fone{
+   height: 22px;
+    width: 190px;
+    background-image: url('src/assets/1x/bg_magnit.jpg');
+    background-position: center;
+    border-radius: 7px;
+    margin-top: -16px;
+    border: 1px solid;
+}
+
+.fone-btn{
+    position: absolute;
+    height: 30px;
+    width: 190px;
+    top: 113px;
+    left: 44%;
+    background-image: url('src/assets/1x/bg_magnit.jpg');
+    background-position: center;
+    border-radius: 7px;
+    border: 1px solid;
+}
+
+
+.btn-save{
+    outline: none;
+    left: 43.7%;
+
+
+}
