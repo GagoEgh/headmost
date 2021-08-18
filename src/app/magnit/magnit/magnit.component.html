@@ -22,7 +22,6 @@
           </form>
           <p class="btn" (click)="open()" *ngIf='frames.isImg'>{{'_img-text-valid._title'|translate}}</p>
         </div>
-        
       </div>
     </div>
   </div>
@@ -40,8 +39,8 @@
       <button class="btn-save" (click)='frames.myMagnitOrder()'
         *ngIf='!frames.isOrder && !frames.isImg'>{{'_imgs._batn-save'|translate}}</button>
 
-      <div class="bg-fone" [class.fone-btn]="!frames.isImg" 
-      ></div>
+      <div class="bg-fone" [class.fone-btn]="!frames.isImg"></div>  
+      
     </div>
     <div class="asside"></div>
   </div>

@@ -16,9 +16,11 @@ import { TranslateService } from '@ngx-translate/core';
 export class FrameComponent extends FrameImag implements OnInit {
 
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
+  @ViewChild("header", { static: false }) header: ElementRef | undefined;
   heigth: number | undefined;
   width: number | undefined;
   scale: number = 1;
+
 
   constructor(public frames: FramesServService, public modalService: NgbModal,
     public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
@@ -31,15 +33,23 @@ export class FrameComponent extends FrameImag implements OnInit {
   onResize() {
     this.heigth = this.block?.nativeElement.clientHeight | 1;
     this.width = this.block?.nativeElement.clientWidth | 1;
+    let hg = this.header?.nativeElement.clientHeight;
+
+
     if (window.innerWidth <= 1165) {
       this.scale = window.innerWidth / this.width - 0.34;
-
+      hg = hg - 100;
+     
+      console.log('heder', hg)
     }
 
     if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
       if (window.innerWidth <= 1165) {
         this.width += 280;
         this.scale = window.innerWidth / this.width - 0.2;
+       
+        console.log('heder',hg)
+
       }
     }
 
@@ -47,10 +57,13 @@ export class FrameComponent extends FrameImag implements OnInit {
       if (window.innerWidth <= 1165) {
         this.width += 380;
         this.scale = window.innerWidth / this.width;
+    
+        console.log('heder', hg)
+
       }
     }
 
-    console.log(this.scale)
+
   }
 
 
@@ -80,12 +93,20 @@ export class FrameComponent extends FrameImag implements OnInit {
 
   public setStyle() {
     let style = {
-      transform: "translate(-50%, -5%)" + "scale(" + this.scale + ")"
+      transform: "translate(-50%, 0)" + "scale(" + this.scale + ")"
     }
     return style
   }
 
-  frameClick(id:number) {
+  public setTransform(){
+    let style = {
+      transform: "translate(-50%, -5%)" +"scaleY("+this.scale+")",
+      
+    }
+    return style
+  }
+
+  frameClick(id: number) {
     this.frames.index = id;
     this.frames.frame = this.frames.framesImge.find(item => item.id === this.frames.index);
   }
@@ -96,7 +117,7 @@ export class FrameComponent extends FrameImag implements OnInit {
 
   changeBg(bg: any) {
     this.frames.background = bg;
-  
+
   }
 
   ngOnDestroy() {

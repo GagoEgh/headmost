@@ -47,7 +47,6 @@
     display: flex;
     width: 100%;
     transform-origin: top; 
-    border: 1px solid;
 }
 
 .asside{
@@ -77,7 +76,6 @@
     background-position: center;
     border-radius: 7px;
     margin-top: -16px;
-    border: 1px solid;
 }
 
 .fone-btn{
@@ -89,13 +87,10 @@
     background-image: url('src/assets/1x/bg_magnit.jpg');
     background-position: center;
     border-radius: 7px;
-    border: 1px solid;
 }
-
 
 .btn-save{
     outline: none;
     left: 43.7%;
-
-
 }
+

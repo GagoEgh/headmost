@@ -1,7 +1,7 @@
 .conteiner{
     padding:20px;
-    /* height: calc(100% - 74px); */
     background-image: url('/assets/1x/bg8.jpg');
+    position: relative;
 }
 
 .catalog{

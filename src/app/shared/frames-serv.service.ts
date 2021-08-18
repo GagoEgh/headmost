@@ -3,8 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Api, Ceys, FramesImg, LetterImge, Painding, UserData, Value } from 'src/app/shared/img-ramka'
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { NgxSpinnerService } from "ngx-spinner";
-
-import { TranslateService } from "@ngx-translate/core"
+import { TranslateService } from "@ngx-translate/core";
 import { LoginComponent } from '../register/login/login.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
