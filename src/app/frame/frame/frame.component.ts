@@ -16,7 +16,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class FrameComponent extends FrameImag implements OnInit {
 
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
-  @ViewChild("header", { static: false }) header: ElementRef | undefined;
+  
   heigth: number | undefined;
   width: number | undefined;
   scale: number = 1;
@@ -33,23 +33,16 @@ export class FrameComponent extends FrameImag implements OnInit {
   onResize() {
     this.heigth = this.block?.nativeElement.clientHeight | 1;
     this.width = this.block?.nativeElement.clientWidth | 1;
-    let hg = this.header?.nativeElement.clientHeight;
 
 
     if (window.innerWidth <= 1165) {
       this.scale = window.innerWidth / this.width - 0.34;
-      hg = hg - 100;
-     
-      console.log('heder', hg)
     }
 
     if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
       if (window.innerWidth <= 1165) {
         this.width += 280;
         this.scale = window.innerWidth / this.width - 0.2;
-       
-        console.log('heder',hg)
-
       }
     }
 
@@ -57,9 +50,6 @@ export class FrameComponent extends FrameImag implements OnInit {
       if (window.innerWidth <= 1165) {
         this.width += 380;
         this.scale = window.innerWidth / this.width;
-    
-        console.log('heder', hg)
-
       }
     }
 

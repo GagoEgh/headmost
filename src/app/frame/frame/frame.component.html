@@ -1,5 +1,4 @@
-<header class="conteiner" [style.height]="frames.isOrder?'fit-content':'538px'" #header >
-<!-- [ngStyle]="setTransform()" -->
+<header class="conteiner" [style.height]="frames.isOrder?'fit-content':'538px'">
   <ngx-spinner bdColor="rgba(0, 0, 0, 0.9)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
   </ngx-spinner>
@@ -76,7 +75,6 @@
       <button type="submit" (click)='onSubmit()' class="create"
         *ngIf='frames.isImg'>{{'_img-text-valid._create-word'|translate}}</button>
 
-        
       <button *ngIf='frames.isOrder' class="create create-bottom"
         (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
 
@@ -85,34 +83,58 @@
       <ng-template #create>
         <app-create-img (mainApp)="deletImg($event)"></app-create-img>
       </ng-template>
-      <div class="bg-fone"  [class.fone-btn]="frames.isOrder"></div>
+      <div class="bg-fone" [class.fone-btn]="frames.isOrder"></div>
     </div>
     <div class="asside"></div>
   </div>
 </header>
 
 <div class="steps">
-  <div class="step-content">
-    <div class="compile"></div>
-    <div class="title"><h2>{{'_steps._compile'|translate}}</h2></div>
-    <div class="paragraph"><p>{{'_steps._text1'|translate}}</p></div>
+  <div class="wrap1">
+    <div class="step-content">
+      <div class="compile"></div>
+      <div class="title">
+        <h2>{{'_steps._compile'|translate}}</h2>
+      </div>
+      <div class="paragraph">
+        <p>{{'_steps._text1'|translate}}</p>
+      </div>
+    </div>
+
+    <div class="right-arrow"></div>
+    <div class="step-content">
+      <div class="select"></div>
+      <div class="title">
+        <h2>{{'_steps._select'|translate}}</h2>
+      </div>
+      <div class="paragraph">
+        <p>{{'_steps._text2'|translate}}</p>
+      </div>
+    </div>
+
+
   </div>
-  <div class="right-arrow"></div>
-  <div class="step-content">
-    <div class="select"></div>
-    <div class="title"><h2>{{'_steps._select'|translate}}</h2></div>
-    <div class="paragraph"><p>{{'_steps._text2'|translate}}</p></div>
+  <div class="wrap2">
+    <div class="right-arrow"></div>
+    <div class="step-content">
+      <div class="get"></div>
+      <div class="title">
+        <h2>{{'_steps._get'|translate}}</h2>
+      </div>
+      <div class="paragraph">
+        <p>{{'_steps.text3'|translate}}</p>
+      </div>
+    </div>
+    <div class="right-arrow"></div>
+    <div class="step-content">
+      <div class="donate"></div>
+      <div class="title">
+        <h2>{{'_steps._donate'|translate}}</h2>
+      </div>
+      <div class="paragraph">
+        <p>{{'_steps.text4'|translate}}</p>
+      </div>
+    </div>
   </div>
-  <div class="right-arrow"></div>
-  <div class="step-content">
-    <div class="get"></div>
-    <div class="title"><h2>{{'_steps._get'|translate}}</h2></div>
-    <div class="paragraph"><p>{{'_steps.text3'|translate}}</p></div>
-  </div>
-  <div class="right-arrow"></div>
-  <div class="step-content">
-    <div class="donate"></div>
-    <div class="title"><h2>{{'_steps._donate'|translate}}</h2></div>
-    <div class="paragraph"><p>{{'_steps.text4'|translate}}</p></div>
-  </div>
+
 </div>

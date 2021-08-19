@@ -172,4 +172,14 @@
     margin-left: 20px;
 }
 
+@media (max-width:980px){
+    .footerWrap{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
 
+    .footer-nav{
+        width: inherit;
+    }
+}
