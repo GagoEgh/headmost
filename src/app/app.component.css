@@ -45,8 +45,8 @@
 .frame{
     text-decoration: none;
     color: rgb(54, 54, 54);
-    font-weight: 500;
-    font-size: 18px;
+    font-weight: bold;
+    /* font-size: 18px; */
     padding: 5px;
     transition: 0.4s;
 }
@@ -94,7 +94,7 @@
 }
 
 .activeHover:hover ul{
- display: block;
+    display: block;
 }
 
 
@@ -109,7 +109,7 @@
 }
 
 .list:hover{
-color:#aa8b51 ;
+    color:#aa8b51 ;
 }
 .list:hover.list a{
     color: #aa8b51;
@@ -141,25 +141,35 @@ color:#aa8b51 ;
 
 .footerWrap{
     width: 100%;
-  padding-top: 50px;
+    padding-top: 100px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     box-shadow: 0 13px 10px rgb(41 43 42 / 37%) inset;
+
 }
 
 .left{
     padding: 20px; 
-    width: 30%;
 }
 
 .footer-nav{
-  border: 1px solid;
-  width: 35%;
+  width: 32%;
 }
 
 .footer-silki{
     list-style: none;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 5px;
 }
+
+.soc{
+    text-align: center;
+    padding: 20px;
+}
+.silka{
+    display: inline-block;
+    margin-left: 20px;
+}
+
+
