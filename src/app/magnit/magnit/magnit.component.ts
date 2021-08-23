@@ -18,7 +18,6 @@ export class MagnitComponent extends FrameImag implements OnInit {
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
   heigth: number | undefined;
   width: number | undefined;
-  scale: number = 1;
 
   constructor(public frames: FramesServService, public modalService: NgbModal,
     public rout: Router, public form: FormBuilder,private _translate: TranslateService) {
@@ -32,27 +31,42 @@ export class MagnitComponent extends FrameImag implements OnInit {
     this.heigth = this.block?.nativeElement.clientHeight | 1;
     this.width = this.block?.nativeElement.clientWidth | 1;
     if (window.innerWidth <= 1165) {
-      this.scale = window.innerWidth / this.width - 0.17;
-
+      this.frames.magnit_scale = window.innerWidth / this.width - 0.17;
+      if (window.innerWidth <= 768) {
+         this.frames.magnit_scale = 0.75;
+         this.frames.magnit_scale = window.innerWidth / this.width-0.05;
+        
+      }
     }
-
+    
     if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
       if (window.innerWidth <= 1165) {
-        this.scale = window.innerWidth / this.width - 0.2;
+        this.frames.magnit_scale = window.innerWidth / this.width - 0.2;
+        if (window.innerWidth <= 768) {
+          this.frames.magnit_scale = 0.75;
+          this.frames.magnit_scale = window.innerWidth / this.width-0.05;
+         
+       }
       }
     }
 
     if (this.frames.letterImges.length <= 2 && this.frames.letterImges.length) {
       if (window.innerWidth <= 1165) {
         this.width += 380;
-        this.scale = window.innerWidth / this.width;
+        this.frames.magnit_scale = window.innerWidth / this.width;
+        if (window.innerWidth <= 768) {
+          this.frames.magnit_scale = 0.75;
+          this.frames.magnit_scale = window.innerWidth / this.width-0.05; 
+        }
       }
     }
+
+    console.log(this.frames.magnit_scale);
   }
 
   public setStyle() {
     let style = {
-      transform: "translate(-50%, -5%)" + "scale(" + this.scale + ")"
+      transform: "translate(-50%, -5%)" + "scale(" + this.frames.magnit_scale + ")"
     }
     return style
   }

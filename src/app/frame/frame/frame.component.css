@@ -195,7 +195,6 @@
     width: 100%;
     transform-origin: top; 
     margin-top: 70px;
-    /* border: 1px solid; */
 }
 
 .asside{
@@ -232,18 +231,20 @@
 }
 
 .step-content{
-    width: 210px;
+    padding: 20px;
     text-align: center;
 }
 
-
-.compile{
-    background-image:url("/assets/1x/steps/bulb.png");
+.compile,.select,.get,.donate{
     background-position: center;
     background-size: 100% 100%;
     width: 50px;
     height: 50px;
     margin: 20px auto;
+}
+
+.compile{
+    background-image:url("/assets/1x/steps/bulb.png");  
 }
 
 .title h2{
@@ -259,29 +260,14 @@
 
 .select{
     background-image:url("/assets/1x/steps/frame.png");
-    background-position: center;
-    background-size: 100% 100%;
-    width: 50px;
-    height: 50px;
-    margin: 20px auto;
 }
 
 .get{
     background-image:url("/assets/1x/steps/minibus.png");
-    background-position: center;
-    background-size: 100% 100%;
-    width: 50px;
-    height: 50px;
-    margin: 20px auto;
 }
 
 .donate{
     background-image:url("/assets/1x/steps/giftbox.png");
-    background-position: center;
-    background-size: 100% 100%;
-    width: 50px;
-    height: 50px;
-    margin: 20px auto;
 }
 
 .right-arrow{
@@ -293,11 +279,15 @@
     margin: 80px auto;
 }
 
-@media (max-width:980px){
+@media (max-width:768px){
     .steps{
         width: 80%;
         flex-direction: column;
         margin: 0 auto;
+    }
+
+    .step-content{
+        border: 1px solid;
     }
 
     .right-arrow{
@@ -306,5 +296,39 @@
 
     .wrap2{
         margin-top: 40px;
+    }
+}
+
+@media (max-width:550px){
+
+    .wrap1,.wrap2{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .step-content{
+        display: flex;
+        width: 100%;
+        
+    }
+
+    .select,.get,.donate,.compile{
+        margin:0 10px 0 0;
+    }
+    
+    .info-block{
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+    }
+
+    .title h2 {
+        letter-spacing: 0;
+        font-size: 16px  !important;
+    }
+
+    .paragraph p{
+        letter-spacing: 0;
+        font-weight: normal;
     }
 }

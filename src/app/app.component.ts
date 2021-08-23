@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FramesServService } from './shared/frames-serv.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './register/login/login.component';
@@ -14,22 +14,21 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public unsubscribe$ = new Subject()
-
-  constructor(public frames: FramesServService,private spinner: NgxSpinnerService,
+  public unsubscribe$ = new Subject();
+  isSilki = false;
+  constructor(public frames: FramesServService, private spinner: NgxSpinnerService,
     private _translate: TranslateService,
     private modalService: NgbModal,
     private router: Router) {
     this._translate.use(this.frames.lang);
-     const lang: any = localStorage.getItem('language');
-     this.frames.lang = lang;
-     this._translate.setDefaultLang(this.frames.lang)
+    const lang: any = localStorage.getItem('language');
+    this.frames.lang = lang;
+    this._translate.setDefaultLang(this.frames.lang)
   }
 
 
   ngOnInit(): void {
     this.scrollToTopByChangeRoute();
-
     if (localStorage.getItem('loginAutorization')) {
 
       const token: any = localStorage.getItem('loginAutorization');
@@ -128,13 +127,11 @@ export class AppComponent implements OnInit {
     this._translate.get('_img-text-valid').pipe(takeUntil(this.unsubscribe$))
       .subscribe((res: any) => {
         this.frames.placeholder = res["_placeholder"];
-        setTimeout(()=>{
+        setTimeout(() => {
           this.spinner.hide()
-        },300)
-        
+        }, 300)
+
       })
-
-
   }
 
 }

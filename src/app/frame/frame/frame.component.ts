@@ -1,12 +1,13 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FramesServService } from '../../shared/frames-serv.service';
+import { TranslateService } from '@ngx-translate/core';
+import { FrameImag } from 'src/app/shared/frame-image';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FramesImg } from '../../shared/img-ramka';
-import { FramesServService } from '../../shared/frames-serv.service'
+import { FormBuilder } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
-import { FrameImag } from 'src/app/shared/frame-image';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-frame',
@@ -16,15 +17,11 @@ import { TranslateService } from '@ngx-translate/core';
 export class FrameComponent extends FrameImag implements OnInit {
 
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
-  
   heigth: number | undefined;
   width: number | undefined;
-  scale: number = 1;
-
 
   constructor(public frames: FramesServService, public modalService: NgbModal,
     public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
-
     super(frames, modalService, rout, form);
     this._translate.use(this.frames.lang)
   }
@@ -33,26 +30,36 @@ export class FrameComponent extends FrameImag implements OnInit {
   onResize() {
     this.heigth = this.block?.nativeElement.clientHeight | 1;
     this.width = this.block?.nativeElement.clientWidth | 1;
-
-
     if (window.innerWidth <= 1165) {
-      this.scale = window.innerWidth / this.width - 0.34;
+      this.frames.scale = window.innerWidth / this.width - 0.34;
+      if (window.innerWidth <= 768) {
+        this.frames.scale = 0.8;
+        this.frames.scale = window.innerWidth / this.width;
+      }
     }
 
     if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
       if (window.innerWidth <= 1165) {
         this.width += 280;
-        this.scale = window.innerWidth / this.width - 0.2;
+        this.frames.scale = window.innerWidth / this.width - 0.2;
+        if (window.innerWidth <= 768) {
+          this.frames.scale = 0.75;
+          this.frames.scale = window.innerWidth / this.width-0.05;
+        }
       }
     }
 
     if (this.frames.letterImges.length <= 2 && this.frames.letterImges.length) {
       if (window.innerWidth <= 1165) {
         this.width += 380;
-        this.scale = window.innerWidth / this.width;
+        this.frames.scale = window.innerWidth / this.width;
+        if (window.innerWidth <= 768) {
+          this.frames.scale = 0.75;
+          this.frames.scale = window.innerWidth / this.width -0.05;
+        }
       }
     }
-
+  
 
   }
 
@@ -83,15 +90,14 @@ export class FrameComponent extends FrameImag implements OnInit {
 
   public setStyle() {
     let style = {
-      transform: "translate(-50%, 0)" + "scale(" + this.scale + ")"
+      transform: "translate(-50%, 0)" + "scale(" + this.frames.scale + ")"
     }
     return style
   }
 
-  public setTransform(){
+  public setTransform() {
     let style = {
-      transform: "translate(-50%, -5%)" +"scaleY("+this.scale+")",
-      
+      transform: "translate(-50%, -5%)" + "scaleY(" + this.frames.scale + ")",
     }
     return style
   }
@@ -107,7 +113,6 @@ export class FrameComponent extends FrameImag implements OnInit {
 
   changeBg(bg: any) {
     this.frames.background = bg;
-
   }
 
   ngOnDestroy() {

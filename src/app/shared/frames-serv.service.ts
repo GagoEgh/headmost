@@ -41,6 +41,8 @@ export class FramesServService {
     offset = 0;
     isTop = false;
     isdisible = false;
+    scale: number = 1;
+    magnit_scale :number = 1;
     userData: UserData = {
         address: '',
         city: 0,

@@ -1,9 +1,8 @@
-<header class="lightSheme " [style.height]="frames.isOrder?'fit-content':'590px'">
+<header class="lightSheme" [style.height]="frames.isOrder?'fit-content':'590px'">
   <ngx-spinner bdColor="rgba(0, 0, 0, 0.9)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
   </ngx-spinner>
   <div class="block" #block [ngStyle]="setStyle()">
-
     <div class="magnit ">
       <div class="underFridge">
         <div class="imgColor">
@@ -35,7 +34,6 @@
       <button *ngIf='frames.isOrder' class="create create-bottom"
         (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
 
-      <!-- *ngIf='!frames.isOrder'  [class.fone-btn]="!frames.isOrder"   'left':'44%'  top 113px-->
       <button class="btn-save" (click)='frames.myMagnitOrder()'
         *ngIf='!frames.isOrder && !frames.isImg'>{{'_imgs._batn-save'|translate}}</button>
 

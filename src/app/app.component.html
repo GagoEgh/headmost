@@ -2,7 +2,10 @@
   <p style="color: white"> Loading... </p>
 </ngx-spinner>
 <div class="conteiner" [style.min-width]='frames.isMyOrder?"1000px":"100%"'>
-  <ul class="silki">
+  <span class="material-icons-outlined"  (click)='isSilki = !isSilki'>
+    <img src="./assets/1x/outline_view_headline_black_24dp.png">
+  </span>
+  <ul class="silki" [class.check-silki]='isSilki'>
     <li class="parent">
       <p class="frame">{{'_menu.konstruktor._konstr'|translate}}</p>
       <ul class="li-nav">
@@ -20,18 +23,13 @@
     <li>
       <a class="frame" routerLink='/about' routerLinkActive='active'>{{'_menu._aboutUs'|translate}}</a>
     </li>
-    <li>
-      <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
-        <img src='../assets/1x/orderIconBlack.png'>
-        <span>{{frames.orderList?.length}}</span>
-      </a>
-    </li>
+  
     <li *ngIf='frames.userReg, else log'>
       <a class="frame" (click)="open()">{{'_menu._user._exit'|translate}}</a>
     </li>
     <ng-template #log>
       <ul>
-        <li class="parent">
+        <li class="parent-1">
           <a class="activeHover" routerLinkActive='active'> {{frames.userData.user_details.first_name}}
             <ul class="user-data">
               <li class="list"><a routerLink='/user/profil'>{{'_menu._user._profil'|translate}}</a></li>
@@ -43,6 +41,12 @@
         </li>
       </ul>
     </ng-template>
+    <li>
+      <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
+        <img src='../assets/1x/orderIconBlack.png'>
+        <span>{{frames.orderList?.length}}</span>
+      </a>
+    </li>
   </ul>
   <ul class="frags">
     <li class="flag" [style.background-image]="'url(../assets/1x/flag/armenia.png)'" (click)="changeLeng('hy')"></li>

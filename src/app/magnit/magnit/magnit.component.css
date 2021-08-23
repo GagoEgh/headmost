@@ -59,7 +59,6 @@
     margin-top: 42px;
     outline: none;
     margin-left: 5px;
-   
 }
 
 .create-bottom{
@@ -91,6 +90,61 @@
 
 .btn-save{
     outline: none;
-    left: 43.7%;
+    left: 40.7%;
 }
 
+@media (max-width:620px){
+    .lightSheme{
+        height: 450px !important;
+    }
+
+    .create{
+
+        position: absolute;
+        top: -140px;
+        z-index: 333;
+    }
+
+    .bg-fone{
+        position: relative;
+        top: -58px;
+    }
+    
+    .fone-btn{
+      display: none;
+    }
+    .btn-save{
+        outline: none;
+        left: 36%;
+        top:-50px;
+    }
+}
+
+@media (max-width:425px){
+    .lightSheme{
+        height: 320px !important;
+    }
+
+    .create{
+
+        position: absolute;
+        top: -265px;
+        z-index: 333;
+    }
+
+    .bg-fone{
+        position: relative;
+        top: -186px;
+    }
+    .btn-save{ 
+        position:absolute;
+        left: 38%;
+        top:-180px;
+        width: 100px;
+        letter-spacing: 0;
+        font-size: 12px;
+        z-index: 0 !important; 
+    }
+
+  
+}
