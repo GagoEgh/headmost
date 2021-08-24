@@ -15,9 +15,9 @@ import { Letter } from '../../../shared/img-ramka';
   templateUrl: './create-img.component.html',
   styleUrls: ['./create-img.component.css']
 })
-export class CreateImgComponent extends FrameImag  implements OnInit {
+export class CreateImgComponent extends FrameImag implements OnInit {
   public _unsubscribe$ = new Subject()
- letterChar = 0;
+  letterChar = 0;
   isCreate = true;
   bottomText: FormGroup = new FormGroup({});
   validateForm: FormGroup = new FormGroup({});
@@ -38,9 +38,9 @@ export class CreateImgComponent extends FrameImag  implements OnInit {
 
   constructor(public frames: FramesServService, public rout: Router,
     public form: FormBuilder, public modalService: NgbModal) {
-      super(frames, modalService, rout, form);
- 
-     }
+    super(frames, modalService, rout, form);
+
+  }
 
   deleteTopProprty() {
     this.topLettering.isSpan = false;
@@ -115,7 +115,7 @@ export class CreateImgComponent extends FrameImag  implements OnInit {
     this.frames.isMessage = false;
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }

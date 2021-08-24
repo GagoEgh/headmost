@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FramesServService } from '../../shared/frames-serv.service';
 import { TranslateService } from '@ngx-translate/core';
 import { FrameImag } from 'src/app/shared/frame-image';
@@ -9,12 +9,13 @@ import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-frame',
   templateUrl: './frame.component.html',
   styleUrls: ['./frame.component.css']
 })
-export class FrameComponent extends FrameImag implements OnInit {
+export class FrameComponent extends FrameImag implements OnInit, AfterViewChecked {
 
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
   heigth: number | undefined;
@@ -32,79 +33,160 @@ export class FrameComponent extends FrameImag implements OnInit {
     this.width = this.block?.nativeElement.clientWidth | 1;
     if (window.innerWidth <= 1165) {
       this.frames.scale = window.innerWidth / this.width - 0.34;
-      // if (window.innerWidth <= 768) {
-      //   this.frames.scale = 0.8;
-      //   this.frames.scale = window.innerWidth / this.width;
-      // }
-      if(window.innerWidth <= 425){
-        this.frames.scale = 0.47
+
+      if (window.innerWidth <= 768) {
+        this.frames.scale = 0.7
+        this.frames.scale = window.innerWidth / this.width - 0.19;
+        console.log('length 768', this.frames.scale)
       }
 
-      if(window.innerWidth <= 375){
-        this.frames.scale = 0.4
+      if (window.innerWidth <= 425) {
+        this.frames.scale = 0.47;
+        this.frames.scale = window.innerWidth / this.width - 0.04;
+        console.log('length 425', this.frames.scale)
       }
 
-      if(window.innerWidth <= 320){
-        this.frames.scale = 0.37
+      if (window.innerWidth <= 375) {
+        this.frames.scale = 0.4;
+        this.frames.scale = window.innerWidth / this.width - 0.04;
+        console.log('length 375', this.frames.scale)
       }
+
+      if (window.innerWidth <= 320) {
+        this.frames.scale = 0.37;
+        this.frames.scale = window.innerWidth / this.width - 0.04;
+        console.log('length 320', this.frames.scale)
+      }
+      console.log('length 0', this.frames.scale, this.frames.letterImges)
+
     }
 
     if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
-      if (window.innerWidth <= 1165) {
-        this.width += 280;
-        this.frames.scale = window.innerWidth / this.width - 0.2;
-        // if (window.innerWidth <= 768) {
-        //   this.frames.scale = 0.75;
-        //   this.frames.scale = window.innerWidth / this.width-0.05;
-        // }
-        if(window.innerWidth <= 425){
-          this.frames.scale = 0.47
+
+      console.log('w', window.innerWidth);
+      console.log('width', this.width);
+      this.width = this.block?.nativeElement.clientWidth | 1;
+      if (window.innerWidth <= 2102 && this.frames.letterImges.length > 0) {
+        this.frames.scale = 0.9;
+
+        if (window.innerWidth <= 768) {
+          this.frames.scale = 0.75;
+          this.frames.scale = window.innerWidth / this.width - 0.4;
         }
 
-        if(window.innerWidth <= 375){
-          this.frames.scale = 0.4
+        if (window.innerWidth <= 425) {
+          this.frames.scale = 0.47;
+          this.frames.scale = window.innerWidth / this.width-0.4 ;
+          console.log('425', this.frames.scale);
+          console.log(window.innerWidth)
         }
 
-        if(window.innerWidth <= 320){
-          this.frames.scale = 0.37
+        if (window.innerWidth <= 375) {
+          this.frames.scale = 0.4;
+          this.frames.scale = window.innerWidth / this.width - 0.04;
         }
+
+        if (window.innerWidth <= 320) {
+          this.frames.scale = 0.37;
+          this.frames.scale = window.innerWidth / this.width - 0.04;
+        }
+
+        console.log('length 4', this.frames.scale)
       }
     }
 
-    if (this.frames.letterImges.length <= 2 && this.frames.letterImges.length) {
-      if (window.innerWidth <= 1165) {
-        this.width += 380;
-        this.frames.scale = window.innerWidth / this.width;
-        // if (window.innerWidth <= 768) {
-        //   this.frames.scale = 0.75;
-        //   this.frames.scale = window.innerWidth / this.width -0.05;
-        // }
+    //   if (this.frames.letterImges.length <= 2 && this.frames.letterImges.length) {
+    //     if (window.innerWidth <= 1165) {
+    //       this.width += 380;
+    //       this.frames.scale = window.innerWidth / this.width;
+    //       // if (window.innerWidth <= 768) {
+    //       //   this.frames.scale = 0.75;
+    //       //   this.frames.scale = window.innerWidth / this.width -0.05;
+    //       // }
 
-        if(window.innerWidth <= 425){
-          this.frames.scale = 0.47
-        }
+    //       if(window.innerWidth <= 768){
+    //         this.frames.scale = 0.8;
+    //         this.frames.scale = window.innerWidth / this.width -0.05;
 
-        if(window.innerWidth <= 375){
-          this.frames.scale = 0.4
-        }
 
-        if(window.innerWidth <= 320){
-          this.frames.scale = 0.37
-        }
-      }
-    }
-  
+    //       }
+
+    //       if(window.innerWidth <= 425){
+    //         this.frames.scale = 0.47;
+    //         this.frames.scale = window.innerWidth / this.width -0.05;
+
+    //       }
+
+    //       if(window.innerWidth <= 375){
+    //         this.frames.scale = 0.4
+    //       }
+
+    //       if(window.innerWidth <= 320){
+    //         this.frames.scale = 0.37
+    //       }
+
+
+    //       console.log('length 2',this.frames.scale)
+    //     }
+    // }
+
 
   }
 
 
+  ngAfterViewChecked(): void {
+
+    this.onResize()
+
+    // if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
+
+    // console.log(window.innerWidth);
+    // console.log('width', this.width);
+    // this.width = this.block?.nativeElement.clientWidth | 1;
+
+    // if (window.innerWidth <= 1165) {
+    //   // this.width += 1280;
+    //   this.frames.scale = window.innerWidth / this.width - 1.1;
+    //   console.log('scale',this.frames.scale)
+    // }
+    // if (window.innerWidth <= 1165 && this.frames.letterImges.length > 0) {
+
+    // this.width += 280;
+    // this.frames.scale = window.innerWidth / this.width - 1.1;
+
+
+    // if (window.innerWidth <= 768) {
+    //   this.frames.scale = 0.75;
+    //   this.frames.scale = window.innerWidth / this.width - 0.05;
+    //   console.log('view',this.frames.scale)
+    // }
+
+    //   if (window.innerWidth <= 426) {
+    //     this.frames.scale = 0.47;
+    //     this.frames.scale = window.innerWidth / this.width - 0.04;
+    //   }
+
+    //   if (window.innerWidth <= 375) {
+    //     this.frames.scale = 0.4;
+    //     this.frames.scale = window.innerWidth / this.width - 0.04;
+    //   }
+
+    //   if (window.innerWidth <= 320) {
+    //     this.frames.scale = 0.37;
+    //     this.frames.scale = window.innerWidth / this.width - 0.04;
+    //   }
+
+    //   console.log('length 4', this.frames.scale)
+    //}
+    // }
+  }
   ngOnInit(): void {
     this.frames.letterImges = [];
     this.frames.isOrder = false;
     super.myForm();
     super.imgColor();
 
-   
+
     this._translate.get('_img-text-valid').pipe(takeUntil(this._unsubscribe$))
       .subscribe((res: any) => {
         this.frames.placeholder = res["_placeholder"];
