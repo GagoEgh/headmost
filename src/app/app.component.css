@@ -152,7 +152,6 @@
     display: flex;
     justify-content: space-around;
     box-shadow: 0 13px 10px rgb(41 43 42 / 37%) inset;
-
 }
 
 .left{
@@ -239,5 +238,16 @@
 
     .li-nav{
         top: 55px;
+    }
+}
+
+@media (max-width:768px){
+
+    .footerWrap{
+        width: inherit;
+        /* padding-top: 100px;
+        display: flex;
+        justify-content: space-around;
+        box-shadow: 0 13px 10px rgb(41 43 42 / 37%) inset; */
     }
 }

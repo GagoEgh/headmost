@@ -32,9 +32,20 @@ export class FrameComponent extends FrameImag implements OnInit {
     this.width = this.block?.nativeElement.clientWidth | 1;
     if (window.innerWidth <= 1165) {
       this.frames.scale = window.innerWidth / this.width - 0.34;
-      if (window.innerWidth <= 768) {
-        this.frames.scale = 0.8;
-        this.frames.scale = window.innerWidth / this.width;
+      // if (window.innerWidth <= 768) {
+      //   this.frames.scale = 0.8;
+      //   this.frames.scale = window.innerWidth / this.width;
+      // }
+      if(window.innerWidth <= 425){
+        this.frames.scale = 0.47
+      }
+
+      if(window.innerWidth <= 375){
+        this.frames.scale = 0.4
+      }
+
+      if(window.innerWidth <= 320){
+        this.frames.scale = 0.37
       }
     }
 
@@ -42,9 +53,20 @@ export class FrameComponent extends FrameImag implements OnInit {
       if (window.innerWidth <= 1165) {
         this.width += 280;
         this.frames.scale = window.innerWidth / this.width - 0.2;
-        if (window.innerWidth <= 768) {
-          this.frames.scale = 0.75;
-          this.frames.scale = window.innerWidth / this.width-0.05;
+        // if (window.innerWidth <= 768) {
+        //   this.frames.scale = 0.75;
+        //   this.frames.scale = window.innerWidth / this.width-0.05;
+        // }
+        if(window.innerWidth <= 425){
+          this.frames.scale = 0.47
+        }
+
+        if(window.innerWidth <= 375){
+          this.frames.scale = 0.4
+        }
+
+        if(window.innerWidth <= 320){
+          this.frames.scale = 0.37
         }
       }
     }
@@ -53,9 +75,21 @@ export class FrameComponent extends FrameImag implements OnInit {
       if (window.innerWidth <= 1165) {
         this.width += 380;
         this.frames.scale = window.innerWidth / this.width;
-        if (window.innerWidth <= 768) {
-          this.frames.scale = 0.75;
-          this.frames.scale = window.innerWidth / this.width -0.05;
+        // if (window.innerWidth <= 768) {
+        //   this.frames.scale = 0.75;
+        //   this.frames.scale = window.innerWidth / this.width -0.05;
+        // }
+
+        if(window.innerWidth <= 425){
+          this.frames.scale = 0.47
+        }
+
+        if(window.innerWidth <= 375){
+          this.frames.scale = 0.4
+        }
+
+        if(window.innerWidth <= 320){
+          this.frames.scale = 0.37
         }
       }
     }
