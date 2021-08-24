@@ -286,16 +286,16 @@
         margin: 0 auto;
     }
 
-    .step-content{
-        border: 1px solid;
-    }
-
     .right-arrow{
         display: none;
     }
 
     .wrap2{
-        margin-top: 40px;
+        margin-left: -60px;
+    }
+
+    .mg{
+        /* margin-left: 60px; */
     }
 }
 
@@ -306,10 +306,12 @@
         flex-direction: column;
     }
 
+    .wrap2{
+        margin-left: 0;
+    }
     .step-content{
         display: flex;
-        width: 100%;
-        
+
     }
 
     .select,.get,.donate,.compile{

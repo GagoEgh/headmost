@@ -71,3 +71,9 @@
     transition: .5s;
     outline: none;
 }
+
+@media (max-width:788px){
+    .conteiner{
+        top: 50px;
+    }
+}

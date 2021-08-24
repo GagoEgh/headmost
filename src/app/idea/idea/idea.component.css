@@ -1,10 +1,9 @@
 .main{
     min-height: calc(100vh - 76px);
-    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     padding-top: 70px;
-
+    justify-content: space-evenly;
 }
 
 .img-idea{
@@ -17,7 +16,6 @@
     height: 200px;
     background-position: center;
     background-size: 100% 100%;
-   
 }
 
 
@@ -35,7 +33,7 @@
 }
 
 .img-title{
-    width: 210px;
+    width: 190px;
     font-size: 14px;
     font-weight: bold;
     color: #151414e0;
@@ -47,8 +45,8 @@
 
 .order{
     cursor: pointer;
-    padding: 6px;
-    width: 60px;
+    padding: 0 8px;
+    width: 80px;
     margin: 10px 0;
     background-color:#c80063;
 }
