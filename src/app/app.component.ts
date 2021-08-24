@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FramesServService } from './shared/frames-serv.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './register/login/login.component';
@@ -13,7 +13,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit{
   public unsubscribe$ = new Subject();
   isSilki = false;
   constructor(public frames: FramesServService, private spinner: NgxSpinnerService,
@@ -25,10 +25,20 @@ export class AppComponent implements OnInit {
     this.frames.lang = lang;
     this._translate.setDefaultLang(this.frames.lang)
   }
-
-
+ 
   ngOnInit(): void {
     this.scrollToTopByChangeRoute();
+    if(window.innerWidth <= 425){
+      this.frames.scale = 0.47
+    }
+
+    if(window.innerWidth <= 375){
+      this.frames.scale = 0.4
+    }
+
+    if(window.innerWidth <= 320){
+      this.frames.scale = 0.37
+    }
     if (localStorage.getItem('loginAutorization')) {
 
       const token: any = localStorage.getItem('loginAutorization');

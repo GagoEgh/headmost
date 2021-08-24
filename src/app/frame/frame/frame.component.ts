@@ -104,6 +104,7 @@ export class FrameComponent extends FrameImag implements OnInit {
     super.myForm();
     super.imgColor();
 
+   
     this._translate.get('_img-text-valid').pipe(takeUntil(this._unsubscribe$))
       .subscribe((res: any) => {
         this.frames.placeholder = res["_placeholder"];
