@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class FrameComponent extends FrameImag implements OnInit, AfterViewChecked {
 
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
-  heigth: number | undefined;
+
   width: number | undefined;
 
   constructor(public frames: FramesServService, public modalService: NgbModal,
@@ -27,9 +27,117 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     this._translate.use(this.frames.lang)
   }
 
+  conteinerHeight() {
+    let height = {
+      height: '538px'
+    }
+
+    if (window.innerWidth <= 427) {
+      height.height = '400px';
+      return height;
+    }
+
+    if (window.innerWidth <= 375) {
+      height.height = '400px';
+      return height;
+    }
+
+    if (window.innerWidth <= 320) {
+      height.height = '400px';
+      return height;
+
+    }
+
+    if (window.innerWidth <= 816 && this.frames.letterImges.length === 4) {
+      height.height = '400px';
+      return height;
+    }
+
+    if (window.innerWidth <= 816 && this.frames.letterImges.length === 3) {
+      height.height = '400px';
+      return height;
+    }
+
+    if (window.innerWidth <= 859 && this.frames.letterImges.length === 9) {
+      height.height = '400px';
+      return height;
+    }
+
+    if (window.innerWidth <= 656 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length < 7)) {
+      height.height = '400px';
+      return height;
+    }
+
+    if (window.innerWidth <= 717 && this.frames.letterImges.length === 7) {
+      height.height = '400px';
+      return height;
+
+    }
+
+    if (window.innerWidth <= 789 && this.frames.letterImges.length === 8) {
+      height.height = '400px';
+      return height;
+    }
+    return height
+  }
+
+  buttonWrapTop() {
+    let top = {
+      "margin-top": '70px'
+    }
+
+
+    if (window.innerWidth <= 427) {
+      top["margin-top"] = '-70px';
+      return top;
+    }
+
+    if (window.innerWidth <= 375) {
+      top["margin-top"] = '-70px';
+      return top;
+    }
+
+    if (window.innerWidth <= 320) {
+      top["margin-top"] = '-70px';
+      return top;
+
+    }
+    if (window.innerWidth <= 816 && this.frames.letterImges.length === 4) {
+      top["margin-top"] = '-70px';
+      return top;
+    }
+
+    if (window.innerWidth <= 859 && this.frames.letterImges.length === 9) {
+      top["margin-top"] = '-70px';
+      return top;
+    }
+
+    if (window.innerWidth <= 656 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length < 7)) {
+      top["margin-top"] = '-70px';
+      return top;
+    }
+
+    if (window.innerWidth <= 717 && this.frames.letterImges.length === 7) {
+      top["margin-top"] = '-70px';
+      return top;
+
+    }
+
+    if (window.innerWidth <= 789 && this.frames.letterImges.length === 8) {
+      top["margin-top"] = '-70px';
+      return top;
+    }
+
+    if (window.innerWidth <= 816 && this.frames.letterImges.length === 3) {
+      top["margin-top"] = '-70px';
+      return top
+    }
+
+    return top
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize() {
-    this.heigth = this.block?.nativeElement.clientHeight | 1;
     this.width = this.block?.nativeElement.clientWidth | 1;
     if (window.innerWidth <= 1165) {
       this.frames.scale = window.innerWidth / this.width - 0.34;
@@ -37,149 +145,108 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       if (window.innerWidth <= 768) {
         this.frames.scale = 0.7
         this.frames.scale = window.innerWidth / this.width - 0.19;
-        console.log('length 768', this.frames.scale)
+
       }
 
       if (window.innerWidth <= 425) {
         this.frames.scale = 0.47;
         this.frames.scale = window.innerWidth / this.width - 0.04;
-        console.log('length 425', this.frames.scale)
+
       }
 
       if (window.innerWidth <= 375) {
         this.frames.scale = 0.4;
         this.frames.scale = window.innerWidth / this.width - 0.04;
-        console.log('length 375', this.frames.scale)
+
       }
 
       if (window.innerWidth <= 320) {
         this.frames.scale = 0.37;
         this.frames.scale = window.innerWidth / this.width - 0.04;
-        console.log('length 320', this.frames.scale)
+
       }
-      console.log('length 0', this.frames.scale, this.frames.letterImges)
 
     }
 
     if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
 
-      console.log('w', window.innerWidth);
-      console.log('width', this.width);
       this.width = this.block?.nativeElement.clientWidth | 1;
-      if (window.innerWidth <= 2102 && this.frames.letterImges.length > 0) {
+
+      if (window.innerWidth <= 2102) {
         this.frames.scale = 0.9;
+      }
 
-        if (window.innerWidth <= 768) {
-          this.frames.scale = 0.75;
-          this.frames.scale = window.innerWidth / this.width - 0.4;
-        }
+      if (window.innerWidth <= 1536) {
+        this.frames.scale = 0.9;
+        let num = window.innerWidth / 1536;
 
-        if (window.innerWidth <= 425) {
-          this.frames.scale = 0.47;
-          this.frames.scale = window.innerWidth / this.width-0.4 ;
-          console.log('425', this.frames.scale);
-          console.log(window.innerWidth)
-        }
+        this.frames.scale = num - 0.1;
+      }
 
-        if (window.innerWidth <= 375) {
+      if (window.innerWidth <= 816) {
+        this.frames.scale = 0.6;
+        this.frames.scale = window.innerWidth / this.width - 0.9;
+      }
+
+      if (window.innerWidth <= 768 && this.frames.letterImges.length === 3) {
+        this.frames.scale = 0.8;
+        this.frames.scale = window.innerWidth / this.width - 1.27;
+
+      }
+
+      if (window.innerWidth <= 656) {
+        this.frames.scale = 0.3;
+
+      }
+
+    }
+
+    if (this.frames.letterImges.length > 4 && this.frames.letterImges.length) {
+
+      this.frames.scale = 0.6;
+      //this.width += 1500
+      //this.frames.scale = window.innerWidth / this.width - 0.2;
+      console.log('inner width start', window.innerWidth);
+      console.log('start',this.frames.scale);
+    
+      if (window.innerWidth <= 2006 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
+        this.frames.scale = 0.6;
+        if (window.innerWidth <= 856 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
           this.frames.scale = 0.4;
-          this.frames.scale = window.innerWidth / this.width - 0.04;
+          // console.log('inner width4 2006 859', window.innerWidth);
+          // console.log('2006 856', this.frames.scale);
         }
+    
+      }
 
-        if (window.innerWidth <= 320) {
-          this.frames.scale = 0.37;
-          this.frames.scale = window.innerWidth / this.width - 0.04;
+      if (window.innerWidth <= 1063 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
+        this.frames.scale = 0.6;
+        if (window.innerWidth <= 686 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
+          this.frames.scale = 0.3;
+          console.log('inner width4 1063', window.innerWidth);
+          console.log('1063', this.frames.scale);
         }
+    
+      }
 
-        console.log('length 4', this.frames.scale)
+
+      if (window.innerWidth === 859 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
+        this.frames.scale = 0.27;
+        console.log('inner width4 1063', window.innerWidth);
+        console.log('1063', this.frames.scale);
       }
     }
 
-    //   if (this.frames.letterImges.length <= 2 && this.frames.letterImges.length) {
-    //     if (window.innerWidth <= 1165) {
-    //       this.width += 380;
-    //       this.frames.scale = window.innerWidth / this.width;
-    //       // if (window.innerWidth <= 768) {
-    //       //   this.frames.scale = 0.75;
-    //       //   this.frames.scale = window.innerWidth / this.width -0.05;
-    //       // }
-
-    //       if(window.innerWidth <= 768){
-    //         this.frames.scale = 0.8;
-    //         this.frames.scale = window.innerWidth / this.width -0.05;
-
-
-    //       }
-
-    //       if(window.innerWidth <= 425){
-    //         this.frames.scale = 0.47;
-    //         this.frames.scale = window.innerWidth / this.width -0.05;
-
-    //       }
-
-    //       if(window.innerWidth <= 375){
-    //         this.frames.scale = 0.4
-    //       }
-
-    //       if(window.innerWidth <= 320){
-    //         this.frames.scale = 0.37
-    //       }
-
-
-    //       console.log('length 2',this.frames.scale)
-    //     }
-    // }
-
 
   }
+
 
 
   ngAfterViewChecked(): void {
 
     this.onResize()
-
-    // if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
-
-    // console.log(window.innerWidth);
-    // console.log('width', this.width);
-    // this.width = this.block?.nativeElement.clientWidth | 1;
-
-    // if (window.innerWidth <= 1165) {
-    //   // this.width += 1280;
-    //   this.frames.scale = window.innerWidth / this.width - 1.1;
-    //   console.log('scale',this.frames.scale)
-    // }
-    // if (window.innerWidth <= 1165 && this.frames.letterImges.length > 0) {
-
-    // this.width += 280;
-    // this.frames.scale = window.innerWidth / this.width - 1.1;
-
-
-    // if (window.innerWidth <= 768) {
-    //   this.frames.scale = 0.75;
-    //   this.frames.scale = window.innerWidth / this.width - 0.05;
-    //   console.log('view',this.frames.scale)
-    // }
-
-    //   if (window.innerWidth <= 426) {
-    //     this.frames.scale = 0.47;
-    //     this.frames.scale = window.innerWidth / this.width - 0.04;
-    //   }
-
-    //   if (window.innerWidth <= 375) {
-    //     this.frames.scale = 0.4;
-    //     this.frames.scale = window.innerWidth / this.width - 0.04;
-    //   }
-
-    //   if (window.innerWidth <= 320) {
-    //     this.frames.scale = 0.37;
-    //     this.frames.scale = window.innerWidth / this.width - 0.04;
-    //   }
-
-    //   console.log('length 4', this.frames.scale)
-    //}
-    // }
   }
+
   ngOnInit(): void {
     this.frames.letterImges = [];
     this.frames.isOrder = false;

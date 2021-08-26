@@ -1,4 +1,4 @@
-<header class="conteiner" [style.height]="frames.isOrder?'fit-content':'538px'">
+<header class="conteiner" [style.height]="frames.isOrder?'fit-content':'538px'"[ngStyle]="conteinerHeight()">
   <ngx-spinner bdColor="rgba(0, 0, 0, 0.9)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
   </ngx-spinner>
@@ -69,7 +69,7 @@
     <!-- <p *ngIf='frames.isMessage' class="message">ՏՎՅԱԼ ՏԱՌԵՐՈՎ ՆԿԱՐ ԴԵՌՎՍ ՉՈԻՆԵՆՔ</p> -->
     <app-order *ngIf='frames.isOrder'> </app-order>
   </div>
-  <div class="buttonWrap">
+  <div class="buttonWrap" [ngStyle]="buttonWrapTop()">
     <div class="asside"></div>
     <div class="center">
       <button type="submit" (click)='onSubmit()' class="create"
