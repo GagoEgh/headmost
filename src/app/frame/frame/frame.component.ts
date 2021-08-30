@@ -32,7 +32,12 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       height: '538px'
     }
 
-    if (window.innerWidth <= 427) {
+    if(this.frames.isOrder && window.innerWidth <=426){
+      height.height = '570px';
+      return height;
+    }
+    
+    if (window.innerWidth <= 426) {
       height.height = '400px';
       return height;
     }
@@ -81,13 +86,14 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     return height
   }
 
+  
   buttonWrapTop() {
     let top = {
       "margin-top": '70px'
     }
 
 
-    if (window.innerWidth <= 427) {
+    if (window.innerWidth <= 426) {
       top["margin-top"] = '-70px';
       return top;
     }
@@ -179,7 +185,6 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       if (window.innerWidth <= 1536) {
         this.frames.scale = 0.9;
         let num = window.innerWidth / 1536;
-
         this.frames.scale = num - 0.1;
       }
 
@@ -191,12 +196,10 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       if (window.innerWidth <= 768 && this.frames.letterImges.length === 3) {
         this.frames.scale = 0.8;
         this.frames.scale = window.innerWidth / this.width - 1.27;
-
       }
 
       if (window.innerWidth <= 656) {
         this.frames.scale = 0.3;
-
       }
 
     }
@@ -204,39 +207,34 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     if (this.frames.letterImges.length > 4 && this.frames.letterImges.length) {
 
       this.frames.scale = 0.6;
-      //this.width += 1500
-      //this.frames.scale = window.innerWidth / this.width - 0.2;
-      console.log('inner width start', window.innerWidth);
-      console.log('start',this.frames.scale);
-    
+
       if (window.innerWidth <= 2006 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
         this.frames.scale = 0.6;
         if (window.innerWidth <= 856 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
           this.frames.scale = 0.4;
-          // console.log('inner width4 2006 859', window.innerWidth);
-          // console.log('2006 856', this.frames.scale);
         }
-    
+
       }
 
       if (window.innerWidth <= 1063 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
         this.frames.scale = 0.6;
         if (window.innerWidth <= 686 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
           this.frames.scale = 0.3;
-          console.log('inner width4 1063', window.innerWidth);
-          console.log('1063', this.frames.scale);
         }
-    
       }
 
-
-      if (window.innerWidth === 859 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
+      if (window.innerWidth === 859 && this.frames.letterImges.length === 9) {
         this.frames.scale = 0.27;
-        console.log('inner width4 1063', window.innerWidth);
-        console.log('1063', this.frames.scale);
+      }
+
+      if (window.innerWidth === 789 && this.frames.letterImges.length === 8) {
+        this.frames.scale = 0.27;
+      }
+
+      if (window.innerWidth === 717 && this.frames.letterImges.length === 7) {
+        this.frames.scale = 0.27;
       }
     }
-
 
   }
 

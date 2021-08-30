@@ -2,6 +2,7 @@
     padding:20px;
     background-image: url('/assets/1x/bg8.jpg');
     position: relative;
+    top:10px;
 }
 
 .catalog{
@@ -162,7 +163,7 @@
 
 .create-bottom{
     position: absolute;
-    top: 40%;
+    top: -480px;
     left: 45%;
     z-index: 1;
 }
@@ -208,12 +209,12 @@
     width: 190px;
     background-image: url('/assets/1x/bg8.jpg');
     border-radius: 7px;
-    margin-top: -18px;
+    margin-top: -25px;
 }
 
 .fone-btn{
     position: absolute;
-    top: 112px;
+    top: -392px;
     left: 45%;
 }
 
@@ -279,7 +280,18 @@
     margin: 80px auto;
 }
 
- @media (max-width:768px){
+@media (max-width:1025px){
+    .fone-btn{
+        position: absolute;
+        left: 40%;
+    }
+
+    .create-bottom{
+        position: absolute;
+        left: 40%;
+    }
+}
+@media (max-width:768px){
     .steps{
         width: 80%;
         flex-direction: column;
@@ -295,20 +307,6 @@
     } 
 
 }
-
-/* @media (min-width: 656px) and (max-width: 859px){
-    .conteiner{
-        height: 400px;
-    }
-
-
-    
-} */
-
-
-
-
-
 
 @media (max-width:550px){
 
@@ -343,5 +341,54 @@
     .paragraph p{
         letter-spacing: 0;
         font-weight: normal;
+    }
+}
+
+@media (max-width:426px){
+    .block{
+        top:60px;
+    }
+
+    .fone-btn{
+        position: absolute;
+        left: 28%;
+        top: -783px;
+        height: 25px;
+    }
+
+    .create-bottom{
+        position: absolute;
+        left: 28%;
+        top: -878px;
+    }
+
+    .bg-fone{
+        width: 150px;
+    }
+}
+
+@media (max-width:376px){
+    .fone-btn{
+        position: absolute;
+        left: 20%;
+    }
+
+    .create-bottom{
+        position: absolute;
+        left: 20%;
+    }
+
+}
+
+@media (max-width:376px){
+    .create-bottom{
+        position: absolute;
+        left: 20%;
+        top:-948px
+    }
+    .fone-btn{
+        position: absolute;
+        left: 20%;
+        top: -862px;
     }
 }

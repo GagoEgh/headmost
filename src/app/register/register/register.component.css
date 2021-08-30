@@ -39,3 +39,9 @@ nz-date-picker {
   margin-bottom: 60px;
 }
 
+@media (max-width:321px){
+  .modal-content {
+    
+  }
+
+}

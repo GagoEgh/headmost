@@ -48,11 +48,10 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    this.heigth = this.wrap?.nativeElement.clientHeight | 1;
     this.width = this.wrap?.nativeElement.clientWidth | 1;
-    if (window.innerWidth <= 1165) {
-      this.scale = window.innerWidth / this.width - 0.1;
-    }
+    // if (window.innerWidth <= 1165) {
+    //   this.scale = window.innerWidth / this.width - 0.1;
+    // }
 
     if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
       if (window.innerWidth <= 1165) {
@@ -67,6 +66,9 @@ export class OrderComponent implements OnInit, AfterViewChecked {
         this.scale = window.innerWidth / this.width;
       }
     }
+
+
+
   }
 
   constructor(public frames: FramesServService, private fb: FormBuilder,
@@ -145,14 +147,14 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   erroreName(formName: string) {
     this._translate.get('_erroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
-      
-      if (this.validateForm.get(formName)?.hasError('required'))  this.erroreStr = res._required;
+
+      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res._required;
       if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res._minlength} 3 `;
       if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res._userNameChar;
-      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr =  res._isEmail;
+      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res._isEmail;
       if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res._isSize;
     })
-    
+
     return this.erroreStr;
   }
 

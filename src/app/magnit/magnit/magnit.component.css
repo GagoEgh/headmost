@@ -2,6 +2,7 @@
 .lightSheme{
     background: url('src/assets/1x/bg_magnit.jpg') repeat 0 0;
     padding: 20px;
+    margin-top: 10px;
 }
 
 
@@ -21,7 +22,7 @@
 }
 
 .letter input{
-    background: transparent;
+  background: transparent;
   outline: none;
 }
 
@@ -32,21 +33,20 @@
 .btn{
     position: relative;
     left: -260px;
-  
 }
-
 
 .block{
     top: 50px ;
     left:50%;
-    transform-origin: top;  
+    transform-origin: top; 
 }
 
 .buttonWrap{
     position: relative;
     display: flex;
     width: 100%;
-    transform-origin: top; 
+    transform-origin: center; 
+    /* margin-top: -45px; */
 }
 
 .asside{
@@ -56,25 +56,24 @@
 }
 
 .create{
-    margin-top: 42px;
     outline: none;
     margin-left: 5px;
 }
 
 .create-bottom{
     position: absolute;
-    top: 40%;
+    top: -200px;
     left: 44%;
     z-index: 1;
 }
 
 .bg-fone{
-   height: 22px;
-    width: 190px;
+    height: 30px;
+    width: 170px;
     background-image: url('src/assets/1x/bg_magnit.jpg');
     background-position: center;
     border-radius: 7px;
-    margin-top: -16px;
+    margin: -30px 0 0 10px;
 }
 
 .fone-btn{
@@ -90,61 +89,71 @@
 
 .btn-save{
     outline: none;
-    left: 40.7%;
+    margin-top: -5px;
 }
 
-@media (max-width:620px){
-    .lightSheme{
-        height: 450px !important;
-    }
-
-    .create{
-
+@media (max-width:1440px){
+    .create-bottom{
         position: absolute;
-        top: -140px;
-        z-index: 333;
+        top: -250px;
+    }
+}
+
+@media (max-width:1024px){
+    .create-bottom {
+        position: absolute;
+        top: -135px;
+    }
+}
+
+@media (max-width:768px){
+    .create-bottom {
+        position: absolute;
+        left:40%;
+    }
+}
+@media (max-width:426px){
+    .create-bottom {
+        position: absolute;
+        left:30%;
+        top:-1000px
     }
 
-    .bg-fone{
-        position: relative;
-        top: -58px;
+    .btn-save{
+      margin-top: 0px;  
     }
     
-    .fone-btn{
-      display: none;
+    .bg-fone{
+        margin-top: -25px;
+        width: 150px;
+        display: none;
     }
-    .btn-save{
-        outline: none;
-        left: 36%;
-        top:-50px;
+
+    .block{
+        top: 100px;
     }
 }
 
-@media (max-width:425px){
-    .lightSheme{
-        height: 320px !important;
-    }
-
-    .create{
-
-        position: absolute;
-        top: -265px;
-        z-index: 333;
-    }
-
+@media (max-width:376px){
     .bg-fone{
-        position: relative;
-        top: -186px;
-    }
-    .btn-save{ 
-        position:absolute;
-        left: 38%;
-        top:-180px;
-        width: 100px;
-        letter-spacing: 0;
-        font-size: 12px;
-        z-index: 0 !important; 
+        margin-top: -35px;
+        height: 30px;
     }
 
-  
+    .btn-save{
+        margin-top: 0px;  
+    }
+
+    .create-bottom {
+        position: absolute;
+        left:25%;
+        top:-900px
+    }
+}
+
+@media (max-width:320px){
+    .bg-fone{
+        margin-top: -25px;
+        height: 30px;
+    }
 }

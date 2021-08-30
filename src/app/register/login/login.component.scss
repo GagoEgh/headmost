@@ -1,14 +1,4 @@
 
-
-/* ::ng-deep app-login {
-    display: none !important;
-}
-
-
-.modal-content {
-    display: none !important;
-} */
-
 :host::ng-deep{
     .picker {
         .picker__holder {
@@ -21,4 +11,22 @@
           }
         }
       }
+      
 }
+
+
+@media (max-width:426px){
+
+  .batn-media{
+    margin-left: -85px !important;
+  }
+}
+
+
+@media (max-width:320px){
+
+  .batn-media{
+    margin-left: -75px !important;
+  }
+}
+

@@ -5,20 +5,17 @@
 .wrap{
     width: fit-content;
     display: flex;
-    /* justify-content: space-around;
-    position: relative;
-    left: 50%;
-    top: 20px; */
     margin-left: 50%;
-    /* top:20px; */
     transform-origin: top;
     box-shadow: 3px 2px 22px 0 rgb(87 87 87);
     background-color: white;
+    font-size: 1.1rem;
 }
 
 .user-data, .order{
     width: 500px;
     padding: 10px;
+    font-size: 1.3rem;
     
 }
 
@@ -28,7 +25,7 @@
 
 .title{
     color: rgb(111 110 110);
-    font-size: 1rem;
+    /* font-size: 1.1rem; */
 }
 
 
@@ -94,6 +91,12 @@
     margin-left: 120px;
 }
 
+.ant-form {
+    font-size: 1.9rem !important;
+    letter-spacing: 0.1rem !important; 
+    font-weight: 800 !important;
+}
+
 .ant-form-item {
     margin: 0 0 5px;
 }
@@ -118,3 +121,8 @@
     color: red
 }
 
+@media (max-width:426px){
+    .wrap{
+       margin-top:300px;
+    }
+}

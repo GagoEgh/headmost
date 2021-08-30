@@ -1,4 +1,5 @@
-<header class="conteiner" [style.height]="frames.isOrder?'fit-content':'538px'"[ngStyle]="conteinerHeight()">
+<header class="conteiner" [style.height]="frames.isOrder?'800px':'538px'"
+[ngStyle]="conteinerHeight()" >
   <ngx-spinner bdColor="rgba(0, 0, 0, 0.9)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
   </ngx-spinner>
@@ -66,15 +67,16 @@
           [style.background-image]="'url(' + frames.frame?.right_bottom_corner_image + ')'"></div>
       </div>
     </div>
-    <!-- <p *ngIf='frames.isMessage' class="message">ՏՎՅԱԼ ՏԱՌԵՐՈՎ ՆԿԱՐ ԴԵՌՎՍ ՉՈԻՆԵՆՔ</p> -->
     <app-order *ngIf='frames.isOrder'> </app-order>
   </div>
   <div class="buttonWrap" [ngStyle]="buttonWrapTop()">
     <div class="asside"></div>
     <div class="center">
       <button type="submit" (click)='onSubmit()' class="create"
-        *ngIf='frames.isImg'>{{'_img-text-valid._create-word'|translate}}</button>
-
+        *ngIf='frames.isImg'>
+        {{'_img-text-valid._create-word'|translate}}
+      </button>
+      
       <button *ngIf='frames.isOrder' class="create create-bottom"
         (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
 
@@ -116,8 +118,6 @@
         </div>
       </div>
     </div>
-
-
   </div>
   <div class="wrap2">
     <div class="right-arrow"></div>

@@ -79,3 +79,23 @@ h2{
 .listActive{
     color: black;
 }
+
+
+@media (max-width:376px){
+   
+    .color{
+        margin-left: -50px !important;
+    }
+}
+
+@media (max-width:321px){
+    h2{
+        font-size: 80%;
+    }
+
+    .menu{
+        margin-left: -20px;
+    }
+    
+   
+}

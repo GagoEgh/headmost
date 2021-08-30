@@ -7,7 +7,6 @@
 
 .modal-content {
     top: 100px !important;
-    /* width: 700px !important; */
 }
 
 .ant-upload-list-picture-card .ant-upload-list-item {
@@ -153,24 +152,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .create{
+    background-color: transparent;
+    background-image: url('/assets/1x/red-btn.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
     width: 180px;
-    padding: 10px;
-    text-align: center;
-    text-transform:uppercase;
-    border-radius: 15px;
-    background-color: goldenrod;
-    border: none;
-    color: rgb(88, 86, 86);
-    letter-spacing: 1px;
-    transition: .5s;
+    height: 50px;
     outline: none;
-    
+    border: none;
+    transition: .5s;
 }
 
 .create:active{
     color: white;
-    background-color:rgb(119, 88, 9);
-    box-shadow: 1px 2px 1px rgb(77, 57, 7);
     transition: 0.5s;
 } 
 
@@ -210,51 +206,59 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-size: 100% 100%;
     margin: 5px 10px;
     cursor: pointer;
- }
+}
  
- .bg-img:hover .bgr{
+.bg-img:hover .bgr{
     opacity: 1;
- }
+}
  
- .bgr{
+.bgr{
     background-color:rgba(230, 22, 102, 0.6);
     opacity: 0;
     transition: 0.4s;
- }
+}
  
- .bgr p{
+.bgr p{
     color: white;
     display: inline-block;
 }
  
 .btn-save{
-    position:absolute;
-    left: 40%;
-    top:120%;
-    transform: translate(-2%, -120%);
-    width: 180px;
-    padding: 10px;
-    text-align: center;
-    text-transform:uppercase;
-    border-radius: 15px;
-    background-color: goldenrod;
-    border: none;
-    color: rgb(88, 86, 86);
-    letter-spacing: 1px;
-    transition: .5s;
-    outline: none;
+    background-color: transparent;
+    background-image: url('/assets/1x/red-btn.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     cursor: pointer;
-    z-index: 9999 !important;
- }
+    width: 180px;
+    height: 50px;
+    outline: none;
+    border: none;
+    transition: .5s;
+}
  
- .btn-save:active{
+.btn-save:active{
     color: white;
-    background-color:rgb(119, 88, 9);
-    box-shadow: 1px 2px 1px rgb(77, 57, 7);
     transition: 0.5s;
- }
+}
 
- .ant-form-item-label>label {
+.ant-form-item-label>label {
 
     font-size: 10px !important;
 }
+
+@media (max-width:426px){
+   .create{
+    width: 140px;
+    height: 50px;
+   }
+}
+
+
+@media (max-width:320px){
+    .modal-content {
+        width: 310px !important;
+    }
+
+}
+
