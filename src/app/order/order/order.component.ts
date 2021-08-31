@@ -49,23 +49,37 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.width = this.wrap?.nativeElement.clientWidth | 1;
-    // if (window.innerWidth <= 1165) {
-    //   this.scale = window.innerWidth / this.width - 0.1;
+    if (window.innerWidth <= 1165) {
+      this.scale = window.innerWidth / this.width - 0.1;
+      console.log('scale',this.scale);
+      console.log('width',window.innerWidth)
+
+      if(window.innerWidth<=768){
+        this.scale = 0.5
+      }
+
+      if(window.innerWidth<=463){
+        this.scale = 0.4
+      }
+
+      if(window.innerWidth<=463){
+        this.scale = 0.3
+      }
+    }
+
+    // if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
+    //   if (window.innerWidth <= 1165) {
+    //     this.width += 280;
+    //     this.scale = window.innerWidth / this.width - 0.2;
+    //   }
     // }
 
-    if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
-      if (window.innerWidth <= 1165) {
-        this.width += 280;
-        this.scale = window.innerWidth / this.width - 0.2;
-      }
-    }
-
-    if (this.frames.letterImges.length <= 2 && this.frames.letterImges.length) {
-      if (window.innerWidth <= 1165) {
-        this.width += 380;
-        this.scale = window.innerWidth / this.width;
-      }
-    }
+    // if (this.frames.letterImges.length <= 2 && this.frames.letterImges.length) {
+    //   if (window.innerWidth <= 1165) {
+    //     this.width += 380;
+    //     this.scale = window.innerWidth / this.width;
+    //   }
+    // }
 
 
 
@@ -78,7 +92,8 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
-    this.changeJson()
+    this.changeJson();
+    this.onResize();
   }
 
   ngOnInit(): void {
