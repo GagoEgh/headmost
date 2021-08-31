@@ -1,7 +1,8 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
   <p style="color: white"> Loading... </p>
 </ngx-spinner>
-<div class="conteiner" [style.min-width]='frames.isMyOrder?"1000px":"100%"'>
+<div class="conteiner" >
+  <!-- [style.min-width]='frames.isMyOrder?"1000px":"100%"' -->
   <span class="material-icons-outlined"  (click)='isSilki = !isSilki'>
     <img src="./assets/1x/outline_view_headline_black_24dp.png">
   </span>
@@ -57,7 +58,8 @@
 </div>
 <router-outlet></router-outlet>
 
-<div class="footerWrap">
+<div class="footerWrap"  >
+  <!-- [style.min-width]='frames.isMyOrder?"1000px":"100%"' -->
   <div class="left">
     <p> Copyright © 2021 LoviSlova</p>
   </div>

@@ -75,5 +75,46 @@
 @media (max-width:788px){
     .conteiner{
         top: 50px;
+        height: 350px;
     }
+}
+
+@media (max-width:426px){
+     .conteiner{
+        height: 350px;
+    }
+
+    .info-img{
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .title{
+        font-size: 18px;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .idea-image{
+        height: 150px;
+        width: 200px;
+    }
+
+    .text{
+        margin: 0px;
+        padding: 5px;
+    }
+}
+
+@media (max-width:321px){
+    .conteiner{
+     display: flex;
+     flex-direction: column;
+     height: 450px;
+    }
+
+    .info-img{
+        padding: 10px;
+    }
+  
 }

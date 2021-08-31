@@ -165,55 +165,6 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
       return height
     }
 
-  
-    // if ((window.innerWidth <= 1024 && window.innerWidth > 768) && this.frames.isOrder) {
-    //   height.height = '800px'
-    // }
-
-    // if ((window.innerWidth <= 426 && window.innerWidth >375) && this.frames.isOrder) {
-    //   height.height = '500px'
-    //   return height
-    // }
-
-    // if(this.frames.isOrder && window.innerWidth<=1565){
-    //   height.height = '700px';
-    //   return height;
-    // }
-
-
-
-
-    // if (window.innerWidth <= 816 && this.frames.letterImges.length === 4) {
-    //   height.height = '400px';
-    //   return height;
-    // }
-
-    // if (window.innerWidth <= 816 && this.frames.letterImges.length === 3) {
-    //   height.height = '400px';
-    //   return height;
-    // }
-
-    // if (window.innerWidth <= 859 && this.frames.letterImges.length === 9) {
-    //   height.height = '400px';
-    //   return height;
-    // }
-
-    // if (window.innerWidth <= 656 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length < 7)) {
-    //   height.height = '400px';
-    //   return height;
-    // }
-
-    // if (window.innerWidth <= 717 && this.frames.letterImges.length === 7) {
-    //   height.height = '400px';
-    //   return height;
-
-    // }
-
-    // if (window.innerWidth <= 789 && this.frames.letterImges.length === 8) {
-    //   height.height = '400px';
-    //   return height;
-    // }
-
     return height
   }
 
@@ -246,8 +197,6 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     if (window.innerWidth <= 1024 && window.innerWidth > 768) {
       left['left'] = '40.7%'
     }
-
-
 
     return left
   }

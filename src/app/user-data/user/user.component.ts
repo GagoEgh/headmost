@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { tick } from '@angular/core/testing';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 
 @Component({
@@ -6,12 +7,39 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, AfterViewChecked {
+  @ViewChild("block", { static: false }) block: ElementRef | undefined;
+  width: number | undefined;
+  scale: number = 1;
+  constructor(public frames: FramesServService) { }
+  ngAfterViewChecked(): void {
+    this.onResize()
+  }
 
-  constructor(public frames:FramesServService) { }
-
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.width = this.block?.nativeElement.clientWidth | 1;
+    if (window.innerWidth <= 1165) {
+      this.scale = window.innerWidth / this.width - 0.34;
+      console.log(this.scale);
+      console.log('width',window.innerWidth)
+      if(window.innerWidth<=768){
+        this.scale = 0.9;
+        console.log('7',this.scale);
+      }
+    }
+  }
   ngOnInit(): void {
   }
 
-  
+  public setStyle() {
+    let style = {
+      transform:  "scale(" + this.scale + ")"
+      // translate(-50%, 0)" +
+    }
+    return style
+  }
+
+
+
 }

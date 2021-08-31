@@ -34,6 +34,7 @@
     flex-wrap: wrap;
     padding: 20px;
     margin-bottom: 20px;
+    /* width: 900px; */
 }
 
 .order{
@@ -77,10 +78,11 @@
 }
 
 
- @media  (max-width: 1000px){
-     .wrap{
-         width: 100%;
-     }
+
+@media  (max-width: 1000px){
+    .wrap{
+      width: 100%;
+    }
 
     .block{
         width: 100%;
@@ -99,3 +101,11 @@
         margin-bottom: 50px;
     }
 } 
+
+@media (max-width:426px){
+    .order{
+     display: flex;
+     width: fit-content;
+    }
+    
+}

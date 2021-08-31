@@ -33,16 +33,12 @@ export class IdeaImageComponent implements OnInit {
   
   @HostListener('window:resize', ['$event'])
   onResize() {
-    this.heigth = this.block?.nativeElement.clientHeight | 1;
     this.width = this.block?.nativeElement.clientWidth | 1;
     if (window.innerWidth <= 1030) {
       this.scale = window.innerWidth / this.width - 0.44;
     }
 
-    if(window.innerWidth <= 787){
-      this.scale = 0.7;
-      this.scale = window.innerWidth / this.width-0.2;
-    }
+  
   }
 
   public setStyle() {

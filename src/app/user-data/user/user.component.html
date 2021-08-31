@@ -1,9 +1,10 @@
-<div class="user-data" [style.min-width]='frames.isMyOrder?"1000px":"100%"'>
-    <ul class="group">
+<div #block class="user-data" [ngStyle]="setStyle()">
+    <!-- [style.min-width]='frames.isMyOrder?"1000px":"100%"' -->
+    <ul class="group" >
         <li class="list"><a routerLink = '/user/profil'  routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">{{'_menu._user._profil'|translate}}</a></li>
         <li class="list"><a routerLink = '/user/imags'  routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">{{'_menu._user._images'|translate}}</a></li>
         <li class="list"><a routerLink = '/user/user-order'  routerLinkActive='active'[routerLinkActiveOptions]="{exact:true}">{{'_menu._user._orders'|translate}}</a></li>
     </ul>
-    <router-outlet></router-outlet>
+    <router-outlet ></router-outlet>
 </div>
 

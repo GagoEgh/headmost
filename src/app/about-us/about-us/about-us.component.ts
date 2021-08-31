@@ -3,6 +3,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { waitForAsync } from '@angular/core/testing';
 
 
 @Component({
@@ -10,38 +11,44 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './about-us.component.html',
   styleUrls: ['./about-us.component.css']
 })
-export class AboutUsComponent implements OnInit, AfterViewChecked,OnChanges {
-  public _unsubscribe$ = new Subject();
+export class AboutUsComponent implements OnInit, AfterViewChecked, OnChanges {
+
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
+  public _unsubscribe$ = new Subject();
+  question_answer: any[] = [];
   heigth: number | undefined;
   width: number | undefined;
   scale: number = 1;
-  question_answer: any[] = [];
+  caunt: number = 0;
   obj = {};
-  caunt: number =0;
+
 
   @HostListener('window:resize', ['$event'])
   onResize() {
-    this.heigth = this.block?.nativeElement.clientHeight | 1;
     this.width = this.block?.nativeElement.clientWidth | 1;
+   
     if (window.innerWidth <= 1165) {
+      
       this.scale = window.innerWidth / this.width - 0.1;
+      console.log('scale', this.scale);
+      console.log('width', window.innerWidth)
 
-    }
+      if (window.innerWidth <= 768) {
+        this.scale = 0.7;
+        
+        console.log('scale 7', this.scale);
+        console.log('width 7', window.innerWidth)
+      }
 
-    if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
-      if (window.innerWidth <= 1165) {
-        this.width += 280;
-        this.scale = window.innerWidth / this.width - 0.2;
+      if(window.innerWidth<=559){
+        this.scale = 0.25
+       console.log('scale 4', this.scale);
+       console.log('width 4', window.innerWidth)
       }
     }
 
-    if (this.frames.letterImges.length <= 2 && this.frames.letterImges.length) {
-      if (window.innerWidth <= 1165) {
-        this.width += 380;
-        this.scale = window.innerWidth / this.width;
-      }
-    }
+
+   
   }
 
   public setStyle() {
@@ -55,19 +62,19 @@ export class AboutUsComponent implements OnInit, AfterViewChecked,OnChanges {
 
   constructor(public frames: FramesServService, public _translate: TranslateService) { }
   ngOnChanges(changes: SimpleChanges): void {
-    this.showQuestion(this.obj,this.caunt);
+    this.showQuestion(this.obj, this.caunt);
   }
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
     this.question_answer = [];
     this.createText();
-    
+    this.onResize()
   }
 
   ngOnInit(): void {
     this.createText();
- 
+
   }
 
   createText() {
@@ -85,7 +92,7 @@ export class AboutUsComponent implements OnInit, AfterViewChecked,OnChanges {
       this.obj = ev;
       this.caunt = num;
       ev.isBlock = !ev.isBlock;
-      
+
       console.log(ev)
     }
   }

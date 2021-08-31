@@ -3,6 +3,7 @@
     background-color: rgba(255, 255, 255, 0.849);
     box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
     display: flex;
+    min-width: 100%
 }
 
 .li-nav{
@@ -147,7 +148,7 @@
 
 
 .footerWrap{
-    width: 100%;
+    min-width: 100%;
     padding-top: 100px;
     display: flex;
     justify-content: space-around;
@@ -246,5 +247,12 @@
     .footerWrap{
         width: inherit;
      
+    }
+}
+
+@media (max-width:426px){
+
+    .left{
+        padding: 20px 0;
     }
 }

@@ -12,17 +12,17 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./idea.component.css']
 })
 export class IdeaComponent implements OnInit {
+  public _unsubscribe$ = new Subject();
   ideaImages: any[] = [];
-  public _unsubscribe$ = new Subject()
-  throttle = 150;
   scrollDistance = 0.5;
   scrollUpDistance = 2;
+  throttle = 150;
   category = '';
   offset = 0;
   count = 0;
   @HostListener('window:resize', ['$event'])
   onResize() {
-    this.frames.isBar = window.innerWidth <= 790 ? false : true
+    this.frames.isBar = window.innerWidth <= 790 ? false : true;
   }
 
   constructor(public frames: FramesServService,

@@ -1,4 +1,8 @@
+ .user-data{
 
+    left: 50%;
+    top:80px;
+}
 .group{
     display: flex;
     margin: 50px;
@@ -22,3 +26,4 @@
 .active{
     color:  #645231 !important;
 }
+

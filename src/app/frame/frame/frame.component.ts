@@ -27,121 +27,6 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     this._translate.use(this.frames.lang)
   }
 
-  conteinerHeight() {
-    let height = {
-      height: '538px'
-    }
-
-    if(this.frames.isOrder && window.innerWidth <=426){
-      height.height = '570px';
-      return height;
-    }
-    
-    if (window.innerWidth <= 426) {
-      height.height = '400px';
-      return height;
-    }
-
-    if (window.innerWidth <= 375) {
-      height.height = '400px';
-      return height;
-    }
-
-    if (window.innerWidth <= 320) {
-      height.height = '400px';
-      return height;
-
-    }
-
-    if (window.innerWidth <= 816 && this.frames.letterImges.length === 4) {
-      height.height = '400px';
-      return height;
-    }
-
-    if (window.innerWidth <= 816 && this.frames.letterImges.length === 3) {
-      height.height = '400px';
-      return height;
-    }
-
-    if (window.innerWidth <= 859 && this.frames.letterImges.length === 9) {
-      height.height = '400px';
-      return height;
-    }
-
-    if (window.innerWidth <= 656 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length < 7)) {
-      height.height = '400px';
-      return height;
-    }
-
-    if (window.innerWidth <= 717 && this.frames.letterImges.length === 7) {
-      height.height = '400px';
-      return height;
-
-    }
-
-    if (window.innerWidth <= 789 && this.frames.letterImges.length === 8) {
-      height.height = '400px';
-      return height;
-    }
-    return height
-  }
-
-  
-  buttonWrapTop() {
-    let top = {
-      "margin-top": '70px'
-    }
-
-
-    if (window.innerWidth <= 426) {
-      top["margin-top"] = '-70px';
-      return top;
-    }
-
-    if (window.innerWidth <= 375) {
-      top["margin-top"] = '-70px';
-      return top;
-    }
-
-    if (window.innerWidth <= 320) {
-      top["margin-top"] = '-70px';
-      return top;
-
-    }
-    if (window.innerWidth <= 816 && this.frames.letterImges.length === 4) {
-      top["margin-top"] = '-70px';
-      return top;
-    }
-
-    if (window.innerWidth <= 859 && this.frames.letterImges.length === 9) {
-      top["margin-top"] = '-70px';
-      return top;
-    }
-
-    if (window.innerWidth <= 656 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length < 7)) {
-      top["margin-top"] = '-70px';
-      return top;
-    }
-
-    if (window.innerWidth <= 717 && this.frames.letterImges.length === 7) {
-      top["margin-top"] = '-70px';
-      return top;
-
-    }
-
-    if (window.innerWidth <= 789 && this.frames.letterImges.length === 8) {
-      top["margin-top"] = '-70px';
-      return top;
-    }
-
-    if (window.innerWidth <= 816 && this.frames.letterImges.length === 3) {
-      top["margin-top"] = '-70px';
-      return top
-    }
-
-    return top
-  }
-
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.width = this.block?.nativeElement.clientWidth | 1;
@@ -238,6 +123,119 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
   }
 
+  conteinerHeight() {
+    let height = {
+      height: '538px'
+    }
+
+    if (this.frames.isOrder && window.innerWidth <= 426) {
+      height.height = '570px';
+      return height;
+    }
+
+    if (window.innerWidth <= 426) {
+      height.height = '400px';
+      return height;
+    }
+
+    if (window.innerWidth <= 375) {
+      height.height = '400px';
+      return height;
+    }
+
+    if (window.innerWidth <= 320) {
+      height.height = '400px';
+      return height;
+
+    }
+
+    if (window.innerWidth <= 816 && this.frames.letterImges.length === 4) {
+      height.height = '400px';
+      return height;
+    }
+
+    if (window.innerWidth <= 816 && this.frames.letterImges.length === 3) {
+      height.height = '400px';
+      return height;
+    }
+
+    if (window.innerWidth <= 859 && this.frames.letterImges.length === 9) {
+      height.height = '400px';
+      return height;
+    }
+
+    if (window.innerWidth <= 656 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length < 7)) {
+      height.height = '400px';
+      return height;
+    }
+
+    if (window.innerWidth <= 717 && this.frames.letterImges.length === 7) {
+      height.height = '400px';
+      return height;
+
+    }
+
+    if (window.innerWidth <= 789 && this.frames.letterImges.length === 8) {
+      height.height = '400px';
+      return height;
+    }
+    return height
+  }
+
+  buttonWrapTop() {
+    let top = {
+      "margin-top": '70px'
+    }
+
+
+    if (window.innerWidth <= 426) {
+      top["margin-top"] = '-70px';
+      return top;
+    }
+
+    if (window.innerWidth <= 375) {
+      top["margin-top"] = '-70px';
+      return top;
+    }
+
+    if (window.innerWidth <= 320) {
+      top["margin-top"] = '-70px';
+      return top;
+
+    }
+    if (window.innerWidth <= 816 && this.frames.letterImges.length === 4) {
+      top["margin-top"] = '-70px';
+      return top;
+    }
+
+    if (window.innerWidth <= 859 && this.frames.letterImges.length === 9) {
+      top["margin-top"] = '-70px';
+      return top;
+    }
+
+    if (window.innerWidth <= 656 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length < 7)) {
+      top["margin-top"] = '-70px';
+      return top;
+    }
+
+    if (window.innerWidth <= 717 && this.frames.letterImges.length === 7) {
+      top["margin-top"] = '-70px';
+      return top;
+
+    }
+
+    if (window.innerWidth <= 789 && this.frames.letterImges.length === 8) {
+      top["margin-top"] = '-70px';
+      return top;
+    }
+
+    if (window.innerWidth <= 816 && this.frames.letterImges.length === 3) {
+      top["margin-top"] = '-70px';
+      return top
+    }
+
+    return top
+  }
 
 
   ngAfterViewChecked(): void {
