@@ -67,21 +67,6 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       }
     }
 
-    // if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
-    //   if (window.innerWidth <= 1165) {
-    //     this.width += 280;
-    //     this.scale = window.innerWidth / this.width - 0.2;
-    //   }
-    // }
-
-    // if (this.frames.letterImges.length <= 2 && this.frames.letterImges.length) {
-    //   if (window.innerWidth <= 1165) {
-    //     this.width += 380;
-    //     this.scale = window.innerWidth / this.width;
-    //   }
-    // }
-
-
 
   }
 

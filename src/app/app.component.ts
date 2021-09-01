@@ -29,9 +29,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.scrollToTopByChangeRoute();
-
-
-   
+    this.frames.isTop = false;
 
     if (localStorage.getItem('loginAutorization')) {
 
