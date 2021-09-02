@@ -15,7 +15,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class AppComponent implements OnInit {
   public unsubscribe$ = new Subject();
-  isSilki = false;
+  // isSilki = false;
   constructor(public frames: FramesServService, private spinner: NgxSpinnerService,
     private _translate: TranslateService,
     private modalService: NgbModal,
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.scrollToTopByChangeRoute();
-    this.frames.isTop = false;
+    // this.frames.isTop = false;
 
     if (localStorage.getItem('loginAutorization')) {
 

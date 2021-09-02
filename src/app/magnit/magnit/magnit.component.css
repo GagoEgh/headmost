@@ -1,8 +1,8 @@
-
 .lightSheme{
     background: url('src/assets/1x/bg_magnit.jpg') repeat 0 0;
     padding: 20px;
     margin-top: 10px;
+    height: 700px;
 }
 
 
@@ -41,39 +41,18 @@
     transform-origin: top; 
 }
 
-.buttonWrap{
-    position: relative;
-    display: flex;
-    width: 100%;
-    transform-origin: center; 
-    /* margin-top: -45px; */
-}
-
-.asside{
-    height: 40px;
-    width: 50%;
-    margin-top: 40px;
-}
-
 .create{
     outline: none;
-    margin-left: 5px;
+    display: block;
 }
 
 .create-bottom{
     position: absolute;
-    top: -200px;
-    left: 44%;
+    outline: none;
+    display: block;
+    left:44%;
+    top:950px;
     z-index: 1;
-}
-
-.bg-fone{
-    height: 30px;
-    width: 170px;
-    background-image: url('src/assets/1x/bg_magnit.jpg');
-    background-position: center;
-    border-radius: 7px;
-    margin: -30px 0 0 10px;
 }
 
 .fone-btn{
@@ -89,44 +68,51 @@
 
 .btn-save{
     outline: none;
-    margin-top: -5px;
+    display: block;
 }
 
-@media (max-width:1440px){
-    .create-bottom{
-        position: absolute;
-        top: -250px;
-    }
+.center{
+    display: block;
+    margin: 50px 45%;
 }
 
 @media (max-width:1024px){
-    .create-bottom {
-        position: absolute;
-        top: -135px;
-    }
+   .center{
+     margin: -100px 40%;
+   }
+
+   .create-bottom{
+     left: 40%;
+   }
 }
 
-@media (max-width:768px){
+
+@media (max-width:769px){
+
+    .center{
+        margin: -100px 38%;
+    }
+
     .create-bottom {
         position: absolute;
         left:40%;
     }
 }
+
 @media (max-width:426px){
+
+    .center{
+        margin: -100px 33%;
+    }
+
     .create-bottom {
         position: absolute;
-        left:30%;
-        top:-1000px
+        left:33%;
     }
 
     .btn-save{
       margin-top: 0px;  
-    }
-    
-    .bg-fone{
-        margin-top: -25px;
-        width: 150px;
-        display: none;
+      margin-left: -20px;
     }
 
     .block{
@@ -135,9 +121,8 @@
 }
 
 @media (max-width:376px){
-    .bg-fone{
-        margin-top: -35px;
-        height: 30px;
+    .center{
+        margin: -200px 33%;
     }
 
     .btn-save{
@@ -146,14 +131,13 @@
 
     .create-bottom {
         position: absolute;
-        left:25%;
-        top:-900px
+        left:30%;
     }
 }
 
 @media (max-width:320px){
-    .bg-fone{
-        margin-top: -25px;
-        height: 30px;
+    .center{
+        margin: -200px 25%;
     }
+
 }

@@ -4,7 +4,6 @@
     display: flex;
     position: relative;
     left: 50%;
-    top:175px;
     transform-origin: top; 
 }
 

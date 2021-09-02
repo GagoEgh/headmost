@@ -22,7 +22,7 @@ export class IdeaComponent implements OnInit {
   count = 0;
   @HostListener('window:resize', ['$event'])
   onResize() {
-    this.frames.isBar = window.innerWidth <= 790 ? false : true;
+   // this.frames.isBar = window.innerWidth <= 790 ? false : true;
   }
 
   constructor(public frames: FramesServService,
@@ -80,9 +80,9 @@ export class IdeaComponent implements OnInit {
 
 
 
-  showBar() {
-    return this.frames.isBar = !this.frames.isBar;
-  }
+  // showBar() {
+  //   return this.frames.isBar = !this.frames.isBar;
+  // }
 
   addOrder(index: number) {
 

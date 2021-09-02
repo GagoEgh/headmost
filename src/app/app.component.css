@@ -12,19 +12,27 @@
     top: 35px;
     background-color: white;
     border-radius: 7px;
-    padding: 10px 20px;
+    padding: 10px;
     box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
     z-index: 555;
     display: none;
 }
 
-
 .li-nav li{
-    padding: 5px;
+    padding : 5px;
+    width: 120px;
 }
 
 .li-nav a{
-    padding-bottom: 5px;
+    text-decoration: none;
+    color: rgb(63, 62, 62);
+    font-weight: bold;
+    padding: 5px;
+    transition: 0.4s;
+}
+
+.li-nav li:hover{
+    background-color: rgb(236, 231, 231);
 }
 
 .silki{

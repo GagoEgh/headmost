@@ -11,10 +11,7 @@
                     <p class="img-title" *ngIf='frames.lang==="en"' >{{img.created_frame_category_details.name_en}} </p>
                     <p class="img-title">{{img.price}}{{'_order._inform-img._price'|translate}}</p>
                 </div>
-                <div class="order" (click)="addOrder(i)">
-                    <img src="./assets/1x/orderIconWhite.png">
-                </div>
-              
+                <div class="order" (click)="addOrder(i)"></div>
             </div>
         </div>
     </div>

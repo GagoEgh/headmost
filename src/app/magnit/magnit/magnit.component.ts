@@ -131,7 +131,7 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
 
   conteinerHeight() {
     let height = {
-      height: '560px'
+      height: '650px'
     }
 
     if(this.frames.isOrder && window.innerWidth <=426){
@@ -156,12 +156,12 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     }
 
     if (window.innerWidth <= 1024 && window.innerWidth > 425) {
-      height.height = '500px';
+      height.height = '800px';
       return height;
     }
 
-    if ((window.innerWidth <= 1440 && window.innerWidth > 1024) && this.frames.isOrder) {
-      height.height = '850px'
+    if ((window.innerWidth <= 1640 && window.innerWidth > 1024) && this.frames.isOrder) {
+      height.height = '1000px'
       return height
     }
 
@@ -169,111 +169,36 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
   }
 
 
-  btnSaveMedia() {
-    let left = {
-      "left": '40.7%'
-    }
-
-    if (window.innerWidth < 321) {
-      left["left"] = '50px';
-      return left;
-    }
-
-
-    if (window.innerWidth <= 375 && window.innerWidth > 320) {
-      left["left"] = '70px';
-      return left;
-    }
-
-    if (window.innerWidth <= 427 && window.innerWidth > 375) {
-      left["left"] = '110px';
-      return left;
-    }
-
-    if (window.innerWidth <= 768 && window.innerWidth > 427) {
-      left['left'] = '270px'
-    }
-
-    if (window.innerWidth <= 1024 && window.innerWidth > 768) {
-      left['left'] = '40.7%'
-    }
-
-    return left
-  }
-
   buttonWrapTop() {
     let top = {
-      "top": '27px'
+      "top": '950px'
     }
 
-    if (window.innerWidth <= 1024 && window.innerWidth > 768) {
-      top["top"] = '-45px';
+    if(window.innerWidth<=1024){
+      top['top']='790px';
       return top;
     }
 
-    if (window.innerWidth <= 768 && window.innerWidth > 427) {
-      top["top"] = '-45px';
+    if(window.innerWidth<=426){
+      top['top']='600px';
+      
+      if( this.frames.isSilki){
+        top['top']='750px';
+        return top
+      }
       return top;
     }
 
-
-    if (window.innerWidth <= 427 && window.innerWidth > 376) {
-      top["top"] = '-40px';
+    if(window.innerWidth<=376){
+      top['top']='500px';
+      
+      if( this.frames.isSilki){
+        top['top']='650px';
+        return top
+      }
       return top;
     }
 
-    if (window.innerWidth < 376 && window.innerWidth > 320) {
-      top["top"] = '-145px';
-      return top;
-    }
-
-    if (window.innerWidth <= 320) {
-      top["top"] = '-145px';
-      return top;
-
-    }
-
-
-    if (window.innerWidth <= 816 && this.frames.letterImges.length === 4) {
-      top["top"] = '-70px';
-      return top;
-    }
-
-    if (window.innerWidth <= 859 && this.frames.letterImges.length === 9) {
-      top["top"] = '-70px';
-      return top;
-    }
-
-    if (window.innerWidth <= 656 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length < 7)) {
-      top["top"] = '-70px';
-      return top;
-    }
-
-    if (window.innerWidth <= 717 && this.frames.letterImges.length === 7) {
-      top["top"] = '-70px';
-      return top;
-
-    }
-
-    if (window.innerWidth <= 789 && this.frames.letterImges.length === 8) {
-      top["top"] = '-70px';
-      return top;
-    }
-
-    if (window.innerWidth <= 816 && this.frames.letterImges.length === 3) {
-      top["top"] = '-70px';
-      return top
-    }
-
-    if (window.innerWidth <= 1024 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <= 9)) {
-      top["top"] = '-100px';
-      return top;
-    }
-
-    if (window.innerWidth <= 1440 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <= 9)) {
-      top["top"] = '15px';
-      return top;
-    }
     return top
   }
 

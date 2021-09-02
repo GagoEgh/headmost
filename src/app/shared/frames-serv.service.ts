@@ -17,9 +17,9 @@ export class FramesServService {
     selectedValue: any[] = [];
     placeholder = '';
     lang = 'hy';
-    isBar = true;
     fileUrl = {};
     isOrder: boolean = false;
+    isSilki = false;
     orderList: any[] = [];
     orderListClone: any[] = [];
     background: any = {};

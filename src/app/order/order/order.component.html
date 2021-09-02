@@ -1,6 +1,7 @@
 
 <div class="wrap" #wrap [ngStyle]="setStyle()" *ngIf='this.frames.orderList.length,else noText'
-[style.top]="frames.isTop?'-200px':'30px'">
+>
+<!-- [style.top]="frames.isTop?'-200px':'30px'" -->
   <div class="user-data">
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
       <nz-form-item>

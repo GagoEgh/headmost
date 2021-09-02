@@ -59,11 +59,11 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       }
 
       if(window.innerWidth<=463){
-        this.scale = 0.4
+        this.scale = 0.9
       }
 
-      if(window.innerWidth<=463){
-        this.scale = 0.3
+      if(window.innerWidth<=375){
+        this.scale = 0.7
       }
     }
 
@@ -79,11 +79,12 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this._translate.use(this.frames.lang);
     this.changeJson();
     this.onResize();
+   
   }
 
   ngOnInit(): void {
 
-    this.frames.isTop = false;
+    // this.frames.isTop = false;
     this.changeJson()
     this.frames.isdisible = false;
     setTimeout(() => {

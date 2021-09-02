@@ -3,18 +3,18 @@
 </ngx-spinner>
 <div class="conteiner" >
   <!-- [style.min-width]='frames.isMyOrder?"1000px":"100%"' -->
-  <span class="material-icons-outlined"  (click)='isSilki = !isSilki'>
+  <span class="material-icons-outlined"  (click)='frames.isSilki = !frames.isSilki'>
     <img src="./assets/1x/outline_view_headline_black_24dp.png">
   </span>
-  <ul class="silki" [class.check-silki]='isSilki'>
+  <ul class="silki" [class.check-silki]='frames.isSilki'>
     <li class="parent">
       <p class="frame">{{'_menu.konstruktor._konstr'|translate}}</p>
       <ul class="li-nav">
         <li>
-          <a class="frame" (click)='getFrame()'>{{'_menu.konstruktor._frame'|translate}}</a>
+          <a (click)='getFrame()'>{{'_menu.konstruktor._frame'|translate}}</a>
         </li>
         <li>
-          <a class="frame" (click)='getMagnit()'>{{'_menu.konstruktor._magnet'|translate}}</a>
+          <a  (click)='getMagnit()'>{{'_menu.konstruktor._magnet'|translate}}</a>
         </li>
       </ul>
     </li>
