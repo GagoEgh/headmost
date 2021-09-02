@@ -162,11 +162,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: 50px;
     outline: none;
     border: none;
-    transition: .5s;
+
+    transition: .6s;
+}
+
+.create:hover{
+    background-color: transparent;
+    border-radius: 50px;
+    box-shadow: 5px 5px 20px 10px black inset;
+    /* box-shadow: 10px 10px 20px 10px black inset; */
+  
 }
 
 .create:active{
     color: white;
+    background-color: transparent; 
     transition: 0.5s;
 } 
 
