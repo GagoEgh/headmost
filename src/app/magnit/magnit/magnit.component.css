@@ -26,6 +26,10 @@
   outline: none;
 }
 
+input:focus::placeholder{
+    opacity: 0;
+}
+
 .imgColor{
     justify-content: flex-end;
 }

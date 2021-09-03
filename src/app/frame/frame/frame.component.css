@@ -117,6 +117,9 @@
     height: 40px;
 }
 
+input:focus::placeholder{
+    opacity: 0;
+}
 .reight,.left{
     display: flex;
     flex-direction: column;
