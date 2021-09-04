@@ -51,8 +51,6 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this.width = this.wrap?.nativeElement.clientWidth | 1;
     if (window.innerWidth <= 1165) {
       this.scale = window.innerWidth / this.width - 0.1;
-      console.log('scale',this.scale);
-      console.log('width',window.innerWidth)
 
       if(window.innerWidth<=768){
         this.scale = 0.5
@@ -139,9 +137,9 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     })
   }
 
-  public setStyle() {
+  public setStyle(num:number) {
     let style = {
-      transform: "translate(-50%, -18%)" + "scale(" + this.scale + ")"
+      transform: "translate(-50%, "+ num+"% )" + "scale(" + this.scale + ")"
     }
     return style
   }

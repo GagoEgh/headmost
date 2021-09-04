@@ -328,6 +328,7 @@ export class FramesServService {
 
     letterChar = 0;
     public myOrder() {
+       
         if (localStorage.getItem('loginAutorization')) {
             this.spinner.show();
             this.isTop = true;

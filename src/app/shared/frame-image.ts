@@ -5,6 +5,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { ImgCatalogComponent } from "../frame/create-img/img-catalog/img-catalog.component";
+import { ErroreMessageComponent } from "../frame/errore-message/errore-message/errore-message.component";
 import { NgbdModalContentComponent } from "../frame/ngbd-modal-content/ngbd-modal-content.component";
 import { FramesServService } from "./frames-serv.service";
 
@@ -48,7 +49,13 @@ export class FrameImag {
     }
 
     onSubmit() {
-        if (this.frames.validateForm.invalid) return;
+        if (this.frames.validateForm.invalid) {
+            const modalRef = this.modalService.open(ErroreMessageComponent);
+            setTimeout(() => {
+                modalRef.dismiss();
+            }, 1000)
+            return;
+        }
         this.frames.isImg = false;
         this.frames.letterColorFone();
 

@@ -17,6 +17,7 @@
 }
 
 .carusel{
+   
     width: fit-content;
     margin-left: -15px;
 }
@@ -25,27 +26,32 @@
     display: flex;
     list-style: none;
     width: fit-content;
+
 }
 
-.imageObject li{
-    position: relative;
-    padding: 8px;
-}
 
 .thumbImage{
     cursor: pointer;
-    padding: 25px;
+    padding: 25px; 
     margin: 10px 0 0 15px;
+    width: 70px;
+    height: 40px;
+    padding: 3px;
+ 
+}
+
+.img-content{
+    width: 67px;
+    height: 37px;
+}
+.img{
     width: 66px;
     height: 36px;
+    position: relative;
+    left: -4px;
+    top: -3px;
+
 }
-
-
-.imageObject li:hover .card{
-    display: block;
-    z-index: 1000;
-}
-
 .card {
     display: none;
     position: absolute;
@@ -56,6 +62,12 @@
     left: 0;
     top:120%;
 }
+
+.imageObject li:hover .card{
+    top: 95%;
+    display: block;
+}
+
 
 .card li{
     width: 380px;

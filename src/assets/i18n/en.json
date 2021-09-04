@@ -8,6 +8,7 @@
         "_idea": "IDEAS",
         "_aboutUs":"ABOUT US",
         "_user": {
+            "_updateOk":"The changes were successful",
             "_save":"SAVE",
             "_exit":"SIGN IN",
             "_profil": "PROFILE",

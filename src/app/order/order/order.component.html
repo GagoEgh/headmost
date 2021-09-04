@@ -1,13 +1,12 @@
 
-<div class="wrap" #wrap [ngStyle]="setStyle()" *ngIf='this.frames.orderList.length,else noText'
->
-<!-- [style.top]="frames.isTop?'-200px':'30px'" -->
+<div class="wrap" #wrap [ngStyle]="frames.isTop?setStyle(-18):setStyle(5)"
+*ngIf='this.frames.orderList.length,else noText'>
   <div class="user-data">
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="frstName">
         {{ _frstName }}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='frstEr' nzHasFeedback>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='frstEr'>
           <input nz-input formControlName="frstName" id="frstName" trim
             [(ngModel)]='frames.userData.user_details.first_name' />
         </nz-form-control>
@@ -17,7 +16,7 @@
       </ng-template>
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">{{_email}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="email" nzHasFeedback>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="email" >
           <input nz-input formControlName="email" trim id="email" [(ngModel)]='frames.userData.user_details.username' />
         </nz-form-control>
       </nz-form-item>
@@ -28,7 +27,7 @@
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="phoneNumber">{{_phoneNumber}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="phone">
           <input nz-input formControlName="phoneNumber" id="phoneNumber" mask='(000)00-00-00'
-            [(ngModel)]='frames.userData.phone_number' />
+           type="tel" [(ngModel)]='frames.userData.phone_number' />
         </nz-form-control>
       </nz-form-item>
       <ng-template #phone>
@@ -55,7 +54,7 @@
       </ng-template>
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="addres">{{_addres}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="addres" nzHasFeedback>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="addres">
           <input nz-input formControlName="addres" id="addres" [(ngModel)]='frames.userData.address' />
         </nz-form-control>
       </nz-form-item>
@@ -64,7 +63,7 @@
       </ng-template>
       <div class="region">
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>{{_shipping}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="shipping">
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="shipping" >
           <nz-select nzAllowClear nzPlaceHolder="Shipping" nzShowSearch formControlName='shipping'>
             <nz-option *ngFor='let addres of shiping ' [nzValue]="addres.id"
               [nzLabel]="addres['name_'+frames.lang] +' ' + addres.price+'Դ'">
@@ -73,12 +72,12 @@
         </nz-form-control>
       </div>
       <ng-template #shipping>
-        <p *ngIf="erroreName('shipping')">{{erroreStr}} </p>
+        <p *ngIf="erroreName('shipping')" class="shipping">{{erroreStr}} </p>
       </ng-template>
 
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="postal">{{ __addresPost}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='postal' nzHasFeedback>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='postal'>
           <input nz-input formControlName="postal" id="postal" trim/> 
         </nz-form-control>
       </nz-form-item>
@@ -88,13 +87,13 @@
 
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="comment">{{ _comment}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
           <input nz-input formControlName="comment" id="comment" />
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sale">{{_sale}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
           <input nz-input formControlName="sale" id="sale" (input)="salePost($event)" />
         </nz-form-control>
       </nz-form-item>

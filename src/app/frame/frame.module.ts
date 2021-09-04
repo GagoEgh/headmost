@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgbdModalContentComponent } from './ngbd-modal-content/ngbd-modal-content.component';
 import { CreateImgModule } from './create-img/create-img-module';
 import { SharedModule } from '../shared/shared.modult';
+import { ErroreMessageComponent } from './errore-message/errore-message/errore-message.component';
 
 const routs:Routes=[
   {path:'',component:FrameComponent}
@@ -15,6 +16,7 @@ const routs:Routes=[
   declarations: [
     FrameComponent,
     NgbdModalContentComponent,
+    ErroreMessageComponent,
   
   ],
   imports: [

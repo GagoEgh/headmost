@@ -56,8 +56,8 @@
         <nz-form-label nzRequired nzFor="phoneNumber">{{'_order._user-data._phoneNumber'|translate}}</nz-form-label>
       </div>
       <nz-form-item>
-        <nz-form-control [nzErrorTip]="phone">
-          <input nz-input formControlName="phoneNumber" id="phoneNumber" trim mask='(000)00-00-00' [(ngModel)]='frames.userData.phone_number' />
+        <nz-form-control [nzErrorTip]="phone" nzHasFeedback>
+          <input nz-input type="tel" formControlName="phoneNumber" id="phoneNumber" trim mask='(000)00-00-00' [(ngModel)]='frames.userData.phone_number' />
         </nz-form-control>
       </nz-form-item>
       <ng-template #phone>
@@ -65,7 +65,7 @@
       </ng-template>
       <div class="region">
         <nz-form-label  nzRequired>{{'_order._user-data._country'|translate}}</nz-form-label>
-        <nz-form-control  [nzErrorTip]="country">
+        <nz-form-control  [nzErrorTip]="country" nzHasFeedback>
           <nz-select nzAllowClear nzPlaceHolder="COUNTRY"  [(ngModel)]='frames.userData.city' nzShowSearch formControlName='country'>
             <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country["name_"+frames.lang]'>
               <nz-option *ngFor='let regions of country.country_regions' [nzLabel]='regions["name_"+frames.lang]' nzDisabled=true>
@@ -93,8 +93,8 @@
         <p *ngIf="erroreName('date')">{{erroreStr}} </p>
       </ng-template>
     </div>
-    <p *ngIf = 'updateOk'>{{updateOk}}</p>
     <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">{{'_order._user-data._update'|translate}}</button>
+    <p class="succes" *ngIf = 'updateOk'>{{'_menu._user._updateOk'|translate}}</p>
   </form>
 
 

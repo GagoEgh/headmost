@@ -7,8 +7,16 @@
   <div class="catalog" [ngStyle]="setStyle()">
     <div class="carusel">
       <ul class="imageObject">
-        <li *ngFor="let img of frames?.framesImge,let i=index" [ngClass]="{'box-content': getFrameId(img)}"
-          [style.background-image]="'url('+img?.show_image + ')'" (click)='frameClick(img.id)' class="thumbImage">
+        <li *ngFor="let img of frames?.framesImge,let i=index"
+        [ngClass]="{'box-content': getFrameId(img)}"
+           class="thumbImage">
+           <!-- 
+          [style.background-image]="'url('+img?.show_image + ')'" -->
+          <div  (click)='frameClick(img.id)' class="img-content">
+            <div class="img" [style.background-image]="'url('+img?.show_image + ')'" >
+              
+            </div>
+          </div>
           <ul class="card">
             <li *ngIf='frames.lang==="hy"'>{{img.description_hy}}</li>
             <li *ngIf='frames.lang==="ru"'>{{img.description_ru}}</li>

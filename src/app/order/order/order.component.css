@@ -25,7 +25,6 @@
 
 .title{
     color: rgb(111 110 110);
-    /* font-size: 1.1rem; */
 }
 
 
@@ -119,6 +118,9 @@
     font-size: 20px;
     font-weight: 800;
     color: red
+}
+.shipping{
+    margin-top: -30px;
 }
 
 @media (max-width:426px){
