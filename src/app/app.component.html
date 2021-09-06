@@ -2,11 +2,14 @@
   <p style="color: white"> Loading... </p>
 </ngx-spinner>
 <div class="conteiner" >
+  <div class="logo"></div>
   <!-- [style.min-width]='frames.isMyOrder?"1000px":"100%"' -->
-  <span class="material-icons-outlined"  (click)='frames.isSilki = !frames.isSilki'>
+  <span class="material-icons-outlined"  (click)='frames.isSilki = !frames.isSilki'
+  [ngStyle]="styleLeft()">
+  <!-- [style.left]="frames.isSilki?'380px':'0'" -->
     <img src="./assets/1x/outline_view_headline_black_24dp.png">
   </span>
-  <div class="logo"></div>
+  
 
   <ul class="silki" [class.check-silki]='frames.isSilki'>
     <li class="parent">

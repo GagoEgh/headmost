@@ -46,4 +46,11 @@ nz-date-picker {
     color: #ff4d4f !important;
 }
 
+::ng-deep.anticon.ng-tns-c132-40.anticon-close-circle-fill.ng-star-inserted{
+  color: #ff4d4f !important;
+}
+
+::ng-deep.anticon.ng-tns-c132-26.anticon-close-circle-fill.ng-star-inserted{
+  color: #ff4d4f !important;
+}
 

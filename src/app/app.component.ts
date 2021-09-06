@@ -15,7 +15,6 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class AppComponent implements OnInit {
   public unsubscribe$ = new Subject();
-  // isSilki = false;
   constructor(public frames: FramesServService, private spinner: NgxSpinnerService,
     private _translate: TranslateService,
     private modalService: NgbModal,
@@ -59,6 +58,25 @@ export class AppComponent implements OnInit {
       }
       window.scrollTo(0, 0)
     });
+  }
+
+  styleLeft(){
+    let left ={
+      'left':'0'
+    }
+
+    if(window.innerWidth<=426 && this.frames.isSilki){
+      left['left'] = '200px';
+      return left;
+    }
+    
+    if(window.innerWidth<=786 && this.frames.isSilki){
+      left['left'] = '380px';
+      return left;
+    }
+
+   
+    return left;
   }
 
   open() {

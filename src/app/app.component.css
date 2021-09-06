@@ -233,12 +233,14 @@
     .check-silki{
         display: flex;
         flex-direction: column;
-        margin: 25px -30px;
+        position: relative;
+        top: 30px;
     }
 
    
     .material-icons-outlined{
         display: block;
+        position: relative;
     }
 
     .frame{
@@ -265,6 +267,10 @@
     .li-nav{
         top: 55px;
     }
+
+    .order{
+        left:94%;
+    }
 }
 
 @media (max-width:768px){
@@ -279,5 +285,30 @@
 
     .left{
         padding: 20px 0;
+    }
+
+    .order{
+        left:85%;
+    }
+}
+
+@media (max-width:376px){
+   
+
+    .footer-nav{
+        width: 90%;
+    }
+}
+
+@media (max-width:321px){
+   
+
+    .footer-nav{
+        width: 70%;
+    }
+
+    .footer-silki {
+        display: flex;
+        flex-direction: column;
     }
 }
