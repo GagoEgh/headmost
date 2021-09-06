@@ -4,6 +4,7 @@
     flex-wrap: wrap;
     padding: 70px 10px;
     justify-content: space-evenly;
+    background-color: #d9d9d9;
 }
 
 .img-idea{
@@ -22,6 +23,7 @@
 .idea-info{
     display: flex;
     justify-content: space-between;
+    background-color: white
 }
 
 .titles{
@@ -53,6 +55,7 @@
     margin-top: 0px;
     border: 0px;
     cursor: pointer;
+    
 }
 
 @media (max-width:980px){

@@ -84,6 +84,7 @@
       <ng-template #country>
         <p *ngIf="erroreName('country')" class="erroreCountry">{{erroreStr}}</p>
       </ng-template>
+      <nz-form-label  nzRequired>{{'_order._user-data._brtDay'|translate}}</nz-form-label>
       <nz-form-item>
         <nz-form-control [nzErrorTip]="date" nzHasFeedback>
           <mat-form-field appearance="fill">
