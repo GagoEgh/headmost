@@ -1,21 +1,30 @@
 .conteiner{
+    min-width: 100%;
+    display: flex;
+    justify-content: space-between;
     padding: 15px;
     background-color: rgba(255, 255, 255, 0.849);
     box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
-    display: flex;
-    min-width: 100%
+}
+
+.logo{
+    width: 180px;
+    height: 40px;
+    border: 3px solid blue;
 }
 
 .li-nav{
     list-style: none;
     position: absolute;
     top: 35px;
+    left: 30px;
     background-color: white;
     border-radius: 7px;
     padding: 10px;
     box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
     z-index: 555;
     display: none;
+    
 }
 
 .li-nav li{
@@ -37,33 +46,30 @@
 
 .silki{
     list-style: none;
-    width: 90%;
-    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
     padding: 5px;
+
 }
 
 .silki p{
     cursor: pointer;
-    margin-top: -6px;
+    margin-top: -7px;
 }
 
 .frame{
     text-decoration: none;
     color: rgb(54, 54, 54);
     font-weight: bold;
-    padding: 5px;
+    padding: 5px 35px;
     transition: 0.4s;
 }
 
 .frame:hover{
-    box-shadow: 1px 0 2px 2px rgb(46, 45, 45);
+    background-color: rgb(236, 231, 231);
 }
 
 .active{
-    padding-top: 5px;
-    border-bottom: 1px solid rgb(98, 97, 97);
+     color: #ff4d4f;
 } 
 
 .red{
@@ -90,7 +96,7 @@
 
 .user-data{
     position: absolute;
-    left: -10%;
+    left: -65%;
     top:25px;
     list-style: none;
     color: rgb(78, 77, 77);
@@ -122,22 +128,22 @@
     padding: 5px;
     font-size: 14px;
     color:black;
+
 }
 
 .list:hover{
-    color:#aa8b51 ;
+    background-color: rgb(236, 231, 231);
 }
-.list:hover.list a{
-    color: #aa8b51;
-}
+
 
 .list a{
     color:black;
 }
 
-.frags{
+.flags{
     display: flex;
     list-style: none;
+    margin-top: -5px;
 }
 
 .flag{
@@ -154,6 +160,17 @@
     box-shadow: 1px 0 6px 4px rgb(75, 73, 73);
 }
 
+.order{
+    border-radius: 4px;
+    z-index: 2;
+    top: 105px;
+    left: 97%;
+    position: fixed;
+    background: #d9d9d9c7;
+    width: 60px;
+    padding: 7px;
+    cursor: pointer;
+}
 
 .footerWrap{
     min-width: 100%;

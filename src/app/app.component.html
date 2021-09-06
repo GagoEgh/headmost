@@ -6,6 +6,8 @@
   <span class="material-icons-outlined"  (click)='frames.isSilki = !frames.isSilki'>
     <img src="./assets/1x/outline_view_headline_black_24dp.png">
   </span>
+  <div class="logo"></div>
+
   <ul class="silki" [class.check-silki]='frames.isSilki'>
     <li class="parent">
       <p class="frame">{{'_menu.konstruktor._konstr'|translate}}</p>
@@ -31,7 +33,7 @@
     <ng-template #log>
       <ul>
         <li class="parent-1">
-          <a class="activeHover" routerLinkActive='active'> {{frames.userData.user_details.first_name}}
+          <a class="activeHover frame" routerLinkActive='active'> {{frames.userData.user_details.first_name}}
             <ul class="user-data">
               <li class="list"><a routerLink='/user/profil'>{{'_menu._user._profil'|translate}}</a></li>
               <li class="list"><a routerLink='/user/imags'>{{'_menu._user._images'|translate}}</a></li>
@@ -43,19 +45,26 @@
       </ul>
     </ng-template>
     <li>
-      <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
+      <!-- <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
         <img src='../assets/1x/orderIconBlack.png'>
         <span>{{frames.orderList?.length}}</span>
-      </a>
+      </a> -->
+    </li>
+    <li>
+      <ul class="flags">
+        <li class="flag" [style.background-image]="'url(../assets/1x/flag/armenia.png)'" (click)="changeLeng('hy')"></li>
+        <li class="flag" [style.background-image]="'url(../assets/1x/flag/russia.png)'" (click)="changeLeng('ru')"></li>
+        <li class="flag" [style.background-image]="'url(../assets/1x/flag/united-kingdom.png)'" (click)="changeLeng('en')">
+        </li>
+      </ul>
     </li>
   </ul>
-  <ul class="frags">
-    <li class="flag" [style.background-image]="'url(../assets/1x/flag/armenia.png)'" (click)="changeLeng('hy')"></li>
-    <li class="flag" [style.background-image]="'url(../assets/1x/flag/russia.png)'" (click)="changeLeng('ru')"></li>
-    <li class="flag" [style.background-image]="'url(../assets/1x/flag/united-kingdom.png)'" (click)="changeLeng('en')">
-    </li>
-  </ul>
+ 
 </div>
+<a class="order" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
+  <img src='../assets/1x/orderIconBlack.png'>
+  <span [style.color]="'red'">{{frames.orderList?.length}}</span>
+</a>
 <router-outlet></router-outlet>
 
 <div class="footerWrap"  >
