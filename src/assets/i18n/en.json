@@ -95,7 +95,8 @@
         "_userNameChar":"should not be a number",
         "_isEmail":"Email is not valid",
         "_isSize":"phone number is incorrect",
-        "_imgErr": "You can not delete this image"
+        "_imgErr": "You can not delete this image",
+        "_textErr":"should be only letters (number of letters 3-9)"
     },
     "_about": {
         "_hello": "HELLO",

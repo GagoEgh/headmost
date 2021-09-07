@@ -3,21 +3,16 @@
   <ngx-spinner bdColor="rgba(0, 0, 0, 0.9)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
   </ngx-spinner>
-
   <div class="catalog" [ngStyle]="setStyle()">
     <div class="carusel">
       <ul class="imageObject">
-        <li *ngFor="let img of frames?.framesImge,let i=index"
-        [ngClass]="{'box-content': getFrameId(img)}"
-           class="thumbImage">
-           <!-- 
-          [style.background-image]="'url('+img?.show_image + ')'" -->
-          <div  (click)='frameClick(img.id)' class="img-content">
-            <div class="img" [style.background-image]="'url('+img?.show_image + ')'" >
-              
-            </div>
+        <li  *ngFor="let img of frames?.framesImge,let i=index" 
+         class="thumb-image">
+          <div [style.background-image]="'url('+img?.show_image + ')'"
+           (click)='frameClick(img.id)' class="img-frame" [ngClass]="{'box-content': getFrameId(img)}">
+
           </div>
-          <ul class="card">
+           <ul class="card">
             <li *ngIf='frames.lang==="hy"'>{{img.description_hy}}</li>
             <li *ngIf='frames.lang==="ru"'>{{img.description_ru}}</li>
             <li *ngIf='frames.lang==="en"'>{{img.description_en}}</li>

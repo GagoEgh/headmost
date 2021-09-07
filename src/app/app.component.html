@@ -3,17 +3,14 @@
 </ngx-spinner>
 <div class="conteiner" >
   <div class="logo"></div>
-  <!-- [style.min-width]='frames.isMyOrder?"1000px":"100%"' -->
   <span class="material-icons-outlined"  (click)='frames.isSilki = !frames.isSilki'
   [ngStyle]="styleLeft()">
-  <!-- [style.left]="frames.isSilki?'380px':'0'" -->
     <img src="./assets/1x/outline_view_headline_black_24dp.png">
   </span>
-  
-
   <ul class="silki" [class.check-silki]='frames.isSilki'>
     <li class="parent">
       <p class="frame">{{'_menu.konstruktor._konstr'|translate}}</p>
+      <img src="./assets/1x/drop.png" class="drop">
       <ul class="li-nav">
         <li>
           <a (click)='getFrame()'>{{'_menu.konstruktor._frame'|translate}}</a>

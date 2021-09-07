@@ -284,7 +284,7 @@ export class FramesServService {
     }
 
     frameCategoryImg(category: any, predifined: any, offset: any) {
-        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_created_frame + `/?created_frame_category=${category}&is_predefined=${predifined}&limit=10&offset=${offset}`)
+        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_created_frame + `/?created_frame_category=${category}&is_predefined=${predifined}&limit=50&offset=${offset}`)
     }
 
     imgCategory(id: number) {

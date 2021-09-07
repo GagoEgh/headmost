@@ -101,6 +101,7 @@ export class IdeaComponent implements OnInit {
 
   imgInfo(img: any) {
     this.rout.navigate(['/idea/idea-imags/' + img.id]);
+    console.log(img)
   }
 
   ngOnDestroy() {
