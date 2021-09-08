@@ -6,6 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { TranslateService } from "@ngx-translate/core";
 import { LoginComponent } from '../register/login/login.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -165,7 +166,8 @@ export class FramesServService {
         }
     ];
 
-    constructor(private url: HttpClient, public spinner: NgxSpinnerService, public _translate: TranslateService, public modalService: NgbModal) { }
+    constructor(private url: HttpClient, public spinner: NgxSpinnerService,public rout:Router,
+         public _translate: TranslateService, public modalService: NgbModal) { }
 
     imgColorGet() {
         return this.url.get(this.api.worldApi + this.api.api_utils + this.api.api_color)
@@ -295,6 +297,7 @@ export class FramesServService {
         return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_card + this.api.api_magnet + '/', obj,
             { headers: { 'Authorization': this.token } })
     }
+
     letterColorFone() {
         this.spinner.show();
         this.text = this.validateForm.get('text')?.value;
@@ -306,7 +309,13 @@ export class FramesServService {
             this.letterImges = this.letterImges.filter(img => {
                 return !img.not_found
             })
-
+            // `/?created_frame_category=${category}&is_predefined=${predifined}&limit=50&offset=${offset}`)
+    
+           // this._router.navigate(['idea/idea-imags'],{queryParams:{category:obj.id}})
+            console.log('rout',this.rout.url);
+            let url = this.rout.url.slice(1);
+            this.rout.navigate([url+'/create-img'],{queryParams:{type:url,text:this.text}})
+          
             if (this.letterImges.length === 0 && this.text) {
                 this.validateForm.reset();
                 this.isMessage = true;

@@ -78,12 +78,6 @@ export class IdeaComponent implements OnInit {
     this.appendItems();
   }
 
-
-
-  // showBar() {
-  //   return this.frames.isBar = !this.frames.isBar;
-  // }
-
   addOrder(index: number) {
 
     let obj = {
@@ -101,7 +95,6 @@ export class IdeaComponent implements OnInit {
 
   imgInfo(img: any) {
     this.rout.navigate(['/idea/idea-imags/' + img.id]);
-    console.log(img)
   }
 
   ngOnDestroy() {

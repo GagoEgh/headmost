@@ -215,6 +215,7 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     this.onResize()
     this.setStyle()
   }
+  
   ngOnInit(): void {
 
     super.myForm();
