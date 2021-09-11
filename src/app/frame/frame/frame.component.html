@@ -1,10 +1,11 @@
-<header class="conteiner" [style.height]="frames.isOrder?'800px':'538px'"
+<header class="conteiner" 
 [ngStyle]="conteinerHeight()" >
+<!-- [style.height]="frames.isOrder?'800px':'538px'" -->
   <ngx-spinner bdColor="rgba(0, 0, 0, 0.9)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
   </ngx-spinner>
   <div class="catalog" [ngStyle]="setStyle()">
-    <div class="carusel">
+     <div class="carusel">
       <ul class="imageObject">
         <li  *ngFor="let img of frames?.framesImge,let i=index" 
          class="thumb-image">
@@ -42,8 +43,9 @@
       </div>
     </div>
   </div>
-  <div #block class="block" [ngStyle]="setStyle()">
-    <div class="myWrap">
+
+  <!-- <div #block class="block" [ngStyle]="setStyle()">
+     <div class="myWrap">
       <div class="reight">
         <div class="squrl left-top" [style.background-image]="'url(' + frames.frame?.left_top_corner_image + ')'"></div>
         <div class="reight-he left-line" [style.background-image]="'url(' + frames.frame?.left_line_image + ')'"></div>
@@ -53,7 +55,6 @@
       <div class="content">
         <div class="top" [style.background-image]="'url(' + frames.frame?.top_line_image + ')'"></div>
         <div class="letter" [style.backgroundColor]="frames.background.color" *ngIf='frames.isImg else create' >
-          <!-- *ngIf='frames.isImg else create' -->
           <form [formGroup]="frames.validateForm">
             <input type="text" formControlName='text' maxlength="9" [placeholder]="frames.placeholder" trim>
           </form>
@@ -70,32 +71,38 @@
         </div>
         <div class="squrl right-bottom"
           [style.background-image]="'url(' + frames.frame?.right_bottom_corner_image + ')'"></div>
-      </div>
+      </div> 
     </div>
     <app-order *ngIf='frames.isOrder'> </app-order>
+  </div> -->
+  
+  <div #block class="block" [ngStyle]="setStyle()">
+    <router-outlet></router-outlet>
   </div>
-  <div class="buttonWrap" [ngStyle]="buttonWrapTop()">
+  
+
+  <!-- <div class="buttonWrap" [ngStyle]="buttonWrapTop()">
     <div class="asside"></div>
-    <div class="center">
-      <button type="submit" (click)='onSubmit()' class="create"
+    <div class="center"> -->
+      <!-- <button type="submit" (click)='onSubmit()' class="create"
         *ngIf='frames.isImg'>
         {{'_img-text-valid._create-word'|translate}}
-      </button>
+      </button> -->
       
-      <button *ngIf='frames.isOrder' class="create create-bottom"
-        (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
+      <!-- <button *ngIf='frames.isOrder' class="create create-bottom"
+        (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button> -->
 
-      <button class="create" (click)='frames.myOrder()'
-        *ngIf='!frames.isOrder && !frames.isImg'>{{'_img-text-valid._batn-save'|translate}}</button>
-      <ng-template #create>
-      <!--   <app-create-img (mainApp)="deletImg($event)"></app-create-img>-->
-       <router-outlet></router-outlet>
-      </ng-template> 
+      <!-- <button class="create" (click)='frames.myOrder()'
+        *ngIf='!frames.isOrder && !frames.isImg'>{{'_img-text-valid._batn-save'|translate}}</button> -->
+     <!-- <ng-template #create>
+         <app-create-img (mainApp)="deletImg($event)"></app-create-img> 
+        
+      </ng-template>-->
       
-      <div class="bg-fone" [class.fone-btn]="frames.isOrder"></div>
-    </div>
+      <!-- <div class="bg-fone" [class.fone-btn]="frames.isOrder"></div> -->
+    <!-- </div>
     <div class="asside"></div>
-  </div>
+  </div> -->
 </header>
 
 <div class="steps">

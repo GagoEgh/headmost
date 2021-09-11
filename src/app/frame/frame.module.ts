@@ -1,36 +1,30 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FrameComponent } from './frame/frame.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FrameComponent } from './frame/frame.component';
 import { RouterModule, Routes } from '@angular/router';
-import { NgbdModalContentComponent } from './ngbd-modal-content/ngbd-modal-content.component';
-import { CreateImgModule } from './create-img/create-img-module';
 import { SharedModule } from '../shared/shared.modult';
-import { ErroreMessageComponent } from './errore-message/errore-message/errore-message.component';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 const routs: Routes = [
   {
     path: '', component: FrameComponent,
     children: [
+      { path: '', redirectTo: 'form-frame', pathMatch: 'full' },
       { path: 'create-img', loadChildren: () => import('../frame/create-img/create-img-module').then(m => m.CreateImgModule) },
+      { path:'frame-img',loadChildren:() => import('../frame/frame/frame-img.module').then(m=>m.FrameImgModule)},
+      { path:'form-frame',loadChildren:()=>import('../frame/form-frame/form-frame.module').then(m=>m.FormFrameModule)}
     ]
   },
 ]
 
 @NgModule({
-  declarations: [
-    FrameComponent,
-    NgbdModalContentComponent,
-    ErroreMessageComponent,
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-   // CreateImgModule,
     SharedModule,
     RouterModule.forChild(routs),
-
   ],
   exports: [RouterModule]
 })

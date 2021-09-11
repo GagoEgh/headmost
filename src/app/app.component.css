@@ -1,321 +1,329 @@
 .conteiner{
-    min-width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    background-color: rgba(255, 255, 255, 0.849);
-    box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
+ min-width: 100%;
+ display: flex;
+ justify-content: space-between;
+ padding: 15px;
+ background-color: rgba(255, 255, 255, 0.849);
+ box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
 }
 
 .logo{
-    width: 180px;
-    height: 40px;
-    border: 3px solid blue;
-    margin: 10px;
+ width: 180px;
+ height: 40px;
+ border: 3px solid blue;
+ margin: 10px;
 }
 
 .li-nav{
-    list-style: none;
-    position: absolute;
-    top: 35px;
-    left: 30px;
-    background-color: white;
-    border-radius: 7px;
-    padding: 10px;
-    box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
-    z-index: 555;
-    display: none;
-    
+ list-style: none;
+ position: absolute;
+ top: 35px;
+ left: 30px;
+ background-color: white;
+ border-radius: 7px;
+ padding: 10px;
+ box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
+ z-index: 555;
+ display: none;  
 }
 
 .li-nav li{
-    padding : 5px;
-    width: 120px;
+ padding : 5px;
+ width: 120px;
 }
 
 .li-nav a{
-    text-decoration: none;
-    color: rgb(63, 62, 62);
-    font-weight: bold;
-    padding: 5px;
-    transition: 0.2s;
+ text-decoration: none;
+ color: rgb(63, 62, 62);
+ font-weight: bold;
+ padding: 5px;
+ transition: 0.2s;
 }
 
 .li-nav li:hover{
-    background-color: rgb(236, 231, 231);
+ background-color: rgb(236, 231, 231);
 }
 
 .silki{
-    list-style: none;
-    display: flex;
-    padding: 5px;
-    position: relative;
-    top: 40px;
+ list-style: none;
+ display: flex;
+ padding: 5px;
+ position: relative;
+ top: 40px;
 }
 
 .silki p{
-    cursor: pointer;
-    margin-top: -7px;
+ cursor: pointer;
+ margin-top: -7px;
 }
 
 .drop{
-    position: relative;
-    left: 160px;
-    top: -40px;
+ position: relative;
+ left: 160px;
+ top: -40px;
 }
+
 .frame{
-    text-decoration: none;
-    color: rgb(54, 54, 54);
-    font-weight: bold;
-    padding: 5px 35px;
-    transition: 0.2s;
+ text-decoration: none;
+ color: rgb(54, 54, 54);
+ font-weight: bold;
+ padding: 5px 35px;
+ transition: 0.2s;
 }
 
 .frame:hover{
-    background-color: rgb(236, 231, 231);
+ background-color: rgb(236, 231, 231);
 }
 
 .active{
-     color: #ff4d4f;
+ color: #ff4d4f;
 } 
 
 .red{
-    color:red;
+ color:red;
 }
 
 
 .parent,.parent-1{
-    position: relative;
-    list-style: none;
+ position: relative;
+ list-style: none;
 }
 .parent-1{
-    display: inline-block;
-    margin-left: -40px;
+ display: inline-block;
+ margin-left: -40px;
 }
 
 .parent:hover .li-nav{
-    display: block;
+ display: block;
 }
 
 .parent-1:hover .li-nav{
-    display: block;
+ display: block;
 }
 
 .user-data{
-    position: absolute;
-    left: -65%;
-    top:25px;
-    list-style: none;
-    color: rgb(78, 77, 77);
-    background-color: white;
-    z-index: 3;
-    box-shadow: 1px 2px 4px 2px grey;
-    display: none;
-    transition: 0.5s;
+ position: absolute;
+ left: -65%;
+ top:25px;
+ list-style: none;
+ color: rgb(78, 77, 77);
+ background-color: white;
+ z-index: 3;
+ box-shadow: 1px 2px 4px 2px grey;
+ display: none;
+ transition: 0.5s;
 }
 
 .activeHover{
-    text-decoration: none;
-    color: rgb(54, 54, 54);
-    font-weight: 500;
-    font-size: 18px;
-    padding: 5px;
+ text-decoration: none;
+ color: rgb(54, 54, 54);
+ font-weight: bold;
+ font-size: 18px;
+ padding: 5px;
 }
 
 .activeHover:hover ul{
-    display: block;
+ display: block;
 }
 
 
 .list{
-    letter-spacing: 1px;
-    line-height: 22px;
-    border-bottom: 1px solid #f5e9e9;
-    margin-left: -35px;
-    padding: 5px;
-    font-size: 14px;
-    color:black;
-
+ letter-spacing: 1px;
+ line-height: 22px;
+ border-bottom: 1px solid #f5e9e9;
+ margin-left: -35px;
+ padding: 5px;
+ font-size: 14px;
+ color:black;
 }
 
 .list:hover{
-    background-color: rgb(236, 231, 231);
+ background-color: rgb(236, 231, 231);
 }
 
 
 .list a{
-    color:black;
+ color:black;
 }
 
 .flags{
-    display: flex;
-    list-style: none;
-    margin-top: -5px;
+ display: flex;
+ list-style: none;
+ margin-top: -5px;
 }
 
 .flag{
-    width: 15px;
-    height: 15px;
-    background-position: center;
-    background-size: 100% 100%;
-    margin: 5px 10px;
-    cursor: pointer;
-    transition: 0.5s;
+ width: 15px;
+ height: 15px;
+ background-position: center;
+ background-size: 100% 100%;
+ margin: 5px 10px;
+ cursor: pointer;
+ transition: 0.5s;
 }
 
 .flag:active{
-    box-shadow: 1px 0 6px 4px rgb(75, 73, 73);
+ box-shadow: 1px 0 6px 4px rgb(75, 73, 73);
 }
 
 .order{
-    border-radius: 4px;
-    z-index: 2;
-    top: 105px;
-    left: 97%;
-    position: fixed;
-    background: #d9d9d9c7;
-    width: 60px;
-    padding: 7px;
-    cursor: pointer;
+ border-radius: 4px;
+ z-index: 2;
+ top: 105px;
+ left: 97%;
+ position: fixed;
+ background: #d9d9d9c7;
+ width: 60px;
+ padding: 7px;
+ cursor: pointer;
 }
 
 .footerWrap{
-    min-width: 100%;
-    padding-top: 100px;
-    display: flex;
-    justify-content: space-around;
-    box-shadow: 0 13px 10px rgb(41 43 42 / 37%) inset;
+ min-width: 100%;
+ padding-top: 100px;
+ display: flex;
+ justify-content: space-around;
+ box-shadow: 0 13px 10px rgb(41 43 42 / 37%) inset;
 }
 
 .left{
-    padding: 20px; 
+ padding: 20px; 
 }
 
 .footer-nav{
-  width: 32%;
+ width: 40%;
 }
 
 .footer-silki{
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-    padding: 5px;
+ list-style: none;
+ display: flex;
+ justify-content: space-around;
+ padding: 5px;
 }
 
 .soc{
-    text-align: center;
-    padding: 20px;
+ text-align: center;
+ padding: 20px;
 }
 .silka{
-    display: inline-block;
-    margin-left: 20px;
+ display: inline-block;
+ margin-left: 20px;
 }
 
 .material-icons-outlined{
-    display: none;
+ display: none;
 }
-
+@media (max-width:1025px){
+    .order{
+     left:95%;
+    }
+}
 @media (max-width:980px){
     .footerWrap{
-        display: flex;
-        flex-direction: column;
-        text-align: center;
+     display: flex;
+     flex-direction: column;
+     text-align: center;
     }
 
     .footer-nav{
-        width: inherit;
+     width: inherit;
     }
 }
 
 @media (max-width:768px){
     .conteiner{ 
-        display: flex;
-        justify-content: space-between;
+     display: flex;
+     justify-content: space-between;
     }
 
     .silki {
-        display: none;
+     display: none;
     }
 
     .check-silki{
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        top: 30px;
+     display: flex;
+     flex-direction: column;
+     position: relative;
+     top: 30px;
     }
 
    
     .material-icons-outlined{
-        display: block;
-        position: relative;
+     display: block;
+     position: relative;
     }
 
     .frame{
-        text-decoration: none;
-        color: rgb(54, 54, 54);
-        font-weight: bold;
-        transition: 0.4s;
+     text-decoration: none;
+     color: rgb(54, 54, 54);
+     font-weight: bold;
+     transition: 0.4s;
     }
     
     .check-silki p{
-        margin-bottom: -6px;
-        display: inline-block;
+     margin-bottom: -6px;
+     display: inline-block;
     }
 
     .check-silki li{
-        padding: 5px;
+     padding: 5px;
     }
     
     .user-data{
-       top:45px;
-       left: 20px;
+     top:45px;
+     left: 20px;
     }
 
-    .li-nav{
-        top: 55px;
+    .activeHover{
+     margin-left: 30px;
     }
 
     .order{
-        left:94%;
+     left:94%;
     }
-}
 
-@media (max-width:768px){
+    .drop{
+     position: relative;
+     left: -25px;
+     top: -3px;
+    }
 
     .footerWrap{
-        width: inherit;
-     
+      width: inherit;
     }
 }
 
 @media (max-width:426px){
 
     .left{
-        padding: 20px 0;
+     padding: 20px 0;
     }
 
     .order{
-        left:85%;
+     left:87%;
+    }
+
+    .drop{
+     position: relative;
+     top: -23px;
+     left: 160px;
     }
 }
 
 @media (max-width:376px){
-   
-
     .footer-nav{
-        width: 90%;
+     width: 90%;
     }
 }
 
 @media (max-width:321px){
    
-
     .footer-nav{
-        width: 70%;
+     width: 70%;
     }
 
     .footer-silki {
-        display: flex;
-        flex-direction: column;
+     display: flex;
+     flex-direction: column;
     }
 }

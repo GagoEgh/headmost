@@ -39,9 +39,14 @@ export class FrameImag {
     }
 
     imgFone(obj: any) {
+  
         this.frames.painding.values = obj.values;
         this.frames.painding.id = obj.ceys.id;
-        this.frames.letterColorFone();
+       
+        if ( this.frames.validateForm.value.text !== null) {
+          this.frames.letterColorFone();
+        }
+
     }
 
     open() {
@@ -57,6 +62,7 @@ export class FrameImag {
             return;
         }
         this.frames.isImg = false;
+       
         this.frames.letterColorFone();
 
     }
@@ -72,10 +78,10 @@ export class FrameImag {
 
     // create-img component
 
-    getApp(isBool: boolean, mainApp: any) {
-        mainApp.emit(isBool);
-        this.frames.isOrder = false;
-    }
+    // getApp(isBool: boolean, mainApp: any) {
+    //     mainApp.emit(isBool);
+    //     this.frames.isOrder = false;
+    // }
 
 
     changeImg() {

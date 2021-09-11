@@ -43,7 +43,7 @@ export class FramesServService {
     isTop = false;
     isdisible = false;
     scale: number = 1;
-    magnit_scale :number = 1;
+    magnit_scale: number = 1;
     userData: UserData = {
         address: '',
         city: 0,
@@ -166,8 +166,8 @@ export class FramesServService {
         }
     ];
 
-    constructor(private url: HttpClient, public spinner: NgxSpinnerService,public rout:Router,
-         public _translate: TranslateService, public modalService: NgbModal) { }
+    constructor(private url: HttpClient, public spinner: NgxSpinnerService, public rout: Router,
+        public _translate: TranslateService, public modalService: NgbModal) { }
 
     imgColorGet() {
         return this.url.get(this.api.worldApi + this.api.api_utils + this.api.api_color)
@@ -301,47 +301,46 @@ export class FramesServService {
     letterColorFone() {
         this.spinner.show();
         this.text = this.validateForm.get('text')?.value;
-
         this.letterGet().subscribe((el: any) => {
-
             this.letterImges = el;
-
             this.letterImges = this.letterImges.filter(img => {
                 return !img.not_found
             })
+
             // `/?created_frame_category=${category}&is_predefined=${predifined}&limit=50&offset=${offset}`)
-    
-           // this._router.navigate(['idea/idea-imags'],{queryParams:{category:obj.id}})
-            console.log('rout',this.rout.url);
-            let url = this.rout.url.slice(1);
-            this.rout.navigate([url+'/create-img'],{queryParams:{type:url,text:this.text}})
-          
-            if (this.letterImges.length === 0 && this.text) {
-                this.validateForm.reset();
-                this.isMessage = true;
-                this.isImg = true;
-            }
+
+            // this._router.navigate(['idea/idea-imags'],{queryParams:{category:obj.id}})
+
+            let url = this.rout.url.split('/');
+                console.log(url[1]);
+            this.rout.navigate([url[1]+'/create-img'],{queryParams:{ type: url[1], text: this.text}})
+            // { queryParams: { type: url, text: this.text } }
+
+            // if (this.letterImges.length === 0 && this.text) {
+            //     this.validateForm.reset();
+            //     this.isMessage = true;
+            //     this.isImg = true;
+            // }
+
             setTimeout(() => {
                 this.spinner.hide();
             }, 1000)
 
         })
-
     }
 
     showFrame() {
         this.isOrder = false;
         this.isImg = true;
-        this.validateForm.reset()
+        this.validateForm.reset();
+        this.rout.navigate(['frame/form-frame'])
     }
 
     letterChar = 0;
     public myOrder() {
-       
         if (localStorage.getItem('loginAutorization')) {
             this.spinner.show();
             this.isTop = true;
-
             const imgs: any[] = [];
             this.letterImges.forEach((i, index) => {
                 const obj = {

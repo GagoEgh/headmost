@@ -1,12 +1,14 @@
-import { AfterViewChecked, AfterViewInit, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FramesServService } from './shared/frames-serv.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './register/login/login.component';
 import { NavigationEnd, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {  Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from "ngx-spinner";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
-import { NgxSpinnerService } from "ngx-spinner";
+
+
 
 @Component({
   selector: 'app-root',
@@ -28,17 +30,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.scrollToTopByChangeRoute();
-    // this.frames.isTop = false;
 
     if (localStorage.getItem('loginAutorization')) {
-
       const token: any = localStorage.getItem('loginAutorization');
       this.frames.token = token;
       const date: any = localStorage.getItem('user-date')
       const result = JSON.parse(date)
       this.frames.userData = result;
       this.frames.userReg = false;
-
+      
       this.frames.userInfo().pipe(takeUntil(this.unsubscribe$)).subscribe((el: any) => {
         this.frames.orderList = el.results;
 
@@ -46,7 +46,6 @@ export class AppComponent implements OnInit {
           this.frames.sum += obj.created_frame_details.price;
 
         });
-
       })
     }
   }
@@ -150,7 +149,6 @@ export class AppComponent implements OnInit {
         setTimeout(() => {
           this.spinner.hide()
         }, 300)
-
       })
   }
 

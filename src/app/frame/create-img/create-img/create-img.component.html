@@ -1,37 +1,84 @@
-<div class="im" [style.backgroundColor]="frames.background.color" (mouseleave)="onMouseleave()"
-  (mouseenter)="onMouseenter()">
-  <div class="menu">
-    <div class="change" (click)='changeImg()' [style.opacity]="topLettering.isMenu?'1':'0'">
-      <p class="bottom">{{'_imgs._change-image'|translate}}</p>
+<div class="conteiner" >
+  <!-- #block class="block" [ngStyle]="setStyle()"   -->
+  <div class="myWrap" [style.margin]="frames.isTop?'0 auto':'0'">
+    <div class="reight">
+      <div class="squrl left-top" [style.background-image]="'url(' + frames.frame?.left_top_corner_image + ')'">
+      </div>
+      <div class="reight-he left-line" [style.background-image]="'url(' + frames.frame?.left_line_image + ')'">
+      </div>
+      <div class="squrl left-bottom" [style.background-image]="'url(' + frames.frame?.left_bottom_corner_image + ')'">
+      </div>
     </div>
-    <div class="delete" [style.opacity]="topLettering.isMenu?'1':'0'">
-      <p class="bottom" (click)="getApp(true,mainApp)">{{'_imgs._delete-text'|translate}}</p>
+    <div class="content">
+      <div class="top" [style.background-image]="'url(' + frames.frame?.top_line_image + ')'"></div>
+      <div class="im" [style.backgroundColor]="frames.background.color" (mouseleave)="onMouseleave()"
+        (mouseenter)="onMouseenter()">
+        <div class="menu">
+          <div class="change" (click)='changeImg()' [style.opacity]="topLettering.isMenu?'1':'0'">
+            <p class="bottom-par">{{'_imgs._change-image'|translate}}</p>
+          </div>
+          <div class="delete" [style.opacity]="topLettering.isMenu?'1':'0'"n>
+            <p class="bottom-par" (click)='deletImg()'>{{'_imgs._delete-text'|translate}}</p>
+          </div>
+          <!-- deletImg($event)  (click)="getApp(true,mainApp)" -->
+          <div class="lettering" *ngIf='frames.letterImges.length>3' [style.opacity]="topLettering.isForm?'1':'0'">
+            <form [formGroup]="validateForm">
+              <input type="text" formControlName='topText' [style.backgroundColor]="frames.background.color"
+                class="inStyle" maxlength="9" [class.font]='topLettering.isSpan'>
+              <span class="cursor" *ngIf="topLettering.isSpan" (click)='deleteTopProprty()'>X</span>
+            </form>
+          </div>
+        </div>
+        <div class="imgs">
+          <div class="bg-img" *ngFor='let img of frames.letterImges,let i = index' (click)="openImg(img,i)"
+            [style.background-image]="checkImage(img.image.image)?'url( '+ img.image.image + ')':'url( http://sirun-bar-api.annaniks.com/'+ img.image.image + ')'">
+            <div class="bgr">
+              <p>{{'_imgs._img-hover'|translate}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="menu">
+          <div *ngIf='frames.letterImges.length>3' [style.opacity]="bottomLettering.isForm?'1':'0'">
+            <form [formGroup]='bottomText'>
+              <input type="text" formControlName='btmText' class="inStyle" maxlength="9"
+                [style.backgroundColor]="frames.background.color" [class.font]="bottomLettering.isSpan">
+              <span class="cursor" *ngIf="bottomLettering.isSpan" (click)="deleteBottomProprty()">X</span>
+            </form>
+          </div>
+          <div class="save" [style.opacity]="bottomLettering.isMenu?'1':'0'">
+            <p class="bottom-par" (click)='frames.myOrder()'>{{'_imgs._save'|translate}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="bottom" [style.background-image]="'url(' +frames.frame?.bottom_line_image + ')'">
+      </div>
     </div>
-    <div class="lettering" *ngIf='frames.letterImges.length>3' [style.opacity]="topLettering.isForm?'1':'0'">
-      <form [formGroup]="validateForm">
-        <input type="text" formControlName='topText' [style.backgroundColor]="frames.background.color" class="inStyle"
-          maxlength="9" [class.font]='topLettering.isSpan'>
-        <span class="cursor" *ngIf="topLettering.isSpan" (click)='deleteTopProprty()'>X</span>
-      </form>
-    </div>
-  </div>
-  <div class="imgs">
-    <div class="bg-img" *ngFor='let img of frames.letterImges,let i = index' (click)="openImg(img,i)"
-      [style.background-image]="checkImage(img.image.image)?'url( '+ img.image.image + ')':'url( http://sirun-bar-api.annaniks.com/'+ img.image.image + ')'">
-      <div class="bgr">
-        <p>{{'_imgs._img-hover'|translate}}</p>
+    <div class="left">
+
+      <div class="squrl right-top" [style.background-image]="'url(' + frames.frame?.right_top_corner_image + ')'">
+      </div>
+
+      <div class="reight-he right-line" [style.background-image]="'url(' + frames.frame?.right_line_image + ')'">
+      </div>
+      <div class="squrl right-bottom" [style.background-image]="'url(' + frames.frame?.right_bottom_corner_image + ')'">
       </div>
     </div>
   </div>
-  <div class="menu">
-    <div *ngIf='frames.letterImges.length>3' [style.opacity]="bottomLettering.isForm?'1':'0'">
-      <form [formGroup]='bottomText'>
-        <input type="text" formControlName='btmText' class="inStyle" maxlength="9"
-          [style.backgroundColor]="frames.background.color" [class.font]="bottomLettering.isSpan">
-        <span class="cursor" *ngIf="bottomLettering.isSpan" (click)="deleteBottomProprty()">X</span>
-      </form>
-    </div>
-    <div class="save" [style.opacity]="bottomLettering.isMenu?'1':'0'">
-      <p class="bottom" (click)='frames.myOrder()'>{{'_imgs._save'|translate}}</p>
-    </div>
+</div>
+<app-order *ngIf='frames.isOrder'> </app-order>
+<div class="buttonWrap" [ngStyle]="buttonWrapTop()">
+  <div class="asside"></div>
+  <div class="center">
+    <button class="create" (click)='frames.myOrder()'*ngIf='!frames.isOrder && !frames.isImg'>
+      <!-- *ngIf='!frames.isOrder && !frames.isImg' -->
+      {{'_img-text-valid._batn-save'|translate}}
+    </button>
+
+    <button *ngIf='frames.isOrder' class="create create-bottom"
+      (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
+
+    <div class="bg-fone" [class.fone-btn]="frames.isOrder"></div>
   </div>
+
+  <div class="asside"></div>
+</div>

@@ -12,7 +12,7 @@ const router: Routes = [
     children: [
      { path: '', redirectTo: 'idea-imags', pathMatch: 'full' },
      { path: 'idea-imags', loadChildren: ()=>import('../idea/idea-modul.module').then(m=>m.IdeaModulModule) },
-      { path: 'idea-imags/:id', loadChildren: () => import('../idea-image/idea-image.module').then(m => m.IdeaImageModule) }
+     { path: 'idea-imags/:id', loadChildren: () => import('../idea-image/idea-image.module').then(m => m.IdeaImageModule) }
     ]
   }
 ]
