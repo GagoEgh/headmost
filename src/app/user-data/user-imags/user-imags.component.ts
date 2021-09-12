@@ -1,32 +1,33 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { TranslateService } from '@ngx-translate/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-user-imags',
   templateUrl: './user-imags.component.html',
   styleUrls: ['./user-imags.component.css']
 })
-export class UserImagsComponent implements OnInit,AfterViewChecked{
+export class UserImagsComponent implements OnInit, AfterViewChecked {
   public _subscribe$ = new Subject();
-  throttle = 300;
-  scrollDistance = 3;
   scrollUpDistance = 1;
-  offset = 0;
+  scrollDistance = 3;
   isSmsErr = false;
+  throttle = 300;
   msgErr_hy = '';
-  constructor(private msg: NzMessageService, public frames: FramesServService,public _translate:TranslateService) { }
+  offset = 0;
+  constructor(private msg: NzMessageService, public frames: FramesServService, public _translate: TranslateService) { }
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
-    this._translate.get('_erroreMessage._imgErr').subscribe((res:any)=>{
+    this._translate.get('_erroreMessage._imgErr').subscribe((res: any) => {
       this.msgErr_hy = res
     })
-  
+
   }
 
 
@@ -37,12 +38,11 @@ export class UserImagsComponent implements OnInit,AfterViewChecked{
     this.myImages();
   }
 
-  myImages(){
-   // this.frames.fileList = [];
+  myImages() {
     this.frames.userImageGet(this.offset).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
-        this.isSmsErr = false;
-        this.frames.fileList.push(...el.results);
-        this.offset += 10;
+      this.isSmsErr = false;
+      this.frames.fileList.push(...el.results);
+      this.offset += 10;
     })
   }
 
@@ -60,8 +60,8 @@ export class UserImagsComponent implements OnInit,AfterViewChecked{
       formData.append('user', this.frames.userData.user.toString())
       formData.append('image', origin);
       formData.append('thumb_image', origin);
-      
-      this.frames.userImage(formData).subscribe((el:any)=>{
+
+      this.frames.userImage(formData).subscribe((el: any) => {
         this.frames.fileList.unshift(el);
       })
     }
@@ -74,17 +74,17 @@ export class UserImagsComponent implements OnInit,AfterViewChecked{
         return img.id != id
       })
       this.isSmsErr = false;
-    },((err:any)=>{
-      if(err.status === 500){
+    }, ((err: any) => {
+      if (err.status === 500) {
         this.isSmsErr = true;
-        this._translate.get('_erroreMessage._imgErr').subscribe((res:any)=>{
+        this._translate.get('_erroreMessage._imgErr').subscribe((res: any) => {
           this.msgErr_hy = res
         })
       }
     }))
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this._subscribe$.next();
     this._subscribe$.complete();
   }

@@ -1,58 +1,116 @@
 .bottom{
-    border-bottom: 1px dashed;
-    cursor: pointer;
+ border-bottom: 1px dashed;
+ cursor: pointer;
 }
 
 .menu{
-    margin-left: 100px;
+ margin-left: 100px;
 }
 
 .delete{
-    margin-left: 30px;
+ margin-left: 30px;
 }
 
 .im{
-    background: transparent;
-    margin: 0 auto;
+ background: transparent;
+ margin: 0 auto;
 }
 
 .imgs{
-    /* margin: 10px 0 0 200px; */
-    flex-wrap: wrap;
+ flex-wrap: wrap;
 }
 
 .bgr{
-    border-radius: 5px;
-    width: 60px;
-    height: 100px;
+ border-radius: 5px;
+ width: 60px;
+ height: 100px;
 }
 
 .bgr p{
-    text-align: center;
-    font-size: 10px;
-    margin: 40% 5px;
+ text-align: center;
+ font-size: 10px;
+ margin: 40% 5px;
 }
 
 .bg-img{
-    width: 60px;
-    height: 100px;
-    border-radius: 5px;
+ width: 60px;
+ height: 100px;
+ border-radius: 5px;
 }
 
 .bg-img:nth-child(odd){
-    transform: rotate(5deg);
+ transform: rotate(5deg);
 }
 
 .bg-img:nth-child(even){
-    transform: rotate(-3deg);
+ transform: rotate(-3deg);
 }
 
 .bg-img:nth-child(3n){
-    transform: rotate(-6deg);
+ transform: rotate(-6deg);
 }
 
 .bg-img:first-child{
-    transform: rotate(2deg);
+ transform: rotate(2deg);
 }
 
+.magnit{
+ height: 480px;
+ width: 60%;
+ min-width: 930px;
+ margin: 10px auto;
+ background: url('src/assets/1x/magnit.jpg')  no-repeat 0 0 #fbfbfb;
+}
+   
+.underFridge{
+ height: 100%;
+ width: 100%;
+ padding: 30px 0 0 0;
+ background: url('src/assets/1x/fridge_right.jpg') no-repeat 100% 0;
+}
+   
+.imgColor{
+ justify-content: flex-end;
+}
+   
+.create{
+ outline: none;
+ display: block;
+ margin-left: -50px;
+}
+ 
+.center{
+ display: block;
+ margin: 50px auto;
+}
 
+.create-bottom{
+ position: absolute;
+ outline: none;
+ display: block;
+ left:44%;
+ top:1400px;
+ z-index: 1;
+}
+
+.btn-save{
+ outline: none;
+ display: block;
+ margin: 0 auto;
+}
+
+@media (max-width:768px){
+    .create-bottom{
+     position: absolute;
+     top:850px;   
+    }
+       
+}
+
+@media (max-width:426px){
+    .create-bottom{
+     position: absolute;
+     top:1600px;   
+    }
+       
+}

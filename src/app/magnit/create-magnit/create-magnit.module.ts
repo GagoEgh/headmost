@@ -1,11 +1,14 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { CreateMagnitComponent } from './create-magnit/create-magnit.component';
-import { RouterModule } from '@angular/router';
-import { SharedModule } from 'src/app/shared/shared.modult';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.modult';
+import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 
+const rout:Routes=[{
+  path:'',component: CreateMagnitComponent,
+}]
 
 @NgModule({
   declarations: [
@@ -13,14 +16,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    RouterModule,
+    RouterModule.forChild(rout),
     CommonModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
   ],
   exports:[
-    CreateMagnitComponent
+    RouterModule
   ]
 })
 export class CreateMagnitModule { }

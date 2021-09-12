@@ -1,0 +1,28 @@
+<div>
+    <div class="magnit">
+        <div class="underFridge">
+            <div class="imgColor">
+                <div class="colorless" [style.backgroundColor]='block.values.color'
+                    *ngFor='let block of frames.imgColor' (click)="imgFone(block)"
+                    [ngClass]="{'box-content':block?.ceys?.id=== frames?.painding?.id}">
+                    <div class="lessWhite" [style.backgroundColor]='block.values.child'>
+                        <p class="info" *ngIf='frames.lang==="hy"'>{{block?.ceys?.name_hy}}</p>
+                        <p class="info" *ngIf='frames.lang==="ru"'>{{block?.ceys?.name_ru}}</p>
+                        <p class="info" *ngIf='frames.lang==="en"'>{{block?.ceys?.name_en}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="letter">
+                <form [formGroup]="frames.validateForm">
+                    <input type="text" formControlName='text' maxlength="9" [placeholder]="frames.placeholder" trim>
+                </form>
+                <p class="btn" (click)="open()" *ngIf='frames.isImg'>{{'_img-text-valid._title'|translate}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="center">
+    <button type="submit" (click)='onSubmit()' class="create"
+        *ngIf='frames.isImg'>{{'_img-text-valid._create-word'|translate}}</button>
+
+</div>

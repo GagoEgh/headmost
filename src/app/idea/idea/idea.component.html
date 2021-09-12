@@ -1,8 +1,5 @@
 <article>
-    <!-- infinite-scroll [infiniteScrollDistance]="scrollDistance" [infiniteScrollUpDistance]="scrollUpDistance"
-    [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown($event)" -->
     <div class="main">
-
         <div class="img-idea" *ngFor='let img of ideaImages,let i = index'>
             <div class="imgs" [style.background-image]="'url('+ img.image + ')'">
             </div>
@@ -20,8 +17,6 @@
                 </div>
                 <div class="order" (click)="addOrder(i)"></div>
             </div>
-
         </div>
-
     </div>
 </article>

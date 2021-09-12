@@ -1,5 +1,4 @@
 import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { tick } from '@angular/core/testing';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 
 @Component({
@@ -21,8 +20,6 @@ export class UserComponent implements OnInit, AfterViewChecked {
     this.width = this.block?.nativeElement.clientWidth | 1;
     if (window.innerWidth <= 1165) {
       this.scale = window.innerWidth / this.width - 0.34;
-      console.log(this.scale);
-      console.log('width',window.innerWidth)
       if(window.innerWidth<=768){
         this.scale = 0.9;
         console.log('7',this.scale);
@@ -35,7 +32,6 @@ export class UserComponent implements OnInit, AfterViewChecked {
   public setStyle() {
     let style = {
       transform:  "scale(" + this.scale + ")"
-      // translate(-50%, 0)" +
     }
     return style
   }

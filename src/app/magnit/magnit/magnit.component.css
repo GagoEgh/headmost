@@ -1,147 +1,46 @@
 .lightSheme{
-    background: url('src/assets/1x/bg_magnit.jpg') repeat 0 0;
-    padding: 20px;
-    margin-top: 10px;
-    height: 700px;
-}
-
-
-.magnit{
-    height: 480px;
-    width: 60%;
-    min-width: 930px;
-    margin: 10px auto;
-    background: url('src/assets/1x/magnit.jpg')  no-repeat 0 0 #fbfbfb;
-}
-
-.underFridge{
-    height: 100%;
-    width: 100%;
-    padding: 30px 0 0 0;
-    background: url('src/assets/1x/fridge_right.jpg') no-repeat 100% 0;
-}
-
-.letter input{
-  background: transparent;
-  outline: none;
-}
-
-input:focus::placeholder{
-    opacity: 0;
-}
-
-.imgColor{
-    justify-content: flex-end;
-}
-
-.btn{
-    position: relative;
-    left: -260px;
+ background: url('src/assets/1x/bg_magnit.jpg') repeat 0 0;
+ padding: 20px;
+ margin-top: 10px;
+ height: 700px;
 }
 
 .block{
-    top: 50px ;
-    left:50%;
-    transform-origin: top; 
-}
-
-.create{
-    outline: none;
-    display: block;
-}
-
-.create-bottom{
-    position: absolute;
-    outline: none;
-    display: block;
-    left:44%;
-    top:950px;
-    z-index: 1;
+ top: 50px ;
+ left:50%;
+ transform-origin: top; 
 }
 
 .fone-btn{
-    position: absolute;
-    height: 30px;
-    width: 190px;
-    top: 113px;
-    left: 44%;
-    background-image: url('src/assets/1x/bg_magnit.jpg');
-    background-position: center;
-    border-radius: 7px;
-}
-
-.btn-save{
-    outline: none;
-    display: block;
-}
-
-.center{
-    display: block;
-    margin: 50px 45%;
+ position: absolute;
+ height: 30px;
+ width: 190px;
+ top: 113px;
+ left: 44%;
+ background-image: url('src/assets/1x/bg_magnit.jpg');
+ background-position: center;
+ border-radius: 7px;
 }
 
 @media (max-width:1024px){
-   .center{
-     margin: -100px 40%;
-   }
-
    .create-bottom{
      left: 40%;
    }
 }
 
-
-@media (max-width:769px){
-
-    .center{
-        margin: -100px 38%;
-    }
-
-    .create-bottom {
-        position: absolute;
-        left:40%;
-    }
-}
-
 @media (max-width:426px){
-
-    .center{
-        margin: -100px 33%;
-    }
-
-    .create-bottom {
-        position: absolute;
-        left:33%;
-    }
-
     .btn-save{
-      margin-top: 0px;  
-      margin-left: -20px;
+     margin-top: 0px;  
+     margin-left: -20px;
     }
 
     .block{
-        top: 100px;
+     top: 100px;
     }
 }
 
 @media (max-width:376px){
-    .center{
-        margin: -200px 33%;
-    }
-
     .btn-save{
-        margin-top: 0px;  
+     margin-top: 0px;  
     }
-
-    .create-bottom {
-        position: absolute;
-        left:30%;
-    }
-}
-
-@media (max-width:320px){
-    .center{
-        margin: -200px 25%;
-    }
-
 }

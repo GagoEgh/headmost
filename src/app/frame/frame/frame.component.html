@@ -1,19 +1,16 @@
-<header class="conteiner" 
-[ngStyle]="conteinerHeight()" >
-<!-- [style.height]="frames.isOrder?'800px':'538px'" -->
+<header class="conteiner" [ngStyle]="conteinerHeight()">
   <ngx-spinner bdColor="rgba(0, 0, 0, 0.9)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
   </ngx-spinner>
   <div class="catalog" [ngStyle]="setStyle()">
-     <div class="carusel">
+    <div class="carusel">
       <ul class="imageObject">
-        <li  *ngFor="let img of frames?.framesImge,let i=index" 
-         class="thumb-image">
-          <div [style.background-image]="'url('+img?.show_image + ')'"
-           (click)='frameClick(img.id)' class="img-frame" [ngClass]="{'box-content': getFrameId(img)}">
+        <li *ngFor="let img of frames?.framesImge,let i=index" class="thumb-image">
+          <div [style.background-image]="'url('+img?.show_image + ')'" (click)='frameClick(img.id)' class="img-frame"
+            [ngClass]="{'box-content': getFrameId(img)}">
 
           </div>
-           <ul class="card">
+          <ul class="card">
             <li *ngIf='frames.lang==="hy"'>{{img.description_hy}}</li>
             <li *ngIf='frames.lang==="ru"'>{{img.description_ru}}</li>
             <li *ngIf='frames.lang==="en"'>{{img.description_en}}</li>
@@ -43,68 +40,10 @@
       </div>
     </div>
   </div>
-
-  <!-- <div #block class="block" [ngStyle]="setStyle()">
-     <div class="myWrap">
-      <div class="reight">
-        <div class="squrl left-top" [style.background-image]="'url(' + frames.frame?.left_top_corner_image + ')'"></div>
-        <div class="reight-he left-line" [style.background-image]="'url(' + frames.frame?.left_line_image + ')'"></div>
-        <div class="squrl left-bottom" [style.background-image]="'url(' + frames.frame?.left_bottom_corner_image + ')'">
-        </div>
-      </div>
-      <div class="content">
-        <div class="top" [style.background-image]="'url(' + frames.frame?.top_line_image + ')'"></div>
-        <div class="letter" [style.backgroundColor]="frames.background.color" *ngIf='frames.isImg else create' >
-          <form [formGroup]="frames.validateForm">
-            <input type="text" formControlName='text' maxlength="9" [placeholder]="frames.placeholder" trim>
-          </form>
-          
-        </div>
-        <div class="bottom" [style.background-image]="'url(' +frames.frame?.bottom_line_image + ')'">
-          <p class="btn" (click)="open()" *ngIf='frames.isImg'> {{'_img-text-valid._title'|translate}}</p>
-        </div>
-      </div>
-      <div class="left">
-        <div class="squrl right-top" [style.background-image]="'url(' + frames.frame?.right_top_corner_image + ')'">
-        </div>
-        <div class="reight-he right-line" [style.background-image]="'url(' + frames.frame?.right_line_image + ')'">
-        </div>
-        <div class="squrl right-bottom"
-          [style.background-image]="'url(' + frames.frame?.right_bottom_corner_image + ')'"></div>
-      </div> 
-    </div>
-    <app-order *ngIf='frames.isOrder'> </app-order>
-  </div> -->
-  
   <div #block class="block" [ngStyle]="setStyle()">
     <router-outlet></router-outlet>
   </div>
-  
-
-  <!-- <div class="buttonWrap" [ngStyle]="buttonWrapTop()">
-    <div class="asside"></div>
-    <div class="center"> -->
-      <!-- <button type="submit" (click)='onSubmit()' class="create"
-        *ngIf='frames.isImg'>
-        {{'_img-text-valid._create-word'|translate}}
-      </button> -->
-      
-      <!-- <button *ngIf='frames.isOrder' class="create create-bottom"
-        (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button> -->
-
-      <!-- <button class="create" (click)='frames.myOrder()'
-        *ngIf='!frames.isOrder && !frames.isImg'>{{'_img-text-valid._batn-save'|translate}}</button> -->
-     <!-- <ng-template #create>
-         <app-create-img (mainApp)="deletImg($event)"></app-create-img> 
-        
-      </ng-template>-->
-      
-      <!-- <div class="bg-fone" [class.fone-btn]="frames.isOrder"></div> -->
-    <!-- </div>
-    <div class="asside"></div>
-  </div> -->
 </header>
-
 <div class="steps">
   <div class="wrap1">
     <div class="step-content">
@@ -117,9 +56,7 @@
           <p>{{'_steps._text1'|translate}}</p>
         </div>
       </div>
-
     </div>
-
     <div class="right-arrow"></div>
     <div class="step-content mg">
       <div class="select"></div>
@@ -157,8 +94,6 @@
           <p>{{'_steps.text4'|translate}}</p>
         </div>
       </div>
-
     </div>
   </div>
-
 </div>

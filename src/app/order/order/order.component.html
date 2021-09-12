@@ -1,11 +1,10 @@
-
 <div class="wrap" #wrap [ngStyle]="frames.isTop?setStyle(-18):setStyle(5)"
-*ngIf='this.frames.orderList.length,else noText'>
+  *ngIf='this.frames.orderList.length,else noText'>
   <div class="user-data">
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="frstName">
-        {{ _frstName }}</nz-form-label>
+          {{ _frstName }}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='frstEr'>
           <input nz-input formControlName="frstName" id="frstName" trim
             [(ngModel)]='frames.userData.user_details.first_name' />
@@ -16,7 +15,7 @@
       </ng-template>
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">{{_email}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="email" >
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="email">
           <input nz-input formControlName="email" trim id="email" [(ngModel)]='frames.userData.user_details.username' />
         </nz-form-control>
       </nz-form-item>
@@ -26,8 +25,8 @@
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="phoneNumber">{{_phoneNumber}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="phone">
-          <input nz-input formControlName="phoneNumber" id="phoneNumber" mask='(000)00-00-00'
-           type="tel" [(ngModel)]='frames.userData.phone_number' />
+          <input nz-input formControlName="phoneNumber" id="phoneNumber" mask='(000)00-00-00' type="tel"
+            [(ngModel)]='frames.userData.phone_number' />
         </nz-form-control>
       </nz-form-item>
       <ng-template #phone>
@@ -38,11 +37,11 @@
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="country">
           <nz-select nzAllowClear nzPlaceHolder="COUNTRY" [(ngModel)]=' frames.userData.city' nzShowSearch
             formControlName='country'>
-            <nz-option-group *ngFor='let country of frames.selectedValue' 
-            [nzLabel]='country["name_"+frames.lang]'>
+            <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country["name_"+frames.lang]'>
               <nz-option *ngFor='let regions of country.country_regions' nzDisabled=true
-               [nzLabel]= 'regions["name_"+frames.lang]'>
-                <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id' [nzLabel]='city["name_"+frames.lang]'>
+                [nzLabel]='regions["name_"+frames.lang]'>
+                <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id'
+                  [nzLabel]='city["name_"+frames.lang]'>
                 </nz-option>
               </nz-option>
             </nz-option-group>
@@ -63,7 +62,7 @@
       </ng-template>
       <div class="region">
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>{{_shipping}}</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="shipping" >
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="shipping">
           <nz-select nzAllowClear nzPlaceHolder="Shipping" nzShowSearch formControlName='shipping'>
             <nz-option *ngFor='let addres of shiping ' [nzValue]="addres.id"
               [nzLabel]="addres['name_'+frames.lang] +' ' + addres.price+'Դ'">
@@ -78,7 +77,7 @@
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="postal">{{ __addresPost}}</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='postal'>
-          <input nz-input formControlName="postal" id="postal" trim/> 
+          <input nz-input formControlName="postal" id="postal" trim />
         </nz-form-control>
       </nz-form-item>
       <ng-template #postal>
@@ -107,15 +106,16 @@
       <h2 class="title">{{title}}</h2>
       <div class="data" *ngFor='let list of frames.orderList'>
         <p><span>{{list?.created_frame_details?.word?.length }} {{ _imgLength}}</span>
-         <span *ngIf='frames.lang==="hy"'>{{list?.created_frame_details?.frame_details?.name_hy }} </span>
-         <span *ngIf='frames.lang==="en"'>{{list?.created_frame_details?.frame_details?.name_en }} </span>
-         <span *ngIf='frames.lang==="ru"'>{{list?.created_frame_details?.frame_details?.name_ru }} </span>
-         </p>
-        <p class="smoll" *ngIf="list?.created_frame_details?.frame_details?.price">{{ list?.created_frame_details?.frame_details?.price }} {{ _letterSum}}</p>
+          <span *ngIf='frames.lang==="hy"'>{{list?.created_frame_details?.frame_details?.name_hy }} </span>
+          <span *ngIf='frames.lang==="en"'>{{list?.created_frame_details?.frame_details?.name_en }} </span>
+          <span *ngIf='frames.lang==="ru"'>{{list?.created_frame_details?.frame_details?.name_ru }} </span>
+        </p>
+        <p class="smoll" *ngIf="list?.created_frame_details?.frame_details?.price">{{
+          list?.created_frame_details?.frame_details?.price }} {{ _letterSum}}</p>
         <p>{{list?.created_frame_details?.price }} {{ _price}}</p>
         <span class="symbol" (click)='deleteDate(list)'>&#10005;</span>
       </div>
-      <p class="sum">{{_addSum }} {{ frames?.sum }} {{  _price}}</p>
+      <p class="sum">{{_addSum }} {{ frames?.sum }} {{ _price}}</p>
     </div>
   </div>
 </div>

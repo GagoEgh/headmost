@@ -126,10 +126,11 @@ export class AppComponent implements OnInit {
   }
 
   getMagnit() {
-    this.router.navigate(['/magnit']);
+    this.frames.validateForm.reset()
+    this.router.navigate(['/magnit/form-magnit']);
     this.frames.isImg = true;
     this.frames.isOrder = false;
-    this.frames.validateForm.reset()
+    
   }
 
   ngOnDestroy() {

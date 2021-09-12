@@ -83,11 +83,11 @@
  color:red;
 }
 
-
 .parent,.parent-1{
  position: relative;
  list-style: none;
 }
+
 .parent-1{
  display: inline-block;
  margin-left: -40px;
@@ -126,7 +126,6 @@
  display: block;
 }
 
-
 .list{
  letter-spacing: 1px;
  line-height: 22px;
@@ -140,7 +139,6 @@
 .list:hover{
  background-color: rgb(236, 231, 231);
 }
-
 
 .list a{
  color:black;
@@ -205,6 +203,7 @@
  text-align: center;
  padding: 20px;
 }
+
 .silka{
  display: inline-block;
  margin-left: 20px;
@@ -213,6 +212,7 @@
 .material-icons-outlined{
  display: none;
 }
+
 @media (max-width:1025px){
     .order{
      left:95%;
@@ -294,6 +294,11 @@
 }
 
 @media (max-width:426px){
+    .conteiner{ 
+     width: 350px;
+     display: flex;
+     justify-content: space-between;
+    }
 
     .left{
      padding: 20px 0;
@@ -307,6 +312,16 @@
      position: relative;
      top: -23px;
      left: 160px;
+    }
+
+    .footerWrap{
+     width: 300px;
+    }
+
+    .footer-silki {
+     width: 350px;
+     display: flex;
+     flex-direction: column;
     }
 }
 

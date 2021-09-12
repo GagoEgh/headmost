@@ -4,11 +4,6 @@
  flex-direction: row-reverse;
 }
 
-/* .block{
- left: 50%;
- top:80px;
-} */
-
 .myWrap{
  display: flex;
  width: fit-content;
@@ -124,7 +119,6 @@
  display: flex;
  width: 100%;
  transform-origin: top; 
- /* top: 70px; */
 }
 
 .asside{
@@ -150,22 +144,15 @@
 
 .create-bottom{
  position: absolute;
- /* top: -480px; */
  left: 45%;
  z-index: 1;
 }
  
-
 @media (max-width:768px){
   
   .conteiner{
     margin-top: -50px;
   }
-
-  /* .buttonWrap{
-   position: relative;
-   top:85px;
-  } */
 }
 
 @media (max-width:426px){

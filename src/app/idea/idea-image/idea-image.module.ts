@@ -1,14 +1,12 @@
-import { NgModule } from '@angular/core';
-
+import { IdeaImageComponent } from './idea-image/idea-image.component';
 import { SharedModule } from 'src/app/shared/shared.modult';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
-import { IdeaImageComponent } from './idea-image/idea-image.component';
-
+import { NgModule } from '@angular/core';
 
 const router: Routes = [
   {
-    path: '', component:IdeaImageComponent ,
+    path: '', component: IdeaImageComponent,
   }]
 
 @NgModule({
@@ -18,8 +16,7 @@ const router: Routes = [
     NgbModule,
     RouterModule.forChild(router)
   ],
-  exports:[RouterModule]
+  exports: [RouterModule]
 })
-export class IdeaImageModule { 
- 
-}
+export class IdeaImageModule { }
+

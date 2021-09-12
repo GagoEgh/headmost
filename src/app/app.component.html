@@ -1,10 +1,9 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
   <p style="color: white"> Loading... </p>
 </ngx-spinner>
-<div class="conteiner" >
+<div class="conteiner">
   <div class="logo"></div>
-  <span class="material-icons-outlined"  (click)='frames.isSilki = !frames.isSilki'
-  [ngStyle]="styleLeft()">
+  <span class="material-icons-outlined" (click)='frames.isSilki = !frames.isSilki' [ngStyle]="styleLeft()">
     <img src="./assets/1x/outline_view_headline_black_24dp.png">
   </span>
   <ul class="silki" [class.check-silki]='frames.isSilki'>
@@ -16,7 +15,7 @@
           <a (click)='getFrame()'>{{'_menu.konstruktor._frame'|translate}}</a>
         </li>
         <li>
-          <a  (click)='getMagnit()'>{{'_menu.konstruktor._magnet'|translate}}</a>
+          <a (click)='getMagnit()'>{{'_menu.konstruktor._magnet'|translate}}</a>
         </li>
       </ul>
     </li>
@@ -26,7 +25,7 @@
     <li>
       <a class="frame" routerLink='/about' routerLinkActive='active'>{{'_menu._aboutUs'|translate}}</a>
     </li>
-  
+
     <li *ngIf='frames.userReg, else log'>
       <a class="frame" (click)="open()">{{'_menu._user._exit'|translate}}</a>
     </li>
@@ -45,21 +44,16 @@
       </ul>
     </ng-template>
     <li>
-      <!-- <a class="frame" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
-        <img src='../assets/1x/orderIconBlack.png'>
-        <span>{{frames.orderList?.length}}</span>
-      </a> -->
-    </li>
-    <li>
       <ul class="flags">
-        <li class="flag" [style.background-image]="'url(../assets/1x/flag/armenia.png)'" (click)="changeLeng('hy')"></li>
+        <li class="flag" [style.background-image]="'url(../assets/1x/flag/armenia.png)'" (click)="changeLeng('hy')">
+        </li>
         <li class="flag" [style.background-image]="'url(../assets/1x/flag/russia.png)'" (click)="changeLeng('ru')"></li>
-        <li class="flag" [style.background-image]="'url(../assets/1x/flag/united-kingdom.png)'" (click)="changeLeng('en')">
+        <li class="flag" [style.background-image]="'url(../assets/1x/flag/united-kingdom.png)'"
+          (click)="changeLeng('en')">
         </li>
       </ul>
     </li>
   </ul>
- 
 </div>
 <a class="order" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
   <img src='../assets/1x/orderIconBlack.png'>
@@ -67,8 +61,7 @@
 </a>
 <router-outlet></router-outlet>
 
-<div class="footerWrap"  >
-  <!-- [style.min-width]='frames.isMyOrder?"1000px":"100%"' -->
+<div class="footerWrap">
   <div class="left">
     <p> Copyright © 2021 LoviSlova</p>
   </div>

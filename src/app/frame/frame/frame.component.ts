@@ -30,13 +30,14 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.width = this.block?.nativeElement.clientWidth | 1;
+
     if (window.innerWidth <= 1165) {
       this.frames.scale = window.innerWidth / this.width - 0.34;
-
+      console.log('scale', this.frames.scale);
+      console.log('width', this.width)
       if (window.innerWidth <= 768) {
         this.frames.scale = 0.7
         this.frames.scale = window.innerWidth / this.width - 0.19;
-
       }
 
       if (window.innerWidth <= 425) {
@@ -89,7 +90,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       if (window.innerWidth <= 320 && (this.frames.letterImges.length <= 4 && this.frames.letterImges.length > 0)) {
         this.frames.scale = 0.3;
       }
- 
+
     }
 
     if (this.frames.letterImges.length > 4 && this.frames.letterImges.length) {
@@ -110,7 +111,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
       if (window.innerWidth <= 426 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
         this.frames.scale = 0.35;
-      
+
       }
 
       if (window.innerWidth <= 419 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
@@ -161,91 +162,20 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       return height;
     }
 
-
     if (this.frames.isOrder && window.innerWidth <= 768 && (this.frames.letterImges.length > 0 && this.frames.letterImges.length <= 9)) {
       height.height = '600px';
       return height;
     }
 
-
-    // if (window.innerWidth <= 768 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
-    //   height.height = '438px';
-    //   return height;
-
-    // }
-
-   
-
     if (this.frames.isOrder && window.innerWidth <= 1657) {
       height.height = '1100px';
       return height;
     }
-    // if (window.innerWidth <= 717 && this.frames.letterImges.length === 7) {
-    //   height.height = '400px';
-    //   return height;
-
-    // }
 
     return height
   }
 
-  // buttonWrapTop() {
-  //   let top = {
-  //     "margin-top": '70px'
-  //   }
-
-  //   if (window.innerWidth <= 426) {
-  //     top["margin-top"] = '-70px';
-  //     return top;
-  //   }
-
-  //   if (window.innerWidth <= 375) {
-  //     top["margin-top"] = '-70px';
-  //     return top;
-  //   }
-
-  //   if (window.innerWidth <= 320) {
-  //     top["margin-top"] = '-70px';
-  //     return top;
-
-  //   }
-  //   if (window.innerWidth <= 816 && this.frames.letterImges.length === 4) {
-  //     top["margin-top"] = '-70px';
-  //     return top;
-  //   }
-
-  //   if (window.innerWidth <= 859 && this.frames.letterImges.length === 9) {
-  //     top["margin-top"] = '-70px';
-  //     return top;
-  //   }
-
-  //   if (window.innerWidth <= 656 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length < 7)) {
-  //     top["margin-top"] = '-70px';
-  //     return top;
-  //   }
-
-  //   if (window.innerWidth <= 717 && this.frames.letterImges.length === 7) {
-  //     top["margin-top"] = '-70px';
-  //     return top;
-
-  //   }
-
-  //   if (window.innerWidth <= 789 && this.frames.letterImges.length === 8) {
-  //     top["margin-top"] = '-70px';
-  //     return top;
-  //   }
-
-  //   if (window.innerWidth <= 816 && this.frames.letterImges.length === 3) {
-  //     top["margin-top"] = '-70px';
-  //     return top
-  //   }
-
-  //   return top
-  // }
-
-
   ngAfterViewChecked(): void {
-
     this.onResize()
   }
 
@@ -281,12 +211,12 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     return style
   }
 
-  public setTransform() {
-    let style = {
-      transform: "translate(-50%, -5%)" + "scaleY(" + this.frames.scale + ")",
-    }
-    return style
-  }
+  // public setTransform() {
+  //   let style = {
+  //     transform: "translate(-50%, -5%)" + "scaleY(" + this.frames.scale + ")",
+  //   }
+  //   return style
+  // }
 
   frameClick(id: number) {
     this.frames.index = id;

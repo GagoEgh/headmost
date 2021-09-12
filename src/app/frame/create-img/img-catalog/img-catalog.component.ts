@@ -1,9 +1,10 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Category } from 'src/app/shared/img-ramka';
-import { FramesServService } from 'src/app/shared/frames-serv.service';
-import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-img-catalog',
@@ -28,7 +29,6 @@ export class ImgCatalogComponent implements OnInit {
     this.frames.letterColection(this.character.character.toUpperCase(), this.frames.painding.id)
       .subscribe((el: any) => {
         this.frames.painding.imgs = el.results;
-
       })
   }
 

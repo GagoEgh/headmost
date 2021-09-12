@@ -1,38 +1,36 @@
-
 <div class="search-results" infinite-scroll [infiniteScrollDistance]="scrollDistance"
     [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown($event)">
     <div class="wrap">
         <h3 class="title">{{'_menu._user._my-order.description'|translate}}</h3>
         <div *ngFor="let item of userOrders, let i=index">
-
             <div class='block' *ngFor='let orderItemss of item.order_items_details'>
                 <p class="text">{{item?.created_at}}
-                     <span *ngIf='frames.lang==="hy"'>{{orderItemss?.created_frame_details?.frame_details?.name_hy}}</span>
-                     <span *ngIf='frames.lang==="ru"'>{{orderItemss?.created_frame_details?.frame_details?.name_ru}}</span>
-                     <span *ngIf='frames.lang==="en"'>{{orderItemss?.created_frame_details?.frame_details?.name_en}}</span>
+                    <span
+                        *ngIf='frames.lang==="hy"'>{{orderItemss?.created_frame_details?.frame_details?.name_hy}}</span>
+                    <span
+                        *ngIf='frames.lang==="ru"'>{{orderItemss?.created_frame_details?.frame_details?.name_ru}}</span>
+                    <span
+                        *ngIf='frames.lang==="en"'>{{orderItemss?.created_frame_details?.frame_details?.name_en}}</span>
                     {{orderItemss?.created_frame_details?.background_details?.name}}
                 </p>
                 <div class="user">
                     <div class="order">
-                        <div class="my-order"
-                            *ngFor='let details of orderItemss?.created_frame_details?.frame_images'>
-                                <div class="user-imags"
-                                    [style.background-image]="details.image_details?'url('+ details.image_details.image + ')':'url('+ details.user_image_details.image + ')'">
-                                </div>
+                        <div class="my-order" *ngFor='let details of orderItemss?.created_frame_details?.frame_images'>
+                            <div class="user-imags"
+                                [style.background-image]="details.image_details?'url('+ details.image_details.image + ')':'url('+ details.user_image_details.image + ')'">
+                            </div>
                         </div>
                     </div>
                     <div class="user-info">
                         <div class="sum"> {{'_menu._user._my-order.status'|translate}}: {{item?.status}}</div>
                         <div class="sum">
                             <P>{{item?.price}}Դ</P>
-                            <button class="batn" (click)='addOrder(i)'> {{'_menu._user._my-order.add'|translate}}</button>
+                            <button class="batn" (click)='addOrder(i)'>
+                                {{'_menu._user._my-order.add'|translate}}</button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
-
 </div>

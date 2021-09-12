@@ -1,10 +1,8 @@
+import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { Component, OnInit } from '@angular/core';
+import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { FramesServService } from 'src/app/shared/frames-serv.service';
-
-
 
 @Component({
   selector: 'app-idea-nav',

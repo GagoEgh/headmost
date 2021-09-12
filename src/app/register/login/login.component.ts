@@ -1,13 +1,13 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
+import { FramesServService } from 'src/app/shared/frames-serv.service';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterComponent } from '../register/register.component';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from "ngx-spinner";
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit, DoCheck {
   errorLog = '';
 
   constructor(public activeModal: NgbActiveModal, private modalService: NgbModal, public _translate: TranslateService,
-    private fb: FormBuilder, public frames: FramesServService, private valid: ValidationServService,private spinner: NgxSpinnerService) { }
+    private fb: FormBuilder, public frames: FramesServService, private valid: ValidationServService, private spinner: NgxSpinnerService) { }
 
   ngDoCheck(): void {
     if (this.frames.isLogin) {
@@ -40,9 +40,9 @@ export class LoginComponent implements OnInit, DoCheck {
 
   erroreName(formName: string) {
     this._translate.get('_erroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
-       if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res._required;
-       if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr =  `${res._minlength} 6`;
-       if (this.validateForm.get(formName)?.hasError('email')) this.erroreStr = res._isEmail;
+      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res._required;
+      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res._minlength} 6`;
+      if (this.validateForm.get(formName)?.hasError('email')) this.erroreStr = res._isEmail;
     })
     return this.erroreStr;
   }
@@ -76,10 +76,10 @@ export class LoginComponent implements OnInit, DoCheck {
             this.frames.sum += obj.created_frame_details.price;
           })
         })
-        setTimeout(()=>{
+        setTimeout(() => {
           this.spinner.hide()
-        },200)
-        
+        }, 200)
+
 
       }, ((err: any) => {
         this.errorLog = err.error.message

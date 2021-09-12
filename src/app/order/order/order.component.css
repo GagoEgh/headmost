@@ -1,130 +1,132 @@
 .body{
-    background-color: rgba(187, 182, 182, 0.945) ;
+ background-color: rgba(187, 182, 182, 0.945) ;
 }
 
 .wrap{
-    width: fit-content;
-    display: flex;
-    margin-left: 50%;
-    transform-origin: top;
-    box-shadow: 3px 2px 22px 0 rgb(87 87 87);
-    background-color: white;
-    font-size: 1.1rem;
+ width: fit-content;
+ display: flex;
+ margin-left: 50%;
+ transform-origin: top;
+ box-shadow: 3px 2px 22px 0 rgb(87 87 87);
+ background-color: white;
+ font-size: 1.1rem;
 }
 
 .user-data, .order{
-    width: 500px;
-    padding: 10px;
-    font-size: 1.3rem;
+ width: 500px;
+ padding: 10px;
+ font-size: 1.3rem;
     
 }
 
 .order{
-    text-align: center;
+ text-align: center;
 }
 
 .title{
-    color: rgb(111 110 110);
+ color: rgb(111 110 110);
 }
 
 
 .data{
-    display: flex;
-    justify-content: space-around;
+ display: flex;
+ justify-content: space-around;
 }
 
 
 .smoll{
-    font-size: 0.7rem;
-    color: #5a646d;
-    padding: 5px;
+ font-size: 0.7rem;
+ color: #5a646d;
+ padding: 5px;
 }
 
 .data p {
-    margin:0 0 0 1% ;
-    font-weight: 500;
+ margin:0 0 0 1% ;
+ font-weight: 500;
 }
 
 .ant-input {
-    border-radius: 10px !important;
+ border-radius: 10px !important;
 }
 
 .ant-btn-primary {
-    border-radius: 10px;
+ border-radius: 10px;
 }
 
 .version-info {
-    font-size: 1rem;
-    float: right;
-    margin: 8px;
-  }
+ font-size: 1rem;
+ float: right;
+ margin: 8px;
+}
   
-  .region{
-      display: flex;
-  }
+.region{
+ display: flex;
+}
 
-  .erroreCountry{
-    margin-top: -20px;
-  }
-  .ant-select {
-    width: 280px;
-    border-radius: 10px;
-    margin-bottom: 30px;
+.erroreCountry{
+ margin-top: -20px;
+}
+
+.ant-select {
+ width: 280px;
+ border-radius: 10px;
+ margin-bottom: 30px;
 }
 
 .noText{
-    margin: 100px 0 0 100px;
-    font-weight: 800;
+ margin: 100px 0 0 100px;
+ font-weight: 800;
 }
 
 .symbol{
-    margin-left: 15px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    color: black;
+ margin-left: 15px;
+ cursor: pointer;
+ font-weight: bold;
+ font-size: 16px;
+ color: black;
 }
 
 .ant-btn-primary {
-    width: 280px !important;
-    margin-left: 120px;
+ width: 280px !important;
+ margin-left: 120px;
 }
 
 .ant-form {
-    font-size: 1.9rem !important;
-    letter-spacing: 0.1rem !important; 
-    font-weight: 800 !important;
+ font-size: 1.9rem !important;
+ letter-spacing: 0.1rem !important; 
+ font-weight: 800 !important;
 }
 
 .ant-form-item {
-    margin: 0 0 5px;
+ margin: 0 0 5px;
 }
 
 .sum{
-    color: red;
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    margin-top: 50px;
+ color: red;
+ font-size: 1.5rem;
+ font-weight: bold;
+ letter-spacing: 1px;
+ margin-top: 50px;
 }
 .red{
-    color: red;
-    margin-left: 130px;
-    letter-spacing: 0.5px;
+ color: red;
+ margin-left: 130px;
+ letter-spacing: 0.5px;
 }
 
 .order-message{
-    margin-top: 100px;
-    font-size: 20px;
-    font-weight: 800;
-    color: red
+ margin-top: 100px;
+ font-size: 20px;
+ font-weight: 800;
+ color: red
 }
+
 .shipping{
-    margin-top: -30px;
+  margin-top: -30px;
 }
 
 @media (max-width:426px){
     .wrap{
-       margin-top:300px;
+     margin-top:300px;
     }
 }

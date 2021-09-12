@@ -1,10 +1,9 @@
-import { NgModule} from '@angular/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from '../shared/shared.modult'
-import { UserGuard } from './userGuard';
+import { SharedModule } from '../shared/shared.modult';
 import { UserComponent } from './user/user.component';
-
+import { NgModule} from '@angular/core';
+import { UserGuard } from './userGuard';
 
 const routes: Routes = [
   {

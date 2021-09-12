@@ -1,12 +1,12 @@
 
 import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FrameImag } from 'src/app/shared/frame-image';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
+import { FrameImag } from 'src/app/shared/frame-image';
 import { TranslateService } from '@ngx-translate/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-magnit',
@@ -31,7 +31,6 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     this.width = this.block?.nativeElement.clientWidth | 1;
     if (window.innerWidth <= 1165) {
       this.frames.magnit_scale = 0.7;
-
 
       if (window.innerWidth <= 768) {
         this.frames.magnit_scale = 0.7
@@ -134,7 +133,7 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
       height: '650px'
     }
 
-    if(this.frames.isOrder && window.innerWidth <=426){
+    if (this.frames.isOrder && window.innerWidth <= 426) {
       height.height = '570px';
       return height;
     }
@@ -150,56 +149,34 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
       return height;
     }
 
-    if (window.innerWidth <= 425 && window.innerWidth > 375) {
+    if (window.innerWidth <= 426 && window.innerWidth > 375) {
       height.height = '400px';
       return height;
     }
 
-    if (window.innerWidth <= 1024 && window.innerWidth > 425) {
-      height.height = '800px';
+    if (window.innerWidth <= 768 && this.frames.isOrder) {
+      height.height = '700px'
+      return height
+    }
+
+    if (window.innerWidth <= 1024 && this.frames.isOrder) {
+      height.height = '900px'
+      return height
+    }
+
+    if (window.innerWidth <= 1025 && window.innerWidth > 425) {
+      height.height = '700px';
       return height;
     }
 
+
+
     if ((window.innerWidth <= 1640 && window.innerWidth > 1024) && this.frames.isOrder) {
-      height.height = '1000px'
+      height.height = '1100px'
       return height
     }
 
     return height
-  }
-
-
-  buttonWrapTop() {
-    let top = {
-      "top": '950px'
-    }
-
-    if(window.innerWidth<=1024){
-      top['top']='790px';
-      return top;
-    }
-
-    if(window.innerWidth<=426){
-      top['top']='600px';
-      
-      if( this.frames.isSilki){
-        top['top']='750px';
-        return top
-      }
-      return top;
-    }
-
-    if(window.innerWidth<=376){
-      top['top']='500px';
-      
-      if( this.frames.isSilki){
-        top['top']='650px';
-        return top
-      }
-      return top;
-    }
-
-    return top
   }
 
   public setStyle() {
@@ -215,7 +192,7 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     this.onResize()
     this.setStyle()
   }
-  
+
   ngOnInit(): void {
 
     super.myForm();
@@ -225,7 +202,8 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
       })
     this.frames.letterImges = [];
     this.frames.isOrder = false;
-
+    this.rout.navigate(['magnit/form-magnit']);
+  
   }
 
 }

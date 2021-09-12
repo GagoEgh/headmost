@@ -76,13 +76,6 @@ export class FrameImag {
         this.frames.showFrame()
     }
 
-    // create-img component
-
-    // getApp(isBool: boolean, mainApp: any) {
-    //     mainApp.emit(isBool);
-    //     this.frames.isOrder = false;
-    // }
-
 
     changeImg() {
         this.frames.letterColorFone()

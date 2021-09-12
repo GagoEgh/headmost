@@ -1,80 +1,77 @@
-
-
 .wrap{
-    width: 1000px;
-    margin: 0 auto;
+ width: 1000px;
+ margin: 0 auto;
 }
 
 .block{
-    background: #f5deb3;
-    border-radius: 20px;
-    margin: 5px;
+ background: #f5deb3;
+ border-radius: 20px;
+ margin: 5px;
 }
 
 .title{
-    color: #d8bc89;
-    font-size: 25px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-weight: 800;
-    padding: 20px;
-    margin-bottom: 40px;
+ color: #d8bc89;
+ font-size: 25px;
+ letter-spacing: 1px;
+ text-transform: uppercase;
+ font-weight: 800;
+ padding: 20px;
+ margin-bottom: 40px;
 }
 
 .text{
-    margin-left: 100px;
-    padding-top: 10px;
-    font-size: 18px;
-   
+ margin-left: 100px;
+ padding-top: 10px;
+ font-size: 18px;  
 }
 
 .user{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 20px;
-    margin-bottom: 20px;
-    width: 900px;
+ display: flex;
+ justify-content: space-between;
+ flex-wrap: wrap;
+ padding: 20px;
+ margin-bottom: 20px;
+ width: 900px;
 }
 
 .order{
-    display: flex;
-    width: fit-content;
+ display: flex;
+ width: fit-content;
 }
 
 .user-imags{
-    width: 50px;
-    height: 90px;
-    background-position: center;
-    background-size: 100% 100%;
-    margin: 5px ;
+ width: 50px;
+ height: 90px;
+ background-position: center;
+ background-size: 100% 100%;
+ margin: 5px ;
 }
 
 .sum{
-    padding: 20px;
-    margin-right:40px ;
+ padding: 20px;
+ margin-right:40px ;
 }
 
 .user-info{
-    display: flex !important;
+ display: flex !important;
 }
 
 .batn{
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    background: #fbf6ec;
-    color: gray;
-    transition: all 0.5s;
-    letter-spacing: 1px;
-    padding: 5px 10px;
-    transition: 0.5s;
+ border-radius: 10px;
+ border: none;
+ outline: none;
+ background: #fbf6ec;
+ color: gray;
+ transition: all 0.5s;
+ letter-spacing: 1px;
+ padding: 5px 10px;
+ transition: 0.5s;
 }
 
 .batn:active{
-    background: white;
-    color: rgb(206, 56, 56);
-    border: 1px solid  #f5deb3;;
+ background: white;
+ color: rgb(206, 56, 56);
+ border: 1px solid  #f5deb3;;
 }
 
 
@@ -85,26 +82,26 @@
     }
 
     .block{
-        width: 100%;
+      width: 100%;
     }
     .order{
-        display: flex;
-        width: 650px;
+     display: flex;
+     width: 650px;
     }
 
     .user-info{
-        margin-top: 20px !important;
+     margin-top: 20px !important;
     }
 
     .user{
-        padding: 10px;
-        margin-bottom: 50px;
+     padding: 10px;
+     margin-bottom: 50px;
     }
 } 
 
 @media (max-width:768px){
     .user{
-        width: fit-content;
+     width: fit-content;
     }
 }
 @media (max-width:426px){

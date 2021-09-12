@@ -1,46 +1,45 @@
 .login-form{
-    display: flex;
-    width: 50%;
-    padding: 30px;
-    flex-wrap: wrap;
-    margin: 180px auto;
-    border-radius: 20px;
-    box-shadow: 3px 2px 22px 0 rgb(87 87 87);
-
+ display: flex;
+ width: 50%;
+ padding: 30px;
+ flex-wrap: wrap;
+ margin: 180px auto;
+ border-radius: 20px;
+ box-shadow: 3px 2px 22px 0 rgb(87 87 87);
 }
 
 .succes{
-    display: block;
-    position: relative;
-    top: 90px;
-    right: 280px
+ display: block;
+ position: relative;
+ top: 90px;
+ right: 280px
 }
 
 .region{
-    margin-bottom: 60px;
+  margin-bottom: 60px;
 }
 
 .ant-input, .ant-input-group {
-    width: 280px;
+ width: 280px;
 }
   
 .ant-btn-primary {
-    width: 50% !important;
-    margin: 40px auto;
+ width: 50% !important;
+ margin: 40px auto;
 }
 
 ::ng-deep.anticon.ng-tns-c132-6.ng-star-inserted.anticon-check-circle-fill{
-    color: #52c41a !important;
+ color: #52c41a !important;
 }
 
 
 :host::ng-deep{
     @media (max-width:760px){
         .mat-form-field, .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector,  .ant-input, .ant-input-group {
-            width:95% !important;
+         width:95% !important;
         }
         .ant-select {
-            width:95% !important;
+         width:95% !important;
         }
         
     }

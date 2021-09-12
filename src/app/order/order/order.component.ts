@@ -1,11 +1,10 @@
 import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { FramesServService } from 'src/app/shared/frames-serv.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from "@ngx-translate/core";
-
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -52,15 +51,15 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     if (window.innerWidth <= 1165) {
       this.scale = window.innerWidth / this.width - 0.1;
 
-      if(window.innerWidth<=768){
+      if (window.innerWidth <= 768) {
         this.scale = 0.5
       }
 
-      if(window.innerWidth<=463){
+      if (window.innerWidth <= 463) {
         this.scale = 0.9
       }
 
-      if(window.innerWidth<=375){
+      if (window.innerWidth <= 375) {
         this.scale = 0.7
       }
     }
@@ -77,12 +76,10 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this._translate.use(this.frames.lang);
     this.changeJson();
     this.onResize();
-   
+
   }
 
   ngOnInit(): void {
-
-    // this.frames.isTop = false;
     this.changeJson()
     this.frames.isdisible = false;
     setTimeout(() => {
@@ -137,9 +134,9 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     })
   }
 
-  public setStyle(num:number) {
+  public setStyle(num: number) {
     let style = {
-      transform: "translate(-50%, "+ num+"% )" + "scale(" + this.scale + ")"
+      transform: "translate(-50%, " + num + "% )" + "scale(" + this.scale + ")"
     }
     return style
   }

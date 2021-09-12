@@ -1,9 +1,12 @@
+import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FrameImag } from 'src/app/shared/frame-image';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FrameImag } from 'src/app/shared/frame-image';
-import { FramesServService } from 'src/app/shared/frames-serv.service';
+
+
+
 
 @Component({
   selector: 'app-create-magnit',

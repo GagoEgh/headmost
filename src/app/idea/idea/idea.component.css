@@ -1,85 +1,88 @@
 
 .main{
-    min-height: calc(100vh - 76px);
-    display: flex;
-    flex-wrap: wrap;
-    padding: 70px ;
-    background-color: #d9d9d9;
+ min-height: calc(100vh - 76px);
+ display: flex;
+ flex-wrap: wrap;
+ padding: 70px ;
+ background-color: #d9d9d9;
 }
 
 .img-idea{
-    padding: 10px 4px;
+ padding: 10px 4px;
 }
 
 .imgs{
-    width: 280px;
-    height: 200px;
-    background-position: center;
-    background-size: 100% 100%;
+ width: 280px;
+ height: 200px;
+ background-position: center;
+ background-size: 100% 100%;
 }
 
-
 .idea-info{
-    display: flex;
-    justify-content: space-between;
-    background-color: white
+ display: flex;
+ justify-content: space-between;
+ background-color: white
 }
 
 .titles{
-    cursor: pointer;
+ cursor: pointer;
 }
 
 .titles:hover .img-title{
-    color: #c80063;
+ color: #c80063;
 }
 
 .img-title{
-    width: 190px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #151414e0;
-    padding: 5px ;
-    margin: 0;
-    letter-spacing: 1px;
+ width: 190px;
+ font-size: 16px;
+ font-weight: bold;
+ color: #151414e0;
+ padding: 5px ;
+ margin: 0;
+ letter-spacing: 1px;
 }
 
 
 .order{
-    background-image: url('/assets/1x/cart2.png');
-    background-size: 100% 100%;
-    background-position: center;
-    display: block;
-    width: 54px;
-    height: 58px;
-    margin-top: 0px;
-    border: 0px;
-    cursor: pointer;
-    
+ background-image: url('/assets/1x/cart2.png');
+ background-size: 100% 100%;
+ background-position: center;
+ display: block;
+ width: 54px;
+ height: 58px;
+ margin-top: 0px;
+ border: 0px;
+ cursor: pointer;  
 }
 
 
 @media (max-width:1025px){
     .main{
-        padding: 120px;
+     padding: 120px;
     }
+
     .img-idea{
-        padding: 10px 20px;
+     padding: 10px 20px;
     }
 }
 
 @media (max-width:980px){
     .img-idea{
-        margin:  20px auto;
+     margin:  20px auto;
     }
 }
-
-
 
 @media (max-width:790px){
 
     .main{
-        min-height: 0;
-        width: 100%;
+     min-height: 0;
+     width: 100%;
     }
 
 }  
+
+@media (max-width:426px){
+    .img-idea{
+     margin-left: -85px;
+    }
+}

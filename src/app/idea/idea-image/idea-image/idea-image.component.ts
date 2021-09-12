@@ -1,10 +1,11 @@
 import { Component, ElementRef, OnInit,ViewChild, HostListener, } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageComponent } from '../../message/message.component';
-import { Subject } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-idea-image',
@@ -37,8 +38,6 @@ export class IdeaImageComponent implements OnInit {
     if (window.innerWidth <= 1030) {
       this.scale = window.innerWidth / this.width - 0.44;
     }
-
-  
   }
 
   public setStyle() {
@@ -70,6 +69,7 @@ export class IdeaImageComponent implements OnInit {
       this.frames.spinner.hide()
     })
   }
+  
   ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();

@@ -1,24 +1,27 @@
-import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
+import { FramesServService } from 'src/app/shared/frames-serv.service';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
+
+
+
 
 @Component({
   selector: 'app-user-data',
   templateUrl: './user-data.component.html',
   styleUrls: ['./user-data.component.scss']
 })
-export class UserDataComponent implements OnInit,AfterViewChecked {
+export class UserDataComponent implements OnInit, AfterViewChecked {
   validateForm: FormGroup = new FormGroup({});
   public _unsubscribe$ = new Subject();
   erroreStr: string = '';
   emailMassage = '';
-  updateOk ='';
-  constructor(private valid: ValidationServService, private fb: FormBuilder,public _translate:TranslateService, public frames: FramesServService) { }
+  updateOk = '';
+  constructor(private valid: ValidationServService, private fb: FormBuilder, public _translate: TranslateService, public frames: FramesServService) { }
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang)
   }
@@ -39,11 +42,11 @@ export class UserDataComponent implements OnInit,AfterViewChecked {
   }
 
   erroreName(formName: string) {
-    this._translate.get('_erroreMessage').pipe(takeUntil(this._unsubscribe$)).subscribe((res:any)=>{
+    this._translate.get('_erroreMessage').pipe(takeUntil(this._unsubscribe$)).subscribe((res: any) => {
       let size = 3;
       if (formName === 'pas') size = 6
       if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res._required;
-      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr =  `${res._minlength} ${size} `;
+      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res._minlength} ${size} `;
       if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res._userNameChar;
       if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res._isEmail;
       if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res._isSize;
@@ -65,7 +68,7 @@ export class UserDataComponent implements OnInit,AfterViewChecked {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-    
+
     const date = this.birt('date');
     const edit = {
       date_of_birth: date,
@@ -81,17 +84,17 @@ export class UserDataComponent implements OnInit,AfterViewChecked {
     if (this.validateForm.valid) {
       this.frames.editUser(edit).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
         this.updateOk = 'Փոփոխությունները հաջողությամբ կատարվել են';
-        localStorage.setItem('user-date',JSON.stringify(this.frames.userData))
+        localStorage.setItem('user-date', JSON.stringify(this.frames.userData))
       })
     }
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }
 
 }
 
- 
+
 

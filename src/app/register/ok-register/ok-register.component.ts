@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit } from '@angular/core';
+
 @Component({
   selector: 'app-ok-register',
   templateUrl: './ok-register.component.html',

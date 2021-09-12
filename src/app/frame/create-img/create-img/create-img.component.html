@@ -1,5 +1,4 @@
-<div class="conteiner" >
-  <!-- #block class="block" [ngStyle]="setStyle()"   -->
+<div class="conteiner">
   <div class="myWrap" [style.margin]="frames.isTop?'0 auto':'0'">
     <div class="reight">
       <div class="squrl left-top" [style.background-image]="'url(' + frames.frame?.left_top_corner_image + ')'">
@@ -17,10 +16,9 @@
           <div class="change" (click)='changeImg()' [style.opacity]="topLettering.isMenu?'1':'0'">
             <p class="bottom-par">{{'_imgs._change-image'|translate}}</p>
           </div>
-          <div class="delete" [style.opacity]="topLettering.isMenu?'1':'0'"n>
+          <div class="delete" [style.opacity]="topLettering.isMenu?'1':'0'" n>
             <p class="bottom-par" (click)='deletImg()'>{{'_imgs._delete-text'|translate}}</p>
           </div>
-          <!-- deletImg($event)  (click)="getApp(true,mainApp)" -->
           <div class="lettering" *ngIf='frames.letterImges.length>3' [style.opacity]="topLettering.isForm?'1':'0'">
             <form [formGroup]="validateForm">
               <input type="text" formControlName='topText' [style.backgroundColor]="frames.background.color"
@@ -69,8 +67,7 @@
 <div class="buttonWrap" [ngStyle]="buttonWrapTop()">
   <div class="asside"></div>
   <div class="center">
-    <button class="create" (click)='frames.myOrder()'*ngIf='!frames.isOrder && !frames.isImg'>
-      <!-- *ngIf='!frames.isOrder && !frames.isImg' -->
+    <button class="create" (click)='frames.myOrder()' *ngIf='!frames.isOrder && !frames.isImg'>
       {{'_img-text-valid._batn-save'|translate}}
     </button>
 

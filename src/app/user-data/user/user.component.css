@@ -1,29 +1,23 @@
-
-
 .wrap{
-    margin-top: -50px;
+ margin-top: -50px;
 }
 .group{
-    display: flex;
-    margin: 50px;
+ display: flex;
+ margin: 50px;
 }
 
 .list{
-    list-style: none;
-    padding: 10px;
+ list-style: none;
+ padding: 10px;
   
 }
 
-
-
 .list a{
-    color: #d8bc89;
-    text-transform: uppercase;
-    font-weight: 600;
+ color: #d8bc89;
+ text-transform: uppercase;
+ font-weight: 600;
 }
-
 
 .active{
-    color:  #645231 !important;
+ color:  #645231 !important;
 }
-

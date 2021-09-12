@@ -1,11 +1,11 @@
+import { Api, Ceys, FramesImg, LetterImge, Painding, UserData, Value } from 'src/app/shared/img-ramka'
+import { LoginComponent } from '../register/login/login.component';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { TranslateService } from "@ngx-translate/core";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from "ngx-spinner";
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Api, Ceys, FramesImg, LetterImge, Painding, UserData, Value } from 'src/app/shared/img-ramka'
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { NgxSpinnerService } from "ngx-spinner";
-import { TranslateService } from "@ngx-translate/core";
-import { LoginComponent } from '../register/login/login.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -43,7 +43,9 @@ export class FramesServService {
     isTop = false;
     isdisible = false;
     scale: number = 1;
+    urlArr: string[] = [];
     magnit_scale: number = 1;
+    letterChar = 0;
     userData: UserData = {
         address: '',
         city: 0,
@@ -71,10 +73,6 @@ export class FramesServService {
     isImg = true;
     div: any = [];
     frame: any;
-
-
-
-
     api: Api = {
         worldApi: 'http://sirun-bar-api.annaniks.com',
         api_utils: '/utils',
@@ -298,6 +296,7 @@ export class FramesServService {
             { headers: { 'Authorization': this.token } })
     }
 
+
     letterColorFone() {
         this.spinner.show();
         this.text = this.validateForm.get('text')?.value;
@@ -306,21 +305,13 @@ export class FramesServService {
             this.letterImges = this.letterImges.filter(img => {
                 return !img.not_found
             })
+            this.urlArr = this.rout.url.split('/');
 
-            // `/?created_frame_category=${category}&is_predefined=${predifined}&limit=50&offset=${offset}`)
-
-            // this._router.navigate(['idea/idea-imags'],{queryParams:{category:obj.id}})
-
-            let url = this.rout.url.split('/');
-                console.log(url[1]);
-            this.rout.navigate([url[1]+'/create-img'],{queryParams:{ type: url[1], text: this.text}})
-            // { queryParams: { type: url, text: this.text } }
-
-            // if (this.letterImges.length === 0 && this.text) {
-            //     this.validateForm.reset();
-            //     this.isMessage = true;
-            //     this.isImg = true;
-            // }
+            if (this.urlArr[1] === 'frame') {
+                this.rout.navigate([this.urlArr[1] + '/create-img'], { queryParams: { type: this.urlArr[1], text: this.text } })
+            } else {
+                this.rout.navigate([this.urlArr[1] + '/create-magnit'], { queryParams: { type: this.urlArr[1], text: this.text } })
+            }
 
             setTimeout(() => {
                 this.spinner.hide();
@@ -329,14 +320,19 @@ export class FramesServService {
         })
     }
 
+
     showFrame() {
         this.isOrder = false;
         this.isImg = true;
         this.validateForm.reset();
-        this.rout.navigate(['frame/form-frame'])
+        if (this.urlArr[1] === 'frame') {
+            this.rout.navigate([this.urlArr[1] + '/form-frame']);
+        } else {
+            this.rout.navigate([this.urlArr[1] + '/form-magnit'])
+        }
     }
 
-    letterChar = 0;
+
     public myOrder() {
         if (localStorage.getItem('loginAutorization')) {
             this.spinner.show();

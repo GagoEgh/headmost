@@ -91,41 +91,10 @@ input:focus::placeholder{
  margin: -65px -95px;
 }
 
-@media (max-width:1025px){
-    /* .buttonWrap{
-     position: relative;
-     top:-8px;
-    } */
-}
-
-@media (max-width:768px){
-    /* .buttonWrap{
-     position: relative;
-     top:85px;
-    } */
-}
 
 @media (max-width:426px){
-    /* .buttonWrap{
-     position: relative;
-     top:525px;
-    } */
 
     .bg-fone{
      margin: -65px -115px;
     }
-}
-
-@media (max-width:376px){
-    /* .buttonWrap{
-     position: relative;
-     top:325px;
-    } */
-}
-
-@media (max-width:320px){
-    /* .buttonWrap{
-     position: relative;
-     top:460px;
-    } */
 }

@@ -30,20 +30,13 @@ export class AboutUsComponent implements OnInit, AfterViewChecked, OnChanges {
     if (window.innerWidth <= 1165) {
       
       this.scale = window.innerWidth / this.width - 0.1;
-      console.log('scale', this.scale);
-      console.log('width', window.innerWidth)
 
       if (window.innerWidth <= 768) {
         this.scale = 0.7;
-        
-        console.log('scale 7', this.scale);
-        console.log('width 7', window.innerWidth)
       }
 
       if(window.innerWidth<=559){
         this.scale = 0.25
-       console.log('scale 4', this.scale);
-       console.log('width 4', window.innerWidth)
       }
     }
 

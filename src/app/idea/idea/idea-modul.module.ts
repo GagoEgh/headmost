@@ -1,13 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
- import { IdeaComponent } from './idea.component';
-import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from '../../shared/shared.modult';
-import { ReactiveFormsModule } from '@angular/forms';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MessageComponent } from '../message/message.component';
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { SharedModule } from '../../shared/shared.modult';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { IdeaComponent } from './idea.component';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
 const routs:Routes=[
   {path:'',component:IdeaComponent}

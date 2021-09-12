@@ -1,21 +1,20 @@
-nz-date-picker {
-    margin: 0 8px 12px 0;
-    
-  }
+.nz-date-picker {
+ margin: 0 8px 12px 0; 
+}
 
-  ::ng-deep .cdk-overlay-container {
-    z-index: 1200 !important;
-  }
+::ng-deep .cdk-overlay-container {
+ z-index: 1200 !important;
+}
 
-  .modal-content {
-    width: -webkit-fit-content !important;
-    width: -moz-fit-content !important;
-    width: fit-content !important;
-    top: 100px !important;
-    position: relative !important;
-    left: 50% !important;
-    top:20% !important;
-    transform-origin: top !important;
+.modal-content {
+ width: -webkit-fit-content !important;
+ width: -moz-fit-content !important;
+ width: fit-content !important;
+ top: 100px !important;
+ position: relative !important;
+ left: 50% !important;
+ top:20% !important;
+ transform-origin: top !important;
 }
 
 .ant-input, .ant-input-group {

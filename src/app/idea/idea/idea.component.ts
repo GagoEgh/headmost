@@ -1,10 +1,10 @@
-import { Component, HostListener, OnInit } from '@angular/core';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MessageComponent } from '../message/message.component';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-idea',
@@ -20,10 +20,10 @@ export class IdeaComponent implements OnInit {
   category = '';
   offset = 0;
   count = 0;
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-   // this.frames.isBar = window.innerWidth <= 790 ? false : true;
-  }
+  // @HostListener('window:resize', ['$event'])
+  // onResize() {
+  //  // this.frames.isBar = window.innerWidth <= 790 ? false : true;
+  // }
 
   constructor(public frames: FramesServService,
     private _activatedRoute: ActivatedRoute,
@@ -33,7 +33,7 @@ export class IdeaComponent implements OnInit {
 
   ngOnInit(): void {
     this.ideaImages = []
-    this.onResize();
+    //this.onResize();
     this.offset = 0;
     window.scrollTo(0, 0);
     if (window.innerWidth <= 772) {
@@ -89,8 +89,6 @@ export class IdeaComponent implements OnInit {
       this.frames.orderList.push(el);
       this.open()
     })
-
-
   }
 
   imgInfo(img: any) {

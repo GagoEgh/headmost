@@ -1,10 +1,11 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
-
-import { NgxSpinnerService } from "ngx-spinner";
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { NgxSpinnerService } from "ngx-spinner";
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-user-order',
@@ -14,10 +15,12 @@ import { TranslateService } from '@ngx-translate/core';
 export class UserOrderComponent implements OnInit,AfterViewChecked {
   public _subscribe$ = new Subject();
   userOrders: any[] = [];
+  scrollUpDistance = 1;
+  scrollDistance = 3;
   array: any[] = [];
   throttle = 300;
-  scrollDistance = 3;
-  scrollUpDistance = 1;
+  
+
 
   constructor(public frames: FramesServService, private spinner:NgxSpinnerService,public _translate:TranslateService) { }
   ngAfterViewChecked(): void {
