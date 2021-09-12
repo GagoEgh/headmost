@@ -3,7 +3,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { waitForAsync } from '@angular/core/testing';
+
 
 
 @Component({
@@ -85,8 +85,6 @@ export class AboutUsComponent implements OnInit, AfterViewChecked, OnChanges {
       this.obj = ev;
       this.caunt = num;
       ev.isBlock = !ev.isBlock;
-
-      console.log(ev)
     }
   }
 

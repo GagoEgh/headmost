@@ -76,7 +76,7 @@
 .create{
  outline: none;
  display: block;
- margin-left: -50px;
+ margin-left: 400px;
 }
  
 .center{
@@ -85,11 +85,9 @@
 }
 
 .create-bottom{
- position: absolute;
  outline: none;
  display: block;
- left:44%;
- top:1400px;
+ margin-top:50px;
  z-index: 1;
 }
 

@@ -1,14 +1,14 @@
-import { CreateMagnitComponent } from './create-magnit/create-magnit.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared.modult';
-import { RouterModule, Routes } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
+import { CreateMagnitComponent } from './create-magnit/create-magnit.component';
+import { RouterModule, Routes } from '@angular/router';
+import { SharedModule } from 'src/app/shared/shared.modult';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const rout:Routes=[{
   path:'',component: CreateMagnitComponent,
 }]
+
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ const rout:Routes=[{
     ReactiveFormsModule,
   ],
   exports:[
-    RouterModule
+   RouterModule
   ]
 })
 export class CreateMagnitModule { }

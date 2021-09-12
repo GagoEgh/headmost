@@ -6,10 +6,6 @@ import { SharedModule } from '../shared/shared.modult';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-
-
-
-
 const routs: Routes = [
   { path: '', component: AboutUsComponent }
 ]

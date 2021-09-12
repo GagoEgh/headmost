@@ -16,13 +16,14 @@
                 <form [formGroup]="frames.validateForm">
                     <input type="text" formControlName='text' maxlength="9" [placeholder]="frames.placeholder" trim>
                 </form>
-                <p class="btn" (click)="open()" *ngIf='frames.isImg'>{{'_img-text-valid._title'|translate}}</p>
+                <p class="btn" (click)="open()">{{'_img-text-valid._title'|translate}}</p>
+                <!--  *ngIf='frames.isImg' -->
             </div>
         </div>
     </div>
 </div>
 <div class="center">
     <button type="submit" (click)='onSubmit()' class="create"
-        *ngIf='frames.isImg'>{{'_img-text-valid._create-word'|translate}}</button>
-
+        >{{'_img-text-valid._create-word'|translate}}</button>
+        <!-- *ngIf='frames.isImg' -->
 </div>

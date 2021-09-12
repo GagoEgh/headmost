@@ -34,4 +34,10 @@
         </div>
     </div>
     <app-order *ngIf='frames.isOrder'> </app-order>
+    <div class="center">
+        <button *ngIf='frames.isOrder' class="create create-bottom" 
+        (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
+      <button class="btn-save" (click)='frames.myMagnitOrder()'
+        *ngIf='!frames.isOrder && !frames.isImg'>{{'_imgs._batn-save'|translate}}</button>>
+    </div>
 </div>
