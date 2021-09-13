@@ -33,8 +33,6 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
     if (window.innerWidth <= 1165) {
       this.frames.scale = window.innerWidth / this.width - 0.34;
-      console.log('scale', this.frames.scale);
-      console.log('width', this.width)
       if (window.innerWidth <= 768) {
         this.frames.scale = 0.7
         this.frames.scale = window.innerWidth / this.width - 0.19;
@@ -210,13 +208,6 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     }
     return style
   }
-
-  // public setTransform() {
-  //   let style = {
-  //     transform: "translate(-50%, -5%)" + "scaleY(" + this.frames.scale + ")",
-  //   }
-  //   return style
-  // }
 
   frameClick(id: number) {
     this.frames.index = id;

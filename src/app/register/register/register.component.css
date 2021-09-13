@@ -18,7 +18,15 @@
 }
 
 .ant-input, .ant-input-group {
-  width: 250px;
+ width: 250px;
+}
+
+::ng-deep.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  width: 250px !important;
+}
+     
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-infix {
+  width: 200px;
 }
 
 .login-form{

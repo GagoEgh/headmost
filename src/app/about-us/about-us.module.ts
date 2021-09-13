@@ -1,4 +1,3 @@
-import { CreateMagnitModule } from '../magnit/create-magnit/create-magnit.module';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -18,7 +17,6 @@ const routs: Routes = [
     CommonModule,
     SharedModule,
     FormsModule,
-    CreateMagnitModule,
     ReactiveFormsModule,
     RouterModule.forChild(routs),
   ],

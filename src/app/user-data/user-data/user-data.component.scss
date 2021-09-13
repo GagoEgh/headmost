@@ -32,7 +32,13 @@
  color: #52c41a !important;
 }
 
+::ng-deep.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  width: 280px !important;
+}
 
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-infix {
+  width: 220px;
+ }
 :host::ng-deep{
     @media (max-width:760px){
         .mat-form-field, .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector,  .ant-input, .ant-input-group {
