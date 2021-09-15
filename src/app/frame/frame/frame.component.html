@@ -7,8 +7,8 @@
       <ul class="imageObject">
         <li *ngFor="let img of frames?.framesImge,let i=index" class="thumb-image">
           <div [style.background-image]="'url('+img?.show_image + ')'" (click)='frameClick(img.id)' class="img-frame"
-            [ngClass]="{'box-content': getFrameId(img)}">
-
+            >
+            <div [ngClass]="{'box-content': getFrameId(img)}"  class="box"></div>
           </div>
           <ul class="card">
             <li *ngIf='frames.lang==="hy"'>{{img.description_hy}}</li>

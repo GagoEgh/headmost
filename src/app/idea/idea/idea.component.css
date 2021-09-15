@@ -5,6 +5,8 @@
  flex-wrap: wrap;
  padding: 70px ;
  background-color: #d9d9d9;
+ max-width: 1560px;
+ margin: 0 auto;
 }
 
 .img-idea{
@@ -21,7 +23,8 @@
 .idea-info{
  display: flex;
  justify-content: space-between;
- background-color: white
+ background-color: #ffffff;
+ height: 70px;
 }
 
 .titles{
@@ -34,12 +37,11 @@
 
 .img-title{
  width: 190px;
- font-size: 16px;
+ font-size: 14px;
  font-weight: bold;
  color: #151414e0;
- padding: 5px ;
+ padding: 2px ;
  margin: 0;
- letter-spacing: 1px;
 }
 
 
@@ -49,7 +51,7 @@
  background-position: center;
  display: block;
  width: 54px;
- height: 58px;
+ /* height: 58px; */
  margin-top: 0px;
  border: 0px;
  cursor: pointer;  

@@ -61,19 +61,27 @@ export class AppComponent implements OnInit {
 
   styleLeft(){
     let left ={
+      'position': 'relative',
       'left':'0'
     }
 
-    if(window.innerWidth<=426 && this.frames.isSilki){
-      left['left'] = '200px';
-      return left;
-    }
     
     if(window.innerWidth<=786 && this.frames.isSilki){
       left['left'] = '380px';
+     
+      if(window.innerWidth<=430 && this.frames.isSilki){
+        left['left'] = '235px';
+        return left;
+      }
+
+      if(window.innerWidth<=375 && this.frames.isSilki){
+        left['left'] = '235px';
+        return left;
+      }
       return left;
     }
 
+    
    
     return left;
   }

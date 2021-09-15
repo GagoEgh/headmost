@@ -35,8 +35,9 @@
     </div>
     <app-order *ngIf='frames.isOrder'> </app-order>
     <div class="center">
-        <button *ngIf='frames.isOrder' class="create create-bottom" 
+        <button *ngIf='frames.isOrder' class="create-bottom makeAWord_3" 
         (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
-      <button class="btn-save" (click)='frames.myMagnitOrder()'
-        *ngIf='!frames.isOrder && !frames.isImg'>{{'_imgs._batn-save'|translate}}</button>>
+      <button class="makeAWord_3" (click)='frames.myMagnitOrder()'
+        *ngIf='!frames.isOrder && !frames.isImg'>{{'_imgs._batn-save'|translate}}</button>
     </div>
+<!-- btn-save  -->

@@ -49,79 +49,96 @@ export class CreateImgComponent extends FrameImag implements OnInit {
 
   buttonWrapTop() {
     let top = {
-      "top": '70px'
+      "top": '79.5px'
     }
 
     if (this.frames.isOrder && window.innerWidth <= 320 && this.frames.letterImges.length > 2) {
-      top["top"] = '20px';
+      top["top"] = '-10px';
       return top
     }
 
-    if (window.innerWidth <= 320 && (this.frames.letterImges.length > 0 && this.frames.letterImges.length <= 4)) {
+    if (window.innerWidth <= 320 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <= 4)) {
       top["top"] = '545px';
       return top
     }
 
-    if (this.frames.isOrder && window.innerWidth <= 376 && this.frames.letterImges.length > 2) {
+    if (this.frames.isOrder && window.innerWidth <= 376 && this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9) {
+      top["top"] = '264px';
+      return top
+    }
+
+    if (this.frames.isOrder && window.innerWidth <= 376 && this.frames.letterImges.length > 2 && this.frames.letterImges.length <5) {
       top["top"] = '20px';
       return top
     }
 
     if (window.innerWidth <= 376 && this.frames.letterImges.length > 4) {
-      top["top"] = '545px';
+      top["top"] = '562px';
       return top
     }
 
+    
+    if (this.frames.isOrder && window.innerWidth <= 426 && this.frames.letterImges.length > 4 && this.frames.letterImges.length <=9) {
+      top["top"] = '23px';
+      return top
+    }
 
-    if (this.frames.isOrder && window.innerWidth <= 426 && this.frames.letterImges.length > 2) {
-      top["top"] = '-165px';
+    if (this.frames.isOrder && window.innerWidth <= 426 && this.frames.letterImges.length > 2 && this.frames.letterImges.length <5) {
+      top["top"] = '-153px';
       return top
     }
 
     if (window.innerWidth <= 426 && this.frames.letterImges.length > 4) {
-      top["top"] = '415px';
+      top["top"] = '440px';
       return top
     }
 
     if (window.innerWidth <= 426 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length < 5)) {
-      top["top"] = '325px';
+      top["top"] = '350px';
       return top
     }
 
     if (this.frames.isOrder && window.innerWidth <= 768 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length <= 9)) {
-      top["top"] = '-280px';
+      top["top"] = '-301px';
       return top
     }
 
     if (window.innerWidth <= 768 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length < 5)) {
-      top["top"] = '85px';
+      top["top"] = '106px';
       return top
     }
 
     if (window.innerWidth <= 768 && this.frames.letterImges.length > 4) {
-      top["top"] = '335px';
+      top["top"] = '336px';
       return top
     }
 
     if (window.innerWidth <= 1025 && (this.frames.letterImges.length <= 4 && this.frames.letterImges.length > 2)) {
-      top["top"] = '270px';
+      top["top"] = '286px';
       return top
     }
 
-    if (window.innerWidth <= 1025 && this.frames.letterImges.length > 4) {
-      top["top"] = '110px';
+    if (window.innerWidth <= 1656 && this.frames.letterImges.length <= 4 && this.frames.letterImges.length>2) {
+      top["top"] = '111px';
+      return top
+    }
+
+    if ( this.frames.isOrder && window.innerWidth <= 1656 && this.frames.letterImges.length > 4) {
+      top["top"] = '95px';
       return top
     }
 
     if (window.innerWidth <= 1656 && this.frames.letterImges.length > 4) {
-      top["top"] = '120px';
+      top["top"] = '130px';
       return top
     }
+   
 
-    if (this.frames.isOrder && window.innerWidth <= 1656) {
-      top['top'] = '0';
+    if (this.frames.isOrder && window.innerWidth <= 1656 && this.frames.letterImges.length <= 4 && this.frames.letterImges.length>2) {
+      top["top"] = '42px';
       return top
     }
+  
     return top
   }
 

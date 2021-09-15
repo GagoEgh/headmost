@@ -72,16 +72,10 @@
 .imgColor{
  justify-content: flex-end;
 }
-   
-.create{
- outline: none;
- display: block;
- margin-left: 400px;
-}
- 
+
 .center{
  display: block;
- margin: 50px auto;
+ margin: 100px auto;
 }
 
 .create-bottom{
@@ -91,16 +85,18 @@
  z-index: 1;
 }
 
-.btn-save{
+.makeAWord_3{
+ position:static;
  outline: none;
- display: block;
  margin: 0 auto;
 }
 
 @media (max-width:768px){
+
     .create-bottom{
      position: absolute;
-     top:850px;   
+     top:850px; 
+     left: 35%;  
     }
        
 }

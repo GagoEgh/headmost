@@ -170,9 +170,13 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     }
 
 
-
     if ((window.innerWidth <= 1640 && window.innerWidth > 1024) && this.frames.isOrder) {
       height.height = '1100px'
+      return height
+    }
+
+    if ((window.innerWidth <= 1640 && window.innerWidth > 1024) && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length <= 9)) {
+      height.height = '650px'
       return height
     }
 

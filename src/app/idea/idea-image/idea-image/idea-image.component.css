@@ -1,11 +1,9 @@
-
 .conteiner{
  width: fit-content;
  display: flex;
  position: relative;
- left: 50%;
+ left: 7%;
  transform-origin: top; 
-   
 }
 
 .idea-image{
@@ -72,9 +70,18 @@
  outline: none;
 }
 
-@media (max-width:788px){
+@media (max-width:1024px){
     .conteiner{
-     top: 50px;
+     position: relative;
+     left: 9%;
+     transform-origin: top; 
+    }
+}
+
+@media (max-width:768px){
+    .conteiner{
+     position: relative;
+     left: 11%;
      height: 350px;
     }
 }

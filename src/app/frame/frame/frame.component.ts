@@ -125,7 +125,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     }
 
     if (this.frames.isOrder && window.innerWidth <= 426) {
-      height.height = '570px';
+      height.height = '650px';
       return height;
     }
 
@@ -145,26 +145,29 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
     }
 
-    if (window.innerWidth <= 816 && this.frames.letterImges.length === 4) {
-      height.height = '400px';
-      return height;
-    }
+  
 
-    if (window.innerWidth <= 816 && this.frames.letterImges.length === 3) {
-      height.height = '400px';
-      return height;
-    }
+    // if (window.innerWidth <= 816 && this.frames.letterImges.length === 3) {
+    //   height.height = '400px';
+    //   return height;
+    // }
 
     if (window.innerWidth <= 656 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length < 7)) {
       height.height = '400px';
       return height;
     }
 
-    if (this.frames.isOrder && window.innerWidth <= 768 && (this.frames.letterImges.length > 0 && this.frames.letterImges.length <= 9)) {
+    if (this.frames.isOrder && window.innerWidth <= 768 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <= 9)) {
       height.height = '600px';
       return height;
     }
 
+    if (window.innerWidth <= 768 && this.frames.letterImges.length > 2 && this.frames.letterImges.length <5) {
+      height.height = '400px';
+      return height;
+    }
+
+   
     if (this.frames.isOrder && window.innerWidth <= 1657) {
       height.height = '1100px';
       return height;

@@ -42,7 +42,7 @@ export class IdeaImageComponent implements OnInit {
 
   public setStyle() {
     let style = {
-      transform: "translate(-50%, -5%)" + "scale(" + this.scale + ")"
+      transform: "translate(-7%, -5%)" + "scale(" + this.scale + ")"
     }
 
     return style

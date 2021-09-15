@@ -24,34 +24,34 @@ export class FormFrameComponent extends FrameImag implements OnInit {
 
   buttonWrapTop() {
     let top = {
-      "top": '-5px'
+      "top": '45px'
     }
 
-    if (window.innerWidth <= 320) {
-      top["top"] = '390px';
+    if (window.innerWidth <= 321) {
+      top["top"] = '360px';
       return top;
     }
 
     if (window.innerWidth <= 375) {
-      top["top"] = '260px';
+      top["top"] = '310px';
       return top;
     }
 
 
     if (window.innerWidth <= 426) {
-      top["top"] = '450px';
+      top["top"] = '505px';
       return top;
 
     }
 
     if (window.innerWidth <= 768) {
-      top["top"] = '150px';
+      top["top"] = '205px';
       return top;
 
     }
 
     if (window.innerWidth <= 1024) {
-      top["top"] = '60px';
+      top["top"] = '114px';
       return top;
 
     }

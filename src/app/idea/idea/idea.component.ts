@@ -79,7 +79,6 @@ export class IdeaComponent implements OnInit {
   }
 
   addOrder(index: number) {
-
     let obj = {
       user: this.frames.userData.user,
       created_frame: this.ideaImages[index].id

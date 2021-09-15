@@ -2,7 +2,7 @@
  padding:20px;
  background-image: url('/assets/1x/bg8.jpg');
  position: relative;
- top:10px;
+ top:5px;
 }
 
 .catalog{
@@ -13,7 +13,6 @@
  padding: 0 90px;
  position: relative;
  left: 50%;
- top:20px;
 }
 
 .carusel{
@@ -41,24 +40,33 @@
  transition: 0.1s;
 }
 
+.box{
+ height: 37px;
+}
+
+.box:hover{
+ border: 2px solid gray;
+}
+
 .card {
  display: none;
  position: absolute;
  background-color: white;
- list-style: none;
  z-index: 1000;
+ list-style: none;
  border-radius: 10px;
  left: 0;
- top:0;
+ top:140%;
 }
 
 .imageObject li:hover .card{
- top: 140%;
+ /* top: 140%; */
+ z-index: 1000;
  display: block;
 }
 
 .card li{
- width: 380px;
+  width: 380px;
 }
 
 .backgrounds{

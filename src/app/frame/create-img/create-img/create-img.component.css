@@ -114,49 +114,76 @@
  position:relative;
 }
 
-.buttonWrap{
- position: relative;
- display: flex;
- width: 100%;
- transform-origin: top; 
-}
-
-.asside{
- height: 40px;
- width: 50%;
- margin-top: 40px;
-}
-
-.create{
- margin-top: -30px;
- outline: none;
- margin-left: 5px;
- cursor: pointer;
-}
-  
-.bg-fone{
- height: 22px;
- width: 190px;
- background-image: url('/assets/1x/bg8.jpg');
- border-radius: 7px;
- margin-top: -25px;
-}
-
 .create-bottom{
  position: absolute;
- left: 45%;
  z-index: 1;
 }
+
+
+.buttonWrap {
+  width: 100%;
+  position: relative;
+  z-index: 300;
+  height: 28px;
+  clear: both;
+}
  
+ 
+.buttonWrap table {
+  width: 100%;
+  height: 100%;
+}
+ 
+.buttonWrap table .aside {
+  height: 68px;
+  width: 50%;
+  background: url('/assets/1px/forButWrap .jpg') repeat-x bottom left;
+}
+ 
+.buttonWrap table .center div,.buttonWrap.withoutBg table .center div {
+  padding: 0 5px;
+  height: 38px !important;
+  position: relative;
+  background:url('/assets/1x/ordeerButtonAside_left_.png') bottom left no-repeat, url('/assets/1x/bg8.jpg');
+}
+ 
+.buttonWrap table .center div b, .buttonWrap.withoutBg table .center div b {
+  display: block;
+  width: 30px;
+  height: 35px;
+  position: absolute;
+  bottom: 0;
+  right: -1px;
+  z-index: 300;
+  background: url('/assets/1x/ordeerButtonAside_right_.png') bottom right no-repeat,url('/assets/1x/bg8.jpg');
+}
+ 
+.makeAWord_3 {
+  display: block;
+  height: 61px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background-color: transparent !important;
+  position: relative;
+  z-index: 320;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px #000;
+  text-align: center;
+  line-height: 60px;
+  background-image: url('/assets/1x/Botton.png');
+  width: 288px;
+  outline: none;
+  bottom: 30px;
+}
+ 
+.makeAWord_3:hover{
+  background-image: url('/assets/1x/tund-bot.png');
+}
 @media (max-width:768px){
-  
   .conteiner{
     margin-top: -50px;
-  }
-}
-
-@media (max-width:426px){
-  .bg-fone{
-    margin-left:-15px;
   }
 }

@@ -29,14 +29,22 @@
                 [style.background-image]="'url(' + frames.frame?.right_bottom_corner_image + ')'"></div>
         </div>
     </div>
+ 
 </div>
+
 <div class="buttonWrap" [ngStyle]="buttonWrapTop()">
-    <div class="asside"></div>
-    <div class="center">
-        <button type="submit" (click)='onSubmit()' class="create">
-            {{'_img-text-valid._create-word'|translate}}
-        </button>
-        <div class="bg-fone"></div>
-    </div>
-    <div class="asside"></div>
+    <table>
+        <tr>
+            <td class="aside"></td>
+            <td class="center">
+                <div>
+                    <b></b>
+                    <button type="submit" (click)='onSubmit()' class='makeAWord_3'>
+                        {{'_img-text-valid._create-word'|translate}}
+                    </button>
+                </div>
+            </td>
+            <td class="aside"></td>
+        </tr>
+    </table> 
 </div>

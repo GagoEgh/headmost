@@ -17,12 +17,10 @@
  justify-content: flex-end;
 }
 
-.create{
+.makeAWord_3 {
  outline: none;
- display: block;
- margin-left: -50px;
 }
-
+   
 .letter input{
  background: transparent;
  outline: none;
@@ -30,7 +28,7 @@
 
 input:focus::placeholder{
  opacity: 0;
-}
+} 
 
 .btn{
  position: relative;
@@ -39,9 +37,15 @@ input:focus::placeholder{
   
 .center{
  display: block;
- margin: 50px 45%;
+ margin: 50px 35%;
 }
 
+@media (max-width:1024px){
+    .center{
+     display: block;
+     margin: 150px 0 0 35%;
+    }
+}
 @media (max-width:769px){
     .center{
      margin-top: 150px;
