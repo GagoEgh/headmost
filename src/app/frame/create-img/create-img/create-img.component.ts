@@ -118,26 +118,27 @@ export class CreateImgComponent extends FrameImag implements OnInit {
       return top
     }
 
-    if (window.innerWidth <= 1656 && this.frames.letterImges.length <= 4 && this.frames.letterImges.length>2) {
-      top["top"] = '111px';
-      return top
-    }
-
-    if ( this.frames.isOrder && window.innerWidth <= 1656 && this.frames.letterImges.length > 4) {
+    if ( this.frames.isOrder && window.innerWidth <= 1440 && this.frames.letterImges.length > 4) {
       top["top"] = '95px';
       return top
     }
 
-    if (window.innerWidth <= 1656 && this.frames.letterImges.length > 4) {
-      top["top"] = '130px';
-      return top
-    }
-   
-
-    if (this.frames.isOrder && window.innerWidth <= 1656 && this.frames.letterImges.length <= 4 && this.frames.letterImges.length>2) {
+    if (this.frames.isOrder && window.innerWidth <= 1440 && this.frames.letterImges.length <= 4 && this.frames.letterImges.length>2) {
       top["top"] = '42px';
       return top
     }
+
+    if (window.innerWidth <= 1440 && this.frames.letterImges.length <= 4 && this.frames.letterImges.length>2) {
+      top["top"] = '111px';
+      return top
+    }
+
+    
+    if (window.innerWidth <= 1440 && this.frames.letterImges.length > 4) {
+      top["top"] = '130px';
+      return top
+    }
+
   
     return top
   }

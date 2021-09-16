@@ -96,7 +96,9 @@
         "_isEmail":"Email is not valid",
         "_isSize":"phone number is incorrect",
         "_imgErr": "You can not delete this image",
-        "_textErr":"should be only letters (number of letters 3-9)"
+        "_textErr":"should be only letters (number of letters 3-9)",
+        "_getPage":"log in to your page"
+       
     },
     "_about": {
         "_hello": "HELLO",

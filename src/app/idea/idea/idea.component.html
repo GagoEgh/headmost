@@ -1,3 +1,4 @@
+
 <article>
     <div class="main">
         <div class="img-idea" *ngFor='let img of ideaImages,let i = index'>
@@ -11,8 +12,10 @@
                     </p>
                     <p class="img-title" *ngIf='frames.lang==="en"'>{{img.created_frame_category_details.name_en}}
                     </p>
-                    <p class="img-title">{{img.title}}</p>
-                    <p class="img-title">{{img.price}}{{'_order._inform-img._price'|translate}}</p>
+                    <div>
+                        <p class="img-title">{{img.title }} </p>
+                        <p class="img-title"> {{ img.price}}{{'_order._inform-img._price'|translate}}</p>
+                    </div>
                 </div>
                 <div class="order" (click)="addOrder(i)"></div>
             </div>

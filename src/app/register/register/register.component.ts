@@ -100,7 +100,7 @@ export class RegisterComponent implements OnInit {
         this.frames.token = 'Token ' + el.token;
         localStorage.setItem('loginAutorization', this.frames.token);
         localStorage.setItem('user-date', JSON.stringify(this.frames.userData))
-        this.frames.spinner.hide();
+        //this.frames.spinner.hide();
         setTimeout(() => {
           modalRef.dismiss();
         }, 1500)

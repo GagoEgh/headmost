@@ -145,13 +145,6 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
     }
 
-  
-
-    // if (window.innerWidth <= 816 && this.frames.letterImges.length === 3) {
-    //   height.height = '400px';
-    //   return height;
-    // }
-
     if (window.innerWidth <= 656 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length < 7)) {
       height.height = '400px';
       return height;

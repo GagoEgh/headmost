@@ -5,7 +5,7 @@
  flex-wrap: wrap;
  padding: 70px ;
  background-color: #d9d9d9;
- max-width: 1560px;
+ /* max-width: 1560px; */
  margin: 0 auto;
 }
 
@@ -24,11 +24,19 @@
  display: flex;
  justify-content: space-between;
  background-color: #ffffff;
- height: 70px;
+ /* height: 70px; */
 }
 
 .titles{
  cursor: pointer;
+}
+
+.titles div{
+ height: 30px;
+}
+
+.titles div .img-title{
+ display: inline;
 }
 
 .titles:hover .img-title{
@@ -37,10 +45,10 @@
 
 .img-title{
  width: 190px;
- font-size: 14px;
+ font-size: 10px;
  font-weight: bold;
  color: #151414e0;
- padding: 2px ;
+ /* padding: 1px ; */
  margin: 0;
 }
 

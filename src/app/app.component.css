@@ -86,6 +86,9 @@
  position: relative;
  list-style: none;
 }
+.parent{
+    top:3px
+}
 
 .parent-1{
  display: inline-block;
@@ -181,6 +184,9 @@
  display: flex;
  justify-content: space-around;
  box-shadow: 0 13px 10px rgb(41 43 42 / 37%) inset;
+/* background-color: rgba(240, 237, 237,0.9); 
+  background-color: #d9d9d9c7 0.9;*/
+
 }
 
 .left{
@@ -210,6 +216,13 @@
 
 .material-icons-outlined{
  display: none;
+}
+
+
+@media (min-width:1441px ) and (max-width:2560px ){
+    .parent{
+        top:2px
+    }
 }
 
 @media (max-width:1025px){

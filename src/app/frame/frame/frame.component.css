@@ -12,6 +12,7 @@
  width: fit-content;
  padding: 0 90px;
  position: relative;
+ z-index: 9;
  left: 50%;
 }
 

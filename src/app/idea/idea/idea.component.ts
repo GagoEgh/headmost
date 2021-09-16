@@ -1,10 +1,11 @@
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { MessageComponent } from '../message/message.component';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { ErrMsgComponent } from '../err-msg/err-msg.component';
 
 @Component({
   selector: 'app-idea',
@@ -33,7 +34,7 @@ export class IdeaComponent implements OnInit {
 
   ngOnInit(): void {
     this.ideaImages = []
-    //this.onResize();
+    console.log('localStorage =>',localStorage.getItem('loginAutorization'));
     this.offset = 0;
     window.scrollTo(0, 0);
     if (window.innerWidth <= 772) {
@@ -70,7 +71,7 @@ export class IdeaComponent implements OnInit {
     this.frames.frameCategoryImg(this.category, 1, this.offset).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
       this.offset += 10;
       this.ideaImages.push(...el.results);
-      this.frames.spinner.hide();
+     this.frames.spinner.hide();
     })
   }
 
@@ -83,11 +84,18 @@ export class IdeaComponent implements OnInit {
       user: this.frames.userData.user,
       created_frame: this.ideaImages[index].id
     }
-
-    this.frames.orderCard(obj).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
-      this.frames.orderList.push(el);
-      this.open()
-    })
+    if(localStorage.getItem('loginAutorization')){
+      this.frames.orderCard(obj).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
+        this.frames.orderList.push(el);
+        this.open()
+      })
+    }else{
+      const ref = this.modalService.open(ErrMsgComponent)
+      setTimeout(()=>{
+        ref.dismiss()
+      },1000)
+    }
+   
   }
 
   imgInfo(img: any) {
