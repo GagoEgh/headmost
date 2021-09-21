@@ -4,6 +4,7 @@ import { SharedModule } from '../shared/shared.modult';
 import { UserComponent } from './user/user.component';
 import { NgModule} from '@angular/core';
 import { UserGuard } from './userGuard';
+import { DataCheckComponent } from './data-check/data-check.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    UserComponent
+    UserComponent,
+    DataCheckComponent
   ],
   imports: [
     InfiniteScrollModule,

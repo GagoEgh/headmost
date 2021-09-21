@@ -1,5 +1,5 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.3)" size = "medium" color = "#fff" type = "ball-spin">
-  <p style="color: white" > Loading... </p>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
+  <p style="color: white"> Loading... </p>
 </ngx-spinner>
 <div class="modal-header">
   <h1>{{'_menu._user._exit'|translate}}</h1>
@@ -14,13 +14,14 @@
         <nz-form-label nzRequired nzFor="frstName">{{'_order._user-data._frstName'|translate}}</nz-form-label>
       </div>
       <nz-form-item>
-        <nz-form-control [nzErrorTip]='frstEr' nzHasFeedback >
+        <nz-form-control [nzErrorTip]='frstEr' nzHasFeedback>
           <input nz-input formControlName="frstName" id="frstName" trim />
         </nz-form-control>
       </nz-form-item>
       <ng-template #frstEr>
         <p *ngIf="erroreName('frstName')">{{erroreStr}} </p>
       </ng-template>
+
       <div>
         <nz-form-label nzRequired nzFor="lastName">{{'_order._user-data._lastName'|translate}}</nz-form-label>
       </div>
@@ -32,6 +33,19 @@
       <ng-template #lastEr>
         <p *ngIf="erroreName('lastName')">{{erroreStr}} </p>
       </ng-template>
+
+      <div>
+        <nz-form-label nzRequired nzFor="phoneNumber">{{'_order._user-data._phoneNumber'|translate}}</nz-form-label>
+      </div>
+      <nz-form-item>
+        <nz-form-control [nzErrorTip]="phone" nzHasFeedback>
+          <input nz-input formControlName="phoneNumber" type='tel' id="phoneNumber" trim mask='(000)00-00-00' />
+        </nz-form-control>
+      </nz-form-item>
+      <ng-template #phone>
+        <p *ngIf="erroreName('phoneNumber')">{{erroreStr}} </p>
+      </ng-template>
+
       <div>
         <nz-form-label nzRequired nzFor="email">{{'_order._user-data._email'|translate}}</nz-form-label>
       </div>
@@ -43,7 +57,10 @@
       <ng-template #email>
         <p *ngIf="erroreName('email')">{{erroreStr}} </p>
       </ng-template>
-      <p *ngIf = 'emailMassage'[style.color]='"red"'>{{emailMassage}}</p>
+      <p *ngIf='emailMassage' [style.color]='"red"'>{{emailMassage}}</p>
+    </div>
+
+    <div class="col">
       <div>
         <nz-form-label nzRequired nzFor="pas">{{'_order._user-data._password'|translate}}</nz-form-label>
       </div>
@@ -55,26 +72,29 @@
       <ng-template #pas>
         <p *ngIf="erroreName('pas')">{{erroreStr}} </p>
       </ng-template>
-    </div>
-    <div class="col">
+
       <div>
-        <nz-form-label nzRequired nzFor="phoneNumber">{{'_order._user-data._phoneNumber'|translate}}</nz-form-label>
+        <nz-form-label nzRequired nzFor="pasRev">{{'_order._user-data._passwordReset'|translate}}</nz-form-label>
       </div>
       <nz-form-item>
-        <nz-form-control [nzErrorTip]="phone" nzHasFeedback>
-          <input nz-input formControlName="phoneNumber" type ='tel' id="phoneNumber" trim mask='(000)00-00-00' />
+        <nz-form-control [nzErrorTip]="pasRev" nzHasFeedback>
+          <input nz-input formControlName="pasRev" id="pasRev" type="password" trim />
         </nz-form-control>
       </nz-form-item>
-      <ng-template #phone>
-        <p *ngIf="erroreName('phoneNumber')">{{erroreStr}} </p>
+      <ng-template #pasRev>
+        <p *ngIf="erroreName('pasRev')">{{erroreStr}} </p>
       </ng-template>
+
+
       <div class="region">
-        <nz-form-label  nzRequired>{{'_order._user-data._country'|translate}}</nz-form-label>
-        <nz-form-control  [nzErrorTip]="country" nzHasFeedback>
-          <nz-select  nzAllowClear nzPlaceHolder="COUNTRY" nzShowSearch formControlName='country' >
+        <nz-form-label nzRequired>{{'_order._user-data._country'|translate}}</nz-form-label>
+        <nz-form-control [nzErrorTip]="country" nzHasFeedback>
+          <nz-select nzAllowClear nzPlaceHolder="COUNTRY" nzShowSearch formControlName='country'>
             <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country["name_"+frames.lang]'>
-              <nz-option *ngFor='let regions of country.country_regions' [nzLabel]='regions["name_"+frames.lang]' nzDisabled=true>
-                <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id' [nzLabel]='city["name_"+frames.lang]'>
+              <nz-option *ngFor='let regions of country.country_regions' [nzLabel]='regions["name_"+frames.lang]'
+                nzDisabled=true>
+                <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id'
+                  [nzLabel]='city["name_"+frames.lang]'>
                 </nz-option>
               </nz-option>
             </nz-option-group>
@@ -84,22 +104,25 @@
       <ng-template #country>
         <p *ngIf="erroreName('country')" class="erroreCountry">{{erroreStr}}</p>
       </ng-template>
-      <nz-form-label  nzRequired>{{'_order._user-data._brtDay'|translate}}</nz-form-label>
-      <nz-form-item>
-        <nz-form-control [nzErrorTip]="date" nzHasFeedback>
-          <mat-form-field appearance="fill">
-            <mat-label>{{'_order._user-data._date'|translate}}</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName='date'>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </nz-form-control>
-      </nz-form-item>
-      <ng-template #date>
-        <p *ngIf="erroreName('date')">{{erroreStr}} </p>
-      </ng-template>
+      <div class="brt-day">
+        <nz-form-label nzRequired>{{'_order._user-data._brtDay'|translate}}</nz-form-label>
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="date" nzHasFeedback>
+            <mat-form-field appearance="fill">
+              <mat-label>{{'_order._user-data._date'|translate}}</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName='date'>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </nz-form-control>
+        </nz-form-item>
+        <ng-template #date>
+          <p *ngIf="erroreName('date')">{{erroreStr}} </p>
+        </ng-template>
+      </div>
     </div>
-    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">{{'_menu._user._save'|translate}}</button>
+    <button nz-button class="login-form-button login-form-margin"
+      [nzType]="'primary'">{{'_menu._user._save'|translate}}</button>
   </form>
 </div>
 <div class="modal-footer">

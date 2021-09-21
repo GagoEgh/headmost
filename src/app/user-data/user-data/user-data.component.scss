@@ -8,13 +8,6 @@
  box-shadow: 3px 2px 22px 0 rgb(87 87 87);
 }
 
-.succes{
- display: block;
- position: relative;
- top: 90px;
- right: 280px
-}
-
 .region{
   margin-bottom: 60px;
 }
@@ -23,12 +16,20 @@
  width: 280px;
 }
   
-.ant-btn-primary {
- width: 50% !important;
- margin: 40px auto;
+.btn-wrap{
+  position: relative;
+  left: -150px;
 }
 
-::ng-deep.anticon.ng-tns-c132-6.ng-star-inserted.anticon-check-circle-fill{
+::ng-deep.ant-btn-primary {
+ width: 50% !important;
+ margin-left: 90px;
+}
+
+
+
+// .ng-tns-c132-6
+::ng-deep.anticon.ng-star-inserted.anticon-check-circle-fill{
  color: #52c41a !important;
 }
 
@@ -38,7 +39,12 @@
 
 ::ng-deep.mat-form-field-appearance-fill .mat-form-field-infix {
   width: 220px;
- }
+}
+
+.brtDay{
+  margin-top: -40px !important;
+}
+
 :host::ng-deep{
     @media (max-width:760px){
         .mat-form-field, .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector,  .ant-input, .ant-input-group {
@@ -49,4 +55,11 @@
         }
         
     }
+}
+
+@media (max-width:1441px){
+  .btn-wrap{
+    position: relative;
+    left: -150px;
+  }
 }

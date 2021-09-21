@@ -9,7 +9,7 @@
         "_aboutUs":"ABOUT US",
         "_user": {
             "_updateOk":"The changes were successful",
-            "_save":"SAVE",
+            "_save":"REGISTER",
             "_exit":"SIGN IN",
             "_profil": "PROFILE",
             "_images": "MY DRAWINGS",
@@ -55,13 +55,14 @@
             "_phoneNumber": "PH. NUMBER",
             "_country": "CITY",
             "_addres": "ADDRESS",
-            "_shipping": "WHERE TO DELIVER?",
+            "_shipping": "TO DELIVER?",
             "_addresPost": "MAIL ADDRESS",
             "_comment": "COMMENT",
             "sale": "SALE",
             "_btnOrder": "TO ORDER",
             "_update":"UPDATE",
             "_password":"PASSWORD",
+            "_passwordReset":"PASSWORD RESET",
             "_logIn":"LOG IN",
             "_register":"REGISTER",
             "_date":"Choose a date",
@@ -97,8 +98,8 @@
         "_isSize":"phone number is incorrect",
         "_imgErr": "You can not delete this image",
         "_textErr":"should be only letters (number of letters 3-9)",
-        "_getPage":"log in to your page"
-       
+        "_getPage":"log in to your page",
+        "_checkPass":"you filled in the field incorrectly"
     },
     "_about": {
         "_hello": "HELLO",

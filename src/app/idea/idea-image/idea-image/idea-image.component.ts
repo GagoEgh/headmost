@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ErrMsgComponent } from '../../err-msg/err-msg.component';
+import { LoginComponent } from 'src/app/register/login/login.component';
 
 
 @Component({
@@ -70,10 +71,7 @@ export class IdeaImageComponent implements OnInit {
         this.frames.spinner.hide()
       })
     }else{
-      const modalRef = this.modalService.open(ErrMsgComponent);
-      setTimeout(() => {
-        modalRef.dismiss()
-      }, 1000)
+      const modalRef = this.modalService.open(LoginComponent);
     }
   }
 

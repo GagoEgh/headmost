@@ -1,9 +1,14 @@
+
+.rout{
+ min-height: 370px;
+}
+
 .conteiner{
  min-width: 100%;
  display: flex;
  justify-content: space-between;
  background-color: rgba(255, 255, 255, 0.849);
- box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
+ box-shadow: 0 2px 2px rgb(0 0 0 / 35%);
  height: 50px;
 }
 
@@ -86,6 +91,7 @@
  position: relative;
  list-style: none;
 }
+
 .parent{
     top:3px
 }
@@ -106,22 +112,25 @@
 .user-data{
  position: absolute;
  left: -65%;
- top:25px;
+ top:30px;
  list-style: none;
  color: rgb(78, 77, 77);
  background-color: white;
  z-index: 3;
  box-shadow: 1px 2px 4px 2px grey;
  display: none;
+ width: 150px;
  transition: 0.5s;
 }
 
 .activeHover{
+ display: block;
+ position: relative;
  text-decoration: none;
  color: rgb(54, 54, 54);
- font-weight: bold;
- font-size: 18px;
+ font-size: 14px; 
  padding: 5px;
+ top: -5px;
 }
 
 .activeHover:hover ul{
@@ -129,12 +138,11 @@
 }
 
 .list{
- letter-spacing: 1px;
  line-height: 22px;
  border-bottom: 1px solid #f5e9e9;
  margin-left: -35px;
  padding: 5px;
- font-size: 14px;
+ font-size: 12px;
  color:black;
 }
 
@@ -183,10 +191,7 @@
  padding-top: 100px;
  display: flex;
  justify-content: space-around;
- box-shadow: 0 13px 10px rgb(41 43 42 / 37%) inset;
-/* background-color: rgba(240, 237, 237,0.9); 
-  background-color: #d9d9d9c7 0.9;*/
-
+ box-shadow: 0 2px 2px rgb(41 43 42 / 37%) inset;
 }
 
 .left{
@@ -225,11 +230,26 @@
     }
 }
 
+@media (max-width:1441px){
+    .rout{
+     min-height: 520px;
+    }
+}
+
 @media (max-width:1025px){
     .order{
      left:95%;
     }
+
+    .rout{
+     min-height: 250px;
+    }
+
+    .footer-nav{
+        width: 50%;
+    }
 }
+
 @media (max-width:980px){
     .footerWrap{
      display: flex;
@@ -247,6 +267,11 @@
      display: flex;
      justify-content: space-between;
      height: fit-content;
+    }
+
+    .rout{
+     /* max-height: 450px;
+     min-height: 250px; */
     }
 
     .silki {

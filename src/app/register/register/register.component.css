@@ -55,13 +55,10 @@
     color: #ff4d4f !important;
 }
 
-/* .anticon.ng-tns-c132-40 */
-::ng-deep.anticon-close-circle-fill.ng-star-inserted{
-  color: #ff4d4f !important;
+::ng-deep.ant-form-item-control-input-content{
+  max-width:75% !important ;
 }
 
-/* .anticon.ng-tns-c132-26 */
-::ng-deep.anticon-close-circle-fill.ng-star-inserted{
-  color: #ff4d4f !important;
+.brt-day{
+  margin-top: -30px;
 }
-

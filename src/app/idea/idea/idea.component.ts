@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { ErrMsgComponent } from '../err-msg/err-msg.component';
+import { LoginComponent } from 'src/app/register/login/login.component';
 
 @Component({
   selector: 'app-idea',
@@ -90,10 +90,7 @@ export class IdeaComponent implements OnInit {
         this.open()
       })
     }else{
-      const ref = this.modalService.open(ErrMsgComponent)
-      setTimeout(()=>{
-        ref.dismiss()
-      },1000)
+      const ref = this.modalService.open(LoginComponent)
     }
    
   }

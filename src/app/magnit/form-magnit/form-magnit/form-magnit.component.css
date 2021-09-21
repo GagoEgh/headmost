@@ -40,12 +40,15 @@ input:focus::placeholder{
  margin: 50px 35%;
 }
 
+
+
 @media (max-width:1024px){
     .center{
      display: block;
      margin: 150px 0 0 35%;
     }
 }
+
 @media (max-width:769px){
     .center{
      margin-top: 150px;

@@ -63,28 +63,32 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     }
 
     if (this.frames.isOrder && window.innerWidth <= 376 && this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9) {
-      top["top"] = '264px';
+      top["top"] = '-164px';
       return top
     }
 
     if (this.frames.isOrder && window.innerWidth <= 376 && this.frames.letterImges.length > 2 && this.frames.letterImges.length <5) {
-      top["top"] = '20px';
+      top["top"] = '-240px';
       return top
     }
 
     if (window.innerWidth <= 376 && this.frames.letterImges.length > 4) {
-      top["top"] = '562px';
+      top["top"] = '400px';
       return top
     }
 
-    
+    if (window.innerWidth <= 376 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length < 5)) {
+      top["top"] = '220px';
+      return top
+    }
+
     if (this.frames.isOrder && window.innerWidth <= 426 && this.frames.letterImges.length > 4 && this.frames.letterImges.length <=9) {
       top["top"] = '23px';
       return top
     }
 
     if (this.frames.isOrder && window.innerWidth <= 426 && this.frames.letterImges.length > 2 && this.frames.letterImges.length <5) {
-      top["top"] = '-153px';
+      top["top"] = '31px';
       return top
     }
 
@@ -99,7 +103,7 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     }
 
     if (this.frames.isOrder && window.innerWidth <= 768 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length <= 9)) {
-      top["top"] = '-301px';
+      top["top"] = '-401px';
       return top
     }
 
@@ -113,18 +117,28 @@ export class CreateImgComponent extends FrameImag implements OnInit {
       return top
     }
 
+    if ( this.frames.isOrder && window.innerWidth <= 1025 && this.frames.letterImges.length > 4) {
+      top["top"] = '183px';
+      return top
+    }
+
+    if (window.innerWidth <= 1025 && this.frames.letterImges.length > 4) {
+      top["top"] = '130px';
+      return top
+    }
+
     if (window.innerWidth <= 1025 && (this.frames.letterImges.length <= 4 && this.frames.letterImges.length > 2)) {
       top["top"] = '286px';
       return top
     }
 
     if ( this.frames.isOrder && window.innerWidth <= 1440 && this.frames.letterImges.length > 4) {
-      top["top"] = '95px';
+      top["top"] = '57px';
       return top
     }
 
     if (this.frames.isOrder && window.innerWidth <= 1440 && this.frames.letterImges.length <= 4 && this.frames.letterImges.length>2) {
-      top["top"] = '42px';
+      top["top"] = '0';
       return top
     }
 
@@ -135,11 +149,9 @@ export class CreateImgComponent extends FrameImag implements OnInit {
 
     
     if (window.innerWidth <= 1440 && this.frames.letterImges.length > 4) {
-      top["top"] = '130px';
+      top["top"] = '131px';
       return top
     }
-
-  
     return top
   }
 

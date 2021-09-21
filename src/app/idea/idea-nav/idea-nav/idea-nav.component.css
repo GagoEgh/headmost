@@ -46,6 +46,9 @@
  display: none;
 }
 
+.active{
+ color:rgb(240, 54, 54);
+}
 
 @media (max-width:769px){
     .conteiner{

@@ -27,13 +27,13 @@ export class FormFrameComponent extends FrameImag implements OnInit {
       "top": '45px'
     }
 
-    if (window.innerWidth <= 321) {
-      top["top"] = '360px';
+    if (window.innerWidth <= 356) {
+      top["top"] = '220px';
       return top;
     }
 
     if (window.innerWidth <= 375) {
-      top["top"] = '310px';
+      top["top"] = '190px';
       return top;
     }
 

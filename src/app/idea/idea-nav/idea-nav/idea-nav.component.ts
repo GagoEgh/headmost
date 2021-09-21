@@ -13,6 +13,7 @@ export class IdeaNavComponent implements OnInit {
   frameIdeas: any[] = [];
   public _unsubscribe$ = new Subject();
   offset = 0;
+  id=0;
   constructor(public frames:FramesServService,
     private _router:Router) { }
 
@@ -23,11 +24,14 @@ export class IdeaNavComponent implements OnInit {
     })
   }
 
+  
   ideaGroup(obj:any = undefined){
     if(obj){
-      this._router.navigate(['idea/idea-imags'],{queryParams:{category:obj.id}})
+      this._router.navigate(['idea/idea-imags'],{queryParams:{category:obj.id}});
+      this.id = obj.id
     }else{
-      this._router.navigate(['idea/idea-imags'],{queryParams:{category:''}})
+      this._router.navigate(['idea/idea-imags'],{queryParams:{category:''}});
+      this.id = 0;
     }
     
   }

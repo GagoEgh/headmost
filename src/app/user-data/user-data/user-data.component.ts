@@ -5,9 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-
-
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DataCheckComponent } from '../data-check/data-check.component';
 
 
 @Component({
@@ -20,10 +19,12 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   public _unsubscribe$ = new Subject();
   erroreStr: string = '';
   emailMassage = '';
-  updateOk = '';
-  constructor(private valid: ValidationServService, private fb: FormBuilder, public _translate: TranslateService, public frames: FramesServService) { }
+
+  constructor(private valid: ValidationServService, private fb: FormBuilder,public modalService: NgbModal,
+     public _translate: TranslateService, public frames: FramesServService) { }
   ngAfterViewChecked(): void {
-    this._translate.use(this.frames.lang)
+    this._translate.use(this.frames.lang);
+
   }
 
   ngOnInit(): void {
@@ -38,6 +39,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
       email: [null, [Validators.required, this.valid.emailValid]],
       country: [null, [Validators.required]],
       date: [this.frames.userData.date_of_birth, [Validators.required]],
+      pas: [null, [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -53,6 +55,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     })
     return this.erroreStr;
   }
+
 
   birt(formName: string) {
     const date = new Date(this.validateForm.get(formName)?.value);
@@ -83,8 +86,11 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
 
     if (this.validateForm.valid) {
       this.frames.editUser(edit).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
-        this.updateOk = 'Փոփոխությունները հաջողությամբ կատարվել են';
-        localStorage.setItem('user-date', JSON.stringify(this.frames.userData))
+        localStorage.setItem('user-date', JSON.stringify(this.frames.userData));
+        const modalRef = this.modalService.open(DataCheckComponent);
+        setTimeout(()=>{
+          modalRef.dismiss()
+        },1000)
       })
     }
   }

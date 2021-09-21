@@ -155,27 +155,45 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     }
 
     if (window.innerWidth <= 768 && this.frames.isOrder) {
-      height.height = '700px'
+      height.height = '750px'
       return height
     }
 
-    if (window.innerWidth <= 1024 && this.frames.isOrder) {
-      height.height = '900px'
-      return height
-    }
-
-    if (window.innerWidth <= 1025 && window.innerWidth > 425) {
-      height.height = '700px';
-      return height;
-    }
-
-
-    if ((window.innerWidth <= 1640 && window.innerWidth > 1024) && this.frames.isOrder) {
+    if (window.innerWidth <= 1024 && this.frames.isOrder && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
       height.height = '1100px'
       return height
     }
 
-    if ((window.innerWidth <= 1640 && window.innerWidth > 1024) && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length <= 9)) {
+    if (window.innerWidth <= 1024 && this.frames.isOrder && (this.frames.letterImges.length > 2 && this.frames.letterImges.length < 5)) {
+      height.height = '900px'
+      return height
+    }
+
+    if (window.innerWidth <= 1025) {
+      height.height = '550px';
+      return height;
+    }
+
+
+    if (window.innerWidth <= 1440 && this.frames.isOrder && (this.frames.letterImges.length > 2 && this.frames.letterImges.length < 5)) {
+      height.height = '1250px'
+      return height
+    }
+
+    if (window.innerWidth <= 1440 && this.frames.isOrder && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
+      height.height = '1050px'
+      return height
+    }
+
+
+    if ((window.innerWidth <= 1640 && window.innerWidth > 1441) && this.frames.isOrder) {
+      height.height = '1100px'
+      return height
+    }
+
+
+
+    if ((window.innerWidth <= 1640 && window.innerWidth > 1441) && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length <= 9)) {
       height.height = '650px'
       return height
     }
@@ -207,7 +225,7 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     this.frames.letterImges = [];
     this.frames.isOrder = false;
     this.rout.navigate(['magnit/form-magnit']);
-  
+
   }
 
 }

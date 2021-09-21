@@ -91,14 +91,24 @@
  margin: 0 auto;
 }
 
+@media (max-width:1025px){
+    .center{
+        display: block;
+        margin-top:170px;
+    }
+       
+}
+
+
 @media (max-width:768px){
+   
 
     .create-bottom{
      position: absolute;
-     top:850px; 
+     top:970px; 
      left: 35%;  
     }
-       
+        
 }
 
 @media (max-width:426px){

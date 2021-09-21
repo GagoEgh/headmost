@@ -1,4 +1,4 @@
-<div class="wrap" #wrap [ngStyle]="frames.isTop?setStyle(-18):setStyle(5)"
+<div class="wrap" #wrap [ngStyle]="frames.isTop?setStyle(8):setStyle(0)"
   *ngIf='this.frames.orderList.length,else noText'>
   <div class="user-data">
     <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
@@ -105,14 +105,14 @@
     <div class="order">
       <h2 class="title">{{title}}</h2>
       <div class="data" *ngFor='let list of frames.orderList'>
-        <p><span>{{list?.created_frame_details?.word?.length }} {{ _imgLength}}</span>
-          <span *ngIf='frames.lang==="hy"'>{{list?.created_frame_details?.frame_details?.name_hy }} </span>
-          <span *ngIf='frames.lang==="en"'>{{list?.created_frame_details?.frame_details?.name_en }} </span>
-          <span *ngIf='frames.lang==="ru"'>{{list?.created_frame_details?.frame_details?.name_ru }} </span>
+        <p><span>{{list?.created_frame_details?.word?.length }} {{ _imgLength}} </span>
+          <span *ngIf='frames.lang==="hy"'> {{ list?.created_frame_details?.frame_details?.name_hy }} </span>
+          <span *ngIf='frames.lang==="en"'> {{ list?.created_frame_details?.frame_details?.name_en }} </span>
+          <span *ngIf='frames.lang==="ru"'> {{ list?.created_frame_details?.frame_details?.name_ru }} </span>
         </p>
-        <p class="smoll" *ngIf="list?.created_frame_details?.frame_details?.price">{{
-          list?.created_frame_details?.frame_details?.price }} {{ _letterSum}}</p>
-        <p>{{list?.created_frame_details?.price }} {{ _price}}</p>
+        <p class="smoll" *ngIf="list?.created_frame_details?.frame_details?.price"> {{
+          list?.created_frame_details?.frame_details?.price }} {{ _letterSum}} </p>
+        <p> {{ list?.created_frame_details?.price }} {{ _price}}</p>
         <span class="symbol" (click)='deleteDate(list)'>&#10005;</span>
       </div>
       <p class="sum">{{_addSum }} {{ frames?.sum }} {{ _price}}</p>

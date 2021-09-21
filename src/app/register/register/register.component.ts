@@ -2,7 +2,7 @@ import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { OkRegisterComponent } from '../ok-register/ok-register.component';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +15,7 @@ import { Subject } from 'rxjs';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit{
   validateForm: FormGroup = new FormGroup({});
   public _subscribe$ = new Subject();
   selectedValue: any[] = [];
@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit {
       lastName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
       phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
       pas: [null, [Validators.required, Validators.minLength(6)]],
+      pasRev: [null, [Validators.required, Validators.minLength(6),this.passwordReview.bind(this)]],
       email: [null, [Validators.required, this.valid.emailValid]],
       country: [null, [Validators.required]],
       date: [null, [Validators.required]],
@@ -49,10 +50,23 @@ export class RegisterComponent implements OnInit {
       if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res._userNameChar;
       if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res._isEmail;
       if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res._isSize;
+       if (this.validateForm.get(formName)?.hasError('passwordReview')) this.erroreStr = res._checkPass
     })
     return this.erroreStr;
   }
 
+  checkPass = this.validateForm.get('pasRev');
+
+  passwordReview(control: FormControl) {
+
+    if ( control.value && (control.value !== this.validateForm.get('pas')?.value)) {
+      return {
+        passwordReview: true
+      }
+
+    }
+    return null
+  }
 
   birt(formName: string) {
     const date = new Date(this.validateForm.get(formName)?.value);
@@ -63,6 +77,7 @@ export class RegisterComponent implements OnInit {
     return date_of_birth;
   }
   submitForm(): void {
+
 
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
@@ -76,7 +91,7 @@ export class RegisterComponent implements OnInit {
       last_name: this.validateForm.get('lastName')?.value,
       date_of_birth: date,
       city: this.validateForm.get('country')?.value,
-      password: this.validateForm.get('pas')?.value,
+      password: this.validateForm.get('pasRev')?.value,
       email: this.validateForm.get('email')?.value,
       comment: '',
       image: ''

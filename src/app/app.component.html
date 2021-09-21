@@ -1,6 +1,7 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
-  <p style="color: white"> Loading... </p>
+  <p style="color: #ffffff"> Loading... </p>
 </ngx-spinner>
+
 <div class="conteiner">
   <div class="logo"></div>
   <span class="material-icons-outlined" (click)='frames.isSilki = !frames.isSilki' [ngStyle]="styleLeft()">
@@ -25,14 +26,13 @@
     <li>
       <a class="frame" routerLink='/about' routerLinkActive='active'>{{'_menu._aboutUs'|translate}}</a>
     </li>
-
     <li *ngIf='frames.userReg, else log'>
       <a class="frame" (click)="open()">{{'_menu._user._exit'|translate}}</a>
     </li>
     <ng-template #log>
       <ul>
         <li class="parent-1">
-          <a class="activeHover frame" routerLinkActive='active'> {{frames.userData.user_details.first_name}}
+          <a class="activeHover frame" routerLinkActive='active'> {{frames.userData.user_details.first_name | uppercase}}
             <ul class="user-data">
               <li class="list"><a routerLink='/user/profil'>{{'_menu._user._profil'|translate}}</a></li>
               <li class="list"><a routerLink='/user/imags'>{{'_menu._user._images'|translate}}</a></li>
@@ -47,7 +47,8 @@
       <ul class="flags">
         <li class="flag" [style.background-image]="'url(../assets/1x/flag/armenia.png)'" (click)="changeLeng('hy')">
         </li>
-        <li class="flag" [style.background-image]="'url(../assets/1x/flag/russia.png)'" (click)="changeLeng('ru')"></li>
+        <li class="flag" [style.background-image]="'url(../assets/1x/flag/russia.png)'" (click)="changeLeng('ru')">
+        </li>
         <li class="flag" [style.background-image]="'url(../assets/1x/flag/united-kingdom.png)'"
           (click)="changeLeng('en')">
         </li>
@@ -59,7 +60,9 @@
   <img src='../assets/1x/orderIconBlack.png'>
   <span [style.color]="'red'">{{frames.orderList?.length}}</span>
 </a>
-<router-outlet></router-outlet>
+<div class="rout" >
+  <router-outlet></router-outlet>
+</div>
 
 <div class="footerWrap">
   <div class="left">
