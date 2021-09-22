@@ -5,7 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from "@ngx-translate/core";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OkoderComponent } from '../okoder/okoder.component';
 
 @Component({
   selector: 'app-order',
@@ -45,6 +46,11 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   @ViewChild("wrap", { static: false }) wrap: ElementRef | undefined;
 
+  constructor(public frames: FramesServService, private fb: FormBuilder, public modalService: NgbModal,
+    public _translate: TranslateService, public valid: ValidationServService) {
+
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.width = this.wrap?.nativeElement.clientWidth | 1;
@@ -67,10 +73,6 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   }
 
-  constructor(public frames: FramesServService, private fb: FormBuilder,
-    public _translate: TranslateService, public valid: ValidationServService) {
-
-  }
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
@@ -180,16 +182,29 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       postal_code: this.validateForm.get('postal')?.value,
     }
 
-    if (this.validateForm.valid && this.count != 1) {
-      this.frames.userOrder(order).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
-        this.count++;
-        this.frames.isdisible = true
+    // if (this.validateForm.valid && this.count != 1) {
+    //   this.frames.userOrder(order).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
+    //     this.count++;
+    //     this.frames.isdisible = true
 
-        window.open('https://www.youtube.com/', '_self');
+    //   //  window.open('https://www.youtube.com/', '_self');
 
-      })
+    //   })
+
+    // }
+    if (this.validateForm.valid) {
+      const modalRef = this.modalService.open(OkoderComponent);
+      modalRef.componentInstance.validateForm = this.validateForm;
+      modalRef.componentInstance.count = this.count;
+      modalRef.componentInstance.order = order
+      // setTimeout(()=>{
+      //   modalRef.dismiss()
+      // },1000)
 
     }
+
+
+
   }
 
   salePost(event: any) {

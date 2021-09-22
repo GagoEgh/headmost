@@ -40,6 +40,19 @@ export class CreateImgComponent extends FrameImag implements OnInit {
 
   }
 
+  
+  ngOnInit(): void {
+    console.log('init ',screen)
+
+    this.validateForm = this.form.group(
+      { topText: [null] },
+    );
+    this.bottomText = this.form.group(
+      { btmText: [null] }
+    )
+    this.frames.isMessage = false;
+  }
+
   public setStyle() {
     let style = {
       transform: "translate(-50%, 0)" + "scale(" + this.frames.scale + ")"
@@ -152,6 +165,11 @@ export class CreateImgComponent extends FrameImag implements OnInit {
       top["top"] = '131px';
       return top
     }
+
+    if (window.innerWidth <= 1537 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
+      top["top"] = '133px';
+      return top
+    }
     return top
   }
 
@@ -222,15 +240,6 @@ export class CreateImgComponent extends FrameImag implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    this.validateForm = this.form.group(
-      { topText: [null] },
-    );
-    this.bottomText = this.form.group(
-      { btmText: [null] }
-    )
-    this.frames.isMessage = false;
-  }
 
   ngOnDestroy() {
     this._unsubscribe$.next();

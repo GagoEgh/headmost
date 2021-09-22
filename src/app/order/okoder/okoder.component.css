@@ -1,0 +1,48 @@
+::ng-deep.modal-content {
+ border-radius: 50px !important;
+}
+.btns-content{
+ display: flex;
+ justify-content: space-around;
+}
+
+.lfbtn,.rgbtn{
+ border-radius: 20px;
+ outline: none;
+ width: 150px;
+ font-size: 18px;
+ letter-spacing: 1px;
+ padding: 5px;
+ margin: 5px 0;
+ color: #f5f5f5;
+ border: 1px solid gainsboro;
+ transition: all 0.3s ease-out;
+}
+
+.rgbtn{
+ background: #73d973;
+}
+
+.rgbtn:hover{
+ background: #f5f5f5;
+ color: #73d973;
+ border: 1px solid rgb(196, 194, 194);
+}
+
+.rgbtn:active{
+    box-shadow:inset 1px 1px 3px 3px rgba(97 97 97 / 30%)
+}
+
+.lfbtn{
+ background:#eb3f3f;
+}
+
+.lfbtn:hover{
+  background: #f5f5f5; 
+  color: #eb3f3f; 
+  border: 1px solid rgb(196, 194, 194);
+}
+
+.lfbtn:active{
+ box-shadow:inset 1px 1px 3px 3px rgba(97 97 97 / 30%)
+}

@@ -160,11 +160,6 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       return height;
     }
 
-    // if (window.innerWidth <= 656 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length < 7)) {
-    //   height.height = '400px';
-    //   return height;
-    // }
-
     if (this.frames.isOrder && window.innerWidth <= 768 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <= 9)) {
       height.height = '734.2px';
       return height;
@@ -188,6 +183,19 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       height.height = '1249px';
       return height;
     }
+
+    if (this.frames.isOrder && window.innerWidth <= 1536 && (this.frames.letterImges.length >2 && this.frames.letterImges.length <5) ) {
+      height.height = '1410px';
+      return height;
+    }
+
+    
+    if (this.frames.isOrder && window.innerWidth <= 1536 && (this.frames.letterImges.length >4 && this.frames.letterImges.length <=9) ) {
+      height.height = '1310px';
+      return height;
+    }
+
+
 
     return height
   }
