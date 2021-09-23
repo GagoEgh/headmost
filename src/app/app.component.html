@@ -3,7 +3,7 @@
 </ngx-spinner>
 
 <div class="conteiner">
-  <div class="logo"></div>
+  <div class="logo" (click)="getFrame()"></div>
   <span class="material-icons-outlined" (click)='frames.isSilki = !frames.isSilki' [ngStyle]="styleLeft()">
     <img src="./assets/1x/outline_view_headline_black_24dp.png">
   </span>

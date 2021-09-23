@@ -28,6 +28,10 @@
 
 
 
+::ng-deep.ant-form-item-label>label {
+  height: 0 !important;
+  font-size: 16px !important;
+}
 // .ng-tns-c132-6
 ::ng-deep.anticon.ng-star-inserted.anticon-check-circle-fill{
  color: #52c41a !important;
@@ -45,6 +49,28 @@
   margin-top: -40px !important;
 }
 
+
+@media (max-width:1536px){
+  .btn-wrap{
+    position: relative;
+    left: -200px;
+  }
+}
+
+@media (max-width:1441px){
+  .btn-wrap{
+    position: relative;
+    left: -170px;
+  }
+}
+
+@media (max-width:1368px){
+  .btn-wrap{
+    position: relative;
+    left: -90px !important;
+  }
+}
+
 :host::ng-deep{
     @media (max-width:760px){
         .mat-form-field, .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector,  .ant-input, .ant-input-group {
@@ -57,9 +83,3 @@
     }
 }
 
-@media (max-width:1441px){
-  .btn-wrap{
-    position: relative;
-    left: -150px;
-  }
-}

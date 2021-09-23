@@ -28,7 +28,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit(): void {
-
+    console.log(screen)
     this.frames.isMyOrder = false;
     this.frames.userCountry();
     this.validateForm = this.fb.group({

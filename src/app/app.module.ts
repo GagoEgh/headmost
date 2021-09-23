@@ -17,6 +17,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ErrMsgComponent } from './idea/err-msg/err-msg.component';
 
+import { ToastrModule } from 'ngx-toastr';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -37,6 +38,10 @@ registerLocaleData(en);
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    }),
     RegisterModule,
     InfiniteScrollModule,
     NgxSpinnerModule,

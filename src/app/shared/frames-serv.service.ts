@@ -309,9 +309,9 @@ export class FramesServService {
 
             if (this.urlArr[1] === 'frame') {
                 this.rout.navigate([this.urlArr[1] + '/create-img'], { queryParams: { type: this.urlArr[1], text: this.text } })
-            } 
+            }
 
-            if(this.urlArr[1] === 'magnit') {
+            if (this.urlArr[1] === 'magnit') {
                 this.rout.navigate([this.urlArr[1] + '/create-magnit'], { queryParams: { type: this.urlArr[1], text: this.text } })
             }
 
@@ -329,8 +329,8 @@ export class FramesServService {
         this.validateForm.reset();
         if (this.urlArr[1] === 'frame') {
             this.rout.navigate([this.urlArr[1] + '/form-frame']);
-        } 
-        if(this.urlArr[1] === 'magnit') {
+        }
+        if (this.urlArr[1] === 'magnit') {
             this.rout.navigate([this.urlArr[1] + '/form-magnit'])
         }
     }

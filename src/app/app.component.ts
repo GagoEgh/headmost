@@ -80,9 +80,6 @@ export class AppComponent implements OnInit {
       }
       return left;
     }
-
-    
-   
     return left;
   }
 

@@ -182,28 +182,12 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       postal_code: this.validateForm.get('postal')?.value,
     }
 
-    // if (this.validateForm.valid && this.count != 1) {
-    //   this.frames.userOrder(order).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
-    //     this.count++;
-    //     this.frames.isdisible = true
-
-    //   //  window.open('https://www.youtube.com/', '_self');
-
-    //   })
-
-    // }
     if (this.validateForm.valid) {
       const modalRef = this.modalService.open(OkoderComponent);
       modalRef.componentInstance.validateForm = this.validateForm;
       modalRef.componentInstance.count = this.count;
-      modalRef.componentInstance.order = order
-      // setTimeout(()=>{
-      //   modalRef.dismiss()
-      // },1000)
-
+      modalRef.componentInstance.order = order;
     }
-
-
 
   }
 
