@@ -366,6 +366,10 @@
     .footer-nav{
      width: 90%;
     }
+
+    .order{
+     left:83%;
+    }
 }
 
 @media (max-width:321px){

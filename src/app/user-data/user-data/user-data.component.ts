@@ -28,7 +28,6 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit(): void {
-    console.log(screen)
     this.frames.isMyOrder = false;
     this.frames.userCountry();
     this.validateForm = this.fb.group({
@@ -38,9 +37,10 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
       phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
       email: [null, [Validators.required, this.valid.emailValid]],
       country: [null, [Validators.required]],
-      date: [this.frames.userData.date_of_birth, [Validators.required]],
+      date: [this.frames.userData.date_of_birth, [Validators.required,this.valid.bigDate]],
       pas: [null, [Validators.required, Validators.minLength(6)]],
     });
+  
   }
 
   erroreName(formName: string) {
@@ -52,18 +52,22 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
       if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res._userNameChar;
       if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res._isEmail;
       if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res._isSize;
+      if (this.validateForm.get(formName)?.hasError('bigDate')) this.erroreStr = res._bigDate
     })
     return this.erroreStr;
   }
 
 
+  date_of_birth ='';
   birt(formName: string) {
     const date = new Date(this.validateForm.get(formName)?.value);
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate()
-    const date_of_birth = year + '-' + month + '-' + day;
-    return date_of_birth;
+    this.date_of_birth = year + '-' + month + '-' + day;
+    console.log('birt ', this.validateForm.get('date')?.value);
+    console.log('birt ',this.date_of_birth  )
+    return this.date_of_birth;
   }
 
   submitForm(): void {

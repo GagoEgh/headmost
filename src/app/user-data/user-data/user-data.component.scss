@@ -1,6 +1,6 @@
 .login-form{
  display: flex;
- width: 50%;
+//  width: 50%;
  padding: 30px;
  flex-wrap: wrap;
  margin: 180px auto;
@@ -8,8 +8,45 @@
  box-shadow: 3px 2px 22px 0 rgb(87 87 87);
 }
 
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
+  border-radius: 4px 4px 0 0;
+  padding: 0x !important;
+  height:40px !important;
+}
+
+::ng-deep.mat-form-field-wrapper {
+  padding-bottom: 1.2em;
+}
+
+.ant-input {
+  border-radius: 10px !important;
+  width: 280px !important;
+}
+ 
+::ng-deep.ant-form-item-has-feedback.ant-form-item-has-error .ant-form-item-children-icon{
+  position: absolute !important;
+  left: 280px !important;
+}
+
+::ng-deep.ant-form-item-has-success.ant-form-item-has-feedback .ant-form-item-children-icon {
+  left: 275px !important;
+}
+
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-infix {
+  width: 240px !important;
+}
+
+
+.phone{
+  margin-top: 15px !important;
+}
+
+.pas{
+  margin-top: 25.4px;
+}
+
 .region{
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 }
 
 .ant-input, .ant-input-group {
@@ -26,7 +63,9 @@
  margin-left: 90px;
 }
 
-
+// .cdk-text-field-autofill-monitored{
+//   margin-top: 20px;
+// }
 
 ::ng-deep.ant-form-item-label>label {
   height: 0 !important;
@@ -46,14 +85,15 @@
 }
 
 .brtDay{
-  margin-top: -40px !important;
+  // margin-top: -40px !important;
+  margin-bottom: -30px !important;
 }
 
 
-@media (max-width:1536px){
+@media (max-width:1537px){
   .btn-wrap{
     position: relative;
-    left: -200px;
+    left: -170px;
   }
 }
 

@@ -27,7 +27,7 @@
 
 .user{
  display: flex;
- justify-content: space-around;
+ justify-content: space-between;
  flex-wrap: wrap;
  padding: 5px;
  width: 1000px;
@@ -36,6 +36,7 @@
 .order{
  display: flex;
  width: fit-content;
+ margin-left: 20px;
 }
 
 .user-imags{
@@ -52,6 +53,7 @@
 
 .user-info{
  display: flex !important;
+ margin-right: 10px;
 }
 
 .batn{
@@ -99,7 +101,27 @@
 
 @media (max-width:768px){
     .user{
+     display: flex;
+     flex-direction: column;
      width: fit-content;
+     margin-bottom: 0;
+     padding-bottom: 5px;
+    }
+
+    .order{
+      width: fit-content;
+    }
+    .user-info{
+      margin-top: 0 !important;
+    }
+
+    .sum{
+      display: block;
+      padding: 0;
+      margin: 0 auto;
+    }
+    .sum p{
+      margin-left: 80px;
     }
 }
 @media (max-width:426px){
@@ -107,5 +129,23 @@
      display: flex;
      width: fit-content;
     }
+
+    .block{
+      margin: 0 0 10px 0;
+    }
     
+}
+
+@media (max-width:376px){
+
+  .block{
+    width: 360px;
+  }
+  .text{
+    font-size: 14px;
+  }
+  
+  .user-imags{
+    margin: 2px;
+  }
 }

@@ -15,13 +15,11 @@ import { Subject } from 'rxjs';
 export class UserOrderComponent implements OnInit,AfterViewChecked {
   public _subscribe$ = new Subject();
   userOrders: any[] = [];
-  scrollUpDistance = 1;
+  scrollUpDistance = 2;
   scrollDistance = 3;
   array: any[] = [];
   throttle = 300;
   
-
-
   constructor(public frames: FramesServService, private spinner:NgxSpinnerService,public _translate:TranslateService) { }
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang)
@@ -30,24 +28,38 @@ export class UserOrderComponent implements OnInit,AfterViewChecked {
   appendItems() {
     this.spinner.show()
     this.frames.userOrderGet().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
-      this.userOrders.push(...el.results)
-      this.frames.offset += 10;
+    
+     
+      if(el.results.length>0){
+        this.userOrders.push(...el.results)
+     
+        this.frames.offset += 10 ;
+        console.log('el ',el.results);
+
+        this.userOrders.forEach((el)=>{
+          console.log('sum',el.price)
+        })
+       // console.log('us ',this.userOrders);
+    
+      }
+     
+      this.frames.isMyOrder = true;
+      this.spinner.hide()
       setTimeout(() => {
-        this.frames.isMyOrder = true;
-        this.spinner.hide()
-      })
+       
+      },500)
    
     })
   }
 
   onScrollDown(ev: any) {
-    this.appendItems();
+    //this.appendItems();
+    this.userOrders
   }
 
   ngOnInit(): void {
     this.frames.offset = 0;
     this.appendItems();
-
   }
 
   addOrder(index:number) {

@@ -5,11 +5,12 @@
 }
 
 .img-content{
- width: 45%;
+ /* width: 45%; */
+ width: fit-content;
  display: flex;
  flex-wrap: wrap;
  margin-left: 80px;
- padding-bottom: 100px;
+ /* padding-bottom: 100px; */
 }
 
 .files{
@@ -26,10 +27,10 @@
 
 .iks{
  display: block;
- font-size: 40px;
+ font-size: 55px;
  text-align: right;
  padding: 10px 5px;
- color: #585454;
+ color: #c80909;;
  display: none;
  cursor: pointer;
 }

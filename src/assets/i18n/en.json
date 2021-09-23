@@ -101,7 +101,8 @@
         "_imgErr": "You can not delete this image",
         "_textErr":"should be only letters (number of letters 3-9)",
         "_getPage":"log in to your page",
-        "_checkPass":"you filled in the field incorrectly"
+        "_checkPass":"you filled in the field incorrectly",
+        "_bigDate":"Wrong date"
     },
     "_about": {
         "_hello": "HELLO",

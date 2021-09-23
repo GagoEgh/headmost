@@ -21,7 +21,6 @@
       <ng-template #frstEr>
         <p *ngIf="erroreName('frstName')">{{erroreStr}} </p>
       </ng-template>
-
       <div>
         <nz-form-label nzRequired nzFor="lastName">{{'_order._user-data._lastName'|translate}}</nz-form-label>
       </div>
@@ -33,7 +32,6 @@
       <ng-template #lastEr>
         <p *ngIf="erroreName('lastName')">{{erroreStr}} </p>
       </ng-template>
-
       <div>
         <nz-form-label nzRequired nzFor="phoneNumber">{{'_order._user-data._phoneNumber'|translate}}</nz-form-label>
       </div>
@@ -45,7 +43,6 @@
       <ng-template #phone>
         <p *ngIf="erroreName('phoneNumber')">{{erroreStr}} </p>
       </ng-template>
-
       <div>
         <nz-form-label nzRequired nzFor="email">{{'_order._user-data._email'|translate}}</nz-form-label>
       </div>
@@ -59,7 +56,6 @@
       </ng-template>
       <p *ngIf='emailMassage' [style.color]='"red"'>{{emailMassage}}</p>
     </div>
-
     <div class="col">
       <div>
         <nz-form-label nzRequired nzFor="pas">{{'_order._user-data._password'|translate}}</nz-form-label>
@@ -72,7 +68,6 @@
       <ng-template #pas>
         <p *ngIf="erroreName('pas')">{{erroreStr}} </p>
       </ng-template>
-
       <div>
         <nz-form-label nzRequired nzFor="pasRev">{{'_order._user-data._passwordReset'|translate}}</nz-form-label>
       </div>
@@ -84,8 +79,6 @@
       <ng-template #pasRev>
         <p *ngIf="erroreName('pasRev')">{{erroreStr}} </p>
       </ng-template>
-
-
       <div class="region">
         <nz-form-label nzRequired>{{'_order._user-data._country'|translate}}</nz-form-label>
         <nz-form-control [nzErrorTip]="country" nzHasFeedback>

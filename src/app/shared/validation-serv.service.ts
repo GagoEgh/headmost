@@ -23,7 +23,7 @@ export class ValidationServService{
         isEmail: true
       }
     }
-    return false
+    return null
   }
 
   PhoneNumberLength(control: FormControl) {
@@ -33,7 +33,26 @@ export class ValidationServService{
         isSize: true
       }
     }
-    return false
+    return null
+  }
+  bigDate(control: FormControl) {
+    const nowDate = new Date(control.value);
+    const nowYear = nowDate.getFullYear();
+    const nowMonth = nowDate.getMonth() + 1;
+    const nowDay = nowDate.getDate();
+
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+      
+    if ((nowYear>year)||(nowYear===year&&nowMonth>month)||(nowYear===year&&nowMonth===month&&nowDay>day)) {
+      return{
+        bigDate:true
+      }
+    }
+    return null
+
   }
 
 }

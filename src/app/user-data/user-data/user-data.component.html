@@ -55,20 +55,27 @@
   </div>
   <div class="col">
     
-    <div>
-      <nz-form-label nzRequired nzFor="pas">{{'_order._user-data._password'|translate}}</nz-form-label>
+    <div class="brtDay">
+      <nz-form-label nzRequired>{{'_order._user-data._brtDay'|translate}}</nz-form-label>
+      <nz-form-item >
+        <nz-form-control [nzErrorTip]="date" nzHasFeedback >
+          <mat-form-field appearance="fill"  >
+            <mat-label >
+              {{'_order._user-data._brtDay'|translate}}
+            </mat-label>
+            <input [(ngModel)]='frames.userData.date_of_birth' matInput [matDatepicker]="picker" formControlName="date" >
+            <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </nz-form-control>
+      </nz-form-item>
+      <ng-template #date>
+        <p *ngIf="erroreName('date')">{{erroreStr}} </p>
+      </ng-template>
     </div>
-    <nz-form-item>
-      <nz-form-control [nzErrorTip]="pas" nzHasFeedback>
-        <input nz-input formControlName="pas" id="pas" type="password" trim />
-      </nz-form-control>
-    </nz-form-item>
-    <ng-template #pas>
-      <p *ngIf="erroreName('pas')">{{erroreStr}} </p>
-    </ng-template>
 
 
-    <div>
+    <div class="phone">
       <nz-form-label nzRequired nzFor="phoneNumber">{{'_order._user-data._phoneNumber'|translate}}</nz-form-label>
     </div>
     <nz-form-item>
@@ -100,22 +107,18 @@
       <p *ngIf="erroreName('country')" class="erroreCountry">{{erroreStr}}</p>
     </ng-template>
     
-    <div class="brtDay">
-      <nz-form-label nzRequired>{{'_order._user-data._brtDay'|translate}}</nz-form-label>
-      <nz-form-item>
-        <nz-form-control [nzErrorTip]="date" nzHasFeedback>
-          <mat-form-field appearance="fill">
-            <mat-label>{{'_order._user-data._brtDay'|translate}}</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName='date'>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </nz-form-control>
-      </nz-form-item>
-      <ng-template #date>
-        <p *ngIf="erroreName('date')">{{erroreStr}} </p>
-      </ng-template>
+
+    <div class="pas">
+      <nz-form-label nzRequired nzFor="pas">{{'_order._user-data._password'|translate}}</nz-form-label>
     </div>
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="pas" nzHasFeedback>
+        <input nz-input formControlName="pas" id="pas" type="password" trim />
+      </nz-form-control>
+    </nz-form-item>
+    <ng-template #pas>
+      <p *ngIf="erroreName('pas')">{{erroreStr}} </p>
+    </ng-template>
     <div class="btn-wrap">
       <button nz-button [nzType]="'primary'">{{'_order._user-data._update'|translate}}</button>
     </div>

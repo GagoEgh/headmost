@@ -1,3 +1,10 @@
+.user-data{
+ width: fit-content;   
+ position: relative;
+ transform-origin: top;  
+ left: 50%;
+}
+
 .wrap{
  margin-top: -50px;
 }
@@ -20,4 +27,18 @@
 
 .active{
  color:  #645231 !important;
+}
+
+@media (max-width:376px){
+ .user-data{
+  position: relative;
+  transform-origin: top;
+  left: 58% !important;
+ }
+
+ .group{
+   display: flex;
+   margin: 50px 0 50px -50px;
+ }
+   
 }

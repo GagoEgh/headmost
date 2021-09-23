@@ -22,7 +22,6 @@ export class UserComponent implements OnInit, AfterViewChecked {
       this.scale = window.innerWidth / this.width - 0.34;
       if(window.innerWidth<=768){
         this.scale = 0.9;
-        console.log('7',this.scale);
       }
     }
   }
@@ -31,7 +30,7 @@ export class UserComponent implements OnInit, AfterViewChecked {
 
   public setStyle() {
     let style = {
-      transform:  "scale(" + this.scale + ")"
+      transform: "translate(-50%, 0)" + "scale(" + this.scale + ")"
     }
     return style
   }
