@@ -22,10 +22,10 @@
   border-radius: 10px !important;
   width: 280px !important;
 }
- 
+
 ::ng-deep.ant-form-item-has-feedback.ant-form-item-has-error .ant-form-item-children-icon{
   position: absolute !important;
-  left: 280px !important;
+  left: 275px !important;
 }
 
 ::ng-deep.ant-form-item-has-success.ant-form-item-has-feedback .ant-form-item-children-icon {
@@ -33,9 +33,8 @@
 }
 
 ::ng-deep.mat-form-field-appearance-fill .mat-form-field-infix {
-  width: 240px !important;
+  width: 220px !important;
 }
-
 
 .phone{
   margin-top: 15px !important;
@@ -63,10 +62,6 @@
  margin-left: 90px;
 }
 
-// .cdk-text-field-autofill-monitored{
-//   margin-top: 20px;
-// }
-
 ::ng-deep.ant-form-item-label>label {
   height: 0 !important;
   font-size: 16px !important;
@@ -74,6 +69,7 @@
 // .ng-tns-c132-6
 ::ng-deep.anticon.ng-star-inserted.anticon-check-circle-fill{
  color: #52c41a !important;
+ margin-left: 5px !important;
 }
 
 ::ng-deep.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {

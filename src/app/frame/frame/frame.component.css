@@ -3,6 +3,10 @@
  background-image: url('/assets/1x/bg8.jpg');
  position: relative;
  top:5px;
+
+ 
+ display: flex;
+ flex-direction: column;
 }
 
 .catalog{
@@ -189,10 +193,70 @@
  margin: 80px auto;
 }
 
+
+
+
+.buttonWrap {
+    margin-top: 122px;
+}
+  
+.buttonWrap table {
+    width: 100%;
+    height: 100%;
+}
+
+.buttonWrap table .aside {
+    height: 68px;
+    width: 50%;
+    background: url('/assets/1px/forButWrap .jpg') repeat-x bottom left;
+}
+
+.buttonWrap table .center div,.buttonWrap.withoutBg table .center div {
+    padding: 0 5px;
+    height: 38px !important;
+    position: relative;
+    background:url('/assets/1x/ordeerButtonAside_left_.png') bottom left no-repeat, url('/assets/1x/bg8.jpg');
+}
+   
+.buttonWrap table .center div b, .buttonWrap.withoutBg table .center div b {
+    display: block;
+    width: 30px;
+    height: 35px;
+    position: absolute;
+    bottom: 0;
+    right: -1px;
+    z-index: 300;
+    background: url('/assets/1x/ordeerButtonAside_right_.png') bottom right no-repeat,url('/assets/1x/bg8.jpg');
+}
+
+.makeAWord_3 {
+    outline: none;
+} 
+
+.save{
+  
+}
+
+.create-bottom{
+   /* position: relative;
+     z-index: 1; */
+   
+}
+
+@media (max-width:1536px){
+    /* .create-bottom{
+     margin-top: -235px;
+    } */
+
+    /* .save{
+     margin-top:-50px
+    } */
+}
+
 @media (max-width:1025px){
     .create-bottom{
-     position: absolute;
-     left: 40%;
+     /* position: absolute;
+     left: 40%; */
     }
 }
 @media (max-width:768px){
@@ -211,6 +275,11 @@
      margin-left: -60px;
     } 
 
+    .create-bottom{
+        /* position: absolute;
+        z-index: 1; */
+        margin-top: -868px;
+    }
 }
 
 @media (max-width:550px){
@@ -255,22 +324,30 @@
      top:60px;
     }
 
-    .create-bottom{
+    /* .create-bottom{
      position: absolute;
      left: 28%;
      top: -878px;
-    }
+    } */
 
     .bg-fone{
      width: 150px;
+    }
+
+    .buttonWrap {
+     margin-top: -14px;
     }
 }
 
 @media (max-width:376px){
 
-    .create-bottom{
+    /* .create-bottom{
      position: absolute;
      left: 20%;
+    } */
+
+    .buttonWrap {
+     margin-top: -65px;
     }
 
 }
@@ -279,9 +356,10 @@
     .conteiner{
      width: 350px;
     }
-    .create-bottom{
+
+    /* .create-bottom{
      position: absolute;
      left: 20%;
      top:-948px
-    }
+    } */
 }

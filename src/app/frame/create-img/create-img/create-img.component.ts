@@ -60,118 +60,118 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     return style
   }
 
-  buttonWrapTop() {
-    let top = {
-      "top": '79.5px'
-    }
+  // buttonWrapTop() {
+  //   let top = {
+  //     "top": '79.5px'
+  //   }
 
-    if (this.frames.isOrder && window.innerWidth <= 320 && this.frames.letterImges.length > 2) {
-      top["top"] = '-10px';
-      return top
-    }
+  //   if (this.frames.isOrder && window.innerWidth <= 320 && this.frames.letterImges.length > 2) {
+  //     top["top"] = '-10px';
+  //     return top
+  //   }
 
-    if (window.innerWidth <= 320 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <= 4)) {
-      top["top"] = '545px';
-      return top
-    }
+  //   if (window.innerWidth <= 320 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <= 4)) {
+  //     top["top"] = '545px';
+  //     return top
+  //   }
 
-    if (this.frames.isOrder && window.innerWidth <= 376 && this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9) {
-      top["top"] = '-164px';
-      return top
-    }
+  //   if (this.frames.isOrder && window.innerWidth <= 376 && this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9) {
+  //     top["top"] = '-164px';
+  //     return top
+  //   }
 
-    if (this.frames.isOrder && window.innerWidth <= 376 && this.frames.letterImges.length > 2 && this.frames.letterImges.length <5) {
-      top["top"] = '-240px';
-      return top
-    }
+  //   if (this.frames.isOrder && window.innerWidth <= 376 && this.frames.letterImges.length > 2 && this.frames.letterImges.length <5) {
+  //     top["top"] = '-340px';
+  //     return top
+  //   }
 
-    if (window.innerWidth <= 376 && this.frames.letterImges.length > 4) {
-      top["top"] = '400px';
-      return top
-    }
+  //   if (window.innerWidth <= 376 && this.frames.letterImges.length > 4) {
+  //     top["top"] = '400px';
+  //     return top
+  //   }
 
-    if (window.innerWidth <= 376 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length < 5)) {
-      top["top"] = '220px';
-      return top
-    }
+  //   if (window.innerWidth <= 376 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length < 5)) {
+  //     top["top"] = '220px';
+  //     return top
+  //   }
 
-    if (this.frames.isOrder && window.innerWidth <= 426 && this.frames.letterImges.length > 4 && this.frames.letterImges.length <=9) {
-      top["top"] = '23px';
-      return top
-    }
+  //   if (this.frames.isOrder && window.innerWidth <= 426 && this.frames.letterImges.length > 4 && this.frames.letterImges.length <=9) {
+  //     top["top"] = '23px';
+  //     return top
+  //   }
 
-    if (this.frames.isOrder && window.innerWidth <= 426 && this.frames.letterImges.length > 2 && this.frames.letterImges.length <5) {
-      top["top"] = '31px';
-      return top
-    }
+  //   if (this.frames.isOrder && window.innerWidth <= 426 && this.frames.letterImges.length > 2 && this.frames.letterImges.length <5) {
+  //     top["top"] = '31px';
+  //     return top
+  //   }
 
-    if (window.innerWidth <= 426 && this.frames.letterImges.length > 4) {
-      top["top"] = '440px';
-      return top
-    }
+  //   if (window.innerWidth <= 426 && this.frames.letterImges.length > 4) {
+  //     top["top"] = '440px';
+  //     return top
+  //   }
 
-    if (window.innerWidth <= 426 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length < 5)) {
-      top["top"] = '350px';
-      return top
-    }
+  //   if (window.innerWidth <= 426 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length < 5)) {
+  //     top["top"] = '350px';
+  //     return top
+  //   }
 
-    if (this.frames.isOrder && window.innerWidth <= 768 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length <= 9)) {
-      top["top"] = '-401px';
-      return top
-    }
+  //   if (this.frames.isOrder && window.innerWidth <= 768 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length <= 9)) {
+  //     top["top"] = '-401px';
+  //     return top
+  //   }
 
-    if (window.innerWidth <= 768 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length < 5)) {
-      top["top"] = '106px';
-      return top
-    }
+  //   if (window.innerWidth <= 768 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length < 5)) {
+  //     top["top"] = '106px';
+  //     return top
+  //   }
 
-    if (window.innerWidth <= 768 && this.frames.letterImges.length > 4) {
-      top["top"] = '336px';
-      return top
-    }
+  //   if (window.innerWidth <= 768 && this.frames.letterImges.length > 4) {
+  //     top["top"] = '336px';
+  //     return top
+  //   }
 
-    if ( this.frames.isOrder && window.innerWidth <= 1025 && this.frames.letterImges.length > 4) {
-      top["top"] = '183px';
-      return top
-    }
+  //   if ( this.frames.isOrder && window.innerWidth <= 1025 && this.frames.letterImges.length > 4) {
+  //     top["top"] = '183px';
+  //     return top
+  //   }
 
-    if (window.innerWidth <= 1025 && this.frames.letterImges.length > 4) {
-      top["top"] = '130px';
-      return top
-    }
+  //   if (window.innerWidth <= 1025 && this.frames.letterImges.length > 4) {
+  //     top["top"] = '130px';
+  //     return top
+  //   }
 
-    if (window.innerWidth <= 1025 && (this.frames.letterImges.length <= 4 && this.frames.letterImges.length > 2)) {
-      top["top"] = '286px';
-      return top
-    }
+  //   if (window.innerWidth <= 1025 && (this.frames.letterImges.length <= 4 && this.frames.letterImges.length > 2)) {
+  //     top["top"] = '286px';
+  //     return top
+  //   }
 
-    if ( this.frames.isOrder && window.innerWidth <= 1440 && this.frames.letterImges.length > 4) {
-      top["top"] = '57px';
-      return top
-    }
+  //   if ( this.frames.isOrder && window.innerWidth <= 1440 && this.frames.letterImges.length > 4) {
+  //     top["top"] = '57px';
+  //     return top
+  //   }
 
-    if (this.frames.isOrder && window.innerWidth <= 1440 && this.frames.letterImges.length <= 4 && this.frames.letterImges.length>2) {
-      top["top"] = '0';
-      return top
-    }
+  //   if (this.frames.isOrder && window.innerWidth <= 1440 && this.frames.letterImges.length <= 4 && this.frames.letterImges.length>2) {
+  //     top["top"] = '0';
+  //     return top
+  //   }
 
-    if (window.innerWidth <= 1440 && this.frames.letterImges.length <= 4 && this.frames.letterImges.length>2) {
-      top["top"] = '111px';
-      return top
-    }
+  //   if (window.innerWidth <= 1440 && this.frames.letterImges.length <= 4 && this.frames.letterImges.length>2) {
+  //     top["top"] = '111px';
+  //     return top
+  //   }
 
     
-    if (window.innerWidth <= 1440 && this.frames.letterImges.length > 4) {
-      top["top"] = '131px';
-      return top
-    }
+  //   if (window.innerWidth <= 1440 && this.frames.letterImges.length > 4) {
+  //     top["top"] = '131px';
+  //     return top
+  //   }
 
-    if (window.innerWidth <= 1537 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
-      top["top"] = '133px';
-      return top
-    }
-    return top
-  }
+  //   if (window.innerWidth <= 1537 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
+  //     top["top"] = '133px';
+  //     return top
+  //   }
+  //   return top
+  // }
 
   deletImg() {
     this.rout.navigate(['frame/form-frame']);

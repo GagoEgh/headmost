@@ -22,40 +22,40 @@ export class FormFrameComponent extends FrameImag implements OnInit {
   ngOnInit(): void {
   }
 
-  buttonWrapTop() {
-    let top = {
-      "top": '45px'
-    }
+  // buttonWrapTop() {
+  //   let top = {
+  //     "top": '45px'
+  //   }
 
-    if (window.innerWidth <= 356) {
-      top["top"] = '220px';
-      return top;
-    }
+  //   if (window.innerWidth <= 356) {
+  //     top["top"] = '220px';
+  //     return top;
+  //   }
 
-    if (window.innerWidth <= 375) {
-      top["top"] = '190px';
-      return top;
-    }
+  //   if (window.innerWidth <= 375) {
+  //     top["top"] = '190px';
+  //     return top;
+  //   }
 
 
-    if (window.innerWidth <= 426) {
-      top["top"] = '505px';
-      return top;
+  //   if (window.innerWidth <= 426) {
+  //     top["top"] = '505px';
+  //     return top;
 
-    }
+  //   }
 
-    if (window.innerWidth <= 768) {
-      top["top"] = '205px';
-      return top;
+  //   if (window.innerWidth <= 768) {
+  //     top["top"] = '205px';
+  //     return top;
 
-    }
+  //   }
 
-    if (window.innerWidth <= 1024) {
-      top["top"] = '114px';
-      return top;
+  //   if (window.innerWidth <= 1024) {
+  //     top["top"] = '114px';
+  //     return top;
 
-    }
+  //   }
 
-    return top
-  }
+  //   return top
+  // }
 }

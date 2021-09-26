@@ -25,7 +25,11 @@
 ::ng-deep.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
   width: 250px !important;
 }
-     
+   
+.mat-form-field {
+  width: 250px;
+}
+
 ::ng-deep.mat-form-field-appearance-fill .mat-form-field-infix {
   width: 200px;
 }
@@ -39,12 +43,13 @@
   width: 50% !important;
   margin: 40px auto;
 }
+
 .ant-form-item-label {
   text-align: left;
 }
 
-.region{
-  margin-bottom: 60px;
+.pas{
+  margin-top: 25px;
 }
 
 /* .anticon.ng-tns-c132-12 */
@@ -57,9 +62,19 @@
 }
 
 ::ng-deep.ant-form-item-control-input-content{
-  max-width:75% !important ;
+  max-width:74% !important ;
+}
+
+.label{
+  margin-top: -40px;
 }
 
 .brt-day{
-  margin-top: -30px;
+  /* margin-top: -30px; */
+}
+
+@media (max-width:1440px){
+  ::ng-deep.ant-form-item-control-input-content{
+    max-width:73.5% !important ;
+  }
 }

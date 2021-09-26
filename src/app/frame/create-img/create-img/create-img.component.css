@@ -159,11 +159,11 @@
 }
  
 .makeAWord_3 {
-  display: block;
+  /* display: block;
   height: 61px;
   padding: 0;
   border: none;
-  cursor: pointer;
+  cursor: pointer; 
   background-color: transparent !important;
   position: relative;
   z-index: 320;
@@ -176,7 +176,7 @@
   background-image: url('/assets/1x/Botton.png');
   width: 288px;
   outline: none;
-  bottom: 30px;
+  bottom: 30px;*/
 }
  
 .makeAWord_3:hover{

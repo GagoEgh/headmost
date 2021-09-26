@@ -6,9 +6,8 @@
     <div class="carusel">
       <ul class="imageObject">
         <li *ngFor="let img of frames?.framesImge,let i=index" class="thumb-image">
-          <div [style.background-image]="'url('+img?.show_image + ')'" (click)='frameClick(img.id)' class="img-frame"
-            >
-            <div [ngClass]="{'box-content': getFrameId(img)}"  class="box"></div>
+          <div [style.background-image]="'url('+img?.show_image + ')'" (click)='frameClick(img.id)' class="img-frame">
+            <div [ngClass]="{'box-content': getFrameId(img)}" class="box"></div>
           </div>
           <ul class="card">
             <li *ngIf='frames.lang==="hy"'>{{img.description_hy}}</li>
@@ -43,6 +42,35 @@
   <div #block class="block" [ngStyle]="setStyle()">
     <router-outlet></router-outlet>
   </div>
+  <div class="buttonWrap" >
+    <table>
+      <tr>
+        <td class="aside"></td>
+        <td class="center">
+          <div>
+            <b></b>
+            <button type="submit" (click)='onSubmit()' class='makeAWord_3' *ngIf='frames.isImg'>
+              {{'_img-text-valid._create-word'|translate}}
+            </button>
+
+
+            <button class="makeAWord_3 save" (click)='frames.myOrder()'
+            [ngStyle]= "buttonWrapTopSave()" *ngIf='!frames.isOrder && !frames.isImg'>
+              {{'_img-text-valid._batn-save'|translate}}
+            </button>
+
+            
+          <button *ngIf='frames.isOrder' class="makeAWord_3 create-bottom"[ngStyle]="buttonWrapTop()"
+          (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
+            <!-- [ngStyle]="buttonWrapTop()" -->
+          </div>
+        </td>
+        <td class="aside"></td>
+      </tr>
+    </table>
+  </div>
+
+
 </header>
 <div class="steps">
   <div class="wrap1">

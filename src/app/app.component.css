@@ -177,7 +177,7 @@
 
 .order{
  border-radius: 4px;
- z-index: 2;
+ z-index: 999;
  top: 105px;
  left: 97%;
  position: fixed;
@@ -368,7 +368,7 @@
     }
 
     .order{
-     left:83%;
+     left:86%;
     }
 }
 

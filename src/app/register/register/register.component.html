@@ -57,46 +57,7 @@
       <p *ngIf='emailMassage' [style.color]='"red"'>{{emailMassage}}</p>
     </div>
     <div class="col">
-      <div>
-        <nz-form-label nzRequired nzFor="pas">{{'_order._user-data._password'|translate}}</nz-form-label>
-      </div>
-      <nz-form-item>
-        <nz-form-control [nzErrorTip]="pas" nzHasFeedback>
-          <input nz-input formControlName="pas" id="pas" type="password" trim />
-        </nz-form-control>
-      </nz-form-item>
-      <ng-template #pas>
-        <p *ngIf="erroreName('pas')">{{erroreStr}} </p>
-      </ng-template>
-      <div>
-        <nz-form-label nzRequired nzFor="pasRev">{{'_order._user-data._passwordReset'|translate}}</nz-form-label>
-      </div>
-      <nz-form-item>
-        <nz-form-control [nzErrorTip]="pasRev" nzHasFeedback>
-          <input nz-input formControlName="pasRev" id="pasRev" type="password" trim />
-        </nz-form-control>
-      </nz-form-item>
-      <ng-template #pasRev>
-        <p *ngIf="erroreName('pasRev')">{{erroreStr}} </p>
-      </ng-template>
-      <div class="region">
-        <nz-form-label nzRequired>{{'_order._user-data._country'|translate}}</nz-form-label>
-        <nz-form-control [nzErrorTip]="country" nzHasFeedback>
-          <nz-select nzAllowClear nzPlaceHolder="COUNTRY" nzShowSearch formControlName='country'>
-            <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country["name_"+frames.lang]'>
-              <nz-option *ngFor='let regions of country.country_regions' [nzLabel]='regions["name_"+frames.lang]'
-                nzDisabled=true>
-                <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id'
-                  [nzLabel]='city["name_"+frames.lang]'>
-                </nz-option>
-              </nz-option>
-            </nz-option-group>
-          </nz-select>
-        </nz-form-control>
-      </div>
-      <ng-template #country>
-        <p *ngIf="erroreName('country')" class="erroreCountry">{{erroreStr}}</p>
-      </ng-template>
+
       <div class="brt-day">
         <nz-form-label nzRequired>{{'_order._user-data._brtDay'|translate}}</nz-form-label>
         <nz-form-item>
@@ -113,7 +74,58 @@
           <p *ngIf="erroreName('date')">{{erroreStr}} </p>
         </ng-template>
       </div>
+
+
+      <div class="region">
+        <div class="label">
+          <nz-form-label nzRequired>{{'_order._user-data._country'|translate}}</nz-form-label>
+        </div>
+
+        <nz-form-control [nzErrorTip]="country" nzHasFeedback>
+          <nz-select nzAllowClear nzPlaceHolder="COUNTRY" nzShowSearch formControlName='country'>
+            <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country["name_"+frames.lang]'>
+              <nz-option *ngFor='let regions of country.country_regions' [nzLabel]='regions["name_"+frames.lang]'
+                nzDisabled=true>
+                <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id'
+                  [nzLabel]='city["name_"+frames.lang]'>
+                </nz-option>
+              </nz-option>
+            </nz-option-group>
+          </nz-select>
+        </nz-form-control>
+      </div>
+      <ng-template #country>
+        <p *ngIf="erroreName('country')" class="erroreCountry">{{erroreStr}}</p>
+      </ng-template>
+
+      <div class="pas">
+        <div class="logPas">
+          <nz-form-label nzRequired nzFor="pas">{{'_order._user-data._password'|translate}}</nz-form-label>
+        </div>
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="pas" nzHasFeedback>
+            <input nz-input formControlName="pas" id="pas" type="password" trim />
+          </nz-form-control>
+        </nz-form-item>
+        <ng-template #pas>
+          <p *ngIf="erroreName('pas')">{{erroreStr}} </p>
+        </ng-template>
+      </div>
+      <div class="pasRev">
+        <div>
+          <nz-form-label nzRequired nzFor="pasRev">{{'_order._user-data._passwordReset'|translate}}</nz-form-label>
+        </div>
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="pasRev" nzHasFeedback>
+            <input nz-input formControlName="pasRev" id="pasRev" type="password" trim />
+          </nz-form-control>
+        </nz-form-item>
+        <ng-template #pasRev>
+          <p *ngIf="erroreName('pasRev')">{{erroreStr}} </p>
+        </ng-template>
+      </div>
     </div>
+
     <button nz-button class="login-form-button login-form-margin"
       [nzType]="'primary'">{{'_menu._user._save'|translate}}</button>
   </form>

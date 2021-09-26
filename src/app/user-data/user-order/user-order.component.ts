@@ -12,15 +12,16 @@ import { Subject } from 'rxjs';
   templateUrl: './user-order.component.html',
   styleUrls: ['./user-order.component.css']
 })
-export class UserOrderComponent implements OnInit,AfterViewChecked {
+export class UserOrderComponent implements OnInit, AfterViewChecked {
   public _subscribe$ = new Subject();
   userOrders: any[] = [];
   scrollUpDistance = 2;
   scrollDistance = 3;
+  price:string = '';
   array: any[] = [];
   throttle = 300;
-  
-  constructor(public frames: FramesServService, private spinner:NgxSpinnerService,public _translate:TranslateService) { }
+
+  constructor(public frames: FramesServService, private spinner: NgxSpinnerService, public _translate: TranslateService) { }
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang)
   }
@@ -28,28 +29,23 @@ export class UserOrderComponent implements OnInit,AfterViewChecked {
   appendItems() {
     this.spinner.show()
     this.frames.userOrderGet().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
-    
-     
-      if(el.results.length>0){
-        this.userOrders.push(...el.results)
-     
-        this.frames.offset += 10 ;
-        console.log('el ',el.results);
 
-        this.userOrders.forEach((el)=>{
-          console.log('sum',el.price)
-        })
-       // console.log('us ',this.userOrders);
-    
-      }
-     
+      this.userOrders.push(...el.results)
+      this.frames.offset += 10;
+
       this.frames.isMyOrder = true;
       this.spinner.hide()
       setTimeout(() => {
-       
-      },500)
-   
+      }, 500)
+
     })
+  }
+
+
+  
+  showPrice(arr:any,num:number) {
+    this.price = arr.created_frame_details.price;
+    return this.price
   }
 
   onScrollDown(ev: any) {
@@ -62,26 +58,26 @@ export class UserOrderComponent implements OnInit,AfterViewChecked {
     this.appendItems();
   }
 
-  addOrder(index:number) {
+  addOrder(index: number) {
     this.spinner.show()
-    let created_frame ='';
-    this.userOrders[index].order_items_details.forEach((el:any)=>{
+    let created_frame = '';
+    this.userOrders[index].order_items_details.forEach((el: any) => {
       created_frame = el.created_frame
     })
 
-    const obj ={
-      created_frame:created_frame,
-      user:this.frames.userData.user
-     }
-     
-     this.frames.orderCard(obj).pipe(takeUntil(this._subscribe$)).subscribe((el:any)=>{
+    const obj = {
+      created_frame: created_frame,
+      user: this.frames.userData.user
+    }
+
+    this.frames.orderCard(obj).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
       this.frames.orderList.push(el);
       this.spinner.hide()
-     })
+    })
 
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this._subscribe$.next();
     this._subscribe$.complete();
   }

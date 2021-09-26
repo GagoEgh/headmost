@@ -23,10 +23,12 @@
                     </div>
                     <div class="sum"> {{'_menu._user._my-order.status'|translate}}: {{item?.status}}</div>
                     <div class="user-info">
-                        <div class="sum" >
-                            <div *ngFor = 'let order of item.order_items_details'>
-                                <p >
-                                  {{order.created_frame_details.price}}Դ 
+                        <div class="sum">
+                            <div>
+                                <p *ngIf="showPrice(orderItemss,i)">
+                                    <span>
+                                        {{price}} Դ
+                                    </span>
                                 </p>
                             </div>
                             <button class="batn" (click)='addOrder(i)'>

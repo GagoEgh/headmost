@@ -165,32 +165,27 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       return height;
     }
 
-    if (window.innerWidth <= 768 && this.frames.letterImges.length > 2 && this.frames.letterImges.length <5) {
-      height.height = '400px';
-      return height;
-    }
-
-    if (this.frames.isOrder && window.innerWidth <= 1025 && (this.frames.letterImges.length >2 && this.frames.letterImges.length <5)) {
+    if (this.frames.isOrder && window.innerWidth <= 1025 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length < 5)) {
       height.height = '1115px';
       return height;
     }
-    if (this.frames.isOrder && window.innerWidth <= 1025 && this.frames.letterImges.length >4 ) {
+    if (this.frames.isOrder && window.innerWidth <= 1025 && this.frames.letterImges.length > 4) {
       height.height = '1350px';
       return height;
     }
 
-    if (this.frames.isOrder && window.innerWidth <= 1441 && (this.frames.letterImges.length >2 && this.frames.letterImges.length <=9) ) {
+    if (this.frames.isOrder && window.innerWidth <= 1441 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <= 9)) {
       height.height = '1249px';
       return height;
     }
 
-    if (this.frames.isOrder && window.innerWidth <= 1536 && (this.frames.letterImges.length >2 && this.frames.letterImges.length <5) ) {
+    if (this.frames.isOrder && window.innerWidth <= 1536 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length < 5)) {
       height.height = '1410px';
       return height;
     }
 
-    
-    if (this.frames.isOrder && window.innerWidth <= 1536 && (this.frames.letterImges.length >4 && this.frames.letterImges.length <=9) ) {
+
+    if (this.frames.isOrder && window.innerWidth <= 1536 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
       height.height = '1310px';
       return height;
     }
@@ -234,6 +229,87 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       transform: "translate(-50%, 0)" + "scale(" + this.frames.scale + ")"
     }
     return style
+  }
+
+  buttonWrapTop() {
+    let top = {
+      "margin-top": '79.5px'
+    }
+
+    if (this.frames.isOrder && window.innerWidth <= 320 && this.frames.letterImges.length > 2) {
+      top["margin-top"] = '-10px';
+      return top
+    }
+
+    if (window.innerWidth <= 320 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <= 4)) {
+      top["margin-top"] = '545px';
+      return top
+    }
+
+    if (this.frames.isOrder && window.innerWidth <= 376 && this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9) {
+      top["margin-top"] = '-1070px';
+      return top
+    }
+
+    if (this.frames.isOrder && window.innerWidth <= 376 && this.frames.letterImges.length > 2 && this.frames.letterImges.length < 5) {
+      top["margin-top"] = '-970px';
+      return top
+    }
+
+    if (this.frames.isOrder && window.innerWidth <= 426 && this.frames.letterImges.length > 2 && this.frames.letterImges.length < 5) {
+      top["margin-top"] = '-912px';
+      return top
+    }
+
+    if (this.frames.isOrder && window.innerWidth <= 426 && this.frames.letterImges.length > 4) {
+      top["margin-top"] = '-990px';
+      return top
+    }
+
+    if (this.frames.isOrder && window.innerWidth <= 768 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length <= 9)) {
+      top["margin-top"] = '-837px';
+      return top
+    }
+
+    if (this.frames.isOrder && window.innerWidth <= 1025 && this.frames.letterImges.length > 4) {
+      top["margin-top"] = '-275px';
+      return top
+    }
+
+
+    if (this.frames.isOrder && window.innerWidth <= 1025 && (this.frames.letterImges.length <= 4 && this.frames.letterImges.length > 2)) {
+      top["margin-top"] = '-510px';
+      return top
+    }
+
+    if (this.frames.isOrder && window.innerWidth <= 1440 && this.frames.letterImges.length > 2 && this.frames.letterImges.length <=9) {
+      top["margin-top"] = '-275px';
+      return top
+    }
+
+    if (window.innerWidth <= 1537 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <5)) {
+      top["margin-top"] = '-115px';
+      return top
+    }
+
+    if (window.innerWidth <= 1537 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
+      top["margin-top"] = '-215px';
+      return top
+    }
+    return top
+  }
+
+  buttonWrapTopSave(){
+    let top = {
+      "margin-top": '0'
+    }
+
+    if (window.innerWidth <= 768 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <= 9)) {
+      top["margin-top"] = '61px';
+      return top
+    }
+
+    return top
   }
 
   frameClick(id: number) {

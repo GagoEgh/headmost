@@ -261,6 +261,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding-right: 1.5rem !important;
 }
 
+.mat-form-field-prefix, .mat-form-field-suffix {
+    width: 40px !important;
+    height: 30px !important;
+    top: -5px !important;
+}
+
+.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button, .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: inherit;
+    width: 2em !important;
+    height: 2em !important;
+}
+
+
 .ant-form-item-has-error.ant-form-item-has-feedback .ant-form-item-children-icon {
     color: #ff4d4f;
     animation-name: diffZoomIn2!important;
