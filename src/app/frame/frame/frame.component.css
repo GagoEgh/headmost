@@ -3,8 +3,6 @@
  background-image: url('/assets/1x/bg8.jpg');
  position: relative;
  top:5px;
-
- 
  display: flex;
  flex-direction: column;
 }
@@ -193,9 +191,6 @@
  margin: 80px auto;
 }
 
-
-
-
 .buttonWrap {
     margin-top: 122px;
 }
@@ -233,32 +228,7 @@
     outline: none;
 } 
 
-.save{
-  
-}
 
-.create-bottom{
-   /* position: relative;
-     z-index: 1; */
-   
-}
-
-@media (max-width:1536px){
-    /* .create-bottom{
-     margin-top: -235px;
-    } */
-
-    /* .save{
-     margin-top:-50px
-    } */
-}
-
-@media (max-width:1025px){
-    .create-bottom{
-     /* position: absolute;
-     left: 40%; */
-    }
-}
 @media (max-width:768px){
 
     .steps{
@@ -275,11 +245,6 @@
      margin-left: -60px;
     } 
 
-    .create-bottom{
-        /* position: absolute;
-        z-index: 1; */
-        margin-top: -868px;
-    }
 }
 
 @media (max-width:550px){

@@ -58,7 +58,7 @@
  height: 480px;
  width: 60%;
  min-width: 930px;
- margin: 10px auto;
+ margin: 50px auto;
  background: url('src/assets/1x/magnit.jpg')  no-repeat 0 0 #fbfbfb;
 }
    
@@ -78,12 +78,12 @@
  margin: 100px auto;
 }
 
-.create-bottom{
+/* .create-bottom{
  outline: none;
  display: block;
  margin-top:50px;
  z-index: 1;
-}
+} */
 
 .makeAWord_3{
  position:static;

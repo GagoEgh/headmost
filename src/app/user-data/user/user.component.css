@@ -1,16 +1,15 @@
 .user-data{
- width: fit-content;   
- position: relative;
- transform-origin: top;  
- left: 50%;
+ max-width: 1200px;
+ margin: 0 auto;
 }
 
 .wrap{
  margin-top: -50px;
 }
+
 .group{
  display: flex;
- margin: 50px;
+ margin: 50px 0 50px -50px;
 }
 
 .list{

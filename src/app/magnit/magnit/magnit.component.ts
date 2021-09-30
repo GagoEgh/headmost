@@ -29,101 +29,119 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.width = this.block?.nativeElement.clientWidth | 1;
-    if (window.innerWidth <= 1165) {
-      this.frames.magnit_scale = 0.7;
-
-      if (window.innerWidth <= 768) {
-        this.frames.magnit_scale = 0.7
-        this.frames.magnit_scale = window.innerWidth / this.width - 0.2;
-
-      }
-
-      if (window.innerWidth <= 425) {
-        this.frames.magnit_scale = 0.47;
-        this.frames.magnit_scale = window.innerWidth / this.width - 0.04;
-
-      }
-
-      if (window.innerWidth <= 375) {
-        this.frames.magnit_scale = 0.4;
-        this.frames.magnit_scale = window.innerWidth / this.width - 0.04;
-
-      }
-
-      if (window.innerWidth <= 320) {
-        this.frames.magnit_scale = 0.37;
-        this.frames.magnit_scale = window.innerWidth / this.width - 0.04;
-
-      }
-
+    if (window.innerWidth <= 1537) {
+      // this.frames.magnit_scale = 0.9;
+      let num = window.innerWidth / 1536;
+      this.frames.magnit_scale = num - 0.1;
     }
 
-    if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
-
-      this.width = this.block?.nativeElement.clientWidth | 1;
-
-      if (window.innerWidth <= 2102) {
-        this.frames.magnit_scale = 0.9;
-      }
-
-      if (window.innerWidth <= 1536) {
-        this.frames.magnit_scale = 0.9;
-        let num = window.innerWidth / 1536;
-        this.frames.magnit_scale = num - 0.1;
-      }
-
-      if (window.innerWidth <= 816) {
-        this.frames.magnit_scale = 0.6;
-        this.frames.magnit_scale = window.innerWidth / this.width - 0.9;
-      }
-
-      if (window.innerWidth <= 768 && this.frames.letterImges.length === 3) {
-        this.frames.magnit_scale = 0.7;
-
-      }
-
-      if (window.innerWidth <= 768 && this.frames.letterImges.length === 4) {
-        this.frames.magnit_scale = 0.7;
-
-      }
-
-      if (window.innerWidth <= 656) {
-        this.frames.magnit_scale = 0.3;
-      }
-
+    if(window.innerWidth <= 1025){
+      let num = window.innerWidth / 1025;
+      this.frames.magnit_scale = num - 0.1;
     }
 
-    if (this.frames.letterImges.length > 4 && this.frames.letterImges.length) {
-
-      this.frames.magnit_scale = 0.7;
-
-      if (window.innerWidth <= 2006 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
-        this.frames.magnit_scale = 0.7;
-        if (window.innerWidth <= 856 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
-          this.frames.magnit_scale = 0.4;
-        }
-
-      }
-
-      if (window.innerWidth <= 1063 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
-        this.frames.magnit_scale = 0.7;
-        if (window.innerWidth <= 686 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
-          this.frames.magnit_scale = 0.3;
-        }
-      }
-
-      if (window.innerWidth === 859 && this.frames.letterImges.length === 9) {
-        this.frames.magnit_scale = 0.27;
-      }
-
-      if (window.innerWidth === 789 && this.frames.letterImges.length === 8) {
-        this.frames.magnit_scale = 0.27;
-      }
-
-      if (window.innerWidth === 717 && this.frames.letterImges.length === 7) {
-        this.frames.magnit_scale = 0.27;
-      }
+    if(window.innerWidth <= 769){
+      let num = window.innerWidth / 769;
+      this.frames.magnit_scale = num - 0.3;
     }
+
+    if(window.innerWidth <= 426){
+      let num = window.innerWidth / 425;
+      this.frames.magnit_scale = num - 0.6;
+      console.log(this.frames.magnit_scale)
+    }
+    // if (window.innerWidth <= 768) {
+    //   this.frames.magnit_scale = 0.7
+    //   this.frames.magnit_scale = window.innerWidth / this.width - 0.2;
+
+    // }
+
+    // if (window.innerWidth <= 425) {
+    //   this.frames.magnit_scale = 0.47;
+    //   this.frames.magnit_scale = window.innerWidth / this.width - 0.04;
+
+    // }
+
+    // if (window.innerWidth <= 375) {
+    //   this.frames.magnit_scale = 0.4;
+    //   this.frames.magnit_scale = window.innerWidth / this.width - 0.04;
+
+    // }
+
+    // if (window.innerWidth <= 320) {
+    //   this.frames.magnit_scale = 0.37;
+    //   this.frames.magnit_scale = window.innerWidth / this.width - 0.04;
+
+    // }
+
+    //}
+
+    // if (this.frames.letterImges.length <= 4 && this.frames.letterImges.length) {
+
+    //   this.width = this.block?.nativeElement.clientWidth | 1;
+
+    //   if (window.innerWidth <= 2102) {
+    //     this.frames.magnit_scale = 0.9;
+    //   }
+
+    //   if (window.innerWidth <= 1536) {
+    //     this.frames.magnit_scale = 0.9;
+    //     let num = window.innerWidth / 1536;
+    //     this.frames.magnit_scale = num - 0.1;
+    //   }
+
+    //   if (window.innerWidth <= 816) {
+    //     this.frames.magnit_scale = 0.6;
+    //     this.frames.magnit_scale = window.innerWidth / this.width - 0.9;
+    //   }
+
+    //   if (window.innerWidth <= 768 && this.frames.letterImges.length === 3) {
+    //     this.frames.magnit_scale = 0.7;
+
+    //   }
+
+    //   if (window.innerWidth <= 768 && this.frames.letterImges.length === 4) {
+    //     this.frames.magnit_scale = 0.7;
+
+    //   }
+
+    //   if (window.innerWidth <= 656) {
+    //     this.frames.magnit_scale = 0.3;
+    //   }
+
+    // }
+
+    // if (this.frames.letterImges.length > 4 && this.frames.letterImges.length) {
+
+    //   this.frames.magnit_scale = 0.7;
+
+    //   if (window.innerWidth <= 2006 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
+    //     this.frames.magnit_scale = 0.7;
+    //     if (window.innerWidth <= 856 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
+    //       this.frames.magnit_scale = 0.4;
+    //     }
+
+    //   }
+
+    //   if (window.innerWidth <= 1063 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
+    //     this.frames.magnit_scale = 0.7;
+    //     if (window.innerWidth <= 686 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
+    //       this.frames.magnit_scale = 0.3;
+    //     }
+    //   }
+
+    //   if (window.innerWidth === 859 && this.frames.letterImges.length === 9) {
+    //     this.frames.magnit_scale = 0.27;
+    //   }
+
+    //   if (window.innerWidth === 789 && this.frames.letterImges.length === 8) {
+    //     this.frames.magnit_scale = 0.27;
+    //   }
+
+    //   if (window.innerWidth === 717 && this.frames.letterImges.length === 7) {
+    //     this.frames.magnit_scale = 0.27;
+    //   }
+    // }
 
   }
 
@@ -133,70 +151,32 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
       height: '650px'
     }
 
-    if (this.frames.isOrder && window.innerWidth <= 426) {
-      height.height = '570px';
-      return height;
+    if (window.innerWidth <= 426 && this.frames.isOrder) {
+      height.height = '950px';
+      return height
     }
 
-    if (window.innerWidth <= 320) {
-      height.height = '400px';
-      return height;
-    }
-
-
-    if (window.innerWidth <= 375 && window.innerWidth > 320) {
-      height.height = '400px';
-      return height;
-    }
-
-    if (window.innerWidth <= 426 && window.innerWidth > 375) {
-      height.height = '400px';
-      return height;
+    if (window.innerWidth <= 426) {
+      height.height = '500px';
+      return height
     }
 
     if (window.innerWidth <= 768 && this.frames.isOrder) {
-      height.height = '750px'
+      height.height = '1450px';
       return height
     }
 
-    if (window.innerWidth <= 1024 && this.frames.isOrder && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
-      height.height = '1100px'
+    if (window.innerWidth <= 1025 && this.frames.isOrder) {
+      height.height = '1600px';
       return height
     }
 
-    if (window.innerWidth <= 1024 && this.frames.isOrder && (this.frames.letterImges.length > 2 && this.frames.letterImges.length < 5)) {
-      height.height = '900px'
+    if (window.innerWidth <= 1536 && this.frames.isOrder) {
+      height.height = '1500px';
       return height
     }
 
-    if (window.innerWidth <= 1025) {
-      height.height = '550px';
-      return height;
-    }
-
-
-    if (window.innerWidth <= 1440 && this.frames.isOrder && (this.frames.letterImges.length > 2 && this.frames.letterImges.length < 5)) {
-      height.height = '1250px'
-      return height
-    }
-
-    if (window.innerWidth <= 1440 && this.frames.isOrder && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
-      height.height = '1050px'
-      return height
-    }
-
-
-    if ((window.innerWidth <= 1640 && window.innerWidth > 1441) && this.frames.isOrder) {
-      height.height = '1100px'
-      return height
-    }
-
-
-
-    if ((window.innerWidth <= 1640 && window.innerWidth > 1441) && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length <= 9)) {
-      height.height = '650px'
-      return height
-    }
+    
 
     return height
   }

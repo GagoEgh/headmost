@@ -17,9 +17,9 @@
  justify-content: flex-end;
 }
 
-.makeAWord_3 {
+/* .makeAWord_3 {
  outline: none;
-}
+} */
    
 .letter input{
  background: transparent;
@@ -35,10 +35,10 @@ input:focus::placeholder{
  left: -260px;
 }
   
-.center{
+/* .center{
  display: block;
  margin: 50px 35%;
-}
+} */
 
 
 

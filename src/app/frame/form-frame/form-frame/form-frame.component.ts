@@ -20,7 +20,9 @@ export class FormFrameComponent extends FrameImag implements OnInit {
   }
 
   ngOnInit(): void {
+ 
   }
+
 
   // buttonWrapTop() {
   //   let top = {

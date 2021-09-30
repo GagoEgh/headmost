@@ -24,8 +24,19 @@ export class FrameImag {
     // frame component
     myForm() {
         this.frames.validateForm = new FormGroup({
-            text: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(9)])
+            text: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(9),this.textValid])
         })
+    }
+
+
+    textValid(control:FormControl){
+        const regExp = /[0-9]/;
+        if(regExp.test(control.value)){
+            return{
+                noText:true
+            }
+        }
+        return null
     }
 
     imgColor() {
@@ -58,18 +69,13 @@ export class FrameImag {
             const modalRef = this.modalService.open(ErroreMessageComponent);
             setTimeout(() => {
                 modalRef.dismiss();
-            }, 1500)
+            }, 2500)
             return;
         }
         this.frames.isImg = false;
        
         this.frames.letterColorFone();
 
-    }
-
-    deletImg(ev: boolean) {
-        this.frames.isImg = ev;
-        this.frames.validateForm.reset();
     }
 
     showFrame() {

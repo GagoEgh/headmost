@@ -38,7 +38,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
         this.frames.scale = window.innerWidth / this.width - 0.19;
       }
 
-      if (window.innerWidth <= 425) {
+      if (window.innerWidth <= 426) {
         this.frames.scale = 0.47;
         this.frames.scale = window.innerWidth / this.width - 0.04;
       }
@@ -68,10 +68,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
         this.frames.scale = num - 0.1;
       }
 
-      if (window.innerWidth <= 816) {
-        this.frames.scale = 0.6;
-        this.frames.scale = window.innerWidth / this.width - 0.9;
-      }
+     
 
       if (window.innerWidth <= 1025 && this.frames.letterImges.length <= 4) {
         this.frames.scale = 0.6;
@@ -84,6 +81,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       if (window.innerWidth <= 426 && (this.frames.letterImges.length <= 4 && this.frames.letterImges.length > 0)) {
         this.frames.scale = 0.4;
       }
+      
 
       if (window.innerWidth <= 320 && (this.frames.letterImges.length <= 4 && this.frames.letterImges.length > 0)) {
         this.frames.scale = 0.3;
@@ -130,28 +128,18 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
     }
 
-    if (this.frames.isOrder && window.innerWidth <= 376 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length < 5)) {
-      height.height = '640px';
+    if (this.frames.isOrder && window.innerWidth <= 376 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <=9)) {
+      height.height = '850px';
       return height;
     }
 
-    if (this.frames.isOrder && window.innerWidth <= 376 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
-      height.height = '540px';
-      return height;
-    }
-
-    if (window.innerWidth <= 375) {
+    if (window.innerWidth <= 376) {
       height.height = '350px';
       return height;
     }
 
-    if (this.frames.isOrder && window.innerWidth <= 426 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
-      height.height = '673px';
-      return height;
-    }
-
-    if (this.frames.isOrder && window.innerWidth <= 426 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length < 5)) {
-      height.height = '750px';
+    if (this.frames.isOrder && window.innerWidth <= 426 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <=9)) {
+      height.height = '1050px';
       return height;
     }
 
@@ -161,26 +149,26 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     }
 
     if (this.frames.isOrder && window.innerWidth <= 768 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <= 9)) {
-      height.height = '734.2px';
+      height.height = '1250px';
       return height;
     }
 
     if (this.frames.isOrder && window.innerWidth <= 1025 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length < 5)) {
-      height.height = '1115px';
+      height.height = '1215px';
       return height;
     }
     if (this.frames.isOrder && window.innerWidth <= 1025 && this.frames.letterImges.length > 4) {
-      height.height = '1350px';
+      height.height = '1450px';
       return height;
     }
 
     if (this.frames.isOrder && window.innerWidth <= 1441 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <= 9)) {
-      height.height = '1249px';
+      height.height = '1349px';
       return height;
     }
 
     if (this.frames.isOrder && window.innerWidth <= 1536 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length < 5)) {
-      height.height = '1410px';
+      height.height = '1510px';
       return height;
     }
 
@@ -189,9 +177,6 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       height.height = '1310px';
       return height;
     }
-
-
-
     return height
   }
 
@@ -246,28 +231,20 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       return top
     }
 
-    if (this.frames.isOrder && window.innerWidth <= 376 && this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9) {
-      top["margin-top"] = '-1070px';
+
+    if (this.frames.isOrder && window.innerWidth <= 376 && this.frames.letterImges.length > 2 && this.frames.letterImges.length <=9) {
+      top["margin-top"] = '-1200px';
       return top
     }
 
-    if (this.frames.isOrder && window.innerWidth <= 376 && this.frames.letterImges.length > 2 && this.frames.letterImges.length < 5) {
-      top["margin-top"] = '-970px';
+    if (this.frames.isOrder && window.innerWidth <= 426 && this.frames.letterImges.length > 2 && this.frames.letterImges.length <=9) {
+      top["margin-top"] = '-1050px';
       return top
     }
 
-    if (this.frames.isOrder && window.innerWidth <= 426 && this.frames.letterImges.length > 2 && this.frames.letterImges.length < 5) {
-      top["margin-top"] = '-912px';
-      return top
-    }
 
-    if (this.frames.isOrder && window.innerWidth <= 426 && this.frames.letterImges.length > 4) {
-      top["margin-top"] = '-990px';
-      return top
-    }
-
-    if (this.frames.isOrder && window.innerWidth <= 768 && (this.frames.letterImges.length >= 3 && this.frames.letterImges.length <= 9)) {
-      top["margin-top"] = '-837px';
+    if (this.frames.isOrder && window.innerWidth <= 768 && (this.frames.letterImges.length <= 9 && this.frames.letterImges.length > 2)) {
+      top["margin-top"] = '-680px';
       return top
     }
 
@@ -283,17 +260,17 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     }
 
     if (this.frames.isOrder && window.innerWidth <= 1440 && this.frames.letterImges.length > 2 && this.frames.letterImges.length <=9) {
-      top["margin-top"] = '-275px';
+      top["margin-top"] = '-423px';
       return top
     }
 
     if (window.innerWidth <= 1537 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <5)) {
-      top["margin-top"] = '-115px';
+      top["margin-top"] = '-260px';
       return top
     }
 
     if (window.innerWidth <= 1537 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
-      top["margin-top"] = '-215px';
+      top["margin-top"] = '-460px';
       return top
     }
     return top

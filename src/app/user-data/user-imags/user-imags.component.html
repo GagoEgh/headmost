@@ -1,18 +1,18 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
 </ngx-spinner>
-<div class="img-content" infinite-scroll [infiniteScrollDistance]="scrollDistance"
-    [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown($event)">
-    <nz-upload (nzChange)="handleChange($event)" nzListType="picture-card">
-        <div>
-            <i nz-icon nzType="upload"></i>
-            <div style="margin-top: 8px">Upload</div>
-        </div>
-    </nz-upload>
-    <div *ngFor='let img of frames.fileList' class="files">
-        <div class="img" [style.background-image]="'url( '+ img.image + ')'">
-            <span class="iks" (click)='delete(img.id)'>&#x033D;</span>
+<div class="my-img" infinite-scroll [infiniteScrollDistance]="scrollDistance" (scrolled)="onScrollDown($event)"
+[infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle">
+    <div class="file">
+        <input type="file" name="img" #file accept=".jpg, .jpeg, .png,.gif" (change)="hendler($event)">
+        <button class="upload" (click)='trigger(file)'>Upload</button>
+    </div>
+    <div class="box">
+        <div *ngFor='let img of frames.fileList' class="files">
+            <div class="img" [style.background-image]="'url( '+ img.image + ')'">
+                <span class="preview-remove" (click)='delete(img.id)'>&times;</span>
+            </div>
         </div>
     </div>
+    <p class="text" *ngIf='isSmsErr'>{{msgErr_hy}}</p>
 </div>
-<p class="text" *ngIf='isSmsErr'>{{msgErr_hy}}</p>

@@ -74,12 +74,15 @@
             
         },
         "_inform-img": {
+            "title_h1":"Basket",
+            "title_h2":"YOUR DATA",
             "title": "ORDER DESCRIPTION",
             "_imgLength": "letter",
             "_letterSum": "Դ/letter",
             "_price": "Դ",
             "_addSum": "ONLY",
             "_carzin":"The cart is empty"
+            
         }
     },
     "_idea-img": {
@@ -102,7 +105,9 @@
         "_textErr":"should be only letters (number of letters 3-9)",
         "_getPage":"log in to your page",
         "_checkPass":"you filled in the field incorrectly",
-        "_bigDate":"Wrong date"
+        "_bigDate":"Wrong date",
+        "textErr":"write number",
+        "titleLength":"The number of letters is 20"
     },
     "_about": {
         "_hello": "HELLO",

@@ -13,7 +13,7 @@ export class ValidationServService{
         userNameChar: true
       }
     }
-    return false
+    return null
   }
     
   emailValid(control: FormControl) {

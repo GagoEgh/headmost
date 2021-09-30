@@ -1,4 +1,5 @@
-<div #block class="user-data" [ngStyle]="setStyle()">
+<div #block class="user-data" >
+    <!-- [ngStyle]="setStyle()" -->
     <ul class="group" >
         <li class="list"><a routerLink = '/user/profil'  routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">{{'_menu._user._profil'|translate}}</a></li>
         <li class="list"><a routerLink = '/user/imags'  routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">{{'_menu._user._images'|translate}}</a></li>

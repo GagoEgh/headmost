@@ -1,16 +1,40 @@
 
-.ant-upload-list-item-name, .ant-upload-picture-card-wrapper {
- display: block !important;
- margin: 8px;
+.file{
+    padding-top: 40px;
 }
 
-.img-content{
- /* width: 45%; */
- width: fit-content;
+.upload{
+ width: 150px; 
+ /* color: #42b983; */
+ color: #e6af49;
+ position: relative;
+ border-radius: 99px;
+ /* border: 1px solid #42b983; */
+ border: 1px solid  #e6af49;
+ text-decoration: none;
+ text-transform: uppercase;
+ padding: 0.5rem 1.5rem;
+ font-weight: 700;
+ outline: none;
+ background: #fff;
+ transition: all 0.22s;
+ cursor: pointer;
+ margin-right: 1rem;
+}
+
+.upload:hover{
+ cursor: pointer;
+ opacity: 0.8;
+}
+
+.upload:active {
+ box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.box{
  display: flex;
  flex-wrap: wrap;
- margin-left: 80px;
- /* padding-bottom: 100px; */
+ margin-top: 50px;
 }
 
 .files{
@@ -23,20 +47,11 @@
  background-position: center;
  background-size:100% 100%;
  padding: 5px;
+ position: relative;
 }
 
-.iks{
- display: block;
- font-size: 55px;
- text-align: right;
- padding: 10px 5px;
- color: #c80909;;
- display: none;
- cursor: pointer;
-}
-
-.files:hover .iks{
- display: block;
+.files:hover .preview-remove{
+ opacity: 1;
 }
 
 .text{
@@ -44,4 +59,28 @@
  color: red;
  font-weight: 600;
  letter-spacing: 1px;  
+}
+
+.upload:active {
+ box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+input[type=file]{
+ display: none;
+}
+
+.preview-remove {
+ opacity: 0;
+ width: 20px;
+ height: 20px;
+ position: absolute;
+ right: 0;
+ top: 0;
+ font-weight: bold;
+ background: rgba(255, 255, 255, .5);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ cursor: pointer;
+ transition: opacity .22s;
 }

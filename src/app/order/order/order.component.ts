@@ -1,7 +1,7 @@
 import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from "@ngx-translate/core";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -33,6 +33,8 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   __addresPost = '';
   _comment = '';
   _btnOrder = ''
+  titleH1 = '';
+  titleH2 = '';
   title = '';
   _imgLength = '';
   _letterSum = '';
@@ -54,15 +56,20 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.width = this.wrap?.nativeElement.clientWidth | 1;
+
+  
+
     if (window.innerWidth <= 1165) {
       this.scale = window.innerWidth / this.width - 0.1;
 
-      if (window.innerWidth <= 768) {
-        this.scale = 0.5
+      if (window.innerWidth <= 769) {
+        this.scale = 0.9
+        this.scale = window.innerWidth / 769 - 0.1;
       }
 
-      if (window.innerWidth <= 463) {
-        this.scale = 0.9
+      if (window.innerWidth <= 426) {
+        this.scale = 0.9;
+        this.scale = window.innerWidth / 426 - 0.2;
       }
 
       if (window.innerWidth <= 375) {
@@ -108,9 +115,9 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       country: [null, [Validators.required]],
       addres: [null, [Validators.required]],
       shipping: [null, [Validators.required]],
-      comment: ['', []],
-      sale: ['', []],
-      postal: ['', [Validators.required]]
+      comment: ['', [Validators.maxLength(20)]],
+      sale: ['', [this.noText]],
+      postal: ['', [Validators.maxLength(20),Validators.required]]
     });
 
   }
@@ -133,6 +140,8 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       this._price = res["_order._inform-img"]._price;
       this._addSum = res["_order._inform-img"]._addSum;
       this._carzin = res["_order._inform-img"]._carzin;
+      this.titleH1 = res["_order._inform-img"].title_h1;
+      this.titleH2 = res["_order._inform-img"].title_h2;
     })
   }
 
@@ -151,11 +160,22 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res._userNameChar;
       if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res._isEmail;
       if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res._isSize;
+      if (this.validateForm.get(formName)?.hasError('noText')) this.erroreStr = res.textErr;
+      if (this.validateForm.get(formName)?.hasError('maxlength')) this.erroreStr = res.titleLength;
     })
 
     return this.erroreStr;
   }
 
+  noText(control:FormControl){
+    const regExp = /[a-zA-Z]/;
+    if(regExp.test(control.value)){
+      return{
+        noText:true
+      }
+    }
+     return null
+  }
 
   submitForm(): void {
     for (const i in this.validateForm.controls) {
@@ -199,7 +219,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       code: this.validateForm.get('sale')?.value
     }
 
-    if (this.validateForm.get('sale')?.value.length === 6 && this.promoId === null) {
+    if (this.validateForm.get('sale')?.value.length === 6 && this.promoId === null && this.validateForm.get('sale')?.valid ) {
       this.frames.promoCodePost(sale).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
         this.frames.sum = el.discounted_price;
         this.promoId = el.promo_code.id;

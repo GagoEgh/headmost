@@ -20,6 +20,7 @@ import { ErrMsgComponent } from './idea/err-msg/err-msg.component';
 import { ToastrModule } from 'ngx-toastr';
 
 
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }

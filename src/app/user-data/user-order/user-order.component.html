@@ -21,10 +21,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="sum"> {{'_menu._user._my-order.status'|translate}}: {{item?.status}}</div>
+                   
                     <div class="user-info">
+  
                         <div class="sum">
-                            <div>
+                            <div>    
+                               <div > {{'_menu._user._my-order.status'|translate}}: {{item?.status}}</div>
                                 <p *ngIf="showPrice(orderItemss,i)">
                                     <span>
                                         {{price}} Դ

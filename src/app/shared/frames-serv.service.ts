@@ -300,6 +300,7 @@ export class FramesServService {
     letterColorFone() {
         this.spinner.show();
         this.text = this.validateForm.get('text')?.value;
+
         this.letterGet().subscribe((el: any) => {
             this.letterImges = el;
             this.letterImges = this.letterImges.filter(img => {
@@ -382,7 +383,6 @@ export class FramesServService {
         }
 
     }
-
 
     myMagnitOrder() {
         if (localStorage.getItem('loginAutorization')) {

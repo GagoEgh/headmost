@@ -23,6 +23,7 @@
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "express-fileupload": "^1.2.1",
     "ng-zorro-antd": "^11.4.2",
     "ngx-infinite-scroll": "^10.0.1",
     "ngx-mask": "^12.0.0",
