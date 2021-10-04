@@ -50,9 +50,7 @@
  position: relative;
 }
 
-.files:hover .preview-remove{
- opacity: 1;
-}
+
 
 .text{
  margin:10px 80px;
@@ -83,4 +81,8 @@ input[type=file]{
  justify-content: center;
  cursor: pointer;
  transition: opacity .22s;
+}
+
+.files:hover .preview-remove{
+ opacity: 1;
 }

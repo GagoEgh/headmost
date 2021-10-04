@@ -31,7 +31,8 @@
 
 .user-data{
  padding: 50px 0 0 20px;
- width: 400px;
+ width: 450px;
+ height: 740px;
 }
 
 .order-block{
@@ -43,7 +44,7 @@
 }
 
 .order{
- text-align: center;
+ /* text-align: center; */
  padding: 50px 10px 0 10px;
  width: 400px;
  /* margin-top: 30px; */
@@ -51,12 +52,20 @@
 
 .title{
  color: rgb(111 110 110);
+ text-align: center;
 }
 
 .data{
  display: flex;
- justify-content: space-around;
- font-size: 12px;
+ justify-content: space-between;
+ width: 380px;
+}
+
+.letter-length{
+ width: 250px;
+ font-weight: 700;
+ font-size: 11px;
+ letter-spacing: 0.5px;
 }
 
 .smoll{
@@ -67,7 +76,17 @@
 
 .data p {
  margin:0 0 0 1% ;
- font-weight: 500;
+}
+
+.detalis-sum{
+  width: 80px;
+}
+
+.add-sum{
+ width: 50px;
+ font-weight: 700;
+ font-size: 11px;
+ padding-left: 10px;
 }
 
 .ant-input {
@@ -168,7 +187,9 @@
  font-weight: bold;
  letter-spacing: 1px;
  margin-top: 50px;
+ text-align: center;
 }
+
 .red{
  color: red;
  margin-left: 130px;

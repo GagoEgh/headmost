@@ -19,7 +19,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   public _unsubscribe$ = new Subject();
   erroreStr: string = '';
   emailMassage = '';
-
+  date_of_birth ='';
   constructor(private valid: ValidationServService, private fb: FormBuilder,public modalService: NgbModal,
      public _translate: TranslateService, public frames: FramesServService) { }
   ngAfterViewChecked(): void {
@@ -58,15 +58,13 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   }
 
 
-  date_of_birth ='';
+  
   birt(formName: string) {
     const date = new Date(this.validateForm.get(formName)?.value);
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate()
     this.date_of_birth = year + '-' + month + '-' + day;
-    console.log('birt ', this.validateForm.get('date')?.value);
-    console.log('birt ',this.date_of_birth  )
     return this.date_of_birth;
   }
 

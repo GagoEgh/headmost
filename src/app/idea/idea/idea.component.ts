@@ -34,7 +34,6 @@ export class IdeaComponent implements OnInit {
 
   ngOnInit(): void {
     this.ideaImages = []
-    console.log('localStorage =>',localStorage.getItem('loginAutorization'));
     this.offset = 0;
     window.scrollTo(0, 0);
     if (window.innerWidth <= 772) {

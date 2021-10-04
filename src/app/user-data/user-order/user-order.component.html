@@ -1,9 +1,12 @@
 <div class="search-results" infinite-scroll [infiniteScrollDistance]="scrollDistance"
     [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown($event)">
     <div class="wrap">
+       
         <h3 class="title">{{'_menu._user._my-order.description'|translate}}</h3>
-        <div *ngFor="let item of userOrders, let i=index">
+        <div *ngFor="let item of userOrders, let i=index" class="content">
+            <span class="preview-remove" (click)='deleteUsOrder(item)'>&times;</span>
             <div class='block' *ngFor='let orderItemss of item.order_items_details'>
+              
                 <p class="text">{{item?.created_at}}
                     <span
                         *ngIf='frames.lang==="hy"'>{{orderItemss?.created_frame_details?.frame_details?.name_hy}}</span>

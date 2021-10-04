@@ -4,6 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { OkSmsComponent } from '../ok-sms/ok-sms.component';
 
 
 
@@ -15,15 +17,24 @@ import { Subject } from 'rxjs';
 export class UserOrderComponent implements OnInit, AfterViewChecked {
   public _subscribe$ = new Subject();
   userOrders: any[] = [];
-  scrollUpDistance = 2;
-  scrollDistance = 3;
-  price:string = '';
+  scrollUpDistance = 1.5;
+  scrollDistance = 2;
+  price: string = '';
   array: any[] = [];
   throttle = 300;
 
-  constructor(public frames: FramesServService, private spinner: NgxSpinnerService, public _translate: TranslateService) { }
+  constructor(public frames: FramesServService,public modalService: NgbModal,
+     private spinner: NgxSpinnerService, public _translate: TranslateService) { }
+
+  ngOnInit(): void {
+    this.frames.offset = 0;
+    this.userOrders;
+    this.appendItems();
+  }
+
   ngAfterViewChecked(): void {
-    this._translate.use(this.frames.lang)
+    this._translate.use(this.frames.lang);
+    // this.userOrders;
   }
 
   appendItems() {
@@ -32,37 +43,54 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
 
       this.userOrders.push(...el.results)
       this.frames.offset += 10;
-
       this.frames.isMyOrder = true;
       this.spinner.hide()
-      setTimeout(() => {
-      }, 500)
 
     })
   }
 
 
-  
-  showPrice(arr:any,num:number) {
+
+  showPrice(arr: any, num: number) {
     this.price = arr.created_frame_details.price;
     return this.price
   }
 
   onScrollDown(ev: any) {
-    //this.appendItems();
-    this.userOrders
+
+    if (this.userOrders.length < 10) {
+      this.userOrders
+    } else {
+      this.appendItems();
+    }
+
+    //this.userOrders;
   }
 
-  ngOnInit(): void {
-    this.frames.offset = 0;
-    this.appendItems();
+  okSms = '';
+  deleteUsOrder(item: any) {
+    this.frames.userOrderDel(item.id).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
+
+      this.okSms = el.message
+      const modalRef = this.modalService.open(OkSmsComponent);
+      this.userOrders = this.userOrders.filter((val) => val.id != item.id )
+         
+      setTimeout(() => {
+        modalRef.dismiss()
+      }, 2000)
+
+
+    })
+
   }
+
 
   addOrder(index: number) {
     this.spinner.show()
     let created_frame = '';
     this.userOrders[index].order_items_details.forEach((el: any) => {
       created_frame = el.created_frame
+
     })
 
     const obj = {
@@ -73,6 +101,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
     this.frames.orderCard(obj).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
       this.frames.orderList.push(el);
       this.spinner.hide()
+
     })
 
   }

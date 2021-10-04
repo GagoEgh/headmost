@@ -30,8 +30,9 @@ export class FrameImag {
 
 
     textValid(control:FormControl){
-        const regExp = /[0-9]/;
-        if(regExp.test(control.value)){
+        const regExp = /[a-z A-Z]/;
+        const simb =/[\!@#$%\^|\\&*()_\-+=}\[\]'";:\/?.>,<~`]/;
+        if(!regExp.test(control.value) || simb.test(control.value)){
             return{
                 noText:true
             }

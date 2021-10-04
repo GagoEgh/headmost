@@ -278,7 +278,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
   buttonWrapTopSave(){
     let top = {
-      "margin-top": '0'
+      "margin-top": '-7px'
     }
 
     if (window.innerWidth <= 768 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <= 9)) {

@@ -201,10 +201,16 @@ export class FramesServService {
         )
     }
 
+
     getCountry() {
         return this.url.get(this.api.worldApi + this.api.api_location + this.api.api_country)
     }
 
+    //                                                               /order/order/180/hide/
+    userOrderDel(id:number){
+        return this.url.get(this.api.worldApi+this.api.api_order+this.api.api_order+'/'+id+'/hide/',
+        { headers: { 'Authorization': this.token } })
+    }
     deleteOrder(id: number) {
         return this.url.delete(this.api.worldApi + this.api.api_order + this.api.api_card + '/' + id + '/',
             { headers: { 'Authorization': this.token } }

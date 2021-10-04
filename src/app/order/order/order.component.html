@@ -122,15 +122,24 @@
         <div class="order">
           <h2 class="title">{{title}}</h2>
           <div class="data" *ngFor='let list of frames.orderList'>
-            <p><span>{{list?.created_frame_details?.word?.length }} {{ _imgLength}} </span>
-              <span *ngIf='frames.lang==="hy"'> {{ list?.created_frame_details?.frame_details?.name_hy }} </span>
-              <span *ngIf='frames.lang==="en"'> {{ list?.created_frame_details?.frame_details?.name_en }} </span>
-              <span *ngIf='frames.lang==="ru"'> {{ list?.created_frame_details?.frame_details?.name_ru }} </span>
-            </p>
-            <p class="smoll" *ngIf="list?.created_frame_details?.frame_details?.price"> {{
-              list?.created_frame_details?.frame_details?.price }} {{ _letterSum}} </p>
-            <p> {{ list?.created_frame_details?.price }} {{ _price}}</p>
-            <span class="symbol" (click)='deleteDate(list)'>&#10005;</span>
+            <div class="letter-length">
+              <p><span>{{list?.created_frame_details?.word?.length }} {{ _imgLength}} </span>
+                <span *ngIf='frames.lang==="hy"'> {{ list?.created_frame_details?.frame_details?.name_hy }} </span>
+                <span *ngIf='frames.lang==="en"'> {{ list?.created_frame_details?.frame_details?.name_en }} </span>
+                <span *ngIf='frames.lang==="ru"'> {{ list?.created_frame_details?.frame_details?.name_ru }} </span>
+              </p>
+            </div>
+
+            <div class="detalis-sum">
+              <p class="smoll" *ngIf="list?.created_frame_details?.frame_details?.price">
+                {{ list?.created_frame_details?.frame_details?.price }} {{ _letterSum}} </p>
+            </div>
+            <div class="add-sum">
+              <p > {{ list?.created_frame_details?.price }} {{ _price}}</p>
+            </div>
+            <div >
+              <span class="symbol" (click)='deleteDate(list)'>&#10005;</span>
+            </div>
           </div>
           <p class="sum">{{_addSum }} {{ frames?.sum }} {{ _price}}</p>
         </div>

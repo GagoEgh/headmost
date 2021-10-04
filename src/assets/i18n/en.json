@@ -70,7 +70,8 @@
             "_date":"Choose a date",
             "_congratulations": "Congratulations",
             "_congratulationsTitle": "You have successfully registered, you can place orders",
-            "_message":"THE PRODUCT IS IN THE BASKET"
+            "_message":"THE PRODUCT IS IN THE BASKET",
+            "sms":"The order has been canceled"
             
         },
         "_inform-img": {

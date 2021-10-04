@@ -80,14 +80,6 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   }
 
-
-  ngAfterViewChecked(): void {
-    this._translate.use(this.frames.lang);
-    this.changeJson();
-    this.onResize();
-
-  }
-
   ngOnInit(): void {
     this.changeJson()
     this.frames.isdisible = false;
@@ -122,6 +114,12 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   }
 
+  ngAfterViewChecked(): void {
+    this._translate.use(this.frames.lang);
+    this.changeJson();
+    this.onResize();
+
+  }
   changeJson() {
     this._translate.get(['_order._user-data', '_order._inform-img']).pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
       this._frstName = res["_order._user-data"]._frstName;
