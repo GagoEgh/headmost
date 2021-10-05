@@ -174,7 +174,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
 
     if (this.frames.isOrder && window.innerWidth <= 1536 && (this.frames.letterImges.length > 4 && this.frames.letterImges.length <= 9)) {
-      height.height = '1310px';
+      height.height = '1350px';
       return height;
     }
     return height
@@ -264,6 +264,11 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       return top
     }
 
+    if (this.frames.isOrder && window.innerWidth <= 1537 && (this.frames.letterImges.length <= 9 && this.frames.letterImges.length > 2)) {
+      top["margin-top"] = '-460px';
+      return top
+    }
+
     if (window.innerWidth <= 1537 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <5)) {
       top["margin-top"] = '-260px';
       return top
@@ -273,6 +278,8 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       top["margin-top"] = '-460px';
       return top
     }
+
+   
     return top
   }
 

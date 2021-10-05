@@ -42,7 +42,7 @@
   <div #block class="block" [ngStyle]="setStyle()">
     <router-outlet></router-outlet>
   </div>
-  <div class="buttonWrap" >
+  <div class="buttonWrap">
     <table>
       <tr>
         <td class="aside"></td>
@@ -52,16 +52,12 @@
             <button type="submit" (click)='onSubmit()' class='makeAWord_3' *ngIf='frames.isImg'>
               {{'_img-text-valid._create-word'|translate}}
             </button>
-
-
-            <button class="makeAWord_3 save" (click)='frames.myOrder()'
-            [ngStyle]= "buttonWrapTopSave()" *ngIf='!frames.isOrder && !frames.isImg'>
+            <button class="makeAWord_3 save" (click)='frames.myOrder()' [ngStyle]="buttonWrapTopSave()"
+              *ngIf='!frames.isOrder && !frames.isImg'>
               {{'_img-text-valid._batn-save'|translate}}
             </button>
-
-            
-          <button *ngIf='frames.isOrder' class="makeAWord_3 create-bottom"[ngStyle]="buttonWrapTop()"
-          (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
+            <button *ngIf='frames.isOrder' class="makeAWord_3 create-bottom" [ngStyle]="buttonWrapTop()"
+              (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
             <!-- [ngStyle]="buttonWrapTop()" -->
           </div>
         </td>

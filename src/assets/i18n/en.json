@@ -56,6 +56,7 @@
             "_email": "EMAIL",
             "_phoneNumber": "PH. NUMBER",
             "_country": "CITY",
+            "country_placeholder":"CITY",
             "_addres": "ADDRESS",
             "_shipping": "TO DELIVER?",
             "_addresPost": "MAIL ADDRESS",

@@ -34,9 +34,12 @@
   width: 200px;
 }
 
-.login-form{
-  display: flex;
-  flex-wrap: wrap;
+.brt-err{
+  margin: -10px 0 35px 0;
+}
+
+.region{
+ margin-top: -10px;
 }
 
 .ant-btn-primary {
@@ -55,26 +58,48 @@
 /* .anticon.ng-tns-c132-12 */
 ::ng-deep.ng-star-inserted.anticon-check-circle-fill{
     color: #52c41a !important;
+
 }
 
 ::ng-deep.anticon-close-circle-fill.ng-star-inserted{
     color: #ff4d4f !important;
+
 }
+
+
 
 ::ng-deep.ant-form-item-control-input-content{
   max-width:74% !important ;
+}
+
+::ng-deep.ant-form-item-label>label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 50px !important;
+  color: rgba(0,0,0,.85);
+  font-size: 14px;
 }
 
 .label{
   margin-top: -40px;
 }
 
-.brt-day{
-  /* margin-top: -30px; */
-}
-
 @media (max-width:1440px){
   ::ng-deep.ant-form-item-control-input-content{
     max-width:73.5% !important ;
   }
+}
+
+@media (max-width:768px){
+
+  ::ng-deep.ng-star-inserted.anticon-check-circle-fill{
+    margin-left: -60px !important;
+  }
+
+ ::ng-deep.anticon-close-circle-fill.ng-star-inserted{
+    margin-left: -60px !important;
+  }
+
+  
 }

@@ -7,7 +7,7 @@
  position: relative;
  transform-origin: top;
  left: 50%;
- top:100px;
+ top:150px;
 }
 
 
@@ -69,7 +69,7 @@
 .question{
  display: inline-block;
  color: black;
- font-size: 1.2rem;
+ /* font-size: 1.2rem; */
  font-weight: bold;
  cursor: pointer;
  line-height: 2.6rem;
@@ -93,10 +93,11 @@
 }
 
 .asck{
+ display: inline-block;
  height: 38px;
  line-height: 38px;
  font-size: 1.7em;
- padding: 5px 20px;
+ padding: 0 20px 10px 20px;
  background: #ec0845;
  -webkit-border-radius: 20px;
  -moz-border-radius: 20px;
@@ -105,10 +106,11 @@
  outline: none;
  margin-left: 40px;
  font-size: 1.3rem;
+ margin-top: 50px;
 }
 
 .bottom-article{
-  margin-bottom: 30px;
+  margin-bottom: 80px;
 }
 
 .silka{
@@ -134,28 +136,54 @@
   margin-top: -15px;
 }
 
+@media (max-width:1025px){
+  .bg-color,.wrap{
+    background-position: center;
+    width: 750px;
+  }
+/* 
+  .wrap{
+    max-height: 8500px;
+  } */
+
+  .bottom-article {
+    margin-bottom: 480px;
+  }
+ }
+
 @media (max-width:768px){
-    .component{
+   /* .component{
      height: 1200px;
-    }
-    .text_1{
+    } */
+
+  .text_1{
      letter-spacing: 1px;
      line-height: 35px;
-     font-size: 28px;
-    }
+     font-size: 20px;
+  }
 
-    .question{
+  .question-text{
+      width: 500px;
+      margin: 0;
+  }
+
+  .question{
      /* font-size: 20px; */
      font-size: 1rem;
      letter-spacing: 1px;
      line-height: 65px;
-    }
+  }
 
-    .label{
-     font-size: 25px;
+  .label{
+     font-size: 18px;
      letter-spacing: 1px;
-     line-height: 50px
-    }
+     line-height: 30px
+  }
+
+  .bottom-article {
+
+    margin: 10px 0;
+  }
 }
 
 @media (max-width:426px){

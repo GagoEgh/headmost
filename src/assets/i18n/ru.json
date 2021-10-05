@@ -55,6 +55,7 @@
             "_email": "ЭЛ. ПИСЬМО",
             "_phoneNumber": "ТЕЛ. НОМЕР",
             "_country": "ГОРОД",
+            "country_placeholder":"ГОРОД",
             "_addres": "АДРЕС",
             "_shipping": "КУДА ДОСТАВЛЯТЬ",
             "_addresPost": "ПОЧТА АДРЕС",

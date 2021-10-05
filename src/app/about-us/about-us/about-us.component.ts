@@ -29,10 +29,13 @@ export class AboutUsComponent implements OnInit, AfterViewChecked, OnChanges {
    
     if (window.innerWidth <= 1165) {
       
-      this.scale = window.innerWidth / this.width - 0.1;
+      this.scale = 1165/ this.width - 0.3;
 
+      if (window.innerWidth <= 1025) {
+        this.scale = 1025/ this.width - 0.2;
+      }
       if (window.innerWidth <= 768) {
-        this.scale = 0.7;
+        this.scale = 768/ this.width - 0.2;
       }
 
       if(window.innerWidth<=559){

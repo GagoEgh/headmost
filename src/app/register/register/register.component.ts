@@ -5,7 +5,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { NzI18nService } from 'ng-zorro-antd/i18n';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -15,18 +15,27 @@ import { Subject } from 'rxjs';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, AfterViewChecked {
   validateForm: FormGroup = new FormGroup({});
   public _subscribe$ = new Subject();
   checkPass = this.validateForm.get('pasRev');
+  country_placeholder = '';
   selectedValue: any[] = [];
   erroreStr: string = '';
   shiping: any[] = [];
   emailMassage = '';
   constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private i18n: NzI18nService, public _translate: TranslateService,
     public frames: FramesServService, private modalService: NgbModal, private valid: ValidationServService) { }
+  ngAfterViewChecked(): void {
+    this.styleFlex();
+  }
 
   ngOnInit(): void {
+
+    this._translate.get('_order._user-data.country_placeholder').pipe(takeUntil(this._subscribe$)).subscribe((el) => {
+      this.country_placeholder = el;
+    })
+
     this.frames.userCountry();
     this.validateForm = this.fb.group({
       frstName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
@@ -36,9 +45,24 @@ export class RegisterComponent implements OnInit {
       pasRev: [null, [Validators.required, Validators.minLength(6), this.passwordReview.bind(this)]],
       email: [null, [Validators.required, this.valid.emailValid]],
       country: [null, [Validators.required]],
-      date: [null, [Validators.required,this.valid.bigDate]],
+      date: [null, [Validators.required, this.valid.bigDate]],
 
     });
+
+  }
+
+  styleFlex() {
+    let flex = {
+      'display': 'flex',
+      'flex-wrap': 'wrap',
+      'width': '800px'
+    }
+
+    if(window.innerWidth<=768){
+      flex.width = 'fit-content';
+      return flex
+    }
+    return flex
   }
 
   erroreName(formName: string) {
@@ -67,17 +91,16 @@ export class RegisterComponent implements OnInit {
     return null
   }
 
- 
 
   birt(formName: string) {
     const date = new Date(this.validateForm.get(formName)?.value);
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate()
-    console.log(typeof day)
     const date_of_birth = year + '-' + month + '-' + day;
     return date_of_birth;
   }
+
 
   submitForm(): void {
     for (const i in this.validateForm.controls) {
