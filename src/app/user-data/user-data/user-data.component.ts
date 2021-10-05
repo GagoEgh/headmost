@@ -22,14 +22,16 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   date_of_birth ='';
   constructor(private valid: ValidationServService, private fb: FormBuilder,public modalService: NgbModal,
      public _translate: TranslateService, public frames: FramesServService) { }
+
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
-
+    this.frames.cityPlaceholder();
   }
 
   ngOnInit(): void {
     this.frames.isMyOrder = false;
     this.frames.userCountry();
+   
     this.validateForm = this.fb.group({
       frstName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
       last: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],

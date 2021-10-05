@@ -90,7 +90,7 @@
     <div class="region">
       <nz-form-label nzRequired>{{'_order._user-data._country'|translate}}</nz-form-label>
       <nz-form-control [nzErrorTip]="country" nzHasFeedback>
-        <nz-select nzAllowClear nzPlaceHolder="COUNTRY" [(ngModel)]='frames.userData.city' nzShowSearch
+        <nz-select nzAllowClear [nzPlaceHolder]="frames.country_placeholder" [(ngModel)]='frames.userData.city' nzShowSearch
           formControlName='country'>
           <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country["name_"+frames.lang]'>
             <nz-option *ngFor='let regions of country.country_regions' [nzLabel]='regions["name_"+frames.lang]'

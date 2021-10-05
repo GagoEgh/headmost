@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.scrollToTopByChangeRoute();
+    this.frames.cityPlaceholder();
     if (localStorage.getItem('loginAutorization')) {
       const token: any = localStorage.getItem('loginAutorization');
       this.frames.token = token;

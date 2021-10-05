@@ -19,7 +19,6 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
   validateForm: FormGroup = new FormGroup({});
   public _subscribe$ = new Subject();
   checkPass = this.validateForm.get('pasRev');
-  country_placeholder = '';
   selectedValue: any[] = [];
   erroreStr: string = '';
   shiping: any[] = [];
@@ -31,11 +30,8 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit(): void {
-
-    this._translate.get('_order._user-data.country_placeholder').pipe(takeUntil(this._subscribe$)).subscribe((el) => {
-      this.country_placeholder = el;
-    })
-
+    this.styleFlex();
+    this.frames.cityPlaceholder();
     this.frames.userCountry();
     this.validateForm = this.fb.group({
       frstName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],

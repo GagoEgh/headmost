@@ -18,6 +18,7 @@ export class FramesServService {
     selectedValue: any[] = [];
     placeholder = '';
     lang = 'hy';
+    country_placeholder  = '';
     fileUrl = {};
     isOrder: boolean = false;
     isSilki = false;
@@ -302,6 +303,11 @@ export class FramesServService {
             { headers: { 'Authorization': this.token } })
     }
 
+    cityPlaceholder(){
+        this._translate.get('_order._user-data.country_placeholder').subscribe((el) => {
+          this.country_placeholder = el;
+        })
+    }
 
     letterColorFone() {
         this.spinner.show();

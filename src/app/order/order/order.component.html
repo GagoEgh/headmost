@@ -44,7 +44,7 @@
         <div class="region">
           <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>{{_country}}</nz-form-label>
           <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="country">
-            <nz-select nzAllowClear nzPlaceHolder="COUNTRY" [(ngModel)]=' frames.userData.city' nzShowSearch
+            <nz-select nzAllowClear [nzPlaceHolder]="frames.country_placeholder" [(ngModel)]=' frames.userData.city' nzShowSearch
               formControlName='country'>
               <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country["name_"+frames.lang]'>
                 <nz-option *ngFor='let regions of country.country_regions' nzDisabled=true

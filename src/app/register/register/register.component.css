@@ -55,6 +55,10 @@
   margin-top: 25px;
 }
 
+.pasRev{
+  margin-top: 5px;
+}
+
 /* .anticon.ng-tns-c132-12 */
 ::ng-deep.ng-star-inserted.anticon-check-circle-fill{
     color: #52c41a !important;
@@ -65,8 +69,6 @@
     color: #ff4d4f !important;
 
 }
-
-
 
 ::ng-deep.ant-form-item-control-input-content{
   max-width:74% !important ;

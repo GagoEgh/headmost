@@ -48,6 +48,13 @@
   margin-bottom: 20px;
 }
 
+// :not(.ant-select-customize-input) 
+.ant-select-show-search.ant-select.ant-select-selector {
+  border-radius: 10px !important;
+  width: 280px !important;
+  margin-left: 0 !important;
+}
+
 .ant-input, .ant-input-group {
  width: 280px;
 }
@@ -69,7 +76,12 @@
 // .ng-tns-c132-6
 ::ng-deep.anticon.ng-star-inserted.anticon-check-circle-fill{
  color: #52c41a !important;
- margin-left: 5px !important;
+ margin-left: -250px !important;
+}
+
+::ng-deep.anticon-close-circle-fill.ng-star-inserted{
+  color: #ff4d4f !important;
+  margin-left: -250px !important;
 }
 
 ::ng-deep.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
@@ -89,7 +101,7 @@
 @media (max-width:1537px){
   .btn-wrap{
     position: relative;
-    left: -170px;
+    left: -250px;
   }
 }
 
@@ -108,14 +120,56 @@
 }
 
 :host::ng-deep{
+  @media (max-width:1025px){
+    .anticon.ng-star-inserted.anticon-check-circle-fill{
+      margin-left: -160px !important;
+    }
+    
+    .anticon-close-circle-fill.ng-star-inserted{
+      margin-left: -160px !important;
+    }
+  }
+}
+
+:host::ng-deep{
+  @media (max-width:768px){
+    .anticon.ng-star-inserted.anticon-check-circle-fill{
+      margin-left: -30px !important;
+    }
+    
+    .anticon-close-circle-fill.ng-star-inserted{
+      margin-left: -30px !important;
+    }
+  }
+}
+
+:host::ng-deep{
     @media (max-width:760px){
-        .mat-form-field, .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector,  .ant-input, .ant-input-group {
-         width:95% !important;
-        }
-        .ant-select {
-         width:95% !important;
-        }
+        // .mat-form-field, .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector,  .ant-input, .ant-input-group {
+        //  width:95% !important;
+        // }
+
+        // .ant-select {
+        //  width:95% !important;
+        // }
+
+        // .anticon, .anticon svg {
+        //   display: inline-block;
+        //   margin-left: -10px !important;
+        // }
         
     }
 }
 
+:host::ng-deep{
+  @media (max-width:426px){
+    
+    .anticon.ng-star-inserted.anticon-check-circle-fill{
+      margin-left: -40px !important;
+    }
+    
+    .anticon-close-circle-fill.ng-star-inserted{
+      margin-left: -40px !important;
+    }
+  }
+}

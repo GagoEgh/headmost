@@ -21,7 +21,6 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   width: number | undefined;
   promoError: string = '';
   shiping: any[] = [];
-
   _frstName = '';
   _brtDay = '';
   _email = '';
@@ -81,6 +80,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit(): void {
+    this.frames.cityPlaceholder()
     this.changeJson()
     this.frames.isdisible = false;
     setTimeout(() => {
@@ -117,9 +117,17 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
     this.changeJson();
+    this.frames.cityPlaceholder()
     this.onResize();
 
   }
+
+  // cityPlaceholder(){
+  //   this._translate.get('_order._user-data.country_placeholder').pipe(takeUntil(this._subscribe$)).subscribe((el) => {
+  //     this.country_placeholder = el;
+  //   })
+  // }
+
   changeJson() {
     this._translate.get(['_order._user-data', '_order._inform-img']).pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
       this._frstName = res["_order._user-data"]._frstName;
