@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.modult';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { NoUsserComponent } from './create-img/no-usser/no-usser.component';
 
 const routs: Routes = [
   {
@@ -18,7 +19,9 @@ const routs: Routes = [
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    NoUsserComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,

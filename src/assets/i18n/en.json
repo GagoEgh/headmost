@@ -20,7 +20,12 @@
             "_my-order": {
                 "description": "DESCRIPTION",
                 "status": "STATUS",
-                "add": "add to cart"
+                "add": "add to cart",
+                "only":"this order is the only one",
+                "delete":"cancel the order?",
+                "no":"CANCEL",
+                "yes":"CONFIRM"
+
             }
         }
     },
@@ -28,7 +33,7 @@
         "_placeholder": "WRITE THE WORD",
         "_title": "how to write a word, letter and symbol",
         "_modal-text1": "Rules of entry ․ You can enter words, the words must be in Latin letters. The words in the photo in the frame can be from 3 letters to 9.",
-        "_modal-text2": " You can also make words with magnets (3-8 letters). To add your photo you need to register / log in, then open the letter replacement window և select the 'my letters' section ընտրել select a picture from your computer.",
+        "_modal-text2": " You can also make words with magnets (3-9 letters). To add your photo you need to register / log in, then open the letter replacement window և select the 'my letters' section ընտրել select a picture from your computer.",
         "_create-word": "CREATE",
         "_order-add":"ORDER AGAIN",
         "_modal-header":"writing conditions",
@@ -72,7 +77,8 @@
             "_congratulations": "Congratulations",
             "_congratulationsTitle": "You have successfully registered, you can place orders",
             "_message":"THE PRODUCT IS IN THE BASKET",
-            "sms":"The order has been canceled"
+            "sms":"The order has been canceled",
+            "ship":"Shipping"
             
         },
         "_inform-img": {
@@ -109,7 +115,8 @@
         "_checkPass":"you filled in the field incorrectly",
         "_bigDate":"Wrong date",
         "textErr":"write number",
-        "titleLength":"The number of letters is 20"
+        "titleLength":"The number of letters is 20",
+        "no-usser":"TO UPLOAD IMAGES, YOU NEED TO REGISTER"
     },
     "_about": {
         "_hello": "HELLO",

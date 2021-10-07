@@ -141,10 +141,6 @@
     background-position: center;
     width: 750px;
   }
-/* 
-  .wrap{
-    max-height: 8500px;
-  } */
 
   .bottom-article {
     margin-bottom: 480px;
@@ -152,10 +148,6 @@
  }
 
 @media (max-width:768px){
-   /* .component{
-     height: 1200px;
-    } */
-
   .text_1{
      letter-spacing: 1px;
      line-height: 35px;

@@ -40,6 +40,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   _price = '';
   _addSum = '';
   _carzin = '';
+  ship ='';
   scale: number = 1;
   promoId = null;
   sumInit = 0;
@@ -148,7 +149,9 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       this._carzin = res["_order._inform-img"]._carzin;
       this.titleH1 = res["_order._inform-img"].title_h1;
       this.titleH2 = res["_order._inform-img"].title_h2;
+      this.ship= res["_order._user-data"].ship;
     })
+ 
   }
 
   public setStyle(num: number) {

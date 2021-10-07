@@ -17,7 +17,7 @@ export class ValidationServService{
   }
     
   emailValid(control: FormControl) {
-    const regExp = /^([a-z0-9._%+-])+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+    const regExp = /^([A-Za-z0-9._%+-])+@[a-z0-9.-]+\.[a-z]{2,4}$/;
     if (!regExp.test(control.value)) {
       return {
         isEmail: true

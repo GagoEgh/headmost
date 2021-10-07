@@ -1,11 +1,14 @@
 import { FramesServService } from 'src/app/shared/frames-serv.service';
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OkSmsComponent } from '../ok-sms/ok-sms.component';
+import { OnlyComponent } from '../only/only.component';
+import { DeleteComponent } from '../delete/delete.component';
+
 
 
 
@@ -14,7 +17,7 @@ import { OkSmsComponent } from '../ok-sms/ok-sms.component';
   templateUrl: './user-order.component.html',
   styleUrls: ['./user-order.component.css']
 })
-export class UserOrderComponent implements OnInit, AfterViewChecked {
+export class UserOrderComponent implements OnInit, AfterViewChecked, OnChanges {
   public _subscribe$ = new Subject();
   userOrders: any[] = [];
   scrollUpDistance = 1.5;
@@ -22,25 +25,34 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
   price: string = '';
   array: any[] = [];
   throttle = 300;
+  okSms = '';
 
-  constructor(public frames: FramesServService,public modalService: NgbModal,
-     private spinner: NgxSpinnerService, public _translate: TranslateService) { }
+  constructor(public frames: FramesServService, public modalService: NgbModal,
+    private spinner: NgxSpinnerService, public _translate: TranslateService) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    // this.showItem(this.obj,this.num)
+  }
 
   ngOnInit(): void {
     this.frames.offset = 0;
     this.userOrders;
     this.appendItems();
+
   }
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
-    // this.userOrders;
   }
 
   appendItems() {
     this.spinner.show()
     this.frames.userOrderGet().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
-
+      el.results.forEach((item: any) => {
+        item.order_items_details.forEach((obj: any) => {
+          obj.isBlock = false;
+        })
+        item.order_items_details[0].isBlock = true;
+      })
       this.userOrders.push(...el.results)
       this.frames.offset += 10;
       this.frames.isMyOrder = true;
@@ -67,26 +79,29 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
     //this.userOrders;
   }
 
-  okSms = '';
+
   deleteUsOrder(item: any) {
-    this.frames.userOrderDel(item.id).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
 
-      this.okSms = el.message
-      const modalRef = this.modalService.open(OkSmsComponent);
-      this.userOrders = this.userOrders.filter((val) => val.id != item.id )
-         
-      setTimeout(() => {
-        modalRef.dismiss()
-      }, 2000)
+   
+    const modalRef = this.modalService.open(DeleteComponent);
+    modalRef.componentInstance.item = item;
+    modalRef.componentInstance.userOrders = this.userOrders;
+      // this.frames.userOrderDel(item.id).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
+      //   this.okSms = el.message
+      //   const modalRef = this.modalService.open(OkSmsComponent);
+      //   this.userOrders = this.userOrders.filter((val) => val.id != item.id)
 
+      //   setTimeout(() => {
+      //     modalRef.dismiss()
+      //   }, 2000)
 
-    })
+      // })
+    
 
   }
 
-
   addOrder(index: number) {
-    this.spinner.show()
+    this.spinner.show();
     let created_frame = '';
     this.userOrders[index].order_items_details.forEach((el: any) => {
       created_frame = el.created_frame
@@ -110,4 +125,20 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
     this._subscribe$.next();
     this._subscribe$.complete();
   }
+
+  showItem(order: any) {
+    if (order.order_items_details.length > 1) {
+      for (let j = 1; j < order.order_items_details.length; j++) {
+        order.order_items_details[j].isBlock = !order.order_items_details[j].isBlock
+      }
+
+    } else {
+      const modalRef = this.modalService.open(OnlyComponent);
+
+      setTimeout(() => {
+        modalRef.dismiss()
+      }, 2000)
+    }
+  }
+
 }

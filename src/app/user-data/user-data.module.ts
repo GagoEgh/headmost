@@ -6,6 +6,8 @@ import { NgModule} from '@angular/core';
 import { UserGuard } from './userGuard';
 import { DataCheckComponent } from './data-check/data-check.component';
 import { OkSmsComponent } from './ok-sms/ok-sms.component';
+import { OnlyComponent } from './only/only.component';
+import { DeleteComponent } from './delete/delete.component';
 
 const routes: Routes = [
   {
@@ -23,7 +25,9 @@ const routes: Routes = [
   declarations: [
     UserComponent,
     DataCheckComponent,
-    OkSmsComponent
+    OkSmsComponent,
+    OnlyComponent,
+    DeleteComponent
   ],
   imports: [
     InfiniteScrollModule,

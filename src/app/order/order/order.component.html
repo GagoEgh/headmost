@@ -72,7 +72,7 @@
         <div class="region">
           <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>{{_shipping}}</nz-form-label>
           <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="shipping">
-            <nz-select nzAllowClear nzPlaceHolder="Shipping" nzShowSearch formControlName='shipping'>
+            <nz-select nzAllowClear [nzPlaceHolder]="ship" nzShowSearch formControlName='shipping'>
               <nz-option *ngFor='let addres of shiping ' [nzValue]="addres.id"
                 [nzLabel]="addres['name_'+frames.lang] +' ' + addres.price+'Դ'">
               </nz-option>

@@ -4,7 +4,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Category } from 'src/app/shared/img-ramka';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NoUsserComponent } from '../no-usser/no-usser.component';
 
 @Component({
   selector: 'app-img-catalog',
@@ -18,7 +19,7 @@ export class ImgCatalogComponent implements OnInit {
   categoryList: Category[] = [];
   @Output() newItem = new EventEmitter();
   @ViewChild("header", { static: false }) block: ElementRef | undefined;
-  constructor(public activeModal: NgbActiveModal, public frames: FramesServService) { }
+  constructor(public activeModal: NgbActiveModal, public frames: FramesServService,public modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.frames.painding.imgs = this.img;
@@ -64,10 +65,17 @@ export class ImgCatalogComponent implements OnInit {
   }
 
   getMyPhoto(){
-    this.frames.userImageGet(0).pipe(takeUntil(this._subscribe$)).subscribe((el:any)=>{
-      this.frames.fileList = el.results;
-      this.frames.apiPhoto = false;
-    })
+    if(localStorage.getItem('loginAutorization')){
+      this.frames.userImageGet(0).pipe(takeUntil(this._subscribe$)).subscribe((el:any)=>{
+        this.frames.fileList = el.results;
+        this.frames.apiPhoto = false;
+      })
+    }else{
+      const modalRef = this.modalService.open(NoUsserComponent);
+      setTimeout(()=>{
+        modalRef.dismiss()
+      },2500)
+    }
   }
 
   ngOnDestroy(){
