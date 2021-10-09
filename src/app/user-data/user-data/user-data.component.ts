@@ -20,18 +20,23 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   erroreStr: string = '';
   emailMassage = '';
   date_of_birth ='';
+  userName='';
+
   constructor(private valid: ValidationServService, private fb: FormBuilder,public modalService: NgbModal,
      public _translate: TranslateService, public frames: FramesServService) { }
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
     this.frames.cityPlaceholder();
+    
   }
+
 
   ngOnInit(): void {
     this.frames.isMyOrder = false;
     this.frames.userCountry();
-   
+    this.userName = this.frames.userData.user_details.first_name;
+    
     this.validateForm = this.fb.group({
       frstName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
       last: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
@@ -71,10 +76,11 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   }
 
   submitForm(): void {
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
-    }
+    // for (const i in this.validateForm.controls) {
+    //   this.validateForm.controls[i].markAsDirty();
+    //   this.validateForm.controls[i].updateValueAndValidity();
+    //   console.log(this.validateForm.controls[i].value);
+    // }
 
     const date = this.birt('date');
     const edit = {
@@ -84,12 +90,14 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
       image: '',
       comment: '',
       last_name: this.validateForm.get('last')?.value,
-      first_name: this.validateForm.get('frstName')?.value
+      first_name:this.validateForm.get('frstName')?.value
 
     }
 
     if (this.validateForm.valid) {
+      this.userName = edit.first_name;
       this.frames.editUser(edit).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
+        this.frames.userData.user_details.first_name = this.userName;
         localStorage.setItem('user-date', JSON.stringify(this.frames.userData));
         const modalRef = this.modalService.open(DataCheckComponent);
         setTimeout(()=>{

@@ -264,8 +264,13 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       return top
     }
 
-    if (this.frames.isOrder && window.innerWidth <= 1537 && (this.frames.letterImges.length <= 9 && this.frames.letterImges.length > 2)) {
-      top["margin-top"] = '-460px';
+    if (this.frames.isOrder && window.innerWidth <= 1537 && (this.frames.letterImges.length <5 && this.frames.letterImges.length > 2)) {
+      top["margin-top"] = '-310px'; //-310
+      return top
+    }
+
+    if (this.frames.isOrder && window.innerWidth <= 1537 && (this.frames.letterImges.length <= 9 && this.frames.letterImges.length > 4)) {
+      top["margin-top"] = '-470px';
       return top
     }
 

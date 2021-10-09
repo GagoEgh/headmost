@@ -48,18 +48,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border-radius: 10px !important;
 }
 
-.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
- 
-    border-radius: 10px !important;
-}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-
-.ant-select-selector {
-    width: 280px !important;
-}
 
 .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
   border-radius: 10px !important;
@@ -71,7 +62,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     width: 120px !important;
     height: 120px !important;
     border: 1px dashed #a09393 !important;
- transition: all .5s;
+    transition: all .5s;
 }
 
 .ant-upload.ant-upload-select-picture-card:hover{

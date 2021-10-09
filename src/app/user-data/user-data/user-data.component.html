@@ -5,7 +5,7 @@
     </div>
     <nz-form-item>
       <nz-form-control [nzErrorTip]='frstEr' nzHasFeedback>
-        <input nz-input formControlName="frstName" id="frstName" [(ngModel)]='frames.userData.user_details.first_name'
+        <input nz-input formControlName="frstName" id="frstName" [(ngModel)]='userName'
           trim />
       </nz-form-control>
     </nz-form-item>
@@ -69,12 +69,10 @@
           </mat-form-field>
         </nz-form-control>
       </nz-form-item>
-      <ng-template #date>
-        <p *ngIf="erroreName('date')">{{erroreStr}} </p>
+      <ng-template #date class="dat-err">
+        <p *ngIf="erroreName('date')" class="dat-err">{{erroreStr}} </p>
       </ng-template>
     </div>
-
-
     <div class="phone">
       <nz-form-label nzRequired nzFor="phoneNumber">{{'_order._user-data._phoneNumber'|translate}}</nz-form-label>
     </div>

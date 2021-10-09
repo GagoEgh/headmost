@@ -46,8 +46,8 @@ ul{
 }
 
 .user{
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
   padding: 5px;
   margin: 10px 0;
 
@@ -64,6 +64,8 @@ ul{
 
 .my-order:nth-child(even){
   flex-direction: column-reverse;
+ 
+
 }
 
 
@@ -130,14 +132,13 @@ ul{
   padding: 5px 10px;
   transition: 0.5s;
   margin: 10px 0;
- }
+}
  
- .batn:active{
+.batn:active{
   background: white;
   color: rgb(206, 56, 56);
   border: 1px solid  #f5deb3;;
- }
- 
+}
  
 .title{
  color: #d8bc89;
@@ -161,7 +162,6 @@ ul{
 
 }
 
-
 @media  (max-width: 1000px){
     .wrap{
       width: 100%;
@@ -170,6 +170,7 @@ ul{
     .block{
       width: 100%;
     }
+
     .order{
      display: flex;
      width: 650px;
