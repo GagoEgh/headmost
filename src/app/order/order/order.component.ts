@@ -41,6 +41,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   _addSum = '';
   _carzin = '';
   ship ='';
+  sahleLengt = 0;
   scale: number = 1;
   promoId = null;
   sumInit = 0;
@@ -109,7 +110,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       addres: [null, [Validators.required]],
       shipping: [null, [Validators.required]],
       comment: ['', [Validators.maxLength(20)]],
-      sale: ['', [this.noText]],
+      sale: ['', [Validators.maxLength(6),  this.noText]],
       postal: ['', [Validators.maxLength(20),Validators.required]]
     });
 
@@ -122,12 +123,6 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this.onResize();
 
   }
-
-  // cityPlaceholder(){
-  //   this._translate.get('_order._user-data.country_placeholder').pipe(takeUntil(this._subscribe$)).subscribe((el) => {
-  //     this.country_placeholder = el;
-  //   })
-  // }
 
   changeJson() {
     this._translate.get(['_order._user-data', '_order._inform-img']).pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
@@ -150,6 +145,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       this.titleH1 = res["_order._inform-img"].title_h1;
       this.titleH2 = res["_order._inform-img"].title_h2;
       this.ship= res["_order._user-data"].ship;
+      this.sahleLengt= res["_order._user-data"].saleLength;
     })
  
   }

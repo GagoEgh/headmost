@@ -31,8 +31,9 @@
     <ng-template #log>
       <ul>
         <li class="parent-1">
-          <a class="activeHover frame" routerLinkActive='active'> {{frames.userData.user_details.first_name | uppercase}}
-            <ul class="user-data">
+          <a class="activeHover frame" routerLinkActive='active' > {{frames.userData.user_details.first_name | uppercase}}
+        
+            <ul class="user-data" >
               <li class="list"><a routerLink='/user/profil'>{{'_menu._user._profil'|translate}}</a></li>
               <li class="list"><a routerLink='/user/imags'>{{'_menu._user._images'|translate}}</a></li>
               <li class="list"><a routerLink='/user/user-order'>{{'_menu._user._orders'|translate}}</a></li>

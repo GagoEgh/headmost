@@ -31,6 +31,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked, OnChanges {
     private spinner: NgxSpinnerService, public _translate: TranslateService) { }
   ngOnChanges(changes: SimpleChanges): void {
     // this.showItem(this.obj,this.num)
+  
   }
 
   ngOnInit(): void {
@@ -42,6 +43,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked, OnChanges {
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
+    
   }
 
   appendItems() {
@@ -81,23 +83,20 @@ export class UserOrderComponent implements OnInit, AfterViewChecked, OnChanges {
 
 
   deleteUsOrder(item: any) {
+   // const modalRef = this.modalService.open(DeleteComponent);
 
-   
-    const modalRef = this.modalService.open(DeleteComponent);
+
+    const modalRef = this.modalService.open(DeleteComponent, { size: 'lg' });
     modalRef.componentInstance.item = item;
     modalRef.componentInstance.userOrders = this.userOrders;
-      // this.frames.userOrderDel(item.id).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
-      //   this.okSms = el.message
-      //   const modalRef = this.modalService.open(OkSmsComponent);
-      //   this.userOrders = this.userOrders.filter((val) => val.id != item.id)
+  
 
-      //   setTimeout(() => {
-      //     modalRef.dismiss()
-      //   }, 2000)
+   this.frames.isLogin = true;
+    this.modalService.activeInstances.subscribe((list)=>{
+      console.log('list',list)
+    })
 
-      // })
     
-
   }
 
   addOrder(index: number) {

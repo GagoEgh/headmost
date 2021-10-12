@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
+  
     this.scrollToTopByChangeRoute();
     this.frames.cityPlaceholder();
     if (localStorage.getItem('loginAutorization')) {
@@ -38,7 +39,6 @@ export class AppComponent implements OnInit {
       const result = JSON.parse(date)
       this.frames.userData = result;
       this.frames.userReg = false;
-      
       this.frames.userInfo().pipe(takeUntil(this.unsubscribe$)).subscribe((el: any) => {
         this.frames.orderList = el.results;
 
@@ -49,6 +49,7 @@ export class AppComponent implements OnInit {
       })
     }
   }
+
 
   scrollToTopByChangeRoute() {
     this.router.events.pipe(takeUntil(this.unsubscribe$)).subscribe((evt) => {

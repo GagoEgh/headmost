@@ -32,7 +32,9 @@ export class DeleteComponent implements OnInit {
       this.okSms = el.message
       const modalRef = this.modalService.open(OkSmsComponent);
        this.userOrders = this.userOrders.filter((val:any) => val.id != this.item.id)
-
+      
+       
+  
         setTimeout(() => {
           modalRef.dismiss()
         }, 1500)

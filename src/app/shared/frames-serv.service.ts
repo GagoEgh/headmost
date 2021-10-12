@@ -17,7 +17,7 @@ export class FramesServService {
     framesImge: FramesImg[] = [];
     selectedValue: any[] = [];
     placeholder = '';
-    lang = 'hy';
+    lang = 'en';
     country_placeholder  = '';
     fileUrl = {};
     isOrder: boolean = false;

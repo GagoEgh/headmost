@@ -23,8 +23,8 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
   erroreStr: string = '';
   shiping: any[] = [];
   emailMassage = '';
-  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private i18n: NzI18nService, public _translate: TranslateService,
-    public frames: FramesServService, private modalService: NgbModal, private valid: ValidationServService) { }
+  constructor(public activeModal: NgbActiveModal, public fb: FormBuilder, public i18n: NzI18nService, public _translate: TranslateService,
+    public frames: FramesServService, public modalService: NgbModal, public valid: ValidationServService) { }
   ngAfterViewChecked(): void {
     this.styleFlex();
   }
@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
     this.frames.cityPlaceholder();
     this.frames.userCountry();
     this.validateForm = this.fb.group({
-      frstName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
+      frstName: [null, [Validators.required, Validators.minLength(3),Validators.maxLength(50), this.valid.userNameChar]],
       lastName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
       phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
       pas: [null, [Validators.required, Validators.minLength(6)]],
@@ -67,6 +67,7 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
       if (formName === 'pas') size = 6
       if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res._required;
       if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res._minlength} ${size} `;
+      if (this.validateForm.get(formName)?.hasError('maxlength')) this.erroreStr = `${res.maxLength}`;
       if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res._userNameChar;
       if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res._isEmail;
       if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res._isSize;
@@ -119,11 +120,9 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
 
     if (this.validateForm.valid) {
       this.frames.userRegisterPost(userDetalis).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
-
         this.frames.isRegister = true;
         this.frames.userData = el.user_details;
         const modalRef = this.modalService.open(OkRegisterComponent);
-
         modalRef.result.then((result) => {
           this.frames.isRegister = false;
         }, (reason) => {

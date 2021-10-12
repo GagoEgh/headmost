@@ -8,6 +8,7 @@ import { DataCheckComponent } from './data-check/data-check.component';
 import { OkSmsComponent } from './ok-sms/ok-sms.component';
 import { OnlyComponent } from './only/only.component';
 import { DeleteComponent } from './delete/delete.component';
+import { NoCheckComponent } from './no-check/no-check.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
     DataCheckComponent,
     OkSmsComponent,
     OnlyComponent,
-    DeleteComponent
+    DeleteComponent,
+    NoCheckComponent
   ],
   imports: [
     InfiniteScrollModule,

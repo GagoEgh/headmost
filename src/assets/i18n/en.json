@@ -9,6 +9,7 @@
         "_aboutUs":"ABOUT US",
         "_user": {
             "_updateOk":"The changes were successful",
+            "noUpdate":"You have not changed the data",
             "_save":"REGISTER",
             "_exit":"SIGN IN",
             "_profil": "PROFILE",
@@ -78,7 +79,9 @@
             "_congratulationsTitle": "You have successfully registered, you can place orders",
             "_message":"THE PRODUCT IS IN THE BASKET",
             "sms":"The order has been canceled",
-            "ship":"Shipping"
+            "ship":"Shipping",
+            "saleLength":"The maximum number of digits must be 6"
+            
             
         },
         "_inform-img": {
@@ -106,6 +109,7 @@
     "_erroreMessage":{
         "_required":"Mute the field",
         "_minlength":"The number of letters must be more than",
+        "maxLength": "The number of letters should not exceed 50",
         "_userNameChar":"should not be a number",
         "_isEmail":"Email is not valid",
         "_isSize":"phone number is incorrect",

@@ -15,6 +15,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaskModule } from "ngx-mask";
 import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
 
+
 const routes:Routes = [
     {path:'',component:UserDataComponent}
 ]
@@ -40,4 +41,7 @@ const routes:Routes = [
     ],
     exports:[RouterModule]
 })
-export class ProfilModule { }
+export class ProfilModule  {
+   
+      
+ }
