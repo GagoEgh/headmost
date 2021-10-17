@@ -1,6 +1,5 @@
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { AfterViewChecked, Component, OnInit } from '@angular/core';
-import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -34,6 +33,7 @@ export class UserImagsComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit(): void {
+
     this.offset = 0;
     this.frames.fileList = [];
     this.myImages();

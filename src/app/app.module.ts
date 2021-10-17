@@ -16,7 +16,6 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ErrMsgComponent } from './idea/err-msg/err-msg.component';
-
 import { ToastrModule } from 'ngx-toastr';
 
 

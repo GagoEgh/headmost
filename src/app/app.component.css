@@ -58,8 +58,9 @@
 }
 
 .silki p{
+ position: relative;  
  cursor: pointer;
- margin-top: -7px;
+ top:-7px;
 }
 
 .drop{
@@ -231,6 +232,7 @@
 .rout{
    min-height: calc(100% - 200px);
 }
+
 @media (min-width:1441px ) and (max-width:2560px ){
     .parent{
         top:2px

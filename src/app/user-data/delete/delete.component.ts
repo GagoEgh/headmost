@@ -31,16 +31,12 @@ export class DeleteComponent implements OnInit {
     this.frames.userOrderDel(this.item.id).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
       this.okSms = el.message
       const modalRef = this.modalService.open(OkSmsComponent);
-       this.userOrders = this.userOrders.filter((val:any) => val.id != this.item.id)
+       this.userOrders = this.userOrders.filter((val:any) => val.id != this.item.id);
+       this.activeModal.close(this.userOrders);
+       setTimeout(() => {
+        modalRef.dismiss()
+       }, 1500)
       
-       
-  
-        setTimeout(() => {
-          modalRef.dismiss()
-        }, 1500)
-
-        this.activeModal.close();
-
     })
 
   }

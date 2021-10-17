@@ -207,7 +207,7 @@ export class FramesServService {
         return this.url.get(this.api.worldApi + this.api.api_location + this.api.api_country)
     }
 
-    //                                                               /order/order/180/hide/
+
     userOrderDel(id:number){
         return this.url.get(this.api.worldApi+this.api.api_order+this.api.api_order+'/'+id+'/hide/',
         { headers: { 'Authorization': this.token } })
@@ -305,7 +305,7 @@ export class FramesServService {
 
     cityPlaceholder(){
         this._translate.get('_order._user-data.country_placeholder').subscribe((el) => {
-          this.country_placeholder = el;
+          this.country_placeholder = el;  
         })
     }
 

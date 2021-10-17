@@ -42,7 +42,7 @@
   <div #block class="block" [ngStyle]="setStyle()">
     <router-outlet></router-outlet>
   </div>
-  <div class="buttonWrap">
+  <div class="buttonWrap" [ngStyle] = "btnWrapMargin()">
     <table>
       <tr>
         <td class="aside"></td>

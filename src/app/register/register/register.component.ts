@@ -8,7 +8,7 @@ import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-register',
@@ -24,12 +24,16 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
   shiping: any[] = [];
   emailMassage = '';
   constructor(public activeModal: NgbActiveModal, public fb: FormBuilder, public i18n: NzI18nService, public _translate: TranslateService,
-    public frames: FramesServService, public modalService: NgbModal, public valid: ValidationServService) { }
+    public frames: FramesServService,private spinner: NgxSpinnerService, public modalService: NgbModal, public valid: ValidationServService) { }
   ngAfterViewChecked(): void {
     this.styleFlex();
   }
 
   ngOnInit(): void {
+    this.spinner.show();
+    setTimeout(()=>{
+      this.spinner.hide()
+    },1500)
     this.styleFlex();
     this.frames.cityPlaceholder();
     this.frames.userCountry();

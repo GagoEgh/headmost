@@ -1,6 +1,6 @@
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
-import { AfterViewChecked, Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntil } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataCheckComponent } from '../data-check/data-check.component';
 import { NoCheckComponent } from '../no-check/no-check.component';
-
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-user-data',
@@ -23,7 +23,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   userName = '';
   isChange = false;
   constructor(private valid: ValidationServService, private fb: FormBuilder, public modalService: NgbModal,
-    public _translate: TranslateService, public frames: FramesServService) { }
+    private spinner: NgxSpinnerService, public _translate: TranslateService, public frames: FramesServService) { }
 
 
 
@@ -34,7 +34,11 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit(): void {
-
+    this.spinner.show();
+   
+    setTimeout(()=>{
+      this.spinner.hide();
+    },2000)
     this.frames.isMyOrder = false;
     this.frames.userCountry();
     this.userName = this.frames.userData.user_details.first_name;

@@ -216,6 +216,12 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     return style
   }
 
+  btnWrapMargin(){
+   let margin={"margin-top": '122px'}
+   
+   return margin
+  }
+
   buttonWrapTop() {
     let top = {
       "margin-top": '79.5px'
@@ -304,6 +310,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
   frameClick(id: number) {
     this.frames.index = id;
     this.frames.frame = this.frames.framesImge.find(item => item.id === this.frames.index);
+    
   }
 
   getFrameId(img: FramesImg) {

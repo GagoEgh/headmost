@@ -1,4 +1,8 @@
+
 <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
   <div class="col">
     <div>
       <nz-form-label nzRequired nzFor="frstName">{{'_order._user-data._frstName'|translate}}</nz-form-label>

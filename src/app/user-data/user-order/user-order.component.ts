@@ -5,9 +5,9 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { OkSmsComponent } from '../ok-sms/ok-sms.component';
 import { OnlyComponent } from '../only/only.component';
 import { DeleteComponent } from '../delete/delete.component';
+
 
 
 
@@ -31,19 +31,22 @@ export class UserOrderComponent implements OnInit, AfterViewChecked, OnChanges {
     private spinner: NgxSpinnerService, public _translate: TranslateService) { }
   ngOnChanges(changes: SimpleChanges): void {
     // this.showItem(this.obj,this.num)
-  
+
   }
+
 
   ngOnInit(): void {
     this.frames.offset = 0;
     this.userOrders;
     this.appendItems();
-
   }
+
+
+
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
-    
+
   }
 
   appendItems() {
@@ -52,9 +55,11 @@ export class UserOrderComponent implements OnInit, AfterViewChecked, OnChanges {
       el.results.forEach((item: any) => {
         item.order_items_details.forEach((obj: any) => {
           obj.isBlock = false;
+        
         })
         item.order_items_details[0].isBlock = true;
       })
+      
       this.userOrders.push(...el.results)
       this.frames.offset += 10;
       this.frames.isMyOrder = true;
@@ -77,26 +82,20 @@ export class UserOrderComponent implements OnInit, AfterViewChecked, OnChanges {
     } else {
       this.appendItems();
     }
-
-    //this.userOrders;
   }
 
 
   deleteUsOrder(item: any) {
-   // const modalRef = this.modalService.open(DeleteComponent);
-
-
     const modalRef = this.modalService.open(DeleteComponent, { size: 'lg' });
     modalRef.componentInstance.item = item;
     modalRef.componentInstance.userOrders = this.userOrders;
-  
+    modalRef.result.then((result) => {
+      this.userOrders = result;
+    });
 
-   this.frames.isLogin = true;
-    this.modalService.activeInstances.subscribe((list)=>{
-      console.log('list',list)
-    })
 
-    
+
+
   }
 
   addOrder(index: number) {
@@ -138,6 +137,10 @@ export class UserOrderComponent implements OnInit, AfterViewChecked, OnChanges {
         modalRef.dismiss()
       }, 2000)
     }
+  }
+
+  checkImage(img: string): boolean {
+    return img.startsWith('http') ? true : false
   }
 
 }

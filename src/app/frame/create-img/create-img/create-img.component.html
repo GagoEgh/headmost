@@ -8,6 +8,7 @@
       <div class="squrl left-bottom" [style.background-image]="'url(' + frames.frame?.left_bottom_corner_image + ')'">
       </div>
     </div>
+
     <div class="content">
       <div class="top" [style.background-image]="'url(' + frames.frame?.top_line_image + ')'"></div>
       <div class="im" [style.backgroundColor]="frames.background.color" (mouseleave)="onMouseleave()"
@@ -52,7 +53,6 @@
       </div>
     </div>
     <div class="left">
-
       <div class="squrl right-top" [style.background-image]="'url(' + frames.frame?.right_top_corner_image + ')'">
       </div>
 
@@ -64,27 +64,3 @@
   </div>
 </div>
 <app-order *ngIf='frames.isOrder'> </app-order>
-
-
-<!-- <div class="buttonWrap" [ngStyle]="buttonWrapTop()">
-  <table>
-    <tr>
-      <td class="aside"></td>
-      <td class="center">
-        <div>
-          <b></b>
-          
-      
-
-          <button class="makeAWord_3" (click)='frames.myOrder()' *ngIf='!frames.isOrder && !frames.isImg'>
-            {{'_img-text-valid._batn-save'|translate}}
-          </button>
-
-          <button *ngIf='frames.isOrder' class="makeAWord_3 create-bottom"
-            (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
-        </div>
-      </td>
-      <td class="aside"></td>
-    </tr>
-  </table>
-</div> -->
