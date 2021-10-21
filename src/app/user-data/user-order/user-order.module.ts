@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.modult';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
+import { NgImageSliderModule } from 'ng-image-slider';
 
 const routes:Routes = [
   {path:'',component:UserOrderComponent}
@@ -21,7 +22,7 @@ const routes:Routes = [
     ReactiveFormsModule,
     SharedModule,
     InfiniteScrollModule,
-    
+    NgImageSliderModule,
     RouterModule.forChild(routes)
   ],
   exports:[RouterModule],

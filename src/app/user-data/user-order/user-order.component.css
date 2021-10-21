@@ -1,6 +1,8 @@
 .wrap{
  max-width: 1200px;
  margin: 0 auto;
+
+
 }
 
 .frames{
@@ -8,8 +10,10 @@
   border-radius: 50px;
   padding: 30px;
   position: relative;
-  padding: 20px 0 20px;
   margin: 20px 0;
+/*   
+  width: fit-content; */
+  display: flex;
 }
 
 .preview-remove {
@@ -33,13 +37,11 @@
   opacity: 1;
 }
 
-.block{
- background: white;
- border-radius: 20px;
+.user-block{
  box-sizing: border-box;
  width: inherit;
- margin: 15px;
 }
+
 
 ul{
   list-style: none;
@@ -102,6 +104,38 @@ ul{
  margin-bottom: 40px;
 }
 
+.levt-nav{ 
+  left: 5px;
+}
+
+.myWrap:hover .levt-nav{
+  opacity: 1;
+  background-image: url('/assets/1x/navigate/grey-Rnav.png');
+}
+
+.reight-nav{
+  right: 5px;
+}
+
+.myWrap:hover .reight-nav{
+  opacity: 1;
+  background-image: url('/assets/1x/navigate/grey-Lnav.png');
+}
+
+.levt-nav,.reight-nav{
+  background-position: center;
+  background-size: 100% 100%;
+  position: relative;
+  z-index: 55;
+  top:40%;
+  height: 40px;
+  width: 40px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  display: block;
+  opacity: 0;
+}
 
 .down-arrow{
   background-image: url('/assets/1x/dot.png');
@@ -111,7 +145,15 @@ ul{
   width: 50px;
   margin: 20px auto;
   cursor: pointer;
+}
 
+@media  (max-width: 1025px){
+  .user-imags{
+    width: 80px;
+    height: 100px;
+    background-position: center;
+    background-size: 100% 100%;
+  }
 }
 
 @media  (max-width: 1000px){
@@ -119,7 +161,7 @@ ul{
       width: 100%;
     }
 
-    .block{
+    .user-block{
       width: 100%;
     }
 
@@ -161,7 +203,7 @@ ul{
      width: fit-content;
     }
 
-    .block{
+    .user-block{
       margin: 0 0 10px 0;
     }
     
@@ -169,7 +211,7 @@ ul{
 
 @media (max-width:376px){
 
-  .block{
+  .user-block{
     width: 360px;
   }
   
@@ -239,4 +281,18 @@ ul{
 .text{
   font-family: Arial, Helvetica, sans-serif !important;
   font-size: 12px !important;
+  height: 20px;
+}
+
+.bot{
+  position: relative;
+  left: 95%;
+}
+
+.porc{
+  width: 1200px; 
+  text-align:center;
+  margin:0;
+  padding:0;
+
 }
