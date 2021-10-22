@@ -23,7 +23,7 @@
           <div class="lettering" *ngIf='frames.letterImges.length>3' [style.opacity]="topLettering.isForm?'1':'0'">
             <form [formGroup]="validateForm">
               <input type="text" formControlName='topText' [style.backgroundColor]="frames.background.color"
-                class="inStyle" maxlength="9" [class.font]='topLettering.isSpan'>
+                class="inStyle" maxlength="15" [class.font]='topLettering.isSpan'>
               <span class="cursor" *ngIf="topLettering.isSpan" (click)='deleteTopProprty()'>X</span>
             </form>
           </div>
@@ -39,7 +39,7 @@
         <div class="menu">
           <div *ngIf='frames.letterImges.length>3' [style.opacity]="bottomLettering.isForm?'1':'0'">
             <form [formGroup]='bottomText'>
-              <input type="text" formControlName='btmText' class="inStyle" maxlength="9"
+              <input type="text" formControlName='btmText' class="inStyle" maxlength="15"
                 [style.backgroundColor]="frames.background.color" [class.font]="bottomLettering.isSpan">
               <span class="cursor" *ngIf="bottomLettering.isSpan" (click)="deleteBottomProprty()">X</span>
             </form>

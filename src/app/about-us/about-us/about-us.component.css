@@ -116,6 +116,11 @@
 .silka{
  display: inline-block;
  margin-left: 20px;
+ transition: 0.2s;
+}
+
+.silka:hover{
+  opacity: 0.6;
 }
 
 .contackat{

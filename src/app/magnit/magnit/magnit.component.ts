@@ -29,8 +29,8 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.width = this.block?.nativeElement.clientWidth | 1;
+  
     if (window.innerWidth <= 1537) {
-      // this.frames.magnit_scale = 0.9;
       let num = window.innerWidth / 1536;
       this.frames.magnit_scale = num - 0.1;
     }
@@ -48,13 +48,14 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     if(window.innerWidth <= 426){
       let num = window.innerWidth / 425;
       this.frames.magnit_scale = num - 0.6;
-   
+
     }
 
   }
 
 
   conteinerHeight() {
+    let winHeight = window.innerHeight
     let height = {
       height: '650px'
     }
@@ -83,8 +84,6 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
       height.height = '1550px';
       return height
     }
-
-    
 
     return height
   }

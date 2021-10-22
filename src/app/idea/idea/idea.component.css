@@ -2,10 +2,10 @@
 .main{
  max-width: 1200px;
  margin: 0 auto;
- background-color: #d9d9d9;
  display: grid;
- grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+ grid-template-columns: repeat(auto-fill, minmax(230px, 2fr));
  grid-gap: 25px;
+ padding-right: 10px;
 }
 
 .img-idea{
@@ -22,8 +22,8 @@
 .idea-info{
  display: flex;
  justify-content: space-between;
- background-color: #ffffff;
  width: 280px;
+ background: #eceaea;
 }
 
 .titles{

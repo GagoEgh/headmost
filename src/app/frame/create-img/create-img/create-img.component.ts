@@ -37,9 +37,7 @@ export class CreateImgComponent extends FrameImag implements OnInit {
   constructor(public frames: FramesServService, public rout: Router,
     public form: FormBuilder, public modalService: NgbModal) {
     super(frames, modalService, rout, form);
-
   }
-
 
   ngOnInit(): void {
 
@@ -58,9 +56,6 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     }
     return style
   }
-
-
-
 
   deletImg() {
     this.rout.navigate(['frame/form-frame']);
@@ -135,8 +130,7 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     }
 
   }
-
-
+  
   ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();

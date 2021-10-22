@@ -3,6 +3,7 @@
   <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
   </ngx-spinner>
+
   <div class="col">
     <div>
       <nz-form-label nzRequired nzFor="frstName">{{'_order._user-data._frstName'|translate}}</nz-form-label>
@@ -55,10 +56,10 @@
       <p *ngIf="erroreName('email')">{{erroreStr}} </p>
     </ng-template>
     <p *ngIf='emailMassage' [style.color]='"red"'>{{emailMassage}}</p>
-
   </div>
+
+
   <div class="col">
-    
     <div class="brtDay">
       <nz-form-label nzRequired>{{'_order._user-data._brtDay'|translate}}</nz-form-label>
       <nz-form-item >

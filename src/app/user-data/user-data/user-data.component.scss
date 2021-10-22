@@ -1,6 +1,5 @@
 .login-form{
  display: flex;
-//  width: 50%;
  padding: 30px;
  flex-wrap: wrap;
  margin: 180px auto;
@@ -139,6 +138,7 @@
 
 :host::ng-deep{
   @media (max-width:1025px){
+
     .anticon.ng-star-inserted.anticon-check-circle-fill{
       margin-left: -160px !important;
     }

@@ -81,10 +81,6 @@
  background-color: rgb(236, 231, 231);
 }
 
-.margin{
- /* margin-top: -5px; */
-}
-
 .active{
  color: #ff4d4f;
 } 
@@ -118,6 +114,7 @@
 .user-data{
  position: absolute;
  top:30px;
+ left: -30px;
  list-style: none;
  color: rgb(78, 77, 77);
  background-color: white;
@@ -183,7 +180,7 @@
  border-radius: 4px;
  z-index: 999;
  top: 105px;
- left: 97%;
+ left: 96%;
  position: fixed;
  background: #d9d9d9c7;
  width: 60px;
@@ -193,15 +190,11 @@
 
 .footerWrap{
  min-width: 100%;
- padding-top: 80px;
+ padding-top: 20px;
  display: flex;
  justify-content: space-around;
  box-shadow: 0 2px 2px rgb(41 43 42 / 37%) inset;
- height: 150px;
-}
-
-.left{
- padding: 20px; 
+ height: 100px;
 }
 
 .footer-nav{
@@ -212,25 +205,31 @@
  list-style: none;
  display: flex;
  justify-content: space-around;
- padding: 5px;
 }
 
 .soc{
  text-align: center;
- padding: 20px;
+ padding-top: 10px;
+ margin-left: 20px;
 }
 
 .silka{
  display: inline-block;
  margin-left: 20px;
+ transition: 0.2s;
 }
+
+.silka:hover{
+ opacity: 0.6;
+}
+
 
 .material-icons-outlined{
  display: none;
 }
 
 .rout{
-   min-height: calc(100% - 200px);
+   min-height: calc(100% - 150px);
 }
 
 @media (min-width:1441px ) and (max-width:2560px ){
@@ -260,7 +259,7 @@
     }
 }
 
-@media (max-width:768px){
+@media (max-width:960px){
     .conteiner{ 
      display: flex;
      justify-content: space-between;
@@ -292,6 +291,7 @@
      color: rgb(54, 54, 54);
      font-weight: bold;
      transition: 0.4s;
+     display: inline-block;
     }
     
     .check-silki p{
@@ -331,7 +331,6 @@
     .conteiner{ 
      width: 350px;
      display: flex;
-     /* justify-content: space-between; */
     }
 
     .material-icons-outlined{
@@ -341,7 +340,11 @@
     }
 
     .left{
-     padding: 20px 0;
+     margin-top: 80px;
+    }
+
+    .soc{
+      margin-left: 110px;
     }
 
     .order{
@@ -362,6 +365,7 @@
      width: 350px;
      display: flex;
      flex-direction: column;
+     margin-left: 20px;
     }
 }
 

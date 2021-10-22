@@ -42,7 +42,7 @@
   <div #block class="block" [ngStyle]="setStyle()">
     <router-outlet></router-outlet>
   </div>
-  <div class="buttonWrap" [ngStyle] = "btnWrapMargin()">
+  <div class="buttonWrap" [ngStyle]="btnWrapMargin()">
     <table>
       <tr>
         <td class="aside"></td>
@@ -58,15 +58,12 @@
             </button>
             <button *ngIf='frames.isOrder' class="makeAWord_3 create-bottom" [ngStyle]="buttonWrapTop()"
               (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
-            <!-- [ngStyle]="buttonWrapTop()" -->
           </div>
         </td>
         <td class="aside"></td>
       </tr>
     </table>
   </div>
-
-
 </header>
 <div class="steps">
   <div class="wrap1">

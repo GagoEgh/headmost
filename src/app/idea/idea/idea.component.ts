@@ -21,10 +21,6 @@ export class IdeaComponent implements OnInit {
   category = '';
   offset = 0;
   count = 0;
-  // @HostListener('window:resize', ['$event'])
-  // onResize() {
-  //  // this.frames.isBar = window.innerWidth <= 790 ? false : true;
-  // }
 
   constructor(public frames: FramesServService,
     private _activatedRoute: ActivatedRoute,
@@ -55,7 +51,6 @@ export class IdeaComponent implements OnInit {
     })
   }
 
-
   open() {
     const modalRef = this.modalService.open(MessageComponent);
     setTimeout(() => {
@@ -70,6 +65,7 @@ export class IdeaComponent implements OnInit {
     this.frames.frameCategoryImg(this.category, 1, this.offset).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
       this.offset += 10;
       this.ideaImages.push(...el.results);
+      console.log(this.ideaImages)
      this.frames.spinner.hide();
     })
   }

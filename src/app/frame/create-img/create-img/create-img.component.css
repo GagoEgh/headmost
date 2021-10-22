@@ -59,11 +59,11 @@
 
 .font{
   font-family: Arial, Helvetica, sans-serif !important;
-  font-size: 12px !important;
+  font-size: 11px !important;
   border: none !important;
   outline: none;
   cursor: text;
-  width: 70px;
+  width: 120px;
 }
 
 .cursor{
@@ -76,7 +76,7 @@
  outline: none;
  border-bottom: 0.1px solid;
  opacity: 0.7;
- width: 70px;
+ width: 120px;
  font-family: sans-serif;
 }
 
@@ -159,28 +159,7 @@
   z-index: 300;
   background: url('/assets/1x/ordeerButtonAside_right_.png') bottom right no-repeat,url('/assets/1x/bg8.jpg');
 }
- 
-.makeAWord_3 {
-  /* display: block;
-  height: 61px;
-  padding: 0;
-  border: none;
-  cursor: pointer; 
-  background-color: transparent !important;
-  position: relative;
-  z-index: 320;
-  color: #fff;
-  font-size: 30px;
-  font-weight: 600;
-  text-shadow: 1px 1px 2px #000;
-  text-align: center;
-  line-height: 60px;
-  background-image: url('/assets/1x/Botton.png');
-  width: 288px;
-  outline: none;
-  bottom: 30px;*/
-}
- 
+
 .makeAWord_3:hover{
   background-image: url('/assets/1x/tund-bot.png');
 }
