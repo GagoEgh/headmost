@@ -45,10 +45,8 @@
 }
 
 .order{
- /* text-align: center; */
  padding: 50px 10px 0 10px;
  width: 400px;
- /* margin-top: 30px; */
 }
 
 .title{
@@ -127,11 +125,11 @@
  margin-bottom: 30px;
 }
 
-::ng-deep.ant-select-arrow {
+::ng-deep .order-item .ant-select-arrow {
   left: 105% !important;
 }
 
-::ng-deep.ant-select-clear {
+::ng-deep .order-item .ant-select-clear {
   left: 105% !important;
 }
 
@@ -154,9 +152,10 @@
  width: 400px !important;
 }
 
-::ng-deep.ant-form-item{
+::ng-deep.order-item .ant-form-item-control-inputnt-form-item{
   width: 400px !important;
 }
+
 
 ::ng-deep.ant-form-item-control-input-content {
   flex: auto;
@@ -176,7 +175,7 @@
   width: 180px !important;
 }
 
-::ng-deep.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+::ng-deep .order-item .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
   border-radius: 10px !important;
   width: 280px !important;
   margin-left: 37px !important;
