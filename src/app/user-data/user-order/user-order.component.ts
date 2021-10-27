@@ -134,8 +134,6 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
         margin['margin-left'] = '0%'
         return margin
       }
-
-     
     }
 
     if (window.innerWidth <= 1025) {

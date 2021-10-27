@@ -55,11 +55,12 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
     let flex = {
       'display': 'flex',
       'flex-wrap': 'wrap',
-      'width': '800px'
+      'max-width': '800px',
+      'border':'1px solid'
     }
 
     if(window.innerWidth<=768){
-      flex.width = 'fit-content';
+      flex['max-width'] = 'fit-content';
       return flex
     }
     return flex
