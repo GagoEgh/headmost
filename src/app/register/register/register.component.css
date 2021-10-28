@@ -72,12 +72,12 @@
 
 ::ng-deep .region .ng-star-inserted.anticon-check-circle-fill{
   color: #52c41a !important;
-  margin-left: -15px !important;
+  /* margin-left: -15px !important; */
 }
 
 ::ng-deep .region .anticon-close-circle-fill.ng-star-inserted{
   color: #ff4d4f !important;
-  margin-left: -15px !important;
+  /* margin-left: -15px !important; */
 }
 
 ::ng-deep.ant-form-item-control-input-content{

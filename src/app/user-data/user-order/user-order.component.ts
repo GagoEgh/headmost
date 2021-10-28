@@ -41,7 +41,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
   }
 
  
-  appendItems() {
+  appendItems():void {
     this.spinner.show()
     this.frames.userOrderGet().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
       el.results.forEach((item: any) => {
@@ -49,7 +49,6 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
           obj.isBlock = false;
           obj.isDisabled = false;
           obj.isPrev = false;
-
         })
         item.order_items_details[0].isBlock = true;
       })
@@ -61,13 +60,12 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
     })
   }
 
-  showPrice(arr: any, num: number) {
+  showPrice(arr: any, num: number):string {
     this.price = arr.created_frame_details.price;
     return this.price
   }
 
-  onScrollDown(ev: any) {
-
+  onScrollDown(ev: any):void {
     if (this.userOrders.length < 10) {
       this.userOrders
     } else {
@@ -76,7 +74,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
   }
 
 
-  deleteUsOrder(item: any) {
+  deleteUsOrder(item: any):void {
     const modalRef = this.modalService.open(DeleteComponent, { size: 'lg' });
     modalRef.componentInstance.item = item;
     modalRef.componentInstance.userOrders = this.userOrders;
@@ -86,7 +84,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
 
   }
 
-  addOrder(index: number) {
+  addOrder(index: number):void {
     this.spinner.show();
     let created_frame = '';
     this.userOrders[index].order_items_details.forEach((el: any) => {
@@ -107,7 +105,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
 
   }
 
-  ngOnDestroy() {
+  ngOnDestroy():void {
     this._subscribe$.next();
     this._subscribe$.complete();
   }
@@ -117,53 +115,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
     return img.startsWith('http') ? true : false
   }
 
-  public marginLeft(orderItems: any) {
-    const margin = {
-      'margin-left': '0'
-    }
-    let length = orderItems.created_frame_details.frame_images.length
-
-    if (length <= 4) margin['margin-left'] = '55%';
-    if (length === 5) margin['margin-left'] = '40%';
-    if (length === 6) margin['margin-left'] = '25%';
-    if (length === 7) margin['margin-left'] = '20%';
-    if (length === 8) margin['margin-left'] = '10%';
-
-    if (window.innerWidth <= 768) {
-      if(length>2 && length<=9){
-        margin['margin-left'] = '0%'
-        return margin
-      }
-    }
-
-    if (window.innerWidth <= 1025) {
-      if (length <= 4) {
-        margin['margin-left'] = '45%'
-        return margin
-      }
-      if (length === 5) {
-        margin['margin-left'] = '27%'
-        return margin
-      }
-      if (length === 6) {
-        margin['margin-left'] = '15%'
-        return margin
-      }
-      if (length === 7) {
-        margin['margin-left'] = '6%'
-        return margin
-      }
-      if (length === 8) {
-        margin['margin-left'] = '0%'
-        return margin
-      }
-
-    }
-
-    return margin
-  }
-
-  public prevOrder(order: any, num: number) {
+  public prevOrder(order: any, num: number):void {
 
     if (num <= (order.order_items_details.length - 1)) {
       order.order_items_details[num].isBlock = false
@@ -178,7 +130,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
 
   }
 
-  public nextOrder(order: any, num: number) {
+  public nextOrder(order: any, num: number):void {
     if (order.order_items_details.length === 1) {
       const modalRef = this.modalService.open(OnlyComponent);
       setTimeout(() => {
