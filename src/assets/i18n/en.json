@@ -120,7 +120,8 @@
         "_bigDate":"Wrong date",
         "textErr":"write number",
         "titleLength":"The number of letters is 20",
-        "no-usser":"TO UPLOAD IMAGES, YOU NEED TO REGISTER"
+        "no-usser":"TO UPLOAD IMAGES, YOU NEED TO REGISTER",
+        "emailMassage":"This email is busy"
     },
     "_about": {
         "_hello": "HELLO",

@@ -10,30 +10,30 @@ import { Subject } from 'rxjs';
   styleUrls: ['./idea-nav.component.css']
 })
 export class IdeaNavComponent implements OnInit {
-  frameIdeas: any[] = [];
+  public frameIdeas: any[] = [];
   public _unsubscribe$ = new Subject();
-  offset = 0;
-  id=0;
-  constructor(public frames:FramesServService,
-    private _router:Router) { }
+  public offset: number = 0;
+  public id: number = 0;
+  constructor(public frames: FramesServService,
+    private _router: Router) { }
 
   ngOnInit(): void {
     this.offset = 0;
-    this.frames.frameCategory().pipe(takeUntil(this._unsubscribe$)).subscribe((el:any)=>{
+    this.frames.frameCategory().pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
       this.frameIdeas = el.results
     })
   }
 
-  
-  ideaGroup(obj:any = undefined){
-    if(obj){
-      this._router.navigate(['idea/idea-imags'],{queryParams:{category:obj.id}});
+
+  public ideaGroup(obj: any = undefined):void {
+    if (obj) {
+      this._router.navigate(['idea/idea-imags'], { queryParams: { category: obj.id } });
       this.id = obj.id
-    }else{
-      this._router.navigate(['idea/idea-imags'],{queryParams:{category:''}});
+    } else {
+      this._router.navigate(['idea/idea-imags'], { queryParams: { category: '' } });
       this.id = 0;
     }
-    
+
   }
 
   ngOnDestroy() {

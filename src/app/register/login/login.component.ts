@@ -17,20 +17,13 @@ import { Subject } from 'rxjs';
 export class LoginComponent implements OnInit, DoCheck {
   validateForm: FormGroup = new FormGroup({});
   public _subscribe$ = new Subject();
-  erroreStr = '';
-  errorLog = '';
+  public erroreStr: string = '';
+  public errorLog: string = '';
 
   constructor(public activeModal: NgbActiveModal, private modalService: NgbModal, public _translate: TranslateService,
     private fb: FormBuilder, public frames: FramesServService, private valid: ValidationServService, private spinner: NgxSpinnerService) { }
 
-  ngDoCheck(): void {
-    if (this.frames.isLogin) {
-      this.activeModal.dismiss()
-    }
-  }
-
   ngOnInit(): void {
-
     this.validateForm = this.fb.group({
       email: [null, [Validators.email, Validators.required]],
       password: [null, [Validators.required, Validators.minLength(6)]],
@@ -38,7 +31,13 @@ export class LoginComponent implements OnInit, DoCheck {
     });
   }
 
-  erroreName(formName: string) {
+  public ngDoCheck(): void {
+    if (this.frames.isLogin) {
+      this.activeModal.dismiss()
+    }
+  }
+
+  public erroreName(formName: string): string {
     this._translate.get('_erroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
       if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res._required;
       if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res._minlength} 6`;
@@ -47,7 +46,7 @@ export class LoginComponent implements OnInit, DoCheck {
     return this.erroreStr;
   }
 
-  submitForm(): void {
+  public submitForm(): void {
     for (const i in this.validateForm.controls) {
       if (this.validateForm.controls.hasOwnProperty(i)) {
         this.validateForm.controls[i].markAsDirty();
@@ -87,7 +86,7 @@ export class LoginComponent implements OnInit, DoCheck {
     }
   }
 
-  open() {
+  public open(): void {
     const modalRef = this.modalService.open(RegisterComponent, { size: 'lg' })
     modalRef.result.then((result) => {
       this.frames.isLogin = false;

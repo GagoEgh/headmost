@@ -16,29 +16,31 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit, AfterViewChecked {
-  validateForm: FormGroup = new FormGroup({});
+  public validateForm: FormGroup = new FormGroup({});
   public _subscribe$ = new Subject();
-  checkPass = this.validateForm.get('pasRev');
-  selectedValue: any[] = [];
-  erroreStr: string = '';
-  shiping: any[] = [];
-  emailMassage = '';
+  private checkPass = this.validateForm.get('pasRev');
+  private selectedValue: any[] = [];
+  public erroreStr: string = '';
+  private shiping: any[] = [];
+  public emailMassage: string = '';
+
   constructor(public activeModal: NgbActiveModal, public fb: FormBuilder, public i18n: NzI18nService, public _translate: TranslateService,
-    public frames: FramesServService,private spinner: NgxSpinnerService, public modalService: NgbModal, public valid: ValidationServService) { }
+    public frames: FramesServService, private spinner: NgxSpinnerService, public modalService: NgbModal, public valid: ValidationServService) { }
+
   ngAfterViewChecked(): void {
     this.styleFlex();
   }
 
   ngOnInit(): void {
     this.spinner.show();
-    setTimeout(()=>{
+    setTimeout(() => {
       this.spinner.hide()
-    },1500)
+    }, 1500)
     this.styleFlex();
     this.frames.cityPlaceholder();
     this.frames.userCountry();
     this.validateForm = this.fb.group({
-      frstName: [null, [Validators.required, Validators.minLength(3),Validators.maxLength(50), this.valid.userNameChar]],
+      frstName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50), this.valid.userNameChar]],
       lastName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
       phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
       pas: [null, [Validators.required, Validators.minLength(6)]],
@@ -51,21 +53,21 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
 
   }
 
-  styleFlex() {
+  public styleFlex(): object {
     let flex = {
       'display': 'flex',
       'flex-wrap': 'wrap',
       'max-width': '800px'
     }
 
-    if(window.innerWidth<=768){
+    if (window.innerWidth <= 768) {
       flex['max-width'] = 'fit-content';
       return flex
     }
     return flex
   }
 
-  erroreName(formName: string) {
+  public erroreName(formName: string): string {
     this._translate.get('_erroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
       let size = 3;
       if (formName === 'pas') size = 6
@@ -81,19 +83,17 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
     return this.erroreStr;
   }
 
-  passwordReview(control: FormControl) {
-
+  private passwordReview(control: FormControl): object | null {
     if (control.value && (control.value !== this.validateForm.get('pas')?.value)) {
       return {
         passwordReview: true
       }
-
     }
     return null
   }
 
 
-  birt(formName: string) {
+  private birt(formName: string): string {
     const date = new Date(this.validateForm.get(formName)?.value);
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -103,7 +103,7 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
   }
 
 
-  submitForm(): void {
+  public submitForm(): void {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
@@ -138,15 +138,18 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
         this.frames.token = 'Token ' + el.token;
         localStorage.setItem('loginAutorization', this.frames.token);
         localStorage.setItem('user-date', JSON.stringify(this.frames.userData))
-        //this.frames.spinner.hide();
         setTimeout(() => {
           modalRef.dismiss();
         }, 1500)
 
       }, ((err: any) => {
         if (err.status === 400) {
-          this.emailMassage = 'տվյալ email-ը զբաղված է';
+          this._translate.get('_erroreMessage').pipe(takeUntil(this._subscribe$))
+            .subscribe((res: any) => {
+              this.emailMassage = res.emailMassage
+            })
         }
+
       }))
     }
 

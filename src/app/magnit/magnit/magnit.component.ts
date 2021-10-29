@@ -26,26 +26,39 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
 
   }
 
+  ngOnInit(): void {
+
+    super.myForm();
+    this._translate.get('_img-text-valid').pipe(takeUntil(this._unsubscribe$))
+      .subscribe((res: any) => {
+        this.frames.placeholder = res["_placeholder"];
+      })
+    this.frames.letterImges = [];
+    this.frames.isOrder = false;
+    this.rout.navigate(['magnit/form-magnit']);
+
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.width = this.block?.nativeElement.clientWidth | 1;
-  
+
     if (window.innerWidth <= 1537) {
       let num = window.innerWidth / 1536;
       this.frames.magnit_scale = num - 0.1;
     }
 
-    if(window.innerWidth <= 1025){
+    if (window.innerWidth <= 1025) {
       let num = window.innerWidth / 1025;
       this.frames.magnit_scale = num - 0.1;
     }
 
-    if(window.innerWidth <= 769){
+    if (window.innerWidth <= 769) {
       let num = window.innerWidth / 769;
       this.frames.magnit_scale = num - 0.3;
     }
 
-    if(window.innerWidth <= 426){
+    if (window.innerWidth <= 426) {
       let num = window.innerWidth / 425;
       this.frames.magnit_scale = num - 0.6;
 
@@ -54,7 +67,7 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
   }
 
 
-  conteinerHeight() {
+  public conteinerHeight(): object {
     let winHeight = window.innerHeight
     let height = {
       height: '650px'
@@ -88,7 +101,7 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     return height
   }
 
-  public setStyle() {
+  public setStyle():object {
     let style = {
       transform: "translate(-50%, -5%)" + "scale(" + this.frames.magnit_scale + ")"
     }
@@ -101,18 +114,4 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     this.onResize()
     this.setStyle()
   }
-
-  ngOnInit(): void {
-
-    super.myForm();
-    this._translate.get('_img-text-valid').pipe(takeUntil(this._unsubscribe$))
-      .subscribe((res: any) => {
-        this.frames.placeholder = res["_placeholder"];
-      })
-    this.frames.letterImges = [];
-    this.frames.isOrder = false;
-    this.rout.navigate(['magnit/form-magnit']);
-
-  }
-
 }

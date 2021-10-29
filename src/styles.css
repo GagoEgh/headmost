@@ -133,14 +133,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .letter input{
-    text-align: center;
-    color: #bebebe;
-    padding: 20px;
-    font-size: 60px;
-    box-shadow: 0 0 5px rgb(0 0 0 / 35%) inset;
-    border: none;
-    width: 725px;
-    height: 170px;
+ text-align: center;
+ color: #bebebe;
+ padding: 20px;
+ font-size: 60px;
+ box-shadow: 0 0 5px rgb(0 0 0 / 35%) inset;
+ border: none;
+ width: 725px;
+ height: 170px;
 }
 
 .makeAWord_3 {
@@ -149,7 +149,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
  padding: 0;
  border: none;
  cursor: pointer;
- background-color: transparent !important;
  position: relative;
  z-index: 320;
  color: #fff;
@@ -158,23 +157,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
  text-shadow: 1px 1px 2px #000;
  text-align: center;
  line-height: 60px;
- background-image: url('/assets/1x/Botton.png');
+ background-color: #ff024b;
+ border-radius: 35px;
  width: 288px;
  outline: none;
  bottom: 30px;
 }
 
 .makeAWord_3:hover{
- background-image: url('/assets/1x/tund-bot.png');
+ background-color: #ef0034 !important;
+ box-shadow: 1px 2px 2px white inset;
+ transition: all 0.2s;
 }
 
 .block{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: fit-content;   
-    position: relative;
-    transform-origin: top;  
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ width: fit-content;   
+ position: relative;
+ transform-origin: top;  
 }
 
 /* create-img */

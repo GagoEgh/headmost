@@ -20,11 +20,9 @@ export class OkoderComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, public _translate: TranslateService,
     public frames: FramesServService, public router: Router, private toastr: ToastrService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
-  }
-
-  goUsOrder() {
+  public goUsOrder(): void {
     let okMsg: string = '';
     let errMsg: string = '';
     this._translate.get('_menu._user').subscribe((el) => {
@@ -45,7 +43,7 @@ export class OkoderComponent implements OnInit {
     }
   }
 
-  errOrder(str: string) {
+  public errOrder(str: string): void {
     this.toastr.error(str, '', {
       timeOut: 2000,
     });

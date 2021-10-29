@@ -14,70 +14,43 @@ import { OkoderComponent } from '../okoder/okoder.component';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit, AfterViewChecked {
-  validateForm: FormGroup = new FormGroup({});
+  public validateForm: FormGroup = new FormGroup({});
   public _subscribe$ = new Subject();
-  erroreStr: string = '';
-  heigth: number | undefined;
-  width: number | undefined;
-  promoError: string = '';
-  shiping: any[] = [];
-  _frstName = '';
-  _brtDay = '';
-  _email = '';
-  _phoneNumber = '';
-  _country = '';
-  _addres = '';
-  _sale = '';
-  _shipping = '';
-  __addresPost = '';
-  _comment = '';
-  _btnOrder = ''
-  titleH1 = '';
-  titleH2 = '';
-  title = '';
-  _imgLength = '';
-  _letterSum = '';
-  _price = '';
-  _addSum = '';
-  _carzin = '';
-  ship ='';
-  sahleLengt = 0;
-  scale: number = 1;
-  promoId = null;
-  sumInit = 0;
-  count = 0;
+  public erroreStr: string = '';
+  private heigth: number | undefined;
+  private width: number | undefined;
+  public promoError: string = '';
+  public shiping: any[] = [];
+  public _frstName: string = '';
+  public _brtDay: string = '';
+  public _email: string = '';
+  public _phoneNumber: string = '';
+  public _country: string = '';
+  public _addres: string = '';
+  public _sale: string = '';
+  public _shipping: string = '';
+  public __addresPost: string = '';
+  public _comment: string = '';
+  public _btnOrder: string = ''
+  public titleH1: string = '';
+  public titleH2: string = '';
+  public title: string = '';
+  public _imgLength: string = '';
+  public _letterSum: string = '';
+  public _price: string = '';
+  public _addSum: string = '';
+  public _carzin: string = '';
+  public ship: string = '';
+  public sahleLengt: number = 0;
+  public scale: number = 1;
+  public promoId = null;
+  private sumInit: number = 0;
+  private count: number = 0;
 
   @ViewChild("wrap", { static: false }) wrap: ElementRef | undefined;
 
   constructor(public frames: FramesServService, private fb: FormBuilder, public modalService: NgbModal,
     public _translate: TranslateService, public valid: ValidationServService) {
-
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    this.width = this.wrap?.nativeElement.clientWidth | 1;
-
-  
-
-    if (window.innerWidth <= 1165) {
-      this.scale = window.innerWidth / this.width - 0.1;
-
-      if (window.innerWidth <= 769) {
-        this.scale = 0.9
-        this.scale = window.innerWidth / 769 - 0.1;
-      }
-
-      if (window.innerWidth <= 426) {
-        this.scale = 0.9;
-        this.scale = window.innerWidth / 426 - 0.2;
-      }
-
-      if (window.innerWidth <= 375) {
-        this.scale = 0.7
-      }
-    }
-
 
   }
 
@@ -110,10 +83,33 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       addres: [null, [Validators.required]],
       shipping: [null, [Validators.required]],
       comment: ['', [Validators.maxLength(20)]],
-      sale: ['', [Validators.maxLength(6),  this.noText]],
-      postal: ['', [Validators.maxLength(20),Validators.required]]
+      sale: ['', [Validators.maxLength(6), this.noText]],
+      postal: ['', [Validators.maxLength(20), Validators.required]]
     });
 
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.width = this.wrap?.nativeElement.clientWidth | 1;
+
+    if (window.innerWidth <= 1165) {
+      this.scale = window.innerWidth / this.width - 0.1;
+
+      if (window.innerWidth <= 769) {
+        this.scale = 0.9
+        this.scale = window.innerWidth / 769 - 0.1;
+      }
+
+      if (window.innerWidth <= 426) {
+        this.scale = 0.9;
+        this.scale = window.innerWidth / 426 - 0.2;
+      }
+
+      if (window.innerWidth <= 375) {
+        this.scale = 0.7
+      }
+    }
   }
 
   ngAfterViewChecked(): void {
@@ -121,10 +117,9 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this.changeJson();
     this.frames.cityPlaceholder()
     this.onResize();
-
   }
 
-  changeJson() {
+  private changeJson(): void {
     this._translate.get(['_order._user-data', '_order._inform-img']).pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
       this._frstName = res["_order._user-data"]._frstName;
       this._email = res["_order._user-data"]._email;
@@ -144,20 +139,20 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       this._carzin = res["_order._inform-img"]._carzin;
       this.titleH1 = res["_order._inform-img"].title_h1;
       this.titleH2 = res["_order._inform-img"].title_h2;
-      this.ship= res["_order._user-data"].ship;
-      this.sahleLengt= res["_order._user-data"].saleLength;
+      this.ship = res["_order._user-data"].ship;
+      this.sahleLengt = res["_order._user-data"].saleLength;
     })
- 
+
   }
 
-  public setStyle(num: number) {
+  public setStyle(num: number): object {
     let style = {
       transform: "translate(-50%, " + num + "% )" + "scale(" + this.scale + ")"
     }
     return style
   }
 
-  erroreName(formName: string) {
+  public erroreName(formName: string): string {
     this._translate.get('_erroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
 
       if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res._required;
@@ -172,17 +167,17 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     return this.erroreStr;
   }
 
-  noText(control:FormControl){
+  private noText(control: FormControl): object | null {
     const regExp = /[a-zA-Z]/;
-    if(regExp.test(control.value)){
-      return{
-        noText:true
+    if (regExp.test(control.value)) {
+      return {
+        noText: true
       }
     }
-     return null
+    return null
   }
 
-  submitForm(): void {
+  public submitForm(): void {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
@@ -216,15 +211,14 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   }
 
-  salePost(event: any) {
-
+  public salePost(event: any): void {
     this.validateForm.get('sale')?.setValue(event.target.value)
     const sale = {
       price: this.frames.sum,
       code: this.validateForm.get('sale')?.value
     }
 
-    if (this.validateForm.get('sale')?.value.length === 6 && this.promoId === null && this.validateForm.get('sale')?.valid ) {
+    if (this.validateForm.get('sale')?.value.length === 6 && this.promoId === null && this.validateForm.get('sale')?.valid) {
       this.frames.promoCodePost(sale).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
         this.frames.sum = el.discounted_price;
         this.promoId = el.promo_code.id;
@@ -237,7 +231,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   }
 
 
-  deleteDate(obj: any) {
+  public deleteDate(obj: any): void {
     this.frames.deleteOrder(obj.id).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
       this.frames.sum -= obj.created_frame_details.price;
       this.frames.orderList = this.frames.orderList.filter((val: any) => {

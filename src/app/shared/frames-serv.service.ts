@@ -12,38 +12,38 @@ import { Router } from '@angular/router';
     providedIn: 'root'
 })
 export class FramesServService {
-    validateForm: FormGroup = new FormGroup({});
-    letterImges: LetterImge[] = [];
-    framesImge: FramesImg[] = [];
-    selectedValue: any[] = [];
-    placeholder = '';
-    lang = 'en';
-    country_placeholder  = '';
-    fileUrl = {};
-    isOrder: boolean = false;
-    isSilki = false;
-    orderList: any[] = [];
-    orderListClone: any[] = [];
-    background: any = {};
-    ideaImg: any = {};
-    topText: string = '';
-    btmText: string = '';
-    isRegister = false;
-    isLogin = false;
-    text: string = '';
-    isMessage = false;
-    index: number = 3;
-    sum: number = 0;
-    userReg = true;
-    apiPhoto = true;
-    fileList: any = [];
-    token: string = '';
-    isMyOrder = false;
-    limit = 10;
-    offset = 0;
-    isTop = false;
-    isdisible = false;
-    scale: number = 1;
+    public validateForm: FormGroup = new FormGroup({});
+    public letterImges: LetterImge[] = [];
+    public framesImge: FramesImg[] = [];
+    public selectedValue: any[] = [];
+    public placeholder = '';
+    public lang = 'en';
+    public country_placeholder = '';
+    private fileUrl = {};
+    public isOrder: boolean = false;
+    public isSilki = false;
+    public orderList: any[] = [];
+    private orderListClone: any[] = [];
+    public background: any = {};
+    public ideaImg: any = {};
+    public topText: string = '';
+    public btmText: string = '';
+    public isRegister = false;
+    public isLogin = false;
+    private text: string = '';
+    public isMessage = false;
+    public index: number = 3;
+    public sum: number = 0;
+    public userReg = true;
+    public apiPhoto = true;
+    public fileList: any = [];
+    public token: string = '';
+    public isMyOrder = false;
+    public limit = 10;
+    public offset = 0;
+    public isTop = false;
+   public isdisible = false;
+   public scale: number = 1;
     urlArr: string[] = [];
     magnit_scale: number = 1;
     letterChar = 0;
@@ -208,9 +208,9 @@ export class FramesServService {
     }
 
 
-    userOrderDel(id:number){
-        return this.url.get(this.api.worldApi+this.api.api_order+this.api.api_order+'/'+id+'/hide/',
-        { headers: { 'Authorization': this.token } })
+    userOrderDel(id: number) {
+        return this.url.get(this.api.worldApi + this.api.api_order + this.api.api_order + '/' + id + '/hide/',
+            { headers: { 'Authorization': this.token } })
     }
     deleteOrder(id: number) {
         return this.url.delete(this.api.worldApi + this.api.api_order + this.api.api_card + '/' + id + '/',
@@ -303,9 +303,9 @@ export class FramesServService {
             { headers: { 'Authorization': this.token } })
     }
 
-    cityPlaceholder(){
+    cityPlaceholder() {
         this._translate.get('_order._user-data.country_placeholder').subscribe((el) => {
-          this.country_placeholder = el;  
+            this.country_placeholder = el;
         })
     }
 

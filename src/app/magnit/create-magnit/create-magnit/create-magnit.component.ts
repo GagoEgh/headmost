@@ -1,5 +1,5 @@
 import { FramesServService } from 'src/app/shared/frames-serv.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FrameImag } from 'src/app/shared/frame-image';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
@@ -20,10 +20,9 @@ export class CreateMagnitComponent extends FrameImag implements OnInit {
     super(frames, modalService, rout, form);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  deletImg() {
+  public deletImg(): void {
     this.rout.navigate(['magnit/form-magnit']);
     this.frames.validateForm.reset();
     this.frames.isImg = true;

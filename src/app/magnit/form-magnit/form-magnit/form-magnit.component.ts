@@ -22,7 +22,7 @@ export class FormMagnitComponent  extends FrameImag implements OnInit {
 
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+  
 
 }

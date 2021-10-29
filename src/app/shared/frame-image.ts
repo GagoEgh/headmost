@@ -12,35 +12,33 @@ import { FramesServService } from "./frames-serv.service";
 
 export class FrameImag {
     public _unsubscribe$ = new Subject();
-    bottomText: FormGroup = new FormGroup({});
-    validateForm: FormGroup = new FormGroup({});
-    letterChar = 0;
+    protected bottomText: FormGroup = new FormGroup({});
+    protected validateForm: FormGroup = new FormGroup({});
+    protected letterChar = 0;
     constructor(public frames: FramesServService, public modalService: NgbModal,
         public rout: Router, public form: FormBuilder,
-    ) {
-
-    }
+    ) { }
 
     // frame component
-    myForm() {
+    protected myForm(): void {
         this.frames.validateForm = new FormGroup({
-            text: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(9),this.textValid])
+            text: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(9), this.textValid])
         })
     }
 
 
-    textValid(control:FormControl){
+    protected textValid(control: FormControl): object | null {
         const regExp = /[a-z A-Z]/;
-        const simb =/[\!@#$%\^|\\&*()_\-+=}\[\]'";:\/?.>,<~`]/;
-        if(!regExp.test(control.value) || simb.test(control.value)){
-            return{
-                noText:true
+        const simb = /[\!@#$%\^|\\&*()_\-+=}\[\]'";:\/?.>,<~`]/;
+        if (!regExp.test(control.value) || simb.test(control.value)) {
+            return {
+                noText: true
             }
         }
         return null
     }
 
-    imgColor() {
+    protected imgColor(): void {
         this.frames.imgColorGet().pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
             for (let i = 0; i < el.count; i++) {
                 if (this.frames && this.frames.imgColor[i] && this.frames.imgColor[i].ceys) {
@@ -50,45 +48,45 @@ export class FrameImag {
         })
     }
 
-    imgFone(obj: any) {
-  
+    public imgFone(obj: any): void {
+
         this.frames.painding.values = obj.values;
         this.frames.painding.id = obj.ceys.id;
-       
-        if ( this.frames.validateForm.value.text !== null) {
-          this.frames.letterColorFone();
+
+        if (this.frames.validateForm.value.text !== null) {
+            this.frames.letterColorFone();
         }
 
     }
 
-    open() {
+    public open(): void {
         const modalRef = this.modalService.open(NgbdModalContentComponent);
     }
 
-    onSubmit() {
+    public onSubmit(): void {
         if (this.frames.validateForm.invalid) {
             const modalRef = this.modalService.open(ErroreMessageComponent);
             setTimeout(() => {
                 modalRef.dismiss();
             }, 2500)
-            return;
+            //return;
         }
         this.frames.isImg = false;
-       
+
         this.frames.letterColorFone();
 
     }
 
-    showFrame() {
+    public showFrame(): void {
         this.frames.showFrame()
     }
 
 
-    changeImg() {
+    public changeImg(): void {
         this.frames.letterColorFone()
     }
 
-    openImg(img: any, num: number) {
+    public openImg(img: any, num: number): void {
         this.frames.letterColection(img.character.toUpperCase()).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
             const modalRef = this.modalService.open(ImgCatalogComponent, { size: 'lg' });
             modalRef.componentInstance.img = el.results;
@@ -109,7 +107,7 @@ export class FrameImag {
 
     }
 
-    checkImage(img: string): boolean {
+    public checkImage(img: string): boolean {
         return img.startsWith('http') ? true : false
     }
 

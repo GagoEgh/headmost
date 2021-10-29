@@ -28,7 +28,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize() {
+  onResize(): void {
     this.width = this.block?.nativeElement.clientWidth | 1;
 
     if (window.innerWidth <= 1165) {
@@ -49,7 +49,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
   }
 
-  conteinerHeight() {
+  public conteinerHeight(): object {
     let height = {
       height: '538px'
     }
@@ -107,12 +107,12 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     return style
   }
 
-  btnWrapMargin() {
+  public btnWrapMargin(): object {
     let margin = { "margin-top": '122px' }
     return margin
   }
 
-  buttonWrapTop() {
+  public buttonWrapTop(): object {
     let top = {
       "margin-top": '79.5px'
     }
@@ -124,7 +124,6 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
         top["margin-top"] = '-385px';
         return top
       }
-
 
       if (this.frames.isOrder && window.innerWidth <= 650) {
         top["margin-top"] = '-520px';
@@ -152,7 +151,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     return top
   }
 
-  buttonWrapTopSave() {
+  public buttonWrapTopSave(): object {
     let top = {
       "margin-top": "-7px"
     }
@@ -165,21 +164,21 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     return top
   }
 
-  frameClick(id: number) {
+  public frameClick(id: number): void {
     this.frames.index = id;
     this.frames.frame = this.frames.framesImge.find(item => item.id === this.frames.index);
 
   }
 
-  getFrameId(img: FramesImg) {
+  public getFrameId(img: FramesImg): boolean {
     return img.id === this.frames.index
   }
 
-  changeBg(bg: any) {
+  public changeBg(bg: any): void {
     this.frames.background = bg;
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }

@@ -3,7 +3,7 @@
  min-height: 370px;
 }
 
-.conteiner{
+.conteiner{ 
  min-width: 100%;
  display: flex;
  justify-content: space-between;
@@ -66,7 +66,7 @@
 .drop{
  position: relative;
  left: 160px;
- top: -48px;
+ top: -45px;
 }
 
 .frame{
@@ -262,6 +262,7 @@
 
 @media (max-width:960px){
     .conteiner{ 
+     position: relative; 
      display: flex;
      justify-content: space-between;
      height: fit-content;
@@ -274,17 +275,17 @@
     .check-silki{
      display: flex;
      flex-direction: column;
-     position: relative;
-     top: 20px;
-    }
-
-    .parent{
-        height: 25px;
+     position: absolute;
+     top: 55px;
+     right: 0;
+     z-index: 9999;
+     background-color: white;
+     box-shadow: 0 2px 2px rgb(0 0 0 / 35%);
+     padding-left: 0;
     }
    
     .material-icons-outlined{
      display: block;
-     position: relative;
     }
 
     .frame{
@@ -299,11 +300,11 @@
      margin-bottom: -6px;
      display: inline-block;
     }
-
-    .check-silki li{
-     padding: 5px;
-    }
     
+    .parent-1{
+     margin-top: 5px
+    }
+
     .user-data{
      top:45px;
      left: 20px;
@@ -315,6 +316,7 @@
 
     .order{
      left:93%;
+     top: 200px;
     }
 
     .drop{

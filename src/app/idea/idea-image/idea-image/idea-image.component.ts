@@ -5,7 +5,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { ErrMsgComponent } from '../../err-msg/err-msg.component';
 import { LoginComponent } from 'src/app/register/login/login.component';
 
 
@@ -17,9 +16,9 @@ import { LoginComponent } from 'src/app/register/login/login.component';
 export class IdeaImageComponent implements OnInit {
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
   public _unsubscribe$ = new Subject();
-  heigth: number | undefined;
-  width: number | undefined;
-  scale: number = 1;
+  private heigth: number | undefined;
+  private width: number | undefined;
+  public scale: number = 1;
 
   constructor(public frames: FramesServService, public activApi: ActivatedRoute, private modalService: NgbModal) { }
   ngOnInit(): void {
@@ -42,7 +41,7 @@ export class IdeaImageComponent implements OnInit {
     }
   }
 
-  public setStyle() {
+  public setStyle(): object {
     let style = {
       transform: "translate(-7%, -5%)" + "scale(" + this.scale + ")"
     }
@@ -50,15 +49,14 @@ export class IdeaImageComponent implements OnInit {
     return style
   }
 
-  open() {
+  private open(): void {
     const modalRef = this.modalService.open(MessageComponent);
     setTimeout(() => {
       modalRef.dismiss()
     }, 1000)
-
   }
 
-  addOrder() {
+  public addOrder(): void {
     if (localStorage.getItem('loginAutorization')) {
       let obj = {
         user: this.frames.userData.user,
@@ -70,7 +68,7 @@ export class IdeaImageComponent implements OnInit {
         this.open();
         this.frames.spinner.hide()
       })
-    }else{
+    } else {
       const modalRef = this.modalService.open(LoginComponent);
     }
   }

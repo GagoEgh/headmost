@@ -3,7 +3,7 @@ import { LoginComponent } from './register/login/login.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {  Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-  
+
     this.scrollToTopByChangeRoute();
     this.frames.cityPlaceholder();
     if (localStorage.getItem('loginAutorization')) {
@@ -60,30 +60,17 @@ export class AppComponent implements OnInit {
     });
   }
 
-  styleLeft(){
-    let left ={
-      'position': 'relative',
-      'left':''
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    let left = 0;
+    if (window.innerWidth <= 960 && this.frames.isSilki) {
+
     }
-
-    
-
-    if(window.innerWidth>426 && window.innerWidth<=769   && this.frames.isSilki){
-      left['left'] = '390px';
-      return left
-    }
-
-    if(window.innerWidth<=426 && this.frames.isSilki){
-      left['left'] = '220px';
-      return left
-    }
-
-     return left
   }
 
   open() {
     const modalRef = this.modalService.open(LoginComponent);
-
   }
 
   close() {
@@ -133,7 +120,7 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/magnit/form-magnit']);
     this.frames.isImg = true;
     this.frames.isOrder = false;
-    
+
   }
 
   ngOnDestroy() {

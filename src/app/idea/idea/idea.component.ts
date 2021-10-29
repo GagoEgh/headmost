@@ -14,13 +14,13 @@ import { LoginComponent } from 'src/app/register/login/login.component';
 })
 export class IdeaComponent implements OnInit {
   public _unsubscribe$ = new Subject();
-  ideaImages: any[] = [];
-  scrollDistance = 0.5;
-  scrollUpDistance = 2;
-  throttle = 150;
-  category = '';
-  offset = 0;
-  count = 0;
+  public ideaImages: any[] = [];
+  private scrollDistance = 0.5;
+  private scrollUpDistance = 2;
+  private throttle = 150;
+  private category = '';
+  private offset = 0;
+  private count = 0;
 
   constructor(public frames: FramesServService,
     private _activatedRoute: ActivatedRoute,
@@ -41,7 +41,7 @@ export class IdeaComponent implements OnInit {
 
   }
 
-  private checkQueryParams() {
+  private checkQueryParams(): void {
     this._activatedRoute.queryParams.pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
       this.offset = 0;
       this.ideaImages = [];
@@ -51,7 +51,7 @@ export class IdeaComponent implements OnInit {
     })
   }
 
-  open() {
+  private open(): void {
     const modalRef = this.modalService.open(MessageComponent);
     setTimeout(() => {
       modalRef.dismiss()
@@ -59,14 +59,12 @@ export class IdeaComponent implements OnInit {
 
   }
 
-
-  appendItems() {
+  private appendItems(): void {
     this.frames.spinner.show()
     this.frames.frameCategoryImg(this.category, 1, this.offset).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
       this.offset += 10;
       this.ideaImages.push(...el.results);
-      console.log(this.ideaImages)
-     this.frames.spinner.hide();
+      this.frames.spinner.hide();
     })
   }
 
@@ -74,23 +72,23 @@ export class IdeaComponent implements OnInit {
     this.appendItems();
   }
 
-  addOrder(index: number) {
+  public addOrder(index: number): void {
     let obj = {
       user: this.frames.userData.user,
       created_frame: this.ideaImages[index].id
     }
-    if(localStorage.getItem('loginAutorization')){
+    if (localStorage.getItem('loginAutorization')) {
       this.frames.orderCard(obj).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
         this.frames.orderList.push(el);
         this.open()
       })
-    }else{
+    } else {
       const ref = this.modalService.open(LoginComponent)
     }
-   
+
   }
 
-  imgInfo(img: any) {
+  public imgInfo(img: {id:number}): void {
     this.rout.navigate(['/idea/idea-imags/' + img.id]);
   }
 

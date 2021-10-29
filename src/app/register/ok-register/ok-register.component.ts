@@ -10,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OkRegisterComponent implements OnInit {
 
-  _congratulations='';
-  _titlle = '';
+ public _congratulations:string='';
+ public _titlle:string = '';
   constructor(public activeModal: NgbActiveModal,public frames:FramesServService,
     public _translate:TranslateService) {}
 

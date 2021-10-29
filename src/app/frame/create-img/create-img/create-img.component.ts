@@ -15,18 +15,16 @@ import { Subject } from 'rxjs';
 export class CreateImgComponent extends FrameImag implements OnInit {
 
   public _unsubscribe$ = new Subject()
-  letterChar = 0;
-  isCreate = true;
-  bottomText: FormGroup = new FormGroup({});
-  validateForm: FormGroup = new FormGroup({});
+  public bottomText: FormGroup = new FormGroup({});
+  public validateForm: FormGroup = new FormGroup({});
 
-  topLettering: Letter = {
+  public topLettering: Letter = {
     isSpan: false,
     isMenu: false,
     isForm: false
   };
 
-  bottomLettering: Letter = {
+  public bottomLettering: Letter = {
     isSpan: false,
     isMenu: false,
     isForm: false
@@ -50,14 +48,14 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     this.frames.isMessage = false;
   }
 
-  public setStyle() {
+  public setStyle(): object {
     let style = {
       transform: "translate(-50%, 0)" + "scale(" + this.frames.scale + ")"
     }
     return style
   }
 
-  deletImg() {
+  public deletImg(): void {
     this.rout.navigate(['frame/form-frame']);
     this.frames.validateForm.reset();
     this.frames.isImg = true;
@@ -69,20 +67,19 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     }
   }
 
-  deleteTopProprty() {
+  public deleteTopProprty(): void {
     this.topLettering.isSpan = false;
     this.topLettering.isMenu = false;
     this.validateForm.reset();
-
   }
 
-  deleteBottomProprty() {
+  public deleteBottomProprty(): void {
     this.bottomLettering.isMenu = false;
     this.bottomLettering.isSpan = false;
     this.bottomText.reset();
   }
 
-  onMouseleave() {
+  public onMouseleave(): void {
     if (!this.validateForm.get('topText')?.value) {
       this.topLettering.isMenu = false;
       this.topLettering.isForm = false;
@@ -107,7 +104,7 @@ export class CreateImgComponent extends FrameImag implements OnInit {
 
   }
 
-  onMouseenter() {
+  public onMouseenter(): void {
     if (!this.validateForm.get('topText')?.value) {
       this.topLettering.isMenu = true;
       this.topLettering.isSpan = false;
@@ -130,7 +127,7 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     }
 
   }
-  
+
   ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
