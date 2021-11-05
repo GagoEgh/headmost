@@ -15,10 +15,10 @@
         (mouseenter)="onMouseenter()">
         <div class="menu">
           <div class="change" (click)='changeImg()' [style.opacity]="topLettering.isMenu?'1':'0'">
-            <p class="bottom-par">{{'_imgs._change-image'|translate}}</p>
+            <p class="bottom-par">{{'Imgs.changeImage'|translate}}</p>
           </div>
           <div class="delete" [style.opacity]="topLettering.isMenu?'1':'0'" n>
-            <p class="bottom-par" (click)='deletImg()'>{{'_imgs._delete-text'|translate}}</p>
+            <p class="bottom-par" (click)='deletImg()'>{{'Imgs.deleteText'|translate}}</p>
           </div>
           <div class="lettering" *ngIf='frames.letterImges.length>3' [style.opacity]="topLettering.isForm?'1':'0'">
             <form [formGroup]="validateForm">
@@ -29,10 +29,11 @@
           </div>
         </div>
         <div class="imgs">
-          <div class="bg-img" *ngFor='let img of frames.letterImges,let i = index' (click)="openImg(img,i)"
-            [style.background-image]="checkImage(img.image.image)?'url( '+ img.image.image + ')':'url( http://sirun-bar-api.annaniks.com/'+ img.image.image + ')'">
+          <div class="bg-img" *ngFor='let img of frames.letterImges;let i = index' (click)="openImg(img,i)"
+            [style.background-image]="checkImage(img.image.thumbnail)?'url( '+ img.image.thumbnail + ')':'url( http://sirun-bar-api.annaniks.com/'+ img.image.thumbnail + ')'">
             <div class="bgr">
-              <p>{{'_imgs._img-hover'|translate}}</p>
+              
+              <p>{{'Imgs.imgHover'|translate}}</p>
             </div>
           </div>
         </div>
@@ -45,7 +46,7 @@
             </form>
           </div>
           <div class="save" [style.opacity]="bottomLettering.isMenu?'1':'0'">
-            <p class="bottom-par" (click)='frames.myOrder()'>{{'_imgs._save'|translate}}</p>
+            <p class="bottom-par" (click)='frames.myOrder()'>{{'Imgs.save'|translate}}</p>
           </div>
         </div>
       </div>

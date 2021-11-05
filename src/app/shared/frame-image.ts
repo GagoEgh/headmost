@@ -7,7 +7,11 @@ import { takeUntil } from "rxjs/operators";
 import { ImgCatalogComponent } from "../frame/create-img/img-catalog/img-catalog.component";
 import { ErroreMessageComponent } from "../frame/errore-message/errore-message/errore-message.component";
 import { NgbdModalContentComponent } from "../frame/ngbd-modal-content/ngbd-modal-content.component";
+import { CategoryDetails } from "../interface/CategoryDetails";
+import { ImageResponse } from "../interface/ImageResponse";
+import { ServerResponce } from "../interface/img-ramka";
 import { FramesServService } from "./frames-serv.service";
+
 
 
 export class FrameImag {
@@ -39,10 +43,10 @@ export class FrameImag {
     }
 
     protected imgColor(): void {
-        this.frames.imgColorGet().pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
-            for (let i = 0; i < el.count; i++) {
+        this.frames.imgColorGet().pipe(takeUntil(this._unsubscribe$)).subscribe((categoryDetails:ServerResponce<CategoryDetails[]>) => {
+            for (let i = 0; i < categoryDetails.count; i++) {
                 if (this.frames && this.frames.imgColor[i] && this.frames.imgColor[i].ceys) {
-                    this.frames.imgColor[i].ceys = el.results[i];
+                    this.frames.imgColor[i].ceys = categoryDetails.results[i];
                 }
             }
         })
@@ -69,10 +73,10 @@ export class FrameImag {
             setTimeout(() => {
                 modalRef.dismiss();
             }, 2500)
-            //return;
+            console.log('this.frames.validateForm errore',this.frames.validateForm)
+            return;  
         }
         this.frames.isImg = false;
-
         this.frames.letterColorFone();
 
     }
@@ -95,6 +99,7 @@ export class FrameImag {
             modalRef.result.then((result) => { }, (reason) => {
                 if (reason) {
                     if (!this.frames.apiPhoto) {
+                        reason.thumbnail=reason.thumb_image
                         this.letterChar = this.frames.letterImges[num].image.character;
                     }
 
@@ -106,9 +111,11 @@ export class FrameImag {
         })
 
     }
-
     public checkImage(img: string): boolean {
-        return img.startsWith('http') ? true : false
+        if(img){
+            return img.startsWith('http') ? true : false
+        }
+        return  false
     }
 
 }

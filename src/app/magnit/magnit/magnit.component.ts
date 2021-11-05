@@ -29,9 +29,9 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
   ngOnInit(): void {
 
     super.myForm();
-    this._translate.get('_img-text-valid').pipe(takeUntil(this._unsubscribe$))
+    this._translate.get('ImgTextValid').pipe(takeUntil(this._unsubscribe$))
       .subscribe((res: any) => {
-        this.frames.placeholder = res["_placeholder"];
+        this.frames.placeholder = res["placeholder"];
       })
     this.frames.letterImges = [];
     this.frames.isOrder = false;

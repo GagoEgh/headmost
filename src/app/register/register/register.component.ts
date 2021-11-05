@@ -9,6 +9,8 @@ import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NgxSpinnerService } from "ngx-spinner";
+import { RegisterResult } from 'src/app/interface/register-response';
+
 
 @Component({
   selector: 'app-register',
@@ -68,17 +70,17 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
   }
 
   public erroreName(formName: string): string {
-    this._translate.get('_erroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
+    this._translate.get('ErroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
       let size = 3;
       if (formName === 'pas') size = 6
-      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res._required;
-      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res._minlength} ${size} `;
+      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res.required;
+      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res.minlength} ${size} `;
       if (this.validateForm.get(formName)?.hasError('maxlength')) this.erroreStr = `${res.maxLength}`;
-      if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res._userNameChar;
-      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res._isEmail;
-      if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res._isSize;
-      if (this.validateForm.get(formName)?.hasError('passwordReview')) this.erroreStr = res._checkPass;
-      if (this.validateForm.get(formName)?.hasError('bigDate')) this.erroreStr = res._bigDate
+      if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res.userNameChar;
+      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res.isEmail;
+      if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res.isSize;
+      if (this.validateForm.get(formName)?.hasError('passwordReview')) this.erroreStr = res.checkPass;
+      if (this.validateForm.get(formName)?.hasError('bigDate')) this.erroreStr = res.bigDate
     })
     return this.erroreStr;
   }
@@ -123,9 +125,9 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
     }
 
     if (this.validateForm.valid) {
-      this.frames.userRegisterPost(userDetalis).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
+      this.frames.userRegisterPost(userDetalis).pipe(takeUntil(this._subscribe$)).subscribe(( register: RegisterResult) => {
         this.frames.isRegister = true;
-        this.frames.userData = el.user_details;
+        this.frames.userData = register.user_details;
         const modalRef = this.modalService.open(OkRegisterComponent);
         modalRef.result.then((result) => {
           this.frames.isRegister = false;
@@ -135,7 +137,7 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
 
         this.validateForm.reset();
         this.frames.userReg = false;
-        this.frames.token = 'Token ' + el.token;
+        this.frames.token = 'Token ' + register.token;
         localStorage.setItem('loginAutorization', this.frames.token);
         localStorage.setItem('user-date', JSON.stringify(this.frames.userData))
         setTimeout(() => {
@@ -144,7 +146,7 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
 
       }, ((err: any) => {
         if (err.status === 400) {
-          this._translate.get('_erroreMessage').pipe(takeUntil(this._subscribe$))
+          this._translate.get('ErroreMessage').pipe(takeUntil(this._subscribe$))
             .subscribe((res: any) => {
               this.emailMassage = res.emailMassage
             })

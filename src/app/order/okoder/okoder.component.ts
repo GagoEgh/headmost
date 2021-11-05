@@ -6,6 +6,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ToastrService } from 'ngx-toastr';
+import { ServerResponce } from 'src/app/interface/img-ramka';
+import { OrderResult } from 'src/app/interface/order-response';
 
 @Component({
   selector: 'app-okoder',
@@ -20,18 +22,19 @@ export class OkoderComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, public _translate: TranslateService,
     public frames: FramesServService, public router: Router, private toastr: ToastrService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+  }
 
   public goUsOrder(): void {
     let okMsg: string = '';
     let errMsg: string = '';
-    this._translate.get('_menu._user').subscribe((el) => {
+    this._translate.get('Menu.user').subscribe((el) => {
       okMsg = el.orderOk;
       errMsg = el.orderErr
     })
 
     if (this.validateForm.valid && this.count != 1) {
-      this.frames.userOrder(this.order).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
+      this.frames.userOrder(this.order).pipe(takeUntil(this._subscribe$)).subscribe((order: ServerResponce<OrderResult[]>) => {
         this.toastr.success(okMsg);
         this.count++;
         this.frames.isdisible = true;

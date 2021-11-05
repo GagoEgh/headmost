@@ -8,35 +8,35 @@
   </span>
   <ul class="silki" [class.check-silki]='frames.isSilki'>
     <li class="parent margin">
-      <p class="frame">{{'_menu.konstruktor._konstr'|translate}}</p>
+      <p class="frame">{{'Menu.konstruktor.konstr'|translate}}</p>
       <img src="./assets/1x/drop.png" class="drop">
       <ul class="li-nav">
         <li>
-          <a (click)='getFrame()'>{{'_menu.konstruktor._frame'|translate}}</a>
+          <a (click)='getFrame()'>{{'Menu.konstruktor.frame'|translate}}</a>
         </li>
         <li>
-          <a (click)='getMagnit()'>{{'_menu.konstruktor._magnet'|translate}}</a>
+          <a (click)='getMagnit()'>{{'Menu.konstruktor.magnet'|translate}}</a>
         </li>
       </ul>
     </li>
     <li>
-      <a class="frame" routerLink='/idea' routerLinkActive='active'>{{'_menu._idea'|translate}}</a>
+      <a class="frame" routerLink='/idea' routerLinkActive='active'>{{'Menu.idea'|translate}}</a>
     </li>
     <li>
-      <a class="frame" routerLink='/about' routerLinkActive='active'>{{'_menu._aboutUs'|translate}}</a>
+      <a class="frame" routerLink='/about' routerLinkActive='active'>{{'Menu.aboutUs'|translate}}</a>
     </li>
     <li *ngIf='frames.userReg, else log'>
-      <a class="frame" (click)="open()">{{'_menu._user._exit'|translate}}</a>
+      <a class="frame" (click)="open()">{{'Menu.user.exit'|translate}}</a>
     </li>
     <ng-template #log>
       <ul>
         <li class="parent-1">
           <a class="activeHover frame" routerLinkActive='active' > {{frames.userData.user_details.first_name | uppercase}} 
             <ul class="user-data" >
-              <li class="list"><a routerLink='/user/profil'>{{'_menu._user._profil'|translate}}</a></li>
-              <li class="list"><a routerLink='/user/imags'>{{'_menu._user._images'|translate}}</a></li>
-              <li class="list"><a routerLink='/user/user-order'>{{'_menu._user._orders'|translate}}</a></li>
-              <li class="list" (click)="close()">{{'_menu._user._close'|translate}}</li>
+              <li class="list"><a routerLink='/user/profil'>{{'Menu.user.profil'|translate}}</a></li>
+              <li class="list"><a routerLink='/user/imags'>{{'Menu.user.images'|translate}}</a></li>
+              <li class="list"><a routerLink='/user/user-order'>{{'Menu.user.orders'|translate}}</a></li>
+              <li class="list" (click)="close()">{{'Menu.user.close'|translate}}</li>
             </ul>
           </a>
         </li>
@@ -70,13 +70,13 @@
   <div class="footer-nav">
     <ul class="footer-silki">
       <li>
-        <a class="frame" routerLink=''>{{'_menu.konstruktor._frame'|translate}}</a>
+        <a class="frame" routerLink=''>{{'Menu.konstruktor.frame'|translate}}</a>
       </li>
       <li>
-        <a class="frame" routerLink='/idea' routerLinkActive='active'>{{'_menu._idea'|translate}}</a>
+        <a class="frame" routerLink='/idea' routerLinkActive='active'>{{'Menu.idea'|translate}}</a>
       </li>
       <li>
-        <a class="frame" routerLink='/about' routerLinkActive='active'>{{'_menu._aboutUs'|translate}}</a>
+        <a class="frame" routerLink='/about' routerLinkActive='active'>{{'Menu.aboutUs'|translate}}</a>
       </li>
     </ul>
     <div class="soc">

@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { ServerResponce } from 'src/app/interface/img-ramka';
+import { CategoryDetails } from 'src/app/interface/CategoryDetails';
+
 
 @Component({
   selector: 'app-idea-nav',
@@ -19,8 +22,8 @@ export class IdeaNavComponent implements OnInit {
 
   ngOnInit(): void {
     this.offset = 0;
-    this.frames.frameCategory().pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
-      this.frameIdeas = el.results
+    this.frames.frameCategory().pipe(takeUntil(this._unsubscribe$)).subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
+      this.frameIdeas = categoryDetails.results
     })
   }
 

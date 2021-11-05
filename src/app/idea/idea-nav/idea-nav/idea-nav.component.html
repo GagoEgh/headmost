@@ -4,10 +4,10 @@
 <div class="conteiner">
   
     <nav class="bar">
-        <h2 class="title">{{'_idea-img._nav-title'|translate}}</h2>
+        <h2 class="title">{{'IdeaImg.navTitle'|translate}}</h2>
         <ul routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
             <li >
-                <a (click)="ideaGroup()" [style.color]="id==0?'red':'black'" >{{'_idea-img._all'|translate}}</a></li>
+                <a (click)="ideaGroup()" [style.color]="id==0?'red':'black'" >{{'IdeaImg.all'|translate}}</a></li>
             <li *ngFor='let item of frameIdeas'  >
                 <a (click)="ideaGroup(item)" [style.color]="id==item.id?'red':'black'" >
                     <span *ngIf='frames.lang==="hy"' >{{item.name_hy}}</span>

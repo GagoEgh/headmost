@@ -10,15 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OkRegisterComponent implements OnInit {
 
- public _congratulations:string='';
- public _titlle:string = '';
+ public congratulations:string='';
+ public titlle:string = '';
   constructor(public activeModal: NgbActiveModal,public frames:FramesServService,
     public _translate:TranslateService) {}
 
   ngOnInit(): void {
-    this._translate.get('_order._user-data').subscribe((res:any)=>{
-      this._congratulations = res._congratulations;
-      this._titlle = res._congratulationsTitle;
+    this._translate.get('Order.userData').subscribe((res:any)=>{
+      this.congratulations = res.congratulations;
+      this.titlle = res.congratulationsTitle;
     })
     this.frames.isRegister = true;
   }

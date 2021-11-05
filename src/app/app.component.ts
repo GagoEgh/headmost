@@ -7,6 +7,9 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { ServerResponce } from './interface/img-ramka';
+import { UserData } from './interface/UserAllData';
+
 
 
 
@@ -29,7 +32,6 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     this.scrollToTopByChangeRoute();
     this.frames.cityPlaceholder();
     if (localStorage.getItem('loginAutorization')) {
@@ -39,9 +41,8 @@ export class AppComponent implements OnInit {
       const result = JSON.parse(date)
       this.frames.userData = result;
       this.frames.userReg = false;
-      this.frames.userInfo().pipe(takeUntil(this.unsubscribe$)).subscribe((el: any) => {
-        this.frames.orderList = el.results;
-
+      this.frames.userInfo().pipe(takeUntil(this.unsubscribe$)).subscribe((serverResponse: ServerResponce<[]>) => {
+        this.frames.orderList = serverResponse.results;
         this.frames.orderList.forEach((obj: any) => {
           this.frames.sum += obj.created_frame_details.price;
 
@@ -71,6 +72,7 @@ export class AppComponent implements OnInit {
 
   open() {
     const modalRef = this.modalService.open(LoginComponent);
+
   }
 
   close() {
@@ -82,29 +84,7 @@ export class AppComponent implements OnInit {
     this.frames.token = '';
     this.frames.userReg = true;
     this.frames.showFrame();
-    this.frames.userData = {
-      address: '',
-      city: 0,
-      city_details: {
-        id: 0,
-        name_en: '',
-        name_ru: '',
-        name_hy: ''
-      },
-      comment: '',
-      date_of_birth: '',
-      image: '',
-      phone_number: null,
-      user: 0,
-      user_details: {
-        first_name: '',
-        id: 0,
-        is_active: false,
-        is_staff: false,
-        last_name: '',
-        username: ''
-      }
-    };
+    this.frames.userData = new UserData();
     this.router.navigate(['/'])
   }
 
@@ -134,9 +114,9 @@ export class AppComponent implements OnInit {
     this.frames.lang = leng;
     localStorage.setItem('language', this.frames.lang);
     this._translate.use(this.frames.lang);
-    this._translate.get('_img-text-valid').pipe(takeUntil(this.unsubscribe$))
+    this._translate.get('ImgTextValid').pipe(takeUntil(this.unsubscribe$))
       .subscribe((res: any) => {
-        this.frames.placeholder = res["_placeholder"];
+        this.frames.placeholder = res["placeholder"];
         setTimeout(() => {
           this.spinner.hide()
         }, 300)
@@ -144,3 +124,5 @@ export class AppComponent implements OnInit {
   }
 
 }
+
+

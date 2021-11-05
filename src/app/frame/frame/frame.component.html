@@ -16,7 +16,7 @@
             <li><span *ngIf='frames.lang==="hy"'>{{img.name_hy}}</span>
               <span *ngIf='frames.lang==="ru"'>{{img.name_ru}}</span>
               <span *ngIf='frames.lang==="en"'>{{img.name_en}}</span>
-              {{img.price}} {{'_order._inform-img._price'|translate}}
+              {{img.price}} {{'Order.informImg.price'|translate}}
             </li>
           </ul>
         </li>
@@ -50,14 +50,14 @@
           <div>
             <b></b>
             <button type="submit" (click)='onSubmit()' class='makeAWord_3' *ngIf='frames.isImg'>
-              {{'_img-text-valid._create-word'|translate}}
+              {{'ImgTextValid.createWord'|translate}}
             </button>
             <button class="makeAWord_3 save" (click)='frames.myOrder()' [ngStyle]="buttonWrapTopSave()"
               *ngIf='!frames.isOrder && !frames.isImg'>
-              {{'_img-text-valid._batn-save'|translate}}
+              {{'ImgTextValid.batnSave'|translate}}
             </button>
             <button *ngIf='frames.isOrder' class="makeAWord_3 create-bottom" [ngStyle]="buttonWrapTop()"
-              (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
+              (click)="showFrame()">{{'ImgTextValid.orderAdd'|translate}}</button>
           </div>
         </td>
         <td class="aside"></td>
@@ -71,10 +71,10 @@
       <div class="compile"></div>
       <div class="info-block">
         <div class="title">
-          <h2>{{'_steps._compile'|translate}}</h2>
+          <h2>{{'Steps.compile'|translate}}</h2>
         </div>
         <div class="paragraph">
-          <p>{{'_steps._text1'|translate}}</p>
+          <p>{{'Steps.text1'|translate}}</p>
         </div>
       </div>
     </div>
@@ -83,10 +83,10 @@
       <div class="select"></div>
       <div class="info-block">
         <div class="title">
-          <h2>{{'_steps._select'|translate}}</h2>
+          <h2>{{'Steps.select'|translate}}</h2>
         </div>
         <div class="paragraph">
-          <p>{{'_steps._text2'|translate}}</p>
+          <p>{{'Steps.text2'|translate}}</p>
         </div>
       </div>
     </div>
@@ -97,10 +97,10 @@
       <div class="get"></div>
       <div class="info-block">
         <div class="title">
-          <h2>{{'_steps._get'|translate}}</h2>
+          <h2>{{'Steps.get'|translate}}</h2>
         </div>
         <div class="paragraph">
-          <p>{{'_steps.text3'|translate}}</p>
+          <p>{{'Steps.text3'|translate}}</p>
         </div>
       </div>
     </div>
@@ -109,10 +109,10 @@
       <div class="donate"></div>
       <div class="info-block">
         <div class="title">
-          <h2>{{'_steps._donate'|translate}}</h2>
+          <h2>{{'Steps.donate'|translate}}</h2>
         </div>
         <div class="paragraph">
-          <p>{{'_steps.text4'|translate}}</p>
+          <p>{{'Steps.text4'|translate}}</p>
         </div>
       </div>
     </div>

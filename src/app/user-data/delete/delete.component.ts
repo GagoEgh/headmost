@@ -16,32 +16,32 @@ export class DeleteComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, public _translate: TranslateService,
     public frames: FramesServService, public modalService: NgbModal) { }
   @Input() item: any;
-  @Input() userOrders:any;
-  _subscribe$ = new Subject();
-  okSms = '';
+  @Input() userOrders: any;
+  private _subscribe$ = new Subject();
+  private okSms = '';
+
   ngOnInit(): void {
   }
 
-  noDelete() {
+  public noDelete(): void {
     this.activeModal.close()
   }
 
-  delteteBlock() {
-
-    this.frames.userOrderDel(this.item.id).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
-      this.okSms = el.message
+  public delteteBlock(): void {
+    this.frames.userOrderDel(this.item.id).pipe(takeUntil(this._subscribe$)).subscribe((sms:{message:string}) => {
+      this.okSms = sms.message
       const modalRef = this.modalService.open(OkSmsComponent);
-       this.userOrders = this.userOrders.filter((val:any) => val.id != this.item.id);
-       this.activeModal.close(this.userOrders);
-       setTimeout(() => {
+      this.userOrders = this.userOrders.filter((val: any) => val.id != this.item.id);
+      this.activeModal.close(this.userOrders);
+      setTimeout(() => {
         modalRef.dismiss()
-       }, 1500)
-      
+      }, 1500)
+
     })
 
   }
 
-  ngOnDestroy() {
+  private ngOnDestroy() {
     this._subscribe$.next();
     this._subscribe$.complete();
   }

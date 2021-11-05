@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { FormControl } from "@angular/forms";
 
-@Injectable({
-    providedIn:'root'
-})
-export class ValidationServService{
 
-  userNameChar(control: FormControl) {
+@Injectable({
+  providedIn: 'root'
+})
+export class ValidationServService {
+
+  public userNameChar(control: FormControl): object | null {
     const regExp = /[0-9]/;
     if (regExp.test(control.value)) {
       return {
@@ -15,7 +16,7 @@ export class ValidationServService{
     }
     return null
   }
-    
+
   emailValid(control: FormControl) {
     const regExp = /^([A-Za-z0-9._%+-])+@[a-z0-9.-]+\.[a-z]{2,4}$/;
     if (!regExp.test(control.value)) {
@@ -26,7 +27,7 @@ export class ValidationServService{
     return null
   }
 
-  PhoneNumberLength(control: FormControl) {
+  public PhoneNumberLength(control: FormControl): object | null {
     const size = 9;
     if (control.value && control.value.length < 9) {
       return {
@@ -35,7 +36,8 @@ export class ValidationServService{
     }
     return null
   }
-  bigDate(control: FormControl) {
+
+  public bigDate(control: FormControl): object | null {
     const nowDate = new Date(control.value);
     const nowYear = nowDate.getFullYear();
     const nowMonth = nowDate.getMonth() + 1;
@@ -45,10 +47,10 @@ export class ValidationServService{
     const year = today.getFullYear();
     const month = today.getMonth() + 1;
     const day = today.getDate();
-      
-    if ((nowYear>year)||(nowYear===year&&nowMonth>month)||(nowYear===year&&nowMonth===month&&nowDay>day)) {
-      return{
-        bigDate:true
+
+    if ((nowYear > year) || (nowYear === year && nowMonth > month) || (nowYear === year && nowMonth === month && nowDay > day)) {
+      return {
+        bigDate: true
       }
     }
     return null

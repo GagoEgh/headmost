@@ -7,6 +7,11 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OkoderComponent } from '../okoder/okoder.component';
+import { HttpErrorResponse } from '@angular/common/http';
+import { PromoCodeResults, ServerResponce } from 'src/app/interface/img-ramka';
+import { ShipingResult } from 'src/app/interface/order-response';
+import { CardItemResults } from 'src/app/interface/frame-response';
+
 
 @Component({
   selector: 'app-order',
@@ -43,7 +48,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   public ship: string = '';
   public sahleLengt: number = 0;
   public scale: number = 1;
-  public promoId = null;
+  public promoId:null|number = null;
   private sumInit: number = 0;
   private count: number = 0;
 
@@ -63,8 +68,8 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     })
 
 
-    this.frames.shipingMethod().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
-      this.shiping = el.results;
+    this.frames.shipingMethod().pipe(takeUntil(this._subscribe$)).subscribe((shiping: ServerResponce<ShipingResult[]>) => {
+      this.shiping = shiping.results;
 
     })
 
@@ -120,27 +125,27 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   }
 
   private changeJson(): void {
-    this._translate.get(['_order._user-data', '_order._inform-img']).pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
-      this._frstName = res["_order._user-data"]._frstName;
-      this._email = res["_order._user-data"]._email;
-      this._phoneNumber = res["_order._user-data"]._phoneNumber;
-      this._country = res["_order._user-data"]._country;
-      this._addres = res["_order._user-data"]._addres;
-      this._sale = res["_order._user-data"].sale;
-      this._shipping = res["_order._user-data"]._shipping;
-      this.__addresPost = res["_order._user-data"]._addresPost;
-      this._comment = res["_order._user-data"]._comment;
-      this._btnOrder = res["_order._user-data"]._btnOrder;
-      this.title = res["_order._inform-img"].title;
-      this._imgLength = res["_order._inform-img"]._imgLength;
-      this._letterSum = res["_order._inform-img"]._letterSum;
-      this._price = res["_order._inform-img"]._price;
-      this._addSum = res["_order._inform-img"]._addSum;
-      this._carzin = res["_order._inform-img"]._carzin;
-      this.titleH1 = res["_order._inform-img"].title_h1;
-      this.titleH2 = res["_order._inform-img"].title_h2;
-      this.ship = res["_order._user-data"].ship;
-      this.sahleLengt = res["_order._user-data"].saleLength;
+    this._translate.get(['Order.userData', 'Order.informImg']).pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
+      this._frstName = res["Order.userData"].frstName;
+      this._email = res["Order.userData"].email;
+      this._phoneNumber = res["Order.userData"].phoneNumber;
+      this._country = res["Order.userData"].country;
+      this._addres = res["Order.userData"].addres;
+      this._sale = res["Order.userData"].sale;
+      this._shipping = res["Order.userData"].shipping;
+      this.__addresPost = res["Order.userData"].addresPost;
+      this._comment = res["Order.userData"].comment;
+      this._btnOrder = res["Order.userData"].btnOrder;
+      this.title = res["Order.informImg"].title;
+      this._imgLength = res["Order.informImg"].imgLength;
+      this._letterSum = res["Order.informImg"].letterSum;
+      this._price = res["Order.informImg"].price;
+      this._addSum = res["Order.informImg"].addSum;
+      this._carzin = res["Order.informImg"].carzin;
+      this.titleH1 = res["Order.informImg"].titleH1;
+      this.titleH2 = res["Order.informImg"].titleH2;
+      this.ship = res["Order.userData"].ship;
+      this.sahleLengt = res["Order.userData"].saleLength;
     })
 
   }
@@ -153,13 +158,13 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   }
 
   public erroreName(formName: string): string {
-    this._translate.get('_erroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
+    this._translate.get('ErroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
 
-      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res._required;
-      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res._minlength} 3 `;
-      if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res._userNameChar;
-      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res._isEmail;
-      if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res._isSize;
+      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res.required;
+      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res.minlength} 3 `;
+      if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res.userNameChar;
+      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res.isEmail;
+      if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res.isSize;
       if (this.validateForm.get(formName)?.hasError('noText')) this.erroreStr = res.textErr;
       if (this.validateForm.get(formName)?.hasError('maxlength')) this.erroreStr = res.titleLength;
     })
@@ -211,7 +216,8 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   }
 
-  public salePost(event: any): void {
+  public salePost(event:any ): void {
+
     this.validateForm.get('sale')?.setValue(event.target.value)
     const sale = {
       price: this.frames.sum,
@@ -219,31 +225,27 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     }
 
     if (this.validateForm.get('sale')?.value.length === 6 && this.promoId === null && this.validateForm.get('sale')?.valid) {
-      this.frames.promoCodePost(sale).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
-        this.frames.sum = el.discounted_price;
-        this.promoId = el.promo_code.id;
+      this.frames.promoCodePost(sale).pipe(takeUntil(this._subscribe$)).subscribe((promoCode: PromoCodeResults) => {
+        this.frames.sum = promoCode.discounted_price;
+        this.promoId = promoCode.promo_code.id;
         this.promoError = '';
       },
-        (error: any) => {
+        (error: HttpErrorResponse) => {
           this.promoError = error.error.message;
         })
     }
   }
 
-
-  public deleteDate(obj: any): void {
-    this.frames.deleteOrder(obj.id).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
+  public deleteDate(obj:CardItemResults): void {
+    this.frames.deleteOrder(obj.id).pipe(takeUntil(this._subscribe$)).subscribe(() => {
       this.frames.sum -= obj.created_frame_details.price;
-      this.frames.orderList = this.frames.orderList.filter((val: any) => {
+      this.frames.orderList = this.frames.orderList.filter((val: CardItemResults) => {
         return val.id != obj.id
       })
-
       if (this.frames.orderList.length === 0) {
         this.frames.showFrame()
       }
-
     });
-
   }
 
   ngOnDestroy() {

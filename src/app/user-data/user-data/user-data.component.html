@@ -6,7 +6,7 @@
 
   <div class="col">
     <div>
-      <nz-form-label nzRequired nzFor="frstName">{{'_order._user-data._frstName'|translate}}</nz-form-label>
+      <nz-form-label nzRequired nzFor="frstName">{{'Order.userData.frstName'|translate}}</nz-form-label>
     </div>
     <nz-form-item>
       <nz-form-control [nzErrorTip]='frstEr' nzHasFeedback>
@@ -19,7 +19,7 @@
     </ng-template>
 
     <div>
-      <nz-form-label nzRequired nzFor="pas">{{'_order._user-data._lastName'|translate}}</nz-form-label>
+      <nz-form-label nzRequired nzFor="pas">{{'Order.userData.lastName'|translate}}</nz-form-label>
     </div>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="last" nzHasFeedback>
@@ -31,7 +31,7 @@
     </ng-template>
 
     <div>
-      <nz-form-label nzRequired nzFor="lastName">{{'_order._user-data._addres'|translate}}</nz-form-label>
+      <nz-form-label nzRequired nzFor="lastName">{{'Order.userData.addres'|translate}}</nz-form-label>
     </div>
     <nz-form-item>
       <nz-form-control [nzErrorTip]='add' nzHasFeedback>
@@ -44,7 +44,7 @@
 
 
     <div>
-      <nz-form-label nzRequired nzFor="email">{{'_order._user-data._email'|translate}}</nz-form-label>
+      <nz-form-label nzRequired nzFor="email">{{'Order.userData._email'|translate}}</nz-form-label>
     </div>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="email" nzHasFeedback>
@@ -61,12 +61,12 @@
 
   <div class="col">
     <div class="brtDay">
-      <nz-form-label nzRequired>{{'_order._user-data._brtDay'|translate}}</nz-form-label>
+      <nz-form-label nzRequired>{{'Order.userData.brtDay'|translate}}</nz-form-label>
       <nz-form-item >
         <nz-form-control [nzErrorTip]="date" nzHasFeedback >
           <mat-form-field appearance="fill"  >
             <mat-label >
-              {{'_order._user-data._brtDay'|translate}}
+              {{'Order.userData.brtDay'|translate}}
             </mat-label>
             <input [(ngModel)]='frames.userData.date_of_birth' matInput [matDatepicker]="picker" formControlName="date" >
             <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
@@ -79,7 +79,7 @@
       </ng-template>
     </div>
     <div class="phone">
-      <nz-form-label nzRequired nzFor="phoneNumber">{{'_order._user-data._phoneNumber'|translate}}</nz-form-label>
+      <nz-form-label nzRequired nzFor="phoneNumber">{{'Order.userData.phoneNumber'|translate}}</nz-form-label>
     </div>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="phone" nzHasFeedback>
@@ -91,7 +91,7 @@
       <p *ngIf="erroreName('phoneNumber')">{{erroreStr}} </p>
     </ng-template>
     <div class="region">
-      <nz-form-label nzRequired>{{'_order._user-data._country'|translate}}</nz-form-label>
+      <nz-form-label nzRequired>{{'Order.userData.country'|translate}}</nz-form-label>
       <nz-form-control [nzErrorTip]="country" nzHasFeedback>
         <nz-select nzAllowClear [nzPlaceHolder]="frames.country_placeholder" [(ngModel)]='frames.userData.city' nzShowSearch
           formControlName='country'>
@@ -112,7 +112,7 @@
     
 
     <div class="pas">
-      <nz-form-label nzRequired nzFor="pas">{{'_order._user-data._password'|translate}}</nz-form-label>
+      <nz-form-label nzRequired nzFor="pas">{{'Order.userData.password'|translate}}</nz-form-label>
     </div>
     <nz-form-item>
       <nz-form-control [nzErrorTip]="pas" nzHasFeedback>
@@ -123,7 +123,7 @@
       <p *ngIf="erroreName('pas')">{{erroreStr}} </p>
     </ng-template>
     <div class="btn-wrap">
-      <button nz-button [nzType]="'primary'" >{{'_order._user-data._update'|translate}}</button>
+      <button nz-button [nzType]="'primary'" >{{'Order.userData.update'|translate}}</button>
     </div>
   </div>
 </form>

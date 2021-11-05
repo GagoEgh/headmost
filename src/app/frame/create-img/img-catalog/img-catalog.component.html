@@ -13,17 +13,17 @@
             </div>
             <ng-template #myPhoto>
                 <div class="block-1">
-                    <div class="bg-img" *ngFor='let img of frames.fileList' (click)="showMyPhoto(img)"
+                    <div class="bg-img" *ngFor='let img of frames.fileList' (click)="changeImg(img)"
                         [style.background-image]="'url('+ img.image + ')'">
                     </div>
                 </div>
             </ng-template>
         </div>
         <nav class="bar">
-            <h2>{{'_img-menu._menu-title'|translate}}</h2>
+            <h2>{{'ImgMenu.menuTitle'|translate}}</h2>
             <div class="menu">
                 <div >
-                    <p class="subtitle">{{'_img-menu._color'|translate}}</p>
+                    <p class="subtitle">{{'ImgMenu.color'|translate}}</p>
                     <ul class="ul">
                         <li class="list" *ngFor='let block of frames.imgColor' (click)='changeFone(block)'
                             [ngClass]="{'listActive':frames.painding.id=== block.ceys.id}">
@@ -34,7 +34,7 @@
                     </ul>
                 </div>
                 <div class="color">
-                    <p class="subtitle">{{'_img-menu._categori'|translate}}</p>
+                    <p class="subtitle">{{'ImgMenu.categori'|translate}}</p>
                     <ul class="ul">
                         <li class="list" *ngFor='let category of categoryList, let i = index'
                             (click)='showCategory(category)'
@@ -43,7 +43,7 @@
                            <span *ngIf='frames.lang==="ru"'>{{category.name_ru}}</span> 
                            <span *ngIf='frames.lang==="en"'>{{category.name_en}}</span>  
                         </li>
-                        <li class="list" (click)="getMyPhoto()">{{'_img-menu._my-photo'|translate}}</li>
+                        <li class="list" (click)="getMyPhoto()">{{'ImgMenu.myPhoto'|translate}}</li>
                     </ul>
                 </div>
             </div>

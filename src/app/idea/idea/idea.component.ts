@@ -6,6 +6,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { LoginComponent } from 'src/app/register/login/login.component';
+import { ServerResponce } from 'src/app/interface/img-ramka';
+import { FrameDetalis } from 'src/app/interface/frame-response';
+
 
 @Component({
   selector: 'app-idea',
@@ -61,9 +64,9 @@ export class IdeaComponent implements OnInit {
 
   private appendItems(): void {
     this.frames.spinner.show()
-    this.frames.frameCategoryImg(this.category, 1, this.offset).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
+    this.frames.frameCategoryImg(this.category, 1, this.offset).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: ServerResponce<FrameDetalis[]>) => {
       this.offset += 10;
-      this.ideaImages.push(...el.results);
+      this.ideaImages.push(...frameDetalis.results);
       this.frames.spinner.hide();
     })
   }

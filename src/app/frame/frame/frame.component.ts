@@ -3,11 +3,11 @@ import { FramesServService } from '../../shared/frames-serv.service';
 import { TranslateService } from '@ngx-translate/core';
 import { FrameImag } from 'src/app/shared/frame-image';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FramesImg } from '../../shared/img-ramka';
 import { FormBuilder } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
-
+import { BgDetails, FramesImg, ServerResponce } from 'src/app/interface/img-ramka';
+import { ImgTextValid } from 'src/app/interface/language';
 
 
 @Component({
@@ -18,13 +18,38 @@ import { Router } from '@angular/router';
 export class FrameComponent extends FrameImag implements OnInit, AfterViewChecked {
 
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
-
-  width: number | undefined;
+  private width: number | undefined;
 
   constructor(public frames: FramesServService, public modalService: NgbModal,
     public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
     super(frames, modalService, rout, form);
     this._translate.use(this.frames.lang)
+  }
+
+
+  ngOnInit(): void {
+    this.frames.letterImges = [];
+    this.frames.isOrder = false;
+    super.myForm();
+    super.imgColor();
+    this.rout.navigate(['frame/form-frame'])
+
+   
+    this._translate.get('ImgTextValid').pipe(takeUntil(this._unsubscribe$))
+    .subscribe((res: ImgTextValid) => {
+      this.frames.placeholder = res["placeholder"];
+    })
+   
+    this.frames.framesFoneGet().pipe(takeUntil(this._unsubscribe$)).subscribe((bgDetails: ServerResponce<BgDetails[]>) => {
+      this.frames.div = bgDetails.results;
+      this.frames.background = bgDetails.results[0];
+    })
+
+    this.frames.getFrames().pipe(takeUntil(this._unsubscribe$)).subscribe((framesImg: ServerResponce<FramesImg[]>) => {
+      this.frames.framesImge = framesImg.results;
+      this.frameClick(this.frames.index);
+    })
+
   }
 
   @HostListener('window:resize', ['$event'])
@@ -49,6 +74,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
   }
 
+  
   public conteinerHeight(): object {
     let height = {
       height: '538px'
@@ -75,30 +101,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     this.onResize()
   }
 
-  ngOnInit(): void {
-    this.frames.letterImges = [];
-    this.frames.isOrder = false;
-    super.myForm();
-    super.imgColor();
-    this.rout.navigate(['frame/form-frame'])
-
-    this._translate.get('_img-text-valid').pipe(takeUntil(this._unsubscribe$))
-      .subscribe((res: any) => {
-        this.frames.placeholder = res["_placeholder"];
-      })
-
-    this.frames.framesFoneGet().pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
-      this.frames.div = el.results;
-      this.frames.background = el.results[0];
-
-    })
-
-    this.frames.getFrames().pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
-      this.frames.framesImge = el.results;
-      this.frameClick(this.frames.index);
-    })
-
-  }
+ 
 
   public setStyle() {
     let style = {
@@ -169,12 +172,12 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     this.frames.frame = this.frames.framesImge.find(item => item.id === this.frames.index);
 
   }
-
+  //FramesImg
   public getFrameId(img: FramesImg): boolean {
     return img.id === this.frames.index
   }
 
-  public changeBg(bg: any): void {
+  public changeBg(bg:BgDetails): void {
     this.frames.background = bg;
   }
 

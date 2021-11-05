@@ -3,19 +3,19 @@
     <div class="idea-image" [style.background-image]="'url('+ frames?.ideaImg.image + ')'">
     </div>
     <div class="info-img">
-        <h4 class="title">{{'_idea-img._img-title'|translate}}
+        <h4 class="title">{{'IdeaImg.imgTitle'|translate}}
             <span *ngIf='frames.lang==="hy"'>{{frames?.ideaImg.created_frame_category_details?.name_hy}}</span>
             <span *ngIf='frames.lang==="ru"'>{{frames?.ideaImg.created_frame_category_details?.name_ru}}</span>
             <span *ngIf='frames.lang==="en"'>{{frames?.ideaImg.created_frame_category_details?.name_en}}</span>
         </h4>
-        <p class="text">{{'_idea-img._name'|translate}} {{frames?.ideaImg?.word}} </p>
+        <p class="text">{{'IdeaImg.name'|translate}} {{frames?.ideaImg?.word}} </p>
         <p class="text" *ngIf='frames.lang==="hy"'>{{frames?.ideaImg?.frame_details?.name_hy}}</p>
         <p class="text" *ngIf='frames.lang==="ru"'>{{frames?.ideaImg?.frame_details?.name_ru}}</p>
         <p class="text" *ngIf='frames.lang==="en"'>{{frames?.ideaImg?.frame_details?.name_en}}</p>
-        <p class="text">{{'_idea-img._img-phone'|translate}} {{frames?.ideaImg?.background_details?.name}}</p>
-        <p class="text">{{frames?.ideaImg?.price}}{{'_order._inform-img._price'|translate}} <span><button class="order"
-                    (click)="addOrder()">{{'_order._user-data._btnOrder'|translate}}</button></span></p>
-        <p class="text">{{'_idea-img._your-name'|translate}} <span><button class="myFrame"
-                    [routerLink]="''">{{'_menu.konstruktor._konstr'|translate}}</button></span></p>
+        <p class="text">{{'IdeaImg.imgPhone'|translate}} {{frames?.ideaImg?.background_details?.name}}</p>
+        <p class="text">{{frames?.ideaImg?.price}}{{'Order.informImg.price'|translate}} <span><button class="order"
+                    (click)="addOrder()">{{'Order.userData.btnOrder'|translate}}</button></span></p>
+        <p class="text">{{'IdeaImg.yourName'|translate}} <span><button class="myFrame"
+                    [routerLink]="''">{{'Menu.konstruktor.konstr'|translate}}</button></span></p>
     </div>
 </div>

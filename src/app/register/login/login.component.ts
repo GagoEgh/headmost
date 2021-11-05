@@ -8,6 +8,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { RegisterResult } from 'src/app/interface/register-response';
+import { ServerResponce } from 'src/app/interface/img-ramka';
+
 
 @Component({
   selector: 'app-login',
@@ -38,10 +41,10 @@ export class LoginComponent implements OnInit, DoCheck {
   }
 
   public erroreName(formName: string): string {
-    this._translate.get('_erroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
-      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res._required;
-      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res._minlength} 6`;
-      if (this.validateForm.get(formName)?.hasError('email')) this.erroreStr = res._isEmail;
+    this._translate.get('ErroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
+      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res.required;
+      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res.minlength} 6`;
+      if (this.validateForm.get(formName)?.hasError('email')) this.erroreStr = res.isEmail;
     })
     return this.erroreStr;
   }
@@ -59,18 +62,18 @@ export class LoginComponent implements OnInit, DoCheck {
     }
     if (this.validateForm.valid) {
 
-      this.frames.userLogin(userLog).pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
+      this.frames.userLogin(userLog).pipe(takeUntil(this._subscribe$)).subscribe((register:RegisterResult) => {
         this.spinner.show();
-        this.frames.token = 'Token ' + el.token;
-        this.frames.userData = el.user_details;
+        this.frames.token = 'Token ' + register.token;
+        this.frames.userData = register.user_details;
         localStorage.setItem('loginAutorization', this.frames.token);
         localStorage.setItem('user-date', JSON.stringify(this.frames.userData));
         this.activeModal.dismiss();
         this.validateForm.reset();
         this.frames.userReg = false;
-
-        this.frames.userInfo().pipe(takeUntil(this._subscribe$)).subscribe((el: any) => {
-          this.frames.orderList = el.results;
+        
+        this.frames.userInfo().pipe(takeUntil(this._subscribe$)).subscribe((serverResponce:ServerResponce<[]>) => {
+          this.frames.orderList = serverResponce.results;
           this.frames.orderList.forEach((obj: any) => {
             this.frames.sum += obj.created_frame_details.price;
           })

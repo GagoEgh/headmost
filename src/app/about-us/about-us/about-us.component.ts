@@ -3,7 +3,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
+import { AboutQuestion } from 'src/app/interface/AboutQuestion';
 
 
 @Component({
@@ -15,12 +15,12 @@ export class AboutUsComponent implements OnInit, AfterViewChecked, OnChanges {
 
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
   public _unsubscribe$ = new Subject();
-  public question_answer: any[] = [];
+  public question_answer: AboutQuestion[] = [];
   private width: number | undefined;
   public scale: number = 1;
   private caunt: number = 0;
-  private obj: object = {};
-
+  private obj: AboutQuestion = new AboutQuestion()
+  
   constructor(public frames: FramesServService, public _translate: TranslateService) { }
 
   ngOnInit(): void {
@@ -30,14 +30,13 @@ export class AboutUsComponent implements OnInit, AfterViewChecked, OnChanges {
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.width = this.block?.nativeElement.clientWidth | 1;
-
     if (window.innerWidth <= 1165) {
-
       this.scale = 1165 / this.width - 0.3;
 
       if (window.innerWidth <= 1025) {
         this.scale = 1025 / this.width - 0.2;
       }
+      
       if (window.innerWidth <= 768) {
         this.scale = 768 / this.width - 0.2;
       }
@@ -67,20 +66,19 @@ export class AboutUsComponent implements OnInit, AfterViewChecked, OnChanges {
   }
 
   private createText(): void {
-    this._translate.get('_about._questions').pipe(takeUntil(this._unsubscribe$)).subscribe((res: any) => {
-      res.forEach((element: any) => {
-        element.isBlock = JSON.parse(element.isBlock);
-        this.question_answer.push(element)
+    this._translate.get('About.questions').pipe(takeUntil(this._unsubscribe$)).subscribe((question: AboutQuestion[]) => {
+      question.forEach((quest: AboutQuestion) => {
+        this.question_answer.push(quest)
       });
 
     })
   }
 
-  public showQuestion(ev: any, num: number): void {
-    if (ev.id === this.question_answer[num].id) {
-      this.obj = ev;
+  public showQuestion(question: AboutQuestion, num: number): void {
+    if (question.id === this.question_answer[num].id) {
+      this.obj = question;
       this.caunt = num;
-      ev.isBlock = !ev.isBlock;
+      question.isBlock = !question.isBlock;
     }
   }
 

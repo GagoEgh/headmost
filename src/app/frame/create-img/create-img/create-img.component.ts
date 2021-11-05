@@ -3,9 +3,9 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FrameImag } from 'src/app/shared/frame-image';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Letter } from '../../../shared/img-ramka';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { Letter } from 'src/app/interface/img-ramka';
 
 @Component({
   selector: 'app-create-img',

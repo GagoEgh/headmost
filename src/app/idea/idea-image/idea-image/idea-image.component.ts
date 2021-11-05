@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { LoginComponent } from 'src/app/register/login/login.component';
+import { FrameDetalis } from 'src/app/interface/frame-response';
+
 
 
 @Component({
@@ -25,8 +27,8 @@ export class IdeaImageComponent implements OnInit {
     this.frames.spinner.show()
 
     this.activApi.params.subscribe((el: any) => {
-      this.frames.imgCategory(el.id).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
-        this.frames.ideaImg = el;
+      this.frames.imgCategory(el.id).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: FrameDetalis) => {
+        this.frames.ideaImg = frameDetalis;
         this.frames.spinner.hide()
       })
     })

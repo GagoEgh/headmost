@@ -1,24 +1,24 @@
 {
-    "_menu": {
+    "Menu": {
         "konstruktor": {
-            "_konstr":"CONSTRUCTOR",
-            "_frame": "FRAME",
-            "_magnet": "MAGNET"
+            "konstr":"CONSTRUCTOR",
+            "frame": "FRAME",
+            "magnet": "MAGNET"
         },
-        "_idea": "IDEAS",
-        "_aboutUs":"ABOUT US",
-        "_user": {
-            "_updateOk":"The changes were successful",
+        "idea": "IDEAS",
+        "aboutUs":"ABOUT US",
+        "user": {
+            "updateOk":"The changes were successful",
             "noUpdate":"You have not changed the data",
-            "_save":"REGISTER",
-            "_exit":"SIGN IN",
-            "_profil": "PROFILE",
-            "_images": "MY DRAWINGS",
-            "_orders": "MY ORDERS",
-            "_close": "SIGN OUT",
+            "save":"REGISTER",
+            "exit":"SIGN IN",
+            "profil": "PROFILE",
+            "images": "MY DRAWINGS",
+            "orders": "MY ORDERS",
+            "close": "SIGN OUT",
             "orderOk":"Your order has been successfully accepted",
             "orderErr":"Try a dream",
-            "_my-order": {
+            "myOrder": {
                 "description": "DESCRIPTION",
                 "status": "STATUS",
                 "add": "add to cart",
@@ -30,154 +30,150 @@
             }
         }
     },
-    "_img-text-valid": {
-        "_placeholder": "WRITE THE WORD",
-        "_title": "how to write a word, letter and symbol",
-        "_modal-text1": "Rules of entry ․ You can enter words, the words must be in Latin letters. The words in the photo in the frame can be from 3 letters to 9.",
-        "_modal-text2": " You can also make words with magnets (3-9 letters). To add your photo you need to register / log in, then open the letter replacement window և select the 'my letters' section ընտրել select a picture from your computer.",
-        "_create-word": "CREATE",
-        "_order-add":"ORDER AGAIN",
-        "_modal-header":"writing conditions",
-        "_batn-save":  "SAVE"
-        
+    "ImgTextValid": {
+        "placeholder": "WRITE THE WORD",
+        "title": "how to write a word, letter and symbol",
+        "modalText1": "Rules of entry ․ You can enter words, the words must be in Latin letters. The words in the photo in the frame can be from 3 letters to 9.",
+        "modalText2": " You can also make words with magnets (3-9 letters). To add your photo you need to register / log in, then open the letter replacement window և select the 'my letters' section ընտրել select a picture from your computer.",
+        "createWord": "CREATE",
+        "orderAdd":"ORDER AGAIN",
+        "modalHeader":"writing conditions",
+        "batnSave":  "SAVE"  
     },
-    "_imgs": {
-        "_img-hover": "select another image",
-        "_delete-text": "delete the text",
-        "_change-image": "change pictures",
-        "_save": "to keep",
-        "_batn-save": "SAVE"
+    "Imgs": {
+        "imgHover": "select another image",
+        "deleteText": "delete the text",
+        "changeImage": "change pictures",
+        "save": "to keep",
+        "batnSave": "SAVE"
     },
-    "_img-menu": {
-        "_menu-title": "Choice of settings",
-        "_color": "colors",
-        "_categori": "categories",
-        "_my-photo":"my drawings"
+    "ImgMenu": {
+        "menuTitle": "Choice of settings",
+        "color": "colors",
+        "categori": "categories",
+        "myPhoto":"my drawings"
     },
-    "_order": {
-        "_user-data": {
-            "_frstName": "NAME",
-            "_lastName": "SURNAME",
-            "_brtDay": "Date of birth",
-            "_email": "EMAIL",
-            "_phoneNumber": "PH. NUMBER",
-            "_country": "CITY",
+    "Order": {
+        "userData": {
+            "frstName": "NAME",
+            "lastName": "SURNAME",
+            "brtDay": "Date of birth",
+            "email": "EMAIL",
+            "phoneNumber": "PH. NUMBER",
+            "country": "CITY",
             "country_placeholder":"CITY",
-            "_addres": "ADDRESS",
-            "_shipping": "TO DELIVER?",
-            "_addresPost": "MAIL ADDRESS",
-            "_comment": "COMMENT",
+            "addres": "ADDRESS",
+            "shipping": "TO DELIVER?",
+            "addresPost": "MAIL ADDRESS",
+            "comment": "COMMENT",
             "sale": "SALE",
-            "_btnOrder": "TO ORDER",
-            "_update":"UPDATE",
-            "_password":"PASSWORD",
-            "_passwordReset":"PASSWORD RESET",
-            "_logIn":"LOG IN",
-            "_register":"REGISTER",
-            "_date":"Choose a date",
-            "_congratulations": "Congratulations",
-            "_congratulationsTitle": "You have successfully registered, you can place orders",
-            "_message":"THE PRODUCT IS IN THE BASKET",
+            "btnOrder": "TO ORDER",
+            "update":"UPDATE",
+            "password":"PASSWORD",
+            "passwordReset":"PASSWORD RESET",
+            "logIn":"LOG IN",
+            "register":"REGISTER",
+            "date":"Choose a date",
+            "congratulations": "Congratulations",
+            "congratulationsTitle": "You have successfully registered, you can place orders",
+            "message":"THE PRODUCT IS IN THE BASKET",
             "sms":"The order has been canceled",
             "ship":"Shipping",
             "saleLength":"The maximum number of digits must be 6"
-            
-            
         },
-        "_inform-img": {
-            "title_h1":"Basket",
-            "title_h2":"YOUR DATA",
+        " informImg": {
+            "titleH1":"Basket",
+            "titleH2":"YOUR DATA",
             "title": "ORDER DESCRIPTION",
-            "_imgLength": "letter",
-            "_letterSum": "Դ/letter",
-            "_price": "Դ",
-            "_addSum": "ONLY",
-            "_carzin":"The cart is empty"
-            
+            "imgLength": "letter",
+            "letterSum": "Դ/letter",
+            "price": "Դ",
+            "addSum": "ONLY",
+            "carzin":"The cart is empty"
         }
     },
-    "_idea-img": {
-        "_img-title": "gift idea",
-        "_name": "Name",
-        "_img-phone": "Picture background",
-        "_your-name": "type your word now",
-        "_idea-message": "THE PRODUCT IS IN THE BASKET",
-        "_nav-title": "GIFTS OPTIONS",
-        "_all":"All"
-        
+
+    "IdeaImg": {
+        "imgTitle": "gift idea",
+        "name": "Name",
+        "imgPhone": "Picture background",
+        "yourName": "type your word now",
+        "ideaMessage": "THE PRODUCT IS IN THE BASKET",
+        "navTitle": "GIFTS OPTIONS",
+        "all":"All" 
     },
-    "_erroreMessage":{
-        "_required":"Mute the field",
-        "_minlength":"The number of letters must be more than",
+    "ErroreMessage":{
+        "required":"Mute the field",
+        "minlength":"The number of letters must be more than",
         "maxLength": "The number of letters should not exceed 50",
-        "_userNameChar":"should not be a number",
-        "_isEmail":"Email is not valid",
-        "_isSize":"phone number is incorrect",
-        "_imgErr": "You can not delete this image",
-        "_textErr":"should be only letters (number of letters 3-9)",
-        "_getPage":"log in to your page",
-        "_checkPass":"you filled in the field incorrectly",
-        "_bigDate":"Wrong date",
-        "textErr":"write number",
+        "userNameChar":"should not be a number",
+        "isEmail":"Email is not valid",
+        "isSize":"phone number is incorrect",
+        "imgErr": "You can not delete this image",
+        "textErr":"should be only letters (number of letters 3-9)",
+        "getPage":"log in to your page",
+        "checkPass":"you filled in the field incorrectly",
+        "bigDate":"Wrong date",
+        "textErrNum":"write number",
         "titleLength":"The number of letters is 20",
-        "no-usser":"TO UPLOAD IMAGES, YOU NEED TO REGISTER",
+        "noUsser":"TO UPLOAD IMAGES, YOU NEED TO REGISTER",
         "emailMassage":"This email is busy"
     },
-    "_about": {
-        "_hello": "HELLO",
-        "_text_1": " At Lovislova, we create words from unique photos. A great idea for a personalized gift! What makes a memorable gift? Beautiful idea, attention and care, personalization, and uniqueness.",
-        "_text_2": "In our smart Constructor, you can build a word from unique photos that imitate letters.  There are so many amazing things that you can now give to your loved ones – Love, Happiness, Dream, and even Moon in the Sky",
-        "_inet":"Follow us on social media",
-        "_FAQ":"FAQ",
-        "_btn_quest":"Ask your question",
-        "_kontackt_info":"Contact Information",
-        "_questions": [
+    "About": {
+        "hello": "HELLO",
+        "text_1": " At Lovislova, we create words from unique photos. A great idea for a personalized gift! What makes a memorable gift? Beautiful idea, attention and care, personalization, and uniqueness.",
+        "text_2": "In our smart Constructor, you can build a word from unique photos that imitate letters.  There are so many amazing things that you can now give to your loved ones – Love, Happiness, Dream, and even Moon in the Sky",
+        "inet":"Follow us on social media",
+        "Faq":"FAQ",
+        "btnQuest":"Ask your question",
+        "kontacktInfo":"Contact Information",
+        "questions": [
             {
                 "id":1,
                 "isBlock":"false",
-                "_label": "Constructor is not working. What do I do?",
-                "_answers": "Yes. The work looks very cool live, which is why we often receive letters from our clients."
+                "label": "Constructor is not working. What do I do?",
+                "answers": "Yes. The work looks very cool live, which is why we often receive letters from our clients."
             },
             {
                 "id":2,
                 "isBlock":"false",
-                "_label":"What are the terms of production and delivery of photographs",
-                "_answers":"If your word is made of white, black, brown baguette, then it will be ready the next business day after ordering. Sometimes, if asked in the comments, we can do it day after day.\n\nIn some cases, when a new batch of baguettes is in the workshop, the word can be ready within 3 working days, it makes sense to clarify this by phone.\n\nDelivery is carried out by the company depending on the selected type of delivery. (time indicated in working days) See the time when placing an order."
+                "label":"What are the terms of production and delivery of photographs",
+                "answers":"If your word is made of white, black, brown baguette, then it will be ready the next business day after ordering. Sometimes, if asked in the comments, we can do it day after day.\n\nIn some cases, when a new batch of baguettes is in the workshop, the word can be ready within 3 working days, it makes sense to clarify this by phone.\n\nDelivery is carried out by the company depending on the selected type of delivery. (time indicated in working days) See the time when placing an order."
             },
             {
                 "id":3,
                 "isBlock":"false",
-                "_label":"What are the sizes of your photo letters?",
-                "_answers":"Framed photos can be from 3 letters to 9\n\nPhoto size 10X15 - the dimensions of the frame can be viewed in the constructor Magnets size 6x9"
+                "label":"What are the sizes of your photo letters?",
+                "answers":"Framed photos can be from 3 letters to 9\n\nPhoto size 10X15 - the dimensions of the frame can be viewed in the constructor Magnets size 6x9"
             },
             {
                 "id":4,
                 "isBlock":"false",
-                "_label":"What are the frames made of and what is included in the kit?",
-                "_answers":"All our frames are made of high quality moldings and varnished over the entire surface of the plank. Passepartout is made of textured thickened paper, the backdrop is made of thick cardboard.\n\nFor delivery by transport companies, we use plexiglass. For delivery by courier or self-pickup, we use baguette glass.\n\nEach frame comes with a wall mount kit + free gift wrap."
+                "label":"What are the frames made of and what is included in the kit?",
+                "answers":"All our frames are made of high quality moldings and varnished over the entire surface of the plank. Passepartout is made of textured thickened paper, the backdrop is made of thick cardboard.\n\nFor delivery by transport companies, we use plexiglass. For delivery by courier or self-pickup, we use baguette glass.\n\nEach frame comes with a wall mount kit + free gift wrap."
             },
             {
                 "id":5,
                 "isBlock":"false",
-                "_label":"What if the frame breaks on delivery",
-                "_answers":"For delivery, we carefully pack the frames with bubble wrap. Over the entire period of the project's work, the framework has not been damaged even once. But, if this happens, then we will make a replacement at our own expense."
+                "label":"What if the frame breaks on delivery",
+                "answers":"For delivery, we carefully pack the frames with bubble wrap. Over the entire period of the project's work, the framework has not been damaged even once. But, if this happens, then we will make a replacement at our own expense."
             },
             {
                 "id":6,
                 "isBlock":"false",
-                "_label":"The constructor doesn't work for me!",
-                "_answers":"Most likely, you are using an old version of the browser that we no longer support or Internet Explorer, we may have bugs there. Go through Crome, Mozila, Safary."
+                "label":"The constructor doesn't work for me!",
+                "answers":"Most likely, you are using an old version of the browser that we no longer support or Internet Explorer, we may have bugs there. Go through Crome, Mozila, Safary."
             }
         ]
     },
-    "_steps":{
-        "_compile" :"Come up with a word",
-        "_text1":"value, profession, name, wish",
-        "_select":"Choose letters",
-        "_text2":"more than 3000 copyright options",
-        "_get":"Receive with delivery",
+    "Steps":{
+        "compile" :"Come up with a word",
+        "text1":"value, profession, name, wish",
+        "select":"Choose letters",
+        "text2":"more than 3000 copyright options",
+        "get":"Receive with delivery",
         "text3":"from 1 to 7 days, breakage insurance",
-        "_donate":"Give",
+        "donate":"Give",
         "text4":"or hang on the wall"
     }
   

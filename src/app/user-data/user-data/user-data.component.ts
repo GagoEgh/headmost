@@ -9,6 +9,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataCheckComponent } from '../data-check/data-check.component';
 import { NoCheckComponent } from '../no-check/no-check.component';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Edit, UserDetalis } from 'src/app/interface/register-response';
+
 
 @Component({
   selector: 'app-user-data',
@@ -16,12 +18,12 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./user-data.component.scss']
 })
 export class UserDataComponent implements OnInit, AfterViewChecked {
-  validateForm: FormGroup = new FormGroup({});
+  public validateForm: FormGroup = new FormGroup({});
   public _unsubscribe$ = new Subject();
-  erroreStr: string = '';
-  emailMassage = '';
-  userName = '';
-  isChange = false;
+  public erroreStr: string = '';
+  public emailMassage = '';
+  public userName = '';
+  public isChange = false;
   constructor(private valid: ValidationServService, private fb: FormBuilder, public modalService: NgbModal,
     private spinner: NgxSpinnerService, public _translate: TranslateService, public frames: FramesServService) { }
 
@@ -35,10 +37,10 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
 
   ngOnInit(): void {
     this.spinner.show();
-   
-    setTimeout(()=>{
+
+    setTimeout(() => {
       this.spinner.hide();
-    },2000)
+    }, 2000)
     this.frames.isMyOrder = false;
     this.frames.userCountry();
     this.userName = this.frames.userData.user_details.first_name;
@@ -56,24 +58,22 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
 
   }
 
-  erroreName(formName: string) {
-    this._translate.get('_erroreMessage').pipe(takeUntil(this._unsubscribe$)).subscribe((res: any) => {
+  public erroreName(formName: string): string {
+    this._translate.get('ErroreMessage').pipe(takeUntil(this._unsubscribe$)).subscribe((res: any) => {
       let size = 3;
       if (formName === 'pas') size = 6
-      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res._required;
-      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res._minlength} ${size} `;
+      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res.required;
+      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res.minlength} ${size} `;
       if (this.validateForm.get(formName)?.hasError('maxlength')) this.erroreStr = `${res.maxLength}`;
-      if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res._userNameChar;
-      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res._isEmail;
-      if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res._isSize;
-      if (this.validateForm.get(formName)?.hasError('bigDate')) this.erroreStr = res._bigDate
+      if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res.userNameChar;
+      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res.isEmail;
+      if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res.isSize;
+      if (this.validateForm.get(formName)?.hasError('bigDate')) this.erroreStr = res.bigDate
     })
     return this.erroreStr;
   }
 
-
-
-  birt(formName: string) {
+  private birt(formName: string): string {
     const date = new Date(this.validateForm.get(formName)?.value);
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -82,7 +82,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     return date_of_birth;
   }
 
-  changeDate() {
+  private changeDate(): void {
     let data: any = localStorage.getItem('user-date');
     let user_data = JSON.parse(data);
 
@@ -99,17 +99,15 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   }
 
 
-  submitForm(): void {
+  public submitForm(): void {
     // for (const i in this.validateForm.controls) {
     //   this.validateForm.controls[i].markAsDirty();
     //   this.validateForm.controls[i].updateValueAndValidity();
     //   console.log(this.validateForm.controls[i].value);
     // }
 
-
-
     const date = this.birt('date');
-    const edit = {
+    const edit: Edit = {
       date_of_birth: date,
       city: this.validateForm.get('country')?.value,
       address: this.validateForm.get('addres')?.value.trim(),
@@ -120,11 +118,10 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     }
 
     this.changeDate()
-
     if (this.validateForm.valid && this.isChange) {
       this.userName = edit.first_name;
-      this.frames.editUser(edit).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
-        this.frames.userData = el;
+      this.frames.editUser(edit).pipe(takeUntil(this._unsubscribe$)).subscribe((userDetalis: UserDetalis) => {
+        this.frames.userData = userDetalis;
         this.frames.userData.user_details.first_name = this.userName;
         let myJson = JSON.stringify(this.frames.userData);
         localStorage.setItem('user-date', myJson);
@@ -144,7 +141,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
 
   }
 
-  ngOnDestroy() {
+  private ngOnDestroy(): void {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }

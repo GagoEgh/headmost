@@ -1,4 +1,3 @@
-import { Api, Ceys, FramesImg, LetterImge, Painding, UserData, Value } from 'src/app/shared/img-ramka'
 import { LoginComponent } from '../register/login/login.component';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { TranslateService } from "@ngx-translate/core";
@@ -7,13 +6,23 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Api, BgDetails, CountryResult, FramesImg, ImgColorValue, Painding, PromoCodeResults, ServerResponce, UserImage} from '../interface/img-ramka';
+import { CardItemResults, FrameDetalis, FrameResults } from '../interface/frame-response';
+import { Edit, RegisterResult, UserDetalis } from '../interface/register-response';
+import { OrderResult, ShipingResult } from '../interface/order-response';
+import { UserData } from '../interface/UserAllData';
+import { ImageResponse } from '../interface/ImageResponse';
+import { CategoryDetails } from '../interface/CategoryDetails';
+import { WordResult } from '../interface/WordResult';
 
 @Injectable({
     providedIn: 'root'
 })
 export class FramesServService {
     public validateForm: FormGroup = new FormGroup({});
-    public letterImges: LetterImge[] = [];
+    public userData: UserData = new UserData();
+    public letterImges: WordResult[] = []
     public framesImge: FramesImg[] = [];
     public selectedValue: any[] = [];
     public placeholder = '';
@@ -22,8 +31,8 @@ export class FramesServService {
     private fileUrl = {};
     public isOrder: boolean = false;
     public isSilki = false;
-    public orderList: any[] = [];
-    private orderListClone: any[] = [];
+    public orderList: CardItemResults[] = [];
+    private orderListClone: CardItemResults[] = [];
     public background: any = {};
     public ideaImg: any = {};
     public topText: string = '';
@@ -42,39 +51,17 @@ export class FramesServService {
     public limit = 10;
     public offset = 0;
     public isTop = false;
-   public isdisible = false;
-   public scale: number = 1;
-    urlArr: string[] = [];
-    magnit_scale: number = 1;
-    letterChar = 0;
-    userData: UserData = {
-        address: '',
-        city: 0,
-        city_details: {
-            id: 0,
-            name_en: '',
-            name_ru: '',
-            name_hy: ''
-        },
-        comment: '',
-        date_of_birth: '',
-        image: '',
-        phone_number: null,
-        user: 0,
-        user_details: {
-            first_name: '',
-            id: 0,
-            is_active: false,
-            is_staff: false,
-            last_name: '',
-            username: ''
-        }
-    };
+    public isdisible = false;
+    public scale: number = 1;
+    private urlArr: string[] = [];
+    public magnit_scale: number = 1;
+    public letterChar = 0;
+    public isImg = true;
+    public div: any = [];
+    public frame: any;
 
-    isImg = true;
-    div: any = [];
-    frame: any;
-    api: Api = {
+
+    public api: Api = {
         worldApi: 'http://sirun-bar-api.annaniks.com',
         api_utils: '/utils',
         api_bgr: '/background/',
@@ -104,7 +91,7 @@ export class FramesServService {
     }
 
 
-    painding: Painding = {
+    public painding: Painding = {
         values: {
             colored: false,
             withandblack: true,
@@ -118,15 +105,11 @@ export class FramesServService {
     };
 
 
-    imgColor: { ceys: Ceys, values: Value }[] = [
+    public imgColor: { ceys: CategoryDetails, values:ImgColorValue  }[] = [
         {
-            ceys: {
-                id: 0,
-                name_en: '',
-                name_hy: '',
-                name_ru: ''
-            },
-            values: {
+            ceys: new CategoryDetails(),
+            values:
+            {
                 colored: false,
                 withandblack: true,
                 sepia: false,
@@ -135,13 +118,9 @@ export class FramesServService {
             }
 
         }, {
-            ceys: {
-                id: 0,
-                name_en: '',
-                name_hy: '',
-                name_ru: ''
-            },
-            values: {
+            ceys: new CategoryDetails(),
+            values:
+            {
                 colored: true,
                 withandblack: false,
                 sepia: false,
@@ -149,13 +128,9 @@ export class FramesServService {
                 child: 'palevioletred',
             }
         }, {
-            ceys: {
-                id: 0,
-                name_en: '',
-                name_hy: '',
-                name_ru: ''
-            },
-            values: {
+            ceys: new CategoryDetails(),
+            values:
+            {
                 colored: false,
                 withandblack: false,
                 sepia: true,
@@ -168,156 +143,150 @@ export class FramesServService {
     constructor(private url: HttpClient, public spinner: NgxSpinnerService, public rout: Router,
         public _translate: TranslateService, public modalService: NgbModal) { }
 
-    imgColorGet() {
-        return this.url.get(this.api.worldApi + this.api.api_utils + this.api.api_color)
+    public imgColorGet(): Observable<ServerResponce<CategoryDetails[]>> {
+        return this.url.get<ServerResponce<CategoryDetails[]>>(this.api.worldApi + this.api.api_utils + this.api.api_color)
     }
 
-    framesFoneGet() {
-        return this.url.get(this.api.worldApi + this.api.api_utils + this.api.api_bgr)
+    public framesFoneGet(): Observable<ServerResponce<BgDetails[]>> {
+        return this.url.get<ServerResponce<BgDetails[]>>(this.api.worldApi + this.api.api_utils + this.api.api_bgr)
     }
 
-    getFrames() {
-        return this.url.get(this.api.worldApi + this.api.api_utils + this.api.api_frame)
+    public getFrames(): Observable<ServerResponce<FramesImg[]>> {
+        return this.url.get<ServerResponce<FramesImg[]>>(this.api.worldApi + this.api.api_utils + this.api.api_frame)
     }
 
-    letterGet() {
+    private letterGet(): Observable<WordResult[]> {
         let text = this.text ? this.text : null;
-        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_create_word + text + '/', {
+        return this.url.get<WordResult[]>(this.api.worldApi + this.api.api_img + this.api.api_create_word + text + '/', {
             params: new HttpParams().set('color', this.painding.id.toString())
         });
     }
 
-    letterColection(search: string = '', color: any = '', category: string = '') {
-        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_img + '/?color=' + `${color}` + '&category=' + `${category}` + '&search=' + `${search}` + '&limit=1000')
+    public letterColection(search: string = '', color: string | number = '', category: number|string = ''): Observable<ServerResponce<ImageResponse[]>> {
+        return this.url.get<ServerResponce<ImageResponse[]>>(this.api.worldApi + this.api.api_img + this.api.api_img + '/?color=' + `${color}` + '&category=' + `${category}` + '&search=' + `${search}` + '&limit=1000')
     }
 
-    getCategory() {
-        return this.url.get(this.api.worldApi + this.api.api_utils + this.api.api_category)
+    public getCategory(): Observable<ServerResponce<CategoryDetails[]>> {
+        return this.url.get<ServerResponce<CategoryDetails[]>>(this.api.worldApi + this.api.api_utils + this.api.api_category)
     }
 
-    getOrder(obj: any) {
-        return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_card + this.api.api_add,
+    private getOrder(obj: any): Observable<CardItemResults[]> {
+        return this.url.post<CardItemResults[]>(this.api.worldApi + this.api.api_order + this.api.api_card + this.api.api_add,
             obj,
             { headers: { 'Authorization': this.token } }
         )
     }
 
-
-    getCountry() {
-        return this.url.get(this.api.worldApi + this.api.api_location + this.api.api_country)
+    public getCountry(): Observable<ServerResponce<CountryResult[]>> {
+        return this.url.get<ServerResponce<CountryResult[]>>(this.api.worldApi + this.api.api_location + this.api.api_country)
     }
 
-
-    userOrderDel(id: number) {
-        return this.url.get(this.api.worldApi + this.api.api_order + this.api.api_order + '/' + id + '/hide/',
+    public userOrderDel(id: number): Observable<{ message: string }> {
+        return this.url.get<{ message: string }>(this.api.worldApi + this.api.api_order + this.api.api_order + '/' + id + '/hide/',
             { headers: { 'Authorization': this.token } })
     }
-    deleteOrder(id: number) {
-        return this.url.delete(this.api.worldApi + this.api.api_order + this.api.api_card + '/' + id + '/',
+
+    public deleteOrder(id: number): Observable<null> {
+        return this.url.delete<null>(this.api.worldApi + this.api.api_order + this.api.api_card + '/' + id + '/',
             { headers: { 'Authorization': this.token } }
         )
     }
 
-    promoCodePost(data: any) {
-        return this.url.post(this.api.worldApi + this.api.api_utils + this.api.api_promocode + this.api.api_check_promo, data)
+    public promoCodePost(data: { price: number, code: string }): Observable<PromoCodeResults> {
+        return this.url.post<PromoCodeResults>(this.api.worldApi + this.api.api_utils + this.api.api_promocode + this.api.api_check_promo, data)
     }
 
-    userRegisterPost(obj: any) {
-        return this.url.post(this.api.worldApi + this.api.api_userdetails + this.api.api_register, obj)
-
+    public userRegisterPost(obj: any): Observable<RegisterResult> {
+        return this.url.post<RegisterResult>(this.api.worldApi + this.api.api_userdetails + this.api.api_register, obj)
     }
 
-    shipingMethod() {
-        return this.url.get(this.api.worldApi + this.api.api_utils + '/' + this.api.api_shipping)
+    public shipingMethod(): Observable<ServerResponce<ShipingResult[]>> {
+        return this.url.get<ServerResponce<ShipingResult[]>>(this.api.worldApi + this.api.api_utils + '/' + this.api.api_shipping)
     }
 
-    userOrder(obj: any) {
-        return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_order + '/', obj,
-            { headers: { 'Authorization': this.token } })
-
-    }
-
-    userLogin(obj: any) {
-        return this.url.post(this.api.worldApi + this.api.api_userdetails + this.api.api_login, obj,)
-
-    }
-
-    editUser(obj: any) {
-        return this.url.put(this.api.worldApi + this.api.api_userdetails + this.api.api_edit, obj,
+    public userOrder(obj: OrderResult): Observable<ServerResponce<OrderResult[]>> {
+        return this.url.post<ServerResponce<OrderResult[]>>(this.api.worldApi + this.api.api_order + this.api.api_order + '/', obj,
             { headers: { 'Authorization': this.token } })
     }
 
-    userInfo() {
-        return this.url.get(this.api.worldApi + this.api.api_order + this.api.api_card + '/?user=' + `${this.userData.user}`,
+    public userLogin(obj: { username: string, password: number }): Observable<RegisterResult> {
+        return this.url.post<RegisterResult>(this.api.worldApi + this.api.api_userdetails + this.api.api_login, obj,)
+    }
+
+    public editUser(obj: Edit): Observable<UserDetalis> {
+        return this.url.put<UserDetalis>(this.api.worldApi + this.api.api_userdetails + this.api.api_edit, obj,
             { headers: { 'Authorization': this.token } })
     }
 
-    userImage(obj: any) {
-        return this.url.post(this.api.worldApi + this.api.api_img + this.api.api_user_image + '/', obj,
+    public userInfo(): Observable<ServerResponce<[]>> {
+        return this.url.get<ServerResponce<[]>>(this.api.worldApi + this.api.api_order + this.api.api_card + '/?user=' + `${this.userData.user}`,
             { headers: { 'Authorization': this.token } })
     }
 
-
-
-    userImageGet(myImgOffset: number) {
-        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_user_image + '/?user=' + `${this.userData.user}&limit=10&offset=${myImgOffset}`,
+    public userImage(obj: FormData): Observable<UserImage> {
+        return this.url.post<UserImage>(this.api.worldApi + this.api.api_img + this.api.api_user_image + '/', obj,
             { headers: { 'Authorization': this.token } })
     }
 
-    userCountry() {
-        this.getCountry()
-            .subscribe((el: any) => {
-                this.selectedValue = el.results
-            })
-    }
-
-    deleteUserImage(id: number) {
-        return this.url.delete(this.api.worldApi + this.api.api_img + this.api.api_user_image + `/${id}/`,
+    public userImageGet(myImgOffset: number): Observable<ServerResponce<UserImage[]>> {
+        return this.url.get<ServerResponce<UserImage[]>>(this.api.worldApi + this.api.api_img + this.api.api_user_image + '/?user=' + `${this.userData.user}&limit=10&offset=${myImgOffset}`,
             { headers: { 'Authorization': this.token } })
     }
 
-    userOrderGet() {
-        return this.url.get(this.api.worldApi + this.api.api_order + this.api.api_order + '/?user=' + `${this.limit}&offset=${this.offset}&user=${this.userData.user}`,
-            { headers: { 'Authorization': this.token } })
-    }
-
-    orderCard(obj: any) {
-        return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_card + '/', obj,
-            { headers: { 'Authorization': this.token } })
-    }
-
-    frameCategory() {
-        return this.url.get(this.api.worldApi + this.api.api_utils + this.api.api_created_frame_category)
-    }
-
-    frameCategoryImg(category: any, predifined: any, offset: any) {
-        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_created_frame + `/?created_frame_category=${category}&is_predefined=${predifined}&limit=50&offset=${offset}`)
-    }
-
-    imgCategory(id: number) {
-        return this.url.get(this.api.worldApi + this.api.api_img + this.api.api_created_frame + `/${id}/`)
-    }
-
-    magnetImg(obj: any) {
-        return this.url.post(this.api.worldApi + this.api.api_order + this.api.api_card + this.api.api_magnet + '/', obj,
-            { headers: { 'Authorization': this.token } })
-    }
-
-    cityPlaceholder() {
-        this._translate.get('_order._user-data.country_placeholder').subscribe((el) => {
-            this.country_placeholder = el;
+    public userCountry(): void {
+        this.getCountry().subscribe((countryResult: ServerResponce<CountryResult[]>) => {
+            this.selectedValue = countryResult.results
         })
     }
 
-    letterColorFone() {
+    public deleteUserImage(id: number): Observable<null> {
+        return this.url.delete<null>(this.api.worldApi + this.api.api_img + this.api.api_user_image + `/${id}/`,
+            { headers: { 'Authorization': this.token } })
+    }
+
+    public userOrderGet(): Observable<ServerResponce<OrderResult[]>> {
+        return this.url.get<ServerResponce<OrderResult[]>>(this.api.worldApi + this.api.api_order + this.api.api_order + '/?user=' + `${this.limit}&offset=${this.offset}&user=${this.userData.user}`,
+            { headers: { 'Authorization': this.token } })
+    }
+
+    public orderCard(obj: { created_frame: string, user: number }): Observable<CardItemResults> {
+        return this.url.post<CardItemResults>(this.api.worldApi + this.api.api_order + this.api.api_card + '/', obj,
+            { headers: { 'Authorization': this.token } })
+    }
+
+    public frameCategory(): Observable<ServerResponce<CategoryDetails[]>> {
+        return this.url.get<ServerResponce<CategoryDetails[]>>(this.api.worldApi + this.api.api_utils + this.api.api_created_frame_category)
+    }
+
+    public frameCategoryImg(category: string, predifined: number, offset: number): Observable<ServerResponce<FrameDetalis[]>> {
+        return this.url.get<ServerResponce<FrameDetalis[]>>(this.api.worldApi + this.api.api_img + this.api.api_created_frame + `/?created_frame_category=${category}&is_predefined=${predifined}&limit=50&offset=${offset}`)
+    }
+
+    public imgCategory(id: number): Observable<FrameDetalis> {
+        return this.url.get<FrameDetalis>(this.api.worldApi + this.api.api_img + this.api.api_created_frame + `/${id}/`)
+    }
+
+    private magnetImg(obj: any): Observable<CardItemResults[]> {
+        return this.url.post<CardItemResults[]>(this.api.worldApi + this.api.api_order + this.api.api_card + this.api.api_magnet + '/', obj,
+            { headers: { 'Authorization': this.token } })
+    }
+
+    public cityPlaceholder(): void {
+        this._translate.get('Order.userData.countryPlaceholder').subscribe((city: string) => {
+            this.country_placeholder = city;
+        })
+    }
+
+    public letterColorFone(): void {
         this.spinner.show();
         this.text = this.validateForm.get('text')?.value;
 
-        this.letterGet().subscribe((el: any) => {
-            this.letterImges = el;
+        this.letterGet().subscribe((wordResult: WordResult[]) => {
+            this.letterImges = wordResult;
             this.letterImges = this.letterImges.filter(img => {
                 return !img.not_found
             })
+            console.log('letterImges ',this.letterImges)
             this.urlArr = this.rout.url.split('/');
 
             if (this.urlArr[1] === 'frame') {
@@ -336,7 +305,7 @@ export class FramesServService {
     }
 
 
-    showFrame() {
+    public showFrame(): void {
         this.isOrder = false;
         this.isImg = true;
         this.validateForm.reset();
@@ -384,8 +353,8 @@ export class FramesServService {
                 })
             }
 
-            this.getOrder(order).subscribe((el: any) => {
-                this.orderList = el;
+            this.getOrder(order).subscribe((orderList: CardItemResults[]) => {
+                this.orderList = orderList;
                 this.isOrder = true;
                 this.spinner.hide()
             })
@@ -396,7 +365,7 @@ export class FramesServService {
 
     }
 
-    myMagnitOrder() {
+    public myMagnitOrder() {
         if (localStorage.getItem('loginAutorization')) {
             this.spinner.show();
             const imgs: any[] = [];
@@ -426,8 +395,8 @@ export class FramesServService {
                 })
             }
 
-            this.magnetImg(order).subscribe((el: any) => {
-                this.orderList = el;
+            this.magnetImg(order).subscribe((orderCard: CardItemResults[]) => {
+                this.orderList = orderCard;
                 this.isOrder = true;
                 this.spinner.hide()
             })

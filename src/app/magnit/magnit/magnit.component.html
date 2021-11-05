@@ -7,12 +7,12 @@
   </div>
   <div class="center">
     <button type="submit" (click)='onSubmit()' class='makeAWord_3 create' *ngIf='frames.isImg'>
-      {{'_img-text-valid._create-word'|translate}}</button>
+      {{'ImgTextValid.createord'|translate}}</button>
 
       <button *ngIf='frames.isOrder' class="create-bottom makeAWord_3" 
-        (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
+        (click)="showFrame()">{{'ImgTextValid.orderAdd'|translate}}</button>
 
       <button class="makeAWord_3 save" (click)='frames.myMagnitOrder()'
-        *ngIf='!frames.isOrder && !frames.isImg'>{{'_imgs._batn-save'|translate}}</button>
+        *ngIf='!frames.isOrder && !frames.isImg'>{{'Imgs.batnSave'|translate}}</button>
   </div>
 </header>

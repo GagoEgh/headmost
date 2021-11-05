@@ -12,18 +12,18 @@
         </div>
         <div class="menu">
             <div class="change" (click)='changeImg()'>
-                <p class="bottom">{{'_imgs._change-image'|translate}}</p>
+                <p class="bottom">{{'Imgs.changeImage'|translate}}</p>
             </div>
             <div class="delete" (click)="deletImg()">
-                <p class="bottom"> {{'_imgs._delete-text'|translate}}</p>
+                <p class="bottom"> {{'Imgs.deleteText'|translate}}</p>
             </div>
         </div>
         <div class="im">
             <div class="imgs">
                 <div class="bg-img" *ngFor='let img of frames.letterImges,let i = index' (click)="openImg(img,i)"
-                    [style.background-image]="checkImage(img.image.image)?'url( '+ img.image.image + ')':'url( http://sirun-bar-api.annaniks.com/'+ img.image.image + ')'">
+                    [style.background-image]="checkImage(img.image.thumbnail)?'url( '+ img.image.thumbnail + ')':'url( http://sirun-bar-api.annaniks.com/'+ img.image.thumbnail + ')'">
                     <div class="bgr">
-                        <p>{{'_imgs._img-hover'|translate}}</p>
+                        <p>{{'Imgs.imgHover'|translate}}</p>
                     </div>
                 </div>
             </div>
@@ -32,10 +32,3 @@
     </div>
 </div>
 <app-order *ngIf='frames.isOrder'> </app-order>
-<div class="center">
-    <!-- <button *ngIf='frames.isOrder' class="create-bottom makeAWord_3" 
-        (click)="showFrame()">{{'_img-text-valid._order-add'|translate}}</button>
-      <button class="makeAWord_3" (click)='frames.myMagnitOrder()'
-        *ngIf='!frames.isOrder && !frames.isImg'>{{'_imgs._batn-save'|translate}}</button> -->
-</div>
-<!-- btn-save  -->
