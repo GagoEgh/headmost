@@ -8,9 +8,11 @@ import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OkoderComponent } from '../okoder/okoder.component';
 import { HttpErrorResponse } from '@angular/common/http';
-import { PromoCodeResults, ServerResponce } from 'src/app/interface/img-ramka';
-import { ShipingResult } from 'src/app/interface/order-response';
+import { ServerResponce } from 'src/app/interface/img-ramka';
+import { PromoCodeResults, ShipingResult } from 'src/app/interface/order-response';
 import { CardItemResults } from 'src/app/interface/frame-response';
+
+
 
 
 @Component({
@@ -26,72 +28,26 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   private width: number | undefined;
   public promoError: string = '';
   public shiping: any[] = [];
-  public _frstName: string = '';
-  public _brtDay: string = '';
-  public _email: string = '';
-  public _phoneNumber: string = '';
-  public _country: string = '';
-  public _addres: string = '';
-  public _sale: string = '';
-  public _shipping: string = '';
-  public __addresPost: string = '';
-  public _comment: string = '';
-  public _btnOrder: string = ''
-  public titleH1: string = '';
-  public titleH2: string = '';
-  public title: string = '';
-  public _imgLength: string = '';
-  public _letterSum: string = '';
-  public _price: string = '';
-  public _addSum: string = '';
-  public _carzin: string = '';
-  public ship: string = '';
-  public sahleLengt: number = 0;
   public scale: number = 1;
-  public promoId:null|number = null;
+  public promoId: null | number = null;
   private sumInit: number = 0;
   private count: number = 0;
-
+  public wrapStyle:any
   @ViewChild("wrap", { static: false }) wrap: ElementRef | undefined;
 
   constructor(public frames: FramesServService, private fb: FormBuilder, public modalService: NgbModal,
     public _translate: TranslateService, public valid: ValidationServService) {
-
   }
 
   ngOnInit(): void {
     this.frames.cityPlaceholder()
-    this.changeJson()
     this.frames.isdisible = false;
-    setTimeout(() => {
-      this.frames.isMyOrder = false;
-    })
-
-
-    this.frames.shipingMethod().pipe(takeUntil(this._subscribe$)).subscribe((shiping: ServerResponce<ShipingResult[]>) => {
-      this.shiping = shiping.results;
-
-    })
-
-    this.frames.orderList.forEach((obj: any) => {
-      this.sumInit += obj.created_frame_details.price;
-    })
-
+    this.frames.isMyOrder = false;
+    this.shipingGet();
+    this.addSum();
     this.frames.sum = this.sumInit > this.frames.sum ? this.sumInit : this.frames.sum
-
     this.frames.userCountry();
-    this.validateForm = this.fb.group({
-      frstName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
-      email: [null, [Validators.required, this.valid.emailValid]],
-      phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
-      country: [null, [Validators.required]],
-      addres: [null, [Validators.required]],
-      shipping: [null, [Validators.required]],
-      comment: ['', [Validators.maxLength(20)]],
-      sale: ['', [Validators.maxLength(6), this.noText]],
-      postal: ['', [Validators.maxLength(20), Validators.required]]
-    });
-
+    this.orderFormValidation();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -115,51 +71,50 @@ export class OrderComponent implements OnInit, AfterViewChecked {
         this.scale = 0.7
       }
     }
+    this.setStyle(this.frames.isTop?8:0);
   }
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
-    this.changeJson();
     this.frames.cityPlaceholder()
     this.onResize();
   }
 
-  private changeJson(): void {
-    this._translate.get(['Order.userData', 'Order.informImg']).pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
-      this._frstName = res["Order.userData"].frstName;
-      this._email = res["Order.userData"].email;
-      this._phoneNumber = res["Order.userData"].phoneNumber;
-      this._country = res["Order.userData"].country;
-      this._addres = res["Order.userData"].addres;
-      this._sale = res["Order.userData"].sale;
-      this._shipping = res["Order.userData"].shipping;
-      this.__addresPost = res["Order.userData"].addresPost;
-      this._comment = res["Order.userData"].comment;
-      this._btnOrder = res["Order.userData"].btnOrder;
-      this.title = res["Order.informImg"].title;
-      this._imgLength = res["Order.informImg"].imgLength;
-      this._letterSum = res["Order.informImg"].letterSum;
-      this._price = res["Order.informImg"].price;
-      this._addSum = res["Order.informImg"].addSum;
-      this._carzin = res["Order.informImg"].carzin;
-      this.titleH1 = res["Order.informImg"].titleH1;
-      this.titleH2 = res["Order.informImg"].titleH2;
-      this.ship = res["Order.userData"].ship;
-      this.sahleLengt = res["Order.userData"].saleLength;
-    })
-
+  private orderFormValidation(): void {
+    this.validateForm = this.fb.group({
+      frstName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
+      email: [null, [Validators.required, this.valid.emailValid]],
+      phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
+      country: [null, [Validators.required]],
+      addres: [null, [Validators.required]],
+      shipping: [null, [Validators.required]],
+      comment: ['', [Validators.maxLength(20)]],
+      sale: ['', [Validators.maxLength(6), this.noText]],
+      postal: ['', [Validators.maxLength(20), Validators.required]]
+    });
   }
 
-  public setStyle(num: number): object {
+  private addSum(): void {
+    this.frames.orderList.forEach((card: CardItemResults) => {
+      this.sumInit += card.created_frame_details.price;
+    })
+  }
+
+  private shipingGet(): void {
+    this.frames.shipingMethod().pipe(takeUntil(this._subscribe$)).subscribe((shipings: ServerResponce<ShipingResult[]>) => {
+      this.shiping = shipings.results;
+    })
+  }
+
+  public setStyle(num: number): void {
     let style = {
       transform: "translate(-50%, " + num + "% )" + "scale(" + this.scale + ")"
     }
-    return style
+    this.wrapStyle = style
   }
 
   public erroreName(formName: string): string {
     this._translate.get('ErroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
-
       if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res.required;
       if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res.minlength} 3 `;
       if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res.userNameChar;
@@ -188,9 +143,9 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       this.validateForm.controls[i].updateValueAndValidity();
     }
     // sharunakeli   created_frame
-    const ids: any[] = [];
-    this.frames.orderList.forEach((obj: any) => {
-      ids.push(obj.created_frame)
+    const ids: number[] = [];
+    this.frames.orderList.forEach((card: CardItemResults) => {
+      ids.push(card.created_frame)
     })
 
     const order = {
@@ -216,9 +171,8 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   }
 
-  public salePost(event:any ): void {
-
-    this.validateForm.get('sale')?.setValue(event.target.value)
+  public salePost(event: Event): void {
+    this.validateForm.get('sale')?.setValue((event.target as HTMLInputElement).value)
     const sale = {
       price: this.frames.sum,
       code: this.validateForm.get('sale')?.value
@@ -236,7 +190,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  public deleteDate(obj:CardItemResults): void {
+  public deleteDate(obj: CardItemResults): void {
     this.frames.deleteOrder(obj.id).pipe(takeUntil(this._subscribe$)).subscribe(() => {
       this.frames.sum -= obj.created_frame_details.price;
       this.frames.orderList = this.frames.orderList.filter((val: CardItemResults) => {

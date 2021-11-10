@@ -6,8 +6,6 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
-
-
 @Component({
   selector: 'app-create-magnit',
   templateUrl: './create-magnit.component.html',

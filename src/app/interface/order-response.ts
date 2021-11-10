@@ -1,4 +1,4 @@
-import { CityDetails } from "./CityDetails";
+import { CityDetails } from "./CategoryDetails";
 import { FrameDetalis } from "./frame-response";
 
 
@@ -8,6 +8,7 @@ export interface ShipingResult {
     name_hy: string
     name_ru: string
     price: number
+    id:number
 }
 
 export interface OrderResult {
@@ -43,4 +44,18 @@ export interface OrderResult {
     }
     status?: string
     user?: number
+}
+
+export interface PromoCodeResults {
+    discounted_price: number
+    promo_code: {
+        code: string
+        count: number
+        created_at: string
+        end_date: string
+        id: number
+        percent: number
+        until_date_ends: boolean
+        user_max_count: number
+    }
 }

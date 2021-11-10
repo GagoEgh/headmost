@@ -3,7 +3,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AboutQuestion } from 'src/app/interface/AboutQuestion';
+import { AboutQuestion } from 'src/app/interface/img-ramka';
 
 
 @Component({
@@ -12,39 +12,15 @@ import { AboutQuestion } from 'src/app/interface/AboutQuestion';
   styleUrls: ['./about-us.component.css']
 })
 export class AboutUsComponent implements OnInit, AfterViewChecked, OnChanges {
-
-  @ViewChild("block", { static: false }) block: ElementRef | undefined;
   public _unsubscribe$ = new Subject();
   public question_answer: AboutQuestion[] = [];
-  private width: number | undefined;
-  public scale: number = 1;
   private caunt: number = 0;
-  private obj: AboutQuestion = new AboutQuestion()
-  
+  private obj = {} as AboutQuestion;
+
   constructor(public frames: FramesServService, public _translate: TranslateService) { }
 
   ngOnInit(): void {
     this.createText();
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    this.width = this.block?.nativeElement.clientWidth | 1;
-    if (window.innerWidth <= 1165) {
-      this.scale = 1165 / this.width - 0.3;
-
-      if (window.innerWidth <= 1025) {
-        this.scale = 1025 / this.width - 0.2;
-      }
-      
-      if (window.innerWidth <= 768) {
-        this.scale = 768 / this.width - 0.2;
-      }
-
-      if (window.innerWidth <= 559) {
-        this.scale = 0.25
-      }
-    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -55,22 +31,11 @@ export class AboutUsComponent implements OnInit, AfterViewChecked, OnChanges {
     this._translate.use(this.frames.lang);
     this.question_answer = [];
     this.createText();
-    this.onResize()
-  }
-
-  public setStyle(): object {
-    let style = {
-      transform: "translate(-50%, -5%)" + "scale(" + this.scale + ")"
-    }
-    return style
   }
 
   private createText(): void {
     this._translate.get('About.questions').pipe(takeUntil(this._unsubscribe$)).subscribe((question: AboutQuestion[]) => {
-      question.forEach((quest: AboutQuestion) => {
-        this.question_answer.push(quest)
-      });
-
+      this.question_answer = question
     })
   }
 
@@ -82,7 +47,7 @@ export class AboutUsComponent implements OnInit, AfterViewChecked, OnChanges {
     }
   }
 
-  ngOnDestroy() {
+  private ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }

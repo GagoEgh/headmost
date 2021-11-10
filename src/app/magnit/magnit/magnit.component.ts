@@ -8,16 +8,17 @@ import { FormBuilder } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-magnit',
   templateUrl: './magnit.component.html',
   styleUrls: ['./magnit.component.css']
 })
 export class MagnitComponent extends FrameImag implements OnInit, AfterViewChecked {
-  public superItems: any;
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
-  heigth: number | undefined;
-  width: number | undefined;
+
+  private heigth: number | undefined;
+  private width: number | undefined;
 
   constructor(public frames: FramesServService, public modalService: NgbModal,
     public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
@@ -27,12 +28,8 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
   }
 
   ngOnInit(): void {
-
     super.myForm();
-    this._translate.get('ImgTextValid').pipe(takeUntil(this._unsubscribe$))
-      .subscribe((res: any) => {
-        this.frames.placeholder = res["placeholder"];
-      })
+    this.translateImgText()
     this.frames.letterImges = [];
     this.frames.isOrder = false;
     this.rout.navigate(['magnit/form-magnit']);
@@ -101,16 +98,21 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     return height
   }
 
-  public setStyle():object {
+  public setStyle(): object {
     let style = {
       transform: "translate(-50%, -5%)" + "scale(" + this.frames.magnit_scale + ")"
     }
     return style
   }
 
+  private translateImgText(): void {
+    this._translate.get('ImgTextValid').pipe(takeUntil(this._unsubscribe$))
+      .subscribe((res: any) => {
+        this.frames.placeholder = res["placeholder"];
+      })
+  }
 
-  ngAfterViewChecked(): void {
-
+  public ngAfterViewChecked(): void {
     this.onResize()
     this.setStyle()
   }

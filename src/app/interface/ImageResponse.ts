@@ -1,21 +1,5 @@
-import { CategoryDetails } from "./CategoryDetails";
-import { CharacterDetails } from "./CharacterDetails";
+import { CategoryDetails, CharacterDetails } from "./CategoryDetails";
 
-
-export class ImageResponse {
-    constructor() {
-        this.category = 0
-        this.category_details = new CategoryDetails()
-        this.character = 0;
-        this.character_details = new CharacterDetails()
-        this.color = 0;
-        this.color_details = new CategoryDetails()
-        this.id = 0;
-        this.thumb_image = '';
-        this.image = ''
-        this.thumbnail = ''
-    }
-}
 
 export interface ImageResponse {
     category: number
@@ -30,3 +14,40 @@ export interface ImageResponse {
     thumb_image: string
 }
 
+
+export interface FrameImages {
+    character: number
+    character_details: CharacterDetails
+    created_frame: number
+    id: number
+    image: number
+    image_details: ImageResponse
+    order_index: number
+    user_image: null
+    user_image_details: null
+}
+
+export interface ImgColorValue {
+    colored: boolean,
+    withandblack: boolean,
+    sepia: boolean,
+    color: string,
+    child: string,
+}
+
+export interface FramesImg extends CategoryDetails {
+    description_en: string,
+    description_ru: string,
+    description_hy: string,
+    price: number,
+    corner_image: string,
+    line_image: string,
+    show_image: string,
+}
+
+export interface UserImage {
+    id: number
+    image: string
+    thumb_image: string
+    user: number
+}

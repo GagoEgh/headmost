@@ -1,5 +1,7 @@
-import { FrameImages } from "./img-category";
-import { BgDetails } from "./img-ramka";
+
+import { BgDetails, CategoryDetails } from "./CategoryDetails";
+import { FrameImages } from "./ImageResponse";
+
 
 export interface FrameResults {
     bottom_line_image?: string
@@ -25,7 +27,7 @@ export interface FrameDetalis {
     background: number
     background_details: BgDetails
     created_frame_category: null | number
-    created_frame_category_details: null | object
+    created_frame_category_details: CategoryDetails
     frame: number
     frame_details: FrameResults
     frame_images: [FrameImages]

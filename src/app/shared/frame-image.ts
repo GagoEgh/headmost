@@ -91,6 +91,7 @@ export class FrameImag {
     }
 
     public openImg(img: any, num: number): void {
+        console.log('img ',img)
         this.frames.letterColection(img.character.toUpperCase()).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
             const modalRef = this.modalService.open(ImgCatalogComponent, { size: 'lg' });
             modalRef.componentInstance.img = el.results;

@@ -6,7 +6,8 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ServerResponce, UserImage } from 'src/app/interface/img-ramka';
+import { ServerResponce} from 'src/app/interface/img-ramka';
+import { UserImage } from 'src/app/interface/ImageResponse';
 
 
 

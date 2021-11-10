@@ -1,31 +1,29 @@
 .component{
- width: 85%;
+ width: 85% !important;
  display: flex;
  flex-direction: column;
  align-items: center;
  width: fit-content; 
- position: relative;
- transform-origin: top;
- left: 50%;
- top:150px;
+ margin: 5px auto;
+}
+
+.header{
+  width: 100%;
 }
 
 .bg-color{
  background-image: url('/assets/1x/headerImg.jpg');
  background-repeat: no-repeat;
  background-position: center;
- width: 1200px;
  height: 320px;
 }
 
 .wrap{
  padding-top: 50px;
  display: flex;
- width:1200px ;
 }
 
 .section{
- margin-top: 20px;
  padding: 20px;
  width: 65%;
 }
@@ -36,6 +34,7 @@
  letter-spacing: 1px;
  font-size: 2rem;
  padding-bottom: 20px;
+ text-align: center;
 }
 
 .text_1{
@@ -59,6 +58,7 @@
  color: black;
  letter-spacing: 1px;
  font-size: 1.7rem;
+ text-align: center;
 }
 
 .question-text ul{
@@ -140,32 +140,33 @@
 }
 
 @media (max-width:1025px){
-  .bg-color,.wrap{
-    background-position: center;
-    width: 750px;
-  }
 
-  .bottom-article {
-    margin-bottom: 480px;
+  .question{
+    font-size: 13px;
   }
  }
 
 @media (max-width:768px){
+  .wrap{
+    width: 100%;
+  }
+
   .text_1{
      letter-spacing: 1px;
      line-height: 35px;
-     font-size: 20px;
+     font-size: 14px;
   }
 
   .question-text{
       width: 500px;
-      margin: 0;
+      position: relative;
+      left: 20%;
   }
 
   .question{
      font-size: 1rem;
-     letter-spacing: 1px;
      line-height: 65px;
+    font-size: 12px;
   }
 
   .label{

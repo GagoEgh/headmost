@@ -17,19 +17,8 @@ export class CreateImgComponent extends FrameImag implements OnInit {
   public _unsubscribe$ = new Subject()
   public bottomText: FormGroup = new FormGroup({});
   public validateForm: FormGroup = new FormGroup({});
-
-  public topLettering: Letter = {
-    isSpan: false,
-    isMenu: false,
-    isForm: false
-  };
-
-  public bottomLettering: Letter = {
-    isSpan: false,
-    isMenu: false,
-    isForm: false
-  }
-
+  public topLettering = {} as Letter
+  public bottomLettering: Letter = {} as Letter
   @Output() mainApp: EventEmitter<boolean> = new EventEmitter();
 
   constructor(public frames: FramesServService, public rout: Router,
@@ -38,21 +27,9 @@ export class CreateImgComponent extends FrameImag implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.validateForm = this.form.group(
-      { topText: [null] },
-    );
-    this.bottomText = this.form.group(
-      { btmText: [null] }
-    )
+    this.validateForm = this.form.group({ topText: [null] },);
+    this.bottomText = this.form.group({ btmText: [null] });
     this.frames.isMessage = false;
-  }
-
-  public setStyle(): object {
-    let style = {
-      transform: "translate(-50%, 0)" + "scale(" + this.frames.scale + ")"
-    }
-    return style
   }
 
   public deletImg(): void {
@@ -128,7 +105,7 @@ export class CreateImgComponent extends FrameImag implements OnInit {
 
   }
 
-  ngOnDestroy() {
+  private ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }

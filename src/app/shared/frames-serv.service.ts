@@ -7,21 +7,22 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Api, BgDetails, CountryResult, FramesImg, ImgColorValue, Painding, PromoCodeResults, ServerResponce, UserImage} from '../interface/img-ramka';
+import { Api, CountryResult, Painding, ServerResponce} from '../interface/img-ramka';
 import { CardItemResults, FrameDetalis, FrameResults } from '../interface/frame-response';
 import { Edit, RegisterResult, UserDetalis } from '../interface/register-response';
-import { OrderResult, ShipingResult } from '../interface/order-response';
-import { UserData } from '../interface/UserAllData';
-import { ImageResponse } from '../interface/ImageResponse';
-import { CategoryDetails } from '../interface/CategoryDetails';
+import { OrderResult, PromoCodeResults, ShipingResult } from '../interface/order-response';
+
+import { FramesImg, ImageResponse, ImgColorValue, UserImage } from '../interface/ImageResponse';
+import { BgDetails, CategoryDetails } from '../interface/CategoryDetails';
 import { WordResult } from '../interface/WordResult';
+import { UserData } from '../interface/UserInfo';
 
 @Injectable({
     providedIn: 'root'
 })
 export class FramesServService {
     public validateForm: FormGroup = new FormGroup({});
-    public userData: UserData = new UserData();
+    public userData: UserData = {} as UserData
     public letterImges: WordResult[] = []
     public framesImge: FramesImg[] = [];
     public selectedValue: any[] = [];
@@ -55,7 +56,7 @@ export class FramesServService {
     public scale: number = 1;
     private urlArr: string[] = [];
     public magnit_scale: number = 1;
-    public letterChar = 0;
+    public letterChar:string = '';
     public isImg = true;
     public div: any = [];
     public frame: any;
@@ -107,7 +108,7 @@ export class FramesServService {
 
     public imgColor: { ceys: CategoryDetails, values:ImgColorValue  }[] = [
         {
-            ceys: new CategoryDetails(),
+            ceys : {}as CategoryDetails,
             values:
             {
                 colored: false,
@@ -118,7 +119,7 @@ export class FramesServService {
             }
 
         }, {
-            ceys: new CategoryDetails(),
+            ceys: {}as CategoryDetails,
             values:
             {
                 colored: true,
@@ -128,7 +129,7 @@ export class FramesServService {
                 child: 'palevioletred',
             }
         }, {
-            ceys: new CategoryDetails(),
+            ceys: {}as CategoryDetails,
             values:
             {
                 colored: false,
@@ -286,7 +287,7 @@ export class FramesServService {
             this.letterImges = this.letterImges.filter(img => {
                 return !img.not_found
             })
-            console.log('letterImges ',this.letterImges)
+    
             this.urlArr = this.rout.url.split('/');
 
             if (this.urlArr[1] === 'frame') {
@@ -332,6 +333,7 @@ export class FramesServService {
                 }
                 imgs.push(obj)
             })
+          //  console.log('letter Imges ', this.letterImges)
 
             const order = {
                 frame: this.frame.id,
@@ -342,12 +344,15 @@ export class FramesServService {
                 images: imgs,
             }
 
+            
+
             if (!this.apiPhoto) {
                 order.images = order.images.map((img: any) => {
                     if (img.character === undefined) {
                         img.character = this.letterChar;
                         img.user_image = img.image;
                         img.image = null;
+                        console.log('order ', order.images)
                     }
                     return img;
                 })

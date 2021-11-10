@@ -3,15 +3,12 @@ import { LoginComponent } from './register/login/login.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ServerResponce } from './interface/img-ramka';
-import { UserData } from './interface/UserAllData';
-
-
-
+import { UserData } from './interface/UserInfo';
 
 @Component({
   selector: 'app-root',
@@ -45,14 +42,14 @@ export class AppComponent implements OnInit {
         this.frames.orderList = serverResponse.results;
         this.frames.orderList.forEach((obj: any) => {
           this.frames.sum += obj.created_frame_details.price;
-
         });
       })
     }
   }
 
 
-  scrollToTopByChangeRoute() {
+
+  public scrollToTopByChangeRoute() {
     this.router.events.pipe(takeUntil(this.unsubscribe$)).subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
@@ -62,21 +59,12 @@ export class AppComponent implements OnInit {
   }
 
 
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    let left = 0;
-    if (window.innerWidth <= 960 && this.frames.isSilki) {
-
-    }
-  }
-
-  open() {
+  public open(): void {
     const modalRef = this.modalService.open(LoginComponent);
 
   }
 
-  close() {
-
+  public close(): void {
     localStorage.removeItem('loginAutorization');
     localStorage.removeItem('user-date');
     this.frames.sum = 0;
@@ -84,18 +72,18 @@ export class AppComponent implements OnInit {
     this.frames.token = '';
     this.frames.userReg = true;
     this.frames.showFrame();
-    this.frames.userData = new UserData();
+    this.frames.userData = {} as UserData;
     this.router.navigate(['/'])
   }
 
-  getFrame() {
+  public getFrame(): void {
     this.router.navigate(['/']);
     this.frames.isImg = true;
     this.frames.isOrder = false;
     this.frames.validateForm.reset()
   }
 
-  getMagnit() {
+  public getMagnit(): void {
     this.frames.validateForm.reset()
     this.router.navigate(['/magnit/form-magnit']);
     this.frames.isImg = true;
@@ -103,19 +91,14 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngOnDestroy() {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete()
-  }
-
-  changeLeng(leng: string) {
+  public changeLeng(leng: string):void {
     this.spinner.show();
     this._translate.use(leng);
     this.frames.lang = leng;
     localStorage.setItem('language', this.frames.lang);
     this._translate.use(this.frames.lang);
     this._translate.get('ImgTextValid').pipe(takeUntil(this.unsubscribe$))
-      .subscribe((res: any) => {
+      .subscribe((res: {[key:string]:string}) => {
         this.frames.placeholder = res["placeholder"];
         setTimeout(() => {
           this.spinner.hide()
@@ -123,6 +106,10 @@ export class AppComponent implements OnInit {
       })
   }
 
+  private ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete()
+  }
 }
 
 

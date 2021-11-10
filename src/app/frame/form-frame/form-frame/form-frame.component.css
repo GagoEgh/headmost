@@ -64,6 +64,12 @@ input:focus::placeholder{
  margin: -1px 0 0 -1px;
 }
 
+@media (max-width:768px){
+    .myWrap{
+        margin-top: -100px;
+    }
+}
+
 @media (max-width:426px){
     .bg-fone{
      margin: -65px -115px;

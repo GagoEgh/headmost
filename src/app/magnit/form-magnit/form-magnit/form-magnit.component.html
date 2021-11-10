@@ -14,7 +14,8 @@
             </div>
             <div class="letter">
                 <form [formGroup]="frames.validateForm">
-                    <input type="text" formControlName='text' maxlength="9" [placeholder]="frames.placeholder" trim>
+                    <input type="text" formControlName='text' maxlength="9"
+                    (keyup.enter)="onSubmit()" [placeholder]="frames.placeholder" trim>
                 </form>
                 <p class="btn" (click)="open()">{{'ImgTextValid.title'|translate}}</p>
             </div>

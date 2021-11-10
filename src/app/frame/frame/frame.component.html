@@ -1,8 +1,8 @@
-<header class="conteiner" [ngStyle]="conteinerHeight()">
+<header class="conteiner" [ngStyle]="frameHeigth">
   <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
   </ngx-spinner>
-  <div class="catalog" [ngStyle]="setStyle()">
+  <div class="catalog" [ngStyle]="catalogStyle">
     <div class="carusel">
       <ul class="imageObject">
         <li *ngFor="let img of frames?.framesImge,let i=index" class="thumb-image">
@@ -39,10 +39,10 @@
       </div>
     </div>
   </div>
-  <div #block class="block" [ngStyle]="setStyle()">
+  <div #block class="block" [ngStyle]="catalogStyle">
     <router-outlet></router-outlet>
   </div>
-  <div class="buttonWrap" [ngStyle]="btnWrapMargin()">
+  <div class="buttonWrap" >
     <table>
       <tr>
         <td class="aside"></td>
@@ -52,11 +52,11 @@
             <button type="submit" (click)='onSubmit()' class='makeAWord_3' *ngIf='frames.isImg'>
               {{'ImgTextValid.createWord'|translate}}
             </button>
-            <button class="makeAWord_3 save" (click)='frames.myOrder()' [ngStyle]="buttonWrapTopSave()"
+            <button class="makeAWord_3 save" (click)='frames.myOrder()' 
               *ngIf='!frames.isOrder && !frames.isImg'>
               {{'ImgTextValid.batnSave'|translate}}
             </button>
-            <button *ngIf='frames.isOrder' class="makeAWord_3 create-bottom" [ngStyle]="buttonWrapTop()"
+            <button *ngIf='frames.isOrder' class="makeAWord_3 create-bottom"
               (click)="showFrame()">{{'ImgTextValid.orderAdd'|translate}}</button>
           </div>
         </td>
@@ -67,7 +67,7 @@
 </header>
 <div class="steps">
   <div class="wrap1">
-    <div class="step-content">
+    <div class="step-content step1">
       <div class="compile"></div>
       <div class="info-block">
         <div class="title">
@@ -93,7 +93,7 @@
   </div>
   <div class="wrap2">
     <div class="right-arrow"></div>
-    <div class="step-content">
+    <div class="step-content step3">
       <div class="get"></div>
       <div class="info-block">
         <div class="title">
@@ -105,7 +105,7 @@
       </div>
     </div>
     <div class="right-arrow"></div>
-    <div class="step-content">
+    <div class="step-content step4">
       <div class="donate"></div>
       <div class="info-block">
         <div class="title">

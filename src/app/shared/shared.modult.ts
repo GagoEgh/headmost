@@ -36,6 +36,7 @@ import {TranslateModule} from '@ngx-translate/core';
         TranslateModule
     ],
     imports:[
+        TranslateModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,

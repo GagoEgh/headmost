@@ -1,7 +1,7 @@
 <div class="search-results" infinite-scroll [infiniteScrollDistance]="scrollDistance"
     [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown($event)">
     <div class="wrap">
-        <h3 class="title">{{Menu.user.myOrder.description'|translate}}</h3>
+        <h3 class="title">{{'Menu.user.myOrder.description'|translate}}</h3>
         <div *ngFor="let item of userOrders, let i=index" class="frames">
             <span class="preview-remove" (click)='deleteUsOrder(item)'>&times;</span>
 

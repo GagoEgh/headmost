@@ -1,14 +1,16 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NoUsserComponent } from '../no-usser/no-usser.component';
-import { ImgColorValue, ServerResponce, UserImage } from 'src/app/interface/img-ramka';
+import {  ServerResponce } from 'src/app/interface/img-ramka';
 import { CategoryDetails } from 'src/app/interface/CategoryDetails';
-import { ImageResponse } from 'src/app/interface/ImageResponse';
+import { ImageResponse, ImgColorValue, UserImage } from 'src/app/interface/ImageResponse';
 import { WordResult } from 'src/app/interface/WordResult';
+import { TranslateService } from "@ngx-translate/core";
+
 
 
 @Component({
@@ -17,19 +19,23 @@ import { WordResult } from 'src/app/interface/WordResult';
   styleUrls: ['./img-catalog.component.css']
 })
 export class ImgCatalogComponent implements OnInit {
-  public _subscribe$ = new Subject();
+  private _subscribe$ = new Subject();
   public img: ImageResponse[] = []
-  public character = new WordResult()
+  public character = {} as WordResult;
   @Output() newItem = new EventEmitter();
   @ViewChild("header", { static: false }) block: ElementRef | undefined;
   public categoryList: CategoryDetails[] = [];
-  constructor(public activeModal: NgbActiveModal, public frames: FramesServService, public modalService: NgbModal) { }
+  constructor(public activeModal: NgbActiveModal,public _translate: TranslateService,
+     public frames: FramesServService, public modalService: NgbModal) { }
 
   ngOnInit(): void {
+
     this.frames.painding.imgs = this.img;
     this.createCategory();
+
   }
 
+  
   private chengePopapImg(): void {
     this.frames.letterColection(this.character.character.toUpperCase(), this.frames.painding.id)
       .subscribe((imageResponse: ServerResponce<ImageResponse[]>) => {
@@ -84,7 +90,7 @@ export class ImgCatalogComponent implements OnInit {
     }
   }
 
-  public ngOnDestroy(): void {
+  private ngOnDestroy(): void {
     this._subscribe$.next();
     this._subscribe$.complete();
   }

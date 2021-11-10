@@ -19,8 +19,6 @@ export class FormFrameComponent extends FrameImag implements OnInit {
     this._translate.use(this.frames.lang)
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
  
-  }
-
 }

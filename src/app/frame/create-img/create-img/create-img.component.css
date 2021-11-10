@@ -163,8 +163,10 @@
 .makeAWord_3:hover{
   background-image: url('/assets/1x/tund-bot.png');
 }
+
 @media (max-width:768px){
   .conteiner{
     margin-top: -50px;
   }
+ 
 }

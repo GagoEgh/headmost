@@ -1,15 +1,5 @@
-import { CategoryDetails } from "./CategoryDetails";
-import { CityDetails } from "./CityDetails";
-import { ImageResponse } from "./ImageResponse";
-
-
-export interface ImgColorValue {
-    colored: boolean,
-    withandblack: boolean,
-    sepia: boolean,
-    color: string,
-    child: string,
-}
+import { CategoryDetails, CityDetails } from "./CategoryDetails";
+import { ImageResponse, ImgColorValue } from "./ImageResponse";
 
 export interface Painding {
     values: ImgColorValue ,
@@ -20,55 +10,12 @@ export interface Painding {
 }
 
 export interface Api {
-    worldApi: string,
-    api_utils: string,
-    api_bgr: string,
-    api_frame: string,
-    api_color: string,
-    api_category: string,
-    api_character: string,
-    api_created_frame_category: string,
-    api_promocode: string,
-    api_img: string,
-    api_create_word: string,
-    api_order: string,
-    api_card: string,
-    api_add: string,
-    api_location: string,
-    api_country: string,
-    api_check_promo: string,
-    api_userdetails: string,
-    api_register: string,
-    api_shipping: string,
-    api_login: string,
-    api_edit: string,
-    api_files: string,
-    api_user_image: string,
-    api_created_frame: string,
-    api_magnet: string
+ [key:string]:string
 }
 
-export interface FramesImg extends CategoryDetails {
-    description_en: string,
-    description_ru: string,
-    description_hy: string,
-    price: number,
-    corner_image: string,
-    line_image: string,
-    show_image: string,
-}
 
 export interface Letter {
-    isSpan: boolean,
-    isMenu: boolean,
-    isForm: boolean
-}
-
-export interface BgDetails {
-    color: string
-    id: number
-    image: null
-    name: string
+    [key:string]:boolean
 }
 
 export interface CountryResult extends CategoryDetails {
@@ -82,25 +29,12 @@ export interface CountryResult extends CategoryDetails {
     }]
 }
 
-export interface PromoCodeResults {
-    discounted_price: number
-    promo_code: {
-        code: string
-        count: number
-        created_at: string
-        end_date: string
-        id: number
-        percent: number
-        until_date_ends: boolean
-        user_max_count: number
-    }
-}
 
-export interface UserImage {
+export interface AboutQuestion {
     id: number
-    image: string
-    thumb_image: string
-    user: number
+    isBlock: boolean
+    answers: string
+    label: string
 }
 
 export interface ServerResponce<T> {

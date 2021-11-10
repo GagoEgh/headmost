@@ -13,7 +13,7 @@ import { CategoryDetails } from 'src/app/interface/CategoryDetails';
   styleUrls: ['./idea-nav.component.css']
 })
 export class IdeaNavComponent implements OnInit {
-  public frameIdeas: any[] = [];
+  public frameIdeas: CategoryDetails[] = [];
   public _unsubscribe$ = new Subject();
   public offset: number = 0;
   public id: number = 0;
@@ -22,16 +22,17 @@ export class IdeaNavComponent implements OnInit {
 
   ngOnInit(): void {
     this.offset = 0;
+    this.ideaGroup(this.id)
     this.frames.frameCategory().pipe(takeUntil(this._unsubscribe$)).subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
       this.frameIdeas = categoryDetails.results
     })
   }
 
 
-  public ideaGroup(obj: any = undefined):void {
-    if (obj) {
-      this._router.navigate(['idea/idea-imags'], { queryParams: { category: obj.id } });
-      this.id = obj.id
+  public ideaGroup(id: number | undefined = undefined): void {
+    if (id) {
+      this._router.navigate(['idea/idea-imags'], { queryParams: { category: id } });
+      this.id = id
     } else {
       this._router.navigate(['idea/idea-imags'], { queryParams: { category: '' } });
       this.id = 0;

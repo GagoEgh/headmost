@@ -8,6 +8,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ToastrService } from 'ngx-toastr';
 import { ServerResponce } from 'src/app/interface/img-ramka';
 import { OrderResult } from 'src/app/interface/order-response';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-okoder',
@@ -16,13 +17,14 @@ import { OrderResult } from 'src/app/interface/order-response';
 })
 export class OkoderComponent implements OnInit {
   public _subscribe$ = new Subject();
-  @Input() validateForm: any;
-  @Input() count: any;
+  @Input() validateForm :FormGroup | undefined;
+  @Input() count: number | undefined;
   @Input() order: any;
   constructor(public activeModal: NgbActiveModal, public _translate: TranslateService,
     public frames: FramesServService, public router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void { 
+    console.log('valid form ', this.validateForm)
   }
 
   public goUsOrder(): void {
@@ -33,10 +35,10 @@ export class OkoderComponent implements OnInit {
       errMsg = el.orderErr
     })
 
-    if (this.validateForm.valid && this.count != 1) {
+    if (this.validateForm?.valid && this.count != 1) {
       this.frames.userOrder(this.order).pipe(takeUntil(this._subscribe$)).subscribe((order: ServerResponce<OrderResult[]>) => {
         this.toastr.success(okMsg);
-        this.count++;
+        this.count!++;
         this.frames.isdisible = true;
         this.router.navigate(['user/user-order']);
       }, (err) => {

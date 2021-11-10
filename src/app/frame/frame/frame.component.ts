@@ -6,8 +6,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { BgDetails, FramesImg, ServerResponce } from 'src/app/interface/img-ramka';
-import { ImgTextValid } from 'src/app/interface/language';
+import { ServerResponce } from 'src/app/interface/img-ramka';
+import { FramesImg } from 'src/app/interface/ImageResponse';
+import { BgDetails } from 'src/app/interface/CategoryDetails';
+
 
 
 @Component({
@@ -19,38 +21,30 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
   private width: number | undefined;
+  public frameHeigth = {} as { [key: string]: string };
+  public catalogStyle = {} as { [key: string]: string };
 
   constructor(public frames: FramesServService, public modalService: NgbModal,
     public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
     super(frames, modalService, rout, form);
     this._translate.use(this.frames.lang)
   }
-
+  ngAfterViewChecked(): void {
+    this.onResize()
+  }
 
   ngOnInit(): void {
-    this.frames.letterImges = [];
-    this.frames.isOrder = false;
     super.myForm();
     super.imgColor();
-    this.rout.navigate(['frame/form-frame'])
-
-   
-    this._translate.get('ImgTextValid').pipe(takeUntil(this._unsubscribe$))
-    .subscribe((res: ImgTextValid) => {
-      this.frames.placeholder = res["placeholder"];
-    })
-   
-    this.frames.framesFoneGet().pipe(takeUntil(this._unsubscribe$)).subscribe((bgDetails: ServerResponce<BgDetails[]>) => {
-      this.frames.div = bgDetails.results;
-      this.frames.background = bgDetails.results[0];
-    })
-
-    this.frames.getFrames().pipe(takeUntil(this._unsubscribe$)).subscribe((framesImg: ServerResponce<FramesImg[]>) => {
-      this.frames.framesImge = framesImg.results;
-      this.frameClick(this.frames.index);
-    })
-
+    this.frames.letterImges = [];
+    this.frames.isOrder = false;
+    this.rout.navigate(['frame/form-frame']);
+    this.imgTextGet();
+    this.frameBg();
+    this.framesImgGet();
+    this.onResize()
   }
+
 
   @HostListener('window:resize', ['$event'])
   onResize(): void {
@@ -69,119 +63,80 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       if (window.innerWidth <= 1250) {
         this.frames.scale = window.innerWidth / 1180;
       }
-
     }
-
+    this.conteinerHeight();
+    this.setStyle();
   }
 
-  
-  public conteinerHeight(): object {
+  private framesImgGet(): void {
+    this.frames.getFrames().pipe(takeUntil(this._unsubscribe$)).subscribe((framesImg: ServerResponce<FramesImg[]>) => {
+      this.frames.framesImge = framesImg.results;
+      this.frameClick(this.frames.index);
+    })
+  }
+
+  private imgTextGet(): void {
+    this._translate.get('ImgTextValid').pipe(takeUntil(this._unsubscribe$))
+      .subscribe((frameText: { [key: string]: string }) => {
+        this.frames.placeholder = frameText["placeholder"];
+      })
+  }
+
+  private frameBg(): void {
+    this.frames.framesFoneGet().pipe(takeUntil(this._unsubscribe$)).subscribe((bgDetails: ServerResponce<BgDetails[]>) => {
+      this.frames.div = bgDetails.results;
+      this.frames.background = bgDetails.results[0];
+    })
+  }
+
+  private conteinerHeight(): void {
     let height = {
       height: '538px'
     }
 
+    if(window.innerWidth <= 768){
+      height.height = '400px';
+      this.frameHeigth = height
+    }
     if (this.frames.isOrder && window.innerWidth <= 650) {
       height.height = '1000px';
-      return height;
+      this.frameHeigth = height
     }
 
     if (this.frames.isOrder && window.innerWidth <= 960) {
       height.height = '1500px';
-      return height;
+      this.frameHeigth = height
     }
 
     if (this.frames.isOrder && window.innerWidth <= 2000) {
       height.height = '1867px';
-      return height;
+      this.frameHeigth = height
     }
-    return height
+    this.frameHeigth = height
   }
 
-  ngAfterViewChecked(): void {
-    this.onResize()
-  }
-
- 
-
-  public setStyle() {
+  private setStyle():void {
     let style = {
       transform: "translate(-50%, 0)" + "scale(" + this.frames.scale + ")"
     }
-    return style
-  }
-
-  public btnWrapMargin(): object {
-    let margin = { "margin-top": '122px' }
-    return margin
-  }
-
-  public buttonWrapTop(): object {
-    let top = {
-      "margin-top": '79.5px'
-    }
-
-    if (this.frames.isOrder && window.innerWidth <= 1024) {
-      top["margin-top"] = '125px';
-
-      if (this.frames.isOrder && window.innerWidth <= 340) {
-        top["margin-top"] = '-385px';
-        return top
-      }
-
-      if (this.frames.isOrder && window.innerWidth <= 650) {
-        top["margin-top"] = '-520px';
-        return top
-      }
-
-      if (this.frames.isOrder && window.innerWidth <= 768) {
-        top["margin-top"] = '0px';
-        return top
-      }
-
-      if (this.frames.isOrder && window.innerWidth <= 960) {
-        top["margin-top"] = '-270px';
-        return top
-      }
-
-      return top
-    }
-
-
-    if (this.frames.isOrder && window.innerWidth <= 2000) {
-      top["margin-top"] = '80px';
-      return top
-    }
-    return top
-  }
-
-  public buttonWrapTopSave(): object {
-    let top = {
-      "margin-top": "-7px"
-    }
-
-    if (window.innerWidth <= 768 && (this.frames.letterImges.length > 2 && this.frames.letterImges.length <= 9)) {
-      top["margin-top"] = '61px';
-      return top
-    }
-
-    return top
+    this.catalogStyle = style
   }
 
   public frameClick(id: number): void {
     this.frames.index = id;
     this.frames.frame = this.frames.framesImge.find(item => item.id === this.frames.index);
-
   }
+
   //FramesImg
-  public getFrameId(img: FramesImg): boolean {
+  public getFrameId(img: FramesImg):boolean {
     return img.id === this.frames.index
   }
 
-  public changeBg(bg:BgDetails): void {
+  public changeBg(bg: BgDetails): void {
     this.frames.background = bg;
   }
 
-  public ngOnDestroy(): void {
+  private ngOnDestroy(): void {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }

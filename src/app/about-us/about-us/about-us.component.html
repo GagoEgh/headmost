@@ -1,10 +1,9 @@
-<div #block class="component" [ngStyle]="setStyle()">
-    <header class="header">
+<div  class="component" >
+    <header class="header" >
         <div class="bg-color"></div>
     </header>
     <div class="wrap">
         <section class="section">
-
             <article>
                 <h1 class="hello">{{'About.hello'|translate}}</h1>
                 <p class="text_1">{{'About.text_1'|translate}}</p>
@@ -15,10 +14,10 @@
                 <h2 class="title">{{'About.Faq'|translate}}</h2>
                 <ul class="ul">
                     <li *ngFor='let question of question_answer,let i = index' (click)="showQuestion(question,i)">
-                        <p class="question">{{question._label}}</p>
+                        <p class="question">{{question.label }}</p>
                         <ul>
                             <li>
-                                <p class="label" *ngIf='question.isBlock '>{{question._answers}}</p>
+                                <p class="label" *ngIf='question.isBlock '>{{question.answers}}</p>
                             </li>
                         </ul>
                     </li>

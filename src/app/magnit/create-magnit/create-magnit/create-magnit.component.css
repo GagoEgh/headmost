@@ -78,13 +78,6 @@
  margin: 100px auto;
 }
 
-/* .create-bottom{
- outline: none;
- display: block;
- margin-top:50px;
- z-index: 1;
-} */
-
 .makeAWord_3{
  position:static;
  outline: none;
@@ -101,8 +94,6 @@
 
 
 @media (max-width:768px){
-   
-
     .create-bottom{
      position: absolute;
      top:970px; 

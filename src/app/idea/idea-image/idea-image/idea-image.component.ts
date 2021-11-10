@@ -6,8 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { LoginComponent } from 'src/app/register/login/login.component';
-import { FrameDetalis } from 'src/app/interface/frame-response';
-
+import { CardItemResults, FrameDetalis } from 'src/app/interface/frame-response';
 
 
 @Component({
@@ -25,14 +24,7 @@ export class IdeaImageComponent implements OnInit {
   constructor(public frames: FramesServService, public activApi: ActivatedRoute, private modalService: NgbModal) { }
   ngOnInit(): void {
     this.frames.spinner.show()
-
-    this.activApi.params.subscribe((el: any) => {
-      this.frames.imgCategory(el.id).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: FrameDetalis) => {
-        this.frames.ideaImg = frameDetalis;
-        this.frames.spinner.hide()
-      })
-    })
-
+    this.goIdeaCategory()
   }
 
   @HostListener('window:resize', ['$event'])
@@ -51,6 +43,15 @@ export class IdeaImageComponent implements OnInit {
     return style
   }
 
+  private goIdeaCategory(): void {
+    this.activApi.params.subscribe((idea: { [keys: string]: number }) => {
+      this.frames.imgCategory(idea.id).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: FrameDetalis) => {
+        this.frames.ideaImg = frameDetalis;
+        this.frames.spinner.hide()
+      })
+    })
+  }
+  
   private open(): void {
     const modalRef = this.modalService.open(MessageComponent);
     setTimeout(() => {
@@ -60,13 +61,13 @@ export class IdeaImageComponent implements OnInit {
 
   public addOrder(): void {
     if (localStorage.getItem('loginAutorization')) {
-      let obj = {
+      let userCard = {
         user: this.frames.userData.user,
         created_frame: this.frames.ideaImg.id
       }
       this.frames.spinner.show();
-      this.frames.orderCard(obj).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
-        this.frames.orderList.push(el);
+      this.frames.orderCard(userCard).pipe(takeUntil(this._unsubscribe$)).subscribe((cardItem: CardItemResults) => {
+        this.frames.orderList.push(cardItem);
         this.open();
         this.frames.spinner.hide()
       })

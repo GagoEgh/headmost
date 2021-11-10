@@ -7,7 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { LoginComponent } from 'src/app/register/login/login.component';
 import { ServerResponce } from 'src/app/interface/img-ramka';
-import { FrameDetalis } from 'src/app/interface/frame-response';
+import { CardItemResults, FrameDetalis } from 'src/app/interface/frame-response';
 
 
 @Component({
@@ -17,7 +17,7 @@ import { FrameDetalis } from 'src/app/interface/frame-response';
 })
 export class IdeaComponent implements OnInit {
   public _unsubscribe$ = new Subject();
-  public ideaImages: any[] = [];
+  public ideaImages:FrameDetalis[] = [];
   private scrollDistance = 0.5;
   private scrollUpDistance = 2;
   private throttle = 150;
@@ -45,10 +45,10 @@ export class IdeaComponent implements OnInit {
   }
 
   private checkQueryParams(): void {
-    this._activatedRoute.queryParams.pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
+    this._activatedRoute.queryParams.pipe(takeUntil(this._unsubscribe$)).subscribe((idCategory:{[key:string]:string}) => {
       this.offset = 0;
       this.ideaImages = [];
-      this.category = el.category;
+      this.category = idCategory.category;
       this.category = this.category === undefined ? '' : this.category;
       this.appendItems();
     })
@@ -76,13 +76,13 @@ export class IdeaComponent implements OnInit {
   }
 
   public addOrder(index: number): void {
-    let obj = {
+    let data = {
       user: this.frames.userData.user,
-      created_frame: this.ideaImages[index].id
+      created_frame: ''+this.ideaImages[index].id
     }
     if (localStorage.getItem('loginAutorization')) {
-      this.frames.orderCard(obj).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
-        this.frames.orderList.push(el);
+      this.frames.orderCard(data).pipe(takeUntil(this._unsubscribe$)).subscribe((cardItem: CardItemResults) => {
+        this.frames.orderList.push(cardItem);
         this.open()
       })
     } else {
@@ -95,7 +95,7 @@ export class IdeaComponent implements OnInit {
     this.rout.navigate(['/idea/idea-imags/' + img.id]);
   }
 
-  ngOnDestroy() {
+  private ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }

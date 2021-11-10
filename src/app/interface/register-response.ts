@@ -1,15 +1,9 @@
-import { CityDetails } from "./CityDetails";
+import { CityDetails } from "./CategoryDetails";
 import { UserDataResponse } from "./UserDataResponse";
 
 
 export interface Edit {
-    date_of_birth: string
-    city: string
-    address: string
-    image: string
-    comment: string
-    last_name: string
-    first_name: string
+ [key:string]:string
 }
 
 

@@ -81,7 +81,7 @@
             "ship":"Shipping",
             "saleLength":"The maximum number of digits must be 6"
         },
-        " informImg": {
+        "informImg": {
             "titleH1":"Basket",
             "titleH2":"YOUR DATA",
             "title": "ORDER DESCRIPTION",
@@ -117,7 +117,8 @@
         "textErrNum":"write number",
         "titleLength":"The number of letters is 20",
         "noUsser":"TO UPLOAD IMAGES, YOU NEED TO REGISTER",
-        "emailMassage":"This email is busy"
+        "emailMassage":"This email is busy",
+        "noMobile":"Sign in with a computer to access the site"
     },
     "About": {
         "hello": "HELLO",
