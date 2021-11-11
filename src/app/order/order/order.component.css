@@ -2,24 +2,22 @@
  background-color: rgba(187, 182, 182, 0.945) ;
 }
 
-.content{
-  display: flex;
-  background-color: white;
-}
-
 .wrap{
- width: fit-content;
+ width: 1200px; 
  transform-origin: top;
  display: flex;
  flex-direction: column;
  box-shadow: 3px 2px 10px 0 rgb(87 87 87);
  margin: 50px 0 250px 50%;
- padding-bottom: 50px;
- height: 960px;
+}
+
+.login-form{
+  display: flex;
+  justify-content: space-around;
 }
 
 .title-h1{
-  padding-top: 50px;
+  padding-top: 15px;
   margin: 0 auto;
 }
 
@@ -31,24 +29,6 @@
   color: #d8bc89;
 }
 
-.user-data{
- padding: 50px 0 0 20px;
- width: 450px;
-}
-
-.order-block{
-  min-height: 400px;
-}
-
-.user-order{
-  margin-left: 40px;
-}
-
-.order{
- padding: 50px 10px 0 10px;
- width: 400px;
-}
-
 .title{
  color: rgb(111 110 110);
  text-align: center;
@@ -57,20 +37,22 @@
 .data{
  display: flex;
  justify-content: space-between;
- width: 380px;
 }
 
 .letter-length{
  width: 250px;
  font-weight: 700;
- font-size: 11px;
+ font-size: 14px;
  letter-spacing: 0.5px;
+}
+
+.ant-form-item {
+  margin: 0 0 5px !important;
 }
 
 .smoll{
  font-size: 0.7rem;
  color: #5a646d;
- padding: 5px;
 }
 
 .data p {
@@ -95,9 +77,10 @@
 }
 
 .ant-btn-primary {
+  display: block;
  width: 280px !important;
  border-radius: 10px;
- margin: 0 0 50px 140px;
+ margin: 50px auto;
 }
 
 .version-info {
@@ -109,14 +92,16 @@
 .region{
  display: flex;
  flex-wrap: wrap;
+ height: 50px;
 }
 
 .erroreCountry{
- margin-top: -20px;
+ margin-top: -30px;
 }
 
 .left{
   margin-left: 45px;
+  font-size: 12px;
 }
 
 .ant-select {
@@ -134,6 +119,10 @@
 }
 
 .noText{
+  height:calc( 100vh - 270px );
+}
+
+.noText h3{
  margin: 100px 0 0 100px;
  font-weight: 800;
 }
@@ -148,8 +137,6 @@
 
 .ant-form {
  font-weight: 800 !important;
- /* padding-top: 50px !important; */
- width: 400px !important;
 }
 
 ::ng-deep.order-item .ant-form-item-control-inputnt-form-item{
@@ -186,7 +173,6 @@
  font-size: 1.5rem;
  font-weight: bold;
  letter-spacing: 1px;
- margin-top: 50px;
  text-align: center;
 }
 
@@ -205,6 +191,17 @@
 
 .shipping{
   margin-top: -30px;
+} 
+
+.saleSum{
+  display: flex;
+}
+
+@media (max-width:1260px){
+  .sum{
+    margin-left: 5%;
+    font-size: 16px;
+  }
 }
 
 @media (max-width:1024px){
@@ -215,10 +212,19 @@
 
 @media (max-width:769px){
   .wrap{
-    margin: 50px 0 0 50%;
-    width: 700px;
+    /* margin: 50px 0 0 50%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    /* height: 960px; */
   }
 
+  .login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .title-h1 {
     padding-top: 50px;
     margin: 20px auto;
@@ -230,12 +236,9 @@
     padding-bottom: 20px;
   }
 
-   .content{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-  } 
+  .ant-btn-primary{
+    margin: 50px 0 30px 140px !important;
+  }
 
   .user-data{
     padding: 50px 0 0 20px;
@@ -245,13 +248,30 @@
 
   .order{
     padding: 0;
-    /* width: 600px; */
   }
 
   .data{
     font-size: 14px;
   }
 
+  .letter-length {
+    width: 300px;
+    font-size: 18px;
+  }
+
+  .add-sum{
+    width: 80px;
+    font-size: 18px;
+  }
+
+  .sum{
+    left: 200px;
+    top:20px
+  }
+
+  .smoll{
+    font-size: 12px;
+  }
   ::ng-deep.ant-form-item-label>label {
     font-size: 12px !important;
   }
@@ -261,6 +281,8 @@
     width: 280px !important;
     margin-left: 70px !important;
   }
+
+
 }
 
 @media (max-width:426px){

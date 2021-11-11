@@ -29,10 +29,9 @@ export class ImgCatalogComponent implements OnInit {
      public frames: FramesServService, public modalService: NgbModal) { }
 
   ngOnInit(): void {
-
+    this.frames.apiPhoto = true;
     this.frames.painding.imgs = this.img;
     this.createCategory();
-
   }
 
   
@@ -73,6 +72,7 @@ export class ImgCatalogComponent implements OnInit {
         this.frames.painding.categoryId = category.id;
         this.frames.apiPhoto = true;
       })
+
   }
 
   public getMyPhoto(): void {

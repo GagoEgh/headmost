@@ -21,7 +21,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
   private width: number | undefined;
-  public frameHeigth = {} as { [key: string]: string };
+ // public frameHeigth = {} as { [key: string]: string };
   public catalogStyle = {} as { [key: string]: string };
 
   constructor(public frames: FramesServService, public modalService: NgbModal,
@@ -29,8 +29,9 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     super(frames, modalService, rout, form);
     this._translate.use(this.frames.lang)
   }
+
   ngAfterViewChecked(): void {
-    this.onResize()
+    this.onResize();
   }
 
   ngOnInit(): void {
@@ -42,25 +43,23 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     this.imgTextGet();
     this.frameBg();
     this.framesImgGet();
-    this.onResize()
+    setTimeout(() => {
+      this.onResize()
+    })
+
   }
 
 
   @HostListener('window:resize', ['$event'])
   onResize(): void {
     this.width = this.block?.nativeElement.clientWidth | 1;
-
     if (window.innerWidth <= 1165) {
       this.frames.scale = window.innerWidth / this.width - 0.35;
     }
 
-    if (window.innerWidth <= 560) {
-      this.frames.scale = window.innerWidth / this.width - 0.04;
-    }
-
     if (this.frames.letterImges.length) {
       this.frames.scale = 1;
-      if (window.innerWidth <= 1250) {
+      if (window.innerWidth <= 1290) {
         this.frames.scale = window.innerWidth / 1180;
       }
     }
@@ -89,33 +88,37 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     })
   }
 
-  private conteinerHeight(): void {
-    let height = {
-      height: '538px'
-    }
+  // private conteinerHeight(): void {
+  //   let height = {
+  //     height: '538px'
+  //   }
 
-    if(window.innerWidth <= 768){
-      height.height = '400px';
-      this.frameHeigth = height
-    }
-    if (this.frames.isOrder && window.innerWidth <= 650) {
-      height.height = '1000px';
-      this.frameHeigth = height
-    }
+  //   if (window.innerWidth <= 768) {
+  //     height.height = '400px';
+  //     this.frameHeigth = height
+  //   }
+   
 
-    if (this.frames.isOrder && window.innerWidth <= 960) {
-      height.height = '1500px';
-      this.frameHeigth = height
-    }
+  //   if (this.frames.isOrder && window.innerWidth <= 2000) {
+  //     height.height = '1500px';
 
-    if (this.frames.isOrder && window.innerWidth <= 2000) {
-      height.height = '1867px';
-      this.frameHeigth = height
-    }
-    this.frameHeigth = height
-  }
+  //     if (this.frames.isOrder && window.innerWidth <= 961) {
+  //       height.height = '1200px';
+  //       this.frameHeigth = height
+  //     }
 
-  private setStyle():void {
+  //     if (this.frames.isOrder && window.innerWidth <= 768) {
+  //       height.height = '1050px';
+  //       this.frameHeigth = height
+  //     }
+
+  //     this.frameHeigth = height;
+  //   }
+
+  //   this.frameHeigth = height
+  // }
+
+  private setStyle(): void {
     let style = {
       transform: "translate(-50%, 0)" + "scale(" + this.frames.scale + ")"
     }
@@ -128,7 +131,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
   }
 
   //FramesImg
-  public getFrameId(img: FramesImg):boolean {
+  public getFrameId(img: FramesImg): boolean {
     return img.id === this.frames.index
   }
 

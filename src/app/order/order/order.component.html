@@ -1,130 +1,131 @@
-<div class="wrap" #wrap [ngStyle]="wrapStyle"
-  *ngIf='frames.orderList.length,else noText'>
+<div class="wrap" #wrap [ngStyle]="wrapStyle" *ngIf='frames.orderList.length,else noText'>
   <div class="title-h1">
     <h1>{{'Order.informImg.titleH1'|translate}}</h1>
   </div>
-
-  <div class="content">
-    <div class="user-data order-item">
-      <div class="title-h2">
-        <h2 class="title">{{'Order.informImg.titleH2'|translate}}</h2>
-      </div>
-      <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
-        <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="frstName">
-           {{'Order.userData.frstName'| translate}} </nz-form-label>
-            <!-- {{userData?.frstName}} -->
-          <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='frstEr'>
-            <input nz-input formControlName="frstName" id="frstName" trim
-              [(ngModel)]='frames.userData.user_details.first_name' />
-          </nz-form-control>
-        </nz-form-item>
-        <ng-template #frstEr>
-          <p *ngIf="erroreName('frstName')" class="left">{{erroreStr}} </p>
-        </ng-template>
-        <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">{{'Order.userData.email'|translate}}</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="email">
-            <input nz-input formControlName="email" trim id="email"
-              [(ngModel)]='frames.userData.user_details.username' />
-          </nz-form-control>
-        </nz-form-item>
-        <ng-template #email>
-          <p *ngIf="erroreName('email')" class="left">{{erroreStr}} </p>
-        </ng-template>
-        <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="phoneNumber">{{'Order.userData.phoneNumber'|translate}}</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="phone">
-            <input nz-input formControlName="phoneNumber" id="phoneNumber" mask='(000)00-00-00' type="tel"
-              [(ngModel)]='frames.userData.phone_number' />
-          </nz-form-control>
-        </nz-form-item>
-        <ng-template #phone>
-          <p *ngIf="erroreName('phoneNumber')" class="left">{{erroreStr}} </p>
-        </ng-template>
-        <div class="region">
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>{{'Order.userData.country'|translate}}</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="country">
-            <nz-select nzAllowClear [nzPlaceHolder]="frames.country_placeholder" [(ngModel)]=' frames.userData.city' nzShowSearch
-              formControlName='country'>
-              <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country["name_"+frames.lang]'>
-                <nz-option *ngFor='let regions of country.country_regions' nzDisabled=true
-                  [nzLabel]='regions["name_"+frames.lang]'>
-                  <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id'
-                    [nzLabel]='city["name_"+frames.lang]'>
+  <div class="user-data order-item">
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <div class="login-form">
+        <div class="form">
+          <div class="title-h2">
+            <h2 class="title">{{'Order.informImg.titleH2'|translate}}</h2>
+          </div>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="frstName">
+              {{'Order.userData.frstName'| translate}} </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='frstEr'>
+              <input nz-input formControlName="frstName" id="frstName" trim
+                [(ngModel)]='frames.userData.user_details.first_name' />
+            </nz-form-control>
+          </nz-form-item>
+          <ng-template #frstEr>
+            <p *ngIf="erroreName('frstName')" class="left">{{erroreStr}} </p>
+          </ng-template>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">{{'Order.userData.email'|translate}}
+            </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="email">
+              <input nz-input formControlName="email" trim id="email"
+                [(ngModel)]='frames.userData.user_details.username' />
+            </nz-form-control>
+          </nz-form-item>
+          <ng-template #email>
+            <p *ngIf="erroreName('email')" class="left">{{erroreStr}} </p>
+          </ng-template>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="phoneNumber">
+              {{'Order.userData.phoneNumber'|translate}}</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="phone">
+              <input nz-input formControlName="phoneNumber" id="phoneNumber" mask='(000)00-00-00' type="tel"
+                [(ngModel)]='frames.userData.phone_number' />
+            </nz-form-control>
+          </nz-form-item>
+          <ng-template #phone>
+            <p *ngIf="erroreName('phoneNumber')" class="left">{{erroreStr}} </p>
+          </ng-template>
+          <div class="region">
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>{{'Order.userData.country'|translate}}</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="country">
+              <nz-select nzAllowClear [nzPlaceHolder]="frames.country_placeholder" [(ngModel)]=' frames.userData.city'
+                nzShowSearch formControlName='country'>
+                <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country["name_"+frames.lang]'>
+                  <nz-option *ngFor='let regions of country.country_regions' nzDisabled=true
+                    [nzLabel]='regions["name_"+frames.lang]'>
+                    <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id'
+                      [nzLabel]='city["name_"+frames.lang]'>
+                    </nz-option>
                   </nz-option>
+                </nz-option-group>
+              </nz-select>
+            </nz-form-control>
+          </div>
+          <ng-template #country>
+            <p *ngIf="erroreName('country')" class="erroreCountry left">{{erroreStr}}</p>
+          </ng-template>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="addres">{{'Order.userData.addres'|translate}}
+            </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="addres">
+              <input nz-input formControlName="addres" id="addres" [(ngModel)]='frames.userData.address' />
+            </nz-form-control>
+          </nz-form-item>
+          <ng-template #addres>
+            <p *ngIf="erroreName('addres')" class="left">{{erroreStr}} </p>
+          </ng-template>
+          <div class="region">
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>{{'Order.userData.shipping'|translate}}</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="shipping">
+              <nz-select nzAllowClear nzPlaceHolder="shipping" nzShowSearch formControlName='shipping'>
+                <nz-option *ngFor='let addres of shiping ' [nzValue]="addres.id"
+                  [nzLabel]="addres['name_'+frames.lang] +' ' + addres.price+'Դ'">
                 </nz-option>
-              </nz-option-group>
-            </nz-select>
-          </nz-form-control>
+              </nz-select>
+            </nz-form-control>
+          </div>
+          <ng-template #shipping>
+            <p *ngIf="erroreName('shipping')" class="shipping left">{{erroreStr}} </p>
+          </ng-template>
+
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="postal">{{'Order.userData.addresPost'|translate}}
+            </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='postal'>
+              <input nz-input formControlName="postal" id="postal" trim />
+            </nz-form-control>
+          </nz-form-item>
+          <ng-template #postal>
+            <p *ngIf="erroreName('postal')" class="left">{{erroreStr}} </p>
+          </ng-template>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="comment">{{ 'Order.userData.comment'|translate}}
+            </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='comment'>
+              <input nz-input formControlName="comment" id="comment" />
+            </nz-form-control>
+          </nz-form-item>
+          <ng-template #comment>
+            <p *ngIf="erroreName('comment')" class="left">{{erroreStr}} </p>
+          </ng-template>
+          <nz-form-item>
+            <div class="saleSum">
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sale">{{'Order.userData.sale'|translate}}</nz-form-label>
+              <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='sale'>
+                <input nz-input formControlName="sale" id="sale" (input)="salePost($event)" />
+              </nz-form-control>
+              <p class="sum">{{'Order.informImg.addSum'|translate }} {{ frames?.sum }} {{
+                'Order.informImg.price'|translate}}</p>
+            </div>
+          </nz-form-item>
+          <ng-template #sale>
+            <p *ngIf="erroreName('sale')" class="left">{{erroreStr}} </p>
+          </ng-template>
         </div>
-        <ng-template #country>
-          <p *ngIf="erroreName('country')" class="erroreCountry left">{{erroreStr}}</p>
-        </ng-template>
-        <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="addres">{{'Order.userData.addres'|translate}}</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="addres">
-            <input nz-input formControlName="addres" id="addres" [(ngModel)]='frames.userData.address' />
-          </nz-form-control>
-        </nz-form-item>
-        <ng-template #addres>
-          <p *ngIf="erroreName('addres')" class="left">{{erroreStr}} </p>
-        </ng-template>
-        <div class="region">
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>{{'Order.userData.shipping'|translate}}</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="shipping">
-            <nz-select nzAllowClear nzPlaceHolder="shipping" nzShowSearch formControlName='shipping'>
-              <nz-option *ngFor='let addres of shiping ' [nzValue]="addres.id"
-                [nzLabel]="addres['name_'+frames.lang] +' ' + addres.price+'Դ'">
-              </nz-option>
-            </nz-select>
-          </nz-form-control>
-        </div>
-        <ng-template #shipping>
-          <p *ngIf="erroreName('shipping')" class="shipping left">{{erroreStr}} </p>
-        </ng-template>
 
-        <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="postal">{{'Order.userData.addresPost'|translate}}</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='postal'>
-            <input nz-input formControlName="postal" id="postal" trim />
-          </nz-form-control>
-        </nz-form-item>
-        <ng-template #postal>
-          <p *ngIf="erroreName('postal')" class="left">{{erroreStr}} </p>
-        </ng-template>
-
-        <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="comment">{{ 'Order.userData.comment'|translate}}</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='comment'>
-            <input nz-input formControlName="comment" id="comment" />
-          </nz-form-control>
-        </nz-form-item>
-        <ng-template #comment>
-          <p *ngIf="erroreName('comment')" class="left">{{erroreStr}} </p>
-        </ng-template>
-        <nz-form-item>
-          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="sale">{{'Order.userData.sale'|translate}}</nz-form-label>
-          <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]='sale'>
-            <input nz-input formControlName="sale" id="sale" (input)="salePost($event)" />
-          </nz-form-control>
-        </nz-form-item>
-        <ng-template #sale>
-          <p *ngIf="erroreName('sale')" class="left">{{erroreStr}} </p>
-        </ng-template>
-
-        <!-- <p class="red left">{{promoError}}</p> -->
-        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"
-          [disabled]='frames.isdisible'>{{'Order.userData.btnOrder'|translate}}</button>
-      </form>
-    </div>
-    <div class="order-block">
-      <div class="user-order">
         <div class="order">
           <h2 class="title">{{'Order.informImg.title'|translate}}</h2>
           <div class="data" *ngFor='let list of frames.orderList'>
             <div class="letter-length">
-              <p><span>{{list?.created_frame_details?.word?.length }} {{ 'Order.informImg.imgLength'|translate}} </span>
+              <p><span>{{list?.created_frame_details?.word?.length }} {{ 'Order.informImg.imgLength'|translate}}
+                </span>
                 <span *ngIf='frames.lang==="hy"'> {{ list?.created_frame_details?.frame_details?.name_hy }} </span>
                 <span *ngIf='frames.lang==="en"'> {{ list?.created_frame_details?.frame_details?.name_en }} </span>
                 <span *ngIf='frames.lang==="ru"'> {{ list?.created_frame_details?.frame_details?.name_ru }} </span>
@@ -133,23 +134,28 @@
 
             <div class="detalis-sum">
               <p class="smoll" *ngIf="list?.created_frame_details?.frame_details?.price">
-                {{ list?.created_frame_details?.frame_details?.price }} {{ 'Order.informImg.letterSum'|translate}} </p>
+                {{ list?.created_frame_details?.frame_details?.price }} {{ 'Order.informImg.letterSum'|translate}}
+              </p>
             </div>
             <div class="add-sum">
-              <p > {{ list?.created_frame_details?.price }} {{ 'Order.informImg.price'|translate}}</p>
+              <p> {{ list?.created_frame_details?.price }} {{ 'Order.informImg.price'|translate}}</p>
             </div>
-            <div >
+            <div>
               <span class="symbol" (click)='deleteDate(list)'>&#10005;</span>
             </div>
           </div>
-          <p class="sum">{{'Order.informImg.addSum'|translate }} {{ frames?.sum }} {{ 'Order.informImg.price'|translate}}</p>
         </div>
       </div>
-    </div>
+
+      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'"
+        [disabled]='frames.isdisible'>{{'Order.userData.btnOrder'|translate}}</button>
+    </form>
   </div>
 </div>
 
 <ng-template #noText>
-  <H3 class="noText">{{'Order.informImg.carzin'|translate}}</H3>
+  <div class="noText">
+    <H3>{{'Order.informImg.carzin'|translate}}</H3>
+  </div>
 </ng-template>
 <ng-content></ng-content>

@@ -43,7 +43,7 @@ export class FrameImag {
     }
 
     protected imgColor(): void {
-        this.frames.imgColorGet().pipe(takeUntil(this._unsubscribe$)).subscribe((categoryDetails:ServerResponce<CategoryDetails[]>) => {
+        this.frames.imgColorGet().pipe(takeUntil(this._unsubscribe$)).subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
             for (let i = 0; i < categoryDetails.count; i++) {
                 if (this.frames && this.frames.imgColor[i] && this.frames.imgColor[i].ceys) {
                     this.frames.imgColor[i].ceys = categoryDetails.results[i];
@@ -73,16 +73,54 @@ export class FrameImag {
             setTimeout(() => {
                 modalRef.dismiss();
             }, 2500)
-            console.log('this.frames.validateForm errore',this.frames.validateForm)
-            return;  
+            return;
         }
         this.frames.isImg = false;
         this.frames.letterColorFone();
-
     }
 
+    public frameHeigth = {} as { [key: string]: string };
+    public conteinerHeight(): void {
+        let height = {
+            height: '538px'
+        }
+
+        if (window.innerWidth <= 768) {
+            height.height = '400px';
+            this.frameHeigth = height
+        }
+
+
+        if (this.frames.isOrder && window.innerWidth <= 2000) {
+            height.height = '1300px';
+
+             
+            if (this.frames.isOrder && window.innerWidth <= 1260) {
+                height.height = '1450px';
+                this.frameHeigth = height;
+            }
+
+            if (this.frames.isOrder && window.innerWidth <= 970) {
+                height.height = '1200px';
+                this.frameHeigth = height
+            }
+
+            if (this.frames.isOrder && window.innerWidth <= 768) {
+                height.height = '1050px';
+                this.frameHeigth = height
+            }
+
+            this.frameHeigth = height;
+        }
+
+        this.frameHeigth = height
+    }
+
+
     public showFrame(): void {
-        this.frames.showFrame()
+
+        this.frames.showFrame();
+        this.conteinerHeight();
     }
 
 
@@ -91,7 +129,6 @@ export class FrameImag {
     }
 
     public openImg(img: any, num: number): void {
-        console.log('img ',img)
         this.frames.letterColection(img.character.toUpperCase()).pipe(takeUntil(this._unsubscribe$)).subscribe((el: any) => {
             const modalRef = this.modalService.open(ImgCatalogComponent, { size: 'lg' });
             modalRef.componentInstance.img = el.results;
@@ -100,7 +137,7 @@ export class FrameImag {
             modalRef.result.then((result) => { }, (reason) => {
                 if (reason) {
                     if (!this.frames.apiPhoto) {
-                        reason.thumbnail=reason.thumb_image
+                        reason.thumbnail = reason.thumb_image
                         this.letterChar = this.frames.letterImges[num].image.character;
                     }
 
@@ -113,10 +150,10 @@ export class FrameImag {
 
     }
     public checkImage(img: string): boolean {
-        if(img){
+        if (img) {
             return img.startsWith('http') ? true : false
         }
-        return  false
+        return false
     }
 
 }

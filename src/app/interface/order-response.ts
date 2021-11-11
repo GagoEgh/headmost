@@ -7,7 +7,7 @@ export interface ShipingResult {
     name_en: string
     name_hy: string
     name_ru: string
-    price: number
+    price: number|string
     id:number
 }
 

@@ -5,31 +5,29 @@
 </div>
 <div class="modal-body">
     <div class="img-menu">
-        <div class="block">
-            <div *ngIf='frames.apiPhoto else myPhoto' class="block-1">
-                <div class="bg-img" *ngFor='let item of frames.painding.imgs' #newItem (click)='changeImg(item)'
-                    [style.background-image]="'url('+ item.thumbnail + ')'">
+        <div *ngIf='frames.apiPhoto else myPhoto' class="block-1">
+            <div class="bg-img" *ngFor='let item of frames.painding.imgs' #newItem (click)='changeImg(item)'
+                [style.background-image]="'url('+ item.thumbnail + ')'">
+            </div>
+        </div>
+        <ng-template #myPhoto>
+            <div class="block-1">
+                <div class="bg-img" *ngFor='let img of frames.fileList' (click)="changeImg(img)"
+                    [style.background-image]="'url('+ img.image + ')'">
                 </div>
             </div>
-            <ng-template #myPhoto>
-                <div class="block-1">
-                    <div class="bg-img" *ngFor='let img of frames.fileList' (click)="changeImg(img)"
-                        [style.background-image]="'url('+ img.image + ')'">
-                    </div>
-                </div>
-            </ng-template>
-        </div>
+        </ng-template>
         <nav class="bar">
             <h2>{{'ImgMenu.menuTitle'|translate}}</h2>
             <div class="menu">
-                <div >
+                <div>
                     <p class="subtitle">{{'ImgMenu.color'|translate}}</p>
                     <ul class="ul">
                         <li class="list" *ngFor='let block of frames.imgColor' (click)='changeFone(block)'
                             [ngClass]="{'listActive':frames.painding.id=== block.ceys.id}">
-                          <span *ngIf='frames.lang==="hy"'>{{block.ceys.name_hy}}</span> 
-                          <span *ngIf='frames.lang==="ru"'>{{block.ceys.name_ru}}</span>
-                          <span *ngIf='frames.lang==="en"'>{{block.ceys.name_en}}</span>   
+                            <span *ngIf='frames.lang==="hy"'>{{block.ceys.name_hy}}</span>
+                            <span *ngIf='frames.lang==="ru"'>{{block.ceys.name_ru}}</span>
+                            <span *ngIf='frames.lang==="en"'>{{block.ceys.name_en}}</span>
                         </li>
                     </ul>
                 </div>
@@ -39,9 +37,9 @@
                         <li class="list" *ngFor='let category of categoryList, let i = index'
                             (click)='showCategory(category)'
                             [ngClass]="{'listActive':frames.painding.categoryId=== category.id}">
-                           <span *ngIf='frames.lang==="hy"'>{{category.name_hy}}</span>
-                           <span *ngIf='frames.lang==="ru"'>{{category.name_ru}}</span> 
-                           <span *ngIf='frames.lang==="en"'>{{category.name_en}}</span>  
+                            <span *ngIf='frames.lang==="hy"'>{{category.name_hy}}</span>
+                            <span *ngIf='frames.lang==="ru"'>{{category.name_ru}}</span>
+                            <span *ngIf='frames.lang==="en"'>{{category.name_en}}</span>
                         </li>
                         <li class="list" (click)="getMyPhoto()">{{'ImgMenu.myPhoto'|translate}}</li>
                     </ul>

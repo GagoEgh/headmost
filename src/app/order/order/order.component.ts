@@ -12,9 +12,6 @@ import { ServerResponce } from 'src/app/interface/img-ramka';
 import { PromoCodeResults, ShipingResult } from 'src/app/interface/order-response';
 import { CardItemResults } from 'src/app/interface/frame-response';
 
-
-
-
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
@@ -32,7 +29,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   public promoId: null | number = null;
   private sumInit: number = 0;
   private count: number = 0;
-  public wrapStyle:any
+  public wrapStyle = {} as { [key: string]: string }
   @ViewChild("wrap", { static: false }) wrap: ElementRef | undefined;
 
   constructor(public frames: FramesServService, private fb: FormBuilder, public modalService: NgbModal,
@@ -48,6 +45,9 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this.frames.sum = this.sumInit > this.frames.sum ? this.sumInit : this.frames.sum
     this.frames.userCountry();
     this.orderFormValidation();
+    setTimeout(()=>{
+      this.onResize()
+    })
   }
 
   @HostListener('window:resize', ['$event'])
@@ -55,23 +55,16 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this.width = this.wrap?.nativeElement.clientWidth | 1;
 
     if (window.innerWidth <= 1165) {
-      this.scale = window.innerWidth / this.width - 0.1;
+      this.scale = window.innerWidth / this.width - 0.3;
 
       if (window.innerWidth <= 769) {
         this.scale = 0.9
-        this.scale = window.innerWidth / 769 - 0.1;
-      }
+        this.scale = window.innerWidth / 769 - 0.2;
 
-      if (window.innerWidth <= 426) {
-        this.scale = 0.9;
-        this.scale = window.innerWidth / 426 - 0.2;
-      }
-
-      if (window.innerWidth <= 375) {
-        this.scale = 0.7
       }
     }
-    this.setStyle(this.frames.isTop?8:0);
+
+    this.setStyle(this.frames.isTop ? 8 : 0);
   }
 
   ngAfterViewChecked(): void {
@@ -106,7 +99,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     })
   }
 
-  public setStyle(num: number): void {
+  private setStyle(num: number): void {
     let style = {
       transform: "translate(-50%, " + num + "% )" + "scale(" + this.scale + ")"
     }
@@ -114,14 +107,14 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   }
 
   public erroreName(formName: string): string {
-    this._translate.get('ErroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
-      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res.required;
-      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res.minlength} 3 `;
-      if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res.userNameChar;
-      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res.isEmail;
-      if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res.isSize;
-      if (this.validateForm.get(formName)?.hasError('noText')) this.erroreStr = res.textErr;
-      if (this.validateForm.get(formName)?.hasError('maxlength')) this.erroreStr = res.titleLength;
+    this._translate.get('ErroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((erroreMessage: {[key:string]:string}) => {
+      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = erroreMessage.required;
+      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${erroreMessage.minlength} 3 `;
+      if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = erroreMessage.userNameChar;
+      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = erroreMessage.isEmail;
+      if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = erroreMessage.isSize;
+      if (this.validateForm.get(formName)?.hasError('noText')) this.erroreStr = erroreMessage.textErr;
+      if (this.validateForm.get(formName)?.hasError('maxlength')) this.erroreStr = erroreMessage.titleLength;
     })
 
     return this.erroreStr;

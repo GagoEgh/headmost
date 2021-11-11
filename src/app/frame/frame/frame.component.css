@@ -116,13 +116,9 @@
 }
 
 
-::ng-deep app-order .wrap{
+:host ::ng-deep app-order .wrap{
  background-color: white;
- width: fit-content;
- margin-top: 140px ;
- padding-top: 60px;
  display: flex;
- width: fit-content;
  box-shadow: 3px 2px 22px 0 rgb(87 87 87);
 }
 
@@ -137,7 +133,6 @@
 
 .wrap1,.wrap2{
  display: flex;
- /* justify-content: space-between; */
 }
 
 .step-content{
@@ -194,12 +189,13 @@
 }
   
 .save{
-    margin-top: -7px;
+ margin-top: -7px;
 }
 
 .create-bottom{
-    margin-top: 80px;
+ margin-top: -210px;
 }
+
 .buttonWrap table {
  width: 100%;
  height: 100%;
@@ -233,19 +229,46 @@
  outline: none;
 } 
 
-@media (max-width:1024px){
+@media (max-width:1440px){
     .create-bottom{
-        margin-top: 129px;
+        margin-top: -230px;
     }
 }
 
-@media (max-width:960px){
+@media (max-width:1260px){
+    :host ::ng-deep app-order .wrap{
+        background-color: white;
+        width:95%;
+        display: flex;
+        box-shadow: 3px 2px 22px 0 rgb(87 87 87);
+        padding: 40px;
+    }
+
     .create-bottom{
-        margin-top: -270px;
+        margin-top: -170px;
+    }
+}
+
+@media (max-width:1024px){
+    .create-bottom{
+        margin-top: -120px;
+    }
+}
+
+@media (max-width:970px){
+    .create-bottom{
+        margin-top: -370px;
     }
 }
 
 @media (max-width:768px){
+    :host ::ng-deep app-order .wrap{
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 3px 2px 22px 0 rgb(87 87 87);
+        height: 960px;
+    }
 
     .steps{
      width: 80%;
@@ -274,7 +297,7 @@
     }
 
     .create-bottom{
-        margin-top: 0px;
+        margin-top: -416px;
     }
 
     .buttonWrap{
@@ -342,11 +365,11 @@
 
 }
 
-@media (max-width:376px){
+/* @media (max-width:376px){
     .buttonWrap {
      margin-top: -65px;
     }
-}
+} */
 
 @media (max-width:340px){
     .create-bottom{
