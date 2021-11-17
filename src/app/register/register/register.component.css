@@ -1,7 +1,3 @@
-.nz-date-picker {
- margin: 0 8px 12px 0; 
-}
-
 ::ng-deep .cdk-overlay-container {
  z-index: 1200 !important;
 }
@@ -17,15 +13,6 @@
  transform-origin: top !important;
 }
 
-.ant-input, .ant-input-group {
- width: 250px;
- border-radius: 10px !important;
-}
-
-::ng-deep.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
-  width: 250px !important;
-}
-   
 .mat-form-field {
   width: 250px;
 }
@@ -34,84 +21,18 @@
   width: 200px;
 }
 
-.brt-err{
-  margin: -10px 0 35px 0;
+.form{
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  min-width: 150px !important;
+  width: 100% !important;
 }
 
-.region{
- margin-top: -10px;
-}
-
-.ant-btn-primary {
-  width: 50% !important;
-  margin: 40px auto;
-}
-
-.ant-form-item-label {
-  text-align: left;
-}
-
-.pas{
-  margin-top: 25px;
-}
-
-.pasRev{
-  margin-top: 5px;
-}
-
-/* .anticon.ng-tns-c132-12 */
-::ng-deep.ng-star-inserted.anticon-check-circle-fill{
-    color: #52c41a !important;
-
-}
-
-::ng-deep.anticon-close-circle-fill.ng-star-inserted{
-    color: #ff4d4f !important;
-
-}
-
-::ng-deep .region .ng-star-inserted.anticon-check-circle-fill{
-  color: #52c41a !important;
-  /* margin-left: -15px !important; */
-}
-
-::ng-deep .region .anticon-close-circle-fill.ng-star-inserted{
-  color: #ff4d4f !important;
-  /* margin-left: -15px !important; */
-}
-
-::ng-deep.ant-form-item-control-input-content{
-  max-width:74% !important ;
-}
-
-::ng-deep.ant-form-item-label>label {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  height: 50px !important;
-  color: rgba(0,0,0,.85);
-  font-size: 14px;
-}
-
-.label{
-  margin-top: -40px;
-}
-
-@media (max-width:1440px){
-  ::ng-deep.ant-form-item-control-input-content{
-    max-width:73.5% !important ;
-  }
-}
-
-@media (max-width:768px){
-
-  ::ng-deep.ng-star-inserted.anticon-check-circle-fill{
-    margin-left: -60px !important;
-  }
-
- ::ng-deep.anticon-close-circle-fill.ng-star-inserted{
-    margin-left: -60px !important;
-  }
-
-  
+.login-form-button{
+  display: block;
+  margin: 100px auto;
+  background-color:  rgba(0,0,0,.06);
+  outline: none !important;
+  width: 300px !important;
 }

@@ -1,7 +1,7 @@
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { AfterViewChecked, Component, OnInit, } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -10,7 +10,15 @@ import { DataCheckComponent } from '../data-check/data-check.component';
 import { NoCheckComponent } from '../no-check/no-check.component';
 import { NgxSpinnerService } from "ngx-spinner";
 import { Edit, UserDetalis } from 'src/app/interface/register-response';
+import { FormGroupDirective, NgForm } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-user-data',
@@ -19,16 +27,12 @@ import { Edit, UserDetalis } from 'src/app/interface/register-response';
 })
 export class UserDataComponent implements OnInit, AfterViewChecked {
   public validateForm: FormGroup = new FormGroup({});
+  public matcher = new MyErrorStateMatcher();
   public _unsubscribe$ = new Subject();
-  public erroreStr: string = '';
-  public emailMassage = '';
-  public userName = '';
+  private userName = '';
   public isChange = false;
   constructor(private valid: ValidationServService, private fb: FormBuilder, public modalService: NgbModal,
     private spinner: NgxSpinnerService, public _translate: TranslateService, public frames: FramesServService) { }
-
-
-
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
@@ -37,7 +41,6 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
 
   ngOnInit(): void {
     this.spinner.show();
-
     setTimeout(() => {
       this.spinner.hide();
     }, 2000)
@@ -46,31 +49,16 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     this.userName = this.frames.userData.user_details.first_name;
     this.changeDate();
     this.validateForm = this.fb.group({
-      frstName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50), this.valid.userNameChar]],
-      last: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50), this.valid.userNameChar]],
-      addres: [null, [Validators.required]],
-      phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
-      email: [null, [Validators.required, this.valid.emailValid]],
-      country: [null, [Validators.required]],
+      frstName: [this.userName, [Validators.required, Validators.minLength(3), Validators.maxLength(50), this.valid.userNameChar]],
+      last: [this.frames.userData.user_details.last_name, [Validators.required, Validators.minLength(3), Validators.maxLength(50), this.valid.userNameChar]],
+      addres: [this.frames.userData.address, [Validators.required]],
+      phoneNumber: [this.frames.userData.phone_number, [Validators.required, this.valid.PhoneNumberLength]],
+      email: [this.frames.userData.user_details.username, [Validators.required, this.valid.emailValid]],
+      country: [this.frames.userData.city, [Validators.required]],
       date: [this.frames.userData.date_of_birth, [Validators.required, this.valid.bigDate]],
       pas: [null, [Validators.required, Validators.minLength(6)]],
     });
 
-  }
-
-  public erroreName(formName: string): string {
-    this._translate.get('ErroreMessage').pipe(takeUntil(this._unsubscribe$)).subscribe((res: any) => {
-      let size = 3;
-      if (formName === 'pas') size = 6
-      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res.required;
-      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res.minlength} ${size} `;
-      if (this.validateForm.get(formName)?.hasError('maxlength')) this.erroreStr = `${res.maxLength}`;
-      if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res.userNameChar;
-      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res.isEmail;
-      if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res.isSize;
-      if (this.validateForm.get(formName)?.hasError('bigDate')) this.erroreStr = res.bigDate
-    })
-    return this.erroreStr;
   }
 
   private birt(formName: string): string {
@@ -141,7 +129,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
 
   }
 
-  private ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }

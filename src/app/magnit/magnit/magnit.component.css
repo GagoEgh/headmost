@@ -1,6 +1,5 @@
 .lightSheme{
  background: url('src/assets/1x/bg_magnit.jpg') repeat 0 0;
- padding: 20px;
  margin-top: 10px;
 }
 
@@ -21,83 +20,46 @@
  border-radius: 7px;
 }
 
-.center{
-  display: block;
-  margin: 80px 0 0 40%;
-}
- 
 .makeAWord_3 {
   outline: none;
+  margin: 20px auto;
 }
 
 .create-bottom{
   outline: none;
   display: block;
-  margin-top:-400px;
+  margin-top:-100px;
   z-index: 1;
 }
 
 .save{
-  margin-top: -120px;
+  margin-top: -40px;
 }
 
-@media (max-width:1024px){
+:host ::ng-deep app-order .wrap{
+  margin-top: -200px;
+  box-shadow: 3px 2px 22px 0 rgb(87 87 87);
+}
 
-  .create{
-    margin: -10px 0  0 -50px;
-  }
-
-  .save{
-    margin: -220px 0  0 -50px;
-  }
-
+@media (max-width:1026px){
   .create-bottom{
-    margin:-250px 0 0 -50px ;
+    margin-top:-100px;
   } 
 }
 
-@media (max-width:768px){
-  .block{
-    top: 150px ;
-  }
-
-  .create{
-    margin: -30px 0  0 -50px;
-  }
-
-  .save{
-    margin: -200px 0  0 -50px;
-  }
-
+@media (max-width:831px){
   .create-bottom{
-    margin:-750px 0 0 -50px ;
+    margin-top:-300px;
+  } 
+
+  :host ::ng-deep app-order .sum{
+    margin: -50px 0 0 150px;
+}
+}
+
+@media (max-width:600px){
+  .create-bottom{
+    margin-top:-500px;
   } 
 }
 
-@media (max-width:426px){
-    .btn-save{
-     margin-top: 0px;  
-     margin-left: -20px;
-    }
-
-    .block{
-     top: 100px;
-    }
-
-    .create {
-      margin: -200px 0 0 -105px;
-    }
-    .save{
-      margin: -370px 0 0 -102px;
-    }
-
-    .create-bottom{
-      margin: -1600px 0 0 -103px;
-    }
-}
-
-@media (max-width:376px){
-    .btn-save{
-     margin-top: 0px;  
-    }
-}

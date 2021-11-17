@@ -1,129 +1,109 @@
-
-<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
-  <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
-    <p style="color: white"> Loading... </p>
-  </ngx-spinner>
-
-  <div class="col">
-    <div>
-      <nz-form-label nzRequired nzFor="frstName">{{'Order.userData.frstName'|translate}}</nz-form-label>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<form nz-form [formGroup]="validateForm"  (ngSubmit)="submitForm()" class="form">
+  <div class="login-form">
+    <div class="form-1">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label> {{'Order.userData.frstName'| translate}} </mat-label>
+        <input type="text" matInput formControlName="frstName" id="frstName" [errorStateMatcher]="matcher" trim>  
+        <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('required')">
+          <p>{{'ErroreMessage.required'|translate}}</p>
+        </mat-error>
+        <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('minlength')">
+          <p>{{'ErroreMessage.minlength'|translate}} 3</p>
+        </mat-error>
+        <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('maxlength')">
+          <p>{{'ErroreMessage.maxLength'|translate}} 3</p>
+        </mat-error>
+        <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('userNameChar')">
+          <p>{{'ErroreMessage.userNameChar'|translate}}</p>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>{{'Order.userData.lastName'|translate}}</mat-label>
+        <input type="text" matInput formControlName="last" id="last" trim [errorStateMatcher]="matcher">
+        <mat-error *ngIf="this.validateForm.get('last')?.hasError('required')">
+          <p>{{'ErroreMessage.required'|translate}}</p>
+        </mat-error>
+        <mat-error *ngIf="this.validateForm.get('last')?.hasError('minlength')">
+          <p>{{'ErroreMessage.minlength'|translate}} 3</p>
+        </mat-error>
+        <mat-error *ngIf="this.validateForm.get('last')?.hasError('maxlength')">
+          <p>{{'ErroreMessage.maxLength'|translate}}</p>
+        </mat-error>
+        <mat-error *ngIf="this.validateForm.get('last')?.hasError('userNameChar')">
+          <p>{{'ErroreMessage.userNameChar'|translate}}</p>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>{{'Order.userData.addres'|translate}}</mat-label>
+        <input matInput type="text" formControlName="addres" id="add" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="this.validateForm.get('addres')?.hasError('required')">
+          <p>{{'ErroreMessage.required'|translate}}</p>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>{{'Order.userData.email'|translate}}</mat-label>
+        <input type="email" matInput formControlName="email" id="email" [errorStateMatcher]="matcher" trim>   
+        <mat-error *ngIf="this.validateForm.get('email')?.hasError('required')">
+          <p>{{'ErroreMessage.required'|translate}}</p>
+        </mat-error>
+        <mat-error *ngIf="this.validateForm.get('email')?.hasError('isEmail')">
+          <p>{{'ErroreMessage.isEmail'|translate}}</p>
+        </mat-error>
+      </mat-form-field>
     </div>
-    <nz-form-item>
-      <nz-form-control [nzErrorTip]='frstEr' nzHasFeedback>
-        <input nz-input formControlName="frstName" id="frstName" [(ngModel)]='userName'
-          trim />
-      </nz-form-control>
-    </nz-form-item>
-    <ng-template #frstEr>
-      <p *ngIf="erroreName('frstName')">{{erroreStr}} </p>
-    </ng-template>
-
-    <div>
-      <nz-form-label nzRequired nzFor="pas">{{'Order.userData.lastName'|translate}}</nz-form-label>
-    </div>
-    <nz-form-item>
-      <nz-form-control [nzErrorTip]="last" nzHasFeedback>
-        <input nz-input formControlName="last" id="last" [(ngModel)]='frames.userData.user_details.last_name' trim />
-      </nz-form-control>
-    </nz-form-item>
-    <ng-template #last>
-      <p *ngIf="erroreName('last')">{{erroreStr}} </p>
-    </ng-template>
-
-    <div>
-      <nz-form-label nzRequired nzFor="lastName">{{'Order.userData.addres'|translate}}</nz-form-label>
-    </div>
-    <nz-form-item>
-      <nz-form-control [nzErrorTip]='add' nzHasFeedback>
-        <input nz-input formControlName="addres" id="add" [(ngModel)]='frames.userData.address' />
-      </nz-form-control>
-    </nz-form-item>
-    <ng-template #add>
-      <p *ngIf="erroreName('addres')">{{erroreStr}} </p>
-    </ng-template>
-
-
-    <div>
-      <nz-form-label nzRequired nzFor="email">{{'Order.userData._email'|translate}}</nz-form-label>
-    </div>
-    <nz-form-item>
-      <nz-form-control [nzErrorTip]="email" nzHasFeedback>
-        <input nz-input formControlName="email" id="email" [(ngModel)]='frames.userData.user_details.username'
-          readonly />
-      </nz-form-control>
-    </nz-form-item>
-    <ng-template #email>
-      <p *ngIf="erroreName('email')">{{erroreStr}} </p>
-    </ng-template>
-    <p *ngIf='emailMassage' [style.color]='"red"'>{{emailMassage}}</p>
-  </div>
-
-
-  <div class="col">
-    <div class="brtDay">
-      <nz-form-label nzRequired>{{'Order.userData.brtDay'|translate}}</nz-form-label>
-      <nz-form-item >
-        <nz-form-control [nzErrorTip]="date" nzHasFeedback >
-          <mat-form-field appearance="fill"  >
-            <mat-label >
-              {{'Order.userData.brtDay'|translate}}
-            </mat-label>
-            <input [(ngModel)]='frames.userData.date_of_birth' matInput [matDatepicker]="picker" formControlName="date" >
-            <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </nz-form-control>
-      </nz-form-item>
-      <ng-template #date class="dat-err">
-        <p *ngIf="erroreName('date')" class="dat-err">{{erroreStr}} </p>
-      </ng-template>
-    </div>
-    <div class="phone">
-      <nz-form-label nzRequired nzFor="phoneNumber">{{'Order.userData.phoneNumber'|translate}}</nz-form-label>
-    </div>
-    <nz-form-item>
-      <nz-form-control [nzErrorTip]="phone" nzHasFeedback>
-        <input nz-input type="tel" formControlName="phoneNumber" id="phoneNumber" trim mask='(000)00-00-00'
-          [(ngModel)]='frames.userData.phone_number' />
-      </nz-form-control>
-    </nz-form-item>
-    <ng-template #phone>
-      <p *ngIf="erroreName('phoneNumber')">{{erroreStr}} </p>
-    </ng-template>
-    <div class="region">
-      <nz-form-label nzRequired>{{'Order.userData.country'|translate}}</nz-form-label>
-      <nz-form-control [nzErrorTip]="country" nzHasFeedback>
-        <nz-select nzAllowClear [nzPlaceHolder]="frames.country_placeholder" [(ngModel)]='frames.userData.city' nzShowSearch
-          formControlName='country'>
-          <nz-option-group *ngFor='let country of frames.selectedValue' [nzLabel]='country["name_"+frames.lang]'>
-            <nz-option *ngFor='let regions of country.country_regions' [nzLabel]='regions["name_"+frames.lang]'
-              nzDisabled=true>
-              <nz-option *ngFor='let city of regions.region_cities' [nzValue]='city.id'
-                [nzLabel]='city["name_"+frames.lang]'>
-              </nz-option>
-            </nz-option>
-          </nz-option-group>
-        </nz-select>
-      </nz-form-control>
-    </div>
-    <ng-template #country>
-      <p *ngIf="erroreName('country')" class="erroreCountry">{{erroreStr}}</p>
-    </ng-template>
-    
-
-    <div class="pas">
-      <nz-form-label nzRequired nzFor="pas">{{'Order.userData.password'|translate}}</nz-form-label>
-    </div>
-    <nz-form-item>
-      <nz-form-control [nzErrorTip]="pas" nzHasFeedback>
-        <input nz-input formControlName="pas" id="pas" type="password" trim />
-      </nz-form-control>
-    </nz-form-item>
-    <ng-template #pas>
-      <p *ngIf="erroreName('pas')">{{erroreStr}} </p>
-    </ng-template>
-    <div class="btn-wrap">
-      <button nz-button [nzType]="'primary'" >{{'Order.userData.update'|translate}}</button>
+    <div class="form-1">
+      <mat-form-field appearance="fill">
+        <mat-label>{{'Order.userData.brtDay'|translate}}</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date"
+          [errorStateMatcher]="matcher" formControlName='date'>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="this.validateForm.get('date')?.hasError('required')">
+          <p>{{'ErroreMessage.required'|translate}}</p>
+        </mat-error>
+        <mat-error *ngIf="this.validateForm.get('date')?.hasError('bigDate')">
+          <p>{{'ErroreMessage.bigDate'|translate}}</p>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>{{'Order.userData.phoneNumber'|translate}}</mat-label>
+        <input matInput type="tel" mask='(000)00-00-00' formControlName="phoneNumber" id="phoneNumber" [errorStateMatcher]="matcher">      
+        <mat-error *ngIf="this.validateForm.get('phoneNumber')?.hasError('required')">
+          <p>{{'ErroreMessage.required'|translate}}</p>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>{{'Order.userData.country'|translate}}</mat-label>
+        <mat-select formControlName='country'>
+          <mat-optgroup *ngFor='let country of frames.selectedValue' [label]='country["name_"+frames.lang]'>
+            <mat-select>
+              <mat-optgroup *ngFor='let regions of country.country_regions' [label]='regions["name_"+frames.lang]'>
+                <mat-option *ngFor='let city of regions.region_cities' [value]='city.id'>
+                  {{city["name_"+frames.lang]}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-select>
+            <mat-error *ngIf="this.validateForm.get('country')?.hasError('required')">
+              <p>{{'ErroreMessage.required'|translate}}</p>
+            </mat-error>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>{{'Order.userData.password'|translate}}</mat-label>
+        <input matInput formControlName="pas" id="pas" type="password" trim [errorStateMatcher]="matcher">
+        <mat-error *ngIf="this.validateForm.get('pas')?.hasError('required')">
+          <p>{{'ErroreMessage.required'|translate}}</p>
+        </mat-error>
+        <mat-error *ngIf="this.validateForm.get('pas')?.hasError('minlength')">
+          <p>{{'ErroreMessage.minlength'|translate}} 6</p>
+        </mat-error>
+      </mat-form-field>
     </div>
   </div>
+  <button mat-raised-button class="login-form-button">
+    {{'Order.userData.update'|translate}}</button>
 </form>

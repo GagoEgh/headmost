@@ -149,30 +149,36 @@
 @media (max-width:768px){
   .wrap{
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .section{
+    padding: 0;
+    width: inherit;
   }
 
   .text_1{
-     letter-spacing: 1px;
-     line-height: 35px;
-     font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 35px;
+    font-size: 14px;
   }
 
   .question-text{
-      width: 500px;
-      position: relative;
-      left: 20%;
+    width: 500px;
+    margin-left: -40px;
   }
 
   .question{
-     font-size: 1rem;
-     line-height: 65px;
+    font-size: 1rem;
+    line-height: 65px;
     font-size: 12px;
   }
 
   .label{
-     font-size: 18px;
-     letter-spacing: 1px;
-     line-height: 30px
+    font-size: 18px;
+    letter-spacing: 1px;
+    line-height: 30px
   }
 
   .bottom-article {

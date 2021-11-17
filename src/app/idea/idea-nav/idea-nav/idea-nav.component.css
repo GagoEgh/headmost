@@ -16,7 +16,6 @@
 
 .bar li{
  padding: 10px;
- margin: 8px;
  transition: 0.5s;
  display: inline-block;
 }

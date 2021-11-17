@@ -2,9 +2,9 @@
     <p style="color: white"> Loading... </p>
 </ngx-spinner>
 <div class="my-img" infinite-scroll [infiniteScrollDistance]="scrollDistance" (scrolled)="onScrollDown($event)"
-[infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle">
+    [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle">
     <div class="file">
-        <input type="file" name="img" #file accept=".jpg, .jpeg, .png,.gif" (change)="hendler($event)">
+        <input type="file" id="img" name="img" #file accept=".jpg, .jpeg, .png,.gif" (change)="hendler($event)">
         <button class="upload" (click)='trigger(file)'>Upload</button>
     </div>
     <div class="box">

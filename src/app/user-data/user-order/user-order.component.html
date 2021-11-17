@@ -4,19 +4,14 @@
         <h3 class="title">{{'Menu.user.myOrder.description'|translate}}</h3>
         <div *ngFor="let item of userOrders, let i=index" class="frames">
             <span class="preview-remove" (click)='deleteUsOrder(item)'>&times;</span>
-
             <div class='user-block' *ngFor='let orderItemss of item.order_items_details;let ind=index'>
-                <div *ngIf='orderItemss.isBlock'>
-
+                <div>
+                <div *ngIf='orderItemss.isBlock' class="flex-img">
+                    <button class="levt-nav" (click)="prevOrder(item,ind)"
+                    [style.display]="item.order_items_details.length === 1?'none':'block'"
+                    [disabled]="!orderItemss.isPrev"></button>
                     <div class="myWrap">
-                        <div class="slide">
-                            <button class="levt-nav" (click)="prevOrder(item,ind)"
-                                [style.display]="orderItemss.isPrev?'block':'none'"></button>
-
-                            <button class="reight-nav" (click)="nextOrder(item,ind)"
-                                [style.display]="orderItemss.isDisabled?'none':'block'"></button>
-                        </div>
-                        <div class="reight">
+                        <div class="reight"  >
                             <div class="squrl left-top"
                                 [style.background-image]="'url(' + orderItemss?.created_frame_details?.frame_details?.left_top_corner_image + ')'">
                             </div>
@@ -32,7 +27,7 @@
                                 [style.background-image]="'url(' + orderItemss?.created_frame_details?.frame_details?.top_line_image + ')'">
                             </div>
                             <div class="user"
-                                [style.background]=" orderItemss?.created_frame_details?.background_details.color">
+                                [style.background]=" orderItemss?.created_frame_details?.background_details?.color">
                                 <p class='text' *ngIf="orderItemss?.created_frame_details?.text_in_top">
                                     {{orderItemss?.created_frame_details?.text_in_top}}</p>
                                 <div class="order">
@@ -40,6 +35,7 @@
                                         *ngFor='let details of orderItemss?.created_frame_details?.frame_images'>
                                         <div class="user-imags"
                                             [style.background-image]="details.image_details?'url('+ details.image_details.image + ')':'url('+ details.user_image_details.image + ')'">
+                                       <!-- *ngIf="orderItemss?.created_frame_details?.is_magnet -->
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +59,11 @@
                                 [style.background-image]="'url(' + orderItemss?.created_frame_details?.frame_details?.right_bottom_corner_image + ')'">
                             </div>
                         </div>
+                       
                     </div>
+                    <button class="reight-nav" (click)="nextOrder(item,ind)"
+                    [style.display]="item.order_items_details.length === 1?'none':'block'"></button>
+
                     <div class="add-sum">
                         <p class="sum">{{orderItemss.created_frame_details.price}}Դ</p>
                         <button class="batn" (click)='addOrder(i)'>
@@ -71,6 +71,7 @@
                         </button>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>

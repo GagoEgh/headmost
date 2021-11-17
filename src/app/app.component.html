@@ -3,7 +3,7 @@
 </ngx-spinner>
 <div class="headmost">
   <div class="conteiner">
-    <div class="logo" (click)="getFrame()"></div>
+    <div class="logo" (click)="getFrame()"><p>Gift4u</p></div>
     <span class="material-icons-outlined" (click)='frames.isSilki = !frames.isSilki'>
       <img src="./assets/1x/outline_view_headline_black_24dp.png">
     </span>
@@ -72,7 +72,7 @@
     <div class="footer-nav">
       <ul class="footer-silki">
         <li>
-          <a class="frame" routerLink=''>{{'Menu.konstruktor.frame'|translate}}</a>
+          <a class="frame" (click)='getFrame()'>{{'Menu.konstruktor.frame'|translate}}</a>
         </li>
         <li>
           <a class="frame" routerLink='/idea' routerLinkActive='active'>{{'Menu.idea'|translate}}</a>

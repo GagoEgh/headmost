@@ -17,7 +17,7 @@ import { CardItemResults, FrameDetalis } from 'src/app/interface/frame-response'
 })
 export class IdeaComponent implements OnInit {
   public _unsubscribe$ = new Subject();
-  public ideaImages:FrameDetalis[] = [];
+  public ideaImages: FrameDetalis[] = [];
   private scrollDistance = 0.5;
   private scrollUpDistance = 2;
   private throttle = 150;
@@ -45,7 +45,7 @@ export class IdeaComponent implements OnInit {
   }
 
   private checkQueryParams(): void {
-    this._activatedRoute.queryParams.pipe(takeUntil(this._unsubscribe$)).subscribe((idCategory:{[key:string]:string}) => {
+    this._activatedRoute.queryParams.pipe(takeUntil(this._unsubscribe$)).subscribe((idCategory: { [key: string]: string }) => {
       this.offset = 0;
       this.ideaImages = [];
       this.category = idCategory.category;
@@ -78,7 +78,7 @@ export class IdeaComponent implements OnInit {
   public addOrder(index: number): void {
     let data = {
       user: this.frames.userData.user,
-      created_frame: ''+this.ideaImages[index].id
+      created_frame: '' + this.ideaImages[index].id
     }
     if (localStorage.getItem('loginAutorization')) {
       this.frames.orderCard(data).pipe(takeUntil(this._unsubscribe$)).subscribe((cardItem: CardItemResults) => {
@@ -91,11 +91,11 @@ export class IdeaComponent implements OnInit {
 
   }
 
-  public imgInfo(img: {id:number}): void {
+  public imgInfo(img: { id: number }): void {
     this.rout.navigate(['/idea/idea-imags/' + img.id]);
   }
 
-  private ngOnDestroy() {
+  ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }

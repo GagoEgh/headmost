@@ -30,6 +30,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
     private spinner: NgxSpinnerService, public _translate: TranslateService) { }
 
   ngOnInit(): void {
+    console.log('userOrders ',this.userOrders)
     this.frames.offset = 0;
     this.userOrders;
     this.appendItems();
@@ -118,10 +119,11 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
 
     if ((num - 1) == 0) {
       order.order_items_details[num - 1].isDisabled = false
-      order.order_items_details[num - 1].isPrev = false;
+      // order.order_items_details[num - 1].isPrev = false;
     }
 
   }
+
 
   public nextOrder(order: any, num: number): void {
     if (order.order_items_details.length === 1) {
@@ -142,7 +144,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  private ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this._subscribe$.next();
     this._subscribe$.complete();
   }

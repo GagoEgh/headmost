@@ -283,6 +283,7 @@ export class FramesServService {
         this.text = this.validateForm.get('text')?.value;
 
         this.letterGet().subscribe((wordResult: WordResult[]) => {
+            console.log('word result magnit ', wordResult)
             this.letterImges = wordResult;
             this.letterImges = this.letterImges.filter(img => {
                 return !img.not_found
@@ -333,7 +334,6 @@ export class FramesServService {
                 }
                 imgs.push(obj)
             })
-          //  console.log('letter Imges ', this.letterImges)
 
             const order = {
                 frame: this.frame.id,
@@ -343,8 +343,6 @@ export class FramesServService {
                 text_in_bottom: this.btmText,
                 images: imgs,
             }
-
-            
 
             if (!this.apiPhoto) {
                 order.images = order.images.map((img: any) => {
@@ -411,6 +409,38 @@ export class FramesServService {
         }
 
     }
+
+    public frameHeigth = {} as { [key: string]: string };
+    public conteinerHeight(): void {
+        let height = {
+            height: '650px'
+        }
+
+        if (window.innerWidth <= 769) {
+            height.height = '400px';
+            this.frameHeigth = height
+        }
+
+        if (this.isOrder && window.innerWidth <= 2000) {
+            height.height = '1500px';
+            console.log('heigth ',this.frameHeigth)
+            console.log('order ',this.isOrder)
+            if (this.isOrder && window.innerWidth <= 1290) {
+                height.height = '1600px';
+                this.frameHeigth = height;
+            }
+
+            if (this.isOrder && window.innerWidth <= 769) {
+                height.height = '1305px';
+                this.frameHeigth = height
+            }
+
+            this.frameHeigth = height;
+        }
+
+        this.frameHeigth = height
+    }
+
 
 
 }

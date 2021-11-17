@@ -6,7 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ServerResponce} from 'src/app/interface/img-ramka';
+import { ServerResponce } from 'src/app/interface/img-ramka';
 import { UserImage } from 'src/app/interface/ImageResponse';
 
 
@@ -22,15 +22,15 @@ export class UserImagsComponent implements OnInit, AfterViewChecked {
   public scrollDistance = 3;
   public isSmsErr = false;
   public throttle = 300;
-  public msgErr_hy = '';
+  public msgErr_hy: string = '';
   public offset = 0;
   constructor(private msg: NzMessageService, public frames: FramesServService,
     private spinner: NgxSpinnerService, public _translate: TranslateService) { }
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
-    this._translate.get('ErroreMessage.imgErr').subscribe((res: any) => {
-      this.msgErr_hy = res
+    this._translate.get('ErroreMessage.imgErr').subscribe((erroreMessage: string) => {
+      this.msgErr_hy = erroreMessage
     })
 
   }
@@ -45,11 +45,10 @@ export class UserImagsComponent implements OnInit, AfterViewChecked {
     file.click()
   }
 
-  public hendler(ev: any): void {
-    let files: any = ev.target.files[0];
-    if (!ev.target.files.length) return
+  public hendler(ev: any ): void {
+    let files: File = ev.target?.files[0];
+    if (!ev.target.files?.length) return
     if (!files.type.match('image')) return
-
     const formData = new FormData();
     formData.append('user', this.frames.userData.user.toString())
     formData.append('image', files);
@@ -94,7 +93,7 @@ export class UserImagsComponent implements OnInit, AfterViewChecked {
     }))
   }
 
-  private ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this._subscribe$.next();
     this._subscribe$.complete();
   }

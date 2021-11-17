@@ -159,7 +159,6 @@
 
 .paragraph p{
  font-weight: 600;
- letter-spacing: 0.1rem;
  color: #212020;
 }
 
@@ -185,7 +184,7 @@
 }
 
 .buttonWrap {
- margin-top: 122px;
+ margin-top: 232px;
 }
   
 .save{
@@ -193,7 +192,7 @@
 }
 
 .create-bottom{
- margin-top: -210px;
+ margin-top: -156px;
 }
 
 .buttonWrap table {
@@ -231,45 +230,32 @@
 
 @media (max-width:1440px){
     .create-bottom{
-        margin-top: -230px;
+        margin-top: -190px;
     }
 }
 
-@media (max-width:1260px){
-    :host ::ng-deep app-order .wrap{
-        background-color: white;
-        width:95%;
+@media (max-width:1291px){
+    .create-bottom{
+        margin-top: -90px;
+    }
+}
+
+@media (max-width:937px){
+    :host ::ng-deep app-order .data{
         display: flex;
-        box-shadow: 3px 2px 22px 0 rgb(87 87 87);
-        padding: 40px;
+        justify-content: center;
+    }
+
+    :host ::ng-deep app-order .order{
+        height: 300px;
     }
 
     .create-bottom{
-        margin-top: -170px;
-    }
-}
-
-@media (max-width:1024px){
-    .create-bottom{
-        margin-top: -120px;
-    }
-}
-
-@media (max-width:970px){
-    .create-bottom{
-        margin-top: -370px;
+        margin-top: -385px;
     }
 }
 
 @media (max-width:768px){
-    :host ::ng-deep app-order .wrap{
-        background-color: white;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 3px 2px 22px 0 rgb(87 87 87);
-        height: 960px;
-    }
-
     .steps{
      width: 80%;
      flex-direction: column;
@@ -297,7 +283,7 @@
     }
 
     .create-bottom{
-        margin-top: -416px;
+        margin-top: -486px;
     }
 
     .buttonWrap{
@@ -350,35 +336,5 @@
     .paragraph p{
      letter-spacing: 0;
      font-weight: normal;
-    }
-}
-
-@media (max-width:426px){
-    .block{
-     top:60px;
-    }
-
-    .bg-fone{
-     width: 150px;
-    }
-
-
-}
-
-/* @media (max-width:376px){
-    .buttonWrap {
-     margin-top: -65px;
-    }
-} */
-
-@media (max-width:340px){
-    .create-bottom{
-        margin-top: -385px;
-    }
-}
-
-@media (max-width:320px){
-    .conteiner{
-     width: 350px;
     }
 }

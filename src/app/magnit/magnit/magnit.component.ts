@@ -19,7 +19,8 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
 
   private heigth: number | undefined;
   private width: number | undefined;
-
+  public lightSheme = {} as { [key: string]: string };
+  public blockStyle = {} as {[key:string]:string}
   constructor(public frames: FramesServService, public modalService: NgbModal,
     public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
     super(frames, modalService, rout, form);
@@ -33,7 +34,6 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     this.frames.letterImges = [];
     this.frames.isOrder = false;
     this.rout.navigate(['magnit/form-magnit']);
-
   }
 
   @HostListener('window:resize', ['$event'])
@@ -58,51 +58,47 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     if (window.innerWidth <= 426) {
       let num = window.innerWidth / 425;
       this.frames.magnit_scale = num - 0.6;
-
     }
-
+    this.conteinerHeight();
+    this.setStyle();
   }
 
 
-  public conteinerHeight(): object {
-    let winHeight = window.innerHeight
+  private conteinerHeight(): void {
     let height = {
       height: '650px'
     }
 
-    if (window.innerWidth <= 426 && this.frames.isOrder) {
-      height.height = '950px';
-      return height
+    if (window.innerWidth <= 2000 && this.frames.isOrder) {
+      height.height = '1350px';
+
+      if (window.innerWidth <= 1026 && this.frames.isOrder) {
+        height.height = '1300px';
+        this.lightSheme = height
+      }
+
+      if (window.innerWidth <= 768 && this.frames.isOrder) {
+        height.height = '1200px';
+        this.lightSheme = height
+      }
+
+      if (window.innerWidth <= 600 && this.frames.isOrder) {
+        height.height = '1000px';
+        this.lightSheme = height
+      }
+
+      this.lightSheme = height
     }
 
-    if (window.innerWidth <= 426) {
-      height.height = '500px';
-      return height
-    }
-
-    if (window.innerWidth <= 768 && this.frames.isOrder) {
-      height.height = '1450px';
-      return height
-    }
-
-    if (window.innerWidth <= 1025 && this.frames.isOrder) {
-      height.height = '1600px';
-      return height
-    }
-
-    if (window.innerWidth <= 1536 && this.frames.isOrder) {
-      height.height = '1550px';
-      return height
-    }
-
-    return height
+    this.lightSheme = height
   }
 
-  public setStyle(): object {
+  
+  private setStyle():void {
     let style = {
       transform: "translate(-50%, -5%)" + "scale(" + this.frames.magnit_scale + ")"
     }
-    return style
+    this.blockStyle = style;
   }
 
   private translateImgText(): void {

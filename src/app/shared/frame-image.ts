@@ -79,48 +79,10 @@ export class FrameImag {
         this.frames.letterColorFone();
     }
 
-    public frameHeigth = {} as { [key: string]: string };
-    public conteinerHeight(): void {
-        let height = {
-            height: '538px'
-        }
-
-        if (window.innerWidth <= 768) {
-            height.height = '400px';
-            this.frameHeigth = height
-        }
-
-
-        if (this.frames.isOrder && window.innerWidth <= 2000) {
-            height.height = '1300px';
-
-             
-            if (this.frames.isOrder && window.innerWidth <= 1260) {
-                height.height = '1450px';
-                this.frameHeigth = height;
-            }
-
-            if (this.frames.isOrder && window.innerWidth <= 970) {
-                height.height = '1200px';
-                this.frameHeigth = height
-            }
-
-            if (this.frames.isOrder && window.innerWidth <= 768) {
-                height.height = '1050px';
-                this.frameHeigth = height
-            }
-
-            this.frameHeigth = height;
-        }
-
-        this.frameHeigth = height
-    }
-
-
     public showFrame(): void {
 
         this.frames.showFrame();
-        this.conteinerHeight();
+        this.frames.conteinerHeight();
     }
 
 

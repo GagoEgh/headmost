@@ -1,19 +1,11 @@
-.body{
- background-color: rgba(187, 182, 182, 0.945) ;
-}
-
 .wrap{
- width: 1200px; 
+ width: 90%;
  transform-origin: top;
  display: flex;
  flex-direction: column;
- box-shadow: 3px 2px 10px 0 rgb(87 87 87);
- margin: 50px 0 250px 50%;
-}
-
-.login-form{
-  display: flex;
-  justify-content: space-around;
+ margin: 50px auto;
+ padding: 20px;
+ background-color: white;
 }
 
 .title-h1{
@@ -26,98 +18,113 @@
   letter-spacing: 1px;
   font-size: 40px;
   font-weight: 500;
-  color: #d8bc89;
+  color: #c79d51;
+}
+
+.order{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 1.3rem;
+}
+
+.login-form{
+  display: flex;
+  justify-content: space-around;
+  /* color: #c79d51; */
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 150px !important;
+  max-width: 300px !important;
+  width: 100% !important;
+}
+
+.border{
+  width: 3px;
+  height: inherit;
+  background-color: #c79d51;
+  margin-left: 100px;
 }
 
 .title{
- color: rgb(111 110 110);
- text-align: center;
+  color: #c79d51;
+  text-align: center;
+}
+
+.full-width{
+  width: 100%;
 }
 
 .data{
- display: flex;
- justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .letter-length{
- width: 250px;
- font-weight: 700;
- font-size: 14px;
- letter-spacing: 0.5px;
-}
-
-.ant-form-item {
-  margin: 0 0 5px !important;
-}
-
-.smoll{
- font-size: 0.7rem;
- color: #5a646d;
-}
-
-.data p {
- margin:0 0 0 1% ;
+  width: 250px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
 }
 
 .detalis-sum{
   width: 80px;
 }
 
+.smoll{
+  font-size: 0.7rem;
+  /* color: #5a646d; */
+  color: #c79d51;
+}
+
 .add-sum{
- width: 50px;
- font-weight: 700;
- font-size: 11px;
- padding-left: 10px;
+  width: 50px;
+  font-weight: 700;
+  font-size: 11px;
+  padding-left: 10px;
 }
 
-.ant-input {
- border-radius: 10px !important;
- width: 280px !important;
- margin-left: 37px !important;
+.symbol{
+  margin-left: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  /* color: black; */
+
+  color: #c79d51;
 }
 
-.ant-btn-primary {
+.sum{
+  color: red;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.login-form-button{
   display: block;
- width: 280px !important;
- border-radius: 10px;
- margin: 50px auto;
+  margin: 100px auto;
+  outline: none !important;
+  width: 300px;
+  background-color: #ebe8e8fd;
+  color:#c79d51;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 3px;
 }
 
-.version-info {
- font-size: 1rem;
- float: right;
- margin: 8px;
-}
-  
-.region{
- display: flex;
- flex-wrap: wrap;
- height: 50px;
+.label{
+  color: #c79d51
 }
 
-.erroreCountry{
- margin-top: -30px;
+:host::ng-deep.mat-select-value-text {
+  /* color: #c79d51  !important; */
 }
-
-.left{
-  margin-left: 45px;
-  font-size: 12px;
-}
-
-.ant-select {
- width: 280px;
- border-radius: 10px;
- margin-bottom: 30px;
-}
-
-::ng-deep .order-item .ant-select-arrow {
-  left: 105% !important;
-}
-
-::ng-deep .order-item .ant-select-clear {
-  left: 105% !important;
-}
-
 .noText{
   height:calc( 100vh - 270px );
 }
@@ -127,185 +134,37 @@
  font-weight: 800;
 }
 
-.symbol{
- margin-left: 15px;
- cursor: pointer;
- font-weight: bold;
- font-size: 16px;
- color: black;
-}
-
-.ant-form {
- font-weight: 800 !important;
-}
-
-::ng-deep.order-item .ant-form-item-control-inputnt-form-item{
-  width: 400px !important;
-}
-
-
-::ng-deep.ant-form-item-control-input-content {
-  flex: auto;
-  max-width: 100%;
-}
-
-.ant-form-item-label {
-  display: inline-block;
-  flex-grow: 1 !important;
-  overflow: visible !important;
-  text-align: right;
-  vertical-align: middle;
-}
-
-::ng-deep.ant-form-item-label>label {
-  font-size: 11px !important;
-  width: 180px !important;
-}
-
-::ng-deep .order-item .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
-  border-radius: 10px !important;
-  width: 280px !important;
-  margin-left: 37px !important;
-}
-
-.sum{
- color: red;
- font-size: 1.5rem;
- font-weight: bold;
- letter-spacing: 1px;
- text-align: center;
-}
-
-.red{
- color: red;
- margin-left: 140px;
- letter-spacing: 0.5px;
-}
-
-.order-message{
- margin-top: 100px;
- font-size: 20px;
- font-weight: 800;
- color: red
-}
-
-.shipping{
-  margin-top: -30px;
-} 
-
-.saleSum{
-  display: flex;
-}
-
-@media (max-width:1260px){
-  .sum{
-    margin-left: 5%;
-    font-size: 16px;
-  }
-}
-
 @media (max-width:1024px){
-  .wrap{
-    margin: 50px 0 200px 50%;
+  .sum{
+    margin-left: 150px;
   }
 }
 
-@media (max-width:769px){
-  .wrap{
-    /* margin: 50px 0 0 50%; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 600px;
-    /* height: 960px; */
-  }
-
+@media (max-width:936px){
   .login-form{
     display: flex;
     flex-direction: column;
-    align-items: center;
-  }
-  .title-h1 {
-    padding-top: 50px;
-    margin: 20px auto;
   }
 
-  .title-h2{
-    margin: 0 auto;
-    text-align: center;
-    padding-bottom: 20px;
+  .form{
+    align-self: center;
+  }
+  .border{
+    display: none;
   }
 
-  .ant-btn-primary{
-    margin: 50px 0 30px 140px !important;
+  .sum{
+    margin:30px auto;
   }
+}
 
-  .user-data{
-    padding: 50px 0 0 20px;
-    width: 500px; 
-    order: 2;
-  }
-
-  .order{
-    padding: 0;
-  }
-
-  .data{
-    font-size: 14px;
-  }
-
-  .letter-length {
-    width: 300px;
-    font-size: 18px;
+@media (max-width:768px){
+  .smoll{
+    font-size: 12px;
   }
 
   .add-sum{
     width: 80px;
     font-size: 18px;
   }
-
-  .sum{
-    left: 200px;
-    top:20px
-  }
-
-  .smoll{
-    font-size: 12px;
-  }
-  ::ng-deep.ant-form-item-label>label {
-    font-size: 12px !important;
-  }
-
-  ::ng-deep.ant-input{
-    border-radius: 10px !important;
-    width: 280px !important;
-    margin-left: 70px !important;
-  }
-
-
-}
-
-@media (max-width:426px){
-  ::ng-deep.ant-form-item-label>label {
-    left: -50% !important;
-  }
-
-  .wrap{
-    width: 500px;
-  }
-
-}
-
-@media (max-width:376px){
-  .wrap{
-    width: 350px;
-  }
-}
-
-
-@media (max-width:376px){
- .wrap{
-   width: fit-content;
- }
-
 }

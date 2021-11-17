@@ -80,6 +80,7 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/']);
     this.frames.isImg = true;
     this.frames.isOrder = false;
+    this.frames.conteinerHeight();
     this.frames.validateForm.reset()
   }
 

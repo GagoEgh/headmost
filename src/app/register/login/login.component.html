@@ -1,6 +1,3 @@
-<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
-  <p style="color: white"> Loading... </p>
-</ngx-spinner> -->
 <div class="modal-header">
   <h1>{{'Order.userData.logIn'|translate}}</h1>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
@@ -8,38 +5,33 @@
   </button>
 </div>
 <div class="modal-body">
-  <div class='login'>
-    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">{{'Order.userData.email'|translate}}
-        </nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="email">
-          <input nz-input formControlName="email" id="email" trim />
-        </nz-form-control>
-      </nz-form-item>
-      <ng-template #email>
-        <p *ngIf="erroreName('email')">{{erroreStr}}</p>
-      </ng-template>
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>{{'order.userData.password'|translate}}
-        </nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="pas">
-          <input nz-input type="password" id="password" formControlName="password" trim />
-        </nz-form-control>
-      </nz-form-item>
-      <ng-template #pas>
-        <p *ngIf="erroreName('password')">{{erroreStr}} </p>
-      </ng-template>
+    <form  [formGroup]="validateForm" (ngSubmit)="submitForm()" class="form">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>{{'Order.userData.email'|translate}}</mat-label>
+        <input matInput formControlName="email" id="email" trim [errorStateMatcher]="matcher">
+        <mat-error *ngIf="this.validateForm.get('email')?.hasError('required')">
+          <p>{{'ErroreMessage.required'|translate}}</p>
+        </mat-error>
+        <mat-error *ngIf="this.validateForm.get('email')?.hasError('email')">
+          <p>{{'ErroreMessage.isEmail'|translate}}</p>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>{{'Order.userData.password'|translate}}</mat-label>
+        <input matInput formControlName="password" id="password" type="password" trim [errorStateMatcher]="matcher">
+        <mat-error *ngIf="this.validateForm.get('pas')?.hasError('required')">
+          <p>{{'ErroreMessage.required'|translate}}</p>
+        </mat-error>
+        <mat-error *ngIf="this.validateForm.get('pas')?.hasError('minlength')">
+          <p>{{'ErroreMessage.minlength'|translate}} 6</p>
+        </mat-error>
+      </mat-form-field>
 
-      <nz-form-item nz-row>
-        <nz-form-control [nzSpan]="14" [nzOffset]="6">
-          <button nz-button nzType="primary" class="batn-media">{{'Order.userData.logIn'|translate}}</button>
-        </nz-form-control>
-      </nz-form-item>
+      <button mat-raised-button class="login-form-button">
+        {{'Order.userData.logIn'|translate}}</button>
+
       <p *ngIf='errorLog' [style.color]='"red"'>{{errorLog}}</p>
     </form>
-  </div>
-
 </div>
 <div class="modal-footer">
   <a (click)="open()">{{'Order.userData.register'|translate}}</a>

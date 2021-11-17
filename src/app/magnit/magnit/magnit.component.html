@@ -1,8 +1,8 @@
-<header class="lightSheme" [ngStyle]="conteinerHeight()" >
+<header class="lightSheme" [ngStyle]="lightSheme" >
   <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
   </ngx-spinner>
-  <div class="block" #block [ngStyle]="setStyle()">
+  <div class="block" #block [ngStyle]="blockStyle">
     <router-outlet></router-outlet>
   </div>
   <div class="center">

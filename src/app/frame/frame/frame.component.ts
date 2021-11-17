@@ -21,7 +21,6 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
   private width: number | undefined;
- // public frameHeigth = {} as { [key: string]: string };
   public catalogStyle = {} as { [key: string]: string };
 
   constructor(public frames: FramesServService, public modalService: NgbModal,
@@ -63,7 +62,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
         this.frames.scale = window.innerWidth / 1180;
       }
     }
-    this.conteinerHeight();
+    this.frames.conteinerHeight();
     this.setStyle();
   }
 
@@ -87,36 +86,6 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
       this.frames.background = bgDetails.results[0];
     })
   }
-
-  // private conteinerHeight(): void {
-  //   let height = {
-  //     height: '538px'
-  //   }
-
-  //   if (window.innerWidth <= 768) {
-  //     height.height = '400px';
-  //     this.frameHeigth = height
-  //   }
-   
-
-  //   if (this.frames.isOrder && window.innerWidth <= 2000) {
-  //     height.height = '1500px';
-
-  //     if (this.frames.isOrder && window.innerWidth <= 961) {
-  //       height.height = '1200px';
-  //       this.frameHeigth = height
-  //     }
-
-  //     if (this.frames.isOrder && window.innerWidth <= 768) {
-  //       height.height = '1050px';
-  //       this.frameHeigth = height
-  //     }
-
-  //     this.frameHeigth = height;
-  //   }
-
-  //   this.frameHeigth = height
-  // }
 
   private setStyle(): void {
     let style = {

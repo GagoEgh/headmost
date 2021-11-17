@@ -53,6 +53,7 @@ registerLocaleData(en);
     })
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
   providers: [{ provide: NZ_I18N, useValue: en_US }, UserGuard],
   bootstrap: [AppComponent]
 })

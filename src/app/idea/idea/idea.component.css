@@ -10,10 +10,11 @@
 
 .img-idea{
  padding: 10px 4px;
+ width: 100%;
 }
 
 .imgs{
- width: 280px;
+ width: inherit;
  height: 200px;
  background-position: center;
  background-size: 100% 100%;
@@ -22,13 +23,11 @@
 .idea-info{
  display: flex;
  justify-content: space-between;
- width: 280px;
  background: #eceaea;
 }
 
 .titles{
  cursor: pointer;
- padding: 10px;
 }
 
 .titles div{
@@ -44,51 +43,13 @@
 }
 
 .img-title{
- width: 190px;
  font-size: 14px;
  font-weight: bold;
  color: #151414e0;
  margin: 0;
 }
 
-
 .order{
- background-image: url('/assets/1x/cart2.png');
- background-size: 100% 100%;
- background-position: center;
- display: block;
- width: 54px;
- margin-top: 0px;
- border: 0px;
+ padding: 5px;
  cursor: pointer;  
-}
-
-
-@media (max-width:1025px){
-    .main{
-     padding: 120px;
-    }
-
-    .img-idea{
-     padding: 10px 20px;
-    }
-}
-
-@media (max-width:980px){
-    .img-idea{
-     margin:  20px auto;
-    }
-}
-
-@media (max-width:426px){
-    .img-idea{
-     margin-left: -85px;
-    }
-}
-
-@media (max-width:376px){
-    .main{
-     padding: 85px;
-     width: 320px;
-    }
 }

@@ -115,7 +115,7 @@
         "checkPass":"you filled in the field incorrectly",
         "bigDate":"Wrong date",
         "textErrNum":"write number",
-        "titleLength":"The number of letters is 20",
+        "titleLength":"The number of letters is",
         "noUsser":"TO UPLOAD IMAGES, YOU NEED TO REGISTER",
         "emailMassage":"This email is busy",
         "noMobile":"Sign in with a computer to access the site"

@@ -1,7 +1,7 @@
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterComponent } from '../register/register.component';
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,7 +10,15 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { RegisterResult } from 'src/app/interface/register-response';
 import { ServerResponce } from 'src/app/interface/img-ramka';
+import { FormGroupDirective, NgForm } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-login',
@@ -18,9 +26,9 @@ import { ServerResponce } from 'src/app/interface/img-ramka';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, DoCheck {
-  validateForm: FormGroup = new FormGroup({});
+  public validateForm: FormGroup = new FormGroup({});
+  public matcher = new MyErrorStateMatcher();
   public _subscribe$ = new Subject();
-  public erroreStr: string = '';
   public errorLog: string = '';
 
   constructor(public activeModal: NgbActiveModal, private modalService: NgbModal, public _translate: TranslateService,
@@ -40,15 +48,6 @@ export class LoginComponent implements OnInit, DoCheck {
     }
   }
 
-  public erroreName(formName: string): string {
-    this._translate.get('ErroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
-      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res.required;
-      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res.minlength} 6`;
-      if (this.validateForm.get(formName)?.hasError('email')) this.erroreStr = res.isEmail;
-    })
-    return this.erroreStr;
-  }
-
   public submitForm(): void {
     for (const i in this.validateForm.controls) {
       if (this.validateForm.controls.hasOwnProperty(i)) {
@@ -62,7 +61,7 @@ export class LoginComponent implements OnInit, DoCheck {
     }
     if (this.validateForm.valid) {
 
-      this.frames.userLogin(userLog).pipe(takeUntil(this._subscribe$)).subscribe((register:RegisterResult) => {
+      this.frames.userLogin(userLog).pipe(takeUntil(this._subscribe$)).subscribe((register: RegisterResult) => {
         this.spinner.show();
         this.frames.token = 'Token ' + register.token;
         this.frames.userData = register.user_details;
@@ -71,8 +70,8 @@ export class LoginComponent implements OnInit, DoCheck {
         this.activeModal.dismiss();
         this.validateForm.reset();
         this.frames.userReg = false;
-        
-        this.frames.userInfo().pipe(takeUntil(this._subscribe$)).subscribe((serverResponce:ServerResponce<[]>) => {
+
+        this.frames.userInfo().pipe(takeUntil(this._subscribe$)).subscribe((serverResponce: ServerResponce<[]>) => {
           this.frames.orderList = serverResponce.results;
           this.frames.orderList.forEach((obj: any) => {
             this.frames.sum += obj.created_frame_details.price;

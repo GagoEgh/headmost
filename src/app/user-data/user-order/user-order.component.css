@@ -116,46 +116,38 @@ ul{
 }
  
 .levt-nav{ 
-  left: -48px;
+  background-image: url('/assets/1x/navigate/grey-Rnav.png');
 }
 
 .myWrap{
   display: flex;
-  /* justify-content: space-between; */
-  /* justify-content: center; */
   width: fit-content;
   position: relative;
-  /* align-self: center; */
+  margin: 0 auto;
 }
-
- 
-.myWrap:hover .levt-nav{
-  opacity: 1;
-  background-image: url('/assets/1x/navigate/grey-Rnav.png');
-} 
  
 .reight-nav{
-  right: -48px;
-}
- 
-.myWrap:hover .reight-nav{
-  opacity: 1;
   background-image: url('/assets/1x/navigate/grey-Lnav.png');
-} 
+}
 
 .levt-nav, .reight-nav{
+  display: block;
   background-position: center;
   background-size: 100% 100%;
-  position: absolute;
-  top:90px;
   height: 40px;
   width: 40px;
   outline: none;
   border: none;
   background-color: transparent;
-  opacity: 0;
+  align-self: center;
 }
  
+.flex-img{
+  justify-content: space-between;
+  display: flex;
+  width: 1000px;
+}
+
 .reight,.left{
   display: flex;
   flex-direction: column;

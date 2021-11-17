@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component,OnInit } from '@angular/core';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -11,6 +11,15 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ServerResponce } from 'src/app/interface/img-ramka';
 import { PromoCodeResults, ShipingResult } from 'src/app/interface/order-response';
 import { CardItemResults } from 'src/app/interface/frame-response';
+import { FormGroupDirective, NgForm } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-order',
@@ -21,22 +30,19 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   public validateForm: FormGroup = new FormGroup({});
   public _subscribe$ = new Subject();
   public erroreStr: string = '';
-  private heigth: number | undefined;
-  private width: number | undefined;
   public promoError: string = '';
   public shiping: any[] = [];
-  public scale: number = 1;
   public promoId: null | number = null;
   private sumInit: number = 0;
   private count: number = 0;
-  public wrapStyle = {} as { [key: string]: string }
-  @ViewChild("wrap", { static: false }) wrap: ElementRef | undefined;
-
+  public matcher = new MyErrorStateMatcher();
+  private userName:string = '';
   constructor(public frames: FramesServService, private fb: FormBuilder, public modalService: NgbModal,
     public _translate: TranslateService, public valid: ValidationServService) {
   }
 
   ngOnInit(): void {
+    this.userName = this.frames.userData.user_details.first_name;
     this.frames.cityPlaceholder()
     this.frames.isdisible = false;
     this.frames.isMyOrder = false;
@@ -45,41 +51,20 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this.frames.sum = this.sumInit > this.frames.sum ? this.sumInit : this.frames.sum
     this.frames.userCountry();
     this.orderFormValidation();
-    setTimeout(()=>{
-      this.onResize()
-    })
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    this.width = this.wrap?.nativeElement.clientWidth | 1;
-
-    if (window.innerWidth <= 1165) {
-      this.scale = window.innerWidth / this.width - 0.3;
-
-      if (window.innerWidth <= 769) {
-        this.scale = 0.9
-        this.scale = window.innerWidth / 769 - 0.2;
-
-      }
-    }
-
-    this.setStyle(this.frames.isTop ? 8 : 0);
   }
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
     this.frames.cityPlaceholder()
-    this.onResize();
   }
 
   private orderFormValidation(): void {
     this.validateForm = this.fb.group({
-      frstName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
-      email: [null, [Validators.required, this.valid.emailValid]],
-      phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
-      country: [null, [Validators.required]],
-      addres: [null, [Validators.required]],
+      frstName: [this.userName, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
+      email: [this.frames.userData.user_details.username, [Validators.required, this.valid.emailValid]],
+      phoneNumber: [this.frames.userData.phone_number, [Validators.required, this.valid.PhoneNumberLength]],
+      country: [this.frames.userData.city, [Validators.required]],
+      addres: [this.frames.userData.address, [Validators.required]],
       shipping: [null, [Validators.required]],
       comment: ['', [Validators.maxLength(20)]],
       sale: ['', [Validators.maxLength(6), this.noText]],
@@ -97,27 +82,6 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this.frames.shipingMethod().pipe(takeUntil(this._subscribe$)).subscribe((shipings: ServerResponce<ShipingResult[]>) => {
       this.shiping = shipings.results;
     })
-  }
-
-  private setStyle(num: number): void {
-    let style = {
-      transform: "translate(-50%, " + num + "% )" + "scale(" + this.scale + ")"
-    }
-    this.wrapStyle = style
-  }
-
-  public erroreName(formName: string): string {
-    this._translate.get('ErroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((erroreMessage: {[key:string]:string}) => {
-      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = erroreMessage.required;
-      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${erroreMessage.minlength} 3 `;
-      if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = erroreMessage.userNameChar;
-      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = erroreMessage.isEmail;
-      if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = erroreMessage.isSize;
-      if (this.validateForm.get(formName)?.hasError('noText')) this.erroreStr = erroreMessage.textErr;
-      if (this.validateForm.get(formName)?.hasError('maxlength')) this.erroreStr = erroreMessage.titleLength;
-    })
-
-    return this.erroreStr;
   }
 
   private noText(control: FormControl): object | null {
@@ -160,6 +124,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       modalRef.componentInstance.validateForm = this.validateForm;
       modalRef.componentInstance.count = this.count;
       modalRef.componentInstance.order = order;
+      this.userName = order.full_name
     }
 
   }
@@ -183,11 +148,11 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  public deleteDate(obj: CardItemResults): void {
-    this.frames.deleteOrder(obj.id).pipe(takeUntil(this._subscribe$)).subscribe(() => {
-      this.frames.sum -= obj.created_frame_details.price;
+  public deleteDate(card: CardItemResults): void {
+    this.frames.deleteOrder(card.id).pipe(takeUntil(this._subscribe$)).subscribe(() => {
+      this.frames.sum -= card.created_frame_details.price;
       this.frames.orderList = this.frames.orderList.filter((val: CardItemResults) => {
-        return val.id != obj.id
+        return val.id != card.id
       })
       if (this.frames.orderList.length === 0) {
         this.frames.showFrame()

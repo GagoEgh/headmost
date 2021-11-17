@@ -5,11 +5,20 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { NzI18nService } from 'ng-zorro-antd/i18n';
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NgxSpinnerService } from "ngx-spinner";
 import { RegisterResult } from 'src/app/interface/register-response';
+import { FormGroupDirective, NgForm } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 
 @Component({
@@ -17,72 +26,35 @@ import { RegisterResult } from 'src/app/interface/register-response';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit, AfterViewChecked {
+export class RegisterComponent implements OnInit {
+
   public validateForm: FormGroup = new FormGroup({});
   public _subscribe$ = new Subject();
   private checkPass = this.validateForm.get('pasRev');
-  private selectedValue: any[] = [];
-  public erroreStr: string = '';
-  private shiping: any[] = [];
   public emailMassage: string = '';
+  public matcher = new MyErrorStateMatcher();
 
   constructor(public activeModal: NgbActiveModal, public fb: FormBuilder, public i18n: NzI18nService, public _translate: TranslateService,
     public frames: FramesServService, private spinner: NgxSpinnerService, public modalService: NgbModal, public valid: ValidationServService) { }
-
-  ngAfterViewChecked(): void {
-    this.styleFlex();
-  }
 
   ngOnInit(): void {
     this.spinner.show();
     setTimeout(() => {
       this.spinner.hide()
     }, 1500)
-    this.styleFlex();
     this.frames.cityPlaceholder();
     this.frames.userCountry();
+
     this.validateForm = this.fb.group({
-      frstName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50), this.valid.userNameChar]],
-      lastName: [null, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
+      frstName: [null, [ Validators.minLength(3),Validators.required, Validators.maxLength(50), this.valid.userNameChar]],
+      lastName: [null, [Validators.required, Validators.minLength(3),Validators.maxLength(50), this.valid.userNameChar]],
       phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
       pas: [null, [Validators.required, Validators.minLength(6)]],
       pasRev: [null, [Validators.required, Validators.minLength(6), this.passwordReview.bind(this)]],
       email: [null, [Validators.required, this.valid.emailValid]],
       country: [null, [Validators.required]],
       date: [null, [Validators.required, this.valid.bigDate]],
-
     });
-
-  }
-
-  public styleFlex(): object {
-    let flex = {
-      'display': 'flex',
-      'flex-wrap': 'wrap',
-      'max-width': '800px'
-    }
-
-    if (window.innerWidth <= 768) {
-      flex['max-width'] = 'fit-content';
-      return flex
-    }
-    return flex
-  }
-
-  public erroreName(formName: string): string {
-    this._translate.get('ErroreMessage').pipe(takeUntil(this._subscribe$)).subscribe((res: any) => {
-      let size = 3;
-      if (formName === 'pas') size = 6
-      if (this.validateForm.get(formName)?.hasError('required')) this.erroreStr = res.required;
-      if (this.validateForm.get(formName)?.hasError('minlength')) this.erroreStr = `${res.minlength} ${size} `;
-      if (this.validateForm.get(formName)?.hasError('maxlength')) this.erroreStr = `${res.maxLength}`;
-      if (this.validateForm.get(formName)?.hasError('userNameChar')) this.erroreStr = res.userNameChar;
-      if (this.validateForm.get(formName)?.hasError('isEmail')) this.erroreStr = res.isEmail;
-      if (this.validateForm.get(formName)?.hasError('isSize')) this.erroreStr = res.isSize;
-      if (this.validateForm.get(formName)?.hasError('passwordReview')) this.erroreStr = res.checkPass;
-      if (this.validateForm.get(formName)?.hasError('bigDate')) this.erroreStr = res.bigDate
-    })
-    return this.erroreStr;
   }
 
   private passwordReview(control: FormControl): object | null {
@@ -125,7 +97,7 @@ export class RegisterComponent implements OnInit, AfterViewChecked {
     }
 
     if (this.validateForm.valid) {
-      this.frames.userRegisterPost(userDetalis).pipe(takeUntil(this._subscribe$)).subscribe(( register: RegisterResult) => {
+      this.frames.userRegisterPost(userDetalis).pipe(takeUntil(this._subscribe$)).subscribe((register: RegisterResult) => {
         this.frames.isRegister = true;
         this.frames.userData = register.user_details;
         const modalRef = this.modalService.open(OkRegisterComponent);

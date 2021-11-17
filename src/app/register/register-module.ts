@@ -9,6 +9,7 @@ import { NgModule } from "@angular/core";
     imports: [
         SharedModule,
     ],
+ 
     exports: [RouterModule],
 })
 export class RegisterModule { }

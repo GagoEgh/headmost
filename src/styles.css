@@ -3,6 +3,9 @@
 /* @import '~ngx-toastr/toastr-bs4-alert'; */
 @import '~ngx-toastr/toastr';
 
+@import url('https://fonts.googleapis.com/css2?family=Praise&display=swap');
+
+
 *{
     font-family: Montserrat;  
 }
@@ -323,4 +326,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
 
 }
+
+
+
+
+ /* new  */
+
+
+
+
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    padding: 0.2em 0.2em 0 0.2em !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-infix {
+    padding: 0.2em 0 0.5em 0 !important;
+}
+
+
+
 
