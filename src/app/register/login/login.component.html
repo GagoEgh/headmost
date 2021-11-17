@@ -1,4 +1,4 @@
-<div class="modal-header">
+<div class="modal-header title-h1">
   <h1>{{'Order.userData.logIn'|translate}}</h1>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
     <span aria-hidden="true">&times;</span>
@@ -7,7 +7,7 @@
 <div class="modal-body">
     <form  [formGroup]="validateForm" (ngSubmit)="submitForm()" class="form">
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{'Order.userData.email'|translate}}</mat-label>
+        <mat-label class="label">{{'Order.userData.email'|translate}}</mat-label>
         <input matInput formControlName="email" id="email" trim [errorStateMatcher]="matcher">
         <mat-error *ngIf="this.validateForm.get('email')?.hasError('required')">
           <p>{{'ErroreMessage.required'|translate}}</p>
@@ -17,12 +17,12 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{'Order.userData.password'|translate}}</mat-label>
+        <mat-label class="label">{{'Order.userData.password'|translate}}</mat-label>
         <input matInput formControlName="password" id="password" type="password" trim [errorStateMatcher]="matcher">
-        <mat-error *ngIf="this.validateForm.get('pas')?.hasError('required')">
+        <mat-error *ngIf="this.validateForm.get('password')?.hasError('required')">
           <p>{{'ErroreMessage.required'|translate}}</p>
         </mat-error>
-        <mat-error *ngIf="this.validateForm.get('pas')?.hasError('minlength')">
+        <mat-error *ngIf="this.validateForm.get('password')?.hasError('minlength')">
           <p>{{'ErroreMessage.minlength'|translate}} 6</p>
         </mat-error>
       </mat-form-field>

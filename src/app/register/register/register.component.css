@@ -30,9 +30,5 @@
 }
 
 .login-form-button{
-  display: block;
-  margin: 100px auto;
-  background-color:  rgba(0,0,0,.06);
-  outline: none !important;
-  width: 300px !important;
+  margin: 100px auto; 
 }

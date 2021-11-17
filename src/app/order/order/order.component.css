@@ -13,14 +13,6 @@
   margin: 0 auto;
 }
 
-.title-h1 h1{
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 40px;
-  font-weight: 500;
-  color: #c79d51;
-}
-
 .order{
   display: flex;
   flex-direction: column;
@@ -106,25 +98,6 @@
   text-align: center;
 }
 
-.login-form-button{
-  display: block;
-  margin: 100px auto;
-  outline: none !important;
-  width: 300px;
-  background-color: #ebe8e8fd;
-  color:#c79d51;
-  font-weight: bold;
-  font-size: 18px;
-  letter-spacing: 3px;
-}
-
-.label{
-  color: #c79d51
-}
-
-:host::ng-deep.mat-select-value-text {
-  /* color: #c79d51  !important; */
-}
 .noText{
   height:calc( 100vh - 270px );
 }
@@ -134,13 +107,18 @@
  font-weight: 800;
 }
 
+.login-form-button{
+  display: block;
+  margin: 100px auto;
+}
+
 @media (max-width:1024px){
   .sum{
     margin-left: 150px;
   }
 }
 
-@media (max-width:936px){
+@media (max-width:970px){
   .login-form{
     display: flex;
     flex-direction: column;
@@ -149,6 +127,7 @@
   .form{
     align-self: center;
   }
+
   .border{
     display: none;
   }
@@ -156,6 +135,24 @@
   .sum{
     margin:30px auto;
   }
+
+  /*    */
+
+  .card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .data{
+    display: flex;
+    justify-content: center;
+  }
+
+  .order{
+    height: 300px;
+  }
+
 }
 
 @media (max-width:768px){

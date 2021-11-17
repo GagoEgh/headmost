@@ -49,7 +49,8 @@
         <td class="center">
           <div>
             <b></b>
-            <button type="submit" (click)='onSubmit()' class='makeAWord_3' *ngIf='frames.isImg'>
+            <button type="submit" (click)='onSubmit()' class='makeAWord_3'
+             [disabled]='frames.validateForm.pristine' *ngIf='frames.isImg'>
               {{'ImgTextValid.createWord'|translate}}
             </button>
             <button class="makeAWord_3 save" (click)='frames.myOrder()' 
@@ -92,7 +93,7 @@
     </div>
   </div>
   <div class="wrap2">
-    <div class="right-arrow"></div>
+    <div class="right-arrow arrow-3"></div>
     <div class="step-content step3">
       <div class="get"></div>
       <div class="info-block">

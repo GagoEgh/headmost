@@ -122,6 +122,10 @@
  box-shadow: 3px 2px 22px 0 rgb(87 87 87);
 }
 
+:host ::ng-deep app-order .border{
+    margin-left: 50px;
+}
+
 .steps{
  background: white;
  display: flex;
@@ -183,6 +187,7 @@
  margin: 80px auto;
 }
 
+
 .buttonWrap {
  margin-top: 232px;
 }
@@ -228,7 +233,12 @@
  outline: none;
 } 
 
-@media (max-width:1440px){
+:host ::ng-deep app-order .order{
+   padding-left: 20px;
+}
+
+
+@media (max-width:2000px){
     .create-bottom{
         margin-top: -190px;
     }
@@ -237,6 +247,32 @@
 @media (max-width:1291px){
     .create-bottom{
         margin-top: -90px;
+    }
+}
+
+@media (max-width:1201px){
+   .steps{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   }
+
+    .step-content{
+        width: 280px;
+    }
+
+    .right-arrow{
+        margin-top: 100px;
+    }
+
+    .arrow-3{
+        display: none;
+    }
+}
+
+@media (max-width:970px){
+    .create-bottom{
+        margin-top: -390px;
     }
 }
 
@@ -256,34 +292,12 @@
 }
 
 @media (max-width:768px){
-    .steps{
-     width: 80%;
-     flex-direction: column;
-     margin: 0 auto;
-    }
-
-    .right-arrow{
-     display: none;
-    }
-
     .save{
      margin-top: -76px;
     }
 
-    .step1{
-        margin-left: 40px;
-    }
-
-    .step3{
-        margin-left: 50px;
-    }
-
-    .step4{
-        margin-left: 40px;
-    }
-
     .create-bottom{
-        margin-top: -486px;
+        margin-top: -488px;
     }
 
     .buttonWrap{
@@ -318,6 +332,9 @@
 
     }
 
+    .right-arrow{
+        display: none;
+    }
     .select,.get,.donate,.compile{
      margin:0 10px 0 0;
     }

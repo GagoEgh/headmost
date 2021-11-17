@@ -2,8 +2,8 @@
   <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
   </ngx-spinner>
-  <div class="modal-header">
-    <h1>{{'Menu.user.exit'|translate}}</h1>
+  <div class="modal-header title-h1">
+    <h1>{{'Menu.user.save'|translate}}</h1>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -12,7 +12,7 @@
     <form  [formGroup]="validateForm" (ngSubmit)="submitForm()" class="form">
       <div class="col column-1">
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label>{{'Order.userData.frstName'|translate}}</mat-label>
+          <mat-label class="label">{{'Order.userData.frstName'|translate}}</mat-label>
           <input type="text" matInput formControlName="frstName" id="frstName" trim [errorStateMatcher]="matcher">
           <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('required')">
             <p>{{'ErroreMessage.required'|translate}}</p>
@@ -28,7 +28,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label>{{'Order.userData.lastName'|translate}}</mat-label>
+          <mat-label class="label">{{'Order.userData.lastName'|translate}}</mat-label>
           <input type="text" matInput formControlName="lastName" id="lastName" trim [errorStateMatcher]="matcher">
           <mat-error *ngIf="this.validateForm.get('lastName')?.hasError('required')">
             <p>{{'ErroreMessage.required'|translate}}</p>
@@ -43,11 +43,8 @@
             <p>{{'ErroreMessage.userNameChar'|translate}}</p>
           </mat-error>
         </mat-form-field>
-
-
-
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label>{{'Order.userData.phoneNumber'|translate}}</mat-label>
+          <mat-label class="label">{{'Order.userData.phoneNumber'|translate}}</mat-label>
           <input matInput formControlName="phoneNumber" type='tel' id="phoneNumber" mask='(000)00-00-00'
             [errorStateMatcher]="matcher" trim>
           <mat-error *ngIf="this.validateForm.get('phoneNumber')?.hasError('required')">
@@ -55,12 +52,12 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label>{{'Order.userData.email'|translate}}</mat-label>
+          <mat-label class="label">{{'Order.userData.email'|translate}}</mat-label>
           <input matInput formControlName="email" id="email" trim [errorStateMatcher]="matcher">
           <mat-error *ngIf="this.validateForm.get('email')?.hasError('required')">
             <p>{{'ErroreMessage.required'|translate}}</p>
           </mat-error>
-          <mat-error *ngIf="this.validateForm.get('email')?.hasError('isEmail')">
+          <mat-error *ngIf="this.validateForm.get('email')?.hasError('pattern')">
             <p>{{'ErroreMessage.isEmail'|translate}}</p>
           </mat-error>
         </mat-form-field>
@@ -69,7 +66,7 @@
       <div class="col column-2">
         
         <mat-form-field appearance="fill">
-          <mat-label>{{'Order.userData.date'|translate}}</mat-label>
+          <mat-label class="label">{{'Order.userData.date'|translate}}</mat-label>
           <input matInput [matDatepicker]="picker" [errorStateMatcher]="matcher" formControlName='date'>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
@@ -82,7 +79,7 @@
         </mat-form-field>
         
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label>{{'Order.userData.country'|translate}}</mat-label>
+          <mat-label class="label">{{'Order.userData.country'|translate}}</mat-label>
           <mat-select [placeholder]="frames.country_placeholder" formControlName='country'>
             <mat-optgroup *ngFor='let country of frames.selectedValue' [label]='country["name_"+frames.lang]'>
               <mat-select>
@@ -100,7 +97,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label>{{'Order.userData.password'|translate}}</mat-label>
+          <mat-label class="label">{{'Order.userData.password'|translate}}</mat-label>
           <input matInput formControlName="pas" id="pas" type="password" trim [errorStateMatcher]="matcher">
           <mat-error *ngIf="this.validateForm.get('pas')?.hasError('required')">
             <p>{{'ErroreMessage.required'|translate}}</p>
@@ -110,7 +107,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label>{{'Order.userData.passwordReset'|translate}}</mat-label>
+          <mat-label class="label">{{'Order.userData.passwordReset'|translate}}</mat-label>
           <input matInput formControlName="pasRev" id="pasRev" type="password" [errorStateMatcher]="matcher" trim
             [errorStateMatcher]="matcher">
           <mat-error *ngIf="this.validateForm.get('pasRev')?.hasError('required')">

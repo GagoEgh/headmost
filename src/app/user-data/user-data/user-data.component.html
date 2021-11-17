@@ -5,7 +5,7 @@
   <div class="login-form">
     <div class="form-1">
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label> {{'Order.userData.frstName'| translate}} </mat-label>
+        <mat-label class="label"> {{'Order.userData.frstName'| translate}} </mat-label>
         <input type="text" matInput formControlName="frstName" id="frstName" [errorStateMatcher]="matcher" trim>  
         <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('required')">
           <p>{{'ErroreMessage.required'|translate}}</p>
@@ -21,7 +21,7 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{'Order.userData.lastName'|translate}}</mat-label>
+        <mat-label class="label">{{'Order.userData.lastName'|translate}}</mat-label>
         <input type="text" matInput formControlName="last" id="last" trim [errorStateMatcher]="matcher">
         <mat-error *ngIf="this.validateForm.get('last')?.hasError('required')">
           <p>{{'ErroreMessage.required'|translate}}</p>
@@ -37,14 +37,14 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{'Order.userData.addres'|translate}}</mat-label>
+        <mat-label class="label">{{'Order.userData.addres'|translate}}</mat-label>
         <input matInput type="text" formControlName="addres" id="add" [errorStateMatcher]="matcher">
         <mat-error *ngIf="this.validateForm.get('addres')?.hasError('required')">
           <p>{{'ErroreMessage.required'|translate}}</p>
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{'Order.userData.email'|translate}}</mat-label>
+        <mat-label class="label">{{'Order.userData.email'|translate}}</mat-label>
         <input type="email" matInput formControlName="email" id="email" [errorStateMatcher]="matcher" trim>   
         <mat-error *ngIf="this.validateForm.get('email')?.hasError('required')">
           <p>{{'ErroreMessage.required'|translate}}</p>
@@ -56,7 +56,7 @@
     </div>
     <div class="form-1">
       <mat-form-field appearance="fill">
-        <mat-label>{{'Order.userData.brtDay'|translate}}</mat-label>
+        <mat-label class="label">{{'Order.userData.brtDay'|translate}}</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="date"
           [errorStateMatcher]="matcher" formControlName='date'>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -69,14 +69,14 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{'Order.userData.phoneNumber'|translate}}</mat-label>
+        <mat-label class="label">{{'Order.userData.phoneNumber'|translate}}</mat-label>
         <input matInput type="tel" mask='(000)00-00-00' formControlName="phoneNumber" id="phoneNumber" [errorStateMatcher]="matcher">      
         <mat-error *ngIf="this.validateForm.get('phoneNumber')?.hasError('required')">
           <p>{{'ErroreMessage.required'|translate}}</p>
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{'Order.userData.country'|translate}}</mat-label>
+        <mat-label class="label">{{'Order.userData.country'|translate}}</mat-label>
         <mat-select formControlName='country'>
           <mat-optgroup *ngFor='let country of frames.selectedValue' [label]='country["name_"+frames.lang]'>
             <mat-select>
@@ -93,7 +93,7 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>{{'Order.userData.password'|translate}}</mat-label>
+        <mat-label class="label">{{'Order.userData.password'|translate}}</mat-label>
         <input matInput formControlName="pas" id="pas" type="password" trim [errorStateMatcher]="matcher">
         <mat-error *ngIf="this.validateForm.get('pas')?.hasError('required')">
           <p>{{'ErroreMessage.required'|translate}}</p>

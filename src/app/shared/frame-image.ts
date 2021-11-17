@@ -80,7 +80,6 @@ export class FrameImag {
     }
 
     public showFrame(): void {
-
         this.frames.showFrame();
         this.frames.conteinerHeight();
     }

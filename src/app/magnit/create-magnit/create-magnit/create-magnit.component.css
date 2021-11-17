@@ -84,6 +84,11 @@
  margin: 0 auto;
 }
 
+
+:host ::ng-deep app-order .order{
+    padding-left: 20px;
+}
+ 
 @media (max-width:1025px){
     .center{
         display: block;

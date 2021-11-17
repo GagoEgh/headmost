@@ -19,8 +19,8 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
 
   private heigth: number | undefined;
   private width: number | undefined;
-  public lightSheme = {} as { [key: string]: string };
-  public blockStyle = {} as {[key:string]:string}
+  public lightSheme = '';
+  public blockStyle = {} as { [key: string]: string }
   constructor(public frames: FramesServService, public modalService: NgbModal,
     public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
     super(frames, modalService, rout, form);
@@ -70,31 +70,31 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     }
 
     if (window.innerWidth <= 2000 && this.frames.isOrder) {
-      height.height = '1350px';
+      this.lightSheme = '1450px'
+
+      if (window.innerWidth <= 1440 && this.frames.isOrder) {
+        this.lightSheme = '1250px';
+      }
 
       if (window.innerWidth <= 1026 && this.frames.isOrder) {
-        height.height = '1300px';
-        this.lightSheme = height
+        this.lightSheme = '1300px';
+      }
+      if (window.innerWidth <= 971 && this.frames.isOrder) {
+        this.lightSheme = '1500px';
       }
 
       if (window.innerWidth <= 768 && this.frames.isOrder) {
-        height.height = '1200px';
-        this.lightSheme = height
+        this.lightSheme = '1300px';
       }
 
       if (window.innerWidth <= 600 && this.frames.isOrder) {
-        height.height = '1000px';
-        this.lightSheme = height
+        this.lightSheme = '1000px';
       }
-
-      this.lightSheme = height
     }
-
-    this.lightSheme = height
   }
 
-  
-  private setStyle():void {
+
+  private setStyle(): void {
     let style = {
       transform: "translate(-50%, -5%)" + "scale(" + this.frames.magnit_scale + ")"
     }

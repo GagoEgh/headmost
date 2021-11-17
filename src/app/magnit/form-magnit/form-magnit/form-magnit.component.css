@@ -1,8 +1,7 @@
 .magnit{
- height: 480px;
- width: 60%;
- min-width: 930px;
- margin: 10px auto;
+ height: 550px;
+ width: 70%;
+ min-width: 1050px;
  background: url('src/assets/1x/magnit.jpg')  no-repeat 0 0 #fbfbfb;
 }
 

@@ -19,13 +19,6 @@
 .login-form-button{
   display: block;
   margin: 20px auto;
-  outline: none !important;
-  background-color: rgba(0, 1, 255, 0.5);
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  letter-spacing: 3px;
-  width: 300px;
 }
 
 :host ::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {

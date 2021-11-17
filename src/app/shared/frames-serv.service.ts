@@ -283,7 +283,6 @@ export class FramesServService {
         this.text = this.validateForm.get('text')?.value;
 
         this.letterGet().subscribe((wordResult: WordResult[]) => {
-            console.log('word result magnit ', wordResult)
             this.letterImges = wordResult;
             this.letterImges = this.letterImges.filter(img => {
                 return !img.not_found

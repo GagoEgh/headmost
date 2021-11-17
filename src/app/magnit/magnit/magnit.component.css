@@ -1,6 +1,8 @@
 .lightSheme{
  background: url('src/assets/1x/bg_magnit.jpg') repeat 0 0;
  margin-top: 10px;
+ display: flex;
+ flex-direction: column;
 }
 
 .block{
@@ -22,7 +24,6 @@
 
 .makeAWord_3 {
   outline: none;
-  margin: 20px auto;
 }
 
 .create-bottom{
@@ -41,9 +42,28 @@
   box-shadow: 3px 2px 22px 0 rgb(87 87 87);
 }
 
+.center{
+  align-self: center;
+  margin-top: -40px;
+}
+
+@media (max-width:1441px){
+  .create-bottom{
+    margin-top:-300px;
+  } 
+
+}
+
+
 @media (max-width:1026px){
   .create-bottom{
     margin-top:-100px;
+  } 
+}
+
+@media (max-width:971px){
+  .create-bottom{
+    margin-top:-240px;
   } 
 }
 
@@ -54,12 +74,23 @@
 
   :host ::ng-deep app-order .sum{
     margin: -50px 0 0 150px;
+  }
 }
+
+
+@media (max-width:769px){
+  .save{
+    margin-top: -100px;
+  }
+
+  .create-bottom{
+    margin-top:-400px;
+  } 
 }
 
 @media (max-width:600px){
   .create-bottom{
-    margin-top:-500px;
+    margin-top:-700px;
   } 
 }
 
