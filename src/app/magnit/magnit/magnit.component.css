@@ -44,12 +44,12 @@
 
 .center{
   align-self: center;
-  margin-top: -40px;
+  /* margin-top: -40px; */
 }
 
 @media (max-width:1441px){
   .create-bottom{
-    margin-top:-300px;
+    margin-top:-200px;
   } 
 
 }

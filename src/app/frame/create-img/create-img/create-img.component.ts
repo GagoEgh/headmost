@@ -33,12 +33,14 @@ export class CreateImgComponent extends FrameImag implements OnInit {
   }
 
   public deletImg(): void {
+   
     this.rout.navigate(['frame/form-frame']);
     this.frames.validateForm.reset();
     this.frames.isImg = true;
     if (this.frames.isOrder) {
       this.frames.isImg = true;
       this.frames.isOrder = false;
+      this.frames.conteinerHeight();
       this.rout.navigate(['frame/form-frame']);
       this.frames.validateForm.reset();
     }
@@ -69,13 +71,15 @@ export class CreateImgComponent extends FrameImag implements OnInit {
 
     if (this.validateForm.get('topText')?.value) {
       this.frames.topText = this.validateForm.get('topText')?.value;
-      this.topLettering.isSpan = true;
+      
+      this.topLettering.isSpan = false;
       this.topLettering.isMenu = false;
     }
 
     if (this.bottomText.get('btmText')?.value) {
       this.frames.btmText = this.bottomText.get('btmText')?.value;
-      this.bottomLettering.isSpan = true;
+
+      this.bottomLettering.isSpan = false;
       this.bottomLettering.isMenu = false;
     }
 
@@ -97,15 +101,19 @@ export class CreateImgComponent extends FrameImag implements OnInit {
 
     if (this.validateForm.get('topText')?.value) {
       this.topLettering.isMenu = true;
+
+      // new
+      this.topLettering.isSpan = true
     }
 
     if (this.bottomText.get('btmText')?.value) {
       this.bottomLettering.isMenu = true;
+      this.bottomLettering.isSpan = true;
     }
 
   }
 
-  private ngOnDestroy() {
+  ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }

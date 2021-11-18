@@ -24,7 +24,8 @@
             <form [formGroup]="validateForm">
               <input type="text" formControlName='topText' [style.backgroundColor]="frames.background.color"
                 class="inStyle" maxlength="15" [class.font]='topLettering.isSpan'>
-              <span class="cursor" *ngIf="topLettering.isSpan" (click)='deleteTopProprty()'>X</span>
+              <span class="cursor" 
+               *ngIf="topLettering.isSpan" (click)='deleteTopProprty()'>X</span>
             </form>
           </div>
         </div>
@@ -45,7 +46,7 @@
             </form>
           </div>
           <div class="save" [style.opacity]="bottomLettering.isMenu?'1':'0'">
-            <p class="bottom-par" (click)='frames.myOrder()'>{{'Imgs.save'|translate}}</p>
+            <p class="bottom-par" (click)='frames.myOrder()'>{{'Imgs.batnSave'|translate}}</p>
           </div>
         </div>
       </div>

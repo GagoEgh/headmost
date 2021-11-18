@@ -25,7 +25,6 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
     super(frames, modalService, rout, form);
     super.imgColor();
-
   }
 
   ngOnInit(): void {
@@ -65,9 +64,6 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
 
 
   private conteinerHeight(): void {
-    let height = {
-      height: '650px'
-    }
 
     if (window.innerWidth <= 2000 && this.frames.isOrder) {
       this.lightSheme = '1450px'
