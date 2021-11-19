@@ -1,11 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FrameImag } from 'src/app/shared/frame-image';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Letter } from 'src/app/interface/img-ramka';
+import { FrameImag } from 'src/app/frame-image/frame-image';
+import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 
 @Component({
   selector: 'app-create-img',
@@ -22,14 +23,13 @@ export class CreateImgComponent extends FrameImag implements OnInit {
   @Output() mainApp: EventEmitter<boolean> = new EventEmitter();
 
   constructor(public frames: FramesServService, public rout: Router,
-    public form: FormBuilder, public modalService: NgbModal) {
-    super(frames, modalService, rout, form);
+    public imgService:FrameImageService, public form: FormBuilder, public modalService: NgbModal) {
+    super(frames, modalService, imgService,rout, form,);
   }
 
   ngOnInit(): void {
     this.validateForm = this.form.group({ topText: [null] },);
     this.bottomText = this.form.group({ btmText: [null] });
-    this.frames.isMessage = false;
   }
 
   public deletImg(): void {

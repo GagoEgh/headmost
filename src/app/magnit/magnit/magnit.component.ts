@@ -1,12 +1,14 @@
 
 import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
-import { FrameImag } from 'src/app/shared/frame-image';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { FrameImag } from 'src/app/frame-image/frame-image';
+import { FrameImageService } from 'src/app/frame-image/frame-image.service';
+import { MagnitServiceService } from './magnit-service.service';
 
 
 @Component({
@@ -21,9 +23,9 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
   private width: number | undefined;
   public lightSheme = '';
   public blockStyle = {} as { [key: string]: string }
-  constructor(public frames: FramesServService, public modalService: NgbModal,
-    public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
-    super(frames, modalService, rout, form);
+  constructor(public frames: FramesServService, public modalService: NgbModal,public imgService:FrameImageService,
+   public magnitService:MagnitServiceService, public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
+    super(frames, modalService,imgService, rout, form);
     super.imgColor();
   }
 

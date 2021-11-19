@@ -20,29 +20,31 @@
 .logo p{
  font-family: 'Praise', cursive;
  font-size: 55px;
- padding: 15px;
+ padding: 15px 0;
  color: #f43f73;
 }
 
 .li-nav{
  list-style: none;
- position: absolute;
- top: 25px;
- left: 30px;
+ position: relative;
+ margin-top: -35px;
  background-color: white;
  border-radius: 7px;
  padding: 10px;
  box-shadow: 0 5px 5px rgb(0 0 0 / 35%);
  z-index: 555;
- display: none;  
+ display:none;  
 }
 
 .li-nav li{
  padding : 5px;
  width: 120px;
+ cursor: pointer;
 }
 
 .li-nav a{
+ display: inline-block;
+ width: 100%;
  text-decoration: none;
  /* color: rgb(63, 62, 62); */
  color: #c79d51;
@@ -55,23 +57,27 @@
  background-color: rgb(236, 231, 231);
 }
 
+.parent:hover .li-nav{
+ display: block;
+}
+   
+.parent-1:hover .li-nav{
+ display: block;
+}
+
 .silki{
  list-style: none;
  display: flex;
- position: relative;
- top:15px;
+ margin-top: 15px;
 }
 
-.silki p{
- position: relative;  
+.silki p{ 
  cursor: pointer;
- top:-7px;
+ margin-top:-7px;
 }
 
 .drop{
- position: relative;
- left: 160px;
- top: -45px;
+ margin: -82px 0 0 150px;
 }
 
 .frame{
@@ -95,26 +101,19 @@
  color:red;
 }
 
-.parent,.parent-1{
+/* .parent, */
+.parent-1{
  position: relative;
  list-style: none;
 }
 
 .parent{
-  top:3px
+  margin-top:3px
 }
 
 .parent-1{
  display: inline-block;
  margin-left: -40px;
-}
-
-.parent:hover .li-nav{
- display: block;
-}
-
-.parent-1:hover .li-nav{
- display: block;
 }
 
 .user-data{
@@ -249,12 +248,6 @@
 .left p{
  color:#c79d51;
 }
-/* 
-@media (min-width:1441px ) and (max-width:2560px ){
-    .parent{
-        top:2px
-    }
-} */
 
 @media (max-width:1082px){
     .conteiner{ 
@@ -271,10 +264,11 @@
     }
 
     .check-silki{
+     width: 250px;
      display: flex;
      flex-direction: column;
      position: absolute;
-     top: 55px;
+     top: 45px;
      right: 0;
      z-index: 999;
      background-color: white;
@@ -296,10 +290,12 @@
     }
     
     .check-silki p{
-     margin-bottom: -6px;
      display: inline-block;
     }
     
+    .parent{
+        margin-bottom: -20px;
+    }
     .parent-1{
      margin-top: 5px
     }
@@ -319,9 +315,13 @@
     }
 
     .drop{
-     position: relative;
-     left: -25px;
-     top: -3px;
+     margin: 0;
+    }
+
+    .li-nav{
+     margin-top: 0;
+     margin-left: 30px;
+     width: fit-content;
     }
 
     .footerWrap{

@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { LoginComponent } from 'src/app/register/login/login.component';
 import { ServerResponce } from 'src/app/interface/img-ramka';
 import { CardItemResults, FrameDetalis } from 'src/app/interface/frame-response';
+import { IdeaService } from './idea.service';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class IdeaComponent implements OnInit {
   private offset = 0;
   private count = 0;
 
-  constructor(public frames: FramesServService,
+  constructor(public frames: FramesServService,public ideaService:IdeaService,
     private _activatedRoute: ActivatedRoute,
     private modalService: NgbModal, private rout: Router) {
   }
@@ -64,7 +65,7 @@ export class IdeaComponent implements OnInit {
 
   private appendItems(): void {
     this.frames.spinner.show()
-    this.frames.frameCategoryImg(this.category, 1, this.offset).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: ServerResponce<FrameDetalis[]>) => {
+    this.ideaService.frameCategoryImg(this.category, 1, this.offset).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: ServerResponce<FrameDetalis[]>) => {
       this.offset += 10;
       this.ideaImages.push(...frameDetalis.results);
       this.frames.spinner.hide();

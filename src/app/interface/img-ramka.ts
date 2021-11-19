@@ -21,7 +21,7 @@ export interface Letter {
 export interface CountryResult extends CategoryDetails {
     country_regions: [{
         country: number
-        id: number
+        id: number;
         name_en: string
         name_hy: string
         name_ru: string

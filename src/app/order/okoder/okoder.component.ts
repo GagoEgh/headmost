@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ServerResponce } from 'src/app/interface/img-ramka';
 import { OrderResult } from 'src/app/interface/order-response';
 import { FormGroup } from '@angular/forms';
+import { OkoderService } from './okoder.service';
 
 @Component({
   selector: 'app-okoder',
@@ -21,10 +22,9 @@ export class OkoderComponent implements OnInit {
   @Input() count: number | undefined;
   @Input() order: any;
   constructor(public activeModal: NgbActiveModal, public _translate: TranslateService,
-    public frames: FramesServService, public router: Router, private toastr: ToastrService) { }
+   public okServer:OkoderService, public frames: FramesServService, public router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void { 
-    console.log('valid form ', this.validateForm)
   }
 
   public goUsOrder(): void {
@@ -36,7 +36,7 @@ export class OkoderComponent implements OnInit {
     })
 
     if (this.validateForm?.valid && this.count != 1) {
-      this.frames.userOrder(this.order).pipe(takeUntil(this._subscribe$)).subscribe((order: ServerResponce<OrderResult[]>) => {
+      this.okServer.userOrder(this.order).pipe(takeUntil(this._subscribe$)).subscribe((order: ServerResponce<OrderResult[]>) => {
         this.toastr.success(okMsg);
         this.count!++;
         this.frames.isdisible = true;

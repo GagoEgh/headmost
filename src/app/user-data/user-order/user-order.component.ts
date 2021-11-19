@@ -10,6 +10,7 @@ import { DeleteComponent } from '../delete/delete.component';
 import { ServerResponce } from 'src/app/interface/img-ramka';
 import { OrderResult } from 'src/app/interface/order-response';
 import { CardItemResults } from 'src/app/interface/frame-response';
+import { UserOrderService } from './user-order.service';
 
 @Component({
   selector: 'app-user-order',
@@ -27,10 +28,9 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
   public okSms = '';
 
   constructor(public frames: FramesServService, public modalService: NgbModal,
-    private spinner: NgxSpinnerService, public _translate: TranslateService) { }
+  public userOrderService:UserOrderService,  private spinner: NgxSpinnerService, public _translate: TranslateService) { }
 
   ngOnInit(): void {
-    console.log('userOrders ',this.userOrders)
     this.frames.offset = 0;
     this.userOrders;
     this.appendItems();
@@ -43,7 +43,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
 
   private appendItems(): void {
     this.spinner.show()
-    this.frames.userOrderGet().pipe(takeUntil(this._subscribe$)).subscribe((orderResult: ServerResponce<OrderResult[]>) => {
+    this.userOrderService.userOrderGet().pipe(takeUntil(this._subscribe$)).subscribe((orderResult: ServerResponce<OrderResult[]>) => {
       orderResult.results.forEach((item: any) => {
         item.order_items_details.forEach((obj: any) => {
           obj.isBlock = false;

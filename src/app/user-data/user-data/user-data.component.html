@@ -82,7 +82,7 @@
             <mat-select>
               <mat-optgroup *ngFor='let regions of country.country_regions' [label]='regions["name_"+frames.lang]'>
                 <mat-option *ngFor='let city of regions.region_cities' [value]='city.id'>
-                  {{city["name_"+frames.lang]}}
+                  {{city["name_"+frames?.lang]}}
                 </mat-option>
               </mat-optgroup>
             </mat-select>

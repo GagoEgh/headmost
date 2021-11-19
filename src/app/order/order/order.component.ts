@@ -13,6 +13,7 @@ import { PromoCodeResults, ShipingResult } from 'src/app/interface/order-respons
 import { CardItemResults } from 'src/app/interface/frame-response';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { OrderService } from './order.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -38,7 +39,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   public matcher = new MyErrorStateMatcher();
   private userName:string = '';
   constructor(public frames: FramesServService, private fb: FormBuilder, public modalService: NgbModal,
-    public _translate: TranslateService, public valid: ValidationServService) {
+   public orderService:OrderService, public _translate: TranslateService, public valid: ValidationServService) {
   }
 
   ngOnInit(): void {
@@ -79,7 +80,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   }
 
   private shipingGet(): void {
-    this.frames.shipingMethod().pipe(takeUntil(this._subscribe$)).subscribe((shipings: ServerResponce<ShipingResult[]>) => {
+    this.orderService.shipingMethod().pipe(takeUntil(this._subscribe$)).subscribe((shipings: ServerResponce<ShipingResult[]>) => {
       this.shiping = shipings.results;
     })
   }
@@ -137,7 +138,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     }
 
     if (this.validateForm.get('sale')?.value.length === 6 && this.promoId === null && this.validateForm.get('sale')?.valid) {
-      this.frames.promoCodePost(sale).pipe(takeUntil(this._subscribe$)).subscribe((promoCode: PromoCodeResults) => {
+      this.orderService.promoCodePost(sale).pipe(takeUntil(this._subscribe$)).subscribe((promoCode: PromoCodeResults) => {
         this.frames.sum = promoCode.discounted_price;
         this.promoId = promoCode.promo_code.id;
         this.promoError = '';
@@ -149,7 +150,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   }
 
   public deleteDate(card: CardItemResults): void {
-    this.frames.deleteOrder(card.id).pipe(takeUntil(this._subscribe$)).subscribe(() => {
+    this.orderService.deleteOrder(card.id).pipe(takeUntil(this._subscribe$)).subscribe(() => {
       this.frames.sum -= card.created_frame_details.price;
       this.frames.orderList = this.frames.orderList.filter((val: CardItemResults) => {
         return val.id != card.id

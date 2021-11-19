@@ -7,6 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { LoginComponent } from 'src/app/register/login/login.component';
 import { CardItemResults, FrameDetalis } from 'src/app/interface/frame-response';
+import { IdeaImageService } from '../idea-image.service';
 
 
 @Component({
@@ -21,10 +22,12 @@ export class IdeaImageComponent implements OnInit {
   private width: number | undefined;
   public scale: number = 1;
 
-  constructor(public frames: FramesServService, public activApi: ActivatedRoute, private modalService: NgbModal) { }
+  constructor(public frames: FramesServService,public ideaIMageService:IdeaImageService,
+     public activApi: ActivatedRoute, private modalService: NgbModal) { }
   ngOnInit(): void {
     this.frames.spinner.show()
     this.goIdeaCategory()
+    console.log('ideaIMageService ', this.ideaIMageService.ideaImg)
   }
 
   @HostListener('window:resize', ['$event'])
@@ -45,8 +48,8 @@ export class IdeaImageComponent implements OnInit {
 
   private goIdeaCategory(): void {
     this.activApi.params.subscribe((idea: { [keys: string]: number }) => {
-      this.frames.imgCategory(idea.id).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: FrameDetalis) => {
-        this.frames.ideaImg = frameDetalis;
+      this.ideaIMageService.imgCategory(idea.id).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: FrameDetalis) => {
+        this.ideaIMageService.ideaImg = frameDetalis;
         this.frames.spinner.hide()
       })
     })
@@ -63,7 +66,7 @@ export class IdeaImageComponent implements OnInit {
     if (localStorage.getItem('loginAutorization')) {
       let userCard = {
         user: this.frames.userData.user,
-        created_frame: this.frames.ideaImg.id
+        created_frame: this.ideaIMageService.ideaImg.id
       }
       this.frames.spinner.show();
       this.frames.orderCard(userCard).pipe(takeUntil(this._unsubscribe$)).subscribe((cardItem: CardItemResults) => {

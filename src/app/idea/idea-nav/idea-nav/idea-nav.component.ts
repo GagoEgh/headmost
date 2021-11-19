@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { ServerResponce } from 'src/app/interface/img-ramka';
 import { CategoryDetails } from 'src/app/interface/CategoryDetails';
+import { IdeaNavService } from '../idea-nav.service';
 
 
 @Component({
@@ -17,13 +18,13 @@ export class IdeaNavComponent implements OnInit {
   public _unsubscribe$ = new Subject();
   public offset: number = 0;
   public id: number = 0;
-  constructor(public frames: FramesServService,
+  constructor(public frames: FramesServService,public ideaNavService:IdeaNavService,
     private _router: Router) { }
 
   ngOnInit(): void {
     this.offset = 0;
     this.ideaGroup(this.id)
-    this.frames.frameCategory().pipe(takeUntil(this._unsubscribe$)).subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
+    this.ideaNavService.frameCategory().pipe(takeUntil(this._unsubscribe$)).subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
       this.frameIdeas = categoryDetails.results
     })
   }

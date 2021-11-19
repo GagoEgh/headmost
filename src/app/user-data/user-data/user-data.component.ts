@@ -12,6 +12,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { Edit, UserDetalis } from 'src/app/interface/register-response';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { UserDataService } from './user-data.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -32,7 +33,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   private userName = '';
   public isChange = false;
   constructor(private valid: ValidationServService, private fb: FormBuilder, public modalService: NgbModal,
-    private spinner: NgxSpinnerService, public _translate: TranslateService, public frames: FramesServService) { }
+   public userDataService:UserDataService, private spinner: NgxSpinnerService, public _translate: TranslateService, public frames: FramesServService) { }
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
@@ -108,7 +109,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     this.changeDate()
     if (this.validateForm.valid && this.isChange) {
       this.userName = edit.first_name;
-      this.frames.editUser(edit).pipe(takeUntil(this._unsubscribe$)).subscribe((userDetalis: UserDetalis) => {
+      this.userDataService.editUser(edit).pipe(takeUntil(this._unsubscribe$)).subscribe((userDetalis: UserDetalis) => {
         this.frames.userData = userDetalis;
         this.frames.userData.user_details.first_name = this.userName;
         let myJson = JSON.stringify(this.frames.userData);

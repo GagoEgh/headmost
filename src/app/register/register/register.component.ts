@@ -12,6 +12,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { RegisterResult } from 'src/app/interface/register-response';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { RegisterService } from './register.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -35,7 +36,7 @@ export class RegisterComponent implements OnInit {
   public matcher = new MyErrorStateMatcher();
 
   constructor(public activeModal: NgbActiveModal, public fb: FormBuilder, public i18n: NzI18nService, public _translate: TranslateService,
-    public frames: FramesServService, private spinner: NgxSpinnerService, public modalService: NgbModal, public valid: ValidationServService) { }
+   public registerService:RegisterService, public frames: FramesServService, private spinner: NgxSpinnerService, public modalService: NgbModal, public valid: ValidationServService) { }
 
   ngOnInit(): void {
     this.spinner.show();
@@ -97,14 +98,14 @@ export class RegisterComponent implements OnInit {
     }
 
     if (this.validateForm.valid) {
-      this.frames.userRegisterPost(userDetalis).pipe(takeUntil(this._subscribe$)).subscribe((register: RegisterResult) => {
-        this.frames.isRegister = true;
+      this.registerService.userRegisterPost(userDetalis).pipe(takeUntil(this._subscribe$)).subscribe((register: RegisterResult) => {
+        this.registerService.isRegister = true;
         this.frames.userData = register.user_details;
         const modalRef = this.modalService.open(OkRegisterComponent);
         modalRef.result.then((result) => {
-          this.frames.isRegister = false;
+          this.registerService.isRegister = false;
         }, (reason) => {
-          this.frames.isRegister = false;
+          this.registerService.isRegister = false;
         });
 
         this.validateForm.reset();
@@ -130,7 +131,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngDoCheck(): void {
-    if (this.frames.isRegister) {
+    if (this.registerService.isRegister) {
       this.activeModal.dismiss()
     }
   }

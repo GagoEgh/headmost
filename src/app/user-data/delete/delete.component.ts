@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { OkSmsComponent } from '../ok-sms/ok-sms.component';
+import { DeleteService } from './delete.service';
 
 @Component({
   selector: 'app-delete',
@@ -14,7 +15,7 @@ import { OkSmsComponent } from '../ok-sms/ok-sms.component';
 export class DeleteComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal, public _translate: TranslateService,
-    public frames: FramesServService, public modalService: NgbModal) { }
+  public deleteService:DeleteService , public frames: FramesServService, public modalService: NgbModal) { }
   @Input() item: any;
   @Input() userOrders: any;
   private _subscribe$ = new Subject();
@@ -28,7 +29,7 @@ export class DeleteComponent implements OnInit {
   }
 
   public delteteBlock(): void {
-    this.frames.userOrderDel(this.item.id).pipe(takeUntil(this._subscribe$)).subscribe((sms:{message:string}) => {
+    this.deleteService.userOrderDel(this.item.id).pipe(takeUntil(this._subscribe$)).subscribe((sms:{message:string}) => {
       this.okSms = sms.message
       const modalRef = this.modalService.open(OkSmsComponent);
       this.userOrders = this.userOrders.filter((val: any) => val.id != this.item.id);

@@ -12,6 +12,7 @@ import { RegisterResult } from 'src/app/interface/register-response';
 import { ServerResponce } from 'src/app/interface/img-ramka';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { LoginService } from './login.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit, DoCheck {
   public errorLog: string = '';
 
   constructor(public activeModal: NgbActiveModal, private modalService: NgbModal, public _translate: TranslateService,
-    private fb: FormBuilder, public frames: FramesServService, private valid: ValidationServService, private spinner: NgxSpinnerService) { }
+   public loginService:LoginService, private fb: FormBuilder, public frames: FramesServService, private valid: ValidationServService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -43,7 +44,7 @@ export class LoginComponent implements OnInit, DoCheck {
   }
 
   public ngDoCheck(): void {
-    if (this.frames.isLogin) {
+    if (this.loginService.isLogin) {
       this.activeModal.dismiss()
     }
   }
@@ -61,7 +62,7 @@ export class LoginComponent implements OnInit, DoCheck {
     }
     if (this.validateForm.valid) {
 
-      this.frames.userLogin(userLog).pipe(takeUntil(this._subscribe$)).subscribe((register: RegisterResult) => {
+      this.loginService.userLogin(userLog).pipe(takeUntil(this._subscribe$)).subscribe((register: RegisterResult) => {
         this.spinner.show();
         this.frames.token = 'Token ' + register.token;
         this.frames.userData = register.user_details;
@@ -91,11 +92,11 @@ export class LoginComponent implements OnInit, DoCheck {
   public open(): void {
     const modalRef = this.modalService.open(RegisterComponent, { size: 'lg' })
     modalRef.result.then((result) => {
-      this.frames.isLogin = false;
+      this.loginService.isLogin = false;
     }, (reason) => {
-      this.frames.isLogin = false;
+      this.loginService.isLogin = false;
     });
-    this.frames.isLogin = true;
+    this.loginService.isLogin = true;
   }
 
   ngOnDestroy() {

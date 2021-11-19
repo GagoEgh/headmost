@@ -12,7 +12,7 @@
     <button *ngIf='frames.isOrder' class="create-bottom makeAWord_3"
       (click)="showFrame()">{{'ImgTextValid.orderAdd'|translate}}</button>
 
-    <button class="makeAWord_3 save" (click)='frames.myMagnitOrder()'
+    <button class="makeAWord_3 save" (click)='magnitService.myMagnitOrder()'
       *ngIf='!frames.isOrder && !frames.isImg'>{{'Imgs.batnSave'|translate}}</button>
   </div>
 </header>

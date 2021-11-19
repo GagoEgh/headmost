@@ -10,6 +10,8 @@ import { CategoryDetails } from 'src/app/interface/CategoryDetails';
 import { ImageResponse, ImgColorValue, UserImage } from 'src/app/interface/ImageResponse';
 import { WordResult } from 'src/app/interface/WordResult';
 import { TranslateService } from "@ngx-translate/core";
+import { FrameImag } from 'src/app/frame-image/frame-image';
+import { ImgCatalogService } from './img-catalog.service';
 
 
 
@@ -18,7 +20,7 @@ import { TranslateService } from "@ngx-translate/core";
   templateUrl: './img-catalog.component.html',
   styleUrls: ['./img-catalog.component.css']
 })
-export class ImgCatalogComponent implements OnInit {
+export class ImgCatalogComponent  implements OnInit {
   private _subscribe$ = new Subject();
   public img: ImageResponse[] = []
   public character = {} as WordResult;
@@ -26,7 +28,8 @@ export class ImgCatalogComponent implements OnInit {
   @ViewChild("header", { static: false }) block: ElementRef | undefined;
   public categoryList: CategoryDetails[] = [];
   constructor(public activeModal: NgbActiveModal,public _translate: TranslateService,
-     public frames: FramesServService, public modalService: NgbModal) { }
+    public imgCatalogService:ImgCatalogService, public frames: FramesServService, public modalService: NgbModal) { 
+     }
 
   ngOnInit(): void {
     this.frames.apiPhoto = true;
@@ -60,7 +63,7 @@ export class ImgCatalogComponent implements OnInit {
   }
 
   private createCategory(): void {
-    this.frames.getCategory().pipe(takeUntil(this._subscribe$)).subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
+    this.imgCatalogService.getCategory().pipe(takeUntil(this._subscribe$)).subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
       this.categoryList = categoryDetails.results;
     })
   }

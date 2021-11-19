@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ServerResponce } from 'src/app/interface/img-ramka';
 import { UserImage } from 'src/app/interface/ImageResponse';
+import { UserImagsService } from './user-imags.service';
 
 
 
@@ -25,7 +26,7 @@ export class UserImagsComponent implements OnInit, AfterViewChecked {
   public msgErr_hy: string = '';
   public offset = 0;
   constructor(private msg: NzMessageService, public frames: FramesServService,
-    private spinner: NgxSpinnerService, public _translate: TranslateService) { }
+   public userImagsServicw:UserImagsService, private spinner: NgxSpinnerService, public _translate: TranslateService) { }
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
@@ -54,7 +55,7 @@ export class UserImagsComponent implements OnInit, AfterViewChecked {
     formData.append('image', files);
     formData.append('thumb_image', files);
     this.spinner.show();
-    this.frames.userImage(formData).subscribe((userImage: UserImage) => {
+    this.userImagsServicw.userImage(formData).subscribe((userImage: UserImage) => {
       this.frames.fileList.unshift(userImage);
       this.spinner.hide();
     })
@@ -76,7 +77,7 @@ export class UserImagsComponent implements OnInit, AfterViewChecked {
 
   public delete(id: number): void {
     this.spinner.show();
-    this.frames.deleteUserImage(id).pipe(takeUntil(this._subscribe$)).subscribe(() => {
+    this.userImagsServicw.deleteUserImage(id).pipe(takeUntil(this._subscribe$)).subscribe(() => {
       this.frames.fileList = this.frames.fileList.filter((img: any) => {
         return img.id != id
       })

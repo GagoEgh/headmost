@@ -5,7 +5,7 @@
   <div class="catalog" [ngStyle]="catalogStyle">
     <div class="carusel">
       <ul class="imageObject">
-        <li *ngFor="let img of frames?.framesImge,let i=index" class="thumb-image">
+        <li *ngFor="let img of frameServis?.framesImge,let i=index" class="thumb-image">
           <div [style.background-image]="'url('+img?.show_image + ')'" (click)='frameClick(img.id)' class="img-frame">
             <div [ngClass]="{'box-content': getFrameId(img)}" class="box"></div>
           </div>

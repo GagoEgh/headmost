@@ -1,7 +1,6 @@
 import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FramesServService } from '../../shared/frames-serv.service';
 import { TranslateService } from '@ngx-translate/core';
-import { FrameImag } from 'src/app/shared/frame-image';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
@@ -9,6 +8,9 @@ import { Router } from '@angular/router';
 import { ServerResponce } from 'src/app/interface/img-ramka';
 import { FramesImg } from 'src/app/interface/ImageResponse';
 import { BgDetails } from 'src/app/interface/CategoryDetails';
+import { FrameImag } from 'src/app/frame-image/frame-image';
+import { FrameImageService } from 'src/app/frame-image/frame-image.service';
+import { FrameService } from './frame.service';
 
 
 
@@ -24,8 +26,9 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
   public catalogStyle = {} as { [key: string]: string };
 
   constructor(public frames: FramesServService, public modalService: NgbModal,
+    public frameServis :FrameService,public imgService:FrameImageService,
     public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
-    super(frames, modalService, rout, form);
+    super(frames, modalService, imgService, rout, form);
     this._translate.use(this.frames.lang)
   }
 
@@ -67,8 +70,8 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
   }
 
   private framesImgGet(): void {
-    this.frames.getFrames().pipe(takeUntil(this._unsubscribe$)).subscribe((framesImg: ServerResponce<FramesImg[]>) => {
-      this.frames.framesImge = framesImg.results;
+    this.frameServis.getFrames().pipe(takeUntil(this._unsubscribe$)).subscribe((framesImg: ServerResponce<FramesImg[]>) => {
+      this.frameServis.framesImge = framesImg.results;
       this.frameClick(this.frames.index);
     })
   }
@@ -81,7 +84,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
   }
 
   private frameBg(): void {
-    this.frames.framesFoneGet().pipe(takeUntil(this._unsubscribe$)).subscribe((bgDetails: ServerResponce<BgDetails[]>) => {
+    this.frameServis.framesFoneGet().pipe(takeUntil(this._unsubscribe$)).subscribe((bgDetails: ServerResponce<BgDetails[]>) => {
       this.frames.div = bgDetails.results;
       this.frames.background = bgDetails.results[0];
     })
@@ -96,7 +99,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
   public frameClick(id: number): void {
     this.frames.index = id;
-    this.frames.frame = this.frames.framesImge.find(item => item.id === this.frames.index);
+    this.frames.frame = this.frameServis.framesImge.find(item => item.id === this.frames.index);
   }
 
   //FramesImg

@@ -8,19 +8,21 @@ import { ImgCatalogComponent } from "../frame/create-img/img-catalog/img-catalog
 import { ErroreMessageComponent } from "../frame/errore-message/errore-message/errore-message.component";
 import { NgbdModalContentComponent } from "../frame/ngbd-modal-content/ngbd-modal-content.component";
 import { CategoryDetails } from "../interface/CategoryDetails";
-import { ImageResponse } from "../interface/ImageResponse";
 import { ServerResponce } from "../interface/img-ramka";
-import { FramesServService } from "./frames-serv.service";
+import { FramesServService } from "../shared/frames-serv.service";
+import { FrameImageService } from "./frame-image.service";
+
 
 
 
 export class FrameImag {
+    
     public _unsubscribe$ = new Subject();
     protected bottomText: FormGroup = new FormGroup({});
     protected validateForm: FormGroup = new FormGroup({});
     protected letterChar = 0;
     constructor(public frames: FramesServService, public modalService: NgbModal,
-        public rout: Router, public form: FormBuilder,
+      public imgService:FrameImageService, public rout: Router, public form: FormBuilder,
     ) { }
 
     // frame component
@@ -43,7 +45,7 @@ export class FrameImag {
     }
 
     protected imgColor(): void {
-        this.frames.imgColorGet().pipe(takeUntil(this._unsubscribe$)).subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
+        this.imgService.imgColorGet().pipe(takeUntil(this._unsubscribe$)).subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
             for (let i = 0; i < categoryDetails.count; i++) {
                 if (this.frames && this.frames.imgColor[i] && this.frames.imgColor[i].ceys) {
                     this.frames.imgColor[i].ceys = categoryDetails.results[i];
@@ -58,7 +60,7 @@ export class FrameImag {
         this.frames.painding.id = obj.ceys.id;
 
         if (this.frames.validateForm.value.text !== null) {
-            this.frames.letterColorFone();
+            this.imgService.letterColorFone();
         }
 
     }
@@ -76,7 +78,7 @@ export class FrameImag {
             return;
         }
         this.frames.isImg = false;
-        this.frames.letterColorFone();
+        this.imgService.letterColorFone();
     }
 
     public showFrame(): void {
@@ -86,7 +88,7 @@ export class FrameImag {
 
 
     public changeImg(): void {
-        this.frames.letterColorFone()
+        this.imgService.letterColorFone()
     }
 
     public openImg(img: any, num: number): void {

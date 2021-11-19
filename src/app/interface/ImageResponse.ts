@@ -11,13 +11,12 @@ export interface ImageResponse {
     id: number
     image: string
     thumbnail: string;
-    thumb_image: string
+    thumb_image: string|undefined
 }
 
-
 export interface FrameImages {
-    character: number
-    character_details: CharacterDetails
+    character: number|null
+    character_details: CharacterDetails | null
     created_frame: number
     id: number
     image: number
