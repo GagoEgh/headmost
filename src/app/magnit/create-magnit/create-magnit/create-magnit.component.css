@@ -98,7 +98,11 @@
 }
 
 
-@media (max-width:768px){
+@media (max-width:769px){
+
+    .magnit{
+     margin: 200px auto 0;;
+    }
     .create-bottom{
      position: absolute;
      top:970px; 

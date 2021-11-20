@@ -10,6 +10,7 @@ import { ServerResponce } from 'src/app/interface/img-ramka';
 import { OrderResult } from 'src/app/interface/order-response';
 import { FormGroup } from '@angular/forms';
 import { OkoderService } from './okoder.service';
+import { OrderService } from '../order/order.service';
 
 @Component({
   selector: 'app-okoder',
@@ -22,7 +23,7 @@ export class OkoderComponent implements OnInit {
   @Input() count: number | undefined;
   @Input() order: any;
   constructor(public activeModal: NgbActiveModal, public _translate: TranslateService,
-   public okServer:OkoderService, public frames: FramesServService, public router: Router, private toastr: ToastrService) { }
+  public orderService:OrderService, public okServer:OkoderService, public frames: FramesServService, public router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void { 
   }
@@ -39,7 +40,7 @@ export class OkoderComponent implements OnInit {
       this.okServer.userOrder(this.order).pipe(takeUntil(this._subscribe$)).subscribe((order: ServerResponce<OrderResult[]>) => {
         this.toastr.success(okMsg);
         this.count!++;
-        this.frames.isdisible = true;
+        this.orderService.isdisible = true;
         this.router.navigate(['user/user-order']);
       }, (err) => {
         this.errOrder(errMsg)

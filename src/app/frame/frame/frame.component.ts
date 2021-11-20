@@ -24,7 +24,8 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
   private width: number | undefined;
   public catalogStyle = {} as { [key: string]: string };
-
+  public scale: number = 1;
+  public div: any = [];
   constructor(public frames: FramesServService, public modalService: NgbModal,
     public frameServis :FrameService,public imgService:FrameImageService,
     public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
@@ -56,13 +57,13 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
   onResize(): void {
     this.width = this.block?.nativeElement.clientWidth | 1;
     if (window.innerWidth <= 1165) {
-      this.frames.scale = window.innerWidth / this.width - 0.35;
+      this.scale = window.innerWidth / this.width - 0.35;
     }
 
     if (this.frames.letterImges.length) {
-      this.frames.scale = 1;
+      this.scale = 1;
       if (window.innerWidth <= 1290) {
-        this.frames.scale = window.innerWidth / 1180;
+        this.scale = window.innerWidth / 1180;
       }
     }
     this.frames.conteinerHeight();
@@ -85,14 +86,14 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
   private frameBg(): void {
     this.frameServis.framesFoneGet().pipe(takeUntil(this._unsubscribe$)).subscribe((bgDetails: ServerResponce<BgDetails[]>) => {
-      this.frames.div = bgDetails.results;
+      this.div = bgDetails.results;
       this.frames.background = bgDetails.results[0];
     })
   }
 
   private setStyle(): void {
     let style = {
-      transform: "translate(-50%, 0)" + "scale(" + this.frames.scale + ")"
+      transform: "translate(-50%, 0)" + "scale(" + this.scale + ")"
     }
     this.catalogStyle = style
   }

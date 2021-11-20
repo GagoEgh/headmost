@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { CategoryDetails } from '../interface/CategoryDetails';
-import { ServerResponce } from '../interface/img-ramka';
+import { Painding, ServerResponce } from '../interface/img-ramka';
 import { WordResult } from '../interface/WordResult';
 import { FramesServService } from '../shared/frames-serv.service';
 
@@ -12,6 +12,18 @@ import { FramesServService } from '../shared/frames-serv.service';
   providedIn: 'root'
 })
 export class FrameImageService {
+  public painding: Painding = {
+    values: {
+        colored: false,
+        withandblack: true,
+        sepia: false,
+        color: 'black',
+        child: 'white',
+    },
+    imgs: [],
+    id: 3,
+    categoryId: 1
+};
 
   constructor(public frames: FramesServService, private url: HttpClient,
     public rout: Router, public spinner: NgxSpinnerService,) { }
@@ -19,7 +31,7 @@ export class FrameImageService {
   private letterGet(): Observable<WordResult[]> {
     let text = this.frames.text ? this.frames.text : null;
     return this.url.get<WordResult[]>(this.frames.api.worldApi + this.frames.api.api_img + this.frames.api.api_create_word + text + '/', {
-        params: new HttpParams().set('color', this.frames.painding.id.toString())
+        params: new HttpParams().set('color', this.painding.id.toString())
     });
 }
 

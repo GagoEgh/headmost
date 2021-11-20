@@ -22,7 +22,8 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
   private heigth: number | undefined;
   private width: number | undefined;
   public lightSheme = '';
-  public blockStyle = {} as { [key: string]: string }
+  public blockStyle = {} as { [key: string]: string };
+  public magnit_scale: number = 1;
   constructor(public frames: FramesServService, public modalService: NgbModal,public imgService:FrameImageService,
    public magnitService:MagnitServiceService, public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
     super(frames, modalService,imgService, rout, form);
@@ -43,22 +44,22 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
 
     if (window.innerWidth <= 1537) {
       let num = window.innerWidth / 1536;
-      this.frames.magnit_scale = num - 0.1;
+      this.magnit_scale = num - 0.1;
     }
 
     if (window.innerWidth <= 1025) {
       let num = window.innerWidth / 1025;
-      this.frames.magnit_scale = num - 0.1;
+      this.magnit_scale = num - 0.1;
     }
 
     if (window.innerWidth <= 769) {
       let num = window.innerWidth / 769;
-      this.frames.magnit_scale = num - 0.3;
+      this.magnit_scale = num - 0.3;
     }
 
     if (window.innerWidth <= 426) {
       let num = window.innerWidth / 425;
-      this.frames.magnit_scale = num - 0.6;
+      this.magnit_scale = num - 0.6;
     }
     this.conteinerHeight();
     this.setStyle();
@@ -94,7 +95,7 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
 
   private setStyle(): void {
     let style = {
-      transform: "translate(-50%, -5%)" + "scale(" + this.frames.magnit_scale + ")"
+      transform: "translate(-50%, -5%)" + "scale(" + this.magnit_scale + ")"
     }
     this.blockStyle = style;
   }

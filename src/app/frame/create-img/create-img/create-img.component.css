@@ -1,174 +1,171 @@
-
-.menu{
- justify-content: space-between;
- flex-direction: row-reverse;
+.menu {
+    justify-content: space-between;
+    flex-direction: row-reverse;
 }
 
-.myWrap{
- display: flex;
- width: fit-content;
- align-self: center;
+.myWrap {
+    display: flex;
+    width: fit-content;
+    align-self: center;
 }
 
-.reight,.left{
- display: flex;
- flex-direction: column;
-}
-  
-.squrl{
- height: 40px;
- width: 40px;
- flex-grow: 0;
+.reight,
+.left {
+    display: flex;
+    flex-direction: column;
 }
 
-.left-top{
- margin: 0 -1px -1px 1px;
+.squrl {
+    height: 40px;
+    width: 40px;
+    flex-grow: 0;
 }
 
-.reight-he{
- flex-grow: 1;
+.left-top {
+    margin: 0 -1px -1px 1px;
 }
 
-.left-line{
- margin-left: 1px;
+.reight-he {
+    flex-grow: 1;
 }
 
-.left-bottom{
- margin: -1px -1px 0 1px;
+.left-line {
+    margin-left: 1px;
 }
 
-.right-top{
- margin: 0 -1px -1px -1px;
+.left-bottom {
+    margin: -1px -1px 0 1px;
 }
 
-.right-line{
- margin: 0 1px 0 -1px;
+.right-top {
+    margin: 0 -1px -1px -1px;
 }
 
-.right-bottom{
- margin: -1px 0 0 -1px;
+.right-line {
+    margin: 0 1px 0 -1px;
 }
 
-.content{
- width: fit-content;
+.right-bottom {
+    margin: -1px 0 0 -1px;
 }
 
-.top,.bottom{
- height: 40px;
+.content {
+    width: fit-content;
 }
 
-.font{
-  font-family: Arial, Helvetica, sans-serif !important;
-  font-size: 11px !important;
-  border: none !important;
-  outline: none;
-  cursor: text;
-  width: 120px;
+.top,
+.bottom {
+    height: 40px;
 }
 
-.cursor{
- cursor: pointer;
-
+.font {
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 11px !important;
+    border: none !important;
+    outline: none;
+    cursor: text;
+    width: 120px;
 }
 
-
-
-.inStyle{
- border: none;
- outline: none;
- border-bottom: 0.1px solid;
- opacity: 0.7;
- width: 120px;
- font-family: sans-serif;
+.cursor {
+    cursor: pointer;
 }
 
-.bgr p{
- text-align: center;
- font-size: 12px;
- letter-spacing: 1px;
- font-weight: bold;
- margin: 60% 5px;
-} 
-
-.bg-img{
- width: 100px;
- height: 150px;
+.inStyle {
+    border: none;
+    outline: none;
+    border-bottom: 0.1px solid;
+    opacity: 0.7;
+    width: 120px;
+    font-family: sans-serif;
 }
 
-.bgr{
- width: 100px;
- height: 150px
+.bgr p {
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin: 60% 5px;
 }
 
-.bottom-par{
- border-bottom: 1px dashed;
- cursor: pointer;
+.bg-img {
+    width: 100px;
+    height: 150px;
 }
 
-.message{
- background-color: white;
- height: 50px;
+.bgr {
+    width: 100px;
+    height: 150px
 }
 
-.im{
- width: fit-content;
- display: flex;
- flex-direction: column;
- padding: 5px 10px;
- position:relative;
+.bottom-par {
+    border-bottom: 1px dashed;
+    cursor: pointer;
 }
 
-.create-bottom{
- position: absolute;
- z-index: 1;
+.message {
+    background-color: white;
+    height: 50px;
 }
 
+.im {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    position: relative;
+}
+
+.create-bottom {
+    position: absolute;
+    z-index: 1;
+}
 
 .buttonWrap {
-  width: 100%;
-  position: relative;
-  z-index: 300;
-  height: 28px;
-  clear: both;
+    width: 100%;
+    position: relative;
+    z-index: 300;
+    height: 28px;
+    clear: both;
 }
- 
- 
+
 .buttonWrap table {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
- 
+
 .buttonWrap table .aside {
-  height: 68px;
-  width: 50%;
-  background: url('/assets/1px/forButWrap .jpg') repeat-x bottom left;
-}
- 
-.buttonWrap table .center div,.buttonWrap.withoutBg table .center div {
-  padding: 0 5px;
-  height: 38px !important;
-  position: relative;
-  background:url('/assets/1x/ordeerButtonAside_left_.png') bottom left no-repeat, url('/assets/1x/bg8.jpg');
-}
- 
-.buttonWrap table .center div b, .buttonWrap.withoutBg table .center div b {
-  display: block;
-  width: 30px;
-  height: 35px;
-  position: absolute;
-  bottom: 0;
-  right: -1px;
-  z-index: 300;
-  background: url('/assets/1x/ordeerButtonAside_right_.png') bottom right no-repeat,url('/assets/1x/bg8.jpg');
+    height: 68px;
+    width: 50%;
+    background: url('/assets/1px/forButWrap .jpg') repeat-x bottom left;
 }
 
-.makeAWord_3:hover{
-  background-image: url('/assets/1x/tund-bot.png');
+.buttonWrap table .center div,
+.buttonWrap.withoutBg table .center div {
+    padding: 0 5px;
+    height: 38px !important;
+    position: relative;
+    background: url('/assets/1x/ordeerButtonAside_left_.png') bottom left no-repeat, url('/assets/1x/bg8.jpg');
 }
 
-@media (max-width:768px){
-  .conteiner{
-    margin-top: -50px;
-  }
- 
+.buttonWrap table .center div b,
+.buttonWrap.withoutBg table .center div b {
+    display: block;
+    width: 30px;
+    height: 35px;
+    position: absolute;
+    bottom: 0;
+    right: -1px;
+    z-index: 300;
+    background: url('/assets/1x/ordeerButtonAside_right_.png') bottom right no-repeat, url('/assets/1x/bg8.jpg');
+}
+
+.makeAWord_3:hover {
+    background-image: url('/assets/1x/tund-bot.png');
+}
+
+@media (max-width:768px) {
+    .conteiner {
+        margin-top: -50px;
+    }
 }

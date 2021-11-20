@@ -4,7 +4,7 @@
             <div class="imgColor">
                 <div class="colorless" [style.backgroundColor]='block.values.color'
                     *ngFor='let block of frames.imgColor' (click)="imgFone(block)"
-                    [ngClass]="{'box-content':block?.ceys?.id=== frames?.painding?.id}">
+                    [ngClass]="{'box-content':block?.ceys?.id=== imgService?.painding?.id}">
                     <div class="lessWhite" [style.backgroundColor]='block.values.child'>
                         <p class="info" *ngIf='frames.lang==="hy"'>{{block?.ceys?.name_hy}}</p>
                         <p class="info" *ngIf='frames.lang==="ru"'>{{block?.ceys?.name_ru}}</p>

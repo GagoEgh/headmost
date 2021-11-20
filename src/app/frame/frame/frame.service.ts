@@ -12,6 +12,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 export class FrameService {
   public framesImge: FramesImg[] = [];
 
+  
   constructor(private url: HttpClient, public frames: FramesServService,) { }
 
   public framesFoneGet(): Observable<ServerResponce<BgDetails[]>> {

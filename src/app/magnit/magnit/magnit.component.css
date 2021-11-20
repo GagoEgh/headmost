@@ -24,6 +24,7 @@
 
 .makeAWord_3 {
   outline: none;
+  margin-top: -40px;
 }
 
 .create-bottom{
@@ -34,7 +35,7 @@
 }
 
 .save{
-  margin-top: -40px;
+  margin-top: -60px;
 }
 
 :host ::ng-deep app-order .wrap{
@@ -80,7 +81,7 @@
 
 @media (max-width:769px){
   .save{
-    margin-top: -100px;
+    margin-top: -200px;
   }
 
   .create-bottom{

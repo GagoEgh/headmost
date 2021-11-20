@@ -56,8 +56,8 @@ export class FrameImag {
 
     public imgFone(obj: any): void {
 
-        this.frames.painding.values = obj.values;
-        this.frames.painding.id = obj.ceys.id;
+        this.imgService.painding.values = obj.values;
+        this.imgService.painding.id = obj.ceys.id;
 
         if (this.frames.validateForm.value.text !== null) {
             this.imgService.letterColorFone();

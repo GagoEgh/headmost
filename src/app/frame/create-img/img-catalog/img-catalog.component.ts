@@ -12,6 +12,7 @@ import { WordResult } from 'src/app/interface/WordResult';
 import { TranslateService } from "@ngx-translate/core";
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { ImgCatalogService } from './img-catalog.service';
+import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 
 
 
@@ -28,25 +29,25 @@ export class ImgCatalogComponent  implements OnInit {
   @ViewChild("header", { static: false }) block: ElementRef | undefined;
   public categoryList: CategoryDetails[] = [];
   constructor(public activeModal: NgbActiveModal,public _translate: TranslateService,
-    public imgCatalogService:ImgCatalogService, public frames: FramesServService, public modalService: NgbModal) { 
+   public imgService:FrameImageService , public imgCatalogService:ImgCatalogService, public frames: FramesServService, public modalService: NgbModal) { 
      }
 
   ngOnInit(): void {
     this.frames.apiPhoto = true;
-    this.frames.painding.imgs = this.img;
+    this.imgService.painding.imgs = this.img;
     this.createCategory();
   }
 
   
   private chengePopapImg(): void {
-    this.frames.letterColection(this.character.character.toUpperCase(), this.frames.painding.id)
+    this.frames.letterColection(this.character.character.toUpperCase(), this.imgService.painding.id)
       .subscribe((imageResponse: ServerResponce<ImageResponse[]>) => {
-        this.frames.painding.imgs = imageResponse.results;
+        this.imgService.painding.imgs = imageResponse.results;
       })
   }
 
   public changeImg(image:  ImageResponse): void {
-    this.frames.painding.imgs = [];
+    this.imgService.painding.imgs = [];
     this.activeModal.dismiss(image);
   }
 
@@ -56,8 +57,8 @@ export class ImgCatalogComponent  implements OnInit {
   }
 
   public changeFone(imgColor:{ ceys: CategoryDetails, values:ImgColorValue  } ): void {
-    this.frames.painding.values = imgColor.values;
-    this.frames.painding.id = imgColor.ceys.id;
+    this.imgService.painding.values = imgColor.values;
+    this.imgService.painding.id = imgColor.ceys.id;
     this.frames.apiPhoto = true
     this.chengePopapImg();
   }
@@ -69,10 +70,10 @@ export class ImgCatalogComponent  implements OnInit {
   }
 
   public showCategory(category:CategoryDetails): void {
-    this.frames.letterColection(this.character.character.toUpperCase(), this.frames.painding.id, category.id)
+    this.frames.letterColection(this.character.character.toUpperCase(), this.imgService.painding.id, category.id)
       .subscribe((imageResponse: ServerResponce<ImageResponse[]>) => {
-        this.frames.painding.imgs = imageResponse.results
-        this.frames.painding.categoryId = category.id;
+        this.imgService.painding.imgs = imageResponse.results
+        this.imgService.painding.categoryId = category.id;
         this.frames.apiPhoto = true;
       })
 

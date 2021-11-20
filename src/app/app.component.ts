@@ -3,12 +3,13 @@ import { LoginComponent } from './register/login/login.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ServerResponce } from './interface/img-ramka';
 import { UserData } from './interface/UserInfo';
+
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
   public unsubscribe$ = new Subject();
   constructor(public frames: FramesServService, private spinner: NgxSpinnerService,
     private _translate: TranslateService,
+
     private modalService: NgbModal,
     private router: Router) {
     this._translate.use(this.frames.lang);
@@ -38,6 +40,7 @@ export class AppComponent implements OnInit {
       const result = JSON.parse(date)
       this.frames.userData = result;
       this.frames.userReg = false;
+
       this.frames.userInfo().pipe(takeUntil(this.unsubscribe$)).subscribe((serverResponse: ServerResponce<[]>) => {
         this.frames.orderList = serverResponse.results;
         this.frames.orderList.forEach((obj: any) => {
@@ -92,14 +95,14 @@ export class AppComponent implements OnInit {
 
   }
 
-  public changeLeng(leng: string):void {
+  public changeLeng(language: string): void {
     this.spinner.show();
-    this._translate.use(leng);
-    this.frames.lang = leng;
+    this._translate.use(language);
+    this.frames.lang = language;
     localStorage.setItem('language', this.frames.lang);
     this._translate.use(this.frames.lang);
     this._translate.get('ImgTextValid').pipe(takeUntil(this.unsubscribe$))
-      .subscribe((res: {[key:string]:string}) => {
+      .subscribe((res: { [key: string]: string }) => {
         this.frames.placeholder = res["placeholder"];
         setTimeout(() => {
           this.spinner.hide()

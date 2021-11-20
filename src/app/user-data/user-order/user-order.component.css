@@ -3,6 +3,7 @@
   margin: 0 auto;
 }
 
+
 .wrap:last-child{
   margin-bottom: 20px;
 }
@@ -66,7 +67,7 @@ ul{
   background-size: 100% 100%;  
 }
  
-::ng-deep.mat-typography p {
+:host ::ng-deep.mat-typography p {
   margin: 0 0 2px  !important;
 }
 

@@ -9,7 +9,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
   providedIn: 'root'
 })
 export class OrderService {
-
+  public isdisible = false;
   constructor(private url: HttpClient, public frames: FramesServService) { }
 
   public deleteOrder(id: number): Observable<null> {

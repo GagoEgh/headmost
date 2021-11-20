@@ -45,7 +45,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   ngOnInit(): void {
     this.userName = this.frames.userData.user_details.first_name;
     this.frames.cityPlaceholder()
-    this.frames.isdisible = false;
+    this.orderService.isdisible = false;
     this.frames.isMyOrder = false;
     this.shipingGet();
     this.addSum();

@@ -7,9 +7,9 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Api, CountryResult, Painding, ServerResponce } from '../interface/img-ramka';
+import { Api, CountryResult, ServerResponce } from '../interface/img-ramka';
 import { CardItemResults } from '../interface/frame-response';
-import { FramesImg, ImageResponse, ImgColorValue, UserImage } from '../interface/ImageResponse';
+import { ImageResponse, ImgColorValue, UserImage } from '../interface/ImageResponse';
 import { CategoryDetails } from '../interface/CategoryDetails';
 import { WordResult } from '../interface/WordResult';
 import { UserData } from '../interface/UserInfo';
@@ -40,21 +40,14 @@ export class FramesServService {
     public apiPhoto = true;
     public fileList: any = [];
     public token: string = '';
-    
     public isMyOrder = false;
     public limit = 10;
     public offset = 0;
     public isTop = false;
-    public isdisible = false;
-    public scale: number = 1;
     public urlArr: string[] = [];
-    public magnit_scale: number = 1;
     public letterChar: string = '';
     public isImg = true;
-    public div: any = [];
     public frame: any;
-
-
     public api: Api = {
         worldApi: 'http://sirun-bar-api.annaniks.com',
         api_utils: '/utils',
@@ -81,23 +74,12 @@ export class FramesServService {
         api_files: '/files',
         api_user_image: '/user-image',
         api_created_frame: '/created-frame',
-        api_magnet: '/add-magnet-in-card'
+        api_magnet: '/add-magnet-in-card',
+        api_languages:'/static/languages',
+        api_en:'/en.json',
+        api_ru:'/ru.json',
+        api_hy:'/hy.json'
     }
-
-
-    public painding: Painding = {
-        values: {
-            colored: false,
-            withandblack: true,
-            sepia: false,
-            color: 'black',
-            child: 'white',
-        },
-        imgs: [],
-        id: 3,
-        categoryId: 1
-    };
-
 
     public imgColor: { ceys: CategoryDetails, values: ImgColorValue }[] = [
         {

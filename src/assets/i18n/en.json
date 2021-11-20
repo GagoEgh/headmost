@@ -1,4 +1,5 @@
 {
+    "language":"http://sirun-bar-api.annaniks.com/static/languages/en.json",
     "Menu": {
         "konstruktor": {
             "konstr":"CONSTRUCTOR",

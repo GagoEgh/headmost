@@ -1,26 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import "~ng-zorro-antd/ng-zorro-antd.min.css";
+
 /* @import '~ngx-toastr/toastr-bs4-alert'; */
+
 @import '~ngx-toastr/toastr';
-
 @import url('https://fonts.googleapis.com/css2?family=Praise&display=swap');
-
-
-*{
-    font-family: Montserrat;  
+* {
+    font-family: Montserrat;
 }
-
 
 .ant-upload-list-picture-card .ant-upload-list-item {
     display: none !important;
 }
 
 .ant-upload-list-picture-card-container {
- 
     display: none !important;
 }
 
-.ng-image-slider .ng-image-slider-container .main .next, .ng-image-slider .ng-image-slider-container .main .prev {
+.ng-image-slider .ng-image-slider-container .main .next,
+.ng-image-slider .ng-image-slider-container .main .prev {
     right: 0 !important;
     top: 80% !important;
     width: 15px !important;
@@ -29,34 +28,46 @@
     line-height: 13px !important;
 }
 
-body{
+body {
     margin: 0;
 }
 
-*{
+* {
     box-sizing: border-box;
 }
 
 .ant-btn-primary {
     width: 99% !important;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
- 
     border-radius: 10px !important;
 }
 
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
-  border-radius: 10px !important;
-  width: 280px !important;
+html,
+body {
+    height: 100%;
 }
 
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border-radius: 10px !important;
+    width: 280px !important;
+}
 
 .ant-upload.ant-upload-select-picture-card {
     width: 120px !important;
@@ -65,18 +76,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     transition: all .5s;
 }
 
-.ant-upload.ant-upload-select-picture-card:hover{
- border: 1px dashed rgb(88, 88, 224)!important;
+.ant-upload.ant-upload-select-picture-card:hover {
+    border: 1px dashed rgb(88, 88, 224)!important;
 }
+
 
 /* frame component */
 
-.imgColor{
-    padding:24px;
+.imgColor {
+    padding: 24px;
     display: flex;
 }
 
-.colorless{
+.colorless {
     width: 35px;
     height: 20px;
     margin-left: 5px;
@@ -90,24 +102,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .box-content {
     border: 2px solid #e90069;
 }
- 
 
-.lessWhite{
+.lessWhite {
     position: absolute;
-    left:0;
-    top:0;
+    left: 0;
+    top: 0;
     width: 50%;
     height: 100%;
 }
 
-.btn{
+.btn {
     font-size: 12px;
     border-bottom: 1px dashed;
 }
 
-.info{
+.info {
     position: absolute;
-    top:180%;
+    top: 180%;
     left: -20px;
     width: 220px;
     background-color: white;
@@ -118,112 +129,113 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     display: none;
 }
 
-.colorless:hover{
+.colorless:hover {
     opacity: 1;
     transition: .5s;
-} 
+}
 
-.colorless:hover .info{
+.colorless:hover .info {
     display: block;
 }
 
-.letter{
+.letter {
     text-align: center;
     padding: 30px;
 }
 
-.letter input{
- text-align: center;
- color: #bebebe;
- padding: 20px;
- font-size: 60px;
- box-shadow: 0 0 5px rgb(0 0 0 / 35%) inset;
- border: none;
- width: 725px;
- height: 170px;
+.letter input {
+    text-align: center;
+    color: #bebebe;
+    padding: 20px;
+    font-size: 60px;
+    box-shadow: 0 0 5px rgb(0 0 0 / 35%) inset;
+    border: none;
+    width: 725px;
+    height: 170px;
 }
 
 .makeAWord_3 {
- display: block;
- height: 61px;
- padding: 0;
- border: none;
- cursor: pointer;
- position: relative;
- z-index: 320;
- color: #fff;
- font-size: 30px;
- font-weight: 600;
- text-shadow: 1px 1px 2px #000;
- text-align: center;
- line-height: 60px;
- background-color: #ff024b;
- border-radius: 35px;
- width: 288px;
- outline: none;
- bottom: 30px;
+    display: block;
+    height: 61px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 320;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px #000;
+    text-align: center;
+    line-height: 60px;
+    background-color: #ff024b;
+    border-radius: 35px;
+    width: 288px;
+    outline: none;
+    bottom: 30px;
 }
 
-.makeAWord_3:hover:not([disabled]){
- background-color: #ef0034 !important;
- box-shadow: 1px 2px 2px white inset;
- transition: all 0.2s;
+.makeAWord_3:hover:not([disabled]) {
+    background-color: #ef0034 !important;
+    box-shadow: 1px 2px 2px white inset;
+    transition: all 0.2s;
 }
 
-.block{
- display: flex;
- flex-direction: column;
- align-items: center;
- width: fit-content;   
- position: relative;
- transform-origin: top;  
+.block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    position: relative;
+    transform-origin: top;
 }
+
 
 /* create-img */
 
-.im{
- width: fit-content;
- display: flex;
- flex-direction: column;
- padding: 5px 10px;
- position:relative;
+.im {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    position: relative;
 }
 
-.menu{
- display: flex;
- font-size: 12px;
- font-weight: 400;
- transition: 0.4s;
+.menu {
+    display: flex;
+    font-size: 12px;
+    font-weight: 400;
+    transition: 0.4s;
 }
 
-.imgs{
+.imgs {
     width: fit-content;
     display: flex;
 }
 
-.bg-img{
+.bg-img {
     background-position: center;
     background-size: 100% 100%;
     margin: 5px 10px;
     cursor: pointer;
 }
- 
-.bg-img:hover .bgr{
+
+.bg-img:hover .bgr {
     opacity: 1;
 }
- 
-.bgr{
-    background-color:rgba(230, 22, 102, 0.6);
+
+.bgr {
+    background-color: rgba(230, 22, 102, 0.6);
     opacity: 0;
     transition: 0.4s;
 }
- 
-.bgr p{
+
+.bgr p {
     color: white;
     display: inline-block;
 }
- 
-.btn-save{
+
+.btn-save {
     background-color: transparent;
     background-image: url('/assets/1x/red-btn.png');
     background-repeat: no-repeat;
@@ -236,14 +248,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border: none;
     transition: .5s;
 }
- 
-.btn-save:active{
+
+.btn-save:active {
     color: white;
     transition: 0.5s;
 }
 
 .ant-form-item-label>label {
-
     font-size: 10px !important;
 }
 
@@ -254,13 +265,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding-right: 1.5rem !important;
 }
 
-.mat-form-field-prefix, .mat-form-field-suffix {
+.mat-form-field-prefix,
+.mat-form-field-suffix {
     width: 40px !important;
     height: 30px !important;
     top: -5px !important;
 }
 
-.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button, .mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button {
+.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button,
+.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -269,7 +282,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: 2em !important;
 }
 
-@media (max-width:768px){
+@media (max-width:768px) {
     .makeAWord_3 {
         height: 51px;
         font-size: 20px;
@@ -278,25 +291,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
         width: 218px;
         bottom: 20px;
     }
-
 }
 
-
-@media (max-width:426px){
+@media (max-width:426px) {
     .modal-content {
         width: 310px !important;
         height: 200px !important;
-        margin: 70px auto !important;  
+        margin: 70px auto !important;
     }
-
 }
 
 
+/* new  */
 
-
- /* new  */
-
-.title-h1 h1{
+.title-h1 h1 {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 40px;
@@ -312,11 +320,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding: 0.2em 0 0.5em 0 !important;
 }
 
-.label, .login-form-button{
+.label,
+.login-form-button {
     color: #c79d51
 }
 
-.login-form-button{
+.login-form-button {
     display: block;
     margin: 100px auto;
     outline: none !important;
@@ -325,4 +334,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-weight: bold;
     font-size: 18px;
     letter-spacing: 3px;
+}
+
+.card {
+    border: none !important;
 }
