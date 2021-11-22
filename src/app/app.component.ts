@@ -9,7 +9,8 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ServerResponce } from './interface/img-ramka';
 import { UserData } from './interface/UserInfo';
-
+import { TranslationService } from './translation.service';
+import { CookieService } from 'ngx-cookie';
 
 @Component({
   selector: 'app-root',
@@ -18,15 +19,20 @@ import { UserData } from './interface/UserInfo';
 })
 export class AppComponent implements OnInit {
   public unsubscribe$ = new Subject();
-  constructor(public frames: FramesServService, private spinner: NgxSpinnerService,
+  constructor(public frames: FramesServService,
+    private cookie: CookieService, private spinner: NgxSpinnerService,
     private _translate: TranslateService,
-
     private modalService: NgbModal,
     private router: Router) {
-    this._translate.use(this.frames.lang);
-    const lang: any = localStorage.getItem('language');
-    this.frames.lang = lang;
-    this._translate.setDefaultLang(this.frames.lang)
+    const lang: any = this.cookie.get('lang');
+    let activeLanguage = lang ?? 'hy';
+    if (!lang) {
+      this.cookie.put('lang', activeLanguage)
+    }
+    //localStorage.getItem('language');
+    this._translate.use(activeLanguage);
+    this.frames.lang=activeLanguage
+    // this._translate.setDefaultLang(this.frames.lang)
   }
 
 
@@ -96,17 +102,24 @@ export class AppComponent implements OnInit {
   }
 
   public changeLeng(language: string): void {
-    this.spinner.show();
+    // this.spinner.show();
+    console.log(language);
+
+    this.cookie.put('lang', language);
+    console.log('cookie ', this.cookie.get('lang'))
     this._translate.use(language);
-    this.frames.lang = language;
-    localStorage.setItem('language', this.frames.lang);
-    this._translate.use(this.frames.lang);
+    this.frames.lang=language;
+    // gtnel sxaly
+    window.location.reload()
+
+
+    //  localStorage.setItem('language', this.frames.lang);
     this._translate.get('ImgTextValid').pipe(takeUntil(this.unsubscribe$))
       .subscribe((res: { [key: string]: string }) => {
         this.frames.placeholder = res["placeholder"];
-        setTimeout(() => {
-          this.spinner.hide()
-        }, 300)
+        // setTimeout(() => {
+        //   this.spinner.hide()
+        // }, 300)
       })
   }
 

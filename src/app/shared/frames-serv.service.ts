@@ -25,7 +25,7 @@ export class FramesServService {
 
     public selectedValue: any[]  = [];
     public placeholder = '';
-    public lang = 'en';
+    public lang = 'ru';
     public country_placeholder = '';
     public isOrder: boolean = false;
     public isSilki = false;
@@ -49,7 +49,7 @@ export class FramesServService {
     public isImg = true;
     public frame: any;
     public api: Api = {
-        worldApi: 'http://sirun-bar-api.annaniks.com',
+        worldApi: 'https://sirun-bar-api.annaniks.com',
         api_utils: '/utils',
         api_bgr: '/background/',
         api_frame: '/frame/',

@@ -27,7 +27,6 @@ export class IdeaNavComponent implements OnInit {
     this.ideaGroup(this.id)
     this.ideaNavService.frameCategory().pipe(takeUntil(this._unsubscribe$)).subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
       this.frameIdeas = categoryDetails.results;
-      console.log(this.frameIdeas)
     })
   }
 

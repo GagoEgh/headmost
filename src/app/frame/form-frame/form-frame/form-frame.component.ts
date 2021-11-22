@@ -18,7 +18,7 @@ export class FormFrameComponent extends FrameImag implements OnInit {
     public imgService:FrameImageService, public modalService: NgbModal,
     public rout: Router, public form: FormBuilder,) {
     super(frames, modalService,imgService, rout, form);
-    this._translate.use(this.frames.lang)
+   this._translate.use(this.frames.lang)
   }
 
   ngOnInit(): void {}

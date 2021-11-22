@@ -13,14 +13,18 @@ import { RegisterModule } from './register/register-module';
 import { UserGuard } from './user-data/userGuard';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from "ngx-spinner";
+
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 import { ErrMsgComponent } from './idea/err-msg/err-msg.component';
 import { ToastrModule } from 'ngx-toastr';
 
+import { CookieModule } from 'ngx-cookie';
+
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http,'https://sirun-bar-api.annaniks.com/static/languages/', '.json');
 }
 
 registerLocaleData(en);
@@ -43,18 +47,20 @@ registerLocaleData(en);
     }),
     RegisterModule,
     InfiniteScrollModule,
+    CookieModule.forRoot(),
     NgxSpinnerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
+        useFactory: createTranslateLoader,
+       // useClass: TranslationService,     
         deps: [HttpClient]
       }
     })
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
-  providers: [{ provide: NZ_I18N, useValue: en_US }, UserGuard],
+  providers: [{ provide: NZ_I18N, useValue: en_US }, UserGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
