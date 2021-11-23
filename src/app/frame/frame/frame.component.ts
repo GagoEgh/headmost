@@ -40,15 +40,11 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
   ngOnInit(): void {
     super.myForm();
     super.imgColor();
-    // this.frames.letterImges = [];
     this.frames.isOrder = false;
-    
     if(this.frames.isImg){
       this.rout.navigate(['frame/form-frame']);
       this.frames.letterImges = [];
     }
-    
-
     this.imgTextGet();
     this.frameBg();
     this.framesImgGet();

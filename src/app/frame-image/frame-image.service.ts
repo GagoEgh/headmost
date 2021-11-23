@@ -50,6 +50,7 @@ export class FrameImageService {
         this.frames.letterImges = this.frames.letterImges.filter(img => {
             return !img.not_found
         })
+
         this.frames.urlArr = this.rout.url.split('/');
 
         if (this.frames.urlArr[1] === 'frame') {

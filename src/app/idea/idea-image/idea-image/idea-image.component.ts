@@ -29,7 +29,8 @@ export class IdeaImageComponent implements OnInit {
     private modalService: NgbModal) { }
   ngOnInit(): void {
     this.frames.spinner.show()
-    this.goIdeaCategory()
+    this.goIdeaCategory();
+  
   }
 
   @HostListener('window:resize', ['$event'])
@@ -52,6 +53,7 @@ export class IdeaImageComponent implements OnInit {
     this.activApi.params.subscribe((idea: { [keys: string]: number }) => {
       this.ideaIMageService.imgCategory(idea.id).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: FrameDetalis) => {
         this.ideaIMageService.ideaImg = frameDetalis;
+        
         this.frames.spinner.hide()
       })
     })
@@ -82,6 +84,9 @@ export class IdeaImageComponent implements OnInit {
   }
 
   public myFrame() {
+    console.log('is silki ',this.frames.isSilki);
+    console.log(' ideaIMageService   ideaImg ', this.ideaIMageService.ideaImg)
+    this.frames.isSilki = true;
     this.frames.isImg = false;
     this.frames.text = this.ideaIMageService?.ideaImg?.word;
     this.frameImageService.letterGet().subscribe((wordResult: WordResult[]) => {
@@ -89,7 +94,6 @@ export class IdeaImageComponent implements OnInit {
       this.frames.letterImges = this.frames.letterImges.filter(img => {
         return !img.not_found
       })
-      console.log('this.frames.letterImges  ',this.frames.letterImges )
       this.rout.navigate(['/frame/create-img'], { queryParams: { type: 'frame', text: this.ideaIMageService?.ideaImg?.word } })
     })
 

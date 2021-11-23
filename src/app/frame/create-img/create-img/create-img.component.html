@@ -1,9 +1,9 @@
 <div class="conteiner">
     <div class="myWrap" [style.margin]="frames.isTop?'0 auto':'0'">
         <div class="reight">
-            <div class="squrl left-top" [style.background-image]="'url(' + frames.frame?.left_top_corner_image + ')'">
+            <div class="squrl left-top" [style.background-image]="!frames.isSilki ?'url(' + frames.frame?.left_top_corner_image + ')':'url('+ideaImgService.ideaImg.frame_details?.left_top_corner_image + ')'">
             </div>
-            <div class="reight-he left-line" [style.background-image]="'url(' + frames.frame?.left_line_image + ')'">
+            <div class="reight-he left-line" [style.background-image]="!frames.isSilki ?'url(' + frames.frame?.left_line_image + ')':'url('+ideaImgService.ideaImg.frame_details?.left_line_image + ')'">
             </div>
             <div class="squrl left-bottom" [style.background-image]="'url(' + frames.frame?.left_bottom_corner_image + ')'">
             </div>
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="imgs">
-                    <div class="bg-img" *ngFor='let img of frames?.letterImges;let i = index' (click)="openImg(img,i)" 
+                    <div class="bg-img" *ngFor='let img of frames.letterImges;let i = index' (click)="openImg(img,i)" 
                     [style.background-image]="checkImage(img.image.thumbnail)?'url( '+ img.image.thumbnail + ')':'url( https://sirun-bar-api.annaniks.com/'+ img.image.thumbnail + ')'">
                         <div class="bgr">
                             <p>{{'Imgs.imgHover'|translate}}</p>

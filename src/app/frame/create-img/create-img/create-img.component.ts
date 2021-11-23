@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { Letter } from 'src/app/interface/img-ramka';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
+import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
 
 @Component({
   selector: 'app-create-img',
@@ -22,20 +23,19 @@ export class CreateImgComponent extends FrameImag implements OnInit {
   public bottomLettering: Letter = {} as Letter
   @Output() mainApp: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(public frames: FramesServService, public rout: Router,
+  constructor(public frames: FramesServService, public rout: Router,public ideaImgService:IdeaImageService,
     public imgService:FrameImageService, public form: FormBuilder, public modalService: NgbModal) {
     super(frames, modalService, imgService,rout, form,);
   }
 
   ngOnInit(): void {
+    console.log('is silki  create img ',this.frames.isSilki);
+    console.log('create img idea service ', this.ideaImgService.ideaImg)
     this.validateForm = this.form.group({ topText: [null] },);
     this.bottomText = this.form.group({ btmText: [null] });
-    console.log("sfg ",this.frames.letterImges)
-
   }
 
   public deletImg(): void {
-   
     this.rout.navigate(['frame/form-frame']);
     this.frames.validateForm.reset();
     this.frames.isImg = true;
