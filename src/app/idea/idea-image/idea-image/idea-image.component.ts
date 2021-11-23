@@ -27,7 +27,7 @@ export class IdeaImageComponent implements OnInit {
   ngOnInit(): void {
     this.frames.spinner.show()
     this.goIdeaCategory()
-    console.log('ideaIMageService ', this.ideaIMageService.ideaImg)
+
   }
 
   @HostListener('window:resize', ['$event'])
