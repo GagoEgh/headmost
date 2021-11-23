@@ -28,7 +28,7 @@ export class FrameImageService {
   constructor(public frames: FramesServService, private url: HttpClient,
     public rout: Router, public spinner: NgxSpinnerService,) { }
 
-  private letterGet(): Observable<WordResult[]> {
+  public letterGet(): Observable<WordResult[]> {
     let text = this.frames.text ? this.frames.text : null;
     return this.url.get<WordResult[]>(this.frames.api.worldApi + this.frames.api.api_img + this.frames.api.api_create_word + text + '/', {
         params: new HttpParams().set('color', this.painding.id.toString())
@@ -50,7 +50,6 @@ export class FrameImageService {
         this.frames.letterImges = this.frames.letterImges.filter(img => {
             return !img.not_found
         })
-
         this.frames.urlArr = this.rout.url.split('/');
 
         if (this.frames.urlArr[1] === 'frame') {

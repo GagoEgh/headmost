@@ -28,7 +28,7 @@ export class FrameImag {
     // frame component
     protected myForm(): void {
         this.frames.validateForm = new FormGroup({
-            text: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(9), this.textValid])
+            text: new FormControl( null, [Validators.required, Validators.minLength(3), Validators.maxLength(9), this.textValid])
         })
     }
 
@@ -84,6 +84,7 @@ export class FrameImag {
     public showFrame(): void {
         this.frames.showFrame();
         this.frames.conteinerHeight();
+        this.frames.isImg = false;
     }
 
 

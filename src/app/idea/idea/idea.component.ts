@@ -26,7 +26,7 @@ export class IdeaComponent implements OnInit {
   private offset = 0;
   private count = 0;
 
-  constructor(public frames: FramesServService,public ideaService:IdeaService,
+  constructor(public frames: FramesServService, public ideaService: IdeaService,
     private _activatedRoute: ActivatedRoute,
     private modalService: NgbModal, private rout: Router) {
   }
@@ -36,12 +36,14 @@ export class IdeaComponent implements OnInit {
     this.ideaImages = []
     this.offset = 0;
     window.scrollTo(0, 0);
+
     if (window.innerWidth <= 772) {
       this.scrollDistance = 1;
       this.scrollUpDistance = 3;
     }
 
     this.checkQueryParams();
+  //  this.appendItems()
 
   }
 
@@ -50,7 +52,7 @@ export class IdeaComponent implements OnInit {
       this.offset = 0;
       this.ideaImages = [];
       this.category = idCategory.category;
-      this.category = this.category === undefined ? '' : this.category;
+    //  this.category = this.category === undefined ? '' : this.category;
       this.appendItems();
     })
   }

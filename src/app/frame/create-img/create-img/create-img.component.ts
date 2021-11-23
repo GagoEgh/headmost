@@ -30,6 +30,8 @@ export class CreateImgComponent extends FrameImag implements OnInit {
   ngOnInit(): void {
     this.validateForm = this.form.group({ topText: [null] },);
     this.bottomText = this.form.group({ btmText: [null] });
+    console.log("sfg ",this.frames.letterImges)
+
   }
 
   public deletImg(): void {

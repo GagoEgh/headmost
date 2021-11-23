@@ -2,12 +2,14 @@ import { Component, ElementRef, OnInit, ViewChild, HostListener, } from '@angula
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { MessageComponent } from '../../message/message.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { LoginComponent } from 'src/app/register/login/login.component';
 import { CardItemResults, FrameDetalis } from 'src/app/interface/frame-response';
 import { IdeaImageService } from '../idea-image.service';
+import { FrameImageService } from 'src/app/frame-image/frame-image.service';
+import { WordResult } from 'src/app/interface/WordResult';
 
 
 @Component({
@@ -22,12 +24,12 @@ export class IdeaImageComponent implements OnInit {
   private width: number | undefined;
   public scale: number = 1;
 
-  constructor(public frames: FramesServService,public ideaIMageService:IdeaImageService,
-     public activApi: ActivatedRoute, private modalService: NgbModal) { }
+  constructor(public frames: FramesServService, public ideaIMageService: IdeaImageService,
+    public rout: Router, public activApi: ActivatedRoute, public frameImageService: FrameImageService,
+    private modalService: NgbModal) { }
   ngOnInit(): void {
     this.frames.spinner.show()
     this.goIdeaCategory()
-
   }
 
   @HostListener('window:resize', ['$event'])
@@ -54,7 +56,7 @@ export class IdeaImageComponent implements OnInit {
       })
     })
   }
-  
+
   private open(): void {
     const modalRef = this.modalService.open(MessageComponent);
     setTimeout(() => {
@@ -79,6 +81,19 @@ export class IdeaImageComponent implements OnInit {
     }
   }
 
+  public myFrame() {
+    this.frames.isImg = false;
+    this.frames.text = this.ideaIMageService?.ideaImg?.word;
+    this.frameImageService.letterGet().subscribe((wordResult: WordResult[]) => {
+      this.frames.letterImges = wordResult;
+      this.frames.letterImges = this.frames.letterImges.filter(img => {
+        return !img.not_found
+      })
+      console.log('this.frames.letterImges  ',this.frames.letterImges )
+      this.rout.navigate(['/frame/create-img'], { queryParams: { type: 'frame', text: this.ideaIMageService?.ideaImg?.word } })
+    })
+
+  }
   ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
