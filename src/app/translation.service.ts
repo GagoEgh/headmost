@@ -13,8 +13,6 @@ export class TranslationService implements TranslateLoader {
     // https://sirun-bar-api.annaniks.com/static/languages/en.json
     return this.http.get(`https://sirun-bar-api.annaniks.com/static/languages/${lang}.json`)
       .pipe(map((response) => {
-        console.log(response);
-        
         return response;
       }));
   }

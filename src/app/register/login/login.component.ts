@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit, DoCheck {
   public errorLog: string = '';
 
   constructor(public activeModal: NgbActiveModal, private modalService: NgbModal, public _translate: TranslateService,
-   public loginService:LoginService, private fb: FormBuilder, public frames: FramesServService, private valid: ValidationServService, private spinner: NgxSpinnerService) { }
+    public loginService: LoginService, private fb: FormBuilder, public frames: FramesServService, private valid: ValidationServService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -71,18 +71,13 @@ export class LoginComponent implements OnInit, DoCheck {
         this.activeModal.dismiss();
         this.validateForm.reset();
         this.frames.userReg = false;
-
         this.frames.userInfo().pipe(takeUntil(this._subscribe$)).subscribe((serverResponce: ServerResponce<[]>) => {
           this.frames.orderList = serverResponce.results;
           this.frames.orderList.forEach((obj: any) => {
             this.frames.sum += obj.created_frame_details.price;
           })
         })
-        setTimeout(() => {
-          this.spinner.hide()
-        }, 200)
-
-
+        this.spinner.hide()
       }, ((err: any) => {
         this.errorLog = err.error.message
       }))

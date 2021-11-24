@@ -37,24 +37,4 @@ export class ValidationServService {
     return null
   }
 
-  public bigDate(control: FormControl): object | null {
-    const nowDate = new Date(control.value);
-    const nowYear = nowDate.getFullYear();
-    const nowMonth = nowDate.getMonth() + 1;
-    const nowDay = nowDate.getDate();
-
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const day = today.getDate();
-
-    if ((nowYear > year) || (nowYear === year && nowMonth > month) || (nowYear === year && nowMonth === month && nowDay > day)) {
-      return {
-        bigDate: true
-      }
-    }
-    return null
-
-  }
-
 }

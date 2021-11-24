@@ -13,8 +13,6 @@ import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 import { FrameService } from './frame.service';
 import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
 
-
-
 @Component({
   selector: 'app-frame',
   templateUrl: './frame.component.html',
@@ -28,9 +26,9 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
   public scale: number = 1;
   public div: any = [];
   constructor(public frames: FramesServService, public modalService: NgbModal,
-    public frameServis :FrameService,public imgService:FrameImageService,public ideaImgService:IdeaImageService,
+    public frameServis: FrameService, public imgService: FrameImageService, public ideaImgService: IdeaImageService,
     public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
-    super(frames, modalService,ideaImgService ,imgService, rout, form);
+    super(frames, modalService, ideaImgService, imgService, rout, form);
     this._translate.use(this.frames.lang)
   }
 
@@ -40,19 +38,15 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
 
   ngOnInit(): void {
     super.myForm();
-
     super.imgColor();
-
     this.frames.isOrder = false;
-    if(this.frames.isImg){
+    if (this.frames.isImg) {
       this.rout.navigate(['frame/form-frame']);
       this.frames.letterImges = [];
     }
     this.imgTextGet();
-
     this.frameBg();
     this.framesImgGet();
-
     setTimeout(() => {
       this.onResize()
     })
@@ -119,7 +113,7 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
     this.frames.background = bg;
   }
 
-  private ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }

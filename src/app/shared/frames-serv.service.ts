@@ -22,7 +22,6 @@ export class FramesServService {
     public validateForm: FormGroup = new FormGroup({});
     public userData: UserData = {} as UserData;
     public letterImges: WordResult[] = [];
-
     public selectedValue: any[]  = [];
     public placeholder = '';
     public lang = 'ru';

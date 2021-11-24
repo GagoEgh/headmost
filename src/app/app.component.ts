@@ -9,7 +9,6 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ServerResponce } from './interface/img-ramka';
 import { UserData } from './interface/UserInfo';
-import { TranslationService } from './translation.service';
 import { CookieService } from 'ngx-cookie';
 
 @Component({
@@ -29,10 +28,8 @@ export class AppComponent implements OnInit {
     if (!lang) {
       this.cookie.put('lang', activeLanguage)
     }
-    //localStorage.getItem('language');
     this._translate.use(activeLanguage);
-    this.frames.lang=activeLanguage
-    // this._translate.setDefaultLang(this.frames.lang)
+    this.frames.lang = activeLanguage
   }
 
 
@@ -102,28 +99,22 @@ export class AppComponent implements OnInit {
   }
 
   public changeLeng(language: string): void {
-    // this.spinner.show();
+    this.spinner.show();
     console.log(language);
 
     this.cookie.put('lang', language);
     console.log('cookie ', this.cookie.get('lang'))
     this._translate.use(language);
-    this.frames.lang=language;
-    // gtnel sxaly
+    this.frames.lang = language;
     window.location.reload()
-
-
-    //  localStorage.setItem('language', this.frames.lang);
     this._translate.get('ImgTextValid').pipe(takeUntil(this.unsubscribe$))
       .subscribe((res: { [key: string]: string }) => {
         this.frames.placeholder = res["placeholder"];
-        // setTimeout(() => {
-        //   this.spinner.hide()
-        // }, 300)
+        this.spinner.hide()
       })
   }
 
-  private ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete()
   }

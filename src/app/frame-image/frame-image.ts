@@ -13,11 +13,7 @@ import { ServerResponce } from "../interface/img-ramka";
 import { FramesServService } from "../shared/frames-serv.service";
 import { FrameImageService } from "./frame-image.service";
 
-
-
-
 export class FrameImag {
-    
     public _unsubscribe$ = new Subject();
     protected bottomText: FormGroup = new FormGroup({});
     protected validateForm: FormGroup = new FormGroup({});
@@ -75,7 +71,7 @@ export class FrameImag {
             const modalRef = this.modalService.open(ErroreMessageComponent);
             setTimeout(() => {
                 modalRef.dismiss();
-            }, 2500)
+            }, 500)
             return;
         }
         this.frames.isImg = false;
@@ -99,7 +95,6 @@ export class FrameImag {
             const modalRef = this.modalService.open(ImgCatalogComponent, { size: 'lg' });
             modalRef.componentInstance.img = el.results;
             modalRef.componentInstance.character = this.frames.letterImges[num];
-
             modalRef.result.then((result) => { }, (reason) => {
                 if (reason) {
                     if (!this.frames.apiPhoto) {
@@ -115,6 +110,7 @@ export class FrameImag {
         })
 
     }
+    
     public checkImage(img: string): boolean {
         if (img) {
             return img.startsWith('http') ? true : false

@@ -53,7 +53,6 @@ export class IdeaImageComponent implements OnInit {
     this.activApi.params.subscribe((idea: { [keys: string]: number }) => {
       this.ideaImageService.imgCategory(idea.id).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: FrameDetalis) => {
         this.ideaImageService.ideaImg = frameDetalis;
-        
         this.frames.spinner.hide()
       })
     })
@@ -63,7 +62,7 @@ export class IdeaImageComponent implements OnInit {
     const modalRef = this.modalService.open(MessageComponent);
     setTimeout(() => {
       modalRef.dismiss()
-    }, 1000)
+    }, 500)
   }
 
   public addOrder(): void {
@@ -96,6 +95,7 @@ export class IdeaImageComponent implements OnInit {
     })
 
   }
+  
   ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();

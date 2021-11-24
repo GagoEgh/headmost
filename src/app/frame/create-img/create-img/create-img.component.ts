@@ -29,9 +29,6 @@ export class CreateImgComponent extends FrameImag implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('is silki  create img ',this.frames.isSilki);
-    console.log('create img idea service ', this.ideaImgService.ideaImg);
-    console.log(this.ideaImgService.isIdeaFrame)
     this.validateForm = this.form.group({ topText: [null] },);
     this.bottomText = this.form.group({ btmText: [null] });
   }
@@ -73,15 +70,13 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     }
 
     if (this.validateForm.get('topText')?.value) {
-      this.frames.topText = this.validateForm.get('topText')?.value;
-      
+      this.frames.topText = this.validateForm.get('topText')?.value;     
       this.topLettering.isSpan = false;
       this.topLettering.isMenu = false;
     }
 
     if (this.bottomText.get('btmText')?.value) {
       this.frames.btmText = this.bottomText.get('btmText')?.value;
-
       this.bottomLettering.isSpan = false;
       this.bottomLettering.isMenu = false;
     }
@@ -104,8 +99,6 @@ export class CreateImgComponent extends FrameImag implements OnInit {
 
     if (this.validateForm.get('topText')?.value) {
       this.topLettering.isMenu = true;
-
-      // new
       this.topLettering.isSpan = true
     }
 

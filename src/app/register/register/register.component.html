@@ -64,17 +64,13 @@
       </div>
 
       <div class="col column-2">
-        
         <mat-form-field appearance="fill">
           <mat-label class="label">{{'Order.userData.date'|translate}}</mat-label>
-          <input matInput [matDatepicker]="picker" [errorStateMatcher]="matcher" formControlName='date'>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <input matInput [max]="currentDate" [matDatepicker]="dp3"  formControlName='date'>
+          <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+          <mat-datepicker #dp3 disabled="false"></mat-datepicker>
           <mat-error *ngIf="this.validateForm.get('date')?.hasError('required')">
             <p>{{'ErroreMessage.required'|translate}}</p>
-          </mat-error>
-          <mat-error *ngIf="this.validateForm.get('date')?.hasError('bigDate')">
-            <p>{{'ErroreMessage.bigDate'|translate}}</p>
           </mat-error>
         </mat-form-field>
         

@@ -15,7 +15,7 @@ import { DeleteService } from './delete.service';
 export class DeleteComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal, public _translate: TranslateService,
-  public deleteService:DeleteService , public frames: FramesServService, public modalService: NgbModal) { }
+    public deleteService: DeleteService, public frames: FramesServService, public modalService: NgbModal) { }
   @Input() item: any;
   @Input() userOrders: any;
   private _subscribe$ = new Subject();
@@ -29,20 +29,20 @@ export class DeleteComponent implements OnInit {
   }
 
   public delteteBlock(): void {
-    this.deleteService.userOrderDel(this.item.id).pipe(takeUntil(this._subscribe$)).subscribe((sms:{message:string}) => {
+    this.deleteService.userOrderDel(this.item.id).pipe(takeUntil(this._subscribe$)).subscribe((sms: { message: string }) => {
       this.okSms = sms.message
       const modalRef = this.modalService.open(OkSmsComponent);
       this.userOrders = this.userOrders.filter((val: any) => val.id != this.item.id);
       this.activeModal.close(this.userOrders);
       setTimeout(() => {
         modalRef.dismiss()
-      }, 1500)
+      }, 500)
 
     })
 
   }
 
-  private ngOnDestroy() {
+  ngOnDestroy() {
     this._subscribe$.next();
     this._subscribe$.complete();
   }

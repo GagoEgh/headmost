@@ -43,8 +43,6 @@ export class IdeaComponent implements OnInit {
     }
 
     this.checkQueryParams();
-  //  this.appendItems()
-
   }
 
   private checkQueryParams(): void {

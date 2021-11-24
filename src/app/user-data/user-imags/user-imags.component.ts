@@ -10,8 +10,6 @@ import { ServerResponce } from 'src/app/interface/img-ramka';
 import { UserImage } from 'src/app/interface/ImageResponse';
 import { UserImagsService } from './user-imags.service';
 
-
-
 @Component({
   selector: 'app-user-imags',
   templateUrl: './user-imags.component.html',

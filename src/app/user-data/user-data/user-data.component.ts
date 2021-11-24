@@ -31,9 +31,10 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   public matcher = new MyErrorStateMatcher();
   public _unsubscribe$ = new Subject();
   private userName = '';
+  public currentDate = new Date()
   public isChange = false;
   constructor(private valid: ValidationServService, private fb: FormBuilder, public modalService: NgbModal,
-   public userDataService:UserDataService, private spinner: NgxSpinnerService, public _translate: TranslateService, public frames: FramesServService) { }
+    public userDataService: UserDataService, private spinner: NgxSpinnerService, public _translate: TranslateService, public frames: FramesServService) { }
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
@@ -42,9 +43,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
 
   ngOnInit(): void {
     this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 2000)
+    this.spinner.hide();
     this.frames.isMyOrder = false;
     this.frames.userCountry();
     this.userName = this.frames.userData.user_details.first_name;
@@ -56,10 +55,10 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
       phoneNumber: [this.frames.userData.phone_number, [Validators.required, this.valid.PhoneNumberLength]],
       email: [this.frames.userData.user_details.username, [Validators.required, this.valid.emailValid]],
       country: [this.frames.userData.city, [Validators.required]],
-      date: [this.frames.userData.date_of_birth, [Validators.required, this.valid.bigDate]],
+      date: [this.frames.userData.date_of_birth, [Validators.required]],
       pas: [null, [Validators.required, Validators.minLength(6)]],
     });
-
+    this.validateForm.get('date')?.disable()
   }
 
   private birt(formName: string): string {
@@ -89,12 +88,6 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
 
 
   public submitForm(): void {
-    // for (const i in this.validateForm.controls) {
-    //   this.validateForm.controls[i].markAsDirty();
-    //   this.validateForm.controls[i].updateValueAndValidity();
-    //   console.log(this.validateForm.controls[i].value);
-    // }
-
     const date = this.birt('date');
     const edit: Edit = {
       date_of_birth: date,
@@ -117,7 +110,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
         const modalRef = this.modalService.open(DataCheckComponent);
         setTimeout(() => {
           modalRef.dismiss()
-        }, 2000)
+        },500)
       })
     }
 
@@ -125,7 +118,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
       const modal = this.modalService.open(NoCheckComponent);
       setTimeout(() => {
         modal.dismiss()
-      }, 2000)
+      },500)
     }
 
   }

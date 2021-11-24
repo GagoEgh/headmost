@@ -28,7 +28,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  public currentDate = new Date();
   public validateForm: FormGroup = new FormGroup({});
   public _subscribe$ = new Subject();
   private checkPass = this.validateForm.get('pasRev');
@@ -36,26 +36,26 @@ export class RegisterComponent implements OnInit {
   public matcher = new MyErrorStateMatcher();
 
   constructor(public activeModal: NgbActiveModal, public fb: FormBuilder, public i18n: NzI18nService, public _translate: TranslateService,
-   public registerService:RegisterService, public frames: FramesServService, private spinner: NgxSpinnerService, public modalService: NgbModal, public valid: ValidationServService) { }
+    public registerService: RegisterService, public frames: FramesServService, private spinner: NgxSpinnerService, public modalService: NgbModal, public valid: ValidationServService) { }
 
   ngOnInit(): void {
     this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide()
-    }, 1500)
+    this.spinner.hide()
     this.frames.cityPlaceholder();
     this.frames.userCountry();
 
     this.validateForm = this.fb.group({
-      frstName: [null, [ Validators.minLength(3),Validators.required, Validators.maxLength(50), this.valid.userNameChar]],
-      lastName: [null, [Validators.required, Validators.minLength(3),Validators.maxLength(50), this.valid.userNameChar]],
+      frstName: [null, [Validators.minLength(3), Validators.required, Validators.maxLength(50), this.valid.userNameChar]],
+      lastName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(50), this.valid.userNameChar]],
       phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
       pas: [null, [Validators.required, Validators.minLength(6)]],
       pasRev: [null, [Validators.required, Validators.minLength(6), this.passwordReview.bind(this)]],
       email: [null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       country: [null, [Validators.required]],
-      date: [null, [Validators.required, this.valid.bigDate]],
+      date: [null, [Validators.required]],
     });
+
+    this.validateForm.get('date')?.disable()
   }
 
   private passwordReview(control: FormControl): object | null {
@@ -115,7 +115,7 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('user-date', JSON.stringify(this.frames.userData))
         setTimeout(() => {
           modalRef.dismiss();
-        }, 1500)
+        },500)
 
       }, ((err: any) => {
         if (err.status === 400) {

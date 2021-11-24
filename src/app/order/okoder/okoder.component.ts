@@ -51,7 +51,7 @@ export class OkoderComponent implements OnInit {
 
   public errOrder(str: string): void {
     this.toastr.error(str, '', {
-      timeOut: 2000,
+      timeOut: 1000,
     });
     this.router.navigate(['/'])
   }

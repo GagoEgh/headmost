@@ -23,7 +23,6 @@ export class IdeaNavComponent implements OnInit {
 
   ngOnInit(): void {
     this.offset = 0;
-
     this.ideaGroup(this.id)
     this.ideaNavService.frameCategory().pipe(takeUntil(this._unsubscribe$)).subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
       this.frameIdeas = categoryDetails.results;
