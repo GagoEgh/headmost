@@ -24,7 +24,7 @@ export class IdeaImageComponent implements OnInit {
   private width: number | undefined;
   public scale: number = 1;
 
-  constructor(public frames: FramesServService, public ideaIMageService: IdeaImageService,
+  constructor(public frames: FramesServService, public ideaImageService: IdeaImageService,
     public rout: Router, public activApi: ActivatedRoute, public frameImageService: FrameImageService,
     private modalService: NgbModal) { }
   ngOnInit(): void {
@@ -51,8 +51,8 @@ export class IdeaImageComponent implements OnInit {
 
   private goIdeaCategory(): void {
     this.activApi.params.subscribe((idea: { [keys: string]: number }) => {
-      this.ideaIMageService.imgCategory(idea.id).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: FrameDetalis) => {
-        this.ideaIMageService.ideaImg = frameDetalis;
+      this.ideaImageService.imgCategory(idea.id).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: FrameDetalis) => {
+        this.ideaImageService.ideaImg = frameDetalis;
         
         this.frames.spinner.hide()
       })
@@ -70,7 +70,7 @@ export class IdeaImageComponent implements OnInit {
     if (localStorage.getItem('loginAutorization')) {
       let userCard = {
         user: this.frames.userData.user,
-        created_frame: this.ideaIMageService.ideaImg.id
+        created_frame: this.ideaImageService.ideaImg.id
       }
       this.frames.spinner.show();
       this.frames.orderCard(userCard).pipe(takeUntil(this._unsubscribe$)).subscribe((cardItem: CardItemResults) => {
@@ -84,17 +84,15 @@ export class IdeaImageComponent implements OnInit {
   }
 
   public myFrame() {
-    console.log('is silki ',this.frames.isSilki);
-    console.log(' ideaIMageService   ideaImg ', this.ideaIMageService.ideaImg)
-    this.frames.isSilki = true;
+    this.ideaImageService.isIdeaFrame = true;
     this.frames.isImg = false;
-    this.frames.text = this.ideaIMageService?.ideaImg?.word;
+    this.frames.text = this.ideaImageService?.ideaImg?.word;
     this.frameImageService.letterGet().subscribe((wordResult: WordResult[]) => {
       this.frames.letterImges = wordResult;
       this.frames.letterImges = this.frames.letterImges.filter(img => {
         return !img.not_found
       })
-      this.rout.navigate(['/frame/create-img'], { queryParams: { type: 'frame', text: this.ideaIMageService?.ideaImg?.word } })
+      this.rout.navigate(['/frame/create-img'], { queryParams: { type: 'frame', text: this.ideaImageService?.ideaImg?.word } })
     })
 
   }

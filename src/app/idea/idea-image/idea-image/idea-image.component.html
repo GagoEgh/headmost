@@ -1,19 +1,19 @@
 
 <div class="conteiner" #block [ngStyle]="setStyle()">
-    <div class="idea-image" [style.background-image]="'url('+ ideaIMageService?.ideaImg.image + ')'">
+    <div class="idea-image" [style.background-image]="'url('+ ideaImageService?.ideaImg.image + ')'">
     </div>
     <div class="info-img">
         <h4 class="title">{{'IdeaImg.imgTitle'|translate}}
-            <span *ngIf='frames.lang==="hy"'>{{ideaIMageService?.ideaImg.created_frame_category_details?.name_hy}}</span>
-            <span *ngIf='frames.lang==="ru"'>{{ideaIMageService?.ideaImg.created_frame_category_details?.name_ru}}</span>
-            <span *ngIf='frames.lang==="en"'>{{ideaIMageService?.ideaImg.created_frame_category_details?.name_en}}</span>
+            <span *ngIf='frames.lang==="hy"'>{{ideaImageService?.ideaImg.created_frame_category_details?.name_hy}}</span>
+            <span *ngIf='frames.lang==="ru"'>{{ideaImageService?.ideaImg.created_frame_category_details?.name_ru}}</span>
+            <span *ngIf='frames.lang==="en"'>{{ideaImageService?.ideaImg.created_frame_category_details?.name_en}}</span>
         </h4>
-        <p class="text">{{'IdeaImg.name'|translate}} {{ideaIMageService?.ideaImg?.word}} </p>
-        <p class="text" *ngIf='frames.lang==="hy"'>{{ideaIMageService?.ideaImg?.frame_details?.name_hy}}</p>
-        <p class="text" *ngIf='frames.lang==="ru"'>{{ideaIMageService?.ideaImg?.frame_details?.name_ru}}</p>
-        <p class="text" *ngIf='frames.lang==="en"'>{{ideaIMageService?.ideaImg?.frame_details?.name_en}}</p>
-        <p class="text">{{'IdeaImg.imgPhone'|translate}} {{ideaIMageService?.ideaImg?.background_details?.name}}</p>
-        <p class="text">{{ideaIMageService?.ideaImg?.price}}{{'Order.informImg.price'|translate}} <span><button class="order"
+        <p class="text">{{'IdeaImg.name'|translate}} {{ideaImageService?.ideaImg?.word}} </p>
+        <p class="text" *ngIf='frames.lang==="hy"'>{{ideaImageService?.ideaImg?.frame_details?.name_hy}}</p>
+        <p class="text" *ngIf='frames.lang==="ru"'>{{ideaImageService?.ideaImg?.frame_details?.name_ru}}</p>
+        <p class="text" *ngIf='frames.lang==="en"'>{{ideaImageService?.ideaImg?.frame_details?.name_en}}</p>
+        <p class="text">{{'IdeaImg.imgPhone'|translate}} {{ideaImageService?.ideaImg?.background_details?.name}}</p>
+        <p class="text">{{ideaImageService?.ideaImg?.price}}{{'Order.informImg.price'|translate}} <span><button class="order"
                     (click)="addOrder()">{{'Order.userData.btnOrder'|translate}}</button></span></p>
         <p class="text">{{'IdeaImg.yourName'|translate}} <span><button class="myFrame"
                     (click)="myFrame()">{{'Menu.konstruktor.konstr'|translate}}</button></span></p>

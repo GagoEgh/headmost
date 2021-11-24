@@ -1,9 +1,8 @@
 .component{
- width: 85% !important;
+ width: 1200px;
  display: flex;
  flex-direction: column;
  align-items: center;
- width: fit-content; 
  margin: 5px auto;
 }
 
@@ -139,6 +138,12 @@
   margin-top: -15px;
 }
 
+
+@media (max-width:1200px){
+  .component{
+    width: 750px;
+  }
+}
 @media (max-width:1025px){
 
   .question{
@@ -147,6 +152,10 @@
  }
 
 @media (max-width:768px){
+  .component{
+    width: fit-content
+  }
+
   .wrap{
     width: 100%;
     display: flex;

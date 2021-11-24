@@ -11,6 +11,7 @@ import { BgDetails } from 'src/app/interface/CategoryDetails';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 import { FrameService } from './frame.service';
+import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
 
 
 
@@ -27,9 +28,9 @@ export class FrameComponent extends FrameImag implements OnInit, AfterViewChecke
   public scale: number = 1;
   public div: any = [];
   constructor(public frames: FramesServService, public modalService: NgbModal,
-    public frameServis :FrameService,public imgService:FrameImageService,
+    public frameServis :FrameService,public imgService:FrameImageService,public ideaImgService:IdeaImageService,
     public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
-    super(frames, modalService, imgService, rout, form);
+    super(frames, modalService,ideaImgService ,imgService, rout, form);
     this._translate.use(this.frames.lang)
   }
 

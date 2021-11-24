@@ -7,6 +7,7 @@ import { takeUntil } from "rxjs/operators";
 import { ImgCatalogComponent } from "../frame/create-img/img-catalog/img-catalog.component";
 import { ErroreMessageComponent } from "../frame/errore-message/errore-message/errore-message.component";
 import { NgbdModalContentComponent } from "../frame/ngbd-modal-content/ngbd-modal-content.component";
+import { IdeaImageService } from "../idea/idea-image/idea-image.service";
 import { CategoryDetails } from "../interface/CategoryDetails";
 import { ServerResponce } from "../interface/img-ramka";
 import { FramesServService } from "../shared/frames-serv.service";
@@ -21,7 +22,7 @@ export class FrameImag {
     protected bottomText: FormGroup = new FormGroup({});
     protected validateForm: FormGroup = new FormGroup({});
     protected letterChar = 0;
-    constructor(public frames: FramesServService, public modalService: NgbModal,
+    constructor(public frames: FramesServService, public modalService: NgbModal,public ideaImgService:IdeaImageService,
       public imgService:FrameImageService, public rout: Router, public form: FormBuilder,
     ) { }
 
@@ -84,7 +85,8 @@ export class FrameImag {
     public showFrame(): void {
         this.frames.showFrame();
         this.frames.conteinerHeight();
-        this.frames.isImg = false;
+        this.ideaImgService.isIdeaFrame = false;
+        this.rout.navigate([''])
     }
 
 

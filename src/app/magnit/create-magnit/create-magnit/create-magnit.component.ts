@@ -5,6 +5,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
+import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
 
 
 @Component({
@@ -15,8 +16,8 @@ import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 export class CreateMagnitComponent extends FrameImag implements OnInit {
 
   constructor(public frames: FramesServService, public modalService: NgbModal,
-    public imgService:FrameImageService, public rout: Router, public form: FormBuilder) {
-    super(frames, modalService, imgService,rout, form);
+    public imgService:FrameImageService, public ideaImgService:IdeaImageService,public rout: Router, public form: FormBuilder) {
+    super(frames, modalService,ideaImgService,imgService,rout, form);
   }
 
   ngOnInit(): void { }

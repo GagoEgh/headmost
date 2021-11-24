@@ -6,6 +6,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
+import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
 
 
 
@@ -17,8 +18,8 @@ import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 export class FormMagnitComponent  extends FrameImag implements OnInit {
 
   constructor(public frames: FramesServService, public modalService: NgbModal,public imgService:FrameImageService,
-    public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
-    super(frames, modalService,imgService, rout, form);
+    public rout: Router, public form: FormBuilder, private _translate: TranslateService,public ideaImgService:IdeaImageService,) {
+    super(frames, modalService,ideaImgService,imgService, rout, form);
     super.imgColor();
 
   }

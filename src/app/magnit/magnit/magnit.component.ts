@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 import { MagnitServiceService } from './magnit-service.service';
+import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
 
 
 @Component({
@@ -25,8 +26,8 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
   public blockStyle = {} as { [key: string]: string };
   public magnit_scale: number = 1;
   constructor(public frames: FramesServService, public modalService: NgbModal,public imgService:FrameImageService,
-   public magnitService:MagnitServiceService, public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
-    super(frames, modalService,imgService, rout, form);
+   public magnitService:MagnitServiceService,public ideaImgService:IdeaImageService, public rout: Router, public form: FormBuilder, private _translate: TranslateService) {
+    super(frames, modalService,ideaImgService,imgService, rout, form);
     super.imgColor();
   }
 

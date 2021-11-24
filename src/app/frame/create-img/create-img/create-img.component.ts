@@ -24,13 +24,14 @@ export class CreateImgComponent extends FrameImag implements OnInit {
   @Output() mainApp: EventEmitter<boolean> = new EventEmitter();
 
   constructor(public frames: FramesServService, public rout: Router,public ideaImgService:IdeaImageService,
-    public imgService:FrameImageService, public form: FormBuilder, public modalService: NgbModal) {
-    super(frames, modalService, imgService,rout, form,);
+   public imgService:FrameImageService, public form: FormBuilder, public modalService: NgbModal) {
+    super(frames, modalService,ideaImgService,imgService,rout, form,);
   }
 
   ngOnInit(): void {
     console.log('is silki  create img ',this.frames.isSilki);
-    console.log('create img idea service ', this.ideaImgService.ideaImg)
+    console.log('create img idea service ', this.ideaImgService.ideaImg);
+    console.log(this.ideaImgService.isIdeaFrame)
     this.validateForm = this.form.group({ topText: [null] },);
     this.bottomText = this.form.group({ btmText: [null] });
   }
