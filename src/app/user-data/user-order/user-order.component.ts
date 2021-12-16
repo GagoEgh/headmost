@@ -33,14 +33,9 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
     public userOrderService: UserOrderService, private spinner: NgxSpinnerService, public _translate: TranslateService) { }
 
   ngOnInit(): void {
-  //  user/user-order?status=succeed
   this.activRout.queryParams.subscribe(url=>{
     if(url && url.status === 'succeed'){
-      console.log(url.status);
       const modalRef = this.modalService.open(TenkyuComponent);
-      setTimeout(() => {
-        modalRef.dismiss()
-      }, 2000)
     }
   })
     
@@ -51,6 +46,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
+  
   }
 
 
