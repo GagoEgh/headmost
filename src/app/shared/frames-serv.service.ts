@@ -204,7 +204,6 @@ export class FramesServService {
                         img.character = this.letterChar;
                         img.user_image = img.image;
                         img.image = null;
-                        console.log('order ', order.images)
                     }
                     return img;
                 })

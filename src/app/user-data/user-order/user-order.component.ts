@@ -11,6 +11,7 @@ import { ServerResponce } from 'src/app/interface/img-ramka';
 import { OrderResult } from 'src/app/interface/order-response';
 import { CardItemResults } from 'src/app/interface/frame-response';
 import { UserOrderService } from './user-order.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-order',
@@ -27,10 +28,17 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
   public throttle = 300;
   public okSms = '';
 
-  constructor(public frames: FramesServService, public modalService: NgbModal,
-  public userOrderService:UserOrderService,  private spinner: NgxSpinnerService, public _translate: TranslateService) { }
+  constructor(public frames: FramesServService, public modalService: NgbModal, private route: Router,public activRout:ActivatedRoute,
+    public userOrderService: UserOrderService, private spinner: NgxSpinnerService, public _translate: TranslateService) { }
 
   ngOnInit(): void {
+  //  user/user-order?status=succeed
+  this.activRout.queryParams.subscribe(url=>{
+    if(url && url.status === 'succeed'){
+      console.log(url.status);
+    }
+  })
+    
     this.frames.offset = 0;
     this.userOrders;
     this.appendItems();

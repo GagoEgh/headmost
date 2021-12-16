@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component,OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -6,7 +6,6 @@ import { TranslateService } from "@ngx-translate/core";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { OkoderComponent } from '../okoder/okoder.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ServerResponce } from 'src/app/interface/img-ramka';
 import { PromoCodeResults, ShipingResult } from 'src/app/interface/order-response';
@@ -14,6 +13,9 @@ import { CardItemResults } from 'src/app/interface/frame-response';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { OrderService } from './order.service';
+
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -29,6 +31,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class OrderComponent implements OnInit, AfterViewChecked {
   public validateForm: FormGroup = new FormGroup({});
+
   public _subscribe$ = new Subject();
   public erroreStr: string = '';
   public promoError: string = '';
@@ -37,9 +40,10 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   private sumInit: number = 0;
   private count: number = 0;
   public matcher = new MyErrorStateMatcher();
-  private userName:string = '';
+  private userName: string = '';
   constructor(public frames: FramesServService, private fb: FormBuilder, public modalService: NgbModal,
-   public orderService:OrderService, public _translate: TranslateService, public valid: ValidationServService) {
+    public orderService: OrderService, public _translate: TranslateService, public toastr: ToastrService,
+    public valid: ValidationServService,public router: Router,) {
   }
 
   ngOnInit(): void {
@@ -100,7 +104,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-    // sharunakeli   created_frame
+   
     const ids: number[] = [];
     this.frames.orderList.forEach((card: CardItemResults) => {
       ids.push(card.created_frame)
@@ -119,15 +123,39 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       order_items: ids,
       postal_code: this.validateForm.get('postal')?.value,
     }
-
+  
     if (this.validateForm.valid) {
-      const modalRef = this.modalService.open(OkoderComponent);
-      modalRef.componentInstance.validateForm = this.validateForm;
-      modalRef.componentInstance.count = this.count;
-      modalRef.componentInstance.order = order;
-      this.userName = order.full_name
+      this.userName = order.full_name;
+      this.goUsOrder(order)
     }
 
+  }
+
+  private goUsOrder(order:any): void {
+    let okMsg: string = '';
+    let errMsg: string = '';
+    this._translate.get('Menu.user').subscribe((el) => {
+      okMsg = el.orderOk;
+      errMsg = el.orderErr
+    })
+
+    if (this.validateForm?.valid && this.count != 1) {
+      //  ServerResponce<OrderResult[]>
+      this.orderService.userOrder(order).pipe(takeUntil(this._subscribe$)).subscribe((order: any) => {
+        this.toastr.success(okMsg);
+        this.count!++;
+        this.orderService.isdisible = true;
+        // this.router.navigate(['user/user-order']);
+        let a = document.createElement("a");
+        document.body.appendChild(a);
+        a.style.display = "none";
+        a.href = order.message.formUrl;
+        a.click();
+        document.body.removeChild(a)
+      }, (err) => {
+        this.orderService.errOrder(errMsg)
+      })
+    }
   }
 
   public salePost(event: Event): void {
@@ -166,6 +194,4 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this._subscribe$.complete();
   }
 }
-
-
 
