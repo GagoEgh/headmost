@@ -9,13 +9,14 @@ import { SharedModule } from 'src/app/shared/shared.modult';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { NgImageSliderModule } from 'ng-image-slider';
+import { TenkyuComponent } from './tenkyu/tenkyu.component';
 
 const routes:Routes = [
   {path:'',component:UserOrderComponent}
 ]
 
 @NgModule({
-  declarations: [UserOrderComponent],
+  declarations: [UserOrderComponent, TenkyuComponent],
   imports: [
     CommonModule,
     FormsModule,

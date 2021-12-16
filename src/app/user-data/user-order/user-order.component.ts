@@ -12,6 +12,7 @@ import { OrderResult } from 'src/app/interface/order-response';
 import { CardItemResults } from 'src/app/interface/frame-response';
 import { UserOrderService } from './user-order.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { TenkyuComponent } from './tenkyu/tenkyu.component';
 
 @Component({
   selector: 'app-user-order',
@@ -36,6 +37,10 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
   this.activRout.queryParams.subscribe(url=>{
     if(url && url.status === 'succeed'){
       console.log(url.status);
+      const modalRef = this.modalService.open(TenkyuComponent);
+      setTimeout(() => {
+        modalRef.dismiss()
+      }, 2000)
     }
   })
     
