@@ -29,29 +29,23 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
   public throttle = 300;
   public okSms = '';
 
-  constructor(public frames: FramesServService, public modalService: NgbModal, private route: Router, public activRout: ActivatedRoute,
+  constructor(public frames: FramesServService, public modalService: NgbModal, public activRout: ActivatedRoute,
     public userOrderService: UserOrderService, private spinner: NgxSpinnerService, public _translate: TranslateService) { }
 
-  public message: string = '';
   ngOnInit(): void {
-    this.activRout.queryParams.subscribe(url => {
-      if (url && url.status === 'succeed') {
-        this.message = 'ՇՆՈՐՀԱԿԱԼՈՒԹՅՈՒՆ ԳՆՈՒՄՆԵՐԻ ՀԱՄԱՐ';
-        const modalRef = this.modalService.open(TenkyuComponent);
-        modalRef.componentInstance.message = this.message
-      }
-
-      if (url && url.status === 'failed') {
-        this.message = 'գրանցումը չի կատարվել';
-        const modalRef = this.modalService.open(TenkyuComponent);
-        modalRef.componentInstance.message = this.message
-      }
-
-    })
-
+    this.peyMessage();
     this.frames.offset = 0;
     this.userOrders;
     this.appendItems();
+  }
+
+  private peyMessage():void{
+    this.activRout.queryParams.subscribe(url => {
+      if (url.status) {
+        const modalRef = this.modalService.open(TenkyuComponent);
+        modalRef.componentInstance.status = url.status;
+      }
+    })
   }
 
   ngAfterViewChecked(): void {

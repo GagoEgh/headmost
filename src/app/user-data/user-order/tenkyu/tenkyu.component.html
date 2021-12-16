@@ -4,8 +4,12 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>
-        {{message}}
+    <p *ngIf ='status==="succeed"'> 
+        {{'Order.informImg.succeedMessage'|translate}}
+    </p>
+    <p *ngIf ='status==="failed"'>
+      {{'Order.informImg.failedMessage'|translate}}
+
     </p>
   </div>
   <div class="modal-footer">
