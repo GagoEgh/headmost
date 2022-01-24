@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Letter } from 'src/app/interface/img-ramka';
 import { FrameImag } from 'src/app/frame-image/frame-image';

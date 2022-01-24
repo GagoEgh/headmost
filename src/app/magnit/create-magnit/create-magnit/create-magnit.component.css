@@ -13,7 +13,7 @@
 
 .im{
  background: transparent;
- margin: 0 auto;
+ margin: 60px auto;
 }
 
 .imgs{
@@ -54,14 +54,6 @@
  transform: rotate(2deg);
 }
 
-.magnit{
- height: 480px;
- width: 60%;
- min-width: 930px;
- margin: 50px auto;
- background: url('src/assets/1x/magnit.jpg')  no-repeat 0 0 #fbfbfb;
-}
-   
 .underFridge{
  height: 100%;
  width: 100%;
@@ -101,7 +93,7 @@
 @media (max-width:769px){
 
     .magnit{
-     margin: 200px auto 0;;
+     margin: 0 auto;
     }
     .create-bottom{
      position: absolute;

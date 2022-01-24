@@ -51,9 +51,10 @@ export class IdeaImageComponent implements OnInit {
 
   private goIdeaCategory(): void {
     this.activApi.params.subscribe((idea: { [keys: string]: number }) => {
+      
       this.ideaImageService.imgCategory(idea.id).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: FrameDetalis) => {
         this.ideaImageService.ideaImg = frameDetalis;
-        this.frames.spinner.hide()
+        this.frames.spinner.hide();
       })
     })
   }

@@ -52,6 +52,7 @@ export class IdeaComponent implements OnInit {
       this.category = idCategory.category;
     //  this.category = this.category === undefined ? '' : this.category;
       this.appendItems();
+
     })
   }
 

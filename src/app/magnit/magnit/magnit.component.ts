@@ -50,12 +50,12 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
 
     if (window.innerWidth <= 1025) {
       let num = window.innerWidth / 1025;
-      this.magnit_scale = num - 0.1;
+      this.magnit_scale = num - 0.3;
     }
 
     if (window.innerWidth <= 769) {
       let num = window.innerWidth / 769;
-      this.magnit_scale = num - 0.3;
+     // this.magnit_scale = num - 0.3;
     }
 
     if (window.innerWidth <= 426) {
@@ -84,7 +84,7 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
       }
 
       if (window.innerWidth <= 768 && this.frames.isOrder) {
-        this.lightSheme = '1300px';
+        this.lightSheme = '1000px';
       }
 
       if (window.innerWidth <= 600 && this.frames.isOrder) {
@@ -96,7 +96,7 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
 
   private setStyle(): void {
     let style = {
-      transform: "translate(-50%, -5%)" + "scale(" + this.magnit_scale + ")"
+      transform: "translate(-50%, 0)" + "scale(" + this.magnit_scale + ")"
     }
     this.blockStyle = style;
   }

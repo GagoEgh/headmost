@@ -14,7 +14,7 @@
         <p class="text" *ngIf='frames.lang==="en"'>{{ideaImageService?.ideaImg?.frame_details?.name_en}}</p>
         <p class="text">{{'IdeaImg.imgPhone'|translate}} {{ideaImageService?.ideaImg?.background_details?.name}}</p>
         <p class="text">{{ideaImageService?.ideaImg?.price}}{{'Order.informImg.price'|translate}} <span><button class="order"
-                    (click)="addOrder()">{{'Order.userData.btnOrder'|translate}}</button></span></p>
+                    (click)="addOrder()">{{'Order.userData.btnOrder'|translate}}</button></span></p>            
         <p class="text">{{'IdeaImg.yourName'|translate}} <span><button class="myFrame"
                     (click)="myFrame()">{{'Menu.konstruktor.konstr'|translate}}</button></span></p>
                     <!--   [routerLink]="''"  -->

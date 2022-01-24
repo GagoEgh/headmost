@@ -1,9 +1,3 @@
-.magnit{
- height: 550px;
- width: 70%;
- min-width: 1050px;
- background: url('src/assets/1x/magnit.jpg')  no-repeat 0 0 #fbfbfb;
-}
 
 .underFridge{
  height: 100%;
@@ -30,10 +24,21 @@ input:focus::placeholder{
  left: -260px;
 }
 
+@media (max-width:1200px){
+ 
+    .magnit{
+        width: 80%;
+    }
+}
+
 @media (max-width:1024px){
     .center{
      display: block;
      margin: 150px 0 0 35%;
+    }
+
+    .magnit{
+        width: 70%;
     }
 }
 

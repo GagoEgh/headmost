@@ -181,6 +181,13 @@ body {
     transition: all 0.2s;
 }
 
+.magnit{
+    height: 550px;
+    width: 70%;
+    min-width: 1200px;
+    background: url('src/assets/1x/magnit.jpg')  no-repeat 0 0 #fbfbfb;
+}
+
 .block {
     display: flex;
     flex-direction: column;

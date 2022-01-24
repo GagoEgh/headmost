@@ -9,7 +9,8 @@
     <button type="submit" (click)='onSubmit()' class='makeAWord_3 create' *ngIf='frames.isImg'>
       {{'ImgTextValid.createWord'|translate}}</button>
 
-    <button *ngIf='frames.isOrder' class="create-bottom makeAWord_3"
+<!-- [style.margitn]="frames.isOrder?'-600px auto':'-200px auto'" -->
+    <button *ngIf='frames.isOrder' class="create-bottom makeAWord_3" 
       (click)="showFrame()">{{'ImgTextValid.orderAdd'|translate}}</button>
 
     <button class="makeAWord_3 save" (click)='magnitService.myMagnitOrder()'
