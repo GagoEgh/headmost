@@ -19,6 +19,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { TranslateModule } from '@ngx-translate/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MyimagesComponent } from "./myimages/myimages.component";
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { NzMessageModule } from "ng-zorro-antd/message";
 
 const MatModule = [
     MatButtonModule,
@@ -36,6 +39,7 @@ const NzModule = [
     NzInputModule,
     NzSelectModule,
     NzDatePickerModule,
+    NzMessageModule,
 ]
 
 const NgxModule = [
@@ -48,10 +52,13 @@ const module = [
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
+    InfiniteScrollModule
 ]
 
 @NgModule({
-    declarations: [OrderComponent],
+    declarations: [OrderComponent,
+        MyimagesComponent
+    ],
     exports: [
         ...MatModule,
         ...NzModule,
@@ -59,6 +66,7 @@ const module = [
         ...module,
         NgxMaskModule,
         OrderComponent,
+        MyimagesComponent
     ],
     imports: [
         ...module,

@@ -1,3 +1,7 @@
+
+/* .conteiner{
+    font-family: 'Praise', cursive !important;
+} */
 .menu {
     justify-content: space-between;
     flex-direction: row-reverse;
@@ -59,7 +63,8 @@
 }
 
 .font {
-    font-family: Arial, Helvetica, sans-serif !important;
+    /* font-family: Arial, Helvetica, sans-serif !important; */
+    font-family: 'Praise', cursive !important;
     font-size: 11px !important;
     border: none !important;
     outline: none;
@@ -112,7 +117,7 @@
     width: fit-content;
     display: flex;
     flex-direction: column;
-    padding: 5px 10px;
+    padding: 5px 25px;
     position: relative;
 }
 

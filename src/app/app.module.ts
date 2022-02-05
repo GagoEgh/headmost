@@ -32,7 +32,7 @@ registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
-    ErrMsgComponent
+    ErrMsgComponent,
   ],
 
   imports: [

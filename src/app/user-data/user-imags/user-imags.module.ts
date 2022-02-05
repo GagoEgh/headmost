@@ -1,6 +1,6 @@
 import { UserImagsComponent } from './user-imags.component';
 import { SharedModule } from 'src/app/shared/shared.modult';
-import { HttpClientJsonpModule} from '@angular/common/http';
+import { HttpClientJsonpModule } from '@angular/common/http';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -44,6 +44,7 @@ const routes:Routes = [
     NzModalModule,
     InfiniteScrollModule
   ],
-  providers: [ { provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons } ]
+
+  providers: [{ provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons }]
 })
 export class UserImagsModule { }

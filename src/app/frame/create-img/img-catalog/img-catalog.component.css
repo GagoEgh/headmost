@@ -12,6 +12,8 @@
 .img-menu{
  display: flex;
  justify-content: space-between;
+ align-items: flex-start;
+ min-height: 500px;
 }
 
 .block-1{
@@ -44,6 +46,7 @@ h2{
  color: slategrey;
  margin-bottom: 10px;
  font-size: 100%;
+ width: 200px;
 }
 
 .subtitle{
@@ -76,6 +79,7 @@ h2{
 
 .listActive{
  color: black;
+ font-size: 12px;
 }
 
 
@@ -85,4 +89,6 @@ h2{
         height: 90px;
     }
 }
+
+
 

@@ -29,7 +29,7 @@ const routes: Routes = [
     OkSmsComponent,
     OnlyComponent,
     DeleteComponent,
-    NoCheckComponent
+    NoCheckComponent,
   ],
   imports: [
     InfiniteScrollModule,

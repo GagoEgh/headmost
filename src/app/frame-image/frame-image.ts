@@ -25,7 +25,7 @@ export class FrameImag {
     // frame component
     protected myForm(): void {
         this.frames.validateForm = new FormGroup({
-            text: new FormControl( null, [Validators.required, Validators.minLength(3), Validators.maxLength(9), this.textValid])
+            text: new FormControl( null, [Validators.required, Validators.minLength(3), Validators.maxLength(8), this.textValid])
         })
     }
 
@@ -71,7 +71,7 @@ export class FrameImag {
             const modalRef = this.modalService.open(ErroreMessageComponent);
             setTimeout(() => {
                 modalRef.dismiss();
-            }, 500)
+            }, 1000)
             return;
         }
         this.frames.isImg = false;

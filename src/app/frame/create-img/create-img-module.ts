@@ -6,18 +6,26 @@ import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
+
+
 const routs: Routes = [
     { path: '', component: CreateImgComponent },
 ]
 
 @NgModule({
-    declarations: [CreateImgComponent, ImgCatalogComponent],
+    declarations: [CreateImgComponent,
+        ImgCatalogComponent],
     imports: [CommonModule,
         FormsModule,
         ReactiveFormsModule,
         SharedModule,
         RouterModule.forChild(routs),
+        
     ],
-    exports: [CreateImgComponent, ImgCatalogComponent, RouterModule]
+    exports: [
+        CreateImgComponent,
+        ImgCatalogComponent,
+        RouterModule
+    ],
 })
 export class CreateImgModule { }

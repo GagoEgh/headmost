@@ -18,7 +18,7 @@ import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 @Component({
   selector: 'app-img-catalog',
   templateUrl: './img-catalog.component.html',
-  styleUrls: ['./img-catalog.component.css']
+  styleUrls: ['./img-catalog.component.css'],
 })
 export class ImgCatalogComponent implements OnInit {
   private _subscribe$ = new Subject();
@@ -79,7 +79,8 @@ export class ImgCatalogComponent implements OnInit {
 
   public getMyPhoto(): void {
     if (localStorage.getItem('loginAutorization')) {
-      this.frames.userImageGet(0).pipe(takeUntil(this._subscribe$)).subscribe((userImage: ServerResponce<UserImage[]>) => {
+      this.frames.userImageGet(0).pipe(takeUntil(this._subscribe$))
+      .subscribe((userImage: ServerResponce<UserImage[]>) => {
         this.frames.fileList = userImage.results;
         this.frames.apiPhoto = false;
       })
@@ -88,7 +89,7 @@ export class ImgCatalogComponent implements OnInit {
       const modalRef = this.modalService.open(NoUsserComponent);
       setTimeout(() => {
         modalRef.dismiss()
-      }, 500)
+      }, 1000)
     }
   }
 

@@ -8,7 +8,6 @@ import { Letter } from 'src/app/interface/img-ramka';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
-
 @Component({
   selector: 'app-create-img',
   templateUrl: './create-img.component.html',

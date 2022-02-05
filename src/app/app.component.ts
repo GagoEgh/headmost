@@ -100,10 +100,8 @@ export class AppComponent implements OnInit {
 
   public changeLeng(language: string): void {
     this.spinner.show();
-    console.log(language);
 
     this.cookie.put('lang', language);
-    console.log('cookie ', this.cookie.get('lang'))
     this._translate.use(language);
     this.frames.lang = language;
     window.location.reload()

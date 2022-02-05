@@ -19,13 +19,24 @@
 .logo {
     width: 180px;
     cursor: pointer;
+    transition:  0.3s;
+}
+
+.logo:hover{
+    transform: rotate(-6deg);
+}
+
+.logo p:hover{
+    font-size: 40px;
 }
 
 .logo p {
     font-family: 'Praise', cursive;
-    font-size: 55px;
+    font-size: 45px;
     padding: 15px 0;
     color: #f43f73;
+    text-align: center;
+    transition:  0.3s;
 }
 
 .li-nav {
