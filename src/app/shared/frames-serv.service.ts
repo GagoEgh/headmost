@@ -13,6 +13,7 @@ import { ImageResponse, ImgColorValue, UserImage } from '../interface/ImageRespo
 import { CategoryDetails } from '../interface/CategoryDetails';
 import { WordResult } from '../interface/WordResult';
 import { UserData } from '../interface/UserInfo';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -48,7 +49,7 @@ export class FramesServService {
     public isImg = true;
     public frame: any;
     public api: Api = {
-        worldApi: 'https://sirun-bar-api.annaniks.com',
+        worldApi: environment.API_URL, 
         api_utils: '/utils',
         api_bgr: '/background/',
         api_frame: '/frame/',

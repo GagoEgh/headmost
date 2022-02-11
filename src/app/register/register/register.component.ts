@@ -97,6 +97,7 @@ export class RegisterComponent implements OnInit {
       image: ''
     }
 
+
     if (this.validateForm.valid) {
       this.registerService.userRegisterPost(userDetalis).pipe(takeUntil(this._subscribe$)).subscribe((register: RegisterResult) => {
         this.registerService.isRegister = true;
