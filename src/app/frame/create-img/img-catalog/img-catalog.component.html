@@ -5,6 +5,7 @@
 </div>
 <div class="modal-body" >
     <div class="img-menu">
+      <div class="image__container">
         <div *ngIf='frames.apiPhoto else myPhoto' class="block-1">
             <div class="bg-img" *ngFor='let item of imgService.painding.imgs' #newItem (click)='changeImg(item)'
                 [style.background-image]="'url('+ item.thumbnail + ')'">
@@ -17,6 +18,7 @@
                 </div>
             </div>
         </ng-template>
+      </div>
         <nav class="bar">
             <h2>{{'ImgMenu.menuTitle'|translate}}</h2>
             <div class="menu">
@@ -44,7 +46,7 @@
                         <li class="list" (click)="getMyPhoto()"
                         [ngClass]="{'listActive':!this.frames.apiPhoto}">
                             {{'ImgMenu.myPhoto'|translate}}
-                           
+
                         </li>
                     </ul>
                 </div>
