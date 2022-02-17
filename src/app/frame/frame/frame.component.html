@@ -42,19 +42,18 @@
   <div #block class="block" [ngStyle]="catalogStyle">
     <router-outlet></router-outlet>
   </div>
-  <div class="buttonWrap" >
+  <div class="buttonWrap">
     <table>
       <tr>
         <td class="aside"></td>
         <td class="center">
           <div>
             <b></b>
-            <button type="submit" (click)='onSubmit()' class='makeAWord_3'
-            [disabled]='frames.validateForm.pristine' *ngIf='frames.isImg'>
+            <button type="submit" (click)='onSubmit()' class='makeAWord_3' [disabled]='frames.validateForm.pristine'
+              *ngIf='frames.isImg'>
               {{'ImgTextValid.createWord'|translate}}
             </button>
-            <button class="makeAWord_3 save" (click)='frames.myOrder()' 
-              *ngIf='!frames.isOrder && !frames.isImg'>
+            <button class="makeAWord_3 save" (click)='frames.myOrder()' *ngIf='!frames.isOrder && !frames.isImg'>
               {{'ImgTextValid.batnSave'|translate}}
             </button>
             <button *ngIf='frames.isOrder' class="makeAWord_3 create-bottom"
@@ -66,56 +65,65 @@
     </table>
   </div>
 </header>
-<div class="steps">
-  <div class="wrap1">
-    <div class="step-content step1">
-      <div class="compile"></div>
-      <div class="info-block">
-        <div class="title">
-          <h2>{{'Steps.compile'|translate}}</h2>
-        </div>
-        <div class="paragraph">
-          <p>{{'Steps.text1'|translate}}</p>
-        </div>
+
+<div class="steps__container">
+
+  <div class="steps__block">
+
+    <div class="step">
+      <div class="img__container">
+        <div class="compile"></div>
+      </div>
+      <div class="title__container">
+        <h2>{{'Steps.compile'|translate}}</h2>
+      </div>
+      <div class="text__container">
+        <p>{{'Steps.text1'|translate}}</p>
       </div>
     </div>
+
     <div class="right-arrow"></div>
-    <div class="step-content mg">
-      <div class="select"></div>
-      <div class="info-block">
-        <div class="title">
-          <h2>{{'Steps.select'|translate}}</h2>
-        </div>
-        <div class="paragraph">
-          <p>{{'Steps.text2'|translate}}</p>
-        </div>
+
+    <div class="step">
+      <div class="img__container">
+        <div class="select"></div>
+      </div>
+      <div class="title__container">
+        <h2>{{'Steps.select'|translate}}</h2>
+      </div>
+      <div class="text__container">
+        <p>{{'Steps.text2'|translate}}</p>
       </div>
     </div>
-  </div>
-  <div class="wrap2">
-    <div class="right-arrow arrow-3"></div>
-    <div class="step-content step3">
-      <div class="get"></div>
-      <div class="info-block">
-        <div class="title">
-          <h2>{{'Steps.get'|translate}}</h2>
-        </div>
-        <div class="paragraph">
-          <p>{{'Steps.text3'|translate}}</p>
-        </div>
+
+    <div class="right-arrow mid-arrow"></div>
+
+    <div class="step">
+      <div class="img__container">
+        <div class="get"></div>
+      </div>
+      <div class="title__container">
+        <h2>{{'Steps.get'|translate}}</h2>
+      </div>
+      <div class="text__container">
+        <p>{{'Steps.text3'|translate}}</p>
       </div>
     </div>
+
     <div class="right-arrow"></div>
-    <div class="step-content step4">
-      <div class="donate"></div>
-      <div class="info-block">
-        <div class="title">
-          <h2>{{'Steps.donate'|translate}}</h2>
-        </div>
-        <div class="paragraph">
-          <p>{{'Steps.text4'|translate}}</p>
-        </div>
+
+    <div class="step">
+      <div class="img__container">
+        <div class="donate"></div>
+      </div>
+      <div class="title__container">
+        <h2>{{'Steps.donate'|translate}}</h2>
+      </div>
+      <div class="text__container">
+        <p>{{'Steps.text4'|translate}}</p>
       </div>
     </div>
+
   </div>
+
 </div>
