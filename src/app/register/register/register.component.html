@@ -9,7 +9,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <form  [formGroup]="validateForm" (ngSubmit)="submitForm()" class="form">
+    <form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="form">
       <div class="col column-1">
         <mat-form-field appearance="fill" class="full-width">
           <mat-label class="label">{{'Order.userData.frstName'|translate}}</mat-label>
@@ -66,14 +66,14 @@
       <div class="col column-2">
         <mat-form-field appearance="fill">
           <mat-label class="label">{{'Order.userData.date'|translate}}</mat-label>
-          <input matInput [max]="currentDate" [matDatepicker]="dp3"  formControlName='date'>
+          <input matInput [max]="currentDate" [matDatepicker]="dp3" formControlName='date'>
           <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
           <mat-datepicker #dp3 disabled="false"></mat-datepicker>
           <mat-error *ngIf="this.validateForm.get('date')?.hasError('required')">
             <p>{{'ErroreMessage.required'|translate}}</p>
           </mat-error>
         </mat-form-field>
-        
+
         <mat-form-field appearance="fill" class="full-width">
           <mat-label class="label">{{'Order.userData.country'|translate}}</mat-label>
           <mat-select [placeholder]="frames.country_placeholder" formControlName='country'>

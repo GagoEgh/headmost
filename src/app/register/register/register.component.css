@@ -30,14 +30,5 @@
 }
 
 .login-form-button{
-  margin: 100px auto; 
+  margin: 100px auto;
 }
-
-::ng-deep.mat-select-value span{
-  margin-left: 7px !important;
-}
-
-/* ::ng-deep.mat-optgroup-label{
-  text-overflow: clip !important;
-} */
-

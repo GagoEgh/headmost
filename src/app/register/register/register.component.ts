@@ -94,7 +94,8 @@ export class RegisterComponent implements OnInit {
       password: this.validateForm.get('pasRev')?.value,
       email: this.validateForm.get('email')?.value,
       comment: '',
-      image: ''
+      image: '',
+      is_creator:false
     }
 
 
