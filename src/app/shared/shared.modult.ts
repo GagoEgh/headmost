@@ -22,6 +22,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MyimagesComponent } from "./myimages/myimages.component";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { NzMessageModule } from "ng-zorro-antd/message";
+import { MatDialogModule } from "@angular/material/dialog";
+import { DialogContentComponent } from "./components/modal/modal.component";
 
 const MatModule = [
     MatButtonModule,
@@ -30,6 +32,7 @@ const MatModule = [
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatDialogModule
 ]
 
 const NzModule = [
@@ -57,7 +60,8 @@ const module = [
 
 @NgModule({
     declarations: [OrderComponent,
-        MyimagesComponent
+        MyimagesComponent,
+        DialogContentComponent
     ],
     exports: [
         ...MatModule,
@@ -66,7 +70,7 @@ const module = [
         ...module,
         NgxMaskModule,
         OrderComponent,
-        MyimagesComponent
+        MyimagesComponent,
     ],
     imports: [
         ...module,

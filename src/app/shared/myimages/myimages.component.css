@@ -66,14 +66,16 @@ input[type=file]{
 }
 
 .preview-remove {
- opacity: 0;
+ opacity: 0.1;
  width: 20px;
  height: 20px;
  position: absolute;
  right: 0;
  top: 0;
  font-weight: bold;
- background: rgba(255, 255, 255, .5);
+ background: rgba(255, 0, 0, 0.7);
+ color: rgb(255, 255, 255);
+ /* border: 0.1px solid black; */
  display: flex;
  align-items: center;
  justify-content: center;
