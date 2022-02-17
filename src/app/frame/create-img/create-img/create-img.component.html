@@ -27,8 +27,8 @@
                     </div>
                 </div>
                 <div class="imgs">
-                    <div class="bg-img" *ngFor='let img of frames.letterImges;let i = index' (click)="openImg(img,i)" 
-                    [style.background-image]="checkImage(img.image.thumbnail)?'url( '+ img.image.thumbnail + ')':'url( https://sirun-bar-api.annaniks.com/'+ img.image.thumbnail + ')'">
+                    <div class="bg-img" *ngFor='let img of frames.letterImges;let i = index' (click)="openImg(img,i)"
+                    [style.background-image]="checkImage(img.image.thumbnail)?'url( '+ img.image.thumbnail + ')':'url( https://admin.gift4u.am/'+ img.image.thumbnail + ')'">
                         <div class="bgr">
                             <p>{{'Imgs.imgHover'|translate}}</p>
                         </div>

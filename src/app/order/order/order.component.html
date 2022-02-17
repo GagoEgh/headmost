@@ -6,9 +6,10 @@
     <div class="login-form">
       <div class="form">
         <h2 class="title">{{'Order.informImg.titleH2'|translate}}</h2>
+        <div class="inputs__container">
         <mat-form-field appearance="fill" class="full-width">
           <mat-label class="label"> {{'Order.userData.frstName'| translate}} </mat-label>
-          <input type="text" matInput formControlName="frstName" id="frstName" [errorStateMatcher]="matcher" trim>        
+          <input type="text" matInput formControlName="frstName" id="frstName" [errorStateMatcher]="matcher" trim>
           <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('required')">
             <p>{{'ErroreMessage.required'|translate}}</p>
           </mat-error>
@@ -96,10 +97,10 @@
             <p>{{'ErroreMessage.titleLength'|translate}} 6</p>
           </mat-error>
         </mat-form-field>
+        </div>
       </div>
-      <div class="border"></div>
       <div class="order">
-        <div>
+        <div class="order-content">
           <h2 class="title">{{'Order.informImg.title'|translate}}</h2>
           <div class="data" *ngFor='let list of frames.orderList'>
             <div class="letter-length">

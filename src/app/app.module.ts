@@ -24,7 +24,7 @@ import { CookieModule } from 'ngx-cookie';
 
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http,'https://sirun-bar-api.annaniks.com/media/static/languages/', '.json');
+  return new TranslateHttpLoader(http,'https://admin.gift4u.am/media/static/languages/', '.json');
 }
 
 registerLocaleData(en);
@@ -53,7 +53,7 @@ registerLocaleData(en);
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
-       // useClass: TranslationService,     
+       // useClass: TranslationService,
         deps: [HttpClient]
       }
     })

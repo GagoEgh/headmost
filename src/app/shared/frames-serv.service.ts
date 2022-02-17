@@ -30,11 +30,11 @@ export class FramesServService {
     public isSilki = false;
     public orderList: CardItemResults[] = [];
     public background: any = {};
-    public topText: string = ''; 
+    public topText: string = '';
     public btmText: string = '';
     public text: string = '';
     public index: number = 3;
-    public sum: number = 0;  
+    public sum: number = 0;
     public userReg = true;
     public apiPhoto = true;
     public fileList: any = [];
@@ -48,7 +48,7 @@ export class FramesServService {
     public isImg = true;
     public frame: any;
     public api: Api = {
-        worldApi: 'https://sirun-bar-api.annaniks.com',
+        worldApi: 'https://admin.gift4u.am',
         api_utils: '/utils',
         api_bgr: '/background/',
         api_frame: '/frame/',

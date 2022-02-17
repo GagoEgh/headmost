@@ -10,7 +10,7 @@ export class TranslationService implements TranslateLoader {
   constructor(private http: HttpClient) { }
 
   getTranslation(lang: string): Observable<any> {
-    return this.http.get(`https://sirun-bar-api.annaniks.com/static/languages/${lang}.json`)
+    return this.http.get(`https://admin.gift4u.am/static/languages/${lang}.json`)
       .pipe(map((response) => {
         return response;
       }));

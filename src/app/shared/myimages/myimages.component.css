@@ -3,7 +3,7 @@
 }
 
 .upload{
- width: 150px; 
+ width: auto;
  color: #e6af49;
  position: relative;
  border-radius: 99px;
@@ -36,7 +36,7 @@
 }
 
 .files{
- padding: 5px; 
+ padding: 5px;
 }
 
 .img{
@@ -54,7 +54,7 @@
  margin:10px 80px;
  color: red;
  font-weight: 600;
- letter-spacing: 1px;  
+ letter-spacing: 1px;
 }
 
 .upload:active {

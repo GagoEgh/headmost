@@ -14,32 +14,30 @@
 }
 
 .order{
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   padding-bottom: 1.3rem;
+}
+
+.order-content{
+  width: 80%;
 }
 
 .login-form{
   display: flex;
   justify-content: space-around;
-  /* color: #c79d51; */
 }
 
 .form{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  min-width: 150px !important;
-  max-width: 300px !important;
-  width: 100% !important;
-}
-
-.border{
-  width: 3px;
-  height: inherit;
-  background-color: #c79d51;
-  margin-left: 100px;
+  align-items: center;
+  width: 50% !important;
+  border-right: 3px solid #c79d51;
 }
 
 .title{
@@ -47,9 +45,17 @@
   text-align: center;
 }
 
-.full-width{
+.inputs__container{
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.full-width{
+  width: 80%;
+}
+
 
 .data{
   display: flex;
@@ -69,7 +75,6 @@
 
 .smoll{
   font-size: 0.7rem;
-  /* color: #5a646d; */
   color: #c79d51;
 }
 
@@ -85,8 +90,6 @@
   cursor: pointer;
   font-weight: bold;
   font-size: 16px;
-  /* color: black; */
-
   color: #c79d51;
 }
 
@@ -116,41 +119,71 @@
   .sum{
     margin-left: 150px;
   }
+
+
 }
 
 @media (max-width:970px){
-  .login-form{
+  .card{
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    /* height: auto; */
+  }
+
+  .login-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
   }
 
   .form{
-    align-self: center;
+    width: 100% !important;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    /* background-color: aqua; */
   }
 
-  .border{
-    display: none;
+  .inputs__container{
+    width: 90%;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-row-gap: 2%;
+    /* background-color: gray; */
   }
 
-  .sum{
-    margin:30px auto;
+  .full-width{
+    width: 98%;
   }
 
-  /*    */
 
-  .card{
+  .order{
+    width: 100% !important;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
+  .order-content{
+    width: 100%;
+  }
+
   .data{
+    width: auto;
     display: flex;
     justify-content: center;
   }
 
-  .order{
-    height: 300px;
+  .sum{
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    padding-top: 30px;
   }
 
 }
