@@ -80,7 +80,7 @@
             <mat-optgroup *ngFor='let country of frames.selectedValue' [label]='country["name_"+frames.lang]'>
               <mat-select>
                 <mat-optgroup *ngFor='let regions of country.country_regions' [label]='regions["name_"+frames.lang]'>
-                  <mat-option *ngFor='let city of regions.region_cities' [value]='city.id'>
+                  <mat-option  *ngFor='let city of regions.region_cities' [value]='city.id'>
                     {{city["name_"+frames.lang]}}
                   </mat-option>
                 </mat-optgroup>
