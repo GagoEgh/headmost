@@ -11,6 +11,10 @@
     font-family: Montserrat;
 }
 
+.full-body{
+  overflow-y: scroll;
+}
+
 .ant-upload-list-picture-card .ant-upload-list-item {
     display: none !important;
 }

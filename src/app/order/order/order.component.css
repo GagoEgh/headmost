@@ -103,11 +103,17 @@
 
 .noText{
   height:calc( 100vh - 270px );
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .noText h3{
- margin: 100px 0 0 100px;
  font-weight: 800;
+  font-size: 25px;
+  position: relative;
+  top: -90px;
 }
 
 .login-form-button{

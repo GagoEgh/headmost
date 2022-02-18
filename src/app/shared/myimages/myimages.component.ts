@@ -112,9 +112,3 @@ export class MyimagesComponent implements OnInit {
   }
 
 }
-// @Component({
-//   selector: 'change-modal',
-//   templateUrl: '../components/modal/modal.component.html',
-//   styleUrls: ['../components/modal/modal.component.scss']
-// })
-// export class DialogContentComponent{}

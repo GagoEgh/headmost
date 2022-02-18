@@ -1,10 +1,10 @@
 .conteiner {
-  padding: 20px;
   background-image: url("/assets/1x/bg8.jpg");
   position: relative;
   top: 5px;
   display: flex;
   flex-direction: column;
+  max-height: 550px !important;
 }
 
 .catalog {
@@ -207,7 +207,7 @@
 }
 
 .buttonWrap {
-  margin-top: 232px;
+  margin-top: 153px;
 }
 
 .save {
@@ -298,6 +298,10 @@
 }
 
 @media (max-width: 937px) {
+  .conteiner{
+    max-height: 450px !important;
+  }
+
   :host ::ng-deep app-order .data {
     display: flex;
     justify-content: center;
@@ -307,12 +311,22 @@
     height: 300px;
   }
 
+  .buttonWrap{
+    margin-top: 56px;
+  }
+
   .create-bottom {
     margin-top: -385px;
   }
+
 }
 
 @media (max-width: 769px) {
+
+  .conteiner{
+    max-height: 320px !important;
+  }
+
   .save {
     margin-top: -76px;
   }
@@ -322,7 +336,7 @@
   }
 
   .buttonWrap {
-    margin-top: 87px;
+    margin-top: 27px;
   }
 
 
