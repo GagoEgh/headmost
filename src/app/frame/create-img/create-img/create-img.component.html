@@ -19,7 +19,7 @@
                     <div class="delete" [style.opacity]="topLettering.isMenu?'1':'0'" n>
                         <p class="bottom-par" (click)='deletImg()'>{{'Imgs.deleteText'|translate}}</p>
                     </div>
-                    <div class="lettering" *ngIf='frames.letterImges.length>3' [style.opacity]="topLettering.isForm?'1':'0'">
+                    <div class="lettering" *ngIf='frames.letterImges.length>2' [style.opacity]="topLettering.isForm?'1':'0'">
                         <form [formGroup]="validateForm">
                             <input type="text" formControlName='topText' [style.backgroundColor]="frames.background.color" class="inStyle" maxlength="15" [class.font]='topLettering.isSpan'>
                             <span class="cursor" *ngIf="topLettering.isSpan" (click)='deleteTopProprty()'>X</span>
@@ -34,8 +34,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="menu" [style.flex-direction]="frames.letterImges.length < 4?'row':'row-reverse'">
-                    <div *ngIf='frames.letterImges.length>3' [style.opacity]="bottomLettering.isForm?'1':'0'">
+                <div class="menu" [style.flex-direction]="frames.letterImges.length < 3?'row':'row-reverse'">
+                    <div *ngIf='frames.letterImges.length>2' [style.opacity]="bottomLettering.isForm?'1':'0'">
                         <form [formGroup]='bottomText'>
                             <input type="text" formControlName='btmText' class="inStyle" maxlength="15" [style.backgroundColor]="frames.background.color" [class.font]="bottomLettering.isSpan">
                             <span class="cursor" *ngIf="bottomLettering.isSpan" (click)="deleteBottomProprty()">X</span>
