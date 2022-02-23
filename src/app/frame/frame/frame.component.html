@@ -38,6 +38,9 @@
         </div>
       </div>
     </div>
+    <div *ngIf="productPrice !== 0" class="price__container">
+      <b>{{ productPrice }} Դ</b>
+    </div>
   </div>
   <div #block class="block" [ngStyle]="catalogStyle">
     <router-outlet></router-outlet>

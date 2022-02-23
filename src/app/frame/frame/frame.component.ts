@@ -1,5 +1,7 @@
 import {
+  AfterContentChecked,
   AfterViewChecked,
+  AfterViewInit,
   Component,
   ElementRef,
   HostListener,
@@ -27,13 +29,15 @@ import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
 })
 export class FrameComponent
   extends FrameImag
-  implements OnInit, AfterViewChecked
+  implements OnInit, AfterViewChecked, AfterContentChecked, AfterViewInit
 {
   @ViewChild('block', { static: false }) block: ElementRef | undefined;
   private width: number | undefined;
   public catalogStyle = {} as { [key: string]: string };
   public scale: number = 1;
   public div: any = [];
+  public productPrice?:number = 0
+
   constructor(
     public frames: FramesServService,
     public modalService: NgbModal,
@@ -42,9 +46,10 @@ export class FrameComponent
     public ideaImgService: IdeaImageService,
     public rout: Router,
     public form: FormBuilder,
-    private _translate: TranslateService
+    private _translate: TranslateService,
+    private _frameImgService:FrameImageService
   ) {
-    super(frames, modalService, ideaImgService, imgService, rout, form);
+    super(frames, modalService, ideaImgService, imgService, rout, form, frameServis);
     this._translate.use(this.frames.lang);
   }
 
@@ -66,6 +71,10 @@ export class FrameComponent
     setTimeout(() => {
       this.onResize();
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.productPrice = this._frameImgService.getPrice()
   }
 
   @HostListener('window:resize', ['$event'])
@@ -126,6 +135,7 @@ export class FrameComponent
     this.frames.frame = this.frameServis.framesImge.find(
       (item) => item.id === this.frames.index
     );
+    this._frameImgService.setFramePrice(this.frames.frame.price)
   }
 
   //FramesImg
@@ -135,6 +145,11 @@ export class FrameComponent
 
   public changeBg(bg: BgDetails): void {
     this.frames.background = bg;
+  }
+
+  ngAfterContentChecked(): void {
+    this.productPrice = this._frameImgService.getPrice()
+    
   }
 
   ngOnDestroy(): void {
