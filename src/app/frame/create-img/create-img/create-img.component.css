@@ -1,7 +1,9 @@
 
-/* .conteiner{
-    font-family: 'Praise', cursive !important;
-} */
+.conteiner{
+    /* font-family: 'Praise', cursive !important; */
+  margin: 0 !important;
+  padding: 0 !important;
+  }
 .menu {
     justify-content: space-between;
     flex-direction: row-reverse;
@@ -165,9 +167,9 @@
     background: url('/assets/1x/ordeerButtonAside_right_.png') bottom right no-repeat, url('/assets/1x/bg8.jpg');
 }
 
-.makeAWord_3:hover {
+/* .makeAWord_3:hover {
     background-image: url('/assets/1x/tund-bot.png');
-}
+} */
 
 @media (max-width:768px) {
     .conteiner {

@@ -1,10 +1,14 @@
-.conteiner {
-  padding: 20px;
+.body{
+  width: 100%;
   background-image: url("/assets/1x/bg8.jpg");
-  position: relative;
-  top: 5px;
+}
+
+.container {
   display: flex;
   flex-direction: column;
+  min-height: auto !important;
+  height: auto !important;
+  padding-bottom: 110px;
 }
 
 .catalog {
@@ -79,7 +83,6 @@
 
 .price__container{
   min-width: 60px;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,7 +121,7 @@
 
 .block {
   left: 50%;
-  top: 80px;
+  top: 50px;
 }
 
 .message {
@@ -139,12 +142,74 @@
   margin-left: 50px;
 }
 
+.btn__container{
+  width: 100%;
+  height: 40px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.side{
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.side__div{
+  width: 95%;
+  height: 100%;
+  background-color: white;
+}
+
+.left-figure{
+  width: 5%;
+  height: 100%;
+  clip-path: polygon(11% 24%, 16% 34%, 23% 46%, 32% 57%, 41% 67%, 51% 77%, 65% 85%, 82% 93%, 100% 100%, 0 100%, 0 0, 5% 11%);
+  background-color: white;
+}
+
+.btn__area{
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.enter-btn{
+  width: 100%;
+  height: 55px;
+  position: relative;
+  top: -25px;
+  font-size: 20px;
+  background-color: red;
+  color: white;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+
+.enter-btn:hover{
+  background-color: rgb(186, 0, 0);
+}
+
+.right-figure{
+  width: 5%;
+  height: 100%;
+  background-color: white;
+  clip-path: polygon(44% 78%, 56% 68%, 69% 56%, 79% 44%, 86% 34%, 92% 23%, 95% 14%, 100% 0, 100% 100%, 0 100%, 20% 94%, 34% 86%);
+}
+
 .steps__container {
   width: 100%;
   height: 350px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
 }
 
 .steps__block {
@@ -219,71 +284,28 @@
   background-image: url("/assets/1x/steps/giftbox.png");
 }
 
-.buttonWrap {
-  margin-top: 232px;
-}
-
-.save {
-  margin-top: -7px;
-}
-
-.create-bottom {
-  margin-top: -156px;
-}
-
-.buttonWrap table {
-  width: 100%;
-  height: 100%;
-}
-
-.buttonWrap table .aside {
-  height: 68px;
-  width: 50%;
-  background: url("/assets/1px/forButWrap .jpg") repeat-x bottom left;
-}
-
-.buttonWrap table .center div,
-.buttonWrap.withoutBg table .center div {
-  padding: 0 5px;
-  height: 38px !important;
-  position: relative;
-  background: url("/assets/1x/ordeerButtonAside_left_.png") bottom left
-      no-repeat,
-    url("/assets/1x/bg8.jpg");
-}
-
-.buttonWrap table .center div b,
-.buttonWrap.withoutBg table .center div b {
-  display: block;
-  width: 30px;
-  height: 35px;
-  position: absolute;
-  bottom: 0;
-  right: -1px;
-  z-index: 300;
-  background: url("/assets/1x/ordeerButtonAside_right_.png") bottom right
-      no-repeat,
-    url("/assets/1x/bg8.jpg");
-}
-
-.makeAWord_3 {
-  outline: none;
-}
 
 :host ::ng-deep app-order .order {
   padding-left: 20px;
 }
 
 @media (max-width: 2000px) {
-  .create-bottom {
-    margin-top: -190px;
-  }
+
 }
 
 @media (max-width: 1291px) {
-  .create-bottom {
-    margin-top: -90px;
+  .side{
+    width: 37%;
   }
+
+  .btn__area{
+    width: 26%;
+  }
+
+  .my-btn-wrap{
+    height: 110px;
+  }
+
 }
 
 @media (max-width: 1201px) {
@@ -304,9 +326,13 @@
   }
 }
 
-@media (max-width: 970px) {
-  .create-bottom {
-    margin-top: -390px;
+@media (max-width: 1100px) {
+  .side{
+    width: 34%;
+  }
+
+  .btn__area{
+    width: 32%;
   }
 }
 
@@ -320,24 +346,25 @@
     height: 300px;
   }
 
-  .create-bottom {
-    margin-top: -385px;
+  .side{
+    width: 30%;
   }
+
+  .btn__area{
+    width: 40%;
+  }
+
+  .side__div{
+    width: 90%;
+  }
+
+  .figure{
+    width: 10%;
+  }
+
 }
 
 @media (max-width: 769px) {
-  .save {
-    margin-top: -76px;
-  }
-
-  .create-bottom {
-    margin-top: -488px;
-  }
-
-  .buttonWrap {
-    margin-top: 87px;
-  }
-
 
   .steps__block{
     width: 80%;
@@ -346,9 +373,7 @@
 }
 
 @media (max-width: 650) {
-  .create-bottom {
-    margin-top: -520px;
-  }
+
 }
 
 @media (max-width: 550px) {
