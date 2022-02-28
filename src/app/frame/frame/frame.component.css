@@ -1,11 +1,34 @@
 .body{
   width: 100%;
-  background-image: url("/assets/1x/bg8.jpg");
 }
 
+.bg1{
+  background-image: url("/assets/1x/background/bg1.jpg");
+}
+
+.bg2{
+  background-image: url("/assets/1x/background/bg2.jpg");
+}
+
+.bg3{
+  background-image: url("/assets/1x/background/bg3.jpg");
+}
+
+.bg4{
+  background-image: url("/assets/1x/background/bg4.jpg");
+}
+
+.bg5{
+  background-image: url("/assets/1x/background/bg5.jpg");
+}
+
+
 .container {
+  width: 100% !important;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   min-height: auto !important;
   height: auto !important;
   padding-bottom: 110px;
@@ -19,7 +42,6 @@
   padding: 0 90px;
   position: relative;
   z-index: 9;
-  left: 50%;
 }
 
 .carusel {
@@ -119,9 +141,37 @@
 
 /* RAMKA */
 
-.block {
+.block__container{
+  width: 100%;
+  padding-top: 50px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.middle-block {
   left: 50%;
-  top: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: center;
+}
+
+.arrow-btn{
+  width: 40px;
+  height: 40px;
+  background-color: black;
+}
+
+.left-btn{
+  clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 75% 100%, 50% 50%, 75% 0);
+}
+
+.right-btn{
+  clip-path: polygon(25% 0, 50% 50%, 25% 100%, 0% 100%, 25% 50%, 0% 0%);
 }
 
 .message {
@@ -146,6 +196,7 @@
   width: 100%;
   height: 40px;
   position: relative;
+  top: 1px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
