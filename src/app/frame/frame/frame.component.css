@@ -1,25 +1,37 @@
-.body{
+.body {
   width: 100%;
 }
 
-.bg1{
+.bg1 {
   background-image: url("/assets/1x/background/bg1.jpg");
 }
 
-.bg2{
+.bg2 {
   background-image: url("/assets/1x/background/bg2.jpg");
 }
 
-.bg3{
+.bg3 {
   background-image: url("/assets/1x/background/bg3.jpg");
 }
 
-.bg4{
+.bg4 {
   background-image: url("/assets/1x/background/bg4.jpg");
 }
 
-.bg5{
+.bg5 {
   background-image: url("/assets/1x/background/bg5.jpg");
+}
+
+.bg6 {
+  background-image: url("/assets/1x/background/bg6.jpg");
+}
+
+.bg7 {
+  background-image: url("/assets/1x/background/bg7.jpg");
+}
+
+.bg8 {
+  background-image: url("/assets/1x/background/bg8.jpg");
 }
 
 
@@ -68,6 +80,7 @@
   margin-top: 10px;
   transition: 0.1s;
 }
+
 .box {
   height: 37px;
 }
@@ -103,14 +116,14 @@
   width: fit-content;
 }
 
-.price__container{
+.price__container {
   min-width: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.price__container b{
+.price__container b {
   font-size: 17px;
   position: relative;
 }
@@ -141,7 +154,7 @@
 
 /* RAMKA */
 
-.block__container{
+.block__container {
   width: 100%;
   padding-top: 50px;
   height: auto;
@@ -160,17 +173,17 @@
   justify-content: center;
 }
 
-.arrow-btn{
+.arrow-btn {
   width: 40px;
   height: 40px;
   background-color: black;
 }
 
-.left-btn{
+.left-btn {
   clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 75% 100%, 50% 50%, 75% 0);
 }
 
-.right-btn{
+.right-btn {
   clip-path: polygon(25% 0, 50% 50%, 25% 100%, 0% 100%, 25% 50%, 0% 0%);
 }
 
@@ -192,7 +205,7 @@
   margin-left: 50px;
 }
 
-.btn__container{
+.btn__container {
   width: 100%;
   height: 40px;
   position: relative;
@@ -202,33 +215,33 @@
   justify-content: space-between;
 }
 
-.side{
+.side {
   width: 40%;
   height: 100%;
   display: flex;
   flex-direction: row;
 }
 
-.side__div{
+.side__div {
   width: 95%;
   height: 100%;
   background-color: white;
 }
 
-.left-figure{
+.left-figure {
   width: 5%;
   height: 100%;
   clip-path: polygon(11% 24%, 16% 34%, 23% 46%, 32% 57%, 41% 67%, 51% 77%, 65% 85%, 82% 93%, 100% 100%, 0 100%, 0 0, 5% 11%);
   background-color: white;
 }
 
-.btn__area{
+.btn__area {
   width: 20%;
   display: flex;
   justify-content: center;
 }
 
-.enter-btn{
+.enter-btn {
   width: 100%;
   height: 55px;
   position: relative;
@@ -243,11 +256,11 @@
   -o-border-radius: 30px;
 }
 
-.enter-btn:hover{
+.enter-btn:hover {
   background-color: rgb(186, 0, 0);
 }
 
-.right-figure{
+.right-figure {
   width: 5%;
   height: 100%;
   background-color: white;
@@ -340,20 +353,18 @@
   padding-left: 20px;
 }
 
-@media (max-width: 2000px) {
-
-}
+@media (max-width: 2000px) {}
 
 @media (max-width: 1291px) {
-  .side{
+  .side {
     width: 37%;
   }
 
-  .btn__area{
+  .btn__area {
     width: 26%;
   }
 
-  .my-btn-wrap{
+  .my-btn-wrap {
     height: 110px;
   }
 
@@ -378,11 +389,11 @@
 }
 
 @media (max-width: 1100px) {
-  .side{
+  .side {
     width: 34%;
   }
 
-  .btn__area{
+  .btn__area {
     width: 32%;
   }
 }
@@ -397,19 +408,19 @@
     height: 300px;
   }
 
-  .side{
+  .side {
     width: 30%;
   }
 
-  .btn__area{
+  .btn__area {
     width: 40%;
   }
 
-  .side__div{
+  .side__div {
     width: 90%;
   }
 
-  .figure{
+  .figure {
     width: 10%;
   }
 
@@ -417,15 +428,13 @@
 
 @media (max-width: 769px) {
 
-  .steps__block{
+  .steps__block {
     width: 80%;
   }
 
 }
 
-@media (max-width: 650) {
-
-}
+@media (max-width: 650) {}
 
 @media (max-width: 550px) {
 
@@ -433,7 +442,7 @@
     display: none;
   }
 
-  .steps__block{
+  .steps__block {
     width: 100%;
     display: grid;
     grid-template-columns: auto auto;

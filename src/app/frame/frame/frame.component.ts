@@ -29,7 +29,7 @@ import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
 })
 export class FrameComponent
   extends FrameImag
-  implements OnInit, AfterViewChecked, AfterViewInit
+  implements OnInit, AfterViewChecked, AfterViewInit, AfterContentChecked
 {
   @ViewChild('block', { static: false }) block: ElementRef | undefined;
   private width: number | undefined;
@@ -38,7 +38,7 @@ export class FrameComponent
   public div: any = [];
   public productPrice?: number = 0;
   public backgroundClass: string = 'bg1';
-  public bgClassArr: string[] = ['bg1', 'bg2', 'bg3', 'bg4', 'bg5'];
+  public bgClassArr: string[] = ['bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg6', 'bg7', 'bg8'];
 
   constructor(
     public frames: FramesServService,
@@ -84,6 +84,10 @@ export class FrameComponent
   }
 
   ngAfterViewInit(): void {
+    this.productPrice = this._frameImgService.getPrice();
+  }
+
+  ngAfterContentChecked(): void {
     this.productPrice = this._frameImgService.getPrice();
   }
 

@@ -92,7 +92,7 @@ export class FrameImag {
       const modalRef = this.modalService.open(ErroreMessageComponent);
       setTimeout(() => {
         modalRef.dismiss();
-      }, 1000);
+      }, 2500);
       return;
     }
     this.frames.isImg = false;
