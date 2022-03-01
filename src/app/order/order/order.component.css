@@ -121,6 +121,10 @@
   margin: 100px auto;
 }
 
+.city{
+  margin-left: 14px;
+}
+
 @media (max-width:1024px){
   .sum{
     margin-left: 150px;
