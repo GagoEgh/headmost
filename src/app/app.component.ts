@@ -18,8 +18,10 @@ import { CookieService } from 'ngx-cookie';
 })
 export class AppComponent implements OnInit {
   public unsubscribe$ = new Subject();
-  constructor(public frames: FramesServService,
-    private cookie: CookieService, private spinner: NgxSpinnerService,
+  constructor(
+    public frames: FramesServService,
+    private cookie: CookieService,
+    private spinner: NgxSpinnerService,
     private _translate: TranslateService,
     private modalService: NgbModal,
     private router: Router) {

@@ -2,7 +2,7 @@ import { CategoryDetails, CityDetails } from "./CategoryDetails";
 import { ImageResponse, ImgColorValue } from "./ImageResponse";
 
 export interface Painding {
-    values: ImgColorValue ,
+    values: ImgColorValue,
     imgs: ImageResponse[],
     id: number,
     categoryId: number
@@ -10,12 +10,12 @@ export interface Painding {
 }
 
 export interface Api {
- [key:string]:string
+    [key: string]: string
 }
 
 
 export interface Letter {
-    [key:string]:boolean
+    [key: string]: boolean
 }
 
 export interface CountryResult extends CategoryDetails {
@@ -32,7 +32,7 @@ export interface CountryResult extends CategoryDetails {
 
 export interface AboutQuestion {
     id: number
-    isBlock: boolean
+    isBlock: boolean | string
     answers: string
     label: string
 }

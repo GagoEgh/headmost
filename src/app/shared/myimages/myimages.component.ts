@@ -57,7 +57,8 @@ export class MyimagesComponent implements OnInit {
     formData.append('image', files);
     formData.append('thumb_image', files);
     this.spinner.show();
-    this.userImagsServicw.userImage(formData).subscribe((userImage: UserImage) => {
+    this.userImagsServicw.userImage(formData).subscribe(
+      (userImage: UserImage) => {
       this.frames.fileList.unshift(userImage);
       this.spinner.hide();
     })

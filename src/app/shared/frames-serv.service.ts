@@ -13,6 +13,7 @@ import { ImageResponse, ImgColorValue, UserImage } from '../interface/ImageRespo
 import { CategoryDetails } from '../interface/CategoryDetails';
 import { WordResult } from '../interface/WordResult';
 import { UserData } from '../interface/UserInfo';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'

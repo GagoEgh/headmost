@@ -80,7 +80,7 @@
             <mat-optgroup *ngFor='let country of frames.selectedValue' [label]='country["name_"+frames.lang]'>
               <mat-select class="city">
                 <mat-optgroup *ngFor='let regions of country.country_regions' [label]='regions["name_"+frames.lang]'>
-                  <mat-option *ngFor='let city of regions.region_cities' [value]='city.id'>
+                  <mat-option  *ngFor='let city of regions.region_cities' [value]='city.id'>
                     {{city["name_"+frames.lang]}}
                   </mat-option>
                 </mat-optgroup>
@@ -93,6 +93,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
+         
           <mat-label class="label">{{'Order.userData.password'|translate}}</mat-label>
           <input matInput formControlName="pas" id="pas" type="password" trim [errorStateMatcher]="matcher">
           <mat-error *ngIf="this.validateForm.get('pas')?.hasError('required')">
@@ -102,6 +103,7 @@
             <p>{{'ErroreMessage.minlength'|translate}} 6</p>
           </mat-error>
         </mat-form-field>
+        
         <mat-form-field appearance="fill" class="full-width">
           <mat-label class="label">{{'Order.userData.passwordReset'|translate}}</mat-label>
           <input matInput formControlName="pasRev" id="pasRev" type="password" [errorStateMatcher]="matcher" trim
