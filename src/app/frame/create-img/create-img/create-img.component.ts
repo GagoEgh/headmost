@@ -2,34 +2,40 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Letter } from 'src/app/interface/img-ramka';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
+import { FrameService } from '../../frame/frame.service';
 @Component({
   selector: 'app-create-img',
   templateUrl: './create-img.component.html',
-  styleUrls: ['./create-img.component.css']
+  styleUrls: ['./create-img.component.css'],
 })
 export class CreateImgComponent extends FrameImag implements OnInit {
-
-  public _unsubscribe$ = new Subject()
+  public _unsubscribe$ = new Subject();
   public bottomText: FormGroup = new FormGroup({});
   public validateForm: FormGroup = new FormGroup({});
-  public topLettering = {} as Letter
-  public bottomLettering: Letter = {} as Letter
+  public topLettering = {} as Letter;
+  public bottomLettering: Letter = {} as Letter;
   @Output() mainApp: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(public frames: FramesServService, public rout: Router,public ideaImgService:IdeaImageService,
-   public imgService:FrameImageService, public form: FormBuilder, public modalService: NgbModal) {
-    super(frames, modalService,ideaImgService,imgService,rout, form,);
+  constructor(
+    public frames: FramesServService,
+    public rout: Router,
+    public ideaImgService: IdeaImageService,
+    public imgService: FrameImageService,
+    public form: FormBuilder,
+    public modalService: NgbModal,
+    public frameService:FrameService
+  ) {
+    super(frames, modalService, ideaImgService, imgService, rout, form, frameService);
   }
 
   ngOnInit(): void {
-  
-    this.validateForm = this.form.group({ topText: [null] },);
+    this.validateForm = this.form.group({ topText: [null] });
     this.bottomText = this.form.group({ btmText: [null] });
   }
 
@@ -70,7 +76,7 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     }
 
     if (this.validateForm.get('topText')?.value) {
-      this.frames.topText = this.validateForm.get('topText')?.value;     
+      this.frames.topText = this.validateForm.get('topText')?.value;
       this.topLettering.isSpan = false;
       this.topLettering.isMenu = false;
     }
@@ -80,7 +86,6 @@ export class CreateImgComponent extends FrameImag implements OnInit {
       this.bottomLettering.isSpan = false;
       this.bottomLettering.isMenu = false;
     }
-
   }
 
   public onMouseenter(): void {
@@ -90,7 +95,6 @@ export class CreateImgComponent extends FrameImag implements OnInit {
       this.topLettering.isForm = true;
     }
 
-
     if (!this.bottomText.get('btmText')?.value) {
       this.bottomLettering.isMenu = true;
       this.bottomLettering.isForm = true;
@@ -99,14 +103,13 @@ export class CreateImgComponent extends FrameImag implements OnInit {
 
     if (this.validateForm.get('topText')?.value) {
       this.topLettering.isMenu = true;
-      this.topLettering.isSpan = true
+      this.topLettering.isSpan = true;
     }
 
     if (this.bottomText.get('btmText')?.value) {
       this.bottomLettering.isMenu = true;
       this.bottomLettering.isSpan = true;
     }
-
   }
 
   ngOnDestroy() {

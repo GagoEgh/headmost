@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ServerResponce } from 'src/app/interface/img-ramka';
@@ -9,6 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { takeUntil } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogContentComponent } from '../components/modal/modal.component';
 
 @Component({
   selector: 'app-myimages',
@@ -25,7 +27,8 @@ export class MyimagesComponent implements OnInit {
   public msgErr_hy: string = '';
   public offset = 0;
   constructor(private msg: NzMessageService, public frames: FramesServService,
-   public userImagsServicw:UserImagsService, private spinner: NgxSpinnerService, public _translate: TranslateService) { }
+   public userImagsServicw:UserImagsService, private spinner: NgxSpinnerService, public _translate: TranslateService,
+   public matDialog:MatDialog) { }
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
@@ -92,6 +95,16 @@ export class MyimagesComponent implements OnInit {
         })
       }
     }))
+  }
+
+  openDialog(id:number) {
+    const dialogRef = this.matDialog.open(DialogContentComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        return this.delete(id)
+      }
+    });
   }
 
   ngOnDestroy(): void {

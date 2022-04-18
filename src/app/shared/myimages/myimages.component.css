@@ -3,7 +3,7 @@
 }
 
 .upload{
- width: 150px; 
+ width: auto;
  color: #e6af49;
  position: relative;
  border-radius: 99px;
@@ -36,7 +36,7 @@
 }
 
 .files{
- padding: 5px; 
+ padding: 5px;
 }
 
 .img{
@@ -54,7 +54,7 @@
  margin:10px 80px;
  color: red;
  font-weight: 600;
- letter-spacing: 1px;  
+ letter-spacing: 1px;
 }
 
 .upload:active {
@@ -66,14 +66,16 @@ input[type=file]{
 }
 
 .preview-remove {
- opacity: 0;
+ opacity: 0.1;
  width: 20px;
  height: 20px;
  position: absolute;
  right: 0;
  top: 0;
  font-weight: bold;
- background: rgba(255, 255, 255, .5);
+ background: rgba(255, 0, 0, 0.7);
+ color: rgb(255, 255, 255);
+ /* border: 0.1px solid black; */
  display: flex;
  align-items: center;
  justify-content: center;

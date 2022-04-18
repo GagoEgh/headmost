@@ -1,5 +1,7 @@
 import {
+  AfterContentChecked,
   AfterViewChecked,
+  AfterViewInit,
   Component,
   ElementRef,
   HostListener,
@@ -27,13 +29,17 @@ import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
 })
 export class FrameComponent
   extends FrameImag
-  implements OnInit, AfterViewChecked
+  implements OnInit, AfterViewChecked, AfterViewInit, AfterContentChecked
 {
   @ViewChild('block', { static: false }) block: ElementRef | undefined;
   private width: number | undefined;
   public catalogStyle = {} as { [key: string]: string };
   public scale: number = 1;
   public div: any = [];
+  public productPrice?: number = 0;
+  public backgroundClass: string = 'bg1';
+  public bgClassArr: string[] = ['bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg6', 'bg7', 'bg8'];
+
   constructor(
     public frames: FramesServService,
     public modalService: NgbModal,
@@ -42,9 +48,18 @@ export class FrameComponent
     public ideaImgService: IdeaImageService,
     public rout: Router,
     public form: FormBuilder,
-    private _translate: TranslateService
+    private _translate: TranslateService,
+    private _frameImgService: FrameImageService
   ) {
-    super(frames, modalService, ideaImgService, imgService, rout, form);
+    super(
+      frames,
+      modalService,
+      ideaImgService,
+      imgService,
+      rout,
+      form,
+      frameServis
+    );
     this._translate.use(this.frames.lang);
   }
 
@@ -66,6 +81,36 @@ export class FrameComponent
     setTimeout(() => {
       this.onResize();
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.productPrice = this._frameImgService.getPrice();
+  }
+
+  ngAfterContentChecked(): void {
+    this.productPrice = this._frameImgService.getPrice();
+  }
+
+  public backgroundImageChangeRight(): any {
+    for(let i = 0; i <= this.bgClassArr.length - 1; i++){
+      if(this.backgroundClass == this.bgClassArr[i]){
+        if(i == this.bgClassArr.length-1){
+          return this.backgroundClass = this.bgClassArr[0]
+        }
+        return this.backgroundClass = this.bgClassArr[i + 1]
+      }
+    }
+  }
+
+  public backgroundImageChangeLeft(): any {
+    for(let i = this.bgClassArr.length - 1; i >= 0; i--){
+      if(this.backgroundClass == this.bgClassArr[i]){
+        if(i == 0){
+          return this.backgroundClass = this.bgClassArr[this.bgClassArr.length - 1]
+        }
+        return this.backgroundClass = this.bgClassArr[i - 1]
+      }
+    }
   }
 
   @HostListener('window:resize', ['$event'])
@@ -116,7 +161,7 @@ export class FrameComponent
 
   private setStyle(): void {
     let style = {
-      transform: 'translate(-50%, 0)' + 'scale(' + this.scale + ')',
+      transform: 'translate(0, 0)' + 'scale(' + this.scale + ')',
     };
     this.catalogStyle = style;
   }
@@ -126,6 +171,7 @@ export class FrameComponent
     this.frames.frame = this.frameServis.framesImge.find(
       (item) => item.id === this.frames.index
     );
+    this._frameImgService.setFramePrice(this.frames.frame.price);
   }
 
   //FramesImg

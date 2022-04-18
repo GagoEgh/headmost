@@ -28,6 +28,7 @@ const routs: Routes = [
     ReactiveFormsModule,
     SharedModule,
     RouterModule.forChild(routs),
+    
   ],
   exports: [RouterModule]
 })

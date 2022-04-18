@@ -53,7 +53,7 @@ registerLocaleData(en);
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
-       // useClass: TranslationService,     
+       // useClass: TranslationService,
         deps: [HttpClient]
       }
     })

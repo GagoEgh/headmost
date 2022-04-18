@@ -12,6 +12,10 @@ import { FramesServService } from '../shared/frames-serv.service';
   providedIn: 'root'
 })
 export class FrameImageService {
+
+  private _lettersQuantity:number = 0
+  private _productPrice?:number
+
   public painding: Painding = {
     values: {
       colored: false,
@@ -39,7 +43,22 @@ export class FrameImageService {
     return this.url.get<ServerResponce<CategoryDetails[]>>(this.frames.api.worldApi + this.frames.api.api_utils + this.frames.api.api_color)
   }
 
+  public setLettersQuantity(num:number){
+    this._lettersQuantity = 0
+    this._lettersQuantity = num
+  }
+  public setFramePrice(price:number){
+    this._productPrice = 0
+    this._productPrice = this._lettersQuantity * price
+  }
 
+  public getPrice(){
+    return this._productPrice
+  }
+
+  public clearPrice(){
+    this._productPrice = 0
+  }
 
   public letterColorFone(): void {
     this.spinner.show();
@@ -56,7 +75,7 @@ export class FrameImageService {
       if (this.frames.urlArr[1] === 'frame') {
         this.rout.navigate([this.frames.urlArr[1] + '/create-img'],
           { queryParams: { type: this.frames.urlArr[1], text: this.frames.text } })
-      
+
       }
 
       if (this.frames.urlArr[1] === 'magnit') {
