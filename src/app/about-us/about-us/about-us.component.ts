@@ -5,7 +5,6 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AboutQuestion } from 'src/app/interface/img-ramka';
 
-
 @Component({
   selector: 'app-about-us',
   templateUrl: './about-us.component.html',
@@ -15,16 +14,19 @@ export class AboutUsComponent implements OnInit, AfterViewChecked, OnChanges {
   public _unsubscribe$ = new Subject();
   public question_answer: AboutQuestion[] = [];
   private caunt: number = 0;
-  private obj = {} as AboutQuestion;
+  private aboutQuestion = {} as AboutQuestion;
 
-  constructor(public frames: FramesServService, public _translate: TranslateService) { }
+  constructor(
+    public frames: FramesServService,
+    public _translate: TranslateService) { }
 
   ngOnInit(): void {
     this.createText();
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.showQuestion(this.obj, this.caunt);
+    this.showQuestion(this.aboutQuestion, this.caunt);
   }
 
   ngAfterViewChecked(): void {
@@ -34,20 +36,27 @@ export class AboutUsComponent implements OnInit, AfterViewChecked, OnChanges {
   }
 
   private createText(): void {
-    this._translate.get('About.questions').pipe(takeUntil(this._unsubscribe$)).subscribe((question: AboutQuestion[]) => {
-      this.question_answer = question
-    })
+    this._translate.get('About.questions')
+      .pipe(takeUntil(this._unsubscribe$))
+      .subscribe((question: AboutQuestion[]) => {
+        question.forEach((item: AboutQuestion) => {
+          if (item.isBlock == 'false') {
+            item.isBlock = false;
+          }
+        })
+        this.question_answer = question;
+      })
   }
 
   public showQuestion(question: AboutQuestion, num: number): void {
     if (question.id === this.question_answer[num].id) {
-      this.obj = question;
+      this.aboutQuestion = question;
       this.caunt = num;
       question.isBlock = !question.isBlock;
     }
   }
 
-  private ngOnDestroy() {
+  ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();
   }
