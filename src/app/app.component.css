@@ -3,16 +3,18 @@
 }
 
 .conteiner {
-    min-width: 100%; 
+    min-width: 100%;
     background-color: rgba(255, 255, 255, 0.849);
     box-shadow: 0 2px 2px rgb(0 0 0 / 35%);
     height: 50px;
 }
 
 .width{
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 10% 80%;
+    grid-column-gap: 10%;
+    /* justify-content: space-between; */
+    max-width: 90%;
     margin: 0 auto;
 }
 
@@ -34,7 +36,7 @@
     font-family: 'Praise', cursive;
     font-size: 45px;
     padding: 15px 0;
-    color: #f43f73;
+    color: #c11414;
     text-align: center;
     transition:  0.3s;
 }
@@ -83,6 +85,8 @@
 .silki {
     list-style: none;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin-top: 15px;
 }
 
@@ -193,7 +197,7 @@
     height: 15px;
     background-position: center;
     background-size: 100% 100%;
-    margin: 5px 10px;
+    margin: 5px 3px;
     cursor: pointer;
     transition: 0.5s;
 }
@@ -202,22 +206,37 @@
     box-shadow: 1px 0 6px 4px rgb(75, 73, 73);
 }
 
+.order__container{
+  width: auto !important;
+  height: inherit !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
 .order {
     border-radius: 4px;
     z-index: 999;
-    top: 105px;
-    left: 96%;
-    position: fixed;
+    width: 100%;
+    height: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    top: -10px;
+    /* top: 105px; */
+    /* left: 96%; */
+    /* position: fixed; */
     background: #d9d9d9c7;
-    width: 60px;
-    padding: 7px;
+    width: 60px !important;
+    padding: 5px !important;
     cursor: pointer;
 }
 
 .footerWrap {
     min-width: 100%;
     padding-top: 20px;
-  
+
     box-shadow: 0 2px 2px rgb(41 43 42 / 37%) inset;
     height: 120px;
 }

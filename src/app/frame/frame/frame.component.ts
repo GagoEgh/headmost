@@ -37,7 +37,7 @@ export class FrameComponent
   public scale: number = 1;
   public div: any = [];
   public productPrice?: number = 0;
-  public backgroundClass: string = 'bg1';
+  public backgroundClass: string = 'bg4';
   public bgClassArr: string[] = ['bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg6', 'bg7', 'bg8'];
 
   constructor(
