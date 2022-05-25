@@ -93,11 +93,16 @@
 
 .asck{
  display: inline-block;
- height: 38px;
+ /* width: calc(auto + 20px); */
+ width: max-content;
+ height: 50px;
  line-height: 38px;
  font-size: 1.7em;
- padding: 0 20px 10px 20px;
- background: #ec0845;
+ padding: 0 40px;
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ background: red;
  -webkit-border-radius: 20px;
  -moz-border-radius: 20px;
  border-radius: 20px;
@@ -106,6 +111,12 @@
  margin-left: 40px;
  font-size: 1.3rem;
  margin-top: 50px;
+ -ms-border-radius: 20px;
+ -o-border-radius: 20px;
+}
+
+.asck:hover{
+  background-color: rgb(186, 0, 0);
 }
 
 .bottom-article{
