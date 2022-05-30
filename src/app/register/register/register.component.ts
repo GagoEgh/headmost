@@ -25,7 +25,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
   public currentDate = new Date();
@@ -95,7 +95,7 @@ export class RegisterComponent implements OnInit {
       email: this.validateForm.get('email')?.value,
       comment: '',
       image: '',
-      is_creator:false
+      is_creator: false
     }
 
 
@@ -106,7 +106,7 @@ export class RegisterComponent implements OnInit {
         const modalRef = this.modalService.open(OkRegisterComponent);
         modalRef.result.then((result) => {
           this.registerService.isRegister = false;
-        }, (reason) => {
+        }, () => {
           this.registerService.isRegister = false;
         });
 
@@ -117,7 +117,7 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('user-date', JSON.stringify(this.frames.userData))
         setTimeout(() => {
           modalRef.dismiss();
-        },500)
+        }, 500)
 
       }, ((err: any) => {
         if (err.status === 400) {

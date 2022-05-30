@@ -11,8 +11,8 @@
     font-family: Montserrat;
 }
 
-.full-body{
-  overflow-y: scroll;
+.full-body {
+    overflow-y: scroll;
 }
 
 .ant-upload-list-picture-card .ant-upload-list-item {
@@ -82,7 +82,7 @@ body {
 }
 
 .ant-upload.ant-upload-select-picture-card:hover {
-    border: 1px dashed rgb(88, 88, 224)!important;
+    border: 1px dashed rgb(88, 88, 224) !important;
 }
 
 
@@ -186,11 +186,11 @@ body {
     transition: all 0.2s;
 }
 
-.magnit{
+.magnit {
     height: 550px;
     width: 70%;
     min-width: 1200px;
-    background: url('src/assets/1x/magnit.jpg')  no-repeat 0 0 #fbfbfb;
+    background: url('src/assets/1x/magnit.jpg') no-repeat 0 0 #fbfbfb;
 }
 
 .block {
@@ -350,4 +350,11 @@ body {
 
 .card {
     border: none !important;
+}
+
+.mat-optgroup-label {
+    text-overflow: initial !important;
+}
+.mat-form-field.mat-focused .mat-form-field-ripple{
+    background-color: rgb(186, 183, 183);
 }

@@ -1,9 +1,9 @@
-
-.conteiner{
+.conteiner {
     /* font-family: 'Praise', cursive !important; */
-  margin: 0 !important;
-  padding: 0 !important;
-  }
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 .menu {
     justify-content: space-between;
     flex-direction: row-reverse;
@@ -13,6 +13,59 @@
     display: flex;
     width: fit-content;
     align-self: center;
+}
+
+/* .left-line::before{
+    content: ' \25bc';
+    display: block;
+    position: absolute;
+    height:250px;
+    left:-10px;
+    top:30px;
+    border-left: 1px solid;
+    padding-top: 250px;
+
+} */
+
+
+/* .top::after{
+    content: '\25b6';
+    display: block;
+    position: absolute;
+    width: 85%;
+    left:10%;
+    top:-20px;
+    border-top: 1px solid;
+}  */
+
+.arrowTop {
+    width: 86%;
+    border-bottom: 1px solid;
+    position: absolute;
+}
+
+.arrowTop::before {
+    content: '\25b6';
+    display: block;
+    position: absolute;
+    left: 100%;
+    top: -10px;
+}
+
+.arrowRaight {
+    height: 260px;
+    position: absolute;
+    top: 30px;
+    border-left: 1px solid;
+}
+
+.arrowRaight::after{
+    content: '\25bc';
+    content: '\25bc';
+    display: block;
+    position: absolute;
+    top: 99%;
+    left: -8px;
 }
 
 .reight,

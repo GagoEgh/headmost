@@ -65,7 +65,7 @@ export class FormMagnitComponent extends FrameImag implements OnInit {
       return;
     }
     this.frames.isImg = false;
-    this.imgService.letterColorFone();
+     this.imgService.letterColorFone();
   }
   ngOnInit(): void {}
 }

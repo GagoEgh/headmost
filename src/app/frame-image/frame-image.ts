@@ -32,7 +32,7 @@ export class FrameImag {
     public rout: Router,
     public form: FormBuilder,
     public frameService: FrameService
-  ) {}
+  ) { }
 
   // frame component
   protected myForm(): void {
@@ -113,7 +113,9 @@ export class FrameImag {
     this.imgService.clearPrice()
   }
 
+  // poxel
   public changeImg(): void {
+
     this.imgService.letterColorFone();
   }
 
@@ -128,7 +130,7 @@ export class FrameImag {
         modalRef.componentInstance.img = el.results;
         modalRef.componentInstance.character = this.frames.letterImges[num];
         modalRef.result.then(
-          (result) => {},
+          (result) => { },
           (reason) => {
             if (reason) {
               if (!this.frames.apiPhoto) {
