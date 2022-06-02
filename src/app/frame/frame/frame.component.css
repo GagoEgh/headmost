@@ -302,7 +302,7 @@
   width: 20px;
   height: 20px;
   position: relative;
-  top: -2px;
+  top: -10px;
 }
 
 .img__container {
@@ -315,7 +315,7 @@
 
 .title__container {
   height: auto;
-  display: flex;
+  margin-top: -7px;
 }
 
 .text__container {
@@ -329,23 +329,23 @@
   background-position: center;
   background-size: cover;
   width: 50px;
-  height: 50px;
+  height: 49px;
 }
 
 .compile {
-  background-image: url("/assets/1x/steps/bulb.png");
+  background-image: url("/assets/1x/steps/idea.png");
 }
 
 .select {
-  background-image: url("/assets/1x/steps/frame.png");
+  background-image: url("/assets/1x/steps/frameAbc.png");
 }
 
 .get {
-  background-image: url("/assets/1x/steps/minibus.png");
+  background-image: url("/assets/1x/steps/shiping.png");
 }
 
 .donate {
-  background-image: url("/assets/1x/steps/giftbox.png");
+  background-image: url("/assets/1x/steps/gift.png");
 }
 
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Edit, UserDetalis } from 'src/app/interface/register-response';
+import { Edit, UserDetalis } from 'src/app/modules/register-response.module';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 
 @Injectable({

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
-import { CardItemResults } from 'src/app/interface/frame-response';
+import { CardItemResults } from 'src/app/modules/frame-response.module';
 import { LoginComponent } from 'src/app/register/login/login.component';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 

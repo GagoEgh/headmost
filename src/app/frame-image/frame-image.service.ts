@@ -1,12 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { CategoryDetails } from '../interface/CategoryDetails';
-import { Painding, ServerResponce } from '../interface/img-ramka';
-import { WordResult } from '../interface/WordResult';
+import { CategoryDetails } from '../modules/CategoryDetails.module';
+import { Painding, ServerResponce } from '../modules/img-ramka.module';
+import { WordResult } from '../modules/WordResult.module';
 import { FramesServService } from '../shared/frames-serv.service';
 
 @Injectable({
@@ -70,34 +70,37 @@ export class FrameImageService {
     this.spinner.show();
 
     this.activatedRoute.queryParams
-      .pipe(switchMap((activeValue: any): any => {
-        this.frames.text = !activeValue?.text ?this.frames.validateForm.get('text')?.value :activeValue.text
+      .pipe(switchMap((activeValue: Params) => {
+        if (activeValue?.text || this.frames.validateForm.get('text')?.value) {
+          this.frames.text = !activeValue?.text ? this.frames.validateForm.get('text')?.value : activeValue.text;
+        }
         return this.letterGet()
       }))
       .subscribe({
-        next:(wordResult: any)=>{
+        next: (wordResult: WordResult[]) => {
           this.frames.letterImges = wordResult;
           this.frames.letterImges = this.frames.letterImges.filter(img => {
             return !img.not_found
           })
 
-          this.frames.urlArr = this.rout.url.split('/');
 
+          this.frames.urlArr = this.rout.url.split('/');
           if (this.frames.urlArr[1] === 'frame') {
             this.rout.navigate([this.frames.urlArr[1] + '/create-img'],
-              { queryParams: { type: this.frames.urlArr[1], text: this.frames.text } })
-  
+              { queryParams: { type: this.frames.urlArr[1], text: this.frames.text }, queryParamsHandling: 'merge' })
+
           }
 
           if (this.frames.urlArr[1] === 'magnit') {
-            this.rout.navigate([this.frames.urlArr[1] + '/create-magnit'], { queryParams: { type: this.frames.urlArr[1], text: this.frames.text } })
+            this.rout.navigate([this.frames.urlArr[1] + '/create-magnit'],
+              { queryParams: { type: this.frames.urlArr[1], text: this.frames.text }, queryParamsHandling: 'merge' })
           }
-  
+
           setTimeout(() => {
             this.spinner.hide();
           }, 1000)
-      }
-    })
+        }
+      })
 
   }
 

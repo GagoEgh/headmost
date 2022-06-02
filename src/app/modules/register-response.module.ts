@@ -1,5 +1,5 @@
-import { CityDetails } from "./CategoryDetails";
-import { UserDataResponse } from "./UserDataResponse";
+import { CityDetails } from "./CategoryDetails.module";
+import { UserDataResponse } from "./UserDataResponse.module";
 
 
 export interface Edit {

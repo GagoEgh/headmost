@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { ServerResponce } from './interface/img-ramka';
-import { UserData } from './interface/UserInfo';
+import { ServerResponce } from './modules/img-ramka.module';
+import { UserData } from './modules/UserInfo.module';
 import { CookieService } from 'ngx-cookie';
 
 @Component({
@@ -85,7 +85,7 @@ export class AppComponent implements OnInit {
   }
 
   public getFrame(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/'], { queryParamsHandling: 'merge' });
     this.frames.isImg = true;
     this.frames.isOrder = false;
     this.frames.conteinerHeight();
@@ -94,7 +94,7 @@ export class AppComponent implements OnInit {
 
   public getMagnit(): void {
     this.frames.validateForm.reset()
-    this.router.navigate(['/magnit/form-magnit']);
+    this.router.navigate(['/magnit/form-magnit'], { queryParamsHandling: 'merge' });
     this.frames.isImg = true;
     this.frames.isOrder = false;
 

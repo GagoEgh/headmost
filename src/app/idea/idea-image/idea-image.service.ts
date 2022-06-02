@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FrameDetalis } from 'src/app/interface/frame-response';
+import { FrameDetalis } from 'src/app/modules/frame-response.module';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 
 @Injectable({

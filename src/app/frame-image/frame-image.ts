@@ -14,8 +14,8 @@ import { FrameService } from '../frame/frame/frame.service';
 
 import { NgbdModalContentComponent } from '../frame/ngbd-modal-content/ngbd-modal-content.component';
 import { IdeaImageService } from '../idea/idea-image/idea-image.service';
-import { CategoryDetails } from '../interface/CategoryDetails';
-import { ServerResponce } from '../interface/img-ramka';
+import { CategoryDetails } from '../modules/CategoryDetails.module';
+import { ServerResponce } from '../modules/img-ramka.module';
 import { FramesServService } from '../shared/frames-serv.service';
 import { FrameImageService } from './frame-image.service';
 

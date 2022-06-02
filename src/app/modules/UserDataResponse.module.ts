@@ -1,4 +1,4 @@
-import { UserInfo} from "./UserInfo";
+import { UserInfo} from "./UserInfo.module";
 
 export interface UserDataResponse {
     address: null | string

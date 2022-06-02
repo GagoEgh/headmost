@@ -6,10 +6,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { LoginComponent } from 'src/app/register/login/login.component';
-import { CardItemResults, FrameDetalis } from 'src/app/interface/frame-response';
+import { CardItemResults, FrameDetalis } from 'src/app/modules/frame-response.module';
 import { IdeaImageService } from '../idea-image.service';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
-import { WordResult } from 'src/app/interface/WordResult';
+import { WordResult } from 'src/app/modules/WordResult.module';
 
 
 @Component({

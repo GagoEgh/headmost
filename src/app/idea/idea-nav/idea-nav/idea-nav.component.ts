@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { ServerResponce } from 'src/app/interface/img-ramka';
-import { CategoryDetails } from 'src/app/interface/CategoryDetails';
+import { ServerResponce } from 'src/app/modules/img-ramka.module';
+import { CategoryDetails } from 'src/app/modules/CategoryDetails.module';
 import { IdeaNavService } from '../idea-nav.service';
 
 

@@ -1,4 +1,4 @@
-import { ImageResponse } from "./ImageResponse"
+import { ImageResponse } from "./ImageResponse.module"
 
 export interface WordResult {
     character: string

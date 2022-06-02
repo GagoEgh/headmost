@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CategoryDetails } from 'src/app/interface/CategoryDetails';
-import { ServerResponce } from 'src/app/interface/img-ramka';
+import { CategoryDetails } from 'src/app/modules/CategoryDetails.module';
+import { ServerResponce } from 'src/app/modules/img-ramka.module';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 
 @Injectable({

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ServerResponce } from 'src/app/interface/img-ramka';
-import { OrderResult, PromoCodeResults, ShipingResult } from 'src/app/interface/order-response';
+import { ServerResponce } from 'src/app/modules/img-ramka.module';
+import { OrderResult, PromoCodeResults, ShipingResult } from 'src/app/modules/order-response.module';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 
 import { ToastrService } from 'ngx-toastr';

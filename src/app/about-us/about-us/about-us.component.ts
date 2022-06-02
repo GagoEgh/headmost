@@ -1,9 +1,9 @@
-import { AfterViewChecked, Component, ElementRef, HostListener, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AboutQuestion } from 'src/app/interface/img-ramka';
+import { AboutQuestion } from 'src/app/modules/img-ramka.module';
 
 @Component({
   selector: 'app-about-us',

@@ -4,12 +4,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { Letter } from 'src/app/interface/img-ramka';
+import { Letter } from 'src/app/modules/img-ramka.module';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
 import { FrameService } from '../../frame/frame.service';
-import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-img',

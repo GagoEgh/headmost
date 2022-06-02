@@ -59,13 +59,31 @@
     border-left: 1px solid;
 }
 
-.arrowRaight::after{
+.arrowRaight::after {
     content: '\25bc';
     content: '\25bc';
     display: block;
     position: absolute;
     top: 99%;
     left: -8px;
+}
+
+.sizeRight,
+.sizeTop {
+    position: absolute;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.sizeRight {
+    left: -15px;
+    top: 108%;
+}
+
+.sizeTop {
+    left: 103%;
+    top: -13px;
+    width: 40px;
 }
 
 .reight,

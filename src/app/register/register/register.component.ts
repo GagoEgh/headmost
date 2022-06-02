@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NgxSpinnerService } from "ngx-spinner";
-import { RegisterResult } from 'src/app/interface/register-response';
+import { RegisterResult } from 'src/app/modules/register-response.module';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { RegisterService } from './register.service';

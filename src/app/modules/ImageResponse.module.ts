@@ -1,4 +1,4 @@
-import { CategoryDetails, CharacterDetails } from "./CategoryDetails";
+import { CategoryDetails, CharacterDetails } from "./CategoryDetails.module";
 
 
 export interface ImageResponse {

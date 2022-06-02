@@ -6,8 +6,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { LoginComponent } from 'src/app/register/login/login.component';
-import { ServerResponce } from 'src/app/interface/img-ramka';
-import { CardItemResults, FrameDetalis } from 'src/app/interface/frame-response';
+import { ServerResponce } from 'src/app/modules/img-ramka.module';
+import { CardItemResults, FrameDetalis } from 'src/app/modules/frame-response.module';
 import { IdeaService } from './idea.service';
 
 

@@ -1,6 +1,7 @@
 <div class="conteiner">
     <div class="myWrap" [style.margin]="frames.isTop?'0 auto':'0'">
-        <div class="arrowRaight"></div>
+        <div class="arrowRaight"><p class="sizeRight">23sm</p></div>
+   
         <div class="reight">
             <div class="squrl left-top" [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.left_top_corner_image + ')':'url('+ideaImgService.ideaImg.frame_details?.left_top_corner_image + ')'">
             </div>
@@ -11,7 +12,9 @@
         </div>
         
         <div class="content">
-            <div class="arrowTop"></div>
+            <div class="arrowTop">
+                <p  class="sizeTop">{{frames.letterImges.length *12}}sm</p>    
+            </div>
             <div class="top" [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.top_line_image + ')':'url('+ideaImgService.ideaImg.frame_details?.top_line_image+')'"></div>
             <div class="im" [style.backgroundColor]="frames.background.color" (mouseleave)="onMouseleave()" (mouseenter)="onMouseenter()">
                 <div class="menu">
