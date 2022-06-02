@@ -1,19 +1,18 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
     <p style="color: white"> Loading... </p>
 </ngx-spinner>
-<div class="my-img" infinite-scroll [infiniteScrollDistance]="scrollDistance" (scrolled)="onScrollDown($event)"
-    [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle">
-    <div class="file">
-        <input type="file" id="img" name="img" #file accept=".jpg, .jpeg, .png,.gif" (change)="hendler($event)">
-        <button class="upload" (click)='trigger(file)'>{{ 'ImgMenu.upload' | translate }}</button>
-    </div>
+<div class="file">
+    <input type="file" id="img" name="img" #file accept=".jpg, .jpeg, .png,.gif" (change)="hendler($event)">
+    <button class="upload" (click)='trigger(file)'>{{ 'ImgMenu.upload' | translate }}</button>
+</div>
+<div class="my-img">
     <div class="box">
         <div *ngFor='let img of frames.fileList' class="files">
             <div class="img" [style.background-image]="'url( '+ img.image + ')'">
-                <!-- <span class="preview-remove" (click)='delete(img.id)'>&times;</span> -->
                 <span mat-button class="preview-remove" (click)="openDialog(img.id)">&times;</span>
             </div>
         </div>
     </div>
+    <button (click)="myImages()">next</button>
     <p class="text" *ngIf='isSmsErr'>{{msgErr_hy}}</p>
 </div>

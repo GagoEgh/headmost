@@ -3,14 +3,11 @@
 </ngx-spinner>
 <div class="headmost">
   <div class="conteiner">
-    <!-- <div class="width"> -->
     <div class="logo" (click)="getFrame()">
-      <!-- <div class="shadow"> -->
       <p>Gift4u</p>
-      <!-- </div> -->
     </div>
-    <div>
-      <span class="material-icons-outlined" (click)='frames.isSilki = !frames.isSilki'>
+    <div (mouseenter)="frames.isSilki=true" (mouseleave)="frames.isSilki=false">
+      <span class="material-icons-outlined">
         <img src="./assets/1x/outline_view_headline_black_24dp.png">
       </span>
       <ul class="silki" [class.check-silki]='frames.isSilki'>
@@ -26,10 +23,10 @@
             </li>
           </ul>
         </li>
-        <li>
+        <li class="li-heigth">
           <a class="frame" routerLink='/idea' routerLinkActive='active'>{{'Menu.idea'|translate}}</a>
         </li>
-        <li>
+        <li class="li-heigth">
           <a class="frame" routerLink='/about' routerLinkActive='active'>{{'Menu.aboutUs'|translate}}</a>
         </li>
         <li *ngIf='frames.userReg, else log'>

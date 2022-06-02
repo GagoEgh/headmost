@@ -23,6 +23,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CookieModule } from 'ngx-cookie';
 
 
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http,'https://admin.gift4u.am/media/static/languages/', '.json');
 }

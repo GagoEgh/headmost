@@ -41,6 +41,7 @@ export class MyimagesComponent implements OnInit {
   ngOnInit(): void {
     this.offset = 0;
     this.frames.fileList = [];
+   
     this.myImages();
   }
 
@@ -64,19 +65,18 @@ export class MyimagesComponent implements OnInit {
     })
   }
 
-  private myImages(): void {
-    this.frames.userImageGet(this.offset).pipe(takeUntil(this._subscribe$)).subscribe((usImg: ServerResponce<UserImage[]>) => {
+  public myImages(): void {
+    this.frames.userImageGet(this.offset)
+    .pipe(takeUntil(this._subscribe$))
+    .subscribe((usImg: ServerResponce<UserImage[]>) => {
+      console.log(usImg.results)
       this.isSmsErr = false;
       this.frames.fileList.push(...usImg.results);
+     // this.frames.fileList = usImg.results
       this.offset += 10;
     })
   }
 
-  public onScrollDown(ev: any): void {
-    this.offset = this.frames.fileList.length;
-    this.isSmsErr = false;
-    this.myImages()
-  }
 
   public delete(id: number): void {
     this.spinner.show();
