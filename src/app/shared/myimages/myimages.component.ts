@@ -26,9 +26,10 @@ export class MyimagesComponent implements OnInit {
   public throttle = 300;
   public msgErr_hy: string = '';
   public offset = 0;
+  public count!: number;
   constructor(private msg: NzMessageService, public frames: FramesServService,
-   public userImagsServicw:UserImagsService, private spinner: NgxSpinnerService, public _translate: TranslateService,
-   public matDialog:MatDialog) { }
+    public userImagsServicw: UserImagsService, private spinner: NgxSpinnerService, public _translate: TranslateService,
+    public matDialog: MatDialog) { }
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
@@ -41,7 +42,7 @@ export class MyimagesComponent implements OnInit {
   ngOnInit(): void {
     this.offset = 0;
     this.frames.fileList = [];
-   
+
     this.myImages();
   }
 
@@ -49,7 +50,7 @@ export class MyimagesComponent implements OnInit {
     file.click()
   }
 
-  public hendler(ev: any ): void {
+  public hendler(ev: any): void {
     let files: File = ev.target?.files[0];
     if (!ev.target.files?.length) return
     if (!files.type.match('image')) return
@@ -60,21 +61,22 @@ export class MyimagesComponent implements OnInit {
     this.spinner.show();
     this.userImagsServicw.userImage(formData).subscribe(
       (userImage: UserImage) => {
-      this.frames.fileList.unshift(userImage);
-      this.spinner.hide();
-    })
+        this.frames.fileList.unshift(userImage);
+        this.spinner.hide();
+      })
   }
 
   public myImages(): void {
     this.frames.userImageGet(this.offset)
-    .pipe(takeUntil(this._subscribe$))
-    .subscribe((usImg: ServerResponce<UserImage[]>) => {
-      console.log(usImg.results)
-      this.isSmsErr = false;
-      this.frames.fileList.push(...usImg.results);
-     // this.frames.fileList = usImg.results
-      this.offset += 10;
-    })
+      .pipe(takeUntil(this._subscribe$))
+      .subscribe((usImg: ServerResponce<UserImage[]>) => {
+        console.log(usImg)
+        this.isSmsErr = false;
+        this.count = usImg.count;
+        this.frames.fileList.push(...usImg.results);
+        // this.frames.fileList = usImg.results
+        this.offset += 10;
+      })
   }
 
 
@@ -97,11 +99,11 @@ export class MyimagesComponent implements OnInit {
     }))
   }
 
-  openDialog(id:number) {
+  openDialog(id: number) {
     const dialogRef = this.matDialog.open(DialogContentComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
+      if (result) {
         return this.delete(id)
       }
     });

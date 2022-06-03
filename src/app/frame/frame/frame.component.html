@@ -45,9 +45,9 @@
       </div>
     </div>
 
-    <div class="block__container">
+    <div class="block__container" #block [ngStyle]="catalogStyle">
       <a (click)="backgroundImageChangeLeft()" class="left-btn arrow-btn"></a>
-      <div #block class="middle-block" [ngStyle]="catalogStyle">
+      <div  class="middle-block" >
         <router-outlet></router-outlet>
       </div>
       <a (click)="backgroundImageChangeRight()" class="right-btn arrow-btn"></a>

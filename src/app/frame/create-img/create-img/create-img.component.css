@@ -15,31 +15,9 @@
     align-self: center;
 }
 
-/* .left-line::before{
-    content: ' \25bc';
-    display: block;
-    position: absolute;
-    height:250px;
-    left:-10px;
-    top:30px;
-    border-left: 1px solid;
-    padding-top: 250px;
-
-} */
-
-
-/* .top::after{
-    content: '\25b6';
-    display: block;
-    position: absolute;
-    width: 85%;
-    left:10%;
-    top:-20px;
-    border-top: 1px solid;
-}  */
 
 .arrowTop {
-    width: 86%;
+    width: 76%;
     border-bottom: 1px solid;
     position: absolute;
 }
@@ -53,9 +31,9 @@
 }
 
 .arrowRaight {
-    height: 260px;
+    height: 250px;
     position: absolute;
-    top: 30px;
+    top: 80px;
     border-left: 1px solid;
 }
 

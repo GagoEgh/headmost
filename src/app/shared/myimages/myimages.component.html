@@ -12,7 +12,11 @@
                 <span mat-button class="preview-remove" (click)="openDialog(img.id)">&times;</span>
             </div>
         </div>
+        <button class="upload more"
+           *ngIf="count !== frames.fileList.length" (click)="myImages()">
+            show more
+        </button>
     </div>
-    <button (click)="myImages()">next</button>
+   
     <p class="text" *ngIf='isSmsErr'>{{msgErr_hy}}</p>
 </div>

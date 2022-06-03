@@ -126,6 +126,8 @@ export class FrameComponent
         this.scale = window.innerWidth / 1180;
       }
     }
+
+    console.log(this.scale)
     this.frames.conteinerHeight();
     this.setStyle();
   }
