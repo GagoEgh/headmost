@@ -99,10 +99,12 @@
     font-weight: bold;
     padding: 5px 35px;
     transition: 0.2s;
+  
 }
 
 .frame:hover {
     background-color: rgb(236, 231, 231);
+    margin-bottom: 15px;
 }
 
 .active {
@@ -189,7 +191,6 @@
 .flags {
     display: flex;
     list-style: none;
-    margin-top: -5px;
 }
 
 .flag {
@@ -216,7 +217,7 @@
 
 .order {
     border-radius: 4px;
-    z-index: 999;
+    /* z-index: 999; */
     width: 100%;
     height: 20px;
     display: flex;
@@ -309,7 +310,6 @@
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 45px;
         right: 0;
         z-index: 999;
         background-color: white;
@@ -343,7 +343,6 @@
     }
 
     .user-data {
-        top: 35px;
         left: 0px;
     }
 
@@ -353,6 +352,7 @@
 
     .order {
         left: 14%;
+        top: -5px;
     }
 
     .drop {
@@ -360,9 +360,7 @@
     }
 
     .li-nav {
-        margin-top: 0;
-        margin-left: 30px;
-        width: fit-content;
+        width: 200px;
     }
 
     .footerWrap {

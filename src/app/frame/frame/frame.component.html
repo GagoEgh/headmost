@@ -46,11 +46,17 @@
     </div>
 
     <div class="block__container" #block [ngStyle]="catalogStyle">
-      <a (click)="backgroundImageChangeLeft()" class="left-btn arrow-btn"></a>
-      <div  class="middle-block" >
+      <a 
+      (click)="backgroundImageChangeLeft()"
+      [class.frameL-arrow]="frames.isOrder"
+      class="left-btn arrow-btn"></a>
+      <div class="middle-block">
         <router-outlet></router-outlet>
       </div>
-      <a (click)="backgroundImageChangeRight()" class="right-btn arrow-btn"></a>
+      <a 
+      (click)="backgroundImageChangeRight()"
+      [class.frameR-arrow]="frames.isOrder"
+      class="right-btn arrow-btn"></a>
     </div>
 
   </header>

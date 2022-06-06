@@ -2,13 +2,15 @@
   <p style="color: #ffffff"> Loading... </p>
 </ngx-spinner>
 <div class="headmost">
-  <div class="conteiner">
+  <div class="conteiner" (mouseleave)="frames.isSilki=false">
     <div class="logo" (click)="getFrame()">
       <p>Gift4u</p>
     </div>
-    <div (mouseenter)="frames.isSilki=true" (mouseleave)="frames.isSilki=false">
+    <div (click)="frames.isSilki=true" >
       <span class="material-icons-outlined">
-        <img src="./assets/1x/outline_view_headline_black_24dp.png">
+        <img 
+        src="./assets/1x/outline_view_headline_black_24dp.png"
+        >
       </span>
       <ul class="silki" [class.check-silki]='frames.isSilki'>
         <li class="parent">

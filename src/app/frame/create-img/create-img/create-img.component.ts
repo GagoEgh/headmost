@@ -46,7 +46,7 @@ export class CreateImgComponent extends FrameImag implements OnInit {
   //     }))
   //     .subscribe({
   //       next: (res: any) => {
-  //         console.log('change res ',res)
+  //        
   //       }
   //     })
 
@@ -54,22 +54,23 @@ export class CreateImgComponent extends FrameImag implements OnInit {
   // }
 
   ngOnInit(): void {
-  
     this.validateForm = this.form.group({ topText: [null] });
     this.bottomText = this.form.group({ btmText: [null] });
   }
 
   public deletImg(): void {
-    this.rout.navigate(['frame/form-frame']);
     this.frames.validateForm.reset();
     this.frames.isImg = true;
-    if (this.frames.isOrder) {
-      this.frames.isImg = true;
-      this.frames.isOrder = false;
-      this.frames.conteinerHeight();
-      this.rout.navigate(['frame/form-frame']);
-      this.frames.validateForm.reset();
-    }
+    console.log(this.frames.isOrder)
+    // if (this.frames.isOrder) {
+
+    this.frames.isImg = true;
+    this.frames.isOrder = false;
+    this.frames.conteinerHeight();
+    //this.rout.navigate(['frame/form-frame']);
+    this.rout.navigate(['frame/form-frame'], { queryParams: {} });
+    this.frames.validateForm.reset();
+    // }
   }
 
   public deleteTopProprty(): void {

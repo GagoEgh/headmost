@@ -70,7 +70,6 @@ export class MyimagesComponent implements OnInit {
     this.frames.userImageGet(this.offset)
       .pipe(takeUntil(this._subscribe$))
       .subscribe((usImg: ServerResponce<UserImage[]>) => {
-        console.log(usImg)
         this.isSmsErr = false;
         this.count = usImg.count;
         this.frames.fileList.push(...usImg.results);

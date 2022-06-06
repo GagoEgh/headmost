@@ -13,16 +13,12 @@ import { RegisterModule } from './register/register-module';
 import { UserGuard } from './user-data/userGuard';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from "ngx-spinner";
-
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 import { ErrMsgComponent } from './idea/err-msg/err-msg.component';
 import { ToastrModule } from 'ngx-toastr';
-
 import { CookieModule } from 'ngx-cookie';
-
-
+import { ClickOutsideModule } from 'ng-click-outside';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http,'https://admin.gift4u.am/media/static/languages/', '.json');
@@ -42,6 +38,7 @@ registerLocaleData(en);
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ClickOutsideModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
       preventDuplicates: true,

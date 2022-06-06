@@ -69,14 +69,20 @@ export class FrameComponent
 
   ngOnInit(): void {
     super.myForm();
+   
     super.imgColor();
+   
     this.frames.isOrder = false;
+    
     if (this.frames.isImg) {
       this.rout.navigate(['frame/form-frame']);
       this.frames.letterImges = [];
     }
+
     this.imgTextGet();
+
     this.frameBg();
+
     this.framesImgGet();
     setTimeout(() => {
       this.onResize();
@@ -126,8 +132,6 @@ export class FrameComponent
         this.scale = window.innerWidth / 1180;
       }
     }
-
-    console.log(this.scale)
     this.frames.conteinerHeight();
     this.setStyle();
   }
