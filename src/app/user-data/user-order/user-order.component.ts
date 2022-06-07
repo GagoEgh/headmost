@@ -86,7 +86,6 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
     }
   }
 
-
   public deleteUsOrder(item: any): void {
     const modalRef = this.modalService.open(DeleteComponent, { size: 'lg' });
     modalRef.componentInstance.item = item;
@@ -94,7 +93,6 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
     modalRef.result.then((result) => {
       this.userOrders = result;
     });
-
   }
 
   public addOrder(index: number): void {

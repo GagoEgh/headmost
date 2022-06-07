@@ -25,20 +25,22 @@ export class DeleteComponent implements OnInit {
   }
 
   public noDelete(): void {
-    this.activeModal.close()
+    this.activeModal.close(this.userOrders)
   }
 
   public delteteBlock(): void {
-    this.deleteService.userOrderDel(this.item.id).pipe(takeUntil(this._subscribe$)).subscribe((sms: { message: string }) => {
-      this.okSms = sms.message
-      const modalRef = this.modalService.open(OkSmsComponent);
-      this.userOrders = this.userOrders.filter((val: any) => val.id != this.item.id);
-      this.activeModal.close(this.userOrders);
-      setTimeout(() => {
-        modalRef.dismiss()
-      }, 500)
+    this.deleteService.userOrderDel(this.item.id)
+      .pipe(takeUntil(this._subscribe$))
+      .subscribe((sms: { message: string }) => {
+        this.okSms = sms.message
+        const modalRef = this.modalService.open(OkSmsComponent);
+        this.userOrders = this.userOrders.filter((val: any) => val.id != this.item.id);
+        this.activeModal.close(this.userOrders);
+        setTimeout(() => {
+          modalRef.dismiss()
+        }, 500)
 
-    })
+      })
 
   }
 

@@ -28,19 +28,34 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class UserDataComponent implements OnInit, AfterViewChecked {
   public validateForm: FormGroup = new FormGroup({});
+  public changePassword!: FormGroup
   public matcher = new MyErrorStateMatcher();
   public _unsubscribe$ = new Subject();
   private userName = '';
   public currentDate = new Date()
   public isChange = false;
-  constructor(private valid: ValidationServService, private fb: FormBuilder, public modalService: NgbModal,
-    public userDataService: UserDataService, private spinner: NgxSpinnerService, public _translate: TranslateService, public frames: FramesServService) { }
+  constructor(
+    private valid: ValidationServService,
+    private fb: FormBuilder,
+    public modalService: NgbModal,
+    public userDataService: UserDataService,
+    private spinner: NgxSpinnerService,
+    public _translate: TranslateService,
+    public frames: FramesServService) {
+    this.passwordFormInit()
+  }
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
     this.frames.cityPlaceholder();
   }
 
+  passwordFormInit() {
+    this.changePassword = this.fb.group({
+      newPass: [null, [Validators.required, Validators.maxLength]],
+      reapetPass: [null, [Validators.required, Validators.minLength]]
+    })
+  }
   ngOnInit(): void {
     this.spinner.show();
     this.spinner.hide();
@@ -56,9 +71,8 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
       email: [this.frames.userData.user_details.username, [Validators.required, this.valid.emailValid]],
       country: [this.frames.userData.city, [Validators.required]],
       date: [this.frames.userData.date_of_birth, [Validators.required]],
-      pas: [null, [Validators.required, Validators.minLength(6)]],
     });
-    this.validateForm.get('date')?.disable()
+    this.validateForm.get('date')?.disable();
   }
 
   private birt(formName: string): string {
@@ -70,13 +84,24 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     return date_of_birth;
   }
 
+  // grel password changei logican
+  passwordChange() {
+    if (!this.changePassword.valid) {
+      return
+    }
+
+
+    console.log(this.changePassword.value)
+  }
   private changeDate(): void {
     let data: any = localStorage.getItem('user-date');
     let user_data = JSON.parse(data);
 
-    if (user_data.user_details.first_name !== this.validateForm.get('frstName')?.value ||
+    if (
+      user_data.user_details.first_name !== this.validateForm.get('frstName')?.value ||
       user_data.user_details.last_name !== this.validateForm.get('last')?.value ||
       user_data.phone_number !== this.validateForm.get('phoneNumber')?.value ||
+      user_data.email !== this.validateForm.get('email')?.value ||
       user_data.city !== this.validateForm.get('country')?.value
     ) {
       this.isChange = true;
@@ -100,25 +125,27 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     }
 
     this.changeDate()
-    if (this.validateForm.valid && this.isChange) {
+    if ( this.isChange) {
       this.userName = edit.first_name;
-      this.userDataService.editUser(edit).pipe(takeUntil(this._unsubscribe$)).subscribe((userDetalis: UserDetalis) => {
-        this.frames.userData = userDetalis;
-        this.frames.userData.user_details.first_name = this.userName;
-        let myJson = JSON.stringify(this.frames.userData);
-        localStorage.setItem('user-date', myJson);
-        const modalRef = this.modalService.open(DataCheckComponent);
-        setTimeout(() => {
-          modalRef.dismiss()
-        },500)
-      })
+      this.userDataService.editUser(edit)
+        .pipe(takeUntil(this._unsubscribe$))
+        .subscribe((userDetalis: UserDetalis) => {
+          this.frames.userData = userDetalis;
+          this.frames.userData.user_details.first_name = this.userName;
+          let myJson = JSON.stringify(this.frames.userData);
+          localStorage.setItem('user-date', myJson);
+          const modalRef = this.modalService.open(DataCheckComponent);
+          setTimeout(() => {
+            modalRef.dismiss()
+          }, 1000)
+        })
     }
 
     if (!this.isChange) {
       const modal = this.modalService.open(NoCheckComponent);
       setTimeout(() => {
         modal.dismiss()
-      },500)
+      }, 1000)
     }
 
   }

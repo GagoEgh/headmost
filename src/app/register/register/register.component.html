@@ -15,32 +15,32 @@
           <mat-label class="label">{{'Order.userData.frstName'|translate}}</mat-label>
           <input type="text" matInput formControlName="frstName" id="frstName" trim [errorStateMatcher]="matcher">
           <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('required')">
-            <p>{{'ErroreMessage.required'|translate}}</p>
+            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
           </mat-error>
           <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('minlength')">
-            <p>{{'ErroreMessage.minlength'|translate}} 3</p>
+            <p class="errore">{{'ErroreMessage.minlength'|translate}} 3</p>
           </mat-error>
           <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('maxlength')">
-            <p>{{'ErroreMessage.maxLength'|translate}}</p>
+            <p class="errore">{{'ErroreMessage.maxLength'|translate}}</p>
           </mat-error>
           <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('userNameChar')">
-            <p>{{'ErroreMessage.userNameChar'|translate}}</p>
+            <p class="errore">{{'ErroreMessage.userNameChar'|translate}}</p>
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill" class="full-width">
           <mat-label class="label">{{'Order.userData.lastName'|translate}}</mat-label>
           <input type="text" matInput formControlName="lastName" id="lastName" trim [errorStateMatcher]="matcher">
           <mat-error *ngIf="this.validateForm.get('lastName')?.hasError('required')">
-            <p>{{'ErroreMessage.required'|translate}}</p>
+            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
           </mat-error>
           <mat-error *ngIf="this.validateForm.get('lastName')?.hasError('minlength')">
-            <p>{{'ErroreMessage.minlength'|translate}} 3</p>
+            <p class="errore">{{'ErroreMessage.minlength'|translate}} 3</p>
           </mat-error>
           <mat-error *ngIf="this.validateForm.get('lastName')?.hasError('maxlength')">
-            <p>{{'ErroreMessage.maxLength'|translate}}</p>
+            <p class="errore">{{'ErroreMessage.maxLength'|translate}}</p>
           </mat-error>
           <mat-error *ngIf="this.validateForm.get('lastName')?.hasError('userNameChar')">
-            <p>{{'ErroreMessage.userNameChar'|translate}}</p>
+            <p class="errore">{{'ErroreMessage.userNameChar'|translate}}</p>
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill" class="full-width">
@@ -48,17 +48,17 @@
           <input matInput formControlName="phoneNumber" type='tel' id="phoneNumber" mask='(000)00-00-00'
             [errorStateMatcher]="matcher" trim>
           <mat-error *ngIf="this.validateForm.get('phoneNumber')?.hasError('required')">
-            <p>{{'ErroreMessage.required'|translate}}</p>
+            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill" class="full-width">
           <mat-label class="label">{{'Order.userData.email'|translate}}</mat-label>
           <input matInput formControlName="email" id="email" trim [errorStateMatcher]="matcher">
           <mat-error *ngIf="this.validateForm.get('email')?.hasError('required')">
-            <p>{{'ErroreMessage.required'|translate}}</p>
+            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
           </mat-error>
           <mat-error *ngIf="this.validateForm.get('email')?.hasError('pattern')">
-            <p>{{'ErroreMessage.isEmail'|translate}}</p>
+            <p class="errore">{{'ErroreMessage.isEmail'|translate}}</p>
           </mat-error>
         </mat-form-field>
       </div>
@@ -70,7 +70,7 @@
           <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
           <mat-datepicker #dp3 disabled="false"></mat-datepicker>
           <mat-error *ngIf="this.validateForm.get('date')?.hasError('required')">
-            <p>{{'ErroreMessage.required'|translate}}</p>
+            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
           </mat-error>
         </mat-form-field>
 
@@ -90,7 +90,7 @@
             </mat-optgroup>
           </mat-select>
           <mat-error *ngIf="this.validateForm.get('country')?.hasError('required')">
-            <p>{{'ErroreMessage.required'|translate}}</p>
+            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
           </mat-error>
         </mat-form-field>
 
@@ -99,7 +99,7 @@
           <mat-label class="label">{{'Order.userData.password'|translate}}</mat-label>
           <input matInput formControlName="pas" id="pas" type="password" trim [errorStateMatcher]="matcher">
           <mat-error *ngIf="this.validateForm.get('pas')?.hasError('required')">
-            <p>{{'ErroreMessage.required'|translate}}</p>
+            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
           </mat-error>
           <mat-error *ngIf="this.validateForm.get('pas')?.hasError('minlength')">
             <p>{{'ErroreMessage.minlength'|translate}} 6</p>
@@ -111,15 +111,20 @@
           <input matInput formControlName="pasRev" id="pasRev" type="password" [errorStateMatcher]="matcher" trim
             [errorStateMatcher]="matcher">
           <mat-error *ngIf="this.validateForm.get('pasRev')?.hasError('required')">
-            <p>{{'ErroreMessage.required'|translate}}</p>
+            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
           </mat-error>
           <mat-error *ngIf="this.validateForm.get('pasRev')?.hasError('minlength')">
-            <p>{{'ErroreMessage.minlength'|translate}} 6</p>
+            <p class="errore">{{'ErroreMessage.minlength'|translate}} 6</p>
           </mat-error>
           <mat-error *ngIf="this.validateForm.get('pasRev')?.hasError('passwordReview')">
-            <p>{{'ErroreMessage.checkPass'|translate}}</p>
+            <p class="errore">{{'ErroreMessage.checkPass'|translate}}</p>
           </mat-error>
+           
         </mat-form-field>
+        <div class="color">
+          <p>{{emailMassage}}</p>
+        </div>
+        
       </div>
       <button mat-raised-button class="login-form-button">
         {{'Menu.user.save'|translate}}</button>

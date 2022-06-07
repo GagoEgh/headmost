@@ -33,15 +33,15 @@ export interface OrderResult {
     promo_code: null
     promo_code_details: null
     shipping_method: number
-    shipping_method_details?:
-    {
-        city: CityDetails
-        id: number
-        name_en: string
-        name_hy: string
-        name_ru: string
-        price: number
-    }
+    shipping_method_details?:ShipingResult
+    // {
+    //     city: CityDetails
+    //     id: number
+    //     name_en: string
+    //     name_hy: string
+    //     name_ru: string
+    //     price: number
+    // }
     status?: string
     user?: number
 }

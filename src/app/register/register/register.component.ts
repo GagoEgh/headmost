@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
   public validateForm: FormGroup = new FormGroup({});
   public _subscribe$ = new Subject();
   private checkPass = this.validateForm.get('pasRev');
-  public emailMassage: string = '';
+  public emailMassage!: string ;
   public matcher = new MyErrorStateMatcher();
 
   constructor(public activeModal: NgbActiveModal, public fb: FormBuilder, public i18n: NzI18nService, public _translate: TranslateService,
@@ -123,7 +123,8 @@ export class RegisterComponent implements OnInit {
         if (err.status === 400) {
           this._translate.get('ErroreMessage').pipe(takeUntil(this._subscribe$))
             .subscribe((res: any) => {
-              this.emailMassage = res.emailMassage
+              this.emailMassage = res.emailMassage;
+              console.log(this.emailMassage)
             })
         }
 

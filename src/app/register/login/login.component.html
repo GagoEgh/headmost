@@ -10,27 +10,27 @@
         <mat-label class="label">{{'Order.userData.email'|translate}}</mat-label>
         <input matInput formControlName="email" id="email" trim [errorStateMatcher]="matcher">
         <mat-error *ngIf="this.validateForm.get('email')?.hasError('required')">
-          <p>{{'ErroreMessage.required'|translate}}</p>
+          <p class="errore">{{'ErroreMessage.required'|translate}}</p>
         </mat-error>
         <mat-error *ngIf="this.validateForm.get('email')?.hasError('email')">
-          <p>{{'ErroreMessage.isEmail'|translate}}</p>
+          <p class="errore">{{'ErroreMessage.isEmail'|translate}}</p>
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill" class="full-width">
         <mat-label class="label">{{'Order.userData.password'|translate}}</mat-label>
         <input matInput formControlName="password" id="password" type="password" trim [errorStateMatcher]="matcher">
         <mat-error *ngIf="this.validateForm.get('password')?.hasError('required')">
-          <p>{{'ErroreMessage.required'|translate}}</p>
+          <p class="errore">{{'ErroreMessage.required'|translate}}</p>
         </mat-error>
         <mat-error *ngIf="this.validateForm.get('password')?.hasError('minlength')">
-          <p>{{'ErroreMessage.minlength'|translate}} 6</p>
+          <p class="errore">{{'ErroreMessage.minlength'|translate}} 6</p>
         </mat-error>
       </mat-form-field>
 
       <button mat-raised-button class="login-form-button">
         {{'Order.userData.logIn'|translate}}</button>
 
-      <p *ngIf='errorLog' [style.color]='"red"'>{{errorLog}}</p>
+      <p *ngIf='errorLog' [style.color]='"red"' class="errore">{{errorLog}}</p>
     </form>
 </div>
 <div class="modal-footer">

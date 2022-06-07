@@ -9,6 +9,7 @@
 
 * {
     font-family: Montserrat;
+   
 }
 
 .full-body {
@@ -98,10 +99,11 @@ body {
     height: 20px;
     margin-left: 5px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 7px;
     position: relative;
     display: flex;
     opacity: .5;
+    border: 1px solid white;
 }
 
 .box-content {
@@ -114,6 +116,7 @@ body {
     top: 0;
     width: 50%;
     height: 100%;
+    border-radius: 6px;
 }
 
 .btn {
@@ -314,6 +317,25 @@ body {
 }
 
 
+.rightImg1 {
+    display: block;
+    width: 10px;
+    position: relative;
+    left: 93px;
+    top: 35px;
+  }
+  
+  .rightImg2 {
+    display: block;
+    width: 10px;
+    position: relative;
+    left: 93px;
+    top: 67px;
+  }
+  
+.errore{
+    margin-left: -10px !important;
+}
 /* new  */
 
 .title-h1 h1 {
@@ -357,4 +379,8 @@ body {
 }
 .mat-form-field.mat-focused .mat-form-field-ripple{
     background-color: rgb(186, 183, 183);
+}
+
+.mat-form-field-appearance-fill.mat-form-field-disabled .mat-form-field-flex {
+    background-color: rgba(0,0,0,.05)
 }
