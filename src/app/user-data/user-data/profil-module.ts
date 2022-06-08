@@ -14,6 +14,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaskModule } from "ngx-mask";
 import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
+import { ChangeEmailComponent } from "./components/change-email/change-email.component";
+import { ChangePasswordComponent } from "./components/change-password/change-password.component";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 const routes:Routes = [
@@ -21,8 +24,13 @@ const routes:Routes = [
 ]
 
 @NgModule({
-    declarations: [UserDataComponent],
+    declarations: [
+        UserDataComponent,
+        ChangeEmailComponent,
+        ChangePasswordComponent
+    ],
     imports: [
+        FontAwesomeModule,
         NzDatePickerModule,
         CommonModule,
         FormsModule,

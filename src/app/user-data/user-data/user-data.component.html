@@ -44,7 +44,7 @@
             <p class="errore">{{'ErroreMessage.required'|translate}}</p>
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill" class="full-width">
+        <!-- <mat-form-field appearance="fill" class="full-width">
           <mat-label class="label">{{'Order.userData.email'|translate}}</mat-label>
           <input type="email" matInput formControlName="email" id="email" [errorStateMatcher]="matcher" trim>
           <mat-error *ngIf="this.validateForm.get('email')?.hasError('required')">
@@ -53,7 +53,10 @@
           <mat-error *ngIf="this.validateForm.get('email')?.hasError('isEmail')">
             <p class="errore">{{'ErroreMessage.isEmail'|translate}}</p>
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
+        <button type="button" mat-raised-button class="login-form-button width">
+          change email
+        </button>
       </div>
       <div class="form-1">
         <mat-form-field appearance="fill">
@@ -89,13 +92,17 @@
             </mat-optgroup>
           </mat-select>
         </mat-form-field>
+        <button type="button" (click)="openPassword()" mat-raised-button class="login-form-button width">
+          change password
+        </button>
       </div>
     </div>
     <button mat-raised-button class="login-form-button">
       {{'Order.userData.update'|translate}}</button>
   </form>
 
-  <div>
+  <!-- 
+    <div>
     <hr>
     <h1>change password</h1>
 
@@ -127,5 +134,5 @@
         {{'Order.userData.password'|translate}}
       </button>
     </form>
-  </div>
+  </div> -->
 </div>

@@ -20,6 +20,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { CookieModule } from 'ngx-cookie';
 import { ClickOutsideModule } from 'ng-click-outside';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http,'https://admin.gift4u.am/media/static/languages/', '.json');
 }
@@ -33,6 +35,7 @@ registerLocaleData(en);
   ],
 
   imports: [
+    FontAwesomeModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

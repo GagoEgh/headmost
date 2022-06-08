@@ -29,8 +29,13 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
   public throttle = 300;
   public okSms = '';
 
-  constructor(public frames: FramesServService, public modalService: NgbModal, public activRout: ActivatedRoute,
-    public userOrderService: UserOrderService, private spinner: NgxSpinnerService, public _translate: TranslateService) { }
+  constructor(
+    public frames: FramesServService,
+    public modalService: NgbModal,
+    public activRout: ActivatedRoute,
+    public userOrderService: UserOrderService,
+    private spinner: NgxSpinnerService,
+    public _translate: TranslateService) { }
 
   ngOnInit(): void {
     this.peyMessage();
@@ -39,7 +44,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
     this.appendItems();
   }
 
-  private peyMessage():void{
+  private peyMessage(): void {
     this.activRout.queryParams.subscribe(url => {
       if (url.status) {
         const modalRef = this.modalService.open(TenkyuComponent);

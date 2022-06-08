@@ -20,6 +20,11 @@
   margin-left: 50px;
 }
 
+.width{
+  width: 250px;
+  margin-left: 0 !important;
+}
+
 .login-form-button{
   display: block;
   margin: 20px auto;
@@ -81,12 +86,6 @@
     }
   }
 }
-
-.password-form{
-  display: flex;
-  justify-content: space-around;
-}
-
 
 
 :host::ng-deep{

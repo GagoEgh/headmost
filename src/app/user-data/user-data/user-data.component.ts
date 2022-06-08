@@ -13,6 +13,7 @@ import { Edit, UserDetalis } from 'src/app/modules/register-response.module';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { UserDataService } from './user-data.service';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -28,10 +29,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class UserDataComponent implements OnInit, AfterViewChecked {
   public validateForm: FormGroup = new FormGroup({});
-  public changePassword!: FormGroup
+ 
   public matcher = new MyErrorStateMatcher();
   public _unsubscribe$ = new Subject();
   private userName = '';
+  private lastName = '';
   public currentDate = new Date()
   public isChange = false;
   constructor(
@@ -41,8 +43,9 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     public userDataService: UserDataService,
     private spinner: NgxSpinnerService,
     public _translate: TranslateService,
-    public frames: FramesServService) {
-    this.passwordFormInit()
+    public frames: FramesServService,
+) {
+   
   }
 
   ngAfterViewChecked(): void {
@@ -50,12 +53,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     this.frames.cityPlaceholder();
   }
 
-  passwordFormInit() {
-    this.changePassword = this.fb.group({
-      newPass: [null, [Validators.required, Validators.maxLength]],
-      reapetPass: [null, [Validators.required, Validators.minLength]]
-    })
-  }
+ 
   ngOnInit(): void {
     this.spinner.show();
     this.spinner.hide();
@@ -84,14 +82,9 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     return date_of_birth;
   }
 
-  // grel password changei logican
-  passwordChange() {
-    if (!this.changePassword.valid) {
-      return
-    }
 
-
-    console.log(this.changePassword.value)
+  openPassword() {
+    const modal = this.modalService.open(ChangePasswordComponent);
   }
   private changeDate(): void {
     let data: any = localStorage.getItem('user-date');
@@ -113,6 +106,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
 
 
   public submitForm(): void {
+  
     const date = this.birt('date');
     const edit: Edit = {
       date_of_birth: date,
@@ -124,14 +118,18 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
       first_name: this.validateForm.get('frstName')?.value
     }
 
+
     this.changeDate()
     if ( this.isChange) {
       this.userName = edit.first_name;
+      this.lastName = edit.last_name;
+      console.log(edit)
       this.userDataService.editUser(edit)
         .pipe(takeUntil(this._unsubscribe$))
         .subscribe((userDetalis: UserDetalis) => {
           this.frames.userData = userDetalis;
           this.frames.userData.user_details.first_name = this.userName;
+          this.frames.userData.user_details.last_name = this.lastName;
           let myJson = JSON.stringify(this.frames.userData);
           localStorage.setItem('user-date', myJson);
           const modalRef = this.modalService.open(DataCheckComponent);

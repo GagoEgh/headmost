@@ -10,6 +10,7 @@ import { OnlyComponent } from './only/only.component';
 import { DeleteComponent } from './delete/delete.component';
 import { NoCheckComponent } from './no-check/no-check.component';
 
+
 const routes: Routes = [
   {
     path: '', component:UserComponent,
@@ -29,7 +30,7 @@ const routes: Routes = [
     OkSmsComponent,
     OnlyComponent,
     DeleteComponent,
-    NoCheckComponent,
+    NoCheckComponent
   ],
   imports: [
     InfiniteScrollModule,
