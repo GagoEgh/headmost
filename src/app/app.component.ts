@@ -7,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { ServerResponce } from './modules/img-ramka.module';
-import { UserData } from './modules/UserInfo.module';
+import { ServerResponce } from './modeles/img-ramka.modele';
+
 import { CookieService } from 'ngx-cookie';
+import { UserData } from './modeles/UserInfo.module';
 
 @Component({
   selector: 'app-root',

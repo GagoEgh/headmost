@@ -1,5 +1,5 @@
-import { CityDetails } from "./CategoryDetails.module";
-import { FrameDetalis } from "./frame-response.module";
+import { CityDetails } from "./CategoryDetails.modele";
+import { FrameDetalis } from "./frame-response.modele";
 
 
 export interface ShipingResult {

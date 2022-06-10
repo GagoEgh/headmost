@@ -1,4 +1,4 @@
-import { CategoryDetails } from "./CategoryDetails.module";
+import { CategoryDetails } from "./CategoryDetails.modele";
 
 
 export interface UserInfo {

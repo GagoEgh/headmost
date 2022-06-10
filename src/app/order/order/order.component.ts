@@ -7,9 +7,9 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ServerResponce } from 'src/app/modules/img-ramka.module';
-import { PromoCodeResults, ShipingResult } from 'src/app/modules/order-response.module';
-import { CardItemResults } from 'src/app/modules/frame-response.module';
+import { ServerResponce } from 'src/app/modeles/img-ramka.modele';
+import { PromoCodeResults, ShipingResult } from 'src/app/modeles/order-response.modele';
+import { CardItemResults } from 'src/app/modeles/frame-response.modele';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { OrderService } from './order.service';
@@ -23,7 +23,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
-
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',

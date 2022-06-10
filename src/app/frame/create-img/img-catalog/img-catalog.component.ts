@@ -5,13 +5,14 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NoUsserComponent } from '../no-usser/no-usser.component';
-import { ServerResponce } from 'src/app/modules/img-ramka.module';
-import { CategoryDetails } from 'src/app/modules/CategoryDetails.module';
-import { ImageResponse, ImgColorValue, UserImage } from 'src/app/modules/ImageResponse.module';
-import { WordResult } from 'src/app/modules/WordResult.module';
+import { ServerResponce } from 'src/app/modeles/img-ramka.modele';
+import { CategoryDetails } from 'src/app/modeles/CategoryDetails.modele';
+import { ImageResponse, ImgColorValue, UserImage } from 'src/app/modeles/ImageResponse.modele';
+
 import { TranslateService } from "@ngx-translate/core";
 import { ImgCatalogService } from './img-catalog.service';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
+import { WordResult } from 'src/app/modeles/WordResult.module';
 
 
 

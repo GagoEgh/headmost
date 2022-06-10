@@ -16,17 +16,7 @@
           <p class="errore">{{'ErroreMessage.isEmail'|translate}}</p>
         </mat-error>
       </mat-form-field>
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label class="label">{{'Order.userData.password'|translate}}</mat-label>
-        <input matInput formControlName="password" id="password" type="password" trim [errorStateMatcher]="matcher">
-        <mat-error *ngIf="this.validateForm.get('password')?.hasError('required')">
-          <p class="errore">{{'ErroreMessage.required'|translate}}</p>
-        </mat-error>
-        <mat-error *ngIf="this.validateForm.get('password')?.hasError('minlength')">
-          <p class="errore">{{'ErroreMessage.minlength'|translate}} 6</p>
-        </mat-error>
-      </mat-form-field>
-
+      <app-password class="password" formControlName="password"></app-password>
       <button mat-raised-button class="login-form-button">
         {{'Order.userData.logIn'|translate}}</button>
 

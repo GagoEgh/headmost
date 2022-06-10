@@ -22,6 +22,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http,'https://admin.gift4u.am/media/static/languages/', '.json');
 }

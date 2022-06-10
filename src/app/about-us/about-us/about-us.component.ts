@@ -3,7 +3,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AboutQuestion } from 'src/app/modules/img-ramka.module';
+import { AboutQuestion } from 'src/app/modeles/img-ramka.modele';
 
 @Component({
   selector: 'app-about-us',

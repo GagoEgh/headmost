@@ -4,9 +4,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { CategoryDetails } from '../modules/CategoryDetails.module';
-import { Painding, ServerResponce } from '../modules/img-ramka.module';
-import { WordResult } from '../modules/WordResult.module';
+import { CategoryDetails } from '../modeles/CategoryDetails.modele';
+import { Painding, ServerResponce } from '../modeles/img-ramka.modele';
+import { WordResult } from '../modeles/WordResult.module';
+
 import { FramesServService } from '../shared/frames-serv.service';
 
 @Injectable({

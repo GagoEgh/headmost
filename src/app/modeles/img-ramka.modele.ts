@@ -1,5 +1,5 @@
-import { CategoryDetails, CityDetails } from "./CategoryDetails.module";
-import { ImageResponse, ImgColorValue } from "./ImageResponse.module";
+import { CategoryDetails, CityDetails } from "./CategoryDetails.modele";
+import { ImageResponse, ImgColorValue } from "./ImageResponse.modele";
 
 export interface Painding {
     values: ImgColorValue,

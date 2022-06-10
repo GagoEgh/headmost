@@ -7,12 +7,13 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Api, CountryResult, ServerResponce } from '../modules/img-ramka.module';
-import { CardItemResults } from '../modules/frame-response.module';
-import { ImageResponse, ImgColorValue, UserImage } from '../modules/ImageResponse.module';
-import { CategoryDetails } from '../modules/CategoryDetails.module';
-import { WordResult } from '../modules/WordResult.module';
-import { UserData } from '../modules/UserInfo.module';
+import { Api, CountryResult, ServerResponce } from '../modeles/img-ramka.modele';
+import { CardItemResults } from '../modeles/frame-response.modele';
+import { ImageResponse, ImgColorValue, UserImage } from '../modeles/ImageResponse.modele';
+import { CategoryDetails } from '../modeles/CategoryDetails.modele';
+import { UserData } from '../modeles/UserInfo.module';
+import { WordResult } from '../modeles/WordResult.module';
+
 
 
 @Injectable({

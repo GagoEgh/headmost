@@ -37,12 +37,14 @@
   margin-left: 20px;
 }
 
-.color{
+.color {
   height: 40px;
 }
-.color p{
+
+.color p {
   color: tomato;
 }
+
 .rightImg1 {
   display: block;
   width: 10px;
@@ -57,4 +59,12 @@
   position: relative;
   left: 93px;
   top: 67px;
+}
+
+:host::ng-deep app-password .mat-form {
+  width: 240px;
+}
+
+:host::ng-deep app-password .errors-content{
+  margin: -20px 0 0 55px;
 }

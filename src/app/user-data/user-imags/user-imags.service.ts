@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { UserImage } from 'src/app/modules/ImageResponse.module';
+import { UserImage } from 'src/app/modeles/ImageResponse.modele';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 
 @Injectable({

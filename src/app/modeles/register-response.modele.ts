@@ -1,4 +1,4 @@
-import { CityDetails } from "./CategoryDetails.module";
+import { CityDetails } from "./CategoryDetails.modele";
 import { UserDataResponse } from "./UserDataResponse.module";
 
 

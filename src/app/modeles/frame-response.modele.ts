@@ -1,6 +1,6 @@
 
-import { BgDetails, CategoryDetails } from "./CategoryDetails.module";
-import { FrameImages } from "./ImageResponse.module";
+import { BgDetails, CategoryDetails } from "./CategoryDetails.modele";
+import { FrameImages } from "./ImageResponse.modele";
 
 
 export interface FrameResults {

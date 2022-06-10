@@ -93,34 +93,9 @@
             <p class="errore">{{'ErroreMessage.required'|translate}}</p>
           </mat-error>
         </mat-form-field>
-
-        <mat-form-field appearance="fill" class="full-width">
-
-          <mat-label class="label">{{'Order.userData.password'|translate}}</mat-label>
-          <input matInput formControlName="pas" id="pas" type="password" trim [errorStateMatcher]="matcher">
-          <mat-error *ngIf="this.validateForm.get('pas')?.hasError('required')">
-            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
-          </mat-error>
-          <mat-error *ngIf="this.validateForm.get('pas')?.hasError('minlength')">
-            <p>{{'ErroreMessage.minlength'|translate}} 6</p>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label class="label">{{'Order.userData.passwordReset'|translate}}</mat-label>
-          <input matInput formControlName="pasRev" id="pasRev" type="password" [errorStateMatcher]="matcher" trim
-            [errorStateMatcher]="matcher">
-          <mat-error *ngIf="this.validateForm.get('pasRev')?.hasError('required')">
-            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
-          </mat-error>
-          <mat-error *ngIf="this.validateForm.get('pasRev')?.hasError('minlength')">
-            <p class="errore">{{'ErroreMessage.minlength'|translate}} 6</p>
-          </mat-error>
-          <mat-error *ngIf="this.validateForm.get('pasRev')?.hasError('passwordReview')">
-            <p class="errore">{{'ErroreMessage.checkPass'|translate}}</p>
-          </mat-error>
-           
-        </mat-form-field>
+        <app-password formControlName="pas"></app-password>
+        <app-password formControlName="pasRev"></app-password>
+    
         <div class="color">
           <p>{{emailMassage}}</p>
         </div>

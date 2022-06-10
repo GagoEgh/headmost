@@ -59,10 +59,11 @@ const module = [
 ]
 
 @NgModule({
-    declarations: [OrderComponent,
-        MyimagesComponent,
-        DialogContentComponent
-    ],
+    declarations:
+        [   OrderComponent,
+            MyimagesComponent,
+            DialogContentComponent,
+        ],
     exports: [
         ...MatModule,
         ...NzModule,

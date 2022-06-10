@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ServerResponce } from 'src/app/modules/img-ramka.module';
-import { UserImage } from 'src/app/modules/ImageResponse.module';
+import { ServerResponce } from 'src/app/modeles/img-ramka.modele';
+import { UserImage } from 'src/app/modeles/ImageResponse.modele';
 import { UserImagsService } from 'src/app/user-data/user-imags/user-imags.service';
 import { FramesServService } from '../frames-serv.service';
 import { TranslateService } from '@ngx-translate/core';

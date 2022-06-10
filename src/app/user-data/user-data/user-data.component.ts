@@ -9,7 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataCheckComponent } from '../data-check/data-check.component';
 import { NoCheckComponent } from '../no-check/no-check.component';
 import { NgxSpinnerService } from "ngx-spinner";
-import { Edit, UserDetalis } from 'src/app/modules/register-response.module';
+import { Edit, UserDetalis } from 'src/app/modeles/register-response.modele';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { UserDataService } from './user-data.service';

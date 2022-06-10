@@ -17,10 +17,11 @@ import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
 import { ChangeEmailComponent } from "./components/change-email/change-email.component";
 import { ChangePasswordComponent } from "./components/change-password/change-password.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PasswordModule } from "src/app/shared/components/password/password.module";
 
 
-const routes:Routes = [
-    {path:'',component:UserDataComponent}
+const routes: Routes = [
+    { path: '', component: UserDataComponent }
 ]
 
 @NgModule({
@@ -30,6 +31,7 @@ const routes:Routes = [
         ChangePasswordComponent
     ],
     imports: [
+        PasswordModule,
         FontAwesomeModule,
         NzDatePickerModule,
         CommonModule,
@@ -47,9 +49,9 @@ const routes:Routes = [
         NgxTrimDirectiveModule,
         RouterModule.forChild(routes)
     ],
-    exports:[RouterModule]
+    exports: [RouterModule]
 })
-export class ProfilModule  {
-   
-      
- }
+export class ProfilModule {
+
+
+}
