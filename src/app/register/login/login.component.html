@@ -6,20 +6,10 @@
 </div>
 <div class="modal-body">
     <form  [formGroup]="validateForm" (ngSubmit)="submitForm()" class="form">
-      <mat-form-field appearance="fill" class="full-width">
-        <mat-label class="label">{{'Order.userData.email'|translate}}</mat-label>
-        <input matInput formControlName="email" id="email" trim [errorStateMatcher]="matcher">
-        <mat-error *ngIf="this.validateForm.get('email')?.hasError('required')">
-          <p class="errore">{{'ErroreMessage.required'|translate}}</p>
-        </mat-error>
-        <mat-error *ngIf="this.validateForm.get('email')?.hasError('email')">
-          <p class="errore">{{'ErroreMessage.isEmail'|translate}}</p>
-        </mat-error>
-      </mat-form-field>
+      <app-email formControlName="email"></app-email>
       <app-password class="password" formControlName="password"></app-password>
       <button mat-raised-button class="login-form-button">
         {{'Order.userData.logIn'|translate}}</button>
-
       <p *ngIf='errorLog' [style.color]='"red"' class="errore">{{errorLog}}</p>
     </form>
 </div>

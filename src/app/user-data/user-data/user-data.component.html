@@ -54,7 +54,8 @@
             <p class="errore">{{'ErroreMessage.isEmail'|translate}}</p>
           </mat-error>
         </mat-form-field> -->
-        <button type="button" mat-raised-button class="login-form-button width">
+        <button type="button" (click)="openEmail()"
+         mat-raised-button class="login-form-button width">
           change email
         </button>
       </div>
@@ -100,39 +101,4 @@
     <button mat-raised-button class="login-form-button">
       {{'Order.userData.update'|translate}}</button>
   </form>
-
-  <!-- 
-    <div>
-    <hr>
-    <h1>change password</h1>
-
-    <form [formGroup]="changePassword"  (ngSubmit)="passwordChange()">
-      <div class="password-form">
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label class="label">{{'Order.userData.password'|translate}}</mat-label>
-          <input matInput formControlName="newPass" id="pas" type="password" trim [errorStateMatcher]="matcher">
-          <mat-error *ngIf="changePassword.get('newPass')?.hasError('required')">
-            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
-          </mat-error>
-          <mat-error *ngIf="changePassword.get('newPass')?.hasError('minlength')">
-            <p class="errore">{{'ErroreMessage.minlength'|translate}} 6</p>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label class="label">{{'Order.userData.password'|translate}}</mat-label>
-          <input matInput formControlName="reapetPass" id="pas" type="password" trim [errorStateMatcher]="matcher">
-          <mat-error *ngIf="changePassword.get('reapetPass')?.hasError('required')">
-            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
-          </mat-error>
-          <mat-error *ngIf="changePassword.get('reapetPass')?.hasError('minlength')">
-            <p class="errore">{{'ErroreMessage.minlength'|translate}} 6</p>
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <button mat-raised-button class="login-form-button">
-        {{'Order.userData.password'|translate}}
-      </button>
-    </form>
-  </div> -->
 </div>

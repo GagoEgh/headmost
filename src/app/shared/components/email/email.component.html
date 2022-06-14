@@ -1,0 +1,14 @@
+<mat-form-field appearance="fill" class="mat-form">
+    <mat-label class="label">{{'Order.userData.email'|translate}}</mat-label>
+    <input (blur)="showBlur()" (input)="changeValue($event)" [value]="value" matInput id="email" trim>
+</mat-form-field>
+<div class="errors-content">
+    <ng-container *ngIf="control?.control?.touched || !control?.control?.pristine">
+        <p *ngIf="control?.control?.errors?.required" class="error">
+            {{'ErroreMessage.required'|translate}}
+        </p>
+        <p *ngIf="control?.control?.errors?.pattern" class="error">
+            {{'ErroreMessage.isEmail'|translate}}
+        </p>
+    </ng-container>
+</div>

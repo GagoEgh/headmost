@@ -4,12 +4,14 @@ import { SharedModule } from "../shared/shared.modult";
 import { RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
 import { PasswordModule } from "../shared/components/password/password.module";
+import { EmailModule } from "../shared/components/email/email.module";
 
 @NgModule({
     declarations: [LoginComponent, RegisterComponent],
     imports: [
         SharedModule,
-        PasswordModule
+        PasswordModule,
+        EmailModule
     ],
  
     exports: [RouterModule],

@@ -1,1 +1,19 @@
-<p>change-email works!</p>
+<div class="modal-header">
+    <h4 class="color">Change password</h4>
+    <button type="button" class="btn-close close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span class="spanClose">&#10006;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="newEmail">
+        <div class="password-form">
+            <app-email formControlName="oldEmail"></app-email>
+            <app-email formControlName="newEmail"></app-email>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" mat-raised-button class="login-form-button" (click)="changeEmail()">
+        Change
+    </button>
+</div>

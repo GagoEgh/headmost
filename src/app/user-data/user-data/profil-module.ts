@@ -18,6 +18,7 @@ import { ChangeEmailComponent } from "./components/change-email/change-email.com
 import { ChangePasswordComponent } from "./components/change-password/change-password.component";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PasswordModule } from "src/app/shared/components/password/password.module";
+import { EmailModule } from "src/app/shared/components/email/email.module";
 
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
         ChangePasswordComponent
     ],
     imports: [
+        EmailModule,
         PasswordModule,
         FontAwesomeModule,
         NzDatePickerModule,

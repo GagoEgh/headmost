@@ -14,6 +14,7 @@ import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { UserDataService } from './user-data.service';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { ChangeEmailComponent } from './components/change-email/change-email.component';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -85,6 +86,10 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
 
   openPassword() {
     const modal = this.modalService.open(ChangePasswordComponent);
+  }
+
+  openEmail(){
+    this.modalService.open(ChangeEmailComponent);
   }
   private changeDate(): void {
     let data: any = localStorage.getItem('user-date');

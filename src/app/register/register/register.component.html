@@ -51,16 +51,7 @@
             <p class="errore">{{'ErroreMessage.required'|translate}}</p>
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label class="label">{{'Order.userData.email'|translate}}</mat-label>
-          <input matInput formControlName="email" id="email" trim [errorStateMatcher]="matcher">
-          <mat-error *ngIf="this.validateForm.get('email')?.hasError('required')">
-            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
-          </mat-error>
-          <mat-error *ngIf="this.validateForm.get('email')?.hasError('pattern')">
-            <p class="errore">{{'ErroreMessage.isEmail'|translate}}</p>
-          </mat-error>
-        </mat-form-field>
+        <app-email formControlName="email"></app-email>
       </div>
 
       <div class="col column-2">
