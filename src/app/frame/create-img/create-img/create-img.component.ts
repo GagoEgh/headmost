@@ -34,7 +34,14 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     public frameService: FrameService,
     public activatedRoute: ActivatedRoute
   ) {
-    super(frames, modalService, ideaImgService, imgService, rout, form, frameService);
+    super(
+      frames,
+      modalService,
+      ideaImgService,
+      imgService,
+      rout, form,
+      frameService,
+      activatedRoute);
   }
 
   // public nowImg():void {
@@ -59,18 +66,16 @@ export class CreateImgComponent extends FrameImag implements OnInit {
   }
 
   public deletImg(): void {
+    this.rout.navigate(['frame/form-frame']);
     this.frames.validateForm.reset();
     this.frames.isImg = true;
-    console.log(this.frames.isOrder)
-    // if (this.frames.isOrder) {
-
-    this.frames.isImg = true;
-    this.frames.isOrder = false;
-    this.frames.conteinerHeight();
-    //this.rout.navigate(['frame/form-frame']);
-    this.rout.navigate(['frame/form-frame'], { queryParams: {} });
-    this.frames.validateForm.reset();
-    // }
+    if (this.frames.isOrder) {
+      this.frames.isImg = true;
+      this.frames.isOrder = false;
+      this.frames.conteinerHeight();
+      this.rout.navigate(['frame/form-frame']);
+      this.frames.validateForm.reset();
+    }
   }
 
   public deleteTopProprty(): void {

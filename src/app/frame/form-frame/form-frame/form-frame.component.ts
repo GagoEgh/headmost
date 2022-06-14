@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AfterContentChecked, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
@@ -23,7 +23,8 @@ export class FormFrameComponent extends FrameImag implements OnInit, AfterConten
     public ideaImgService: IdeaImageService,
     public rout: Router,
     public form: FormBuilder,
-    public frameService: FrameService
+    public frameService: FrameService,
+    public activatedRoute:ActivatedRoute
   ) {
     super(
       frames,
@@ -32,7 +33,8 @@ export class FormFrameComponent extends FrameImag implements OnInit, AfterConten
       imgService,
       rout,
       form,
-      frameService
+      frameService,
+      activatedRoute
     );
     this._translate.use(this.frames.lang);
   }

@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 import { MagnitServiceService } from './magnit-service.service';
@@ -26,10 +26,26 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
   public lightSheme = '';
   public blockStyle = {} as { [key: string]: string };
   public magnit_scale: number = 1;
-  constructor(public frames: FramesServService, public modalService: NgbModal,public imgService:FrameImageService,
-   public magnitService:MagnitServiceService,public ideaImgService:IdeaImageService, public rout: Router, public form: FormBuilder,
-    private _translate: TranslateService,   public frameService:FrameService) {
-    super(frames, modalService,ideaImgService,imgService, rout, form, frameService);
+  constructor(
+    public frames: FramesServService,
+    public modalService: NgbModal,
+    public imgService: FrameImageService,
+    public magnitService: MagnitServiceService,
+    public ideaImgService: IdeaImageService,
+    public rout: Router,
+    public form: FormBuilder,
+    private _translate: TranslateService,
+    public frameService: FrameService,
+    public activatedRoute: ActivatedRoute,) {
+    super(
+      frames,
+      modalService,
+      ideaImgService,
+      imgService,
+      rout,
+      form,
+      frameService,
+      activatedRoute,);
     super.imgColor();
 
   }
@@ -58,7 +74,7 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
 
     if (window.innerWidth <= 769) {
       let num = window.innerWidth / 769;
-     // this.magnit_scale = num - 0.3;
+      // this.magnit_scale = num - 0.3;
     }
 
     if (window.innerWidth <= 426) {

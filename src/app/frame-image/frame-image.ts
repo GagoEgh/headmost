@@ -4,7 +4,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -31,7 +31,8 @@ export class FrameImag {
     public imgService: FrameImageService,
     public rout: Router,
     public form: FormBuilder,
-    public frameService: FrameService
+    public frameService: FrameService,
+    public activatedRoute: ActivatedRoute
   ) { }
 
   // frame component
@@ -62,7 +63,7 @@ export class FrameImag {
       .imgColorGet()
       .pipe(takeUntil(this._unsubscribe$))
       .subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
-       
+
         for (let i = 0; i < categoryDetails.count; i++) {
           if (
             this.frames &&
@@ -78,10 +79,15 @@ export class FrameImag {
   public imgFone(obj: any): void {
     this.imgService.painding.values = obj.values;
     this.imgService.painding.id = obj.ceys.id;
-    
-    if (this.frames.validateForm.value.text !== null) {
-      this.imgService.letterColorFone();
-    }
+    this.activatedRoute.queryParams
+      .subscribe({
+        next: (rout: any) => {
+          if (rout.text) {
+            this.imgService.letterColorFone();
+          }
+        }
+      })
+
   }
 
   public open(): void {
@@ -107,7 +113,7 @@ export class FrameImag {
   }
 
   public showFrame(): void {
-    
+
     this.frames.showFrame();
     this.frames.conteinerHeight();
     this.ideaImgService.isIdeaFrame = false;
@@ -117,12 +123,11 @@ export class FrameImag {
 
   // poxel
   public changeImg(): void {
-   
     this.imgService.letterColorFone();
   }
 
   public openImg(img: any, num: number): void {
-   
+
     this.frames
       .letterColection(img.character.toUpperCase())
       .pipe(takeUntil(this._unsubscribe$))

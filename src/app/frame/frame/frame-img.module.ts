@@ -8,14 +8,16 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 const routs: Routes = [
-  {path:'',component:FrameComponent}
+  { path: '', component: FrameComponent }
 ]
 
 @NgModule({
-  declarations: [ FrameComponent,
+  declarations: [
+    FrameComponent,
     NgbdModalContentComponent,
-    ErroreMessageComponent,],
-  exports:[RouterModule],
+    ErroreMessageComponent
+  ],
+  exports: [RouterModule],
   imports: [
     CommonModule,
     FormsModule,

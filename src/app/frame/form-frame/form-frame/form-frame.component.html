@@ -11,12 +11,14 @@
         </div>
         <div class="content">
             <div class="top" [style.background-image]="'url(' + frames.frame?.top_line_image + ')'"></div>
+           
             <div class="letter" [style.backgroundColor]="frames.background.color">
                 <form [formGroup]="frames.validateForm">
                     <input type="text" formControlName='text' maxlength="8"
                     (keyup.enter)="onSubmit()" [placeholder]="frames.placeholder" trim>
                 </form>
             </div>
+           
             <div class="bottom" [style.background-image]="'url(' +frames.frame?.bottom_line_image + ')'">
                 <p class="btn" (click)="open()" *ngIf='frames.isImg'> {{'ImgTextValid.title'|translate}}</p>
             </div>

@@ -2,7 +2,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
@@ -21,12 +21,21 @@ export class CreateMagnitComponent extends FrameImag implements OnInit {
     public ideaImgService: IdeaImageService,
     public rout: Router,
     public form: FormBuilder,
-    public frameService:FrameService
+    public frameService: FrameService,
+    public activatedRoute: ActivatedRoute
   ) {
-    super(frames, modalService, ideaImgService, imgService, rout, form, frameService);
+    super(
+      frames,
+      modalService,
+      ideaImgService,
+      imgService,
+      rout,
+      form,
+      frameService,
+      activatedRoute);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   public deletImg(): void {
     this.rout.navigate(['magnit/form-magnit']);

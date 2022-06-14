@@ -8,7 +8,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
@@ -23,6 +23,7 @@ import { FrameService } from 'src/app/frame/frame/frame.service';
 export class FormMagnitComponent extends FrameImag implements OnInit {
   public validateForm: FormGroup = new FormGroup({});
   constructor(
+    public activatedRoute: ActivatedRoute,
     public frames: FramesServService,
     public modalService: NgbModal,
     public imgService: FrameImageService,
@@ -30,7 +31,7 @@ export class FormMagnitComponent extends FrameImag implements OnInit {
     public form: FormBuilder,
     private _translate: TranslateService,
     public ideaImgService: IdeaImageService,
-    public frameService:FrameService
+    public frameService: FrameService
   ) {
     super(
       frames,
@@ -39,7 +40,8 @@ export class FormMagnitComponent extends FrameImag implements OnInit {
       imgService,
       rout,
       form,
-      frameService
+      frameService,
+      activatedRoute
     );
     super.imgColor();
   }
@@ -57,15 +59,17 @@ export class FormMagnitComponent extends FrameImag implements OnInit {
   }
 
   public onSubmit(): void {
-    if (this.validateForm.invalid) {
+    console.log('value',this.frames.validateForm.value)
+    // this.validateForm.invalid
+    if (this.frames.validateForm.invalid) {
       const modalRef = this.modalService.open(ErroreMessageComponent);
       setTimeout(() => {
         modalRef.dismiss();
-      }, 1000);
+      }, 2500);
       return;
     }
     this.frames.isImg = false;
-     this.imgService.letterColorFone();
+    this.imgService.letterColorFone();
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

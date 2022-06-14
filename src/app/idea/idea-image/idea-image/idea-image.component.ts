@@ -85,6 +85,7 @@ export class IdeaImageComponent implements OnInit {
   }
 
   public myFrame() {
+   
     this.ideaImageService.isIdeaFrame = true;
     this.frames.isImg = false;
     this.frames.text = this.ideaImageService?.ideaImg?.word;

@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServerResponce } from 'src/app/modeles/img-ramka.modele';
 import { FramesImg } from 'src/app/modeles/ImageResponse.modele';
 import { BgDetails } from 'src/app/modeles/CategoryDetails.modele';
@@ -49,7 +49,8 @@ export class FrameComponent
     public rout: Router,
     public form: FormBuilder,
     private _translate: TranslateService,
-    private _frameImgService: FrameImageService
+    private _frameImgService: FrameImageService,
+    public activatedRoute:ActivatedRoute
   ) {
     super(
       frames,
@@ -58,7 +59,8 @@ export class FrameComponent
       imgService,
       rout,
       form,
-      frameServis
+      frameServis,
+      activatedRoute
     );
     this._translate.use(this.frames.lang);
   }

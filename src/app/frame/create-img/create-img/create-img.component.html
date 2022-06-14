@@ -22,7 +22,7 @@
                     <div class="change" (click)='changeImg()' [style.opacity]="topLettering.isMenu?'1':'0'">
                         <p class="bottom-par">{{'Imgs.changeImage'|translate}}</p>
                     </div>
-                    <div class="delete" [style.opacity]="topLettering.isMenu?'1':'0'" n>
+                    <div class="delete" [style.opacity]="topLettering.isMenu?'1':'0'" >
                         <p class="bottom-par" (click)='deletImg()'>{{'Imgs.deleteText'|translate}}</p>
                     </div>
                     <div class="lettering" *ngIf='frames.letterImges.length>2' [style.opacity]="topLettering.isForm?'1':'0'">
