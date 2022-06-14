@@ -179,9 +179,13 @@
 
 .left-btn {
   clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 75% 100%, 50% 50%, 75% 0);
+  position: relative;
+  left: -15px;
 }
 
 .right-btn {
+  position: relative;
+  left: 15px;
   clip-path: polygon(25% 0, 50% 50%, 25% 100%, 0% 100%, 25% 50%, 0% 0%);
 }
 
