@@ -63,7 +63,6 @@
 }
 
 .letter-length{
-  width: 250px;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.5px;
@@ -79,7 +78,7 @@
 }
 
 .add-sum{
-  width: 50px;
+  /* width: 50px; */
   font-weight: 700;
   font-size: 11px;
   padding-left: 10px;

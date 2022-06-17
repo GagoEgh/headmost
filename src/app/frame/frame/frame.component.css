@@ -200,7 +200,8 @@
   background-color: white;
   display: flex;
   box-shadow: 3px 2px 22px 0 rgb(87 87 87);
-  max-width: 1200px;
+  /* max-width: 1200px; */
+  width: 900px;
 }
 
 :host ::ng-deep app-order .border {
@@ -412,7 +413,10 @@
 }
 
 @media (max-width: 937px) {
-
+  :host ::ng-deep app-order .wrap {
+   max-width: 900px;
+  }
+  
   :host ::ng-deep app-order .data {
     display: flex;
     justify-content: center;

@@ -17,6 +17,7 @@ import { FrameService } from 'src/app/frame/frame/frame.service';
 })
 export class FormMagnitComponent extends FrameImag implements OnInit {
   
+  
   constructor(
     public activatedRoute: ActivatedRoute,
     public frames: FramesServService,
@@ -44,6 +45,7 @@ export class FormMagnitComponent extends FrameImag implements OnInit {
   public onSubmit(): void {
     if (this.frames.validateForm.invalid) {
       const modalRef = this.modalService.open(ErroreMessageComponent);
+      modalRef.componentInstance.isMagnitText = true;
       setTimeout(() => {
         modalRef.dismiss();
       }, 2500);

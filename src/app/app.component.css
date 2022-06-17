@@ -8,7 +8,7 @@
     box-shadow: 0 2px 2px rgb(0 0 0 / 35%);
     display: flex;
     justify-content: space-between;
-    height: 70px;
+    height: 50px;
 }
 
 .logo {
@@ -37,7 +37,7 @@
 .li-nav {
     list-style: none;
     position: relative;
-    margin-top: -15px;
+    margin-top: -25px;
     background-color: white;
     border-radius: 7px;
     padding: 10px;
@@ -48,18 +48,15 @@
 
 .li-nav li {
     padding: 5px;
-    width: 120px;
     cursor: pointer;
 }
 
 .li-nav a {
-    display: inline-block;
-    width: 100%;
+    display: block;
+    width: inherit;
     text-decoration: none;
-    /* color: rgb(63, 62, 62); */
     color: #c79d51;
     font-weight: bold;
-    /* padding: 5px; */
     transition: 0.2s;
 }
 
@@ -67,9 +64,11 @@
     background-color: rgb(236, 231, 231);
 }
 
+
 .parent:hover .li-nav {
     display: block;
 }
+
 
 .parent-1:hover .li-nav {
     display: block;
@@ -88,8 +87,8 @@
     margin-top: -7px;
 }
 
-.drop {
-    margin: -82px 0 0 160px;
+.drop-constructor {
+    margin: -75px 0 0 155px;
 }
 
 
@@ -101,12 +100,10 @@
     font-weight: bold;
     padding: 5px 35px;
     transition: 0.2s;
-
 }
 
 .frame:hover {
     background-color: rgb(236, 231, 231);
-    margin-bottom: 15px;
 }
 
 .active {

@@ -104,14 +104,15 @@
           <h2 class="title">{{'Order.informImg.title'|translate}}</h2>
           <div class="data" *ngFor='let list of frames.orderList'>
             <div class="letter-length">
-              <p class="errore"><span>{{list?.created_frame_details?.word?.length }} {{ 'Order.informImg.imgLength'|translate}}
+              <p class="errore">
+                <span>{{list?.created_frame_details?.word?.length }} {{ 'Order.informImg.imgLength'|translate}}
                 </span>
                 <span *ngIf='frames.lang==="hy"'> {{ list?.created_frame_details?.frame_details?.name_hy }} </span>
                 <span *ngIf='frames.lang==="en"'> {{ list?.created_frame_details?.frame_details?.name_en }} </span>
                 <span *ngIf='frames.lang==="ru"'> {{ list?.created_frame_details?.frame_details?.name_ru }} </span>
               </p>
             </div>
-            <div class="detalis-sum">
+            <div >
               <p class="smoll" *ngIf="list?.created_frame_details?.frame_details?.price">
                 {{ list?.created_frame_details?.frame_details?.price }} {{ 'Order.informImg.letterSum'|translate}}
               </p>
@@ -120,7 +121,7 @@
               <p> {{ list?.created_frame_details?.price }} {{ 'Order.informImg.price'|translate}}</p>
             </div>
             <div>
-              <span class="symbol" (click)='deleteDate(list)'>&#10005;</span>
+              <span class="symbol"  (click)='deleteDate(list)'>&#10005;</span>
             </div>
           </div>
         </div>
