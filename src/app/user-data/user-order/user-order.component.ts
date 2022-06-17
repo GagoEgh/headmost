@@ -61,21 +61,25 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
 
   private appendItems(): void {
     this.spinner.show()
-    this.userOrderService.userOrderGet().pipe(takeUntil(this._subscribe$)).subscribe((orderResult: ServerResponce<OrderResult[]>) => {
-      orderResult.results.forEach((item: any) => {
-        item.order_items_details.forEach((obj: any) => {
-          obj.isBlock = false;
-          obj.isDisabled = false;
-          obj.isPrev = false;
+    this.userOrderService.userOrderGet()
+      .pipe(takeUntil(this._subscribe$))
+      .subscribe((orderResult: ServerResponce<OrderResult[]>) => {
+        orderResult.results.forEach((item: any) => {
+          item.order_items_details.forEach((obj: any) => {
+            obj.isBlock = false;
+            obj.isDisabled = false;
+            obj.isPrev = false;
+          })
+          item.order_items_details[0].isBlock = true;
         })
-        item.order_items_details[0].isBlock = true;
-      })
 
-      this.userOrders.push(...orderResult.results)
-      this.frames.offset += 10;
-      this.frames.isMyOrder = true;
-      this.spinner.hide();
-    })
+        orderResult.results.reverse();
+        this.userOrders.push(...orderResult.results);
+        console.log(this.userOrders)
+        this.frames.offset += 10;
+        this.frames.isMyOrder = true;
+        this.spinner.hide();
+      })
   }
 
   public showPrice(arr: any, num: number): string {

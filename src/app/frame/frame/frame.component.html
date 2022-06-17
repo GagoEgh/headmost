@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="imgColor">
-       
+
         <div class="colorless" [style.backgroundColor]='block.values.color' *ngFor='let block of frames.imgColor'
           (click)="imgFone(block)" [ngClass]="{'box-content':block?.ceys?.id=== imgService?.painding?.id}">
           <div class="lessWhite" [style.backgroundColor]='block.values.child'>
@@ -47,17 +47,11 @@
     </div>
 
     <div class="block__container" #block [ngStyle]="catalogStyle">
-      <a 
-      (click)="backgroundImageChangeLeft()"
-      [class.frameL-arrow]="frames.isOrder"
-      class="left-btn arrow-btn"></a>
+      <a (click)="backgroundImageChangeLeft()" [class.frameL-arrow]="frames.isOrder" class="left-btn arrow-btn"></a>
       <div class="middle-block">
         <router-outlet></router-outlet>
       </div>
-      <a 
-      (click)="backgroundImageChangeRight()"
-      [class.frameR-arrow]="frames.isOrder"
-      class="right-btn arrow-btn"></a>
+      <a (click)="backgroundImageChangeRight()" [class.frameR-arrow]="frames.isOrder" class="right-btn arrow-btn"></a>
     </div>
 
   </header>
@@ -73,8 +67,8 @@
 
     <div class="btn__area">
 
-      <button type="submit" (click)='onSubmit()' class='enter-btn' [disabled]='frames.validateForm.pristine'
-        *ngIf='frames.isImg'>
+      <button *ngIf='frames.isImg' type="submit" (click)='onSubmit()' class='enter-btn'
+        [disabled]='frames.validateForm.pristine'>
         {{'ImgTextValid.createWord'|translate}}
       </button>
 

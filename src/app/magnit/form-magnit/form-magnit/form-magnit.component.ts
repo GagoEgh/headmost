@@ -2,12 +2,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import {FormBuilder,} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
@@ -21,7 +16,7 @@ import { FrameService } from 'src/app/frame/frame/frame.service';
   styleUrls: ['./form-magnit.component.css'],
 })
 export class FormMagnitComponent extends FrameImag implements OnInit {
-  public validateForm: FormGroup = new FormGroup({});
+  
   constructor(
     public activatedRoute: ActivatedRoute,
     public frames: FramesServService,
@@ -46,21 +41,7 @@ export class FormMagnitComponent extends FrameImag implements OnInit {
     super.imgColor();
   }
 
-  myForm(): void {
-    //super.myForm();
-    this.validateForm = new FormGroup({
-      text: new FormControl(null, [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(20),
-        super.textValid,
-      ]),
-    });
-  }
-
   public onSubmit(): void {
-    console.log('value',this.frames.validateForm.value)
-    // this.validateForm.invalid
     if (this.frames.validateForm.invalid) {
       const modalRef = this.modalService.open(ErroreMessageComponent);
       setTimeout(() => {

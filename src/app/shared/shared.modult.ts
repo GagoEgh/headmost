@@ -1,28 +1,34 @@
-import { CommonModule } from "@angular/common";
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+//MatModule
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from "@angular/material/dialog";
+
+//NzModule 
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { NzFormModule } from "ng-zorro-antd/form";
 import { NzInputModule } from "ng-zorro-antd/input";
 import { NzSelectModule } from "ng-zorro-antd/select";
-import { NgxMaskModule } from "ngx-mask";
-import { OrderComponent } from "../order/order/order.component";
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
-import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
+import { NzMessageModule } from "ng-zorro-antd/message";
 import { NzModalModule } from 'ng-zorro-antd/modal';
-import { MatSelectModule } from '@angular/material/select';
 
+//NgxModule
+import { NgxMaskModule } from "ngx-mask";
+import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
 import { NgxSpinnerModule } from "ngx-spinner";
+
+//Module
+import { CommonModule } from "@angular/common";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { OrderComponent } from "../order/order/order.component";
 import { TranslateModule } from '@ngx-translate/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
 import { MyimagesComponent } from "./myimages/myimages.component";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
-import { NzMessageModule } from "ng-zorro-antd/message";
-import { MatDialogModule } from "@angular/material/dialog";
 import { DialogContentComponent } from "./components/modal/modal.component";
 
 const MatModule = [
@@ -50,7 +56,7 @@ const NgxModule = [
     NgxSpinnerModule,
 ]
 
-const module = [
+const Module = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -60,7 +66,7 @@ const module = [
 
 @NgModule({
     declarations:
-        [   OrderComponent,
+        [OrderComponent,
             MyimagesComponent,
             DialogContentComponent,
         ],
@@ -68,13 +74,13 @@ const module = [
         ...MatModule,
         ...NzModule,
         ...NgxModule,
-        ...module,
+        ...Module,
         NgxMaskModule,
         OrderComponent,
         MyimagesComponent,
     ],
     imports: [
-        ...module,
+        ...Module,
         ...NzModule,
         ...MatModule,
         ...NgxModule,

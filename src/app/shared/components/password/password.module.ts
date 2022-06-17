@@ -13,13 +13,13 @@ import { MatInputModule } from '@angular/material/input';
     PasswordComponent
   ],
   imports: [
-  MatInputModule,
-  MatDatepickerModule,
+    MatInputModule,
+    MatDatepickerModule,
     CommonModule,
     MatFormFieldModule,
     FontAwesomeModule,
     TranslateModule,
   ],
-  exports:[PasswordComponent]
+  exports: [PasswordComponent]
 })
 export class PasswordModule { }
