@@ -92,7 +92,8 @@ export class FrameComponent
   }
 
   ngAfterViewInit(): void {
-    this.productPrice = this._frameImgService.getPrice();
+    // console.log(this._frameImgService.getPrice())
+    // this.productPrice = this._frameImgService.getPrice();
   }
 
   ngAfterContentChecked(): void {

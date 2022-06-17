@@ -32,7 +32,8 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     public form: FormBuilder,
     public modalService: NgbModal,
     public frameService: FrameService,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+  
   ) {
     super(
       frames,
@@ -44,37 +45,26 @@ export class CreateImgComponent extends FrameImag implements OnInit {
       activatedRoute);
   }
 
-  // public nowImg():void {
-
-  //   this.activatedRoute.queryParams
-  //     .pipe(switchMap((routValue: any): any => {
-  //       this.text = routValue.text;
-  //       return this.imgService.letterColorFone(this.text)
-  //     }))
-  //     .subscribe({
-  //       next: (res: any) => {
-  //        
-  //       }
-  //     })
-
-
-  // }
-
   ngOnInit(): void {
     this.validateForm = this.form.group({ topText: [null] });
     this.bottomText = this.form.group({ btmText: [null] });
   }
 
   public deletImg(): void {
+   
     this.rout.navigate(['frame/form-frame']);
     this.frames.validateForm.reset();
     this.frames.isImg = true;
+    if(this.frames.validateForm.get("text")?.value == null){
+      this.imgService.clearPrice();
+    }
     if (this.frames.isOrder) {
       this.frames.isImg = true;
       this.frames.isOrder = false;
       this.frames.conteinerHeight();
       this.rout.navigate(['frame/form-frame']);
       this.frames.validateForm.reset();
+
     }
   }
 

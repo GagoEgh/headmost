@@ -24,6 +24,7 @@ export class FrameImag {
   protected bottomText: FormGroup = new FormGroup({});
   protected validateForm: FormGroup = new FormGroup({});
   protected letterChar = 0;
+
   constructor(
     public frames: FramesServService,
     public modalService: NgbModal,
@@ -110,6 +111,7 @@ export class FrameImag {
     );
 
     this.imgService.setFramePrice(this.frames.frame.price);
+   
   }
 
   public showFrame(): void {

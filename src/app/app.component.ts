@@ -11,6 +11,7 @@ import { ServerResponce } from './modeles/img-ramka.modele';
 
 import { CookieService } from 'ngx-cookie';
 import { UserData } from './modeles/UserInfo.module';
+import { FrameImageService } from './frame-image/frame-image.service';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,7 @@ export class AppComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private _translate: TranslateService,
     private modalService: NgbModal,
+    public imgService: FrameImageService,
     private router: Router) {
     const lang: any = this.cookie.get('lang');
     let activeLanguage = lang ?? 'hy';
@@ -90,7 +92,10 @@ export class AppComponent implements OnInit {
     this.frames.isImg = true;
     this.frames.isOrder = false;
     this.frames.conteinerHeight();
-    this.frames.validateForm.reset()
+    this.frames.validateForm.reset();
+    if(this.frames.validateForm.get("text")?.value == null){
+      this.imgService.clearPrice()
+    }
   }
 
   public getMagnit(): void {
