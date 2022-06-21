@@ -10,7 +10,9 @@
       <app-password class="password" formControlName="password"></app-password>
       <button mat-raised-button class="login-form-button">
         {{'Order.userData.logIn'|translate}}</button>
-      <p *ngIf='errorLog' [style.color]='"red"' class="errore"> {{'ErroreMessage.checkPass'|translate}}</p>
+      <p *ngIf='errorLog' [style.color]='"red"' class="errore"> 
+        {{'ErroreMessage.checkPass'|translate}}
+      </p>
     </form>
 </div>
 <div class="modal-footer">

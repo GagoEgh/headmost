@@ -6,7 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Api, CountryResult, ServerResponce } from '../modeles/img-ramka.modele';
 import { CardItemResults } from '../modeles/frame-response.modele';
 import { ImageResponse, ImgColorValue, UserImage } from '../modeles/ImageResponse.modele';
@@ -20,11 +20,12 @@ import { WordResult } from '../modeles/WordResult.module';
     providedIn: 'root'
 })
 export class FramesServService {
+    public orderSubject = new BehaviorSubject(null);
     public frameHeigth = {} as { [key: string]: string };
     public validateForm: FormGroup = new FormGroup({});
     public userData: UserData = {} as UserData;
-    public letterImges: WordResult[] = [];
-    public selectedValue: any[] = [];
+    public letterImges!: WordResult[];
+    public selectedValue!: any [];
     public placeholder = '';
     public lang = 'ru';
     public country_placeholder = '';
@@ -49,6 +50,7 @@ export class FramesServService {
     public letterChar: string = '';
     public isImg = true;
     public frame: any;
+    public isGet:boolean = false;
     public api: Api = {
         worldApi: 'https://admin.gift4u.am',
         api_utils: '/utils',
@@ -121,6 +123,13 @@ export class FramesServService {
         public _translate: TranslateService, public modalService: NgbModal) { }
 
 
+    setOrdersDate(data:any){
+        this.orderSubject.next(data)
+    }
+
+    getOrdersDate(){
+        return this.orderSubject.asObservable()
+    }
 
     public letterColection(search: string = '', color: string | number = '', category: number | string = ''): Observable<ServerResponce<ImageResponse[]>> {
         return this.url.get<ServerResponce<ImageResponse[]>>(this.api.worldApi + this.api.api_img + this.api.api_img + '/?color=' + `${color}` + '&category=' + `${category}` + '&search=' + `${search}` + '&limit=1000')

@@ -1,140 +1,147 @@
-<div class="wrap" *ngIf='frames.orderList.length,else noText'>
-  <div class="title-h1">
-    <h1>{{'Order.informImg.titleH1'|translate}}</h1>
-  </div>
-  <form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="card">
-    <div class="login-form">
-      <div class="form">
-        <h2 class="title">{{'Order.informImg.titleH2'|translate}}</h2>
-        <div class="inputs__container">
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label class="label"> {{'Order.userData.frstName'| translate}} </mat-label>
-          <input type="text" matInput formControlName="frstName" id="frstName" [errorStateMatcher]="matcher" trim>
-          <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('required')">
-            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
-          </mat-error>
-          <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('minlength')">
-            <p class="errore">{{'ErroreMessage.minlength'|translate}} 3</p>
-          </mat-error>
-          <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('userNameChar')">
-            <p>{{'ErroreMessage.userNameChar'|translate}}</p>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label class="label">{{'Order.userData.email'|translate}}</mat-label>
-          <input type="email" matInput formControlName="email" id="email" [errorStateMatcher]="matcher" trim>
-          <mat-error *ngIf="this.validateForm.get('email')?.hasError('required')">
-            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
-          </mat-error>
-          <mat-error *ngIf="this.validateForm.get('email')?.hasError('isEmail')">
-            <p class="errore">{{'ErroreMessage.isEmail'|translate}}</p>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label class="label">{{'Order.userData.phoneNumber'|translate}}</mat-label>
-          <input matInput type="tel" mask='(000)00-00-00' formControlName="phoneNumber" id="phoneNumber"
-            [errorStateMatcher]="matcher">
-          <mat-error *ngIf="this.validateForm.get('phoneNumber')?.hasError('required')">
-            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label class="label">{{'Order.userData.country'|translate}}</mat-label>
-          <mat-select formControlName='country'>
-            <mat-optgroup *ngFor='let country of frames.selectedValue' [label]='country["name_"+frames.lang]'>
-              <mat-select class="city">
-                <mat-optgroup *ngFor='let regions of country.country_regions' [label]='regions["name_"+frames.lang]'>
-                  <mat-option class="label" *ngFor='let city of regions.region_cities' [value]='city.id'>
-                    {{city["name_"+frames.lang]}}
-                  </mat-option>
-                </mat-optgroup>
-              </mat-select>
-              <mat-error *ngIf="this.validateForm.get('country')?.hasError('required')">
+<ng-container *ngIf="frames.isGet">
+  <div class="wrap" *ngIf='frames?.orderList?.length,else noText'>
+    <div class="title-h1">
+      <h1>{{'Order.informImg.titleH1'|translate}}</h1>
+    </div>
+    <form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="card">
+      <div class="login-form">
+        <div class="form">
+          <h2 class="title">{{'Order.informImg.titleH2'|translate}}</h2>
+          <div class="inputs__container">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label class="label"> {{'Order.userData.frstName'| translate}} </mat-label>
+              <input type="text" matInput formControlName="frstName" id="frstName" [errorStateMatcher]="matcher" trim>
+              <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('required')">
                 <p class="errore">{{'ErroreMessage.required'|translate}}</p>
               </mat-error>
-            </mat-optgroup>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label class="label">{{'Order.userData.addres'|translate}}</mat-label>
-          <input matInput type="text" formControlName="addres" id="addres" [errorStateMatcher]="matcher">
-          <mat-error *ngIf="this.validateForm.get('addres')?.hasError('required')">
-            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label class="label">{{'Order.userData.shipping'|translate}}</mat-label>
-          <mat-select formControlName='shipping'>
-            <mat-option *ngFor='let addres of shiping ' [value]="addres.id">
-              {{addres['name_'+frames.lang] + ' ' + addres.price+'Դ'}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="this.validateForm.get('shipping')?.hasError('required')">
-            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label class="label">{{'Order.userData.addresPost'|translate}}</mat-label>
-          <input matInput formControlName="postal" id="postal" trim [errorStateMatcher]="matcher">
-          <mat-error *ngIf="this.validateForm.get('postal')?.hasError('required')">
-            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
-          </mat-error>
-          <mat-error *ngIf="this.validateForm.get('postal')?.hasError('maxlength')">
-            <p class="errore">{{'ErroreMessage.titleLength'|translate}}</p>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label class="label">{{'Order.userData.comment'|translate}}</mat-label>
-          <input matInput formControlName="comment" id="comment" [errorStateMatcher]="matcher">
-          <mat-error *ngIf="this.validateForm.get('comment')?.hasError('maxlength')">
-            <p class="errore">{{'ErroreMessage.titleLength'|translate}} 20</p>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label class="label">{{'Order.userData.sale'|translate}}</mat-label>
-          <input matInput formControlName="sale" id="sale" (input)="salePost($event)" [errorStateMatcher]="matcher">
-          <mat-error *ngIf="this.validateForm.get('sale')?.hasError('maxlength')">
-            <p class="errore">{{'ErroreMessage.titleLength'|translate}} 6</p>
-          </mat-error>
-        </mat-form-field>
-        </div>
-      </div>
-      <div class="order">
-        <div class="order-content">
-          <h2 class="title">{{'Order.informImg.title'|translate}}</h2>
-          <div class="data" *ngFor='let list of frames.orderList'>
-            <div class="letter-length">
-              <p class="errore">
-                <span>{{list?.created_frame_details?.word?.length }} {{ 'Order.informImg.imgLength'|translate}}
-                </span>
-                <span *ngIf='frames.lang==="hy"'> {{ list?.created_frame_details?.frame_details?.name_hy }} </span>
-                <span *ngIf='frames.lang==="en"'> {{ list?.created_frame_details?.frame_details?.name_en }} </span>
-                <span *ngIf='frames.lang==="ru"'> {{ list?.created_frame_details?.frame_details?.name_ru }} </span>
-              </p>
-            </div>
-            <div >
-              <p class="smoll" *ngIf="list?.created_frame_details?.frame_details?.price">
-                {{ list?.created_frame_details?.frame_details?.price }} {{ 'Order.informImg.letterSum'|translate}}
-              </p>
-            </div>
-            <div class="add-sum">
-              <p> {{ list?.created_frame_details?.price }} {{ 'Order.informImg.price'|translate}}</p>
-            </div>
-            <div>
-              <span class="symbol"  (click)='deleteDate(list)'>&#10005;</span>
-            </div>
+              <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('minlength')">
+                <p class="errore">{{'ErroreMessage.minlength'|translate}} 3</p>
+              </mat-error>
+              <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('userNameChar')">
+                <p>{{'ErroreMessage.userNameChar'|translate}}</p>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label class="label">{{'Order.userData.email'|translate}}</mat-label>
+              <input type="email" matInput formControlName="email" id="email" [errorStateMatcher]="matcher" trim>
+              <mat-error *ngIf="this.validateForm.get('email')?.hasError('required')">
+                <p class="errore">{{'ErroreMessage.required'|translate}}</p>
+              </mat-error>
+              <mat-error *ngIf="this.validateForm.get('email')?.hasError('isEmail')">
+                <p class="errore">{{'ErroreMessage.isEmail'|translate}}</p>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label class="label">{{'Order.userData.phoneNumber'|translate}}</mat-label>
+              <input matInput type="tel" mask='(000)00-00-00' formControlName="phoneNumber" id="phoneNumber"
+                [errorStateMatcher]="matcher">
+              <mat-error *ngIf="this.validateForm.get('phoneNumber')?.hasError('required')">
+                <p class="errore">{{'ErroreMessage.required'|translate}}</p>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label class="label">{{'Order.userData.country'|translate}}</mat-label>
+              <mat-select formControlName='country'>
+                <mat-optgroup *ngFor='let country of frames.selectedValue' [label]='country["name_"+frames.lang]'>
+                  <mat-select class="city">
+                    <mat-optgroup *ngFor='let regions of country.country_regions'
+                      [label]='regions["name_"+frames.lang]'>
+                      <mat-option class="label" *ngFor='let city of regions.region_cities' [value]='city.id'>
+                        {{city["name_"+frames.lang]}}
+                      </mat-option>
+                    </mat-optgroup>
+                  </mat-select>
+                  <mat-error *ngIf="this.validateForm.get('country')?.hasError('required')">
+                    <p class="errore">{{'ErroreMessage.required'|translate}}</p>
+                  </mat-error>
+                </mat-optgroup>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label class="label">{{'Order.userData.addres'|translate}}</mat-label>
+              <input matInput type="text" formControlName="addres" id="addres" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="this.validateForm.get('addres')?.hasError('required')">
+                <p class="errore">{{'ErroreMessage.required'|translate}}</p>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label class="label">{{'Order.userData.shipping'|translate}}</mat-label>
+              <mat-select formControlName='shipping'>
+                <mat-option *ngFor='let addres of shiping ' [value]="addres.id">
+                  {{addres['name_'+frames.lang] + ' ' + addres.price+'Դ'}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="this.validateForm.get('shipping')?.hasError('required')">
+                <p class="errore">{{'ErroreMessage.required'|translate}}</p>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label class="label">{{'Order.userData.addresPost'|translate}}</mat-label>
+              <input matInput formControlName="postal" id="postal" trim [errorStateMatcher]="matcher">
+             
+              <mat-error *ngIf="this.validateForm.get('postal')?.hasError('required')">
+                <p class="errore">{{'ErroreMessage.required'|translate}}</p>
+              </mat-error>
+              <mat-error *ngIf="this.validateForm.get('postal')?.hasError('maxlength')">
+                <p class="errore">
+                  {{'ErroreMessage.maxLength'|translate}} 
+                  {{validateForm.get('postal')?.errors?.maxlength?.requiredLength}}
+                </p>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label class="label">{{'Order.userData.comment'|translate}}</mat-label>
+              <input matInput formControlName="comment" id="comment" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="this.validateForm.get('comment')?.hasError('maxlength')">
+                <p class="errore">{{'ErroreMessage.titleLength'|translate}} 20</p>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label class="label">{{'Order.userData.sale'|translate}}</mat-label>
+              <input matInput formControlName="sale" id="sale" (input)="salePost($event)" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="this.validateForm.get('sale')?.hasError('maxlength')">
+                <p class="errore">{{'ErroreMessage.titleLength'|translate}} 6</p>
+              </mat-error>
+            </mat-form-field>
           </div>
         </div>
-        <div class="sum">
-          <p>{{'Order.informImg.addSum'|translate }} {{ frames?.sum }} {{
-            'Order.informImg.price'|translate}}</p>
+        <div class="order">
+          <div class="order-content">
+            <h2 class="title">{{'Order.informImg.title'|translate}}</h2>
+            <div class="data" *ngFor='let list of frames.orderList'>
+              <div class="letter-length">
+                <p class="errore">
+                  <span>{{list?.created_frame_details?.word?.length }} {{ 'Order.informImg.imgLength'|translate}}
+                  </span>
+                  <span *ngIf='frames.lang==="hy"'> {{ list?.created_frame_details?.frame_details?.name_hy }} </span>
+                  <span *ngIf='frames.lang==="en"'> {{ list?.created_frame_details?.frame_details?.name_en }} </span>
+                  <span *ngIf='frames.lang==="ru"'> {{ list?.created_frame_details?.frame_details?.name_ru }} </span>
+                </p>
+              </div>
+              <div>
+                <p class="smoll" *ngIf="list?.created_frame_details?.frame_details?.price">
+                  {{ list?.created_frame_details?.frame_details?.price }} {{ 'Order.informImg.letterSum'|translate}}
+                </p>
+              </div>
+              <div class="add-sum">
+                <p> {{ list?.created_frame_details?.price }} {{ 'Order.informImg.price'|translate}}</p>
+              </div>
+              <div>
+                <span class="symbol" (click)='deleteDate(list)'>&#10005;</span>
+              </div>
+            </div>
+          </div>
+          <div class="sum">
+            <p>{{'Order.informImg.addSum'|translate }} {{ frames?.sum }} {{
+              'Order.informImg.price'|translate}}</p>
+          </div>
         </div>
       </div>
-    </div>
-    <button mat-raised-button class="login-form-button">
-      {{'Order.userData.btnOrder'|translate}}</button>
-  </form>
-</div>
+      <button mat-raised-button class="login-form-button">
+        {{'Order.userData.btnOrder'|translate}}</button>
+    </form>
+  </div>
+</ng-container>
 <ng-template #noText>
   <div class="noText">
     <H3>{{'Order.informImg.carzin'|translate}}</H3>

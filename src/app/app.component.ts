@@ -5,10 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { ServerResponce } from './modeles/img-ramka.modele';
-
+import { switchMap, takeUntil } from 'rxjs/operators';
+import { of, Subject } from 'rxjs';
 import { CookieService } from 'ngx-cookie';
 import { UserData } from './modeles/UserInfo.module';
 import { FrameImageService } from './frame-image/frame-image.service';
@@ -48,18 +46,47 @@ export class AppComponent implements OnInit {
       const result = JSON.parse(date)
       this.frames.userData = result;
       this.frames.userReg = false;
-
-      this.frames.userInfo().pipe(takeUntil(this.unsubscribe$)).subscribe((serverResponse: ServerResponce<[]>) => {
-        this.frames.orderList = serverResponse.results;
-        this.frames.orderList.forEach((obj: any) => {
-          this.frames.sum += obj.created_frame_details.price;
-        });
-      })
-      
+      console.log('date',result)
+      this.getUserInfo(result.user);
     }
   }
 
 
+  getUserInfo(id:number) {
+    this.spinner.show();
+    this.frames.getUserOrder(id)
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe({
+      next: (res: any) => {
+        this.frames.orderList = res.results;
+        this.frames.isGet = true;
+        this.frames.setOrdersDate(this.frames.orderList);
+        this.frames.orderList.forEach((obj: any) => {
+          this.frames.sum += obj.created_frame_details.price;
+        });
+        console.log('frames.sum',this.frames.sum)
+        this.spinner.hide();
+      }
+    })
+
+    // this.frames.userInfo()
+    //   .pipe(
+    //     takeUntil(this.unsubscribe$),
+    //     switchMap((serverResponse: any) => {
+    //     //  this.spinner.show();
+    //       return this.frames.getUserOrder(serverResponse.results[0].user)
+    //     })
+    //   ).subscribe({
+    //     next: (res: any) => {
+    //       this.frames.orderList = res.results;
+    //       this.frames.isGet = true;
+    //       this.frames.orderList.forEach((obj: any) => {
+    //         this.frames.sum += obj.created_frame_details.price;
+    //       });
+    //       this.spinner.hide();
+    //     }
+    //   })
+  }
 
   public scrollToTopByChangeRoute() {
     this.router.events.pipe(takeUntil(this.unsubscribe$)).subscribe((evt) => {
@@ -94,7 +121,7 @@ export class AppComponent implements OnInit {
     this.frames.isOrder = false;
     this.frames.conteinerHeight();
     this.frames.validateForm.reset();
-    if(this.frames.validateForm.get("text")?.value == null){
+    if (this.frames.validateForm.get("text")?.value == null) {
       this.imgService.clearPrice()
     }
   }

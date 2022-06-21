@@ -30,7 +30,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class OrderComponent implements OnInit, AfterViewChecked {
   public validateForm: FormGroup = new FormGroup({});
-
   public _subscribe$ = new Subject();
   public erroreStr: string = '';
   public promoError: string = '';
@@ -51,10 +50,23 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this.orderService.isdisible = false;
     this.frames.isMyOrder = false;
     this.shipingGet();
-    this.addSum();
+     
     this.frames.sum = this.sumInit > this.frames.sum ? this.sumInit : this.frames.sum
     this.frames.userCountry();
     this.orderFormValidation();
+    this.getOrder()
+  }
+
+  getOrder(){
+    this.frames.getOrdersDate()
+    .pipe(takeUntil(this._subscribe$))
+    .subscribe({
+      next:(res:any)=>{
+        if(res){
+          this.addSum();
+        }
+      }
+    })
   }
 
   ngAfterViewChecked(): void {
@@ -99,6 +111,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   }
 
   public submitForm(): void {
+    console.log(this.validateForm.get('postal')?.errors?.maxlength?.requiredLength)
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
