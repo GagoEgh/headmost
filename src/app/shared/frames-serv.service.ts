@@ -1,5 +1,5 @@
 import { LoginComponent } from '../register/login/login.component';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { TranslateService } from "@ngx-translate/core";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from "ngx-spinner";
@@ -24,13 +24,13 @@ export class FramesServService {
     public validateForm: FormGroup = new FormGroup({});
     public userData: UserData = {} as UserData;
     public letterImges: WordResult[] = [];
-    public selectedValue: any[]  = [];
+    public selectedValue: any[] = [];
     public placeholder = '';
     public lang = 'ru';
     public country_placeholder = '';
     public isOrder: boolean = false;
     public isSilki = false;
-    public orderList: CardItemResults[] = [];
+    public orderList!: CardItemResults[];
     public background: any = {};
     public topText: string = '';
     public btmText: string = '';
@@ -76,10 +76,10 @@ export class FramesServService {
         api_user_image: '/user-image',
         api_created_frame: '/created-frame',
         api_magnet: '/add-magnet-in-card',
-        api_languages:'/static/languages',
-        api_en:'/en.json',
-        api_ru:'/ru.json',
-        api_hy:'/hy.json'
+        api_languages: '/static/languages',
+        api_en: '/en.json',
+        api_ru: '/ru.json',
+        api_hy: '/hy.json'
     }
 
     public imgColor: { ceys: CategoryDetails, values: ImgColorValue }[] = [
@@ -164,6 +164,11 @@ export class FramesServService {
         })
     }
 
+   
+    public getUserOrder(id:number) {
+        return this.url.get(this.api.worldApi + this.api.api_order + this.api.api_card+ `/?user=${id}&limit=1000`,
+        { headers: { 'Authorization': this.token } })
+    }
     public showFrame(): void {
         this.isOrder = false;
         this.isImg = true;
@@ -211,11 +216,12 @@ export class FramesServService {
                 })
             }
 
-            this.getOrder(order).subscribe((orderList: CardItemResults[]) => {
-                this.orderList = orderList;
-                this.isOrder = true;
-                this.spinner.hide()
-            })
+            this.getOrder(order)
+                .subscribe((orderList: CardItemResults[]) => {
+                    this.orderList = orderList;
+                    this.isOrder = true;
+                    this.spinner.hide()
+                })
         } else {
             const modalRef = this.modalService.open(LoginComponent);
 

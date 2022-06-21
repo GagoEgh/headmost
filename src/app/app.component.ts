@@ -55,6 +55,7 @@ export class AppComponent implements OnInit {
           this.frames.sum += obj.created_frame_details.price;
         });
       })
+      
     }
   }
 

@@ -17,8 +17,7 @@
             </div>
             <div class="top" [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.top_line_image + ')':'url('+ideaImgService.ideaImg.frame_details?.top_line_image+')'"></div>
             <div class="im" [style.backgroundColor]="frames.background.color" (mouseleave)="onMouseleave()" (mouseenter)="onMouseenter()">
-                <div class="menu">
-                    
+                <div class="menu">  
                     <div class="change" (click)='changeImg()' [style.opacity]="topLettering.isMenu?'1':'0'">
                         <p class="bottom-par">{{'Imgs.changeImage'|translate}}</p>
                     </div>

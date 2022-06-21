@@ -1,7 +1,6 @@
 import {
   AfterContentChecked,
   AfterViewChecked,
-  AfterViewInit,
   Component,
   ElementRef,
   HostListener,
@@ -29,7 +28,7 @@ import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
 })
 export class FrameComponent
   extends FrameImag
-  implements OnInit, AfterViewChecked, AfterViewInit, AfterContentChecked
+  implements OnInit, AfterViewChecked, AfterContentChecked
 {
   @ViewChild('block', { static: false }) block: ElementRef | undefined;
   private width: number | undefined;
@@ -91,10 +90,6 @@ export class FrameComponent
     });
   }
 
-  ngAfterViewInit(): void {
-    // console.log(this._frameImgService.getPrice())
-    // this.productPrice = this._frameImgService.getPrice();
-  }
 
   ngAfterContentChecked(): void {
     this.productPrice = this._frameImgService.getPrice();

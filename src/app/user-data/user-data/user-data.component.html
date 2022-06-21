@@ -51,7 +51,7 @@
       </div>
       <div class="form-1">
         <mat-form-field appearance="fill">
-          <mat-label class="label">Input disabled</mat-label>
+          <mat-label class="label">{{'Order.userData.brtDay'|translate}}</mat-label>
           <input matInput [max]="currentDate" [matDatepicker]="dp3" formControlName='date'>
           <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
           <mat-datepicker #dp3 disabled="false"></mat-datepicker>

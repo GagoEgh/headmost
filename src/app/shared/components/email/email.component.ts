@@ -40,7 +40,7 @@ export class EmailComponent implements OnInit,ControlValueAccessor  {
   }
 
   ngOnInit(): void {
-    console.log(this.control)
+
   }
   
 
