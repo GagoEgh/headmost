@@ -11,7 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogContentComponent } from '../components/modal/modal.component';
-import { IfStmt } from '@angular/compiler';
+import { NzImageModule } from 'ng-zorro-antd/image';
 
 @Component({
   selector: 'app-myimages',
