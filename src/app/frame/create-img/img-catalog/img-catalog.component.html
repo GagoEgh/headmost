@@ -36,6 +36,7 @@
                 <div class="color">
                     <p class="subtitle">{{'ImgMenu.categori'|translate}}</p>
                     <ul class="ul">
+                        <li (click)="getOll()">oll</li>
                         <li class="list" *ngFor='let category of categoryList, let i = index'
                             (click)='showCategory(category)'
                             [ngClass]="{'listActive':imgService.painding.categoryId=== category.id && this.frames.apiPhoto}">

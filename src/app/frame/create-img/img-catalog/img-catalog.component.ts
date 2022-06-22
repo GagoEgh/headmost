@@ -23,26 +23,39 @@ import { WordResult } from 'src/app/modeles/WordResult.module';
 })
 export class ImgCatalogComponent implements OnInit {
   private _subscribe$ = new Subject();
-  public img: ImageResponse[] = []
-  public character = {} as WordResult;
+  public img!: ImageResponse[];
+  public character!: WordResult;
   @Output() newItem = new EventEmitter();
   @ViewChild("header", { static: false }) block: ElementRef | undefined;
-  public categoryList: CategoryDetails[] = [];
-  constructor(public activeModal: NgbActiveModal, public _translate: TranslateService,
-    public imgService: FrameImageService, public imgCatalogService: ImgCatalogService, public frames: FramesServService, public modalService: NgbModal) {
+  public categoryList!: CategoryDetails[];
+
+  constructor(
+    public activeModal: NgbActiveModal,
+    public _translate: TranslateService,
+    public imgService: FrameImageService,
+    public imgCatalogService: ImgCatalogService,
+    public frames: FramesServService,
+    public modalService: NgbModal) {
   }
 
   ngOnInit(): void {
     this.frames.apiPhoto = true;
     this.imgService.painding.imgs = this.img;
     this.createCategory();
+    console.log(this.imgService.painding.imgs);
   }
 
+  getOll() {
+    // console.log(this.imgService.painding.imgs)
+    this.imgService.painding.imgs = this.img;
+    //this.chengePopapImg();
+  }
 
   private chengePopapImg(): void {
     this.frames.letterColection(this.character.character.toUpperCase(), this.imgService.painding.id)
       .subscribe((imageResponse: ServerResponce<ImageResponse[]>) => {
         this.imgService.painding.imgs = imageResponse.results;
+        console.log('change', this.imgService.painding.imgs)
       })
   }
 
@@ -63,9 +76,11 @@ export class ImgCatalogComponent implements OnInit {
   }
 
   private createCategory(): void {
-    this.imgCatalogService.getCategory().pipe(takeUntil(this._subscribe$)).subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
-      this.categoryList = categoryDetails.results;
-    })
+    this.imgCatalogService.getCategory()
+      .pipe(takeUntil(this._subscribe$))
+      .subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
+        this.categoryList = categoryDetails.results;
+      })
   }
 
   public showCategory(category: CategoryDetails): void {
@@ -80,11 +95,12 @@ export class ImgCatalogComponent implements OnInit {
 
   public getMyPhoto(): void {
     if (localStorage.getItem('loginAutorization')) {
-      this.frames.userImageGet(0).pipe(takeUntil(this._subscribe$))
-      .subscribe((userImage: ServerResponce<UserImage[]>) => {
-        this.frames.fileList = userImage.results;
-        this.frames.apiPhoto = false;
-      })
+      this.frames.userImageGet(0)
+        .pipe(takeUntil(this._subscribe$))
+        .subscribe((userImage: ServerResponce<UserImage[]>) => {
+          this.frames.fileList = userImage.results;
+          this.frames.apiPhoto = false;
+        })
 
     } else {
       const modalRef = this.modalService.open(NoUsserComponent);

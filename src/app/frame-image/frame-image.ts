@@ -129,7 +129,6 @@ export class FrameImag {
   }
 
   public openImg(img: any, num: number): void {
-
     this.frames
       .letterColection(img.character.toUpperCase())
       .pipe(takeUntil(this._unsubscribe$))
