@@ -45,17 +45,17 @@ export class ImgCatalogComponent implements OnInit {
     console.log(this.imgService.painding.imgs);
   }
 
-  getOll() {
-    // console.log(this.imgService.painding.imgs)
+  getAll() {
+
+    this.imgService.painding.categoryId = 0;
     this.imgService.painding.imgs = this.img;
-    //this.chengePopapImg();
   }
 
+  
   private chengePopapImg(): void {
     this.frames.letterColection(this.character.character.toUpperCase(), this.imgService.painding.id)
       .subscribe((imageResponse: ServerResponce<ImageResponse[]>) => {
         this.imgService.painding.imgs = imageResponse.results;
-        console.log('change', this.imgService.painding.imgs)
       })
   }
 

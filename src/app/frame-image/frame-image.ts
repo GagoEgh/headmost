@@ -151,7 +151,9 @@ export class FrameImag {
             }
           }
         );
+       
       });
+      
   }
 
   public checkImage(img: string): boolean {

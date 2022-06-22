@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss(imgService.painding.categoryId = 0)">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
@@ -36,18 +36,19 @@
                 <div class="color">
                     <p class="subtitle">{{'ImgMenu.categori'|translate}}</p>
                     <ul class="ul">
-                        <li (click)="getOll()">oll</li>
+                        <li class="list" [class.listActive]='imgService.painding.categoryId===0' (click)="getAll()">
+                            {{'IdeaImg.all'|translate}}
+                        </li>
                         <li class="list" *ngFor='let category of categoryList, let i = index'
                             (click)='showCategory(category)'
-                            [ngClass]="{'listActive':imgService.painding.categoryId=== category.id && this.frames.apiPhoto}">
+                            [class.listActive]='imgService.painding.categoryId===category.id && this.frames.apiPhoto'>
                             <span *ngIf='frames.lang==="hy"'>{{category.name_hy}}</span>
                             <span *ngIf='frames.lang==="ru"'>{{category.name_ru}}</span>
                             <span *ngIf='frames.lang==="en"'>{{category.name_en}}</span>
                         </li>
                         <li class="list" (click)="getMyPhoto()"
-                        [ngClass]="{'listActive':!this.frames.apiPhoto}">
+                            [ngClass]="{'listActive':!this.frames.apiPhoto}">
                             {{'ImgMenu.myPhoto'|translate}}
-
                         </li>
                     </ul>
                 </div>
