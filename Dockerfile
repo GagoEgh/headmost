@@ -1,4 +1,4 @@
-FROM node:8.9.0-alpine as build-step
+FROM node:16.14.2-bullseye as build-step
 RUN mkdir -p /app
 WORKDIR /app
 COPY . /app
