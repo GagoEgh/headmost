@@ -35,8 +35,6 @@
 .box {
     display: flex;
     flex-wrap: wrap;
-
-    /* height: calc(100vh - 400px) */
 }
 
 .files {
@@ -79,9 +77,7 @@ input[type=file] {
     opacity: 0;
     width: 20px;
     height: 20px;
-    /* position: absolute; */
     position: relative;
-    /* right: 0; */
     left: 70%;
     top: -105px;
     font-weight: bold;
