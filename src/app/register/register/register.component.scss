@@ -37,7 +37,7 @@
   margin-left: 40px;
 }
 
-.city:hover{
+.city:hover {
   background: gainsboro;
 }
 
@@ -69,26 +69,36 @@
   width: 240px;
 }
 
-:host::ng-deep app-password .errors-content{
-  margin: -20px 0 0 55px;
+:host::ng-deep app-password .errors-content {
+  margin-left: 10px;
 }
 
 :host::ng-deep app-email .mat-form {
   width: 250px;
 }
 
-:host::ng-deep app-email .errors-content{
-  margin: -20px 0 0 55px;
+:host::ng-deep app-email .errors-content {
+  margin-left: 10px;
 }
 
 :host::ng-deep app-password .mat-form {
   width: 250px;
 }
 
-:host::ng-deep app-password .error{
+:host::ng-deep app-password .error {
   margin: -15px 0 0 43px;
 }
 
-:host::ng-deep app-email .error{
+:host::ng-deep app-email .error {
   margin: -15px 0 0 43px;
+}
+
+@media (max-width:991px) {
+  :host::ng-deep app-email .errors-content {
+    margin: -20px 0 0 55px;
+  }
+
+  :host::ng-deep app-password .errors-content {
+    margin: -20px 0 0 55px;
+  }
 }
