@@ -3,12 +3,13 @@
 }
 
 .errors-content {
-    height: 30px;
+    height: 20px;
     text-align: start;
+    margin-top: -15px;
 }
 
 .error {
     color: tomato;
     font-size: 10px;
-    margin: -15px 0 0 0;
+    margin-bottom: 15px;
 }
