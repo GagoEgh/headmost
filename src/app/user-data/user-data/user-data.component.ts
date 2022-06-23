@@ -30,7 +30,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class UserDataComponent implements OnInit, AfterViewChecked {
   public validateForm: FormGroup = new FormGroup({});
- 
+
   public matcher = new MyErrorStateMatcher();
   public _unsubscribe$ = new Subject();
   private userName = '';
@@ -45,8 +45,8 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     private spinner: NgxSpinnerService,
     public _translate: TranslateService,
     public frames: FramesServService,
-) {
-   
+  ) {
+
   }
 
   ngAfterViewChecked(): void {
@@ -54,7 +54,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     this.frames.cityPlaceholder();
   }
 
- 
+
   ngOnInit(): void {
     this.spinner.show();
     this.spinner.hide();
@@ -62,6 +62,12 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     this.frames.userCountry();
     this.userName = this.frames.userData.user_details.first_name;
     this.changeDate();
+    
+    this.initForm();
+    this.validateForm.get('date')?.disable();
+  }
+
+  private initForm() {
     this.validateForm = this.fb.group({
       frstName: [this.userName, [Validators.required, Validators.minLength(3), Validators.maxLength(50), this.valid.userNameChar]],
       last: [this.frames.userData.user_details.last_name, [Validators.required, Validators.minLength(3), Validators.maxLength(50), this.valid.userNameChar]],
@@ -71,7 +77,6 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
       country: [this.frames.userData.city, [Validators.required]],
       date: [this.frames.userData.date_of_birth, [Validators.required]],
     });
-    this.validateForm.get('date')?.disable();
   }
 
   private birt(formName: string): string {
@@ -88,9 +93,10 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     const modal = this.modalService.open(ChangePasswordComponent);
   }
 
-  openEmail(){
+  openEmail() {
     this.modalService.open(ChangeEmailComponent);
   }
+  
   private changeDate(): void {
     let data: any = localStorage.getItem('user-date');
     let user_data = JSON.parse(data);
@@ -111,7 +117,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
 
 
   public submitForm(): void {
-  
+
     const date = this.birt('date');
     const edit: Edit = {
       date_of_birth: date,
@@ -125,7 +131,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
 
 
     this.changeDate()
-    if ( this.isChange) {
+    if (this.isChange) {
       this.userName = edit.first_name;
       this.lastName = edit.last_name;
       console.log(edit)

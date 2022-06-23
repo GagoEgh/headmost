@@ -22,8 +22,8 @@ import { WordResult } from '../modeles/WordResult.module';
 export class FramesServService {
     public orderSubject = new BehaviorSubject(null);
     public frameHeigth = {} as { [key: string]: string };
-    public validateForm: FormGroup = new FormGroup({});
-    public userData: UserData = {} as UserData;
+    public validateForm!: FormGroup ;
+    public userData!: UserData;
     public letterImges!: WordResult[];
     public selectedValue!: any [];
     public placeholder = '';
@@ -156,10 +156,11 @@ export class FramesServService {
             { headers: { 'Authorization': this.token } })
     }
 
-    public userCountry(): void {
-        this.getCountry().subscribe((countryResult: ServerResponce<CountryResult[]>) => {
-            this.selectedValue = countryResult.results
-        })
+    public userCountry() {
+      return  this.getCountry()
+        // .subscribe((countryResult: ServerResponce<CountryResult[]>) => {
+        //     this.selectedValue = countryResult.results
+        // })
     }
 
     public orderCard(obj: { created_frame: string, user: number }): Observable<CardItemResults> {
@@ -167,10 +168,11 @@ export class FramesServService {
             { headers: { 'Authorization': this.token } })
     }
 
-    public cityPlaceholder(): void {
-        this._translate.get('Order.userData.countryPlaceholder').subscribe((city: string) => {
-            this.country_placeholder = city;
-        })
+    public cityPlaceholder(){
+       return this._translate.get('Order.userData.countryPlaceholder')
+        // .subscribe((city: string) => {
+        //     this.country_placeholder = city;
+        // })
     }
 
    
@@ -178,6 +180,7 @@ export class FramesServService {
         return this.url.get(this.api.worldApi + this.api.api_order + this.api.api_card+ `/?user=${id}&limit=1000`,
         { headers: { 'Authorization': this.token } })
     }
+    
     public showFrame(): void {
         this.isOrder = false;
         this.isImg = true;

@@ -5,8 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
-import { switchMap, takeUntil } from 'rxjs/operators';
-import { of, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { forkJoin, Subject } from 'rxjs';
 import { CookieService } from 'ngx-cookie';
 import { UserData } from './modeles/UserInfo.module';
 import { FrameImageService } from './frame-image/frame-image.service';
@@ -26,6 +26,39 @@ export class AppComponent implements OnInit {
     private modalService: NgbModal,
     public imgService: FrameImageService,
     private router: Router) {
+    this.getLanguage();
+  }
+
+
+  ngOnInit(): void {
+    this.scrollToTopByChangeRoute();
+    this.frames.cityPlaceholder();
+    this.getLocalInfo();
+  }
+
+  public scrollToTopByChangeRoute() {
+    this.router.events
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((evt) => {
+        if (!(evt instanceof NavigationEnd)) {
+          return;
+        }
+        window.scrollTo(0, 0)
+      });
+  }
+  private getLocalInfo() {
+    if (localStorage.getItem('loginAutorization')) {
+      const token: any = localStorage.getItem('loginAutorization');
+      this.frames.token = token;
+      const date: any = localStorage.getItem('user-date')
+      const result = JSON.parse(date)
+      this.frames.userData = result;
+      this.frames.userReg = false;
+      this.getUserInfo(result.user);
+    }
+  }
+
+  private getLanguage() {
     const lang: any = this.cookie.get('lang');
     let activeLanguage = lang ?? 'hy';
     if (!lang) {
@@ -35,67 +68,25 @@ export class AppComponent implements OnInit {
     this.frames.lang = activeLanguage
   }
 
-
-  ngOnInit(): void {
-    this.scrollToTopByChangeRoute();
-    this.frames.cityPlaceholder();
-    if (localStorage.getItem('loginAutorization')) {
-      const token: any = localStorage.getItem('loginAutorization');
-      this.frames.token = token;
-      const date: any = localStorage.getItem('user-date')
-      const result = JSON.parse(date)
-      this.frames.userData = result;
-      this.frames.userReg = false;
-      console.log('date',result)
-      this.getUserInfo(result.user);
-    }
-  }
-
-
-  getUserInfo(id:number) {
+  getUserInfo(id: number) {
     this.spinner.show();
     this.frames.getUserOrder(id)
-    .pipe(takeUntil(this.unsubscribe$))
-    .subscribe({
-      next: (res: any) => {
-        this.frames.orderList = res.results;
-        this.frames.isGet = true;
-        this.frames.setOrdersDate(this.frames.orderList);
-        this.frames.orderList.forEach((obj: any) => {
-          this.frames.sum += obj.created_frame_details.price;
-        });
-        console.log('frames.sum',this.frames.sum)
-        this.spinner.hide();
-      }
-    })
-
-    // this.frames.userInfo()
-    //   .pipe(
-    //     takeUntil(this.unsubscribe$),
-    //     switchMap((serverResponse: any) => {
-    //     //  this.spinner.show();
-    //       return this.frames.getUserOrder(serverResponse.results[0].user)
-    //     })
-    //   ).subscribe({
-    //     next: (res: any) => {
-    //       this.frames.orderList = res.results;
-    //       this.frames.isGet = true;
-    //       this.frames.orderList.forEach((obj: any) => {
-    //         this.frames.sum += obj.created_frame_details.price;
-    //       });
-    //       this.spinner.hide();
-    //     }
-    //   })
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (res: any) => {
+          this.frames.orderList = res.results;
+          this.frames.isGet = true;
+          this.frames.setOrdersDate(this.frames.orderList);
+          this.frames.orderList.forEach((obj: any) => {
+            this.frames.sum += obj.created_frame_details.price;
+          });
+          console.log('frames.sum', this.frames.sum)
+          this.spinner.hide();
+        }
+      })
   }
 
-  public scrollToTopByChangeRoute() {
-    this.router.events.pipe(takeUntil(this.unsubscribe$)).subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
-      }
-      window.scrollTo(0, 0)
-    });
-  }
+
 
 
   public open(): void {

@@ -6,11 +6,9 @@
     <div class="logo" (click)="getFrame()">
       <p>Gift4u</p>
     </div>
-    <div (click)="frames.isSilki=true" >
+    <div (click)="frames.isSilki=true">
       <span class="material-icons-outlined">
-        <img 
-        src="./assets/1x/outline_view_headline_black_24dp.png"
-        >
+        <img src="./assets/1x/outline_view_headline_black_24dp.png">
       </span>
       <ul class="silki" [class.check-silki]='frames.isSilki'>
         <li class="parent">
@@ -42,7 +40,8 @@
                 <img src="./assets/1x/drop.png" class="drop">
                 <ul class="user-data">
                   <li class="list">
-                    <a routerLink='/user/profil'>{{'Menu.user.profil'|translate}}</a></li>
+                    <a routerLink='/user/profil'>{{'Menu.user.profil'|translate}}</a>
+                  </li>
                   <li class="list"><a routerLink='/user/imags'>{{'Menu.user.images'|translate}}</a></li>
                   <li class="list"><a routerLink='/user/user-order'>{{'Menu.user.orders'|translate}}</a></li>
                   <li class="list" (click)="close()">{{'Menu.user.close'|translate}}</li>
@@ -70,17 +69,10 @@
         </li>
       </ul>
     </div>
-    <!-- </div> -->
   </div>
-  <!-- <a class="order" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
-    <img src='../assets/1x/orderIconBlack.png'>
-    <span [style.color]="'red'">{{frames.orderList?.length}}</span>
-  </a> -->
   <div class="rout">
     <router-outlet></router-outlet>
   </div>
-
-
   <div class="footerWrap">
     <div class="width footer-width">
       <div class="left">
