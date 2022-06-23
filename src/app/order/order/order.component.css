@@ -78,10 +78,10 @@
 }
 
 .add-sum{
-  /* width: 50px; */
   font-weight: 700;
   font-size: 11px;
   padding-left: 10px;
+  width: 60px;
 }
 
 .errore{

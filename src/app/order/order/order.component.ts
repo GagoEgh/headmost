@@ -39,9 +39,15 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   private count: number = 0;
   public matcher = new MyErrorStateMatcher();
   private userName: string = '';
-  constructor(public frames: FramesServService, private fb: FormBuilder, public modalService: NgbModal,
-    public orderService: OrderService, public _translate: TranslateService, public toastr: ToastrService,
-    public valid: ValidationServService,public router: Router,) {
+  constructor(
+    public frames: FramesServService,
+    private fb: FormBuilder,
+    public modalService: NgbModal,
+    public orderService: OrderService,
+    public _translate: TranslateService,
+    public toastr: ToastrService,
+    public valid: ValidationServService,
+    public router: Router,) {
   }
 
   ngOnInit(): void {
@@ -50,23 +56,23 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this.orderService.isdisible = false;
     this.frames.isMyOrder = false;
     this.shipingGet();
-     
+
     this.frames.sum = this.sumInit > this.frames.sum ? this.sumInit : this.frames.sum
     this.frames.userCountry();
     this.orderFormValidation();
     this.getOrder()
   }
 
-  getOrder(){
+  getOrder() {
     this.frames.getOrdersDate()
-    .pipe(takeUntil(this._subscribe$))
-    .subscribe({
-      next:(res:any)=>{
-        if(res){
-          this.addSum();
+      .pipe(takeUntil(this._subscribe$))
+      .subscribe({
+        next: (res: any) => {
+          if (res) {
+            this.addSum();
+          }
         }
-      }
-    })
+      })
   }
 
   ngAfterViewChecked(): void {
@@ -82,7 +88,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       country: [this.frames.userData.city, [Validators.required]],
       addres: [this.frames.userData.address, [Validators.required]],
       shipping: [null, [Validators.required]],
-      comment: ['', [Validators.maxLength(20)]],
+      comment: [''],
       sale: ['', [Validators.maxLength(6), this.noText]],
       postal: ['', [Validators.maxLength(20), Validators.required]]
     });
@@ -111,12 +117,11 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   }
 
   public submitForm(): void {
-    console.log(this.validateForm.get('postal')?.errors?.maxlength?.requiredLength)
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-   
+
     const ids: number[] = [];
     this.frames.orderList.forEach((card: CardItemResults) => {
       ids.push(card.created_frame)
@@ -135,7 +140,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       order_items: ids,
       postal_code: this.validateForm.get('postal')?.value,
     }
-  
+
     if (this.validateForm.valid) {
       this.userName = order.full_name;
       this.goUsOrder(order)
@@ -143,30 +148,34 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   }
 
-  private goUsOrder(order:any): void {
+  private goUsOrder(order: any): void {
     let okMsg: string = '';
     let errMsg: string = '';
-    this._translate.get('Menu.user').subscribe((el) => {
-      okMsg = el.orderOk;
-      errMsg = el.orderErr
-    })
+    this._translate.get('Menu.user')
+      .subscribe((el) => {
+        okMsg = el.orderOk;
+        errMsg = el.orderErr
+      })
 
     if (this.validateForm?.valid && this.count != 1) {
-      //  ServerResponce<OrderResult[]>
-      this.orderService.userOrder(order).pipe(takeUntil(this._subscribe$)).subscribe((order: any) => {
-        this.toastr.success(okMsg);
-        this.count!++;
-        this.orderService.isdisible = true;
-        // this.router.navigate(['user/user-order']);
-        let a = document.createElement("a");
-        document.body.appendChild(a);
-        a.style.display = "none";
-        a.href = order.message.formUrl;
-        a.click();
-        document.body.removeChild(a)
-      }, (err) => {
-        this.orderService.errOrder(errMsg)
-      })
+      this.toastr.success(okMsg);
+      this.orderService.userOrder(order)
+        .pipe(takeUntil(this._subscribe$))
+        .subscribe((order: any) => {
+         
+          this.count!++;
+          this.orderService.isdisible = true;
+          let a = document.createElement("a");
+          document.body.appendChild(a);
+          a.style.display = "none";
+          a.href = order.message.formUrl;
+          a.click();
+          document.body.removeChild(a)
+        }, 
+        (err) => {
+          this.orderService.errOrder(errMsg)
+          this.toastr.error(errMsg)
+        })
     }
   }
 
