@@ -9,12 +9,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataCheckComponent } from '../data-check/data-check.component';
 import { NoCheckComponent } from '../no-check/no-check.component';
 import { NgxSpinnerService } from "ngx-spinner";
-import { Edit, UserDetalis } from 'src/app/modeles/register-response.modele';
+import { UserDetalis } from 'src/app/modeles/register-response.modele';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { UserDataService } from './user-data.service';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { ChangeEmailComponent } from './components/change-email/change-email.component';
+import { EditDto } from 'src/app/modeles/editDto';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -55,29 +56,39 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   }
 
 
+
   ngOnInit(): void {
     this.spinner.show();
     this.spinner.hide();
     this.frames.isMyOrder = false;
-    
-    this.frames.userCountry()
-    .subscribe((countrys)=>{
-      this.frames.selectedValue = countrys.results;
-    })
-    this.userName = this.frames.userData.user_details.first_name;
+    this.getCountry();
     this.changeDate();
-    
     this.initForm();
     this.validateForm.get('date')?.disable();
+    this.userName = this.frames.userData.user_details.first_name;
+  }
+
+  private getCountry() {
+    this.frames.userCountry()
+      .pipe(takeUntil(this._unsubscribe$))
+      .subscribe((countrys) => {
+        this.frames.selectedValue = countrys.results;
+      })
   }
 
   private initForm() {
     this.validateForm = this.fb.group({
-      frstName: [this.userName, [Validators.required, Validators.minLength(3), Validators.maxLength(50), this.valid.userNameChar]],
-      last: [this.frames.userData.user_details.last_name, [Validators.required, Validators.minLength(3), Validators.maxLength(50), this.valid.userNameChar]],
+      frstName: [this.userName,
+      [Validators.required, Validators.minLength(3),
+      Validators.maxLength(50), this.valid.userNameChar]],
+      last: [this.frames.userData.user_details.last_name,
+      [Validators.required, Validators.minLength(3),
+      Validators.maxLength(50), this.valid.userNameChar]],
       addres: [this.frames.userData.address, [Validators.required]],
-      phoneNumber: [this.frames.userData.phone_number, [Validators.required, this.valid.PhoneNumberLength]],
-      email: [this.frames.userData.user_details.username, [Validators.required, this.valid.emailValid]],
+      phoneNumber: [this.frames.userData.phone_number,
+      [Validators.required, this.valid.PhoneNumberLength]],
+      email: [this.frames.userData.user_details.username,
+      [Validators.required, this.valid.emailValid]],
       country: [this.frames.userData.city, [Validators.required]],
       date: [this.frames.userData.date_of_birth, [Validators.required]],
     });
@@ -100,7 +111,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   openEmail() {
     this.modalService.open(ChangeEmailComponent);
   }
-  
+
   private changeDate(): void {
     let data: any = localStorage.getItem('user-date');
     let user_data = JSON.parse(data);
@@ -121,24 +132,19 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
 
 
   public submitForm(): void {
-
     const date = this.birt('date');
-    const edit: Edit = {
-      date_of_birth: date,
-      city: this.validateForm.get('country')?.value,
-      address: this.validateForm.get('addres')?.value.trim(),
-      image: '',
-      comment: '',
-      last_name: this.validateForm.get('last')?.value,
-      first_name: this.validateForm.get('frstName')?.value
-    }
 
+    const dto = {
+      form: this.validateForm.value,
+      date
+    }
+    const edit = new EditDto(dto);
 
     this.changeDate()
-    if (this.isChange) {
+    if (this.isChange && this.validateForm.valid) {
       this.userName = edit.first_name;
       this.lastName = edit.last_name;
-      console.log(edit)
+
       this.userDataService.editUser(edit)
         .pipe(takeUntil(this._unsubscribe$))
         .subscribe((userDetalis: UserDetalis) => {
@@ -154,7 +160,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
         })
     }
 
-    if (!this.isChange) {
+    if (this.validateForm.invalid) {
       const modal = this.modalService.open(NoCheckComponent);
       setTimeout(() => {
         modal.dismiss()
