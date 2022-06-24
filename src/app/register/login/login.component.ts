@@ -7,13 +7,14 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { catchError, switchMap, takeUntil } from 'rxjs/operators';
-import { of, Subject, throwError } from 'rxjs';
+import { Subject, throwError } from 'rxjs';
 import { RegisterResult } from 'src/app/modeles/register-response.modele';
 import { ServerResponce } from 'src/app/modeles/img-ramka.modele';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { LoginService } from './login.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LoginDto } from 'src/app/modeles/loginDto';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -33,12 +34,24 @@ export class LoginComponent implements OnInit, DoCheck {
   public _subscribe$ = new Subject();
   public errorLog: boolean = false;
 
-  constructor(public activeModal: NgbActiveModal, private modalService: NgbModal, public _translate: TranslateService,
-    public loginService: LoginService, private fb: FormBuilder, public frames: FramesServService, private valid: ValidationServService, private spinner: NgxSpinnerService) { }
+  constructor(
+    public activeModal: NgbActiveModal,
+    private modalService: NgbModal,
+    public _translate: TranslateService,
+    public loginService: LoginService,
+    private fb: FormBuilder,
+    public frames: FramesServService,
+    private valid: ValidationServService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.formInit();
+  }
+
+  private formInit() {
     this.validateForm = this.fb.group({
-      email: [null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      email: [null, [Validators.required,
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       password: [null, [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -56,10 +69,7 @@ export class LoginComponent implements OnInit, DoCheck {
         this.validateForm.controls[i].updateValueAndValidity();
       }
     }
-    const userLog = {
-      username: this.validateForm.get('email')?.value,
-      password: this.validateForm.get('password')?.value
-    }
+    const userLog =new LoginDto(this.validateForm.value);
     if (this.validateForm.valid) {
       this.loginService.userLogin(userLog)
         .pipe(
@@ -91,11 +101,11 @@ export class LoginComponent implements OnInit, DoCheck {
                       this.frames.orderList.forEach((obj: any) => {
                         this.frames.sum += obj.created_frame_details.price;
                       })
-                      
+
                     },
 
                   })
-                  this.spinner.hide()
+                this.spinner.hide()
               }
             }
           )

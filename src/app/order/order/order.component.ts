@@ -4,7 +4,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from "@ngx-translate/core";
 import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { forkJoin, Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ServerResponce } from 'src/app/modeles/img-ramka.modele';
@@ -16,6 +16,7 @@ import { OrderService } from './order.service';
 
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { OrderDto } from 'src/app/modeles/orderDto';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -33,12 +34,13 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   public _subscribe$ = new Subject();
   public erroreStr: string = '';
   public promoError: string = '';
-  public shiping: any[] = [];
+  public shiping!: any[];
   public promoId: null | number = null;
   private sumInit: number = 0;
   private count: number = 0;
   public matcher = new MyErrorStateMatcher();
   private userName: string = '';
+
   constructor(
     public frames: FramesServService,
     private fb: FormBuilder,
@@ -50,17 +52,32 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     public router: Router,) {
   }
 
+
   ngOnInit(): void {
     this.userName = this.frames.userData.user_details.first_name;
-    this.frames.cityPlaceholder()
+    this.getResponsesDate()
+    this.getOrder();
     this.orderService.isdisible = false;
     this.frames.isMyOrder = false;
-    this.shipingGet();
-
     this.frames.sum = this.sumInit > this.frames.sum ? this.sumInit : this.frames.sum
-    this.frames.userCountry();
     this.orderFormValidation();
-    this.getOrder()
+
+  }
+
+  getResponsesDate() {
+    forkJoin({
+      cityPlaceholder: this.frames.cityPlaceholder(),
+      userCountry: this.frames.getCountry(),
+      shiping: this.orderService.shipingMethod(),
+    })
+      .pipe(takeUntil(this._subscribe$))
+      .subscribe({
+        next: (response) => {
+          this.frames.country_placeholder = response.cityPlaceholder;
+          this.frames.selectedValue = response.userCountry.results;
+          this.shiping = response.shiping.results;
+        }
+      })
   }
 
   getOrder() {
@@ -100,12 +117,6 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     })
   }
 
-  private shipingGet(): void {
-    this.orderService.shipingMethod().pipe(takeUntil(this._subscribe$)).subscribe((shipings: ServerResponce<ShipingResult[]>) => {
-      this.shiping = shipings.results;
-    })
-  }
-
   private noText(control: FormControl): object | null {
     const regExp = /[a-zA-Z]/;
     if (regExp.test(control.value)) {
@@ -127,19 +138,13 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       ids.push(card.created_frame)
     })
 
-    const order = {
-      full_name: this.validateForm.get('frstName')?.value,
-      shipping_method: this.validateForm.get('shipping')?.value,
-      phone_number: this.validateForm.get('phoneNumber')?.value,
-      email: this.validateForm.get('email')?.value,
-      city: this.validateForm.get('country')?.value,
-      address: this.validateForm.get('addres')?.value,
-      price: this.frames.sum,
-      comment: this.validateForm.get('comment')?.value,
-      promo_code: this.promoId,
-      order_items: ids,
-      postal_code: this.validateForm.get('postal')?.value,
+    const dto = {
+      form: this.validateForm.value,
+      id: this.promoId,
+      sum: this.frames.sum,
+      ids
     }
+    const order = new OrderDto(dto);
 
     if (this.validateForm.valid) {
       this.userName = order.full_name;
@@ -152,6 +157,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     let okMsg: string = '';
     let errMsg: string = '';
     this._translate.get('Menu.user')
+      .pipe(takeUntil(this._subscribe$))
       .subscribe((el) => {
         okMsg = el.orderOk;
         errMsg = el.orderErr
@@ -162,7 +168,6 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       this.orderService.userOrder(order)
         .pipe(takeUntil(this._subscribe$))
         .subscribe((order: any) => {
-         
           this.count!++;
           this.orderService.isdisible = true;
           let a = document.createElement("a");
@@ -171,11 +176,11 @@ export class OrderComponent implements OnInit, AfterViewChecked {
           a.href = order.message.formUrl;
           a.click();
           document.body.removeChild(a)
-        }, 
-        (err) => {
-          this.orderService.errOrder(errMsg)
-          this.toastr.error(errMsg)
-        })
+        },
+          (err) => {
+            this.orderService.errOrder(errMsg)
+            this.toastr.error(errMsg)
+          })
     }
   }
 
@@ -186,28 +191,34 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       code: this.validateForm.get('sale')?.value
     }
 
-    if (this.validateForm.get('sale')?.value.length === 6 && this.promoId === null && this.validateForm.get('sale')?.valid) {
-      this.orderService.promoCodePost(sale).pipe(takeUntil(this._subscribe$)).subscribe((promoCode: PromoCodeResults) => {
-        this.frames.sum = promoCode.discounted_price;
-        this.promoId = promoCode.promo_code.id;
-        this.promoError = '';
-      },
-        (error: HttpErrorResponse) => {
-          this.promoError = error.error.message;
-        })
+    if (this.validateForm.get('sale')?.value.length === 6 &&
+      this.promoId === null && this.validateForm.get('sale')?.valid) {
+      this.orderService.promoCodePost(sale)
+        .pipe(takeUntil(this._subscribe$))
+        .subscribe((promoCode: PromoCodeResults) => {
+          this.frames.sum = promoCode.discounted_price;
+          this.promoId = promoCode.promo_code.id;
+          this.promoError = '';
+        },
+          (error: HttpErrorResponse) => {
+            this.promoError = error.error.message;
+          })
     }
   }
 
   public deleteDate(card: CardItemResults): void {
-    this.orderService.deleteOrder(card.id).pipe(takeUntil(this._subscribe$)).subscribe(() => {
-      this.frames.sum -= card.created_frame_details.price;
-      this.frames.orderList = this.frames.orderList.filter((val: CardItemResults) => {
-        return val.id != card.id
-      })
-      if (this.frames.orderList.length === 0) {
-        this.frames.showFrame()
-      }
-    });
+    this.orderService.deleteOrder(card.id)
+      .pipe(takeUntil(this._subscribe$))
+      .subscribe(() => {
+        this.frames.sum -= card.created_frame_details.price;
+        this.frames.orderList = this.frames.orderList.filter(
+          (val: CardItemResults) => {
+            return val.id != card.id
+          })
+        if (this.frames.orderList.length === 0) {
+          this.frames.showFrame()
+        }
+      });
   }
 
   ngOnDestroy() {

@@ -55,7 +55,9 @@ export class RegisterComponent implements OnInit {
     forkJoin({
       city: this.frames.cityPlaceholder(),
       country: this.frames.userCountry()
-    }).subscribe({
+    })
+    .pipe(takeUntil(this._subscribe$))
+    .subscribe({
       next: (res) => {
         this.frames.selectedValue = res.country.results;
         this.frames.country_placeholder = res.city

@@ -11,13 +11,17 @@ import { RegisterService } from '../register/register.service';
 })
 export class OkRegisterComponent implements OnInit {
 
- public congratulations:string='';
- public titlle:string = '';
-  constructor(public activeModal: NgbActiveModal,public frames:FramesServService,
-   public registerService:RegisterService, public _translate:TranslateService) {}
+  public congratulations: string = '';
+  public titlle: string = '';
+  constructor(
+    public activeModal: NgbActiveModal,
+    public frames: FramesServService,
+    public registerService: RegisterService,
+    public _translate: TranslateService) { }
 
   ngOnInit(): void {
-    this._translate.get('Order.userData').subscribe((res:any)=>{
+    this._translate.get('Order.userData')
+    .subscribe((res: any) => {
       this.congratulations = res.congratulations;
       this.titlle = res.congratulationsTitle;
     })

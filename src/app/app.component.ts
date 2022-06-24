@@ -37,14 +37,15 @@ export class AppComponent implements OnInit {
   }
 
   public scrollToTopByChangeRoute() {
-    this.router.events
+    return this.router.events
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((evt) => {
-        if (!(evt instanceof NavigationEnd)) {
-          return;
-        }
-        window.scrollTo(0, 0)
-      });
+      .subscribe(
+        (evt) => {
+          if (!(evt instanceof NavigationEnd)) {
+            return;
+          }
+          window.scrollTo(0, 0)
+        });
   }
   private getLocalInfo() {
     if (localStorage.getItem('loginAutorization')) {
@@ -80,7 +81,6 @@ export class AppComponent implements OnInit {
           this.frames.orderList.forEach((obj: any) => {
             this.frames.sum += obj.created_frame_details.price;
           });
-          console.log('frames.sum', this.frames.sum)
           this.spinner.hide();
         }
       })

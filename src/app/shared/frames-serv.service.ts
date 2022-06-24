@@ -142,7 +142,7 @@ export class FramesServService {
         )
     }
 
-    private getCountry(): Observable<ServerResponce<CountryResult[]>> {
+    public getCountry(): Observable<ServerResponce<CountryResult[]>> {
         return this.url.get<ServerResponce<CountryResult[]>>(this.api.worldApi + this.api.api_location + this.api.api_country)
     }
 
