@@ -158,9 +158,6 @@ export class FramesServService {
 
     public userCountry() {
       return  this.getCountry()
-        // .subscribe((countryResult: ServerResponce<CountryResult[]>) => {
-        //     this.selectedValue = countryResult.results
-        // })
     }
 
     public orderCard(obj: { created_frame: string, user: number }): Observable<CardItemResults> {
@@ -170,9 +167,6 @@ export class FramesServService {
 
     public cityPlaceholder(){
        return this._translate.get('Order.userData.countryPlaceholder')
-        // .subscribe((city: string) => {
-        //     this.country_placeholder = city;
-        // })
     }
 
    

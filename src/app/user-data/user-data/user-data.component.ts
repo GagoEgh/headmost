@@ -59,7 +59,11 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
     this.spinner.show();
     this.spinner.hide();
     this.frames.isMyOrder = false;
-    this.frames.userCountry();
+    
+    this.frames.userCountry()
+    .subscribe((countrys)=>{
+      this.frames.selectedValue = countrys.results;
+    })
     this.userName = this.frames.userData.user_details.first_name;
     this.changeDate();
     

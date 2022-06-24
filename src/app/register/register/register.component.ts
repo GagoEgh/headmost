@@ -12,6 +12,7 @@ import { RegisterResult } from 'src/app/modeles/register-response.modele';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { RegisterService } from './register.service';
+import { RegisterDto } from 'src/app/modeles/RegisterDto';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -28,7 +29,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class RegisterComponent implements OnInit {
   public currentDate = new Date();
-  public validateForm: FormGroup = new FormGroup({});
+  public validateForm!: FormGroup;
   public _subscribe$ = new Subject();
   public emailMassage!: string;
   public matcher = new MyErrorStateMatcher();
@@ -45,23 +46,23 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getCountryAndCity()
-      .subscribe({
-        next: (res) => {
-          this.frames.selectedValue = res.country.results;
-          this.frames.country_placeholder = res.city
-        }
-      })
+    this.getCountryAndCity();
     this.formInint();
     this.validateForm.get('date')?.disable()
   }
 
   private getCountryAndCity() {
-    return forkJoin({
+    forkJoin({
       city: this.frames.cityPlaceholder(),
       country: this.frames.userCountry()
+    }).subscribe({
+      next: (res) => {
+        this.frames.selectedValue = res.country.results;
+        this.frames.country_placeholder = res.city
+      }
     })
   }
+  
   private formInint() {
     this.validateForm = this.fb.group({
       frstName: [null, [Validators.minLength(3), Validators.required,
@@ -80,7 +81,7 @@ export class RegisterComponent implements OnInit {
   }
 
   private passwordReview(control: FormControl): object | null {
-    const pass = this.validateForm.get('pas')?.value;
+    const pass = this.validateForm?.get('pas')?.value;
     if (control.value && (control.value !== pass)) {
       return {
         passwordReview: true
@@ -106,51 +107,40 @@ export class RegisterComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
 
-    const date = this.birt('date');
-    const userDetalis = {
-      phone_number: this.validateForm.get('phoneNumber')?.value,
-      first_name: this.validateForm.get('frstName')?.value,
-      last_name: this.validateForm.get('lastName')?.value,
-      date_of_birth: date,
-      city: this.validateForm.get('country')?.value,
-      password: this.validateForm.get('pasRev')?.value,
-      email: this.validateForm.get('email')?.value,
-      comment: '',
-      image: '',
-      is_creator: false
-    }
-
+    const userDetalis = new RegisterDto(this.validateForm.value, this.birt('date'))
 
     if (this.validateForm.valid) {
-      this.registerService.userRegisterPost(userDetalis).pipe(takeUntil(this._subscribe$)).subscribe((register: RegisterResult) => {
-        this.registerService.isRegister = true;
-        this.frames.userData = register.user_details;
-        const modalRef = this.modalService.open(OkRegisterComponent);
-        modalRef.result.then((result) => {
-          this.registerService.isRegister = false;
-        }, () => {
-          this.registerService.isRegister = false;
-        });
+      this.registerService.userRegisterPost(userDetalis)
+        .pipe(takeUntil(this._subscribe$))
+        .subscribe((register: RegisterResult) => {
+          this.registerService.isRegister = true;
+          this.frames.userData = register.user_details;
+          const modalRef = this.modalService.open(OkRegisterComponent);
+          modalRef.result.then((result) => {
+            this.registerService.isRegister = false;
+          }, () => {
+            this.registerService.isRegister = false;
+          });
 
-        this.validateForm.reset();
-        this.frames.userReg = false;
-        this.frames.token = 'Token ' + register.token;
-        localStorage.setItem('loginAutorization', this.frames.token);
-        localStorage.setItem('user-date', JSON.stringify(this.frames.userData))
-        setTimeout(() => {
-          modalRef.dismiss();
-        }, 500)
+          this.validateForm.reset();
+          this.frames.userReg = false;
+          this.frames.token = 'Token ' + register.token;
+          localStorage.setItem('loginAutorization', this.frames.token);
+          localStorage.setItem('user-date', JSON.stringify(this.frames.userData))
+          setTimeout(() => {
+            modalRef.dismiss();
+          }, 500)
 
-      }, ((err: any) => {
-        if (err.status === 400) {
-          this._translate.get('ErroreMessage').pipe(takeUntil(this._subscribe$))
-            .subscribe((res: any) => {
-              this.emailMassage = res.emailMassage;
-              console.log(this.emailMassage)
-            })
-        }
+        }, ((err: any) => {
+          if (err.status === 400) {
+            this._translate.get('ErroreMessage')
+              .pipe(takeUntil(this._subscribe$))
+              .subscribe((res: any) => {
+                this.emailMassage = res.emailMassage;
+              })
+          }
 
-      }))
+        }))
     }
 
   }
