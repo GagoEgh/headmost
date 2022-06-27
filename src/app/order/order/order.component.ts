@@ -7,13 +7,11 @@ import { takeUntil } from 'rxjs/operators';
 import { forkJoin, Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ServerResponce } from 'src/app/modeles/img-ramka.modele';
-import { PromoCodeResults, ShipingResult } from 'src/app/modeles/order-response.modele';
+import { PromoCodeResults } from 'src/app/modeles/order-response.modele';
 import { CardItemResults } from 'src/app/modeles/frame-response.modele';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { OrderService } from './order.service';
-
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { OrderDto } from 'src/app/modeles/orderDto';
@@ -49,7 +47,8 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     public _translate: TranslateService,
     public toastr: ToastrService,
     public valid: ValidationServService,
-    public router: Router,) {
+    public router: Router,
+  ) {
   }
 
 
@@ -61,7 +60,6 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this.frames.isMyOrder = false;
     this.frames.sum = this.sumInit > this.frames.sum ? this.sumInit : this.frames.sum
     this.orderFormValidation();
-
   }
 
   getResponsesDate() {
@@ -158,25 +156,34 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     let errMsg: string = '';
     this._translate.get('Menu.user')
       .pipe(takeUntil(this._subscribe$))
-      .subscribe((el) => {
-        okMsg = el.orderOk;
-        errMsg = el.orderErr
-      })
+      .subscribe(
+        {
+          next: (res) => {
+            console.log(res);
+            okMsg = res.orderOk;
+            errMsg = res.orderErr
+          }
+        }
+      )
 
-    if (this.validateForm?.valid && this.count != 1) {
-      this.toastr.success(okMsg);
+    // && this.count != 1
+    if (this.validateForm?.valid) {
+
       this.orderService.userOrder(order)
         .pipe(takeUntil(this._subscribe$))
-        .subscribe((order: any) => {
-          this.count!++;
-          this.orderService.isdisible = true;
-          let a = document.createElement("a");
-          document.body.appendChild(a);
-          a.style.display = "none";
-          a.href = order.message.formUrl;
-          a.click();
-          document.body.removeChild(a)
-        },
+        .subscribe(
+          (order: any) => {
+            console.log('order== ', order);
+            this.count!++;
+            this.orderService.isdisible = true;
+            this.toastr.success(okMsg);
+            let a = document.createElement("a");
+            document.body.appendChild(a);
+            a.style.display = "none";
+            a.href = order.message.formUrl;
+            a.click();
+            document.body.removeChild(a)
+          },
           (err) => {
             this.orderService.errOrder(errMsg)
             this.toastr.error(errMsg)

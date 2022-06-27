@@ -8,7 +8,7 @@ export class OrderDto {
     address: string;
     comment: string;
     postal_code: string;
-    promo_code: null | number;
+    promo_code: null | number ;
     price: number;
     order_items: number[];
     constructor(dto: any) {
@@ -20,7 +20,7 @@ export class OrderDto {
         this.address = dto.form.addres;
         this.comment = dto.form.comment;
         this.postal_code = dto.form.postal;
-        this.promo_code = dto.promoId;
+        this.promo_code = dto.id;
         this.price = dto.sum;
         this.order_items = dto.ids
     }

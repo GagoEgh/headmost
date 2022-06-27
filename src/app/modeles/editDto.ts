@@ -1,9 +1,9 @@
 export class EditDto {
-    city: number;// this.validateForm.get('country')?.value,
-    address: string;//this.validateForm.get('addres')?.value.trim(),
-    last_name: string; //this.validateForm.get('last')?.value,
-    first_name: string; //this.validateForm.get('frstName')?.value,
-    date_of_birth: string;//date,
+    city: number;
+    address: string;
+    last_name: string; 
+    first_name: string; 
+    date_of_birth: string;
     image = '';
     comment = '';
     constructor(dto: any) {

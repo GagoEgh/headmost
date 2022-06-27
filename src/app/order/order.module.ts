@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.modult';
 import { NgModule } from '@angular/core';
 
-
 const routs:Routes =[
   {path:'',component:OrderComponent},
 
@@ -15,7 +14,7 @@ const routs:Routes =[
   imports: [
     SharedModule,
     RouterModule.forChild(routs),
-
+    
   ],
   exports:[RouterModule],
 

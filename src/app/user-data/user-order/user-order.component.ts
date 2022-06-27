@@ -38,6 +38,7 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
     public _translate: TranslateService) { }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.peyMessage();
     this.frames.offset = 0;
     this.userOrders;

@@ -34,8 +34,9 @@ export class OrderService {
     return this.url.get<ServerResponce<ShipingResult[]>>(this.frames.api.worldApi + this.frames.api.api_utils + '/' + this.frames.api.api_shipping)
   }
 
-  public userOrder(obj: any): Observable<ServerResponce<OrderResult[]>> {
-    return this.url.post<ServerResponce<OrderResult[]>>(this.frames.api.worldApi + this.frames.api.api_order + this.frames.api.api_order + '/', obj,
+// : Observable<ServerResponce<OrderResult[]>>
+  public userOrder(obj: any) {
+    return this.url.post(this.frames.api.worldApi + this.frames.api.api_order + this.frames.api.api_order + '/', obj,
       { headers: { 'Authorization': this.frames.token } })
   }
 

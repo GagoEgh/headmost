@@ -7,10 +7,11 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  constructor(public frames: FramesServService) { }
+  constructor(public frames: FramesServService) { 
+   }
 
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
   }
 
 
