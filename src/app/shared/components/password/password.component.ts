@@ -1,4 +1,4 @@
-import { Component, OnInit, Optional, Self } from '@angular/core';
+import { Component, Input, OnInit, Optional, Self } from '@angular/core';
 import { faEye, faEyeLowVision } from '@fortawesome/free-solid-svg-icons';
 import { ControlValueAccessor, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -19,7 +19,7 @@ export class PasswordComponent implements OnInit, ControlValueAccessor {
   faEyeLowVision: any = faEyeLowVision;
   isShow = false;
   value: string = '';
-
+  @Input() label = '';
   constructor(
     @Self() @Optional() public control: NgControl
   ) {
@@ -49,7 +49,8 @@ export class PasswordComponent implements OnInit, ControlValueAccessor {
     this.onBlur = fn;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { 
+  }
 
   showEye() {
     this.isShow = !this.isShow

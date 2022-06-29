@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ChangePasswordDto } from 'src/app/modeles/changePasswordDto';
+import { UserDataService } from '../../user-data.service';
 
 
 @Component({
@@ -8,28 +12,88 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.css']
 })
-export class ChangePasswordComponent implements OnInit {
+export class ChangePasswordComponent implements OnInit, OnDestroy {
   public newPassword!: FormGroup;
+  public responseErrore = '';
+
+
+
+  private unsubscribe$ = new Subject();
+
 
   constructor(
     private fb: FormBuilder,
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    private userDataService: UserDataService
   ) { }
 
+
+
+
+
   ngOnInit(): void {
-    this.newPassword = this.passwordFormInit()
+    this.passwordFormInit();
+
   }
 
 
   passwordFormInit() {
-    return this.fb.group({
+    this.newPassword = this.fb.group({
+      oldPass: [null, [Validators.required, Validators.minLength(6)]],
       newPass: [null, [Validators.required, Validators.minLength(6)]],
-      reapetPass: [null, [Validators.required, Validators.minLength(6)]]
+      repeat_password: [null, [Validators.required, Validators.minLength(6),
+      this.passwordReview.bind(this)
+      ]]
     })
   }
 
+  private passwordReview(control: FormControl): object | null {
+    const pass = this.newPassword?.get('newPass')?.value;
+    if (control.value && (control.value !== pass)) {
+      return {
+        passwordReview: true
+      }
+    }
+    return null
+  }
+
   changePassword() {
-    console.log(this.newPassword.controls)
-    this.activeModal.close();
+
+    if (this.newPassword.valid) {
+
+      const changePasswordDto = new ChangePasswordDto(this.newPassword.value);
+      this.userDataService.changePasword(changePasswordDto)
+        //.pipe(takeUntil(this.unsubscribe$))
+        .subscribe({
+          next: (res: any) => {
+            console.log(res);
+            this.activeModal.close();
+          },
+          error: (error: any) => {
+            console.log(error.error.message);
+            this.responseErrore = error.error.message;
+          }
+        })
+    }
+
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
+
+// katarel
+function passwordReview(value: any) {
+  return (control: FormControl): object | null => {
+
+    if (control.value && (control.value !== value)) {
+      return {
+        passwordReview: true
+      }
+    }
+    return null
+  }
+}
+

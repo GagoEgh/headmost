@@ -51,6 +51,7 @@ export class FramesServService {
     public isImg = true;
     public frame: any;
     public isGet:boolean = false;
+    // userdetails/change-password/
     public api: Api = {
         worldApi: 'https://admin.gift4u.am',
         api_utils: '/utils',
@@ -79,6 +80,7 @@ export class FramesServService {
         api_created_frame: '/created-frame',
         api_magnet: '/add-magnet-in-card',
         api_languages: '/static/languages',
+        api_changePass:'change-password/',
         api_en: '/en.json',
         api_ru: '/ru.json',
         api_hy: '/hy.json'
