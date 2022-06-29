@@ -49,8 +49,9 @@ export class MagnitServiceService {
         })
       }
 
-      this.magnetImg(order).subscribe((orderCard: CardItemResults[]) => {
-        this.frames.orderList = orderCard;
+      this.magnetImg(order)
+      .subscribe((orderCard: CardItemResults[]) => {
+        this.frames.orderList = orderCard.reverse();
         this.frames.isOrder = true;
         this.spinner.hide()
       })

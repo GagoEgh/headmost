@@ -74,7 +74,8 @@ export class IdeaImageComponent implements OnInit {
         created_frame: this.ideaImageService.ideaImg.id
       }
       this.frames.spinner.show();
-      this.frames.orderCard(userCard).pipe(takeUntil(this._unsubscribe$)).subscribe((cardItem: CardItemResults) => {
+      this.frames.orderCard(userCard)
+      .pipe(takeUntil(this._unsubscribe$)).subscribe((cardItem: CardItemResults) => {
         this.frames.orderList.push(cardItem);
         this.open();
         this.frames.spinner.hide()

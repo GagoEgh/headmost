@@ -224,7 +224,7 @@ export class FramesServService {
 
             this.getOrder(order)
                 .subscribe((orderList: CardItemResults[]) => {
-                    this.orderList = orderList;
+                    this.orderList = orderList.reverse();
                     this.isOrder = true;
                     this.spinner.hide()
                 })

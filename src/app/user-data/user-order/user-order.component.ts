@@ -39,10 +39,12 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
 
   ngOnInit(): void {
     this.spinner.show();
+
     this.peyMessage();
     this.frames.offset = 0;
     this.userOrders;
     this.appendItems();
+    // this.spinner.hide();
   }
 
   private peyMessage(): void {

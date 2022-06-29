@@ -75,7 +75,7 @@ export class AppComponent implements OnInit {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe({
         next: (res: any) => {
-          this.frames.orderList = res.results;
+          this.frames.orderList = res.results.reverse();
           this.frames.isGet = true;
           this.frames.setOrdersDate(this.frames.orderList);
           this.frames.orderList.forEach((obj: any) => {
