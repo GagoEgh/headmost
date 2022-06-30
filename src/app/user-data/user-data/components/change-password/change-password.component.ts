@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ChangePasswordDto } from 'src/app/modeles/changePasswordDto';
+import { ConfirmedValidator } from 'src/app/RepeadPassword';
 import { UserDataService } from '../../user-data.service';
 
 
@@ -41,22 +42,13 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
     this.newPassword = this.fb.group({
       oldPass: [null, [Validators.required, Validators.minLength(6)]],
       newPass: [null, [Validators.required, Validators.minLength(6)]],
-      repeat_password: [null, [Validators.required, Validators.minLength(6),
-      passwordReview.bind(this, this.newPassword?.get('newPass')?.value)
-        // this.passwordReview.bind(this)
+      repeat_password: [null, [Validators.required, Validators.minLength(6)
       ]]
+    }, {
+      validator: ConfirmedValidator('newPass', 'repeat_password')
     })
   }
 
-  private passwordReview(control: FormControl): object | null {
-    const pass = this.newPassword?.get('newPass')?.value;
-    if (control.value && (control.value !== pass)) {
-      return {
-        passwordReview: true
-      }
-    }
-    return null
-  }
 
   changePassword() {
 
@@ -64,14 +56,12 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
 
       const changePasswordDto = new ChangePasswordDto(this.newPassword.value);
       this.userDataService.changePasword(changePasswordDto)
-        //.pipe(takeUntil(this.unsubscribe$))
+        .pipe(takeUntil(this.unsubscribe$))
         .subscribe({
-          next: (res: any) => {
-            console.log(res);
+          next: () => {
             this.activeModal.close();
           },
           error: (error: any) => {
-            console.log(error.error.message);
             this.responseErrore = error.error.message;
           }
         })
@@ -84,17 +74,3 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 }
-
-// katarel
-function passwordReview(value: any) {
-
-  return (control: FormControl): object | null => {
-    if (control.value && (control.value !== value)) {
-      return {
-        passwordReview: true
-      }
-    }
-    return null
-  }
-}
-

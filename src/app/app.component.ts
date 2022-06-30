@@ -101,7 +101,7 @@ export class AppComponent implements OnInit {
     this.frames.orderList = [];
     this.frames.token = '';
     this.frames.userReg = true;
-    this.frames.showFrame();
+     this.frames.showFrame();
     this.frames.userData = {} as UserData;
     this.router.navigate(['/'])
   }

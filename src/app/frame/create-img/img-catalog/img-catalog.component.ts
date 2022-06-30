@@ -42,7 +42,6 @@ export class ImgCatalogComponent implements OnInit {
     this.frames.apiPhoto = true;
     this.imgService.painding.imgs = this.img;
     this.createCategory();
-    console.log(this.imgService.painding.imgs);
   }
 
   getAll() {

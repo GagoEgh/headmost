@@ -160,7 +160,6 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       .subscribe(
         {
           next: (res) => {
-            console.log(res);
             okMsg = res.orderOk;
             errMsg = res.orderErr
           }
@@ -174,7 +173,6 @@ export class OrderComponent implements OnInit, AfterViewChecked {
         .pipe(takeUntil(this._subscribe$))
         .subscribe(
           (order: any) => {
-            console.log('order== ', order);
             this.count!++;
             this.orderService.isdisible = true;
             this.toastr.success(okMsg);

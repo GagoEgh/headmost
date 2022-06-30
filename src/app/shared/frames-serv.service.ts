@@ -182,6 +182,10 @@ export class FramesServService {
         if (this.urlArr[1] === 'magnit') {
             this.rout.navigate([this.urlArr[1] + '/form-magnit'])
         }
+
+        if(this.urlArr[1] !== 'magnit' &&  this.urlArr[1] !== 'frame'){
+            this.rout.navigate(['/'])
+        }
     }
 
     public myOrder() {

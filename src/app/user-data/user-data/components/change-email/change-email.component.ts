@@ -27,7 +27,6 @@ export class ChangeEmailComponent implements OnInit {
   }
 
   changeEmail(){
-    console.log(this.newEmail)
     this.activeModal.close();
   }
 

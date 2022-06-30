@@ -78,7 +78,6 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
 
         orderResult.results.reverse();
         this.userOrders.push(...orderResult.results);
-        console.log(this.userOrders)
         this.frames.offset += 10;
         this.frames.isMyOrder = true;
         this.spinner.hide();

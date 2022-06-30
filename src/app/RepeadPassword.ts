@@ -1,18 +1,16 @@
-import { FormControl } from "@angular/forms"
-
-export class RepeadPassword{
-    static passwordReview(value: any) {
-        
-        return (control: FormControl): object | null => {
-      
-          if (control.value && (control.value !== value)) {
-            return {
-              passwordReview: true
-            }
-          }
-          return null
+import { FormGroup } from '@angular/forms';
+    
+export function ConfirmedValidator(controlName: string, matchingControlName: string){
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+        if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+            return;
         }
-      }
-      
-      
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ confirmedValidator: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
 }

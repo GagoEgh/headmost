@@ -13,6 +13,7 @@ import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { RegisterService } from './register.service';
 import { RegisterDto } from 'src/app/modeles/RegisterDto';
+import { ConfirmedValidator } from 'src/app/RepeadPassword';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -74,24 +75,16 @@ export class RegisterComponent implements OnInit {
       phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
       pas: [null, [Validators.required, Validators.minLength(6)]],
       pasRev: [null, [Validators.required, Validators.minLength(6),
-      this.passwordReview.bind(this)]],
+      // this.passwordReview.bind(this)
+    ]],
       email: [null, [Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       country: [null, [Validators.required]],
       date: [null, [Validators.required]],
+    },{
+      validator: ConfirmedValidator('pas', 'pasRev')
     });
   }
-
-  private passwordReview(control: FormControl): object | null {
-    const pass = this.validateForm?.get('pas')?.value;
-    if (control.value && (control.value !== pass)) {
-      return {
-        passwordReview: true
-      }
-    }
-    return null
-  }
-
 
   private birt(formName: string): string {
     const date = new Date(this.validateForm.get(formName)?.value);

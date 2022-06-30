@@ -60,12 +60,12 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
   ngOnInit(): void {
     this.spinner.show();
     this.spinner.hide();
+    this.validateForm.get('date')?.disable();
+    this.userName = this.frames.userData.user_details.first_name;
     this.frames.isMyOrder = false;
     this.getCountry();
     this.changeDate();
     this.initForm();
-    this.validateForm.get('date')?.disable();
-    this.userName = this.frames.userData.user_details.first_name;
   }
 
   private getCountry() {
@@ -165,6 +165,7 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
       setTimeout(() => {
         modal.dismiss()
       }, 1000)
+      return
     }
 
   }
