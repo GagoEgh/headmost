@@ -99,8 +99,15 @@
               <input matInput formControlName="sale" id="sale" (input)="salePost($event)" [errorStateMatcher]="matcher">
               <mat-error *ngIf="this.validateForm.get('sale')?.hasError('maxlength')">
                 <p class="errore">{{'ErroreMessage.titleLength'|translate}}
-                  {{this.validateForm.get('sale')?.errors?.maxlength?.requiredLength}}</p>
+                  {{this.validateForm.get('sale')?.errors?.maxlength?.requiredLength}}
+                </p>
               </mat-error>
+              <mat-error *ngIf="this.validateForm.get('sale')?.errors?.noText">
+                <p class="errore">
+                  {{'ErroreMessage.isNumber'|translate}}
+                </p>
+              </mat-error>
+
             </mat-form-field>
           </div>
         </div>

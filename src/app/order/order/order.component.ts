@@ -105,7 +105,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       addres: [this.frames.userData.address, [Validators.required]],
       shipping: [null, [Validators.required]],
       comment: [''],
-      sale: ['', [Validators.maxLength(6), this.noText]],
+      sale: ['', [this.noText,Validators.maxLength(3)]],
       postal: ['', [Validators.maxLength(20), Validators.required]]
     });
   }
