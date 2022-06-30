@@ -1,7 +1,7 @@
 // module
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,6 +33,7 @@ export function createTranslateLoader(http: HttpClient) {
 
 //data
 import { registerLocaleData } from '@angular/common';
+import { AddHeaderInterceptor } from './interceptors/add-header.interceptor';
 registerLocaleData(en);
 
 const Module = [
@@ -79,7 +80,18 @@ const TranslateCoockieModule = [
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [{ provide: NZ_I18N, useValue: en_US }, UserGuard],
+  providers: [
+    {
+      provide: NZ_I18N,
+      useValue: en_US
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddHeaderInterceptor,
+      multi: true
+    },
+    UserGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

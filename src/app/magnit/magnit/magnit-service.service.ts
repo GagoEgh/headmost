@@ -15,8 +15,7 @@ export class MagnitServiceService {
 
 
   private magnetImg(obj: any): Observable<CardItemResults[]> {
-    return this.url.post<CardItemResults[]>(this.frames.api.worldApi + this.frames.api.api_order + this.frames.api.api_card + this.frames.api.api_magnet + '/', obj,
-      { headers: { 'Authorization': this.frames.token } })
+    return this.url.post<CardItemResults[]>(this.frames.api.worldApi + this.frames.api.api_order + this.frames.api.api_card + this.frames.api.api_magnet + '/', obj)
   }
 
   public myMagnitOrder() {

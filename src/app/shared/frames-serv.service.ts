@@ -139,8 +139,7 @@ export class FramesServService {
 
     private getOrder(obj: any): Observable<CardItemResults[]> {
         return this.url.post<CardItemResults[]>(this.api.worldApi + this.api.api_order + this.api.api_card + this.api.api_add,
-            obj,
-            { headers: { 'Authorization': this.token } }
+            obj
         )
     }
 
@@ -149,13 +148,11 @@ export class FramesServService {
     }
 
     public userInfo(): Observable<ServerResponce<[]>> {
-        return this.url.get<ServerResponce<[]>>(this.api.worldApi + this.api.api_order + this.api.api_card + '/?user=' + `${this.userData.user}`,
-            { headers: { 'Authorization': this.token } })
+        return this.url.get<ServerResponce<[]>>(this.api.worldApi + this.api.api_order + this.api.api_card + '/?user=' + `${this.userData.user}`)
     }
 
     public userImageGet(myImgOffset: number): Observable<ServerResponce<UserImage[]>> {
-        return this.url.get<ServerResponce<UserImage[]>>(this.api.worldApi + this.api.api_img + this.api.api_user_image + '/?user=' + `${this.userData.user}&limit=10&offset=${myImgOffset}`,
-            { headers: { 'Authorization': this.token } })
+        return this.url.get<ServerResponce<UserImage[]>>(this.api.worldApi + this.api.api_img + this.api.api_user_image + '/?user=' + `${this.userData.user}&limit=10&offset=${myImgOffset}`)
     }
 
     public userCountry() {
@@ -163,8 +160,7 @@ export class FramesServService {
     }
 
     public orderCard(obj: { created_frame: string, user: number }): Observable<CardItemResults> {
-        return this.url.post<CardItemResults>(this.api.worldApi + this.api.api_order + this.api.api_card + '/', obj,
-            { headers: { 'Authorization': this.token } })
+        return this.url.post<CardItemResults>(this.api.worldApi + this.api.api_order + this.api.api_card + '/', obj)
     }
 
     public cityPlaceholder(){
@@ -173,8 +169,7 @@ export class FramesServService {
 
    
     public getUserOrder(id:number) {
-        return this.url.get(this.api.worldApi + this.api.api_order + this.api.api_card+ `/?user=${id}&limit=1000`,
-        { headers: { 'Authorization': this.token } })
+        return this.url.get(this.api.worldApi + this.api.api_order + this.api.api_card+ `/?user=${id}&limit=1000`)
     }
     
     public showFrame(): void {

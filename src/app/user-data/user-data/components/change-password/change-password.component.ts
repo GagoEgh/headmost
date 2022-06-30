@@ -42,7 +42,8 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
       oldPass: [null, [Validators.required, Validators.minLength(6)]],
       newPass: [null, [Validators.required, Validators.minLength(6)]],
       repeat_password: [null, [Validators.required, Validators.minLength(6),
-      this.passwordReview.bind(this)
+      passwordReview.bind(this, this.newPassword?.get('newPass')?.value)
+        // this.passwordReview.bind(this)
       ]]
     })
   }
@@ -86,8 +87,8 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
 
 // katarel
 function passwordReview(value: any) {
-  return (control: FormControl): object | null => {
 
+  return (control: FormControl): object | null => {
     if (control.value && (control.value !== value)) {
       return {
         passwordReview: true

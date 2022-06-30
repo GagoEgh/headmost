@@ -9,7 +9,10 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 })
 export class RegisterService {
   public isRegister = false;
-  constructor(private url: HttpClient, public frames: FramesServService) { }
+  constructor(
+    private url: HttpClient,
+    public frames: FramesServService
+  ) { }
 
   public userRegisterPost(obj: any): Observable<RegisterResult> {
     return this.url.post<RegisterResult>(this.frames.api.worldApi + this.frames.api.api_userdetails + this.frames.api.api_register, obj)

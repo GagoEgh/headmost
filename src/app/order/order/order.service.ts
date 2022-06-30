@@ -8,7 +8,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { TranslateService } from "@ngx-translate/core";
-import { FormGroup } from '@angular/forms';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +20,7 @@ export class OrderService {
   public router: Router,public _translate: TranslateService,) { }
 
   public deleteOrder(id: number): Observable<null> {
-    return this.url.delete<null>(this.frames.api.worldApi + this.frames.api.api_order + this.frames.api.api_card + '/' + id + '/',
-      { headers: { 'Authorization': this.frames.token } }
-    )
+    return this.url.delete<null>(this.frames.api.worldApi + this.frames.api.api_order + this.frames.api.api_card + '/' + id + '/')
   }
 
   public promoCodePost(data: { price: number, code: string }): Observable<PromoCodeResults> {
@@ -34,12 +32,10 @@ export class OrderService {
     return this.url.get<ServerResponce<ShipingResult[]>>(this.frames.api.worldApi + this.frames.api.api_utils + '/' + this.frames.api.api_shipping)
   }
 
-// : Observable<ServerResponce<OrderResult[]>>
-  public userOrder(obj: any) {
-    return this.url.post(this.frames.api.worldApi + this.frames.api.api_order + this.frames.api.api_order + '/', obj,
-      { headers: { 'Authorization': this.frames.token } })
-  }
 
+  public userOrder(obj: any) {
+    return this.url.post(this.frames.api.worldApi + this.frames.api.api_order + this.frames.api.api_order + '/', obj)
+  }
 
   public errOrder(str: string): void {
     this.toastr.error(str, '', {

@@ -11,17 +11,18 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 })
 export class UserDataService {
 
-  constructor(private url: HttpClient, public frames: FramesServService) { }
+  constructor(
+    private url: HttpClient,
+    public frames: FramesServService) { }
 
   public editUser(obj: EditDto): Observable<UserDetalis> {
-    return this.url.put<UserDetalis>(this.frames.api.worldApi + this.frames.api.api_userdetails + this.frames.api.api_edit, obj,
-      { headers: { 'Authorization': this.frames.token } })
+    return this.url.put<UserDetalis>(this.frames.api.worldApi + this.frames.api.api_userdetails + this.frames.api.api_edit, obj)
   }
 
-  
-  public changePasword(newPassword:ChangePasswordDto){
-    return this.url.put(this.frames.api.worldApi+this.frames.api.api_userdetails +this.frames.api.api_changePass,newPassword,
-      { headers: { 'Authorization': this.frames.token } })
+
+  public changePasword(newPassword: ChangePasswordDto) {
+    return this.url.put(this.frames.api.worldApi + this.frames.api.api_userdetails + this.frames.api.api_changePass, newPassword)
+
   }
 
 }
