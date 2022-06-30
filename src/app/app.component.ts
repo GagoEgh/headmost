@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
           this.frames.setOrdersDate(this.frames.orderList);
           this.frames.orderList.forEach((obj: any) => {
             this.frames.sum += obj.created_frame_details.price;
-          });
+          });          
           this.spinner.hide();
         }
       })
@@ -135,8 +135,8 @@ export class AppComponent implements OnInit {
           this.frames.isImg = true;
           this.frames.isOrder = false;
           this.frames.conteinerHeight();
-          this.frames.validateForm.reset();
-          if (this.frames.validateForm.get("text")?.value == null) {
+          this.frames?.validateForm?.reset();
+          if (this.frames?.validateForm?.get("text")?.value == null) {
             this.imgService.clearPrice()
           }
         }

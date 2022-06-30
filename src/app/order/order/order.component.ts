@@ -53,8 +53,8 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
 
   ngOnInit(): void {
+    // console.log('orderList =',this.frames.orderList)
     this.userName = this.frames.userData.user_details.first_name;
-  
     this.getResponsesDate()
     this.getOrder();
     this.orderService.isdisible = false;
@@ -221,6 +221,8 @@ export class OrderComponent implements OnInit, AfterViewChecked {
           (val: CardItemResults) => {
             return val.id != card.id
           })
+
+          // console.log('orderList =',this.frames.orderList)
         if (this.frames.orderList.length === 0) {
           this.frames.showFrame()
         }

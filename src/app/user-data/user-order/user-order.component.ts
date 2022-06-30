@@ -119,7 +119,9 @@ export class UserOrderComponent implements OnInit, AfterViewChecked {
       user: this.frames.userData.user
     }
 
-    this.frames.orderCard(obj).pipe(takeUntil(this._subscribe$)).subscribe((cardItem: CardItemResults) => {
+    this.frames.orderCard(obj)
+    .pipe(takeUntil(this._subscribe$))
+    .subscribe((cardItem: CardItemResults) => {
       this.frames.orderList.push(cardItem);
       this.spinner.hide()
 

@@ -75,7 +75,6 @@ export class RegisterComponent implements OnInit {
       phoneNumber: [null, [Validators.required, this.valid.PhoneNumberLength]],
       pas: [null, [Validators.required, Validators.minLength(6)]],
       pasRev: [null, [Validators.required, Validators.minLength(6),
-      // this.passwordReview.bind(this)
     ]],
       email: [null, [Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
