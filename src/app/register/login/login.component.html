@@ -7,7 +7,7 @@
 <div class="modal-body">
     <form  [formGroup]="validateForm" (ngSubmit)="submitForm()" class="form">
       <app-email formControlName="email"></app-email>
-      <app-password class="password" formControlName="password"></app-password>
+      <app-password class="password" formControlName="password" [style]="'margin-bottom: 10px;'"></app-password>
       <button mat-raised-button class="login-form-button">
         {{'Order.userData.logIn'|translate}}</button>
       <p *ngIf='errorLog' [style.color]='"red"' class="errore"> 
