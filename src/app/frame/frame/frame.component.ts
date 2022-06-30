@@ -160,6 +160,7 @@ export class FrameComponent
       .subscribe((bgDetails: ServerResponce<BgDetails[]>) => {
         this.div = bgDetails.results;
         this.frames.background = bgDetails.results[0];
+
       });
   }
 

@@ -10,6 +10,10 @@ import { forkJoin, Subject } from 'rxjs';
 import { CookieService } from 'ngx-cookie';
 import { UserData } from './modeles/UserInfo.module';
 import { FrameImageService } from './frame-image/frame-image.service';
+import { FrameService } from './frame/frame/frame.service';
+import { ServerResponce } from './modeles/img-ramka.modele';
+import { BgDetails } from './modeles/CategoryDetails.modele';
+import { FramesImg } from './modeles/ImageResponse.modele';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +29,9 @@ export class AppComponent implements OnInit {
     private _translate: TranslateService,
     private modalService: NgbModal,
     public imgService: FrameImageService,
-    private router: Router) {
+    private router: Router,
+    private frameServis: FrameService
+  ) {
     this.getLanguage();
   }
 
@@ -101,21 +107,45 @@ export class AppComponent implements OnInit {
     this.frames.orderList = [];
     this.frames.token = '';
     this.frames.userReg = true;
-     this.frames.showFrame();
+    this.frames.showFrame();
     this.frames.userData = {} as UserData;
     this.router.navigate(['/'])
   }
 
   public getFrame(): void {
-    this.router.navigate(['/'], { queryParamsHandling: 'merge' });
-    this.frames.isImg = true;
-    this.frames.isOrder = false;
-    this.frames.conteinerHeight();
-    this.frames.validateForm.reset();
-    if (this.frames.validateForm.get("text")?.value == null) {
-      this.imgService.clearPrice()
-    }
+    // , { queryParamsHandling: 'merge' }
+    this.imageAndBgResponse();
   }
+  
+  private imageAndBgResponse() {
+    forkJoin({
+      frameBg: this.frameServis.framesFoneGet(),
+      framesImgGet: this.frameServis.getFrames()
+    })
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (res) => {
+          this.frames.background = res.frameBg.results[0];
+          this.frameServis.framesImge =  res.framesImgGet.results;
+          this.frames.frame = this.frameServis.framesImge.find(
+            (item) => item.id === 3
+          );
+
+          this.router.navigate(['']);
+          this.frames.isImg = true;
+          this.frames.isOrder = false;
+          this.frames.conteinerHeight();
+          this.frames.validateForm.reset();
+          if (this.frames.validateForm.get("text")?.value == null) {
+            this.imgService.clearPrice()
+          }
+        }
+      })
+  }
+
+ 
+
+
 
   public getMagnit(): void {
     this.frames.validateForm.reset()
