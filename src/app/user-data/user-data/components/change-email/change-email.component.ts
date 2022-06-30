@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { UserDataService } from '../../user-data.service';
 
 
 @Component({
@@ -9,25 +12,37 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./change-email.component.css']
 })
 export class ChangeEmailComponent implements OnInit {
-  newEmail!: FormGroup
+  unsubscribe$ = new Subject();
+  message = ''
+  email = new FormControl(null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])
+
   constructor(
-    private fb: FormBuilder,
-    public activeModal: NgbActiveModal
+    public activeModal: NgbActiveModal,
+    public userDataService: UserDataService
   ) { }
 
-  initForm() {
-    return this.fb.group({
-      oldEmail: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      newEmail: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]]
-    })
-  }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    this.newEmail = this.initForm()
-  }
+  changeEmail() {
+    if (this.email.valid) {
 
-  changeEmail(){
-    this.activeModal.close();
+      this.userDataService.changeEmail({ email: this.email.value })
+        .pipe(takeUntil(this.unsubscribe$))
+        .subscribe({
+          next:(res:any)=>{
+            this.message = res.message;
+            this.activeModal.close();
+          },
+          error:(error)=>{
+            this.message = error.error.message
+          }
+        })
+     
+
+      
+    }
+
+
   }
 
 }

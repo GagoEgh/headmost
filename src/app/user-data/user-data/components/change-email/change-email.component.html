@@ -7,12 +7,10 @@
     </button>
 </div>
 <div class="modal-body">
-    <form [formGroup]="newEmail">
-        <div class="password-form">
-            <app-email formControlName="oldEmail"></app-email>
-            <app-email formControlName="newEmail"></app-email>
-        </div>
-    </form>
+    <div class="password-form">
+        <app-email [formControl]="email"></app-email>
+        <p class="error">{{message}}</p>
+    </div>
 </div>
 <div class="modal-footer">
     <button type="button" mat-raised-button class="login-form-button" (click)="changeEmail()">

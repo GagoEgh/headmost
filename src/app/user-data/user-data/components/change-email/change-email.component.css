@@ -26,5 +26,10 @@
     margin-top: -5px;
     display: block;
   }
+  .error{
+    color: tomato;
+    font-size: 10px;
+    margin-left: 85px;
+  }
   
   

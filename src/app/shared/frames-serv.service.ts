@@ -81,6 +81,7 @@ export class FramesServService {
         api_magnet: '/add-magnet-in-card',
         api_languages: '/static/languages',
         api_changePass:'change-password/',
+        change_email:'change-email/',
         api_en: '/en.json',
         api_ru: '/ru.json',
         api_hy: '/hy.json'

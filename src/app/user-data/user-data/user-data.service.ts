@@ -25,4 +25,8 @@ export class UserDataService {
 
   }
 
+  // https://admin.gift4u.am/userdetails/change-email/
+  public changeEmail(newEmail:any){
+    return this.url.put(this.frames.api.worldApi + this.frames.api.api_userdetails+ this.frames.api.change_email,newEmail)
+  }
 }
