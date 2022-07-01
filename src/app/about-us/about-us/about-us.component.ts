@@ -12,7 +12,7 @@ import { AboutQuestion } from 'src/app/modeles/img-ramka.modele';
 })
 export class AboutUsComponent implements OnInit, AfterViewChecked, OnChanges {
   public _unsubscribe$ = new Subject();
-  public question_answer: AboutQuestion[] = [];
+  public question_answer!: AboutQuestion[];
   private caunt: number = 0;
   private aboutQuestion = {} as AboutQuestion;
 

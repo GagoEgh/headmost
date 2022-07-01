@@ -26,9 +26,12 @@ export class IdeaComponent implements OnInit {
   private offset = 0;
   private count = 0;
 
-  constructor(public frames: FramesServService, public ideaService: IdeaService,
+  constructor(
+    public frames: FramesServService,
+    public ideaService: IdeaService,
     private _activatedRoute: ActivatedRoute,
-    private modalService: NgbModal, private rout: Router) {
+    private modalService: NgbModal,
+    private rout: Router) {
   }
 
 
@@ -46,13 +49,13 @@ export class IdeaComponent implements OnInit {
   }
 
   private checkQueryParams(): void {
-    this._activatedRoute.queryParams.pipe(takeUntil(this._unsubscribe$)).subscribe((idCategory: { [key: string]: string }) => {
+    this._activatedRoute.queryParams
+    .pipe(takeUntil(this._unsubscribe$))
+    .subscribe((idCategory: { [key: string]: string }) => {
       this.offset = 0;
       this.ideaImages = [];
       this.category = idCategory.category;
-    //  this.category = this.category === undefined ? '' : this.category;
       this.appendItems();
-
     })
   }
 
@@ -66,11 +69,13 @@ export class IdeaComponent implements OnInit {
 
   private appendItems(): void {
     this.frames.spinner.show()
-    this.ideaService.frameCategoryImg(this.category, 1, this.offset).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: ServerResponce<FrameDetalis[]>) => {
-      this.offset += 10;
-      this.ideaImages.push(...frameDetalis.results);
-      this.frames.spinner.hide();
-    })
+    this.ideaService.frameCategoryImg(this.category, 1, this.offset)
+      .pipe(takeUntil(this._unsubscribe$))
+      .subscribe((frameDetalis: ServerResponce<FrameDetalis[]>) => {
+        this.offset += 10;
+        this.ideaImages.push(...frameDetalis.results);
+        this.frames.spinner.hide();
+      })
   }
 
   onScrollDown(ev: any) {
@@ -83,10 +88,12 @@ export class IdeaComponent implements OnInit {
       created_frame: '' + this.ideaImages[index].id
     }
     if (localStorage.getItem('loginAutorization')) {
-      this.frames.orderCard(data).pipe(takeUntil(this._unsubscribe$)).subscribe((cardItem: CardItemResults) => {
-        this.frames.orderList.push(cardItem);
-        this.open()
-      })
+      this.frames.orderCard(data)
+        .pipe(takeUntil(this._unsubscribe$))
+        .subscribe((cardItem: CardItemResults) => {
+          this.frames.orderList.push(cardItem);
+          this.open()
+        })
     } else {
       const ref = this.modalService.open(LoginComponent)
     }

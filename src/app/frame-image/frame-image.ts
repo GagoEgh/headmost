@@ -81,6 +81,7 @@ export class FrameImag {
     this.imgService.painding.values = obj.values;
     this.imgService.painding.id = obj.ceys.id;
     this.activatedRoute.queryParams
+      .pipe(takeUntil(this._unsubscribe$))
       .subscribe({
         next: (rout: any) => {
           if (rout.text) {
@@ -111,7 +112,7 @@ export class FrameImag {
     );
 
     this.imgService.setFramePrice(this.frames.frame.price);
-   
+
   }
 
   public showFrame(): void {
@@ -151,9 +152,9 @@ export class FrameImag {
             }
           }
         );
-       
+
       });
-      
+
   }
 
   public checkImage(img: string): boolean {

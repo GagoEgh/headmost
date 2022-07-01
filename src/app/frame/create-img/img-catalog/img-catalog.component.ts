@@ -50,9 +50,10 @@ export class ImgCatalogComponent implements OnInit {
     this.imgService.painding.imgs = this.img;
   }
 
-  
+
   private chengePopapImg(): void {
     this.frames.letterColection(this.character.character.toUpperCase(), this.imgService.painding.id)
+      .pipe(takeUntil(this._subscribe$))
       .subscribe((imageResponse: ServerResponce<ImageResponse[]>) => {
         this.imgService.painding.imgs = imageResponse.results;
       })
@@ -84,6 +85,7 @@ export class ImgCatalogComponent implements OnInit {
 
   public showCategory(category: CategoryDetails): void {
     this.frames.letterColection(this.character.character.toUpperCase(), this.imgService.painding.id, category.id)
+      .pipe(takeUntil(this._subscribe$))
       .subscribe((imageResponse: ServerResponce<ImageResponse[]>) => {
         this.imgService.painding.imgs = imageResponse.results
         this.imgService.painding.categoryId = category.id;

@@ -25,13 +25,16 @@ export class IdeaImageComponent implements OnInit {
   private width: number | undefined;
   public scale: number = 1;
 
-  constructor(public frames: FramesServService, public ideaImageService: IdeaImageService,
-    public rout: Router, public activApi: ActivatedRoute, public frameImageService: FrameImageService,
+  constructor(
+    public frames: FramesServService,
+    public ideaImageService: IdeaImageService,
+    public rout: Router,
+    public activApi: ActivatedRoute,
+    public frameImageService: FrameImageService,
     private modalService: NgbModal) { }
   ngOnInit(): void {
     this.frames.spinner.show()
     this.goIdeaCategory();
-  
   }
 
   @HostListener('window:resize', ['$event'])
@@ -51,13 +54,15 @@ export class IdeaImageComponent implements OnInit {
   }
 
   private goIdeaCategory(): void {
-    this.activApi.params.subscribe((idea: { [keys: string]: number }) => {
-      
-      this.ideaImageService.imgCategory(idea.id).pipe(takeUntil(this._unsubscribe$)).subscribe((frameDetalis: FrameDetalis) => {
-        this.ideaImageService.ideaImg = frameDetalis;
-        this.frames.spinner.hide();
+    this.activApi.params
+      .subscribe((idea: { [keys: string]: number }) => {
+        this.ideaImageService.imgCategory(idea.id)
+          .pipe(takeUntil(this._unsubscribe$))
+          .subscribe((frameDetalis: FrameDetalis) => {
+            this.ideaImageService.ideaImg = frameDetalis;
+            this.frames.spinner.hide();
+          })
       })
-    })
   }
 
   private open(): void {
@@ -75,22 +80,24 @@ export class IdeaImageComponent implements OnInit {
       }
       this.frames.spinner.show();
       this.frames.orderCard(userCard)
-      .pipe(takeUntil(this._unsubscribe$)).subscribe((cardItem: CardItemResults) => {
-        this.frames.orderList.push(cardItem);
-        this.open();
-        this.frames.spinner.hide()
-      })
+        .pipe(takeUntil(this._unsubscribe$))
+        .subscribe((cardItem: CardItemResults) => {
+          this.frames.orderList.push(cardItem);
+          this.open();
+          this.frames.spinner.hide()
+        })
     } else {
       const modalRef = this.modalService.open(LoginComponent);
     }
   }
 
   public myFrame() {
-   
+
     this.ideaImageService.isIdeaFrame = true;
     this.frames.isImg = false;
     this.frames.text = this.ideaImageService?.ideaImg?.word;
-    this.frameImageService.letterGet().subscribe((wordResult: WordResult[]) => {
+    this.frameImageService.letterGet()
+    .subscribe((wordResult: WordResult[]) => {
       this.frames.letterImges = wordResult;
       this.frames.letterImges = this.frames.letterImges.filter(img => {
         return !img.not_found
@@ -99,7 +106,7 @@ export class IdeaImageComponent implements OnInit {
     })
 
   }
-  
+
   ngOnDestroy() {
     this._unsubscribe$.next();
     this._unsubscribe$.complete();

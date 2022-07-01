@@ -9,7 +9,9 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class NoUsserComponent implements OnInit {
 
-  constructor(public activeModal: NgbActiveModal,public _translate: TranslateService,) { }
+  constructor(
+    public activeModal: NgbActiveModal,
+    public _translate: TranslateService) { }
 
   ngOnInit(): void {
   }

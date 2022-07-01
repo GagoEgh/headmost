@@ -52,6 +52,9 @@
           </mat-error>
         </mat-form-field>
         <app-email formControlName="email"></app-email>
+        <div class="color">
+          <p>{{emailMassage}}</p>
+        </div>
       </div>
 
       <div class="col column-2">
@@ -86,10 +89,6 @@
         </mat-form-field>
         <app-password formControlName="pas" [label]="'Order.userData.password'"></app-password>
         <app-password formControlName="pasRev" [label]="'Order.userData.passwordReset'"></app-password>
-    
-        <div class="color">
-          <p>{{emailMassage}}</p>
-        </div>
         
       </div>
       <button mat-raised-button class="login-form-button">

@@ -14,7 +14,8 @@ import { FrameService } from '../../frame/frame.service';
   templateUrl: './form-frame.component.html',
   styleUrls: ['./form-frame.component.css'],
 })
-export class FormFrameComponent extends FrameImag implements OnInit, AfterContentChecked {
+export class FormFrameComponent extends FrameImag implements
+ OnInit, AfterContentChecked {
   constructor(
     public frames: FramesServService,
     private _translate: TranslateService,
