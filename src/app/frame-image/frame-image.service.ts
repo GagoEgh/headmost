@@ -65,33 +65,47 @@ export class FrameImageService {
     this._productPrice = 0
   }
 
-  public letterColorFone(): void {
-    this.spinner.show();
-    this.frames.text = this.frames.validateForm.get('text')?.value;
+  public letterColorFone(text?: string): void {
+    this.spinner.show();    
+    this.frames.text = text ? text : this.frames.validateForm.get('text')?.value;
 
-    this.letterGet().subscribe((wordResult: WordResult[]) => {
-      this.frames.letterImges = wordResult;
-      this.frames.letterImges = this.frames.letterImges.filter(img => {
-        return !img.not_found
+    this.letterGet()
+      .subscribe((wordResult: WordResult[]) => {
+
+        this.frames.letterImges = wordResult;
+        this.frames.letterImges = this.frames.letterImges.filter(img => {
+          return !img.not_found
+        })
+
+        this.frames.urlArr = this.rout.url.split('/');
+
+        if (this.frames.urlArr[1] === 'frame') {
+          this.rout.navigate([this.frames.urlArr[1] + '/create-img'],
+            {
+              queryParams:
+              {
+                type: this.frames.urlArr[1],
+                text: this.frames.text
+              }
+            })
+
+        }
+
+        if (this.frames.urlArr[1] === 'magnit') {
+          this.rout.navigate([this.frames.urlArr[1] + '/create-magnit'],
+            {
+              queryParams: {
+                type: this.frames.urlArr[1],
+                text: this.frames.text
+              }
+            })
+        }
+
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 1000)
+
       })
-
-      this.frames.urlArr = this.rout.url.split('/');
-
-      if (this.frames.urlArr[1] === 'frame') {
-        this.rout.navigate([this.frames.urlArr[1] + '/create-img'],
-          { queryParams: { type: this.frames.urlArr[1], text: this.frames.text } })
-
-      }
-
-      if (this.frames.urlArr[1] === 'magnit') {
-        this.rout.navigate([this.frames.urlArr[1] + '/create-magnit'], { queryParams: { type: this.frames.urlArr[1], text: this.frames.text } })
-      }
-
-      setTimeout(() => {
-        this.spinner.hide();
-      }, 1000)
-
-    })
   }
 
 }

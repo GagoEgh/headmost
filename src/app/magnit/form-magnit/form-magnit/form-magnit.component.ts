@@ -2,7 +2,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder,} from '@angular/forms';
+import { FormBuilder, } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
@@ -16,8 +16,8 @@ import { FrameService } from 'src/app/frame/frame/frame.service';
   styleUrls: ['./form-magnit.component.css'],
 })
 export class FormMagnitComponent extends FrameImag implements OnInit {
-  
-  
+
+
   constructor(
     public activatedRoute: ActivatedRoute,
     public frames: FramesServService,

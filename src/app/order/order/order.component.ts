@@ -3,7 +3,7 @@ import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from "@ngx-translate/core";
-import { takeUntil } from 'rxjs/operators';
+import { filter, switchMap, takeUntil } from 'rxjs/operators';
 import { forkJoin, Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -105,7 +105,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
       addres: [this.frames.userData.address, [Validators.required]],
       shipping: [null, [Validators.required]],
       comment: [''],
-      sale: ['', [this.noText,Validators.maxLength(3)]],
+      sale: ['', [this.noText, Validators.maxLength(3)]],
       postal: ['', [Validators.maxLength(20), Validators.required]]
     });
   }
@@ -214,19 +214,18 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   public deleteDate(card: CardItemResults): void {
     this.orderService.deleteOrder(card.id)
-      .pipe(takeUntil(this._subscribe$))
-      .subscribe(() => {
-        this.frames.sum -= card.created_frame_details.price;
-        this.frames.orderList = this.frames.orderList.filter(
-          (val: CardItemResults) => {
-            return val.id != card.id
-          })
-
-          // console.log('orderList =',this.frames.orderList)
-        if (this.frames.orderList.length === 0) {
-          this.frames.showFrame()
+      .pipe(takeUntil(this._subscribe$),
+        switchMap(() => {
+          return this.frames.getUserOrder(this.frames.userData.user)
+        })
+      ).subscribe({
+        next: (res: any) => {
+          this.frames.orderList = res.results.reverse();
+          if (this.frames.orderList.length === 0) {
+            this.frames.showFrame()
+          }
         }
-      });
+      })
   }
 
   ngOnDestroy() {

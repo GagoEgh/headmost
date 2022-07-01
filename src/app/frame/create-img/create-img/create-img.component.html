@@ -1,49 +1,60 @@
 <div class="conteiner">
     <div class="myWrap" [style.margin]="frames.isTop?'0 auto':'0'">
-        <div class="arrowRaight"><p class="sizeRight">23sm</p></div>
-   
+        <div class="arrowRaight">
+            <p class="sizeRight">23sm</p>
+        </div>
+
         <div class="reight">
-            <div class="squrl left-top" [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.left_top_corner_image + ')':'url('+ideaImgService.ideaImg.frame_details?.left_top_corner_image + ')'">
+            <div class="squrl left-top"
+                [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.left_top_corner_image + ')':'url('+ideaImgService.ideaImg.frame_details?.left_top_corner_image + ')'">
             </div>
-            <div class="reight-he left-line" [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.left_line_image + ')':'url('+ideaImgService.ideaImg.frame_details?.left_line_image + ')'">
+            <div class="reight-he left-line"
+                [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.left_line_image + ')':'url('+ideaImgService.ideaImg.frame_details?.left_line_image + ')'">
             </div>
-            <div class="squrl left-bottom" [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.left_bottom_corner_image + ')':'url('+ideaImgService.ideaImg.frame_details?.left_bottom_corner_image +')'">
+            <div class="squrl left-bottom"
+                [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.left_bottom_corner_image + ')':'url('+ideaImgService.ideaImg.frame_details?.left_bottom_corner_image +')'">
             </div>
         </div>
-        
+
         <div class="content">
             <div class="arrowTop">
-                <p  class="sizeTop">{{frames.letterImges.length *12}}sm</p>    
+                <p *ngIf="frames?.letterImges?.length" class="sizeTop">{{frames.letterImges.length * 12}}sm</p>
             </div>
-            <div class="top" [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.top_line_image + ')':'url('+ideaImgService.ideaImg.frame_details?.top_line_image+')'"></div>
-            <div class="im" [style.backgroundColor]="frames.background.color" (mouseleave)="onMouseleave()" (mouseenter)="onMouseenter()">
-                <div class="menu">  
+            <div class="top"
+                [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.top_line_image + ')':'url('+ideaImgService.ideaImg.frame_details?.top_line_image+')'">
+            </div>
+            <div class="im" [style.backgroundColor]="frames.background.color" (mouseleave)="onMouseleave()"
+                (mouseenter)="onMouseenter()">
+                <div class="menu">
                     <div class="change" (click)='changeImg()' [style.opacity]="topLettering.isMenu?'1':'0'">
                         <p class="bottom-par">{{'Imgs.changeImage'|translate}}</p>
                     </div>
-                    <div class="delete" [style.opacity]="topLettering.isMenu?'1':'0'" >
+                    <div class="delete" [style.opacity]="topLettering.isMenu?'1':'0'">
                         <p class="bottom-par" (click)='deletImg()'>{{'Imgs.deleteText'|translate}}</p>
                     </div>
-                    <div class="lettering" *ngIf='frames.letterImges.length>2' [style.opacity]="topLettering.isForm?'1':'0'">
+                    <div class="lettering" *ngIf='frames?.letterImges?.length && frames.letterImges.length>2'
+                        [style.opacity]="topLettering.isForm?'1':'0'">
                         <form [formGroup]="validateForm">
-                            <input type="text" formControlName='topText' [style.backgroundColor]="frames.background.color" class="inStyle" maxlength="15" [class.font]='topLettering.isSpan'>
+                            <input type="text" formControlName='topText'
+                                [style.backgroundColor]="frames.background.color" class="inStyle" maxlength="15"
+                                [class.font]='topLettering.isSpan'>
                             <span class="cursor" *ngIf="topLettering.isSpan" (click)='deleteTopProprty()'>X</span>
                         </form>
                     </div>
                 </div>
                 <div class="imgs">
                     <div class="bg-img" *ngFor='let img of frames.letterImges;let i = index' (click)="openImg(img,i)"
-                    [style.background-image]="checkImage(img.image.thumbnail)?'url( '+ img.image.thumbnail + ')':'url( https://admin.gift4u.am/'+ img.image.thumbnail + ')'"
-                    >
+                        [style.background-image]="checkImage(img.image.thumbnail)?'url( '+ img.image.thumbnail + ')':'url( https://admin.gift4u.am/'+ img.image.thumbnail + ')'">
                         <div class="bgr">
                             <p>{{'Imgs.imgHover'|translate}}</p>
                         </div>
                     </div>
                 </div>
-                <div class="menu" [style.flex-direction]="frames.letterImges.length < 3?'row':'row-reverse'">
-                    <div *ngIf='frames.letterImges.length>2' [style.opacity]="bottomLettering.isForm?'1':'0'">
+                <div class="menu" [style.flex-direction]="frames?.letterImges?.length && frames.letterImges.length < 3?'row':'row-reverse'">
+                    <div *ngIf='frames?.letterImges?.length && frames.letterImges.length>2' [style.opacity]="bottomLettering.isForm?'1':'0'">
                         <form [formGroup]='bottomText'>
-                            <input type="text" formControlName='btmText' class="inStyle" maxlength="15" [style.backgroundColor]="frames.background.color" [class.font]="bottomLettering.isSpan">
+                            <input type="text" formControlName='btmText' class="inStyle" maxlength="15"
+                                [style.backgroundColor]="frames.background.color" [class.font]="bottomLettering.isSpan">
                             <span class="cursor" *ngIf="bottomLettering.isSpan" (click)="deleteBottomProprty()">X</span>
                         </form>
                     </div>
@@ -52,19 +63,22 @@
                     </div>
                 </div>
             </div>
-            <div class="bottom" [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' +frames.frame?.bottom_line_image + ')':'url('+ideaImgService.ideaImg.frame_details?.bottom_line_image+')'">
+            <div class="bottom"
+                [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' +frames.frame?.bottom_line_image + ')':'url('+ideaImgService.ideaImg.frame_details?.bottom_line_image+')'">
             </div>
         </div>
         <div class="left">
-            <div class="squrl right-top" [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.right_top_corner_image + ')':'url('+ideaImgService.ideaImg.frame_details?.right_top_corner_image +')'">
+            <div class="squrl right-top"
+                [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.right_top_corner_image + ')':'url('+ideaImgService.ideaImg.frame_details?.right_top_corner_image +')'">
             </div>
 
-            <div class="reight-he right-line" [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.right_line_image + ')':'url('+ideaImgService.ideaImg.frame_details?.right_line_image+')'">
+            <div class="reight-he right-line"
+                [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.right_line_image + ')':'url('+ideaImgService.ideaImg.frame_details?.right_line_image+')'">
             </div>
-            <div class="squrl right-bottom" [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.right_bottom_corner_image + ')':'url('+ideaImgService.ideaImg.frame_details?.right_bottom_corner_image +')'">
+            <div class="squrl right-bottom"
+                [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.right_bottom_corner_image + ')':'url('+ideaImgService.ideaImg.frame_details?.right_bottom_corner_image +')'">
             </div>
         </div>
     </div>
 </div>
 <app-order *ngIf='frames.isOrder'> </app-order>
-

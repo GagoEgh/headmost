@@ -55,7 +55,12 @@ export class MagnitComponent extends FrameImag implements OnInit, AfterViewCheck
     this.translateImgText()
     this.frames.letterImges = [];
     this.frames.isOrder = false;
-    this.rout.navigate(['magnit/form-magnit']);
+    const text = this.activatedRoute.snapshot?.queryParams?.text;
+    if (!!text) {
+      this.imgService.letterColorFone(text);
+    } else {
+      this.rout.navigate(['magnit/form-magnit']);
+    }
   }
 
   @HostListener('window:resize', ['$event'])

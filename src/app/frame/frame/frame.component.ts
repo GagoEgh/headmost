@@ -28,8 +28,7 @@ import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
 })
 export class FrameComponent
   extends FrameImag
-  implements OnInit, AfterViewChecked, AfterContentChecked
-{
+  implements OnInit, AfterViewChecked, AfterContentChecked {
   @ViewChild('block', { static: false }) block: ElementRef | undefined;
   private width: number | undefined;
   public catalogStyle = {} as { [key: string]: string };
@@ -49,7 +48,7 @@ export class FrameComponent
     public form: FormBuilder,
     private _translate: TranslateService,
     private _frameImgService: FrameImageService,
-    public activatedRoute:ActivatedRoute
+    public activatedRoute: ActivatedRoute
   ) {
     super(
       frames,
@@ -70,14 +69,19 @@ export class FrameComponent
 
   ngOnInit(): void {
     super.myForm();
-   
+
     super.imgColor();
-   
+
     this.frames.isOrder = false;
-    
-    if (this.frames.isImg) {
-      this.rout.navigate(['frame/form-frame']);
-      this.frames.letterImges = [];
+    const text = this.activatedRoute.snapshot?.queryParams?.text;
+
+    if (!!text) {
+      this.imgService.letterColorFone(text);
+    } else {
+      if (this.frames.isImg) {
+        this.rout.navigate(['frame/form-frame']);
+        this.frames.letterImges = [];
+      }
     }
 
     this.imgTextGet();
@@ -96,9 +100,9 @@ export class FrameComponent
   }
 
   public backgroundImageChangeRight(): any {
-    for(let i = 0; i <= this.bgClassArr.length - 1; i++){
-      if(this.backgroundClass == this.bgClassArr[i]){
-        if(i == this.bgClassArr.length-1){
+    for (let i = 0; i <= this.bgClassArr.length - 1; i++) {
+      if (this.backgroundClass == this.bgClassArr[i]) {
+        if (i == this.bgClassArr.length - 1) {
           return this.backgroundClass = this.bgClassArr[0]
         }
         return this.backgroundClass = this.bgClassArr[i + 1]
@@ -107,9 +111,9 @@ export class FrameComponent
   }
 
   public backgroundImageChangeLeft(): any {
-    for(let i = this.bgClassArr.length - 1; i >= 0; i--){
-      if(this.backgroundClass == this.bgClassArr[i]){
-        if(i == 0){
+    for (let i = this.bgClassArr.length - 1; i >= 0; i--) {
+      if (this.backgroundClass == this.bgClassArr[i]) {
+        if (i == 0) {
           return this.backgroundClass = this.bgClassArr[this.bgClassArr.length - 1]
         }
         return this.backgroundClass = this.bgClassArr[i - 1]
@@ -124,7 +128,7 @@ export class FrameComponent
       this.scale = window.innerWidth / this.width - 0.35;
     }
 
-    if (this.frames.letterImges.length) {
+    if (this.frames?.letterImges?.length) {
       this.scale = 1;
       if (window.innerWidth <= 1290) {
         this.scale = window.innerWidth / 1180;

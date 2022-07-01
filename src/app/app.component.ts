@@ -141,7 +141,7 @@ export class AppComponent implements OnInit {
       })
   }
 
-  public getMagnit(): void {
+  public getMagnit(): void {    
     this.frames.validateForm.reset()
     this.router.navigate(['/magnit/form-magnit'], { queryParamsHandling: 'merge' });
     this.frames.isImg = true;

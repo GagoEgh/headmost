@@ -83,9 +83,9 @@ export class FrameImag {
     this.activatedRoute.queryParams
       .pipe(takeUntil(this._unsubscribe$))
       .subscribe({
-        next: (rout: any) => {
+        next: (rout: any) => {          
           if (rout.text) {
-            this.imgService.letterColorFone();
+            this.imgService.letterColorFone(rout.text);
           }
         }
       })
@@ -108,7 +108,7 @@ export class FrameImag {
     this.imgService.letterColorFone();
 
     this.imgService.setLettersQuantity(
-      this.frames.validateForm.get('text')?.value.length
+      this.frames.validateForm.get('text')?.value?.length
     );
 
     this.imgService.setFramePrice(this.frames.frame.price);
