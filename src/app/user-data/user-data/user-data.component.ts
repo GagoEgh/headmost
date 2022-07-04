@@ -138,8 +138,8 @@ export class UserDataComponent implements OnInit, AfterViewChecked {
       form: this.validateForm.value,
       date
     }
+ 
     const edit = new EditDto(dto);
-
     this.changeDate()
     if (this.isChange && this.validateForm.valid) {
       this.userName = edit.first_name;

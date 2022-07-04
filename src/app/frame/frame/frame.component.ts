@@ -37,7 +37,6 @@ export class FrameComponent
   public productPrice?: number = 0;
   public backgroundClass: string = 'bg4';
   public bgClassArr: string[] = ['bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg6', 'bg7', 'bg8'];
-  text = ''
   constructor(
     public frames: FramesServService,
     public modalService: NgbModal,
@@ -107,7 +106,7 @@ export class FrameComponent
           this.frames.placeholder = res.translate['placeholder'];
           this.frames.div = res.fone.results;
           this.div = this.frames.div
-          this.frames.background = res.fone.results[0];
+          this.frames.background = this.frames.div[0];
 
           this.frameServis.framesImge = res.frames.results;
           this.frames.frame = this.frameServis.framesImge.find(

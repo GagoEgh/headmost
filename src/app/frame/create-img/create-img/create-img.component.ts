@@ -26,6 +26,7 @@ export class CreateImgComponent extends FrameImag implements OnInit {
 
   constructor(
     public frames: FramesServService,
+    public frameServis: FrameService,
     public rout: Router,
     public ideaImgService: IdeaImageService,
     public imgService: FrameImageService,
@@ -55,6 +56,10 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     this.rout.navigate(['frame/form-frame']);
     this.frames.validateForm.reset();
     this.frames.isImg = true;
+    this.frames.background = this.frames.div[0];
+    this.frames.frame = this.frameServis.framesImge.find(
+      (item) => item.id === 3
+    );
     if(this.frames.validateForm.get("text")?.value == null){
       this.imgService.clearPrice();
     }
