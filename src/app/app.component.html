@@ -2,15 +2,15 @@
   <p style="color: #ffffff"> Loading... </p>
 </ngx-spinner>
 <div class="headmost">
-  <div class="conteiner" (mouseleave)="frames.isSilki=false">
+  <header class="header" (mouseleave)="framesIsSilki=false">
     <div class="logo" (click)="getFrame()">
       <p>Gift4u</p>
     </div>
-    <div (click)="frames.isSilki=true">
+    <div (click)="framesIsSilki=true">
       <span class="material-icons-outlined">
         <img src="./assets/1x/outline_view_headline_black_24dp.png">
       </span>
-      <ul class="silki" [class.check-silki]='frames.isSilki'>
+      <ul class="silki" [class.check-silki]='framesIsSilki'>
         <li class="parent">
           <p class="frame">{{'Menu.konstruktor.konstr'|translate}}</p>
           <img src="./assets/1x/drop.png" class=" drop-constructor">
@@ -69,11 +69,11 @@
         </li>
       </ul>
     </div>
-  </div>
-  <div class="rout">
+  </header>
+  <main class="rout">
     <router-outlet></router-outlet>
-  </div>
-  <div class="footerWrap">
+  </main>
+  <footer class="footerWrap">
     <div class="width footer-width">
       <div class="left">
         <p> Copyright © 2021 Gift4u</p>
@@ -108,7 +108,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </footer>
 </div>
 
 <div class="noMobail">

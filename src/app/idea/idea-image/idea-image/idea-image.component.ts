@@ -101,7 +101,7 @@ export class IdeaImageComponent implements OnInit {
       this.frames.letterImges = wordResult;
       this.frames.letterImges = this.frames.letterImges.filter(img => {
         return !img.not_found
-      })
+      })      
       this.rout.navigate(['/frame/create-img'], { queryParams: { type: 'frame', text: this.ideaImageService?.ideaImg?.word } })
     })
 

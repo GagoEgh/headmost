@@ -104,6 +104,7 @@ export class FrameImag {
       }, 2500);
       return;
     }
+ 
     this.frames.isImg = false;
     this.imgService.letterColorFone();
 

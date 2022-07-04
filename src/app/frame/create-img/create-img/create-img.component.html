@@ -3,7 +3,6 @@
         <div class="arrowRaight">
             <p class="sizeRight">23sm</p>
         </div>
-
         <div class="reight">
             <div class="squrl left-top"
                 [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.left_top_corner_image + ')':'url('+ideaImgService.ideaImg.frame_details?.left_top_corner_image + ')'">
@@ -23,7 +22,7 @@
             <div class="top"
                 [style.background-image]="!ideaImgService.isIdeaFrame ?'url(' + frames.frame?.top_line_image + ')':'url('+ideaImgService.ideaImg.frame_details?.top_line_image+')'">
             </div>
-            <div class="im" [style.backgroundColor]="frames.background.color" (mouseleave)="onMouseleave()"
+            <div class="im" [style.backgroundColor]="frames?.background?.color" (mouseleave)="onMouseleave()"
                 (mouseenter)="onMouseenter()">
                 <div class="menu">
                     <div class="change" (click)='changeImg()' [style.opacity]="topLettering.isMenu?'1':'0'">
@@ -36,7 +35,7 @@
                         [style.opacity]="topLettering.isForm?'1':'0'">
                         <form [formGroup]="validateForm">
                             <input type="text" formControlName='topText'
-                                [style.backgroundColor]="frames.background.color" class="inStyle" maxlength="15"
+                                [style.backgroundColor]="frames?.background?.color" class="inStyle" maxlength="15"
                                 [class.font]='topLettering.isSpan'>
                             <span class="cursor" *ngIf="topLettering.isSpan" (click)='deleteTopProprty()'>X</span>
                         </form>
@@ -54,7 +53,7 @@
                     <div *ngIf='frames?.letterImges?.length && frames.letterImges.length>2' [style.opacity]="bottomLettering.isForm?'1':'0'">
                         <form [formGroup]='bottomText'>
                             <input type="text" formControlName='btmText' class="inStyle" maxlength="15"
-                                [style.backgroundColor]="frames.background.color" [class.font]="bottomLettering.isSpan">
+                                [style.backgroundColor]="frames?.background?.color" [class.font]="bottomLettering.isSpan">
                             <span class="cursor" *ngIf="bottomLettering.isSpan" (click)="deleteBottomProprty()">X</span>
                         </form>
                     </div>

@@ -22,10 +22,10 @@ import { WordResult } from '../modeles/WordResult.module';
 export class FramesServService {
     public orderSubject = new BehaviorSubject(null);
     public frameHeigth = {} as { [key: string]: string };
-    public validateForm!: FormGroup ;
+    public validateForm!: FormGroup;
     public userData!: UserData;
     public letterImges!: WordResult[];
-    public selectedValue!: any [];
+    public selectedValue!: any[];
     public placeholder = '';
     public lang = 'ru';
     public country_placeholder = '';
@@ -50,8 +50,8 @@ export class FramesServService {
     public letterChar: string = '';
     public isImg = true;
     public frame: any;
-    public isGet:boolean = false;
-    // userdetails/change-password/
+    public isGet: boolean = false;
+    public div: any = [];
     public api: Api = {
         worldApi: 'https://admin.gift4u.am',
         api_utils: '/utils',
@@ -80,8 +80,8 @@ export class FramesServService {
         api_created_frame: '/created-frame',
         api_magnet: '/add-magnet-in-card',
         api_languages: '/static/languages',
-        api_changePass:'change-password/',
-        change_email:'change-email/',
+        api_changePass: 'change-password/',
+        change_email: 'change-email/',
         api_en: '/en.json',
         api_ru: '/ru.json',
         api_hy: '/hy.json'
@@ -122,15 +122,18 @@ export class FramesServService {
         }
     ];
 
-    constructor(private url: HttpClient, public spinner: NgxSpinnerService, public rout: Router,
+    constructor(
+        private url: HttpClient,
+        public spinner: NgxSpinnerService,
+        public rout: Router,
         public _translate: TranslateService, public modalService: NgbModal) { }
 
 
-    setOrdersDate(data:any){
+    setOrdersDate(data: any) {
         this.orderSubject.next(data)
     }
 
-    getOrdersDate(){
+    getOrdersDate() {
         return this.orderSubject.asObservable()
     }
 
@@ -157,22 +160,22 @@ export class FramesServService {
     }
 
     public userCountry() {
-      return  this.getCountry()
+        return this.getCountry()
     }
 
     public orderCard(obj: { created_frame: string, user: number }): Observable<CardItemResults> {
         return this.url.post<CardItemResults>(this.api.worldApi + this.api.api_order + this.api.api_card + '/', obj)
     }
 
-    public cityPlaceholder(){
-       return this._translate.get('Order.userData.countryPlaceholder')
+    public cityPlaceholder() {
+        return this._translate.get('Order.userData.countryPlaceholder')
     }
 
-   
-    public getUserOrder(id:number) {
-        return this.url.get(this.api.worldApi + this.api.api_order + this.api.api_card+ `/?user=${id}&limit=1000`)
+
+    public getUserOrder(id: number) {
+        return this.url.get(this.api.worldApi + this.api.api_order + this.api.api_card + `/?user=${id}&limit=1000`)
     }
-    
+
     public showFrame(): void {
         this.isOrder = false;
         this.isImg = true;
@@ -184,7 +187,7 @@ export class FramesServService {
             this.rout.navigate([this.urlArr[1] + '/form-magnit'])
         }
 
-        if(this.urlArr[1] !== 'magnit' &&  this.urlArr[1] !== 'frame'){
+        if (this.urlArr[1] !== 'magnit' && this.urlArr[1] !== 'frame') {
             this.rout.navigate(['/'])
         }
     }

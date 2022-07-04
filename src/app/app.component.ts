@@ -20,6 +20,7 @@ import { FrameService } from './frame/frame/frame.service';
 })
 export class AppComponent implements OnInit {
   public unsubscribe$ = new Subject();
+  framesIsSilki = this.frames.isSilki
   constructor(
     public frames: FramesServService,
     private cookie: CookieService,
@@ -84,7 +85,7 @@ export class AppComponent implements OnInit {
           this.frames.setOrdersDate(this.frames.orderList);
           this.frames.orderList.forEach((obj: any) => {
             this.frames.sum += obj.created_frame_details.price;
-          });          
+          });
           this.spinner.hide();
         }
       })
@@ -111,10 +112,9 @@ export class AppComponent implements OnInit {
   }
 
   public getFrame(): void {
-    // , { queryParamsHandling: 'merge' }
     this.imageAndBgResponse();
   }
-  
+
   private imageAndBgResponse() {
     forkJoin({
       frameBg: this.frameServis.framesFoneGet(),
@@ -124,7 +124,8 @@ export class AppComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.frames.background = res.frameBg.results[0];
-          this.frameServis.framesImge =  res.framesImgGet.results;
+          
+          this.frameServis.framesImge = res.framesImgGet.results;
           this.frames.frame = this.frameServis.framesImge.find(
             (item) => item.id === 3
           );
@@ -141,7 +142,7 @@ export class AppComponent implements OnInit {
       })
   }
 
-  public getMagnit(): void {    
+  public getMagnit(): void {
     this.frames.validateForm.reset()
     this.router.navigate(['/magnit/form-magnit'], { queryParamsHandling: 'merge' });
     this.frames.isImg = true;
@@ -156,7 +157,8 @@ export class AppComponent implements OnInit {
     this._translate.use(language);
     this.frames.lang = language;
     window.location.reload()
-    this._translate.get('ImgTextValid').pipe(takeUntil(this.unsubscribe$))
+    this._translate.get('ImgTextValid')
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe((res: { [key: string]: string }) => {
         this.frames.placeholder = res["placeholder"];
         this.spinner.hide()

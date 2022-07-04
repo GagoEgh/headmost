@@ -9,7 +9,6 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { catchError, switchMap, takeUntil } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 import { RegisterResult } from 'src/app/modeles/register-response.modele';
-import { ServerResponce } from 'src/app/modeles/img-ramka.modele';
 import { FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { LoginService } from './login.service';
@@ -41,7 +40,6 @@ export class LoginComponent implements OnInit, DoCheck {
     public loginService: LoginService,
     private fb: FormBuilder,
     public frames: FramesServService,
-    private valid: ValidationServService,
     private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
@@ -69,7 +67,7 @@ export class LoginComponent implements OnInit, DoCheck {
         this.validateForm.controls[i].updateValueAndValidity();
       }
     }
-    const userLog =new LoginDto(this.validateForm.value);
+    const userLog = new LoginDto(this.validateForm.value);
     if (this.validateForm.valid) {
       this.loginService.userLogin(userLog)
         .pipe(
@@ -97,7 +95,7 @@ export class LoginComponent implements OnInit, DoCheck {
                 this.frames.userInfo()
                   .pipe(takeUntil(this._subscribe$))
                   .subscribe({
-                    next: (serverResponce: ServerResponce<[]>) => {
+                    next: () => {
                       this.frames.orderList.forEach((obj: any) => {
                         this.frames.sum += obj.created_frame_details.price;
                       })

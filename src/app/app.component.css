@@ -2,7 +2,7 @@
     display: block;
 }
 
-.conteiner {
+.header {
     min-width: 100%;
     background-color: rgba(255, 255, 255, 0.849);
     box-shadow: 0 2px 2px rgb(0 0 0 / 35%);
@@ -285,7 +285,7 @@
 
 
 @media (max-width:1082px) {
-    .conteiner {
+    .header {
         position: relative;
         display: flex;
         justify-content: space-between;

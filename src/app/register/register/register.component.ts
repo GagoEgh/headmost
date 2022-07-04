@@ -110,7 +110,7 @@ export class RegisterComponent implements OnInit {
           this.registerService.isRegister = true;
           this.frames.userData = register.user_details;
           const modalRef = this.modalService.open(OkRegisterComponent);
-          modalRef.result.then((result) => {
+          modalRef.result.then(() => {
             this.registerService.isRegister = false;
           }, () => {
             this.registerService.isRegister = false;
@@ -123,7 +123,7 @@ export class RegisterComponent implements OnInit {
           localStorage.setItem('user-date', JSON.stringify(this.frames.userData))
           setTimeout(() => {
             modalRef.dismiss();
-          }, 500)
+          }, 1000)
 
         }, ((err: any) => {
           if (err.status === 400) {

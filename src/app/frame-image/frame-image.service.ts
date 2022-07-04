@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, of } from 'rxjs';
+import { FrameService } from '../frame/frame/frame.service';
 import { CategoryDetails } from '../modeles/CategoryDetails.modele';
 import { Painding, ServerResponce } from '../modeles/img-ramka.modele';
 import { WordResult } from '../modeles/WordResult.module';
@@ -35,6 +36,7 @@ export class FrameImageService {
     private url: HttpClient,
     public rout: Router,
     public spinner: NgxSpinnerService,
+    public frameServis: FrameService,
   ) { }
 
   public letterGet(): Observable<WordResult[]> {
@@ -54,7 +56,7 @@ export class FrameImageService {
   }
   public setFramePrice(price: number) {
     this._productPrice = 0
-    this._productPrice = this._lettersQuantity * price
+    this._productPrice = this._lettersQuantity * price;
   }
 
   public getPrice() {
@@ -65,12 +67,21 @@ export class FrameImageService {
     this._productPrice = 0
   }
 
-  public letterColorFone(text?: string): void {
-    this.spinner.show();    
+  public letterColorFone(text?: string, frame?: string, background?: any): void {
+    this.spinner.show();
     this.frames.text = text ? text : this.frames.validateForm.get('text')?.value;
+    const frameId = frame ? frame : this.frames.frame.id;
+    const backgroundId = background ? background : this.frames.background.id
 
     this.letterGet()
       .subscribe((wordResult: WordResult[]) => {
+        this.frames.frame = this.frameServis.framesImge.find(
+          (item) => item.id === +frameId
+        );
+
+        this.frames.background = this.frames.div.find(
+          (item: any) => item.id === +backgroundId
+        )
 
         this.frames.letterImges = wordResult;
         this.frames.letterImges = this.frames.letterImges.filter(img => {
@@ -85,10 +96,11 @@ export class FrameImageService {
               queryParams:
               {
                 type: this.frames.urlArr[1],
-                text: this.frames.text
+                text: this.frames.text,
+                frameId: frameId,
+                background: backgroundId
               }
             })
-
         }
 
         if (this.frames.urlArr[1] === 'magnit') {

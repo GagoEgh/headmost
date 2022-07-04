@@ -13,13 +13,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServerResponce } from 'src/app/modeles/img-ramka.modele';
 import { FramesImg } from 'src/app/modeles/ImageResponse.modele';
 import { BgDetails } from 'src/app/modeles/CategoryDetails.modele';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 import { FrameService } from './frame.service';
 import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-frame',
@@ -37,7 +37,7 @@ export class FrameComponent
   public productPrice?: number = 0;
   public backgroundClass: string = 'bg4';
   public bgClassArr: string[] = ['bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg6', 'bg7', 'bg8'];
-
+  text = ''
   constructor(
     public frames: FramesServService,
     public modalService: NgbModal,
@@ -69,14 +69,18 @@ export class FrameComponent
 
   ngOnInit(): void {
     super.myForm();
-
     super.imgColor();
+
 
     this.frames.isOrder = false;
     const text = this.activatedRoute.snapshot?.queryParams?.text;
+    const frameId = this.activatedRoute.snapshot?.queryParams?.frameId;
+    const backgroundId = this.activatedRoute.snapshot?.queryParams?.background;
+
 
     if (!!text) {
-      this.imgService.letterColorFone(text);
+      this.imgService.letterColorFone(text, frameId, backgroundId);
+      this.imgService.setLettersQuantity(text?.length);
     } else {
       if (this.frames.isImg) {
         this.rout.navigate(['frame/form-frame']);
@@ -84,16 +88,35 @@ export class FrameComponent
       }
     }
 
-    this.imgTextGet();
+    this.allResponse()
 
-    this.frameBg();
-
-    this.framesImgGet();
     setTimeout(() => {
       this.onResize();
     });
   }
 
+  allResponse() {
+    forkJoin({
+      translate: this._translate.get('ImgTextValid'),
+      fone: this.frameServis.framesFoneGet(),
+      frames: this.frameServis.getFrames()
+    })
+      .pipe(takeUntil(this._unsubscribe$))
+      .subscribe({
+        next: (res) => {
+          this.frames.placeholder = res.translate['placeholder'];
+          this.frames.div = res.fone.results;
+          this.div = this.frames.div
+          this.frames.background = res.fone.results[0];
+
+          this.frameServis.framesImge = res.frames.results;
+          this.frames.frame = this.frameServis.framesImge.find(
+            (item) => item.id === 3
+          );
+          this.frameClick(this.frames.index);
+        }
+      })
+  }
 
   ngAfterContentChecked(): void {
     this.productPrice = this._frameImgService.getPrice();
@@ -138,36 +161,6 @@ export class FrameComponent
     this.setStyle();
   }
 
-  private framesImgGet(): void {
-    this.frameServis
-      .getFrames()
-      .pipe(takeUntil(this._unsubscribe$))
-      .subscribe((framesImg: ServerResponce<FramesImg[]>) => {
-        this.frameServis.framesImge = framesImg.results;
-        this.frameClick(this.frames.index);
-      });
-  }
-
-  private imgTextGet(): void {
-    this._translate
-      .get('ImgTextValid')
-      .pipe(takeUntil(this._unsubscribe$))
-      .subscribe((frameText: { [key: string]: string }) => {
-        this.frames.placeholder = frameText['placeholder'];
-      });
-  }
-
-  private frameBg(): void {
-    this.frameServis
-      .framesFoneGet()
-      .pipe(takeUntil(this._unsubscribe$))
-      .subscribe((bgDetails: ServerResponce<BgDetails[]>) => {
-        this.div = bgDetails.results;
-        this.frames.background = bgDetails.results[0];
-
-      });
-  }
-
   private setStyle(): void {
     let style = {
       transform: 'translate(0, 0)' + 'scale(' + this.scale + ')',
@@ -177,9 +170,19 @@ export class FrameComponent
 
   public frameClick(id: number): void {
     this.frames.index = id;
+
+
     this.frames.frame = this.frameServis.framesImge.find(
       (item) => item.id === this.frames.index
     );
+    this.rout.navigate([], {
+      queryParams: {
+        frameId: this.frames.index,
+      },
+      queryParamsHandling: 'merge',
+
+    })
+
     this._frameImgService.setFramePrice(this.frames.frame.price);
   }
 
@@ -190,6 +193,13 @@ export class FrameComponent
 
   public changeBg(bg: BgDetails): void {
     this.frames.background = bg;
+  
+    this.rout.navigate([], {
+      queryParams: {
+        background: this.frames.background.id
+      },
+      queryParamsHandling: 'merge'
+    })
   }
 
   ngOnDestroy(): void {

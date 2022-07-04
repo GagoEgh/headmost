@@ -7,7 +7,8 @@
       <div class="carusel">
         <ul class="imageObject">
           <li *ngFor="let img of frameServis?.framesImge,let i=index" class="thumb-image">
-            <div [style.background-image]="'url('+img?.show_image + ')'" (click)='frameClick(img.id)' class="img-frame">
+            <div [style.background-image]="'url('+img?.show_image + ')'" 
+              (click)='frameClick(img.id)' class="img-frame">
               <div [ngClass]="{'box-content': getFrameId(img)}" class="box"></div>
             </div>
             <ul class="card">
@@ -25,15 +26,19 @@
         </ul>
       </div>
       <div class="backgrounds">
-        <div class="white" *ngFor="let item of div" [style.backgroundColor]='item.color' (click)="changeBg(item)"
-          [ngClass]="{'box-content':frames.background.id=== item.id}">
+        <div class="white" *ngFor="let item of div" 
+        [style.backgroundColor]='item.color' (click)="changeBg(item)"
+          [ngClass]="{'box-content':frames?.background?.id=== item?.id}">
           <div class="text">{{item.name}}</div>
         </div>
       </div>
       <div class="imgColor">
-
-        <div class="colorless" [style.backgroundColor]='block.values.color' *ngFor='let block of frames.imgColor'
-          (click)="imgFone(block)" [ngClass]="{'box-content':block?.ceys?.id=== imgService?.painding?.id}">
+        <div 
+          class="colorless" 
+          [style.backgroundColor]='block.values.color' 
+          *ngFor='let block of frames.imgColor'
+          (click)="imgFone(block)" 
+          [ngClass]="{'box-content':block?.ceys?.id===imgService?.painding?.id}">
           <div class="lessWhite" [style.backgroundColor]='block.values.child'>
             <p class="info" *ngIf='frames.lang==="hy"'>{{block?.ceys?.name_hy}}</p>
             <p class="info" *ngIf='frames.lang==="ru"'>{{block?.ceys?.name_ru}}</p>
