@@ -72,12 +72,14 @@
 
     <div class="btn__area">
 
-      <button *ngIf='frames.isImg' type="submit" (click)='onSubmit()' class='enter-btn'
+      <button *ngIf='frames.isImg' type="submit"
+       (click)='onSubmit()' class='enter-btn'
         [disabled]='frames.validateForm.pristine'>
         {{'ImgTextValid.createWord'|translate}}
       </button>
 
-      <button class="enter-btn" (click)='frames.myOrder()' *ngIf='!frames.isOrder && !frames.isImg'>
+      <button class="enter-btn" (click)='frames.myOrder()'
+       *ngIf='!frames.isOrder && !frames.isImg'>
         {{'ImgTextValid.batnSave'|translate}}
       </button>
 

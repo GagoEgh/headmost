@@ -83,7 +83,7 @@ export class FrameImag {
     this.activatedRoute.queryParams
       .pipe(takeUntil(this._unsubscribe$))
       .subscribe({
-        next: (rout: any) => {          
+        next: (rout: any) => {
           if (rout.text) {
             this.imgService.letterColorFone(rout.text);
           }
@@ -104,7 +104,7 @@ export class FrameImag {
       }, 2500);
       return;
     }
- 
+
     this.frames.isImg = false;
     this.imgService.letterColorFone();
 
@@ -117,12 +117,16 @@ export class FrameImag {
   }
 
   public showFrame(): void {
+    this.frames.frame = this.frameService.framesImge.find(
+      (item) => item.id === 3
+    )
 
+    this.frames.background = this.frames.div[0];
     this.frames.showFrame();
     this.frames.conteinerHeight();
     this.ideaImgService.isIdeaFrame = false;
     this.rout.navigate(['']);
-    this.imgService.clearPrice()
+    this.imgService.clearPrice();
   }
 
   // poxel
