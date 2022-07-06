@@ -188,6 +188,7 @@ export class FrameComponent
 
   //FramesImg
   public getFrameId(img: FramesImg): boolean {
+    console.log('frame')
     return img.id === this.frames.index;
   }
 

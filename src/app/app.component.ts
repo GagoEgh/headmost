@@ -124,7 +124,7 @@ export class AppComponent implements OnInit {
       .subscribe({
         next: (res) => {
           this.frames.background = res.frameBg.results[0];
-          
+          this.frames.index = 3;
           this.frameServis.framesImge = res.framesImgGet.results;
           this.frames.frame = this.frameServis.framesImge.find(
             (item) => item.id === 3
