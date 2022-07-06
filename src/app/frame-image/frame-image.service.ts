@@ -55,7 +55,7 @@ export class FrameImageService {
     this._lettersQuantity = num
   }
   public setFramePrice(price: number) {
-    this._productPrice = 0
+    this._productPrice = 0;
     this._productPrice = this._lettersQuantity * price;
   }
 

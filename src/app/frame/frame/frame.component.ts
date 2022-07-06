@@ -88,14 +88,14 @@ export class FrameComponent
       }
     }
 
-    this.allResponse()
+    this.allResponse(frameId)
 
     setTimeout(() => {
       this.onResize();
     });
   }
 
-  allResponse() {
+  allResponse(frameId: any) {
     forkJoin({
       translate: this._translate.get('ImgTextValid'),
       fone: this.frameServis.framesFoneGet(),
@@ -110,9 +110,10 @@ export class FrameComponent
           this.frames.background = res.fone.results[0];
 
           this.frameServis.framesImge = res.frames.results;
-          this.frames.frame = this.frameServis.framesImge.find(
-            (item) => item.id === 3
-          );
+          // this.frames.frame = this.frameServis.framesImge.find(
+          //   (item) => item.id === 3
+          // );
+        
           this.frameClick(this.frames.index);
         }
       })
@@ -177,25 +178,25 @@ export class FrameComponent
     );
     this.rout.navigate([], {
       queryParams: {
-        frameId: this.frames.index,
+        frameId: this.frames.index
       },
       queryParamsHandling: 'merge',
 
     })
 
-    this._frameImgService.setFramePrice(this.frames.frame.price);
+    this._frameImgService.setFramePrice(this.frames!.frame!.price);
+
   }
 
   //FramesImg
   public getFrameId(img: FramesImg): boolean {
-    console.log('frame')
     return img.id === this.frames.index;
   }
 
   public changeBg(bg: BgDetails): void {
     this.frames.background = bg;
 
-  
+
     this.rout.navigate([], {
       queryParams: {
         background: this.frames.background.id
