@@ -3,7 +3,7 @@ import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from "@ngx-translate/core";
-import { filter, switchMap, takeUntil } from 'rxjs/operators';
+import { switchMap, takeUntil } from 'rxjs/operators';
 import { forkJoin, Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -15,6 +15,7 @@ import { OrderService } from './order.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { OrderDto } from 'src/app/modeles/orderDto';
+import { NgxSpinnerService } from "ngx-spinner";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -34,7 +35,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   public promoError: string = '';
   public shiping!: any[];
   public promoId: null | number = null;
-  private sumInit: number = 0;
+  public sumInit: number = 0;
   private count: number = 0;
   public matcher = new MyErrorStateMatcher();
   private userName: string = '';
@@ -48,12 +49,11 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     public toastr: ToastrService,
     public valid: ValidationServService,
     public router: Router,
-  ) {
-  }
+    private spinner: NgxSpinnerService,
+  ) { }
 
 
   ngOnInit(): void {
-    // console.log('orderList =',this.frames.orderList)
     this.userName = this.frames.userData.user_details.first_name;
     this.getResponsesDate()
     this.getOrder();
@@ -113,7 +113,9 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   private addSum(): void {
     this.frames.orderList.forEach((card: CardItemResults) => {
       this.sumInit += card.created_frame_details.price;
+      this.frames.sum =  this.sumInit
     })
+
   }
 
   private noText(control: FormControl): object | null {
@@ -152,7 +154,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   }
 
-  private goUsOrder(order: any): void {
+  private goUsOrder(order: OrderDto): void {
     let okMsg: string = '';
     let errMsg: string = '';
     this._translate.get('Menu.user')
@@ -161,12 +163,15 @@ export class OrderComponent implements OnInit, AfterViewChecked {
         {
           next: (res) => {
             okMsg = res.orderOk;
-            errMsg = res.orderErr
+            errMsg = res.orderErr;
+            this.validForm(order, okMsg, errMsg)
           }
         }
       )
 
-    // && this.count != 1
+  }
+
+  private validForm(order: OrderDto, ok: string, err: string) {
     if (this.validateForm?.valid) {
 
       this.orderService.userOrder(order)
@@ -175,17 +180,23 @@ export class OrderComponent implements OnInit, AfterViewChecked {
           (order: any) => {
             this.count!++;
             this.orderService.isdisible = true;
-            this.toastr.success(okMsg);
-            let a = document.createElement("a");
-            document.body.appendChild(a);
-            a.style.display = "none";
-            a.href = order.message.formUrl;
-            a.click();
-            document.body.removeChild(a)
+            this.toastr.success(ok);
+            setTimeout(() => {
+              let a = document.createElement("a");
+              document.body.appendChild(a);
+              a.style.display = "none";
+              a.href = order.message.formUrl;
+              a.click();
+              document.body.removeChild(a)
+            }, 1500)
+
           },
           (err) => {
-            this.orderService.errOrder(errMsg)
-            this.toastr.error(errMsg)
+            setTimeout(() => {
+              this.orderService.errOrder(err)
+              this.toastr.error(err)
+            }, 1000)
+
           })
     }
   }
@@ -213,6 +224,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   }
 
   public deleteDate(card: CardItemResults): void {
+    this.spinner.show();
     this.orderService.deleteOrder(card.id)
       .pipe(takeUntil(this._subscribe$),
         switchMap(() => {
@@ -220,10 +232,14 @@ export class OrderComponent implements OnInit, AfterViewChecked {
         })
       ).subscribe({
         next: (res: any) => {
-          this.frames.orderList = res.results.reverse();
+          this.sumInit = 0;
           if (this.frames.orderList.length === 0) {
             this.frames.showFrame()
           }
+
+          this.frames.orderList = res.results.reverse();
+           this.addSum();
+          this.spinner.hide()
         }
       })
   }

@@ -1,3 +1,6 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
+  <p style="color: #ffffff"> Loading... </p>
+</ngx-spinner>
 <ng-container *ngIf="frames.isGet">
   <div class="wrap" *ngIf='frames?.orderList?.length,else noText'>
 
@@ -149,7 +152,7 @@
             </tbody>
           </table>
           <div class="sum">
-            <p>{{'Order.informImg.addSum'|translate }} {{ frames?.sum }} {{
+            <p>{{'Order.informImg.addSum'|translate }} {{ sumInit}} {{
               'Order.informImg.price'|translate}}</p>
           </div>
         </div>
