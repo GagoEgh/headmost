@@ -60,9 +60,9 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this.orderService.isdisible = false;
     this.frames.isMyOrder = false;
     this.frames.sum = this.sumInit > this.frames.sum ? this.sumInit : this.frames.sum
-    this.sumInit = this.frames.sum
+   // this.sumInit = this.frames.sum
     this.orderFormValidation();
-
+    this.addSum()
   }
 
   getResponsesDate() {
@@ -114,7 +114,9 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   }
 
   private addSum(): void {
-    this.frames.orderList.forEach((card: CardItemResults) => {
+    this.sumInit=0;
+    this.frames.sum  = 0;
+    this.frames?.orderList?.forEach((card: CardItemResults) => {
       this.sumInit += card.created_frame_details.price;
       this.frames.sum =  this.sumInit
     })
