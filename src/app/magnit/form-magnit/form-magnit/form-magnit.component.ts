@@ -2,7 +2,7 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
@@ -16,7 +16,7 @@ import { FrameService } from 'src/app/frame/frame/frame.service';
   styleUrls: ['./form-magnit.component.css'],
 })
 export class FormMagnitComponent extends FrameImag implements OnInit {
-
+  // validateForm: FormGroup = new FormGroup({});
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -42,6 +42,16 @@ export class FormMagnitComponent extends FrameImag implements OnInit {
     super.imgColor();
   }
 
+   myForm(): void {
+    this.frames.validateForm = new FormGroup({
+      text: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+        this.textValid,
+      ]),
+    });
+  }
   public onSubmit(): void {
     if (this.frames.validateForm.invalid) {
       const modalRef = this.modalService.open(ErroreMessageComponent);
@@ -54,5 +64,7 @@ export class FormMagnitComponent extends FrameImag implements OnInit {
     this.frames.isImg = false;
     this.imgService.letterColorFone();
   }
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.myForm()
+  }
 }

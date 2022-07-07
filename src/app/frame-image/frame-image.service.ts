@@ -70,8 +70,8 @@ export class FrameImageService {
   public letterColorFone(text?: string, frame?: number, background?: number): void {
     this.spinner.show();
     this.frames.text = text ? text : this.frames.validateForm.get('text')?.value;
-    const frameId = frame ? frame : this.frames.frame.id;
-    const backgroundId = background ? background : this.frames.background.id
+    const frameId = frame ? frame : this.frames?.frame?.id;
+    const backgroundId = background ? background : this.frames?.background?.id
 
     this.letterGet()
       .subscribe((wordResult: WordResult[]) => {

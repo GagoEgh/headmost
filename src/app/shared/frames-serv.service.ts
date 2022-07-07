@@ -126,7 +126,8 @@ export class FramesServService {
         private url: HttpClient,
         public spinner: NgxSpinnerService,
         public rout: Router,
-        public _translate: TranslateService, public modalService: NgbModal) { }
+        public _translate: TranslateService,
+        public modalService: NgbModal) { }
 
 
     setOrdersDate(data: any) {
