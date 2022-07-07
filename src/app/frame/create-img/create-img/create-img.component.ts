@@ -34,7 +34,6 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     public modalService: NgbModal,
     public frameService: FrameService,
     public activatedRoute: ActivatedRoute,
-  
   ) {
     super(
       frames,

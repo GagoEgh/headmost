@@ -76,7 +76,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
           this.frames.country_placeholder = response.cityPlaceholder;
           this.frames.selectedValue = response.userCountry.results;
           this.shiping = response.shiping.results;
-          
+
         }
       })
   }
@@ -113,11 +113,11 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   }
 
   private addSum(): void {
-    this.sumInit=0;
-    this.frames.sum  = 0;
+    this.sumInit = 0;
+    this.frames.sum = 0;
     this.frames?.orderList?.forEach((card: CardItemResults) => {
       this.sumInit += card.created_frame_details.price;
-      this.frames.sum =  this.sumInit
+      this.frames.sum = this.sumInit
     })
 
   }
@@ -228,24 +228,26 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   }
 
   public deleteDate(card: CardItemResults): void {
-    this.spinner.show();
+    
     this.orderService.deleteOrder(card.id)
       .pipe(takeUntil(this._subscribe$),
         switchMap(() => {
+          this.spinner.show();
           return this.frames.getUserOrder(this.frames.userData.user)
         })
       ).subscribe({
         next: (res: any) => {
+        
           this.sumInit = 0;
           if (this.frames.orderList.length === 0) {
             this.frames.showFrame()
           }
-
           this.frames.orderList = res.results.reverse();
-           this.addSum();
-          this.spinner.hide()
+          this.addSum();
+           this.spinner.hide()
         }
       })
+      
   }
 
   ngOnDestroy() {
