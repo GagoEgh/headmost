@@ -54,13 +54,15 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
 
   ngOnInit(): void {
-    this.userName = this.frames.userData.user_details.first_name;
+    this.userName = this.frames?.userData?.user_details?.first_name;
     this.getResponsesDate()
     this.getOrder();
     this.orderService.isdisible = false;
     this.frames.isMyOrder = false;
     this.frames.sum = this.sumInit > this.frames.sum ? this.sumInit : this.frames.sum
+    this.sumInit = this.frames.sum
     this.orderFormValidation();
+
   }
 
   getResponsesDate() {
@@ -75,6 +77,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
           this.frames.country_placeholder = response.cityPlaceholder;
           this.frames.selectedValue = response.userCountry.results;
           this.shiping = response.shiping.results;
+          
         }
       })
   }
@@ -99,10 +102,10 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   private orderFormValidation(): void {
     this.validateForm = this.fb.group({
       frstName: [this.userName, [Validators.required, Validators.minLength(3), this.valid.userNameChar]],
-      email: [this.frames.userData.user_details.username, [Validators.required, this.valid.emailValid]],
-      phoneNumber: [this.frames.userData.phone_number, [Validators.required, this.valid.PhoneNumberLength]],
-      country: [this.frames.userData.city, [Validators.required]],
-      addres: [this.frames.userData.address, [Validators.required]],
+      email: [this.frames?.userData?.user_details?.username, [Validators.required, this.valid.emailValid]],
+      phoneNumber: [this.frames?.userData?.phone_number, [Validators.required, this.valid.PhoneNumberLength]],
+      country: [this.frames?.userData?.city, [Validators.required]],
+      addres: [this.frames?.userData?.address, [Validators.required]],
       shipping: [null, [Validators.required]],
       comment: [''],
       sale: ['', [this.noText, Validators.maxLength(3)]],

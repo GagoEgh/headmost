@@ -51,9 +51,20 @@
           </ul>
         </ng-template>
         <div class="order_container">
-          <a class="order" routerLink='/order' routerLinkActive='active' [class.red]="frames.isOrder">
+          <a class="order" 
+            routerLink='/order' 
+            routerLinkActive='active' 
+            [class.red]="frames.isOrder">
             <img src='../assets/1x/orderIconBlack.png'>
-            <span [style.color]="'red'">{{frames.orderList?.length}}</span>
+            <span [style.color]="'red'" *ngIf="frames.token, else noLength">
+              {{frames.orderList?.length}}
+            </span>
+            <ng-template #noLength>
+              <span [style.color]="'red'" >
+                0
+              </span>
+            </ng-template>
+           
           </a>
         </div>
         <li>

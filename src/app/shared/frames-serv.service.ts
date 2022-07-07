@@ -179,7 +179,7 @@ export class FramesServService {
     public showFrame(): void {
         this.isOrder = false;
         this.isImg = true;
-        this.validateForm.reset();
+        this.validateForm?.reset();
         if (this.urlArr[1] === 'frame') {
             this.rout.navigate([this.urlArr[1] + '/form-frame']);
         }
