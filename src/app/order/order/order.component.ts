@@ -60,7 +60,6 @@ export class OrderComponent implements OnInit, AfterViewChecked {
     this.orderService.isdisible = false;
     this.frames.isMyOrder = false;
     this.frames.sum = this.sumInit > this.frames.sum ? this.sumInit : this.frames.sum
-   // this.sumInit = this.frames.sum
     this.orderFormValidation();
     this.addSum()
   }
@@ -124,8 +123,8 @@ export class OrderComponent implements OnInit, AfterViewChecked {
   }
 
   private noText(control: FormControl): object | null {
-    const regExp = /[a-zA-Z]/;
-    if (regExp.test(control.value)) {
+    const regExp = /[0-9]/;
+    if (!regExp.test(control.value)) {
       return {
         noText: true
       }
