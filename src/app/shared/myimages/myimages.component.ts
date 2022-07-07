@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ServerResponce } from 'src/app/modeles/img-ramka.modele';
@@ -19,7 +19,7 @@ import { NzImageModule } from 'ng-zorro-antd/image';
   styleUrls: ['./myimages.component.css']
 })
 export class MyimagesComponent implements OnInit {
-
+  @Input() isZoom = true;
   public _subscribe$ = new Subject();
   public scrollUpDistance = 1;
   public scrollDistance = 3;
@@ -28,16 +28,23 @@ export class MyimagesComponent implements OnInit {
   public msgErr_hy: string = '';
   public offset = 0;
   public count!: number;
-  constructor(private msg: NzMessageService, public frames: FramesServService,
-    public userImagsServicw: UserImagsService, private spinner: NgxSpinnerService, public _translate: TranslateService,
+
+  @Output() changeImg = new EventEmitter<any>()
+  constructor(
+    private msg: NzMessageService,
+    public frames: FramesServService,
+    public userImagsServicw: UserImagsService,
+    private spinner: NgxSpinnerService,
+    public _translate: TranslateService,
     public matDialog: MatDialog) { }
 
 
   ngAfterViewChecked(): void {
     this._translate.use(this.frames.lang);
-    this._translate.get('ErroreMessage.imgErr').subscribe((erroreMessage: string) => {
-      this.msgErr_hy = erroreMessage
-    })
+    this._translate.get('ErroreMessage.imgErr')
+      .subscribe((erroreMessage: string) => {
+        this.msgErr_hy = erroreMessage
+      })
 
   }
 
@@ -47,7 +54,12 @@ export class MyimagesComponent implements OnInit {
     this.myImages();
   }
 
+  change(img: any) {
+    this.changeImg.emit(img)
+  }
+
   public trigger(file: any): void {
+
     file.click()
   }
 
@@ -63,14 +75,15 @@ export class MyimagesComponent implements OnInit {
     this.userImagsServicw.userImage(formData).subscribe(
       (userImage: UserImage) => {
         this.frames.fileList.unshift(userImage);
-        if(this.count === this.frames.fileList.length -1 ){
+        if (this.count === this.frames.fileList.length - 1) {
           this.count = this.frames.fileList.length;
-       }
+        }
         this.spinner.hide();
       })
   }
 
   public myImages(): void {
+
     this.spinner.show();
     this.frames.userImageGet(this.offset)
       .pipe(takeUntil(this._subscribe$))
@@ -91,11 +104,11 @@ export class MyimagesComponent implements OnInit {
         this.frames.fileList = this.frames.fileList.filter((img: any) => {
           return img.id != id
         })
-        
-        if(this.count === this.frames.fileList.length +1){
-           this.count = this.frames.fileList.length;
+
+        if (this.count === this.frames.fileList.length + 1) {
+          this.count = this.frames.fileList.length;
         }
-        
+
         this.isSmsErr = false;
         this.spinner.hide();
       }, ((err: HttpErrorResponse) => {

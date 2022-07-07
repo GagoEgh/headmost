@@ -74,28 +74,28 @@ export class FrameComponent
 
     this.frames.isOrder = false;
     const text = this.activatedRoute.snapshot?.queryParams?.text;
-    const frameId = this.activatedRoute.snapshot?.queryParams?.frameId;
-    const backgroundId = this.activatedRoute.snapshot?.queryParams?.background;
-
+    const frameId = +this.activatedRoute.snapshot?.queryParams?.frameId;
+    const backgroundId = +this.activatedRoute.snapshot?.queryParams?.background;
 
     if (!!text) {
       this.imgService.letterColorFone(text, frameId, backgroundId);
       this.imgService.setLettersQuantity(text?.length);
     } else {
       if (this.frames.isImg) {
-        this.rout.navigate(['frame/form-frame']);
+        if (!frameId && !backgroundId)
+          this.rout.navigate(['frame/form-frame']);
         this.frames.letterImges = [];
       }
     }
 
-    this.allResponse(frameId)
+    this.allResponse(frameId, backgroundId)
 
     setTimeout(() => {
       this.onResize();
     });
   }
 
-  allResponse(frameId: any) {
+  allResponse(frameId: number, backgroundId: number) {
     forkJoin({
       translate: this._translate.get('ImgTextValid'),
       fone: this.frameServis.framesFoneGet(),
@@ -105,15 +105,26 @@ export class FrameComponent
       .subscribe({
         next: (res) => {
           this.frames.placeholder = res.translate['placeholder'];
-          this.frames.div = res.fone.results;
-          this.div = this.frames.div
-          this.frames.background = res.fone.results[0];
-
           this.frameServis.framesImge = res.frames.results;
-          // this.frames.frame = this.frameServis.framesImge.find(
-          //   (item) => item.id === 3
-          // );
-        
+          this.frames.div = res.fone.results;
+          this.div = this.frames.div;
+          if (backgroundId) {
+            this.frames.background.id = backgroundId;
+          } else {
+            this.frames.background = res.fone.results[0];
+          }
+          this.frames.background = this.div.find((item: any) => {
+            return item.id === this.frames.background.id
+          })
+      
+          if (frameId) {
+            this.frames.index = frameId
+          }
+
+          this.frames.frame = this.frameServis.framesImge.find(
+            (item) => item.id === this.frames.index
+          );
+
           this.frameClick(this.frames.index);
         }
       })
@@ -176,15 +187,16 @@ export class FrameComponent
     this.frames.frame = this.frameServis.framesImge.find(
       (item) => item.id === this.frames.index
     );
-    this.rout.navigate([], {
-      queryParams: {
-        frameId: this.frames.index
-      },
-      queryParamsHandling: 'merge',
+      this.rout.navigate([], {
+        queryParams: {
+          frameId: this.frames.index,
+          // background: this.frames.background.id
+        },
+        queryParamsHandling: 'merge',
+      })
+    
 
-    })
-
-    this._frameImgService.setFramePrice(this.frames!.frame!.price);
+    this._frameImgService.setFramePrice(this.frames?.frame?.price);
 
   }
 
@@ -195,8 +207,6 @@ export class FrameComponent
 
   public changeBg(bg: BgDetails): void {
     this.frames.background = bg;
-
-
     this.rout.navigate([], {
       queryParams: {
         background: this.frames.background.id

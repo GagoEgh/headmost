@@ -64,14 +64,20 @@ export class ImgCatalogComponent implements OnInit {
     this.activeModal.dismiss(image);
   }
 
+  change(event:any){
+    this.imgService.painding.imgs = [];
+    this.activeModal.dismiss(event);
+  }
+
   public showMyPhoto(img: object): void {
     this.activeModal.dismiss(img);
   }
 
   public changeFone(imgColor: { ceys: CategoryDetails, values: ImgColorValue }): void {
+
     this.imgService.painding.values = imgColor.values;
     this.imgService.painding.id = imgColor.ceys.id;
-    this.frames.apiPhoto = true
+    this.frames.apiPhoto = true;
     this.chengePopapImg();
   }
 
@@ -95,6 +101,7 @@ export class ImgCatalogComponent implements OnInit {
   }
 
   public getMyPhoto(): void {
+    console.log('image=======')
     if (localStorage.getItem('loginAutorization')) {
       this.frames.userImageGet(0)
         .pipe(takeUntil(this._subscribe$))

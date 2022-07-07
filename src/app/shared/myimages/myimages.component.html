@@ -8,16 +8,20 @@
 <div class="my-img">
     <div class="box">
         <div *ngFor='let img of frames.fileList' class="files">
-            <div >
-                <img class="img" nz-image [nzSrc]="img.image">
-                <span mat-button class="preview-remove" (click)="openDialog(img.id)">&times;</span>
+            <div>
+                <img *ngIf="isZoom else image" class="img" [nzSrc]="img.image" nz-image >
+                <ng-template #image>
+                    <img class="img" [src]="img.image" (click)="change(img)">
+                </ng-template>
+                <span mat-button class="preview-remove" (click)="openDialog(img.id)">
+                    &times;
+                </span>
             </div>
         </div>
-        <button class="upload more"
-           *ngIf="count !== frames.fileList.length" (click)="myImages()">
+        <button class="upload more" *ngIf="count !== frames.fileList.length" (click)="myImages()">
             {{'Menu.user.showMore'|translate}}
         </button>
     </div>
-   
+
     <p class="text" *ngIf='isSmsErr'>{{msgErr_hy}}</p>
 </div>

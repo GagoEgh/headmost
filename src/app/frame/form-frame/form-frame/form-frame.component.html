@@ -13,7 +13,7 @@
             <div class="top" [style.background-image]="'url(' + frames.frame?.top_line_image + ')'"></div>
            <!-- poxel !!! -->
            
-           <div class="letter" [style.backgroundColor]="frames.background.color">
+           <div class="letter" [style.backgroundColor]="frames.background?.color">
                 <form [formGroup]="frames.validateForm">
                     <input type="text" formControlName='text' maxlength="8"
                     (keyup.enter)="onSubmit()" [placeholder]="frames.placeholder" trim>

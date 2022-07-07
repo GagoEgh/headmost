@@ -67,7 +67,7 @@ export class FrameImageService {
     this._productPrice = 0
   }
 
-  public letterColorFone(text?: string, frame?: string, background?: any): void {
+  public letterColorFone(text?: string, frame?: number, background?: number): void {
     this.spinner.show();
     this.frames.text = text ? text : this.frames.validateForm.get('text')?.value;
     const frameId = frame ? frame : this.frames.frame.id;
@@ -76,11 +76,10 @@ export class FrameImageService {
     this.letterGet()
       .subscribe((wordResult: WordResult[]) => {
         this.frames.frame = this.frameServis.framesImge.find(
-          (item) => item.id === +frameId
+          (item) => item.id === frameId
         );
-
         this.frames.background = this.frames.div.find(
-          (item: any) => item.id === +backgroundId
+          (item: any) => item.id === backgroundId
         )
 
         this.frames.letterImges = wordResult;
@@ -90,7 +89,7 @@ export class FrameImageService {
 
         this.frames.urlArr = this.rout.url.split('/');
 
-        if (this.frames.urlArr[1] === 'frame') {
+        if (this.frames.urlArr[1] === 'frame') {          
           this.rout.navigate([this.frames.urlArr[1] + '/create-img'],
             {
               queryParams:
