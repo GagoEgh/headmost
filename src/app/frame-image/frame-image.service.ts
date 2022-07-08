@@ -82,14 +82,19 @@ export class FrameImageService {
           (item: any) => item.id === backgroundId
         )
 
+     
         this.frames.letterImges = wordResult;
         this.frames.letterImges = this.frames.letterImges.filter(img => {
           return !img.not_found
         })
 
         this.frames.urlArr = this.rout.url.split('/');
-
-        if (this.frames.urlArr[1] === 'frame') {          
+        console.log(this.frames?.letterImges?.length)
+        if (this.frames?.letterImges?.length) {
+          this.frames.isOrder = false;
+          this.frames.isImg = false;
+        }
+        if (this.frames.urlArr[1] === 'frame') {
           this.rout.navigate([this.frames.urlArr[1] + '/create-img'],
             {
               queryParams:

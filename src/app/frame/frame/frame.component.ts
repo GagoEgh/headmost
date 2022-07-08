@@ -80,6 +80,7 @@ export class FrameComponent
     if (!!text) {
       this.imgService.letterColorFone(text, frameId, backgroundId);
       this.imgService.setLettersQuantity(text?.length);
+     
     } else {
       if (this.frames.isImg) {
         if (!frameId && !backgroundId)
@@ -108,8 +109,9 @@ export class FrameComponent
           this.frameServis.framesImge = res.frames.results;
           this.frames.div = res.fone.results;
           this.div = this.frames.div;
+
           if (backgroundId) {
-            this.frames.background.id = backgroundId;
+            this.frames.background.id = backgroundId!;
           } else {
             this.frames.background = res.fone.results[0];
           }
