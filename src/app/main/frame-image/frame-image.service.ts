@@ -89,11 +89,12 @@ export class FrameImageService {
         })
 
         this.frames.urlArr = this.rout.url.split('/');
-        console.log(this.frames?.letterImges?.length)
+        
         if (this.frames?.letterImges?.length) {
           this.frames.isOrder = false;
           this.frames.isImg = false;
         }
+        
         if (this.frames.urlArr[1] === 'frame') {
           this.rout.navigate([this.frames.urlArr[1] + '/create-img'],
             {

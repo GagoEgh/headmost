@@ -102,7 +102,7 @@ export class ImgCatalogComponent implements OnInit {
   }
 
   public getMyPhoto(): void {
-    console.log('image=======')
+
     if (localStorage.getItem('loginAutorization')) {
       this.frames.userImageGet(0)
         .pipe(takeUntil(this._subscribe$))

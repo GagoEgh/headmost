@@ -95,7 +95,7 @@ export class FrameImag {
     const modalRef = this.modalService.open(NgbdModalContentComponent);
   }
 
-  public onSubmit(): void {
+  public onSubmit(): void {    
     if (this.frames.validateForm.invalid) {
       const modalRef = this.modalService.open(ErroreMessageComponent);
       setTimeout(() => {

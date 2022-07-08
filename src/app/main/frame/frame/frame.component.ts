@@ -110,16 +110,17 @@ export class FrameComponent
           this.frameServis.framesImge = res.frames.results;
           this.frames.div = res.fone.results;
           this.div = this.frames.div;
-
+          
           if (backgroundId) {
-            this.frames.background.id = backgroundId!;
+            this.frames.background = this.div.find((item: any) => {
+              return item.id === backgroundId;
+            })
+            // this.frames.background = backgroundId!;
           } else {
             this.frames.background = res.fone.results[0];
-          }
-          this.frames.background = this.div.find((item: any) => {
-            return item.id === this.frames.background.id
-          })
-      
+          }          
+          
+          
           if (frameId) {
             this.frames.index = frameId
           }
@@ -127,7 +128,6 @@ export class FrameComponent
           this.frames.frame = this.frameServis.framesImge.find(
             (item) => item.id === this.frames.index
           );
-
           this.frameClick(this.frames.index);
         }
       })

@@ -124,7 +124,7 @@ export class OrderComponent implements OnInit, AfterViewChecked {
 
   private noText(control: FormControl): object | null {
     const regExp = /[0-9]/;
-    if (!regExp.test(control.value)) {
+    if (control.value && !regExp.test(control.value)) {
       return {
         noText: true
       }
