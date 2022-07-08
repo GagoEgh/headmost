@@ -15,7 +15,8 @@
 }
 
 .left-top{
- margin: 0 -1px -1px 1px;
+ /* margin: 0 -1px -1px 1px; */
+ background-size: contain;
 }
 
 .reight-he{
@@ -23,11 +24,13 @@
 }
 
 .left-line{
- margin-left: 1px;
+ /* margin-left: 1px; */
+ background-size: contain;
 }
 
 .left-bottom{
- margin: -1px -1px 0 1px;
+ /* margin: -1px -1px 0 1px; */
+ background-size: contain;
 }
 
 .content{
@@ -36,6 +39,7 @@
 
 .top,.bottom{
  height: 40px;
+ background-size: contain;
 }
 
 input:focus::placeholder{
@@ -57,15 +61,18 @@ input:focus{
 }
 
 .right-top{
- margin: 0 -1px -1px -1px;
+ /* margin: 0 -1px -1px -1px; */
+ background-size: contain;
 }
 
 .right-line{
- margin: 0 1px 0 -1px;
+ /* margin: 0 1px 0 -1px; */
+ background-size: contain;
 }
 
 .right-bottom{
- margin: -1px 0 0 -1px;
+ /* margin: -1px 0 0 -1px; */
+ background-size: contain;
 }
 
 @media (max-width:768px){
