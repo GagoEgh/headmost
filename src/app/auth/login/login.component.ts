@@ -1,10 +1,8 @@
-import { ValidationServService } from 'src/app/shared/validation-serv.service';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterComponent } from '../register/register.component';
 import { Component, DoCheck, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { catchError, switchMap, takeUntil } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
@@ -34,13 +32,13 @@ export class LoginComponent implements OnInit, DoCheck {
   public errorLog: boolean = false;
 
   constructor(
-    public activeModal: NgbActiveModal,
+    private spinner: NgxSpinnerService,
+    private loginService: LoginService,
+    private frames: FramesServService,
     private modalService: NgbModal,
-    public _translate: TranslateService,
-    public loginService: LoginService,
     private fb: FormBuilder,
-    public frames: FramesServService,
-    private spinner: NgxSpinnerService) { }
+    public activeModal: NgbActiveModal
+    ) { }
 
   ngOnInit(): void {
     this.formInit();

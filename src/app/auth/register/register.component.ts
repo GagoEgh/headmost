@@ -4,7 +4,6 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { NzI18nService } from 'ng-zorro-antd/i18n';
 import { Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { forkJoin, Subject } from 'rxjs';
@@ -29,21 +28,22 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  public matcher = new MyErrorStateMatcher();
+  public _subscribe$ = new Subject();
   public currentDate = new Date();
   public validateForm!: FormGroup;
-  public _subscribe$ = new Subject();
   public emailMassage!: string;
-  public matcher = new MyErrorStateMatcher();
+  
 
   constructor(
+    private registerService: RegisterService,
+    private valid: ValidationServService,
+    private _translate: TranslateService,
+    private modalService: NgbModal,
+    private fb: FormBuilder,
     public activeModal: NgbActiveModal,
-    public fb: FormBuilder,
-    public i18n: NzI18nService,
-    public _translate: TranslateService,
-    public registerService: RegisterService,
     public frames: FramesServService,
-    public modalService: NgbModal,
-    public valid: ValidationServService) { }
+    ) { }
 
 
   ngOnInit(): void {

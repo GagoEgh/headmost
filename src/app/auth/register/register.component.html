@@ -9,7 +9,8 @@
     </button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="form">
+    <form [formGroup]="validateForm"
+      (ngSubmit)="submitForm()" class="form">
       <div class="col column-1">
         <mat-form-field appearance="fill" class="full-width">
           <mat-label class="label">{{'Order.userData.frstName'|translate}}</mat-label>
