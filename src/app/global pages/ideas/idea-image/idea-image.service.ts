@@ -9,8 +9,10 @@ import { FramesServService } from 'src/app/shared/frames-serv.service';
 })
 export class IdeaImageService {
   public ideaImg: any = {};
-  public isIdeaFrame:boolean = false;
-  constructor(private url: HttpClient, public frames: FramesServService) { }
+  public isIdeaFrame: boolean = false;
+  constructor(
+    private url: HttpClient,
+    public frames: FramesServService) { }
 
   public imgCategory(id: number): Observable<FrameDetalis> {
     return this.url.get<FrameDetalis>(this.frames.api.worldApi + this.frames.api.api_img + this.frames.api.api_created_frame + `/${id}/`)

@@ -21,16 +21,15 @@ import { WordResult } from 'src/app/modeles/WordResult.module';
 export class IdeaImageComponent implements OnInit {
   @ViewChild("block", { static: false }) block: ElementRef | undefined;
   public _unsubscribe$ = new Subject();
-  private heigth: number | undefined;
   private width: number | undefined;
   public scale: number = 1;
 
   constructor(
     public frames: FramesServService,
     public ideaImageService: IdeaImageService,
-    public rout: Router,
-    public activApi: ActivatedRoute,
-    public frameImageService: FrameImageService,
+    private rout: Router,
+    private activApi: ActivatedRoute,
+    private frameImageService: FrameImageService,
     private modalService: NgbModal) { }
   ngOnInit(): void {
     this.frames.spinner.show()
@@ -55,6 +54,7 @@ export class IdeaImageComponent implements OnInit {
 
   private goIdeaCategory(): void {
     this.activApi.params
+      .pipe(takeUntil(this._unsubscribe$))
       .subscribe((idea: { [keys: string]: number }) => {
         this.ideaImageService.imgCategory(idea.id)
           .pipe(takeUntil(this._unsubscribe$))
@@ -97,13 +97,20 @@ export class IdeaImageComponent implements OnInit {
     this.frames.isImg = false;
     this.frames.text = this.ideaImageService?.ideaImg?.word;
     this.frameImageService.letterGet()
-    .subscribe((wordResult: WordResult[]) => {
-      this.frames.letterImges = wordResult;
-      this.frames.letterImges = this.frames.letterImges.filter(img => {
-        return !img.not_found
-      })      
-      this.rout.navigate(['/frame/create-img'], { queryParams: { type: 'frame', text: this.ideaImageService?.ideaImg?.word } })
-    })
+      .pipe(takeUntil(this._unsubscribe$))
+      .subscribe((wordResult: WordResult[]) => {
+        this.frames.letterImges = wordResult;
+        this.frames.letterImges = this.frames.letterImges.filter(img => {
+          return !img.not_found
+        })
+        this.rout.navigate(['/frame/create-img'],
+          {
+            queryParams: {
+              type: 'frame',
+              text: this.ideaImageService?.ideaImg?.word
+            }
+          })
+      })
 
   }
 

@@ -17,18 +17,18 @@ import { IdeaService } from './idea.service';
   styleUrls: ['./idea.component.css']
 })
 export class IdeaComponent implements OnInit {
-  public _unsubscribe$ = new Subject();
-  public ideaImages: FrameDetalis[] = [];
   private scrollDistance = 0.5;
   private scrollUpDistance = 2;
-  private throttle = 150;
   private category = '';
   private offset = 0;
-  private count = 0;
+  public _unsubscribe$ = new Subject();
+  public ideaImages: FrameDetalis[] = [];
+
+
 
   constructor(
     public frames: FramesServService,
-    public ideaService: IdeaService,
+    private ideaService: IdeaService,
     private _activatedRoute: ActivatedRoute,
     private modalService: NgbModal,
     private rout: Router) {

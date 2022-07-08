@@ -17,8 +17,8 @@ export class AboutUsComponent implements OnInit, AfterViewChecked, OnChanges {
   private aboutQuestion = {} as AboutQuestion;
 
   constructor(
-    public frames: FramesServService,
-    public _translate: TranslateService) { }
+    private frames: FramesServService,
+    private _translate: TranslateService) { }
 
   ngOnInit(): void {
     this.createText();

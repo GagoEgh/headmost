@@ -18,24 +18,32 @@ export class IdeaNavComponent implements OnInit {
   public _unsubscribe$ = new Subject();
   public offset: number = 0;
   public id: number = 0;
-  constructor(public frames: FramesServService,public ideaNavService:IdeaNavService,
+  constructor(
+    public frames: FramesServService,
+    private ideaNavService: IdeaNavService,
     private _router: Router) { }
 
   ngOnInit(): void {
     this.offset = 0;
-    this.ideaGroup(this.id)
-    this.ideaNavService.frameCategory().pipe(takeUntil(this._unsubscribe$)).subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
-      this.frameIdeas = categoryDetails.results;
-    })
+    this.ideaGroup(this.id);
+    this.getNavBar()
   }
 
-
+  private getNavBar() {
+    this.ideaNavService.frameCategory()
+      .pipe(takeUntil(this._unsubscribe$))
+      .subscribe((categoryDetails: ServerResponce<CategoryDetails[]>) => {
+        this.frameIdeas = categoryDetails.results;
+      })
+  }
   public ideaGroup(id: number | undefined = undefined): void {
     if (id) {
-      this._router.navigate(['idea/idea-imags'], { queryParams: { category: id } });
+      this._router.navigate(['idea/idea-imags'],
+       { queryParams: { category: id } });
       this.id = id
     } else {
-      this._router.navigate(['idea/idea-imags'], { queryParams: { category: '' } });
+      this._router.navigate(['idea/idea-imags'],
+      { queryParams: { category: '' } });
       this.id = 0;
     }
 
