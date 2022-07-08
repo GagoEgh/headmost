@@ -23,7 +23,7 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import en from '@angular/common/locales/en';
 
 //guard
-import { UserGuard } from './user-data/userGuard';
+import { UserGuard } from './main/user-data/userGuard';
 
 //loader
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -34,6 +34,7 @@ export function createTranslateLoader(http: HttpClient) {
 //data
 import { registerLocaleData } from '@angular/common';
 import { AddHeaderInterceptor } from './interceptors/add-header.interceptor';
+
 registerLocaleData(en);
 
 const Module = [

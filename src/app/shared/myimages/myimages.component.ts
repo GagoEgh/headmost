@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ServerResponce } from 'src/app/modeles/img-ramka.modele';
 import { UserImage } from 'src/app/modeles/ImageResponse.modele';
-import { UserImagsService } from 'src/app/user-data/user-imags/user-imags.service';
+
 import { FramesServService } from '../frames-serv.service';
 import { TranslateService } from '@ngx-translate/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -12,6 +12,7 @@ import { takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogContentComponent } from '../components/modal/modal.component';
 import { NzImageModule } from 'ng-zorro-antd/image';
+import { UserImagsService } from 'src/app/main/user-data/user-imags/user-imags.service';
 
 @Component({
   selector: 'app-myimages',

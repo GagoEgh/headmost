@@ -26,11 +26,12 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { CommonModule } from "@angular/common";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { OrderComponent } from "../order/order/order.component";
+
 import { TranslateModule } from '@ngx-translate/core';
-import { MyimagesComponent } from "./myimages/myimages.component";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { DialogContentComponent } from "./components/modal/modal.component";
+import { OrderComponent } from '../main/order/order/order.component';
+import { MyimagesComponent } from './myimages/myimages.component';
 
 const MatModule = [
     MatButtonModule,
@@ -68,7 +69,8 @@ const Module = [
 
 @NgModule({
     declarations:
-        [OrderComponent,
+        [
+            OrderComponent,
             MyimagesComponent,
             DialogContentComponent,
         ],

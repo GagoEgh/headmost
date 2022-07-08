@@ -9,8 +9,8 @@ import { takeUntil } from 'rxjs/operators';
 import { forkJoin, Subject } from 'rxjs';
 import { CookieService } from 'ngx-cookie';
 import { UserData } from './modeles/UserInfo.module';
-import { FrameImageService } from './frame-image/frame-image.service';
-import { FrameService } from './frame/frame/frame.service';
+import { FrameImageService } from './main/frame-image/frame-image.service';
+import { FrameService } from './main/frame/frame/frame.service';
 
 
 @Component({

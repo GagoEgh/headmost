@@ -8,8 +8,9 @@ import { Subject } from 'rxjs';
 import { LoginComponent } from 'src/app/auth/login/login.component';
 import { CardItemResults, FrameDetalis } from 'src/app/modeles/frame-response.modele';
 import { IdeaImageService } from '../idea-image.service';
-import { FrameImageService } from 'src/app/frame-image/frame-image.service';
+//import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 import { WordResult } from 'src/app/modeles/WordResult.module';
+import { FrameImageService } from 'src/app/main/frame-image/frame-image.service';
 
 
 
