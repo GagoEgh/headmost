@@ -1,5 +1,5 @@
 import { FramesServService } from './shared/frames-serv.service';
-import { LoginComponent } from './register/login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';

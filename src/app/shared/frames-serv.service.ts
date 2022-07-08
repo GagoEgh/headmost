@@ -1,4 +1,4 @@
-import { LoginComponent } from '../register/login/login.component';
+import { LoginComponent } from '../auth/login/login.component';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from "@ngx-translate/core";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';

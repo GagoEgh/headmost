@@ -5,7 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { LoginComponent } from 'src/app/register/login/login.component';
+import { LoginComponent } from 'src/app/auth/login/login.component';
 import { CardItemResults, FrameDetalis } from 'src/app/modeles/frame-response.modele';
 import { IdeaImageService } from '../idea-image.service';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
