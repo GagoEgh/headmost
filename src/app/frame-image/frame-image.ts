@@ -13,7 +13,7 @@ import { ErroreMessageComponent } from '../frame/errore-message/errore-message/e
 import { FrameService } from '../frame/frame/frame.service';
 
 import { NgbdModalContentComponent } from '../frame/ngbd-modal-content/ngbd-modal-content.component';
-import { IdeaImageService } from '../idea/idea-image/idea-image.service';
+import { IdeaImageService } from '../global pages/ideas/idea-image/idea-image.service';
 import { CategoryDetails } from '../modeles/CategoryDetails.modele';
 import { ServerResponce } from '../modeles/img-ramka.modele';
 import { FramesServService } from '../shared/frames-serv.service';

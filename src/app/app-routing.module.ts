@@ -7,8 +7,8 @@ const routes: Routes = [
   { path: 'order', loadChildren: () => import('./order/order.module').then(m => m.OrderModule) },
   { path: 'magnit', loadChildren: () => import('./magnit/magnit.module').then(m => m.MagnitModule) },
   { path: 'user', loadChildren: () => import('./user-data/user-data.module').then(m => m.UserDataModule) },
-  { path: 'idea', loadChildren: () => import('./idea/idea-nav/idea-nav.module').then(m => m.IdeaNavModule) },
-  { path: 'about', loadChildren: () => import('./about-us/about-us.module').then(m => m.AboutUsModule) },
+  { path: 'idea', loadChildren: () => import('./global pages/ideas/idea-nav/idea-nav.module').then(m => m.IdeaNavModule) },
+  { path: 'about', loadChildren: () => import('./global pages/we/about-us.module').then(m => m.AboutUsModule) },
   { path: 'frame', loadChildren: () => import('./frame/frame.module').then(m => m.FrameModule) },
 ]
 

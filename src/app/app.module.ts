@@ -15,7 +15,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 //component
 import { AppComponent } from './app.component';
-import { ErrMsgComponent } from './idea/err-msg/err-msg.component';
+import { ErrMsgComponent } from './global pages/ideas/err-msg/err-msg.component';
 
 //language
 import { NZ_I18N } from 'ng-zorro-antd/i18n';

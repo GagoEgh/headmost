@@ -6,7 +6,7 @@ import { FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms
 import { ActivatedRoute, Router } from '@angular/router';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
-import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
+import { IdeaImageService } from 'src/app/global pages/ideas/idea-image/idea-image.service';
 import { ErroreMessageComponent } from 'src/app/frame/errore-message/errore-message/errore-message.component';
 import { FrameService } from 'src/app/frame/frame/frame.service';
 

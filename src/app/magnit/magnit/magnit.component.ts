@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FrameImag } from 'src/app/frame-image/frame-image';
 import { FrameImageService } from 'src/app/frame-image/frame-image.service';
 import { MagnitServiceService } from './magnit-service.service';
-import { IdeaImageService } from 'src/app/idea/idea-image/idea-image.service';
+import { IdeaImageService } from 'src/app/global pages/ideas/idea-image/idea-image.service';
 import { FrameService } from 'src/app/frame/frame/frame.service';
 
 
