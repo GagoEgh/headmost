@@ -17,8 +17,10 @@
 
 .arrowTop {
     width: 95%;
-    border-bottom: 1px solid;
+    border-top: 1px solid;
     position: absolute;
+    height: 20px;
+    margin-top: -20px;
 }
 
 .arrowTop::before {
@@ -34,6 +36,8 @@
     position: absolute;
     top: 80px;
     border-left: 1px solid;
+    width: 20px;
+    margin-left: -12px;
 }
 
 .arrowRaight::after {
