@@ -66,7 +66,9 @@ export class LoginComponent implements OnInit, DoCheck {
       }
     }
     const userLog = new LoginDto(this.validateForm.value);
+    console.log('email ',this.validateForm.get('email'))
     if (this.validateForm.valid) {
+      console.log('email ',this.validateForm.get('email'))
       this.loginService.userLogin(userLog)
         .pipe(
           takeUntil(this._subscribe$),

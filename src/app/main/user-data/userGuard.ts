@@ -9,7 +9,9 @@ import { FramesServService } from "src/app/shared/frames-serv.service";
     providedIn:'root'
 })
 export class UserGuard implements CanActivate{
-    constructor(private frames:FramesServService,private router:Router){}
+    constructor(
+        private frames:FramesServService,
+        private router:Router){}
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
         return localStorage.getItem('loginAutorization')?true: this.router.navigate(['/']);
