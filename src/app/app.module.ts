@@ -24,7 +24,7 @@ import { CookieModule } from 'ngx-cookie';
 
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http,'https://admin.gift4u.am/media/static/languages/', '.json');
+  return new TranslateHttpLoader(http,'http://annaniks.com:8014/media/static/languages/', '.json');
 }
 
 registerLocaleData(en);

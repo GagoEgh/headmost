@@ -11,7 +11,7 @@ export class TranslationService implements TranslateLoader {
 
   getTranslation(lang: string): Observable<any> {
 
-    return this.http.get(`https://admin.gift4u.am/static/languages/${lang}.json`)
+    return this.http.get(`http://annaniks.com:8014/static/languages/${lang}.json`)
       .pipe(map((response) => {
         return response;
       }));
