@@ -1,0 +1,39 @@
+<div>
+    <div class="myWrap">
+        <div class="reight">
+            <div class="squrl left-top" [style.background-image]="'url(' + frames.frame?.left_top_corner_image + ')'">
+            </div>
+            <div class="reight-he left-line" [style.background-image]="'url(' + frames.frame?.left_line_image + ')'">
+            </div>
+            <div class="squrl left-bottom"
+                [style.background-image]="'url(' + frames.frame?.left_bottom_corner_image + ')'">
+            </div>
+        </div>
+        <div class="content">
+            <div class="top" [style.background-image]="'url(' + frames.frame?.top_line_image + ')'"></div>
+           <!-- poxel !!! -->
+           
+           <div class="letter" [style.backgroundColor]="frames.background?.color">
+                <form [formGroup]="frames.validateForm">
+                    <input type="text" formControlName='text' maxlength="8"
+                    (keyup.enter)="onSubmit()" [placeholder]="frames.placeholder" trim>
+                </form>
+            </div>
+            <div class="bottom" [style.background-image]="'url(' +frames.frame?.bottom_line_image + ')'">
+                <p class="btn" (click)="open()" *ngIf='frames.isImg'> {{'ImgTextValid.title'|translate}}</p>
+            </div>
+
+
+        </div>
+        <div class="left">
+            <div class="squrl right-top" [style.background-image]="'url(' + frames.frame?.right_top_corner_image + ')'">
+            </div>
+            <div class="reight-he right-line" [style.background-image]="'url(' + frames.frame?.right_line_image + ')'">
+            </div>
+            <div class="squrl right-bottom"
+                [style.background-image]="'url(' + frames.frame?.right_bottom_corner_image + ')'"></div>
+        </div>
+    </div>
+ 
+</div>
+

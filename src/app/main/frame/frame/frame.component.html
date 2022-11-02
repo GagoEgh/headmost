@@ -1,0 +1,164 @@
+<body [ngClass]="backgroundClass" class="body">
+  <header class="container" [ngStyle]="frames.frameHeigth">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
+      <p style="color: white"> Loading... </p>
+    </ngx-spinner>
+    <div class="catalog" [ngStyle]="catalogStyle">
+      <div class="carusel">
+        <ul class="imageObject">
+          <li *ngFor="let 
+            img of frameServis?.framesImge,let i=index" class="thumb-image">
+            <div [style.background-image]="'url('+img?.show_image + ')'" 
+              (click)='frameClick(img.id)' class="img-frame">
+              <div 
+              [ngClass]="{'box-content': getFrameId(img)}"
+               class="box"></div>
+            </div>
+            <ul class="card">
+              <li *ngIf='frames.lang==="hy"'>{{img.description_hy}}</li>
+              <li *ngIf='frames.lang==="ru"'>{{img.description_ru}}</li>
+              <li *ngIf='frames.lang==="en"'>{{img.description_en}}</li>
+              <li>
+                <span *ngIf='frames.lang==="hy"'>{{img.name_hy}}</span>
+                <span *ngIf='frames.lang==="ru"'>{{img.name_ru}}</span>
+                <span *ngIf='frames.lang==="en"'>{{img.name_en}}</span>
+                {{img.price}} {{'Order.informImg.price'|translate}}
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="backgrounds">
+        <div class="white" *ngFor="let item of div" 
+        [style.backgroundColor]='item.color' (click)="changeBg(item)"
+          [ngClass]="{'box-content':frames?.background?.id=== item?.id}">
+          <div class="text">{{item.name}}</div>
+        </div>
+      </div>
+      <div class="imgColor">
+        <div 
+          class="colorless" 
+          [style.backgroundColor]='block.values.color' 
+          *ngFor='let block of frames.imgColor'
+          (click)="imgFone(block)" 
+          [ngClass]="{'box-content':block?.ceys?.id===imgService?.painding?.id}">
+          <div class="lessWhite" [style.backgroundColor]='block.values.child'>
+            <p class="info" *ngIf='frames.lang==="hy"'>{{block?.ceys?.name_hy}}</p>
+            <p class="info" *ngIf='frames.lang==="ru"'>{{block?.ceys?.name_ru}}</p>
+            <p class="info" *ngIf='frames.lang==="en"'>{{block?.ceys?.name_en}}</p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="productPrice" class="price__container">
+        <b>{{ productPrice }} Դ</b>
+      </div>
+    </div>
+
+    <div class="block__container" #block [ngStyle]="catalogStyle">
+      <a (click)="backgroundImageChangeLeft()" [class.frameL-arrow]="frames.isOrder" class="left-btn arrow-btn"></a>
+      <div class="middle-block">
+        <router-outlet></router-outlet>
+      </div>
+      <a (click)="backgroundImageChangeRight()" [class.frameR-arrow]="frames.isOrder" class="right-btn arrow-btn"></a>
+    </div>
+
+  </header>
+
+  <div class="my-btn-wrap" *ngIf='frames.isOrder'></div>
+
+  <div class="btn__container">
+
+    <div class="left-side side">
+      <div class="side__div"></div>
+      <div class="left-figure figure"></div>
+    </div>
+
+    <div class="btn__area">
+
+      <button *ngIf='frames.isImg' type="submit"
+       (click)='onSubmit()' class='enter-btn'
+        [disabled]='frames.validateForm.pristine'>
+        {{'ImgTextValid.createWord'|translate}}
+      </button>
+
+      <button class="enter-btn" (click)='frames.myOrder()'
+       *ngIf='!frames.isOrder && !frames.isImg'>
+        {{'ImgTextValid.batnSave'|translate}}
+      </button>
+
+      <button *ngIf='frames.isOrder' class="enter-btn" (click)="showFrame()">
+        {{'ImgTextValid.orderAdd'|translate}}
+      </button>
+      
+    </div>
+
+    <div class="right-side side">
+      <div class="right-figure figure"></div>
+      <div class="side__div"></div>
+    </div>
+
+  </div>
+
+  <div class="steps__container">
+
+    <div class="steps__block">
+
+      <div class="step">
+        <div class="img__container">
+          <div class="compile"></div>
+        </div>
+        <div class="title__container">
+          <h2>{{'Steps.compile'|translate}}</h2>
+        </div>
+        <div class="text__container">
+          <p>{{'Steps.text1'|translate}}</p>
+        </div>
+      </div>
+
+      <div class="right-arrow"></div>
+
+      <div class="step">
+        <div class="img__container">
+          <div class="select"></div>
+        </div>
+        <div class="title__container">
+          <h2>{{'Steps.select'|translate}}</h2>
+        </div>
+        <div class="text__container">
+          <p>{{'Steps.text2'|translate}}</p>
+        </div>
+      </div>
+
+      <div class="right-arrow mid-arrow"></div>
+
+      <div class="step">
+        <div class="img__container">
+          <div class="get"></div>
+        </div>
+        <div class="title__container">
+          <h2>{{'Steps.get'|translate}}</h2>
+        </div>
+        <div class="text__container">
+          <p>{{'Steps.text3'|translate}}</p>
+        </div>
+      </div>
+
+      <div class="right-arrow"></div>
+
+      <div class="step">
+        <div class="img__container">
+          <div class="donate"></div>
+        </div>
+        <div class="title__container">
+          <h2>{{'Steps.donate'|translate}}</h2>
+        </div>
+        <div class="text__container">
+          <p>{{'Steps.text4'|translate}}</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>

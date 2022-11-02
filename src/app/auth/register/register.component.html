@@ -1,0 +1,101 @@
+<div class="conteiner">
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+  <div class="modal-header title-h1">
+    <h1>{{'Menu.user.save'|translate}}</h1>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="validateForm"
+      (ngSubmit)="submitForm()" class="form">
+      <div class="col column-1">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label class="label">{{'Order.userData.frstName'|translate}}</mat-label>
+          <input type="text" matInput formControlName="frstName" id="frstName" trim [errorStateMatcher]="matcher">
+          <mat-error *ngIf="validateForm.get('frstName')?.hasError('required')">
+            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
+          </mat-error>
+          <mat-error *ngIf="validateForm.get('frstName')?.hasError('minlength')">
+            <p class="errore">{{'ErroreMessage.minlength'|translate}} 3</p>
+          </mat-error>
+          <mat-error *ngIf="validateForm.get('frstName')?.hasError('maxlength')">
+            <p class="errore">{{'ErroreMessage.maxLength'|translate}}</p>
+          </mat-error>
+          <mat-error *ngIf="this.validateForm.get('frstName')?.hasError('userNameChar')">
+            <p class="errore">{{'ErroreMessage.userNameChar'|translate}}</p>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label class="label">{{'Order.userData.lastName'|translate}}</mat-label>
+          <input type="text" matInput formControlName="lastName" id="lastName" trim [errorStateMatcher]="matcher">
+          <mat-error *ngIf="this.validateForm.get('lastName')?.hasError('required')">
+            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
+          </mat-error>
+          <mat-error *ngIf="this.validateForm.get('lastName')?.hasError('minlength')">
+            <p class="errore">{{'ErroreMessage.minlength'|translate}} 3</p>
+          </mat-error>
+          <mat-error *ngIf="this.validateForm.get('lastName')?.hasError('maxlength')">
+            <p class="errore">{{'ErroreMessage.maxLength'|translate}}</p>
+          </mat-error>
+          <mat-error *ngIf="this.validateForm.get('lastName')?.hasError('userNameChar')">
+            <p class="errore">{{'ErroreMessage.userNameChar'|translate}}</p>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label class="label">{{'Order.userData.phoneNumber'|translate}}</mat-label>
+          <input matInput formControlName="phoneNumber" type='tel' id="phoneNumber" mask='(000)00-00-00'
+            [errorStateMatcher]="matcher" trim>
+          <mat-error *ngIf="this.validateForm.get('phoneNumber')?.hasError('required')">
+            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
+          </mat-error>
+        </mat-form-field>
+        <app-email formControlName="email"></app-email>
+        <div class="color">
+          <p>{{emailMassage}}</p>
+        </div>
+      </div>
+
+      <div class="col column-2">
+        <mat-form-field appearance="fill">
+          <mat-label class="label">{{'Order.userData.brtDay'|translate}}</mat-label>
+          <input matInput [max]="currentDate" [matDatepicker]="dp3" formControlName='date'>
+          <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+          <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+          <mat-error *ngIf="this.validateForm.get('date')?.hasError('required')">
+            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field  appearance="fill" class="full-width ">
+          <mat-label class="label">{{'Order.userData.country'|translate}}</mat-label>
+          <mat-select [placeholder]="frames.country_placeholder" formControlName='country'>
+            <img src="./assets/1x/right-arrow.png" class="rightImg1">
+            <img src="./assets/1x/right-arrow.png" class="rightImg2">
+            <mat-optgroup *ngFor='let country of frames.selectedValue' [label]='country["name_"+frames.lang]'> 
+              <mat-select class="city">
+                <mat-optgroup *ngFor='let regions of country.country_regions' [label]='regions["name_"+frames.lang]'>
+                  <mat-option *ngFor='let city of regions.region_cities' [value]='city.id'>
+                    {{city["name_"+frames.lang]}}
+                  </mat-option>
+                </mat-optgroup>
+              </mat-select>
+            </mat-optgroup>
+          </mat-select>
+          <mat-error *ngIf="this.validateForm.get('country')?.hasError('required')">
+            <p class="errore">{{'ErroreMessage.required'|translate}}</p>
+          </mat-error>
+        </mat-form-field>
+        <app-password formControlName="pas" [label]="'Order.userData.password'"></app-password>
+        <app-password formControlName="pasRev" [label]="'Order.userData.passwordReset'"></app-password>
+        
+      </div>
+      <button mat-raised-button class="login-form-button">
+        {{'Menu.user.save'|translate}}</button>
+    </form>
+  </div>
+  <div class="modal-footer">
+  </div>
+</div>

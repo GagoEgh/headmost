@@ -1,15 +1,17 @@
 import { FramesServService } from './shared/frames-serv.service';
-import { LoginComponent } from './register/login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { ServerResponce } from './interface/img-ramka';
-import { UserData } from './interface/UserInfo';
+import { forkJoin, Subject } from 'rxjs';
 import { CookieService } from 'ngx-cookie';
+import { UserData } from './modeles/UserInfo.module';
+import { FrameImageService } from './main/frame-image/frame-image.service';
+import { FrameService } from './main/frame/frame/frame.service';
+
 
 @Component({
   selector: 'app-root',
@@ -18,13 +20,51 @@ import { CookieService } from 'ngx-cookie';
 })
 export class AppComponent implements OnInit {
   public unsubscribe$ = new Subject();
+  framesIsSilki = this.frames.isSilki
   constructor(
     public frames: FramesServService,
     private cookie: CookieService,
     private spinner: NgxSpinnerService,
     private _translate: TranslateService,
     private modalService: NgbModal,
-    private router: Router) {
+    public imgService: FrameImageService,
+    private router: Router,
+    private frameServis: FrameService
+  ) {
+    this.getLanguage();
+  }
+
+
+  ngOnInit(): void {
+    this.scrollToTopByChangeRoute();
+    this.frames.cityPlaceholder();
+    this.getLocalInfo();
+  }
+
+  public scrollToTopByChangeRoute() {
+    return this.router.events
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        (evt) => {
+          if (!(evt instanceof NavigationEnd)) {
+            return;
+          }
+          window.scrollTo(0, 0)
+        });
+  }
+  private getLocalInfo() {
+    if (localStorage.getItem('loginAutorization')) {
+      const token: any = localStorage.getItem('loginAutorization');
+      this.frames.token = token;
+      const date: any = localStorage.getItem('user-date')
+      const result = JSON.parse(date)
+      this.frames.userData = result;
+      this.frames.userReg = false;
+      this.getUserInfo(result.user);
+    }
+  }
+
+  private getLanguage() {
     const lang: any = this.cookie.get('lang');
     let activeLanguage = lang ?? 'hy';
     if (!lang) {
@@ -34,37 +74,24 @@ export class AppComponent implements OnInit {
     this.frames.lang = activeLanguage
   }
 
-
-  ngOnInit(): void {
-    this.scrollToTopByChangeRoute();
-    this.frames.cityPlaceholder();
-    if (localStorage.getItem('loginAutorization')) {
-      const token: any = localStorage.getItem('loginAutorization');
-      this.frames.token = token;
-      const date: any = localStorage.getItem('user-date')
-      const result = JSON.parse(date)
-      this.frames.userData = result;
-      this.frames.userReg = false;
-
-      this.frames.userInfo().pipe(takeUntil(this.unsubscribe$)).subscribe((serverResponse: ServerResponce<[]>) => {
-        this.frames.orderList = serverResponse.results;
-        this.frames.orderList.forEach((obj: any) => {
-          this.frames.sum += obj.created_frame_details.price;
-        });
+  getUserInfo(id: number) {
+    this.spinner.show();
+    this.frames.getUserOrder(id)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (res: any) => {
+          this.frames.orderList = res.results.reverse();
+          this.frames.isGet = true;
+          this.frames.setOrdersDate(this.frames.orderList);
+          this.frames.orderList.forEach((obj: any) => {
+            this.frames.sum += obj.created_frame_details.price;
+          });
+          this.spinner.hide();
+        }
       })
-    }
   }
 
 
-
-  public scrollToTopByChangeRoute() {
-    this.router.events.pipe(takeUntil(this.unsubscribe$)).subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
-      }
-      window.scrollTo(0, 0)
-    });
-  }
 
 
   public open(): void {
@@ -85,16 +112,39 @@ export class AppComponent implements OnInit {
   }
 
   public getFrame(): void {
-    this.router.navigate(['/']);
-    this.frames.isImg = true;
-    this.frames.isOrder = false;
-    this.frames.conteinerHeight();
-    this.frames.validateForm.reset()
+    this.imageAndBgResponse();
+  }
+
+  private imageAndBgResponse() {
+    forkJoin({
+      frameBg: this.frameServis.framesFoneGet(),
+      framesImgGet: this.frameServis.getFrames()
+    })
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (res) => {
+          this.frames.background = res.frameBg.results[0];
+          this.frames.index = 3;
+          this.frameServis.framesImge = res.framesImgGet.results;
+          this.frames.frame = this.frameServis.framesImge.find(
+            (item) => item.id === 3
+          );
+
+          this.router.navigate(['']);
+          this.frames.isImg = true;
+          this.frames.isOrder = false;
+          this.frames.conteinerHeight();
+          this.frames?.validateForm?.reset();
+          if (this.frames?.validateForm?.get("text")?.value == null) {
+            this.imgService.clearPrice()
+          }
+        }
+      })
   }
 
   public getMagnit(): void {
     this.frames.validateForm.reset()
-    this.router.navigate(['/magnit/form-magnit']);
+    this.router.navigate(['/magnit/form-magnit'], { queryParamsHandling: 'merge' });
     this.frames.isImg = true;
     this.frames.isOrder = false;
 
@@ -107,7 +157,8 @@ export class AppComponent implements OnInit {
     this._translate.use(language);
     this.frames.lang = language;
     window.location.reload()
-    this._translate.get('ImgTextValid').pipe(takeUntil(this.unsubscribe$))
+    this._translate.get('ImgTextValid')
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe((res: { [key: string]: string }) => {
         this.frames.placeholder = res["placeholder"];
         this.spinner.hide()

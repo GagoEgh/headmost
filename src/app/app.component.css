@@ -2,31 +2,26 @@
     display: block;
 }
 
-.conteiner {
-    min-width: 100%; 
+.header {
+    min-width: 100%;
     background-color: rgba(255, 255, 255, 0.849);
     box-shadow: 0 2px 2px rgb(0 0 0 / 35%);
-    height: 50px;
-}
-
-.width{
     display: flex;
     justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
+    height: 50px;
 }
 
 .logo {
     width: 180px;
     cursor: pointer;
-    transition:  0.3s;
+    transition: 0.3s;
 }
 
-.logo:hover{
+.logo:hover {
     transform: rotate(-6deg);
 }
 
-.logo p:hover{
+.logo p:hover {
     font-size: 40px;
 }
 
@@ -34,15 +29,15 @@
     font-family: 'Praise', cursive;
     font-size: 45px;
     padding: 15px 0;
-    color: #f43f73;
+    color: #c11414;
     text-align: center;
-    transition:  0.3s;
+    transition: 0.3s;
 }
 
 .li-nav {
     list-style: none;
     position: relative;
-    margin-top: -35px;
+    margin-top: -25px;
     background-color: white;
     border-radius: 7px;
     padding: 10px;
@@ -53,18 +48,16 @@
 
 .li-nav li {
     padding: 5px;
-    width: 120px;
     cursor: pointer;
 }
 
 .li-nav a {
-    display: inline-block;
-    width: 100%;
+    display: block;
+    width: inherit;
     text-decoration: none;
-    /* color: rgb(63, 62, 62); */
     color: #c79d51;
     font-weight: bold;
-    padding: 5px;
+    margin-left: 20px;
     transition: 0.2s;
 }
 
@@ -72,9 +65,11 @@
     background-color: rgb(236, 231, 231);
 }
 
+
 .parent:hover .li-nav {
     display: block;
 }
+
 
 .parent-1:hover .li-nav {
     display: block;
@@ -83,6 +78,8 @@
 .silki {
     list-style: none;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin-top: 15px;
 }
 
@@ -91,13 +88,12 @@
     margin-top: -7px;
 }
 
-.drop {
-    margin: -82px 0 0 160px;
+.drop-constructor {
+    margin: -75px 0 0 155px;
 }
 
 .frame {
     text-decoration: none;
-    /* color: rgb(54, 54, 54); */
     color: #c79d51;
     font-weight: bold;
     padding: 5px 35px;
@@ -116,6 +112,14 @@
     color: red;
 }
 
+.footer-width {
+    display: flex;
+    justify-content: space-between;
+}
+
+.li-heigth {
+    height: 22px;
+}
 
 /* .parent, */
 
@@ -138,7 +142,6 @@
     top: 30px;
     left: -30px;
     list-style: none;
-    /* color: rgb(78, 77, 77); */
     color: #c79d51;
     background-color: white;
     z-index: 55;
@@ -152,7 +155,6 @@
     display: block;
     position: relative;
     text-decoration: none;
-    /* color: rgb(54, 54, 54); */
     color: #c79d51;
     font-size: 14px;
     padding: 5px;
@@ -170,7 +172,6 @@
     padding: 5px;
     font-size: 12px;
     color: #c79d51;
-    /* color:black; */
 }
 
 .list:hover {
@@ -179,13 +180,12 @@
 
 .list a {
     color: #c79d51;
-    /* color:black; */
+    display: block;
 }
 
 .flags {
     display: flex;
     list-style: none;
-    margin-top: -5px;
 }
 
 .flag {
@@ -193,7 +193,7 @@
     height: 15px;
     background-position: center;
     background-size: 100% 100%;
-    margin: 5px 10px;
+    margin: 5px 3px;
     cursor: pointer;
     transition: 0.5s;
 }
@@ -202,22 +202,36 @@
     box-shadow: 1px 0 6px 4px rgb(75, 73, 73);
 }
 
+.order__container {
+    width: auto !important;
+    height: inherit !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
 .order {
     border-radius: 4px;
-    z-index: 999;
-    top: 105px;
-    left: 96%;
-    position: fixed;
+    width: 100%;
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    left: 50%;
     background: #d9d9d9c7;
-    width: 60px;
-    padding: 7px;
+    width: 45px !important;
+    padding: 0 5px !important;
     cursor: pointer;
+}
+
+.order img {
+    height: 15px;
 }
 
 .footerWrap {
     min-width: 100%;
     padding-top: 20px;
-  
     box-shadow: 0 2px 2px rgb(41 43 42 / 37%) inset;
     height: 120px;
 }
@@ -262,14 +276,16 @@
 }
 
 .left p {
+    padding-top: 15px;
     color: #c79d51;
+    width: 200px;
 }
 
 
 
 
 @media (max-width:1082px) {
-    .conteiner {
+    .header {
         position: relative;
         display: flex;
         justify-content: space-between;
@@ -278,80 +294,88 @@
         z-index: 111;
     }
 
-    .width{
-        width: 100%;
-    }
     .silki {
         display: none;
     }
+
     .check-silki {
         width: 250px;
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 45px;
         right: 0;
         z-index: 999;
         background-color: white;
         box-shadow: 0 2px 2px rgb(0 0 0 / 35%);
         padding-left: 0;
     }
+
     .material-icons-outlined {
         display: block;
     }
+
     .frame {
         text-decoration: none;
         color: #c79d51;
-        /* color: rgb(54, 54, 54); */
         font-weight: bold;
         transition: 0.4s;
         display: inline-block;
     }
+
     .check-silki p {
         display: inline-block;
     }
+
     .parent {
         margin-bottom: -20px;
     }
+
     .parent-1 {
         margin-top: 5px
     }
+
     .user-data {
-        top: 35px;
         left: 0px;
     }
+
     .activeHover {
         margin-left: 30px;
     }
+
     .order {
-        left: 93%;
-        top: 200px;
+        left: 14%;
+    }
+   
+    .drop-constructor{
+        margin: -3px 0 0 -25px;
     }
     .drop {
-        margin: 0;
+        margin: -3px 0 0 10px;
     }
+
     .li-nav {
-        margin-top: 0;
-        margin-left: 30px;
-        width: fit-content;
+        width: 200px;
+        margin-top: -1px;
     }
+
     .footerWrap {
         width: inherit;
     }
-}
 
-@media (max-width:1025px) {
-    .order {
-        left: 95%;
-    }
+
 }
 
 @media (max-width:980px) {
     .footer-width {
         display: flex;
-        flex-direction: column;
-        text-align: center;
+        flex-direction: column-reverse;
+        /* align-items: center; */
     }
+
+    .left {
+        margin: 0 auto;
+    }
+
     .footer-nav {
         width: inherit;
     }
@@ -361,6 +385,7 @@
     .headmost {
         display: none;
     }
+
     .noMobail {
         display: block;
         margin: 100px auto;

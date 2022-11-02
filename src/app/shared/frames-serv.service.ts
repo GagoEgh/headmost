@@ -1,35 +1,38 @@
-import { LoginComponent } from '../register/login/login.component';
-import { HttpClient} from '@angular/common/http';
+import { LoginComponent } from '../auth/login/login.component';
+import { HttpClient } from '@angular/common/http';
 import { TranslateService } from "@ngx-translate/core";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from "ngx-spinner";
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Api, CountryResult, ServerResponce } from '../interface/img-ramka';
-import { CardItemResults } from '../interface/frame-response';
-import { ImageResponse, ImgColorValue, UserImage } from '../interface/ImageResponse';
-import { CategoryDetails } from '../interface/CategoryDetails';
-import { WordResult } from '../interface/WordResult';
-import { UserData } from '../interface/UserInfo';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Api, CountryResult, ServerResponce } from '../modeles/img-ramka.modele';
+import { CardItemResults } from '../modeles/frame-response.modele';
+import { ImageResponse, ImgColorValue, UserImage } from '../modeles/ImageResponse.modele';
+import { CategoryDetails } from '../modeles/CategoryDetails.modele';
+import { UserData } from '../modeles/UserInfo.module';
+import { WordResult } from '../modeles/WordResult.module';
 import { environment } from 'src/environments/environment';
+
+
 
 @Injectable({
     providedIn: 'root'
 })
 export class FramesServService {
+    public orderSubject = new BehaviorSubject(null);
     public frameHeigth = {} as { [key: string]: string };
-    public validateForm: FormGroup = new FormGroup({});
-    public userData: UserData = {} as UserData;
-    public letterImges: WordResult[] = [];
-    public selectedValue: any[]  = [];
+    public validateForm!: FormGroup;
+    public userData!: UserData;
+    public letterImges!: WordResult[];
+    public selectedValue!: any[];
     public placeholder = '';
     public lang = 'ru';
     public country_placeholder = '';
     public isOrder: boolean = false;
     public isSilki = false;
-    public orderList: CardItemResults[] = [];
+    public orderList!: CardItemResults[];
     public background: any = {};
     public topText: string = '';
     public btmText: string = '';
@@ -48,8 +51,10 @@ export class FramesServService {
     public letterChar: string = '';
     public isImg = true;
     public frame: any;
+    public isGet: boolean = false;
+    public div: any = [];
     public api: Api = {
-        worldApi: 'https://admin.gift4u.am',
+        worldApi: environment.API_URL,
         api_utils: '/utils',
         api_bgr: '/background/',
         api_frame: '/frame/',
@@ -75,10 +80,12 @@ export class FramesServService {
         api_user_image: '/user-image',
         api_created_frame: '/created-frame',
         api_magnet: '/add-magnet-in-card',
-        api_languages:'/static/languages',
-        api_en:'/en.json',
-        api_ru:'/ru.json',
-        api_hy:'/hy.json'
+        api_languages: '/static/languages',
+        api_changePass: 'change-password/',
+        change_email: 'change-email/',
+        api_en: '/en.json',
+        api_ru: '/ru.json',
+        api_hy: '/hy.json'
     }
 
     public imgColor: { ceys: CategoryDetails, values: ImgColorValue }[] = [
@@ -116,10 +123,21 @@ export class FramesServService {
         }
     ];
 
-    constructor(private url: HttpClient, public spinner: NgxSpinnerService, public rout: Router,
-        public _translate: TranslateService, public modalService: NgbModal) { }
+    constructor(
+        private url: HttpClient,
+        public spinner: NgxSpinnerService,
+        public rout: Router,
+        public _translate: TranslateService,
+        public modalService: NgbModal) { }
 
 
+    setOrdersDate(data: any) {
+        this.orderSubject.next(data)
+    }
+
+    getOrdersDate() {
+        return this.orderSubject.asObservable()
+    }
 
     public letterColection(search: string = '', color: string | number = '', category: number | string = ''): Observable<ServerResponce<ImageResponse[]>> {
         return this.url.get<ServerResponce<ImageResponse[]>>(this.api.worldApi + this.api.api_img + this.api.api_img + '/?color=' + `${color}` + '&category=' + `${category}` + '&search=' + `${search}` + '&limit=1000')
@@ -127,51 +145,52 @@ export class FramesServService {
 
     private getOrder(obj: any): Observable<CardItemResults[]> {
         return this.url.post<CardItemResults[]>(this.api.worldApi + this.api.api_order + this.api.api_card + this.api.api_add,
-            obj,
-            { headers: { 'Authorization': this.token } }
+            obj
         )
     }
 
-    private getCountry(): Observable<ServerResponce<CountryResult[]>> {
+    public getCountry(): Observable<ServerResponce<CountryResult[]>> {
         return this.url.get<ServerResponce<CountryResult[]>>(this.api.worldApi + this.api.api_location + this.api.api_country)
     }
 
     public userInfo(): Observable<ServerResponce<[]>> {
-        return this.url.get<ServerResponce<[]>>(this.api.worldApi + this.api.api_order + this.api.api_card + '/?user=' + `${this.userData.user}`,
-            { headers: { 'Authorization': this.token } })
+        return this.url.get<ServerResponce<[]>>(this.api.worldApi + this.api.api_order + this.api.api_card + '/?user=' + `${this.userData.user}`)
     }
 
     public userImageGet(myImgOffset: number): Observable<ServerResponce<UserImage[]>> {
-        return this.url.get<ServerResponce<UserImage[]>>(this.api.worldApi + this.api.api_img + this.api.api_user_image + '/?user=' + `${this.userData.user}&limit=10&offset=${myImgOffset}`,
-            { headers: { 'Authorization': this.token } })
+        return this.url.get<ServerResponce<UserImage[]>>(this.api.worldApi + this.api.api_img + this.api.api_user_image + '/?user=' + `${this.userData.user}&limit=10&offset=${myImgOffset}`)
     }
 
-    public userCountry(): void {
-        this.getCountry().subscribe((countryResult: ServerResponce<CountryResult[]>) => {
-            this.selectedValue = countryResult.results
-        })
+    public userCountry() {
+        return this.getCountry()
     }
 
     public orderCard(obj: { created_frame: string, user: number }): Observable<CardItemResults> {
-        return this.url.post<CardItemResults>(this.api.worldApi + this.api.api_order + this.api.api_card + '/', obj,
-            { headers: { 'Authorization': this.token } })
+        return this.url.post<CardItemResults>(this.api.worldApi + this.api.api_order + this.api.api_card + '/', obj)
     }
 
-    public cityPlaceholder(): void {
-        this._translate.get('Order.userData.countryPlaceholder').subscribe((city: string) => {
-            this.country_placeholder = city;
-        })
+    public cityPlaceholder() {
+        return this._translate.get('Order.userData.countryPlaceholder')
+    }
+
+
+    public getUserOrder(id: number) {
+        return this.url.get(this.api.worldApi + this.api.api_order + this.api.api_card + `/?user=${id}&limit=1000`)
     }
 
     public showFrame(): void {
         this.isOrder = false;
         this.isImg = true;
-        this.validateForm.reset();
+        this.validateForm?.reset();
         if (this.urlArr[1] === 'frame') {
             this.rout.navigate([this.urlArr[1] + '/form-frame']);
         }
         if (this.urlArr[1] === 'magnit') {
             this.rout.navigate([this.urlArr[1] + '/form-magnit'])
+        }
+
+        if (this.urlArr[1] !== 'magnit' && this.urlArr[1] !== 'frame') {
+            this.rout.navigate(['/'])
         }
     }
 
@@ -210,11 +229,12 @@ export class FramesServService {
                 })
             }
 
-            this.getOrder(order).subscribe((orderList: CardItemResults[]) => {
-                this.orderList = orderList;
-                this.isOrder = true;
-                this.spinner.hide()
-            })
+            this.getOrder(order)
+                .subscribe((orderList: CardItemResults[]) => {
+                    this.orderList = orderList.reverse();
+                    this.isOrder = true;
+                    this.spinner.hide()
+                })
         } else {
             const modalRef = this.modalService.open(LoginComponent);
 

@@ -1,0 +1,35 @@
+.password-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .login-form-button {
+    display: block;
+    width: 120px;
+    font-size: 10px;
+    transition: 1s;
+  
+  }
+  
+  .login-form-button:hover {
+    background-color: #e8ac3d;
+    color: #ebe8e8fd;
+  }
+  
+  .color {
+    color: #d8bc89;
+  }
+  
+  .spanClose {
+    font-size: 14px;
+    margin-top: -5px;
+    display: block;
+  }
+  .error{
+    color: tomato;
+    font-size: 10px;
+    margin-left: 85px;
+  }
+  
+  

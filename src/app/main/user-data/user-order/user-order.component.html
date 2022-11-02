@@ -1,0 +1,81 @@
+<div class="search-results" infinite-scroll [infiniteScrollDistance]="scrollDistance"
+    [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown($event)">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" size="medium" color="#fff" type="ball-spin">
+        <p style="color: #ffffff"> Loading... </p>
+    </ngx-spinner>
+    <div class="wrap">
+        <h3 class="title">{{'Menu.user.myOrder.description'|translate}}</h3>
+
+        <div *ngFor="let item of userOrders, let i=index" class="frames">
+            <span class="preview-remove" (click)='deleteUsOrder(item)'>&times;</span>
+            <div class='user-block' *ngFor='let orderItemss of item.order_items_details;let ind=index'>
+                <div>
+                    <div *ngIf='orderItemss.isBlock' class="flex-img">
+                        <button class="levt-nav" (click)="prevOrder(item,ind)"
+                            [style.display]="item.order_items_details.length === 1?'none':'block'"
+                            [disabled]="!orderItemss.isPrev"></button>
+                        <div class="myWrap">
+                            <div class="reight">
+                                <div class="squrl left-top"
+                                    [style.background-image]="'url(' + orderItemss?.created_frame_details?.frame_details?.left_top_corner_image + ')'">
+                                </div>
+                                <div class="reight-he left-line"
+                                    [style.background-image]="'url(' + orderItemss?.created_frame_details?.frame_details?.left_line_image + ')'">
+                                </div>
+                                <div class="squrl left-bottom"
+                                    [style.background-image]="'url(' + orderItemss?.created_frame_details?.frame_details?.left_bottom_corner_image + ')'">
+                                </div>
+                            </div>
+                            <div class="content">
+                                <div class="top"
+                                    [style.background-image]="'url(' + orderItemss?.created_frame_details?.frame_details?.top_line_image + ')'">
+                                </div>
+                                <div class="user"
+                                    [style.background]=" orderItemss?.created_frame_details?.background_details?.color">
+                                    <p class='text' *ngIf="orderItemss?.created_frame_details?.text_in_top">
+                                        {{orderItemss?.created_frame_details?.text_in_top}}</p>
+                                    <div class="order">
+                                        <div class="my-order"
+                                            *ngFor='let details of orderItemss?.created_frame_details?.frame_images'>
+                                            <div class="user-imags"
+                                                [style.background-image]="details.image_details?'url('+ details.image_details.image + ')':'url('+ details.user_image_details.image + ')'">
+                                                <!-- *ngIf="orderItemss?.created_frame_details?.is_magnet -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="text bot" *ngIf="orderItemss?.created_frame_details?.text_in_bottom">
+                                        {{orderItemss?.created_frame_details?.text_in_bottom}}</p>
+                                </div>
+                                <div class="bottom"
+                                    [style.background-image]="'url(' + orderItemss?.created_frame_details?.frame_details?.bottom_line_image + ')'">
+                                </div>
+                            </div>
+                            <div class="left">
+                                <div class="squrl right-top"
+                                    [style.background-image]="'url(' + orderItemss?.created_frame_details?.frame_details?.right_top_corner_image + ')'">
+                                </div>
+
+                                <div class="reight-he right-line"
+                                    [style.background-image]="'url(' + orderItemss?.created_frame_details?.frame_details?.right_line_image + ')'">
+
+                                </div>
+                                <div class="squrl right-bottom"
+                                    [style.background-image]="'url(' + orderItemss?.created_frame_details?.frame_details?.right_bottom_corner_image + ')'">
+                                </div>
+                            </div>
+
+                        </div>
+                        <button class="reight-nav" (click)="nextOrder(item,ind)"
+                            [style.display]="item.order_items_details.length === 1?'none':'block'"></button>
+
+                        <div class="add-sum">
+                            <p class="sum">{{orderItemss.created_frame_details.price}}Դ</p>
+                            <button class="batn" (click)='addOrder(i)'>
+                                {{'Menu.user.myOrder.add'|translate}}
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>

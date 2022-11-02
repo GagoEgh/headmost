@@ -1,0 +1,24 @@
+<div class="modal-header title-h1">
+  <h1>{{'Order.userData.logIn'|translate}}</h1>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="form">
+    <app-email formControlName="email"></app-email>
+    <app-password 
+      [label]="'Order.userData.password'"
+      class="password" 
+      formControlName="password" 
+      [style]="'margin-bottom: 10px;'"></app-password>
+    <button mat-raised-button class="login-form-button">
+      {{'Order.userData.logIn'|translate}}</button>
+    <p *ngIf='errorLog' [style.color]='"red"' class="errore">
+      {{'ErroreMessage.checkPass'|translate}}
+    </p>
+  </form>
+</div>
+<div class="modal-footer">
+  <a (click)="open()">{{'Order.userData.register'|translate}}</a>
+</div>

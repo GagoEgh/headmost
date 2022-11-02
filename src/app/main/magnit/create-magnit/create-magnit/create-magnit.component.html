@@ -1,0 +1,33 @@
+<div class="magnit">
+    <div class="underFridge">
+        <div class="imgColor">
+            <div class="colorless" [style.backgroundColor]='block.values.color' *ngFor='let block of frames.imgColor'
+                (click)="imgFone(block)" [ngClass]="{'box-content':block?.ceys?.id=== imgService?.painding?.id}">
+                <div class="lessWhite" [style.backgroundColor]='block.values.child'>
+                    <p class="info" *ngIf='frames.lang==="hy"'>{{block?.ceys?.name_hy}}</p>
+                    <p class="info" *ngIf='frames.lang==="ru"'>{{block?.ceys?.name_ru}}</p>
+                    <p class="info" *ngIf='frames.lang==="en"'>{{block?.ceys?.name_en}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="change" (click)='changeImg()'>
+                <p class="bottom">{{'Imgs.changeImage'|translate}}</p>
+            </div>
+            <div class="delete" (click)="deletImg()">
+                <p class="bottom"> {{'Imgs.deleteText'|translate}}</p>
+            </div>
+        </div>
+        <div class="im">
+            <div class="imgs">
+                <div class="bg-img" *ngFor='let img of frames.letterImges,let i = index' (click)="openImg(img,i)"
+                    [style.background-image]="checkImage(img.image.thumbnail)?'url( '+ img.image.thumbnail + ')':'url( '+ baseUrl + img.image.thumbnail + ')'">
+                    <div class="bgr">
+                        <p>{{'Imgs.imgHover'|translate}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-order *ngIf='frames.isOrder'> </app-order>

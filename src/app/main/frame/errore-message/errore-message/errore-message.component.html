@@ -1,0 +1,7 @@
+
+<div class="modal-body">
+    <p class="red" *ngIf="!isMagnitText; else magnitText">{{'ErroreMessage.textErr'|translate}}</p>
+    <ng-template #magnitText>
+        <p class="red">{{'ErroreMessage.magnitTextErr'|translate}}</p>
+    </ng-template>
+</div>

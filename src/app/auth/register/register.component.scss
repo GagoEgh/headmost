@@ -1,0 +1,106 @@
+::ng-deep .cdk-overlay-container {
+  z-index: 1200 !important;
+}
+
+.modal-content {
+  width: -webkit-fit-content !important;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  top: 100px !important;
+  position: relative !important;
+  left: 50% !important;
+  top: 20% !important;
+  transform-origin: top !important;
+}
+
+.mat-form-field {
+  width: 250px;
+}
+
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-infix {
+  width: 200px;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  min-width: 150px !important;
+  width: 100% !important;
+}
+
+.login-form-button {
+  margin: 10px auto;
+}
+
+.city {
+  margin-left: 40px;
+}
+
+.city:hover {
+  background: gainsboro;
+}
+
+.color {
+  height: 40px;
+  margin-left: 50px;
+}
+
+.color p {
+  color: tomato;
+  text-align: left;
+}
+
+.rightImg1 {
+  display: block;
+  width: 10px;
+  position: relative;
+  left: 93px;
+  top: 35px;
+}
+
+.rightImg2 {
+  display: block;
+  width: 10px;
+  position: relative;
+  left: 93px;
+  top: 67px;
+}
+
+:host::ng-deep app-password .mat-form {
+  width: 240px;
+}
+
+:host::ng-deep app-password .errors-content {
+  margin-left: 10px;
+}
+
+:host::ng-deep app-email .mat-form {
+  width: 250px;
+}
+
+:host::ng-deep app-email .errors-content {
+  margin-left: 10px;
+}
+
+:host::ng-deep app-password .mat-form {
+  width: 250px;
+}
+
+:host::ng-deep app-password .error {
+  margin: -15px 0 0 43px;
+}
+
+:host::ng-deep app-email .error {
+  margin: -15px 0 0 43px;
+}
+
+@media (max-width:991px) {
+  :host::ng-deep app-email .errors-content {
+    margin: -20px 0 0 55px;
+  }
+
+  :host::ng-deep app-password .errors-content {
+    margin: -20px 0 0 55px;
+  }
+}

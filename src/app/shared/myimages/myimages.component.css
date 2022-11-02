@@ -1,88 +1,121 @@
-.file{
+.file {
     padding-top: 40px;
 }
 
-.upload{
- width: auto;
- color: #e6af49;
- position: relative;
- border-radius: 99px;
- border: 1px solid  #e6af49;
- text-decoration: none;
- text-transform: uppercase;
- padding: 0.5rem 1.5rem;
- font-weight: 700;
- outline: none;
- background: #fff;
- transition: all 0.22s;
- cursor: pointer;
- margin-right: 1rem;
+.upload {
+    width: auto;
+    color: #e6af49;
+    position: relative;
+    border-radius: 99px;
+    border: 1px solid #e6af49;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0.5rem 1.5rem;
+    font-weight: 700;
+    outline: none;
+    background: #fff;
+    transition: all 0.22s;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: all 0.5s;
 }
 
-.upload:hover{
- cursor: pointer;
- opacity: 0.8;
-}
-
-.upload:active {
- box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.3);
-}
-
-.box{
- display: flex;
- flex-wrap: wrap;
- margin-top: 50px;
- height: calc(100vh - 400px)
-}
-
-.files{
- padding: 5px;
-}
-
-.img{
- width: 120px;
- height: 120px;
- background-position: center;
- background-size:100% 100%;
- padding: 5px;
- position: relative;
-}
-
-
-
-.text{
- margin:10px 80px;
- color: red;
- font-weight: 600;
- letter-spacing: 1px;
+.upload:hover {
+    cursor: pointer;
+    opacity: 0.8;
+    background: #e6af49;
+    color: white;
+    border: 1px solid white;
 }
 
 .upload:active {
- box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-input[type=file]{
- display: none;
+.box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.files {
+    padding: 5px;
+}
+
+.img {
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    background-size: 100% 100%;
+    padding: 5px;
+    position: relative;
+    margin: 10px;
+    transition: all 0.5s;
+}
+
+.img:hover {
+    box-shadow: 1px 0 6px 4px rgb(75, 73, 73);
+}
+
+.more {
+    width: 150px;
+    height: 55px;
+    margin: 40px 25px;
+}
+
+.text {
+    margin: 10px 80px;
+    color: red;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+input[type=file] {
+    display: none;
 }
 
 .preview-remove {
- opacity: 0.1;
- width: 20px;
- height: 20px;
- position: absolute;
- right: 0;
- top: 0;
- font-weight: bold;
- background: rgba(255, 0, 0, 0.7);
- color: rgb(255, 255, 255);
- /* border: 0.1px solid black; */
- display: flex;
- align-items: center;
- justify-content: center;
- cursor: pointer;
- transition: opacity .22s;
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    left: 70%;
+    top: -105px;
+    font-weight: bold;
+    background: rgba(255, 0, 0, 0.7);
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999999;
+    transition: opacity 0.5s;
 }
 
-.files:hover .preview-remove{
- opacity: 1;
+.files:hover .preview-remove {
+    opacity: 1;
+    transition: 0.5s;
 }
+
+.my-img {
+    max-height: 370px;
+    overflow: auto;
+    margin-top: 30px;
+    box-shadow: inset 3px 1px 6px 2px rgb(185 179 179)
+}
+
+.my-img::-webkit-scrollbar{
+    width: 13px;
+}
+
+.my-img::-webkit-scrollbar-track{
+    background-color: rgb(147, 147, 147);
+}
+
+.my-img::-webkit-scrollbar-thumb{
+    background-color: rgb(185 179 179);
+    border-radius: 8px;
+    border: 3px solid rgb(147, 147, 147);
+    cursor: pointer;
+
+}
+

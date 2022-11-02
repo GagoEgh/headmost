@@ -1,0 +1,28 @@
+<article>
+    <div class="main">
+        <div class="img-idea" *ngFor='let img of ideaImages,let i = index'>
+            <div class="imgs" [style.background-image]="'url('+ img.image + ')'">
+            </div>
+            <div class="idea-info">
+                <div class="titles" (click)="imgInfo(img)">
+                    <p class="img-title" *ngIf='frames.lang==="hy"'>
+                        {{img.created_frame_category_details.name_hy}}
+                    </p>
+                    <p class="img-title" *ngIf='frames.lang==="ru"'>
+                        {{img.created_frame_category_details.name_ru}}
+                    </p>
+                    <p class="img-title" *ngIf='frames.lang==="en"'>
+                        {{img.created_frame_category_details.name_en}}
+                    </p>
+                    <div>
+                        <p class="img-title">{{img.title }} </p>
+                        <p class="img-title"> {{ img.price }} {{ 'Order.informImg.price'|translate}}</p>
+                    </div>
+                </div>
+                <div class="order" (click)="addOrder(i)">
+                    <img src="/assets/1x/cart2.png" alt='img'>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

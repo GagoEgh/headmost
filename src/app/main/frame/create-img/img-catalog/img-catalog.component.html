@@ -1,0 +1,59 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-label="Close"
+        (click)="activeModal.dismiss(imgService.painding.categoryId = 0)">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="img-menu">
+        <div class="image__container">
+            <div *ngIf='frames.apiPhoto else myPhoto' class="block-1">
+                <div class="bg-img" *ngFor='let item of imgService.painding.imgs' #newItem (click)='changeImg(item)'
+                    [style.background-image]="'url('+ item.thumbnail + ')'">
+                </div>
+            </div>
+            <ng-template #myPhoto>
+                <div class="block-1">
+                    <div>
+                        <app-myimages [isZoom]="false" (changeImg)="change($event)"></app-myimages>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+        <nav class="bar">
+            <h2>{{'ImgMenu.menuTitle'|translate}}</h2>
+            <div class="menu">
+                <div>
+                    <p class="subtitle">{{'ImgMenu.color'|translate}}</p>
+                    <ul class="ul">
+                        <li class="list" *ngFor='let block of frames.imgColor' (click)='changeFone(block)'
+                            [ngClass]="{'listActive':imgService.painding.id=== block.ceys.id}">
+                            <span *ngIf='frames.lang==="hy"'>{{block.ceys.name_hy}}</span>
+                            <span *ngIf='frames.lang==="ru"'>{{block.ceys.name_ru}}</span>
+                            <span *ngIf='frames.lang==="en"'>{{block.ceys.name_en}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="color">
+                    <p class="subtitle">{{'ImgMenu.categori'|translate}}</p>
+                    <ul class="ul">
+                        <li class="list" [class.listActive]='imgService.painding.categoryId===0' (click)="getAll()">
+                            {{'IdeaImg.all'|translate}}
+                        </li>
+                        <li class="list" *ngFor='let category of categoryList, let i = index'
+                            (click)='showCategory(category)'
+                            [class.listActive]='imgService.painding.categoryId===category.id && this.frames.apiPhoto'>
+                            <span *ngIf='frames.lang==="hy"'>{{category.name_hy}}</span>
+                            <span *ngIf='frames.lang==="ru"'>{{category.name_ru}}</span>
+                            <span *ngIf='frames.lang==="en"'>{{category.name_en}}</span>
+                        </li>
+                        <li class="list" (click)="getMyPhoto()" [ngClass]="{'listActive':!this.frames.apiPhoto}">
+                            {{'ImgMenu.myPhoto'|translate}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="modal-footer"></div>

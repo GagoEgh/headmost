@@ -1,0 +1,15 @@
+.mat-form {
+    width: 297px;
+}
+
+.errors-content {
+    height: 20px;
+    text-align: start;
+    margin-top: -15px;
+}
+
+.error {
+    color: tomato;
+    font-size: 10px;
+    margin-bottom: 15px;
+}

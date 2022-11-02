@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <h4 class="color">
+        {{'Order.userData.changeEmail'|translate}}
+    </h4>
+    <button type="button" class="btn-close close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span class="spanClose">&#10006;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="password-form">
+        <app-email [formControl]="email"></app-email>
+        <p class="error">{{message}}</p>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" mat-raised-button class="login-form-button" (click)="changeEmail()">
+        {{'Order.userData.update'|translate}}
+    </button>
+</div>
