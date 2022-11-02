@@ -12,6 +12,7 @@ import { IdeaImageService } from 'src/app/global pages/ideas/idea-image/idea-ima
 import { CategoryDetails } from 'src/app/modeles/CategoryDetails.modele';
 import { ServerResponce } from 'src/app/modeles/img-ramka.modele';
 import { FramesServService } from 'src/app/shared/frames-serv.service';
+import { environment } from 'src/environments/environment';
 import { ImgCatalogComponent } from '../frame/create-img/img-catalog/img-catalog.component';
 import { ErroreMessageComponent } from '../frame/errore-message/errore-message/errore-message.component';
 import { FrameService } from '../frame/frame/frame.service';
@@ -23,7 +24,7 @@ export class FrameImag {
   protected bottomText: FormGroup = new FormGroup({});
   protected validateForm: FormGroup = new FormGroup({});
   protected letterChar = 0;
-
+  public baseUrl = environment.API_URL;
   constructor(
     public frames: FramesServService,
     public modalService: NgbModal,
@@ -95,7 +96,7 @@ export class FrameImag {
     const modalRef = this.modalService.open(NgbdModalContentComponent);
   }
 
-  public onSubmit(): void {    
+  public onSubmit(): void {
     if (this.frames.validateForm.invalid) {
       const modalRef = this.modalService.open(ErroreMessageComponent);
       setTimeout(() => {

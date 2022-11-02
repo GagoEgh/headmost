@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API_URL:'https://admin.gift4u.am/'
+  API_URL:'http://annaniks.com:8014'
+  // 'https://admin.gift4u.am/'
 };
 
 /*

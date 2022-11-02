@@ -13,6 +13,7 @@ import { ImageResponse, ImgColorValue, UserImage } from '../modeles/ImageRespons
 import { CategoryDetails } from '../modeles/CategoryDetails.modele';
 import { UserData } from '../modeles/UserInfo.module';
 import { WordResult } from '../modeles/WordResult.module';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -53,7 +54,7 @@ export class FramesServService {
     public isGet: boolean = false;
     public div: any = [];
     public api: Api = {
-        worldApi: 'https://admin.gift4u.am',
+        worldApi: environment.API_URL,
         api_utils: '/utils',
         api_bgr: '/background/',
         api_frame: '/frame/',

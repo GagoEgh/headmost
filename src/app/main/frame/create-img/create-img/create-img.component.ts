@@ -10,6 +10,7 @@ import { IdeaImageService } from 'src/app/global pages/ideas/idea-image/idea-ima
 import { FrameService } from '../../frame/frame.service';
 import { FrameImageService } from 'src/app/main/frame-image/frame-image.service';
 import { FrameImag } from 'src/app/main/frame-image/frame-image';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-create-img',
@@ -23,6 +24,7 @@ export class CreateImgComponent extends FrameImag implements OnInit {
   public topLettering = {} as Letter;
   public bottomLettering: Letter = {} as Letter;
   public text!: string;
+  public baseUrl = environment.API_URL;
   @Output() mainApp: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
@@ -52,7 +54,7 @@ export class CreateImgComponent extends FrameImag implements OnInit {
   }
 
   public deletImg(): void {
-   
+
     this.rout.navigate(['frame/form-frame']);
     this.frames.validateForm.reset();
     this.frames.isImg = true;
@@ -60,7 +62,7 @@ export class CreateImgComponent extends FrameImag implements OnInit {
     this.frames.frame = this.frameServis.framesImge.find(
       (item) => item.id === 3
     );
-    if(this.frames.validateForm.get("text")?.value == null){
+    if (this.frames.validateForm.get("text")?.value == null) {
       this.imgService.clearPrice();
     }
     if (this.frames.isOrder) {

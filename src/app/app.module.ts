@@ -28,12 +28,13 @@ import { UserGuard } from './main/user-data/userGuard';
 //loader
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, 'https://admin.gift4u.am/media/static/languages/', '.json');
+  return new TranslateHttpLoader(http, `${environment.API_URL}/media/static/languages/`, '.json');
 }
 
 //data
 import { registerLocaleData } from '@angular/common';
 import { AddHeaderInterceptor } from './interceptors/add-header.interceptor';
+import { environment } from 'src/environments/environment';
 
 registerLocaleData(en);
 
